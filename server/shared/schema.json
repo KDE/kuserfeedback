@@ -1,0 +1,13 @@
+{
+    "schema": [
+        {
+            "version": 1,
+            "sql": ["CREATE TABLE schema_version (version INTEGER)", "INSERT INTO schema_version VALUES(0)"]
+        },
+
+        {
+            "version": 2,
+            "sql": ["CREATE TABLE products (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar NOT NULL UNIQUE)" ]
+        }
+    ]
+}

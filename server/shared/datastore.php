@@ -160,6 +160,29 @@ public function rawDataForProduct($name)
     return $data;
 }
 
+/** List all survey for a product name. */
+public function surveysByProductName($product)
+{
+    $res = $this->db->query('SELECT surveys.* FROM surveys JOIN products ON (surveys.productId = products.id) WHERE products.name = ' . $this->db->quote($product));
+    if ($res === FALSE)
+        $this->fatalDbError();
+    $surveys = array();
+    foreach ($res as $row)
+        array_push($surveys, $row);
+    return $surveys;
+}
+
+/** Add a new survey for a product given by id. */
+public function addSurvey($productId, $survey)
+{
+    $res = $this->db->exec('INSERT INTO surveys (productId, name, url) VALUES ('
+        . $productId . ', '
+        . $this->db->quote($survey['name']) . ', '
+        . $this->db->quote($survey['url']) . ')');
+    if ($res === FALSE)
+        $this->fatalDbError();
+}
+
 }
 
 ?>

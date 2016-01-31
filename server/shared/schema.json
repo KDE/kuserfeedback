@@ -8,6 +8,11 @@
         {
             "version": 2,
             "sql": ["CREATE TABLE products (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar NOT NULL UNIQUE)" ]
+        },
+
+        {
+            "version": 3,
+            "sql": ["CREATE TABLE surveys (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id), name VARCHAR, url VARCHAR NOT NULL)" ]
         }
     ]
 }

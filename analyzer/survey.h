@@ -15,50 +15,44 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_ANALYZER_MAINWINDOW_H
-#define USERFEEDBACK_ANALYZER_MAINWINDOW_H
+#ifndef USERFEEDBACK_ANALYZER_SURVEY_H
+#define USERFEEDBACK_ANALYZER_SURVEY_H
 
-#include <QMainWindow>
+#include <QSharedDataPointer>
+#include <QVector>
 
-#include <memory>
-
-class QNetworkAccessManager;
+class QString;
+class QUrl;
 
 namespace UserFeedback {
 namespace Analyzer {
 
-namespace Ui
-{
-class MainWindow;
-}
+class SurveyData;
 
-class DataModel;
-class ProductModel;
-class ServerInfo;
-class RESTClient;
-class SurveyModel;
-
-class MainWindow : public QMainWindow
+/** Data for one survey. */
+class Survey
 {
-    Q_OBJECT
 public:
-    MainWindow();
-    ~MainWindow();
+    Survey();
+    Survey(const Survey&);
+    ~Survey();
+    Survey& operator=(const Survey&);
 
+    QString name() const;
+    void setName(const QString& name);
+
+    QUrl url() const;
+    void setUrl(const QUrl& url);
+
+    QByteArray toJson() const;
+    static QVector<Survey> fromJson(const QByteArray &data);
 private:
-    void connectToServer(const ServerInfo &info);
-    void logMessage(const QString &msg);
-    void logError(const QString &msg);
-
-    QString selectedProduct() const;
-
-    std::unique_ptr<Ui::MainWindow> ui;
-    RESTClient *m_restClient;
-    ProductModel *m_productModel;
-    DataModel *m_dataModel;
-    SurveyModel *m_surveyModel;
+    QSharedDataPointer<SurveyData> d;
 };
+
 }
 }
 
-#endif // USERFEEDBACK_ANALYZER_MAINWINDOW_H
+Q_DECLARE_TYPEINFO(UserFeedback::Analyzer::Survey, Q_MOVABLE_TYPE);
+
+#endif // USERFEEDBACK_ANALYZER_SURVEY_H

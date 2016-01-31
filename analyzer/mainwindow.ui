@@ -15,8 +15,51 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
-     <widget class="QTableView" name="dataView"/>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="dataTab">
+       <attribute name="title">
+        <string>Raw Data</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QTableView" name="dataView"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="surveyTab">
+       <attribute name="title">
+        <string>Surveys</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QTreeView" name="surveyView">
+          <property name="rootIsDecorated">
+           <bool>false</bool>
+          </property>
+          <property name="uniformRowHeights">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -44,8 +87,16 @@
     <addaction name="actionAddProduct"/>
     <addaction name="actionDeleteProduct"/>
    </widget>
+   <widget class="QMenu" name="menu_Survery">
+    <property name="title">
+     <string>&amp;Survery</string>
+    </property>
+    <addaction name="actionAddSurvey"/>
+    <addaction name="actionDeleteSurvey"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Products"/>
+   <addaction name="menu_Survery"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="logDock">
@@ -121,6 +172,22 @@
    </property>
    <property name="toolTip">
     <string>Delete product and all associated data.</string>
+   </property>
+  </action>
+  <action name="actionAddSurvey">
+   <property name="text">
+    <string>&amp;Add Survey...</string>
+   </property>
+   <property name="toolTip">
+    <string>Add new survery.</string>
+   </property>
+  </action>
+  <action name="actionDeleteSurvey">
+   <property name="text">
+    <string>&amp;Delete Survey</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete a survey.</string>
    </property>
   </action>
  </widget>

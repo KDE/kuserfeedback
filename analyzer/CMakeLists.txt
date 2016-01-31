@@ -7,6 +7,8 @@ set(analyzer_srcs
     productmodel.cpp
     restclient.cpp
     serverinfo.cpp
+    survey.cpp
+    surveymodel.cpp
 )
 
 add_executable(UserFeedbackAnalyzer ${analyzer_srcs})

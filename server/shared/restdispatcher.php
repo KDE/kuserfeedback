@@ -23,7 +23,7 @@ class RESTDispatcher
 public static function dispatch($handler)
 {
     $prefix = dirname($_SERVER['PHP_SELF']);
-    $command = explode('/', substr($_SERVER['REQUEST_URI'], strlen($prefix) + 1), 2);
+    $command = explode('/', substr($_SERVER['REQUEST_URI'], strlen($prefix) + 1), 3);
     if (sizeof($command) < 1)
         die('Empty REST command.');
 
@@ -32,10 +32,17 @@ public static function dispatch($handler)
     if (!method_exists($handler, $method))
         die('Invalid REST command ' . $method . '.');
 
-    if (sizeof($command) == 1)
-        $handler->$method();
-    else
-        $handler->$method($command[1]);
+    switch(sizeof($command)) {
+        case 1:
+            $handler->$method();
+            break;
+        case 2:
+            $handler->$method($command[1]);
+            break;
+        case 3:
+            $handler->$method($command[1], $command[2]);
+            break;
+    }
 }
 
 }

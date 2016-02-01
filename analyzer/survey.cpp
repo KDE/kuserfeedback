@@ -17,6 +17,7 @@
 
 #include "survey.h"
 
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -34,6 +35,7 @@ class SurveyData : public QSharedData
 public:
     QString name;
     QUrl url;
+    int id = -1;
 };
 
 }
@@ -43,6 +45,16 @@ Survey::Survey() : d(new SurveyData) {}
 Survey::Survey(const Survey&) = default;
 Survey::~Survey() = default;
 Survey& Survey::operator=(const Survey&) = default;
+
+int Survey::id() const
+{
+    return d->id;
+}
+
+void Survey::setId(int id)
+{
+    d->id = id;
+}
 
 QString Survey::name() const
 {
@@ -67,6 +79,7 @@ void Survey::setUrl(const QUrl& url)
 QByteArray Survey::toJson() const
 {
     QJsonObject obj;
+    obj.insert(QStringLiteral("id"), id());
     obj.insert(QStringLiteral("name"), name());
     obj.insert(QStringLiteral("url"), url().toString());
     return QJsonDocument(obj).toJson();
@@ -78,6 +91,13 @@ QVector<Survey> Survey::fromJson(const QByteArray &data)
     foreach (const auto &v, QJsonDocument::fromJson(data).array()) {
         const auto obj = v.toObject();
         Survey survey;
+
+        const auto id = obj.value(QStringLiteral("id"));
+        // TODO move this to a helper function
+        if (id.isDouble())
+            survey.setId(id.toInt(-1));
+        else if (id.isString())
+            survey.setId(id.toString().toInt());
         survey.setName(obj.value(QStringLiteral("name")).toString());
         survey.setUrl(QUrl(obj.value(QStringLiteral("url")).toString()));
         surveys.push_back(survey);

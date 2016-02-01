@@ -18,6 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_SURVEY_H
 #define USERFEEDBACK_ANALYZER_SURVEY_H
 
+#include <QMetaType>
 #include <QSharedDataPointer>
 #include <QVector>
 
@@ -38,6 +39,9 @@ public:
     ~Survey();
     Survey& operator=(const Survey&);
 
+    int id() const;
+    void setId(int id);
+
     QString name() const;
     void setName(const QString& name);
 
@@ -54,5 +58,6 @@ private:
 }
 
 Q_DECLARE_TYPEINFO(UserFeedback::Analyzer::Survey, Q_MOVABLE_TYPE);
+Q_DECLARE_METATYPE(UserFeedback::Analyzer::Survey)
 
 #endif // USERFEEDBACK_ANALYZER_SURVEY_H

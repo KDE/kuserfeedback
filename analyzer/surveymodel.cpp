@@ -85,6 +85,8 @@ QVariant SurveyModel::data(const QModelIndex& index, int role) const
             case 0: return survey.name();
             case 1: return survey.url().toString();
         }
+    } else if (role == SurveyRole) {
+        return QVariant::fromValue(m_surveys.at(index.row()));
     }
     return {};
 }

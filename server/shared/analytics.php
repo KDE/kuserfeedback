@@ -101,9 +101,11 @@ public function post_surveys($product)
 }
 
 /** Delete survey. */
-public function delete_surveys($product, $survey)
+public function delete_surveys($survey)
 {
-    echo("TODO: DELETE surveys for $product/$survey.");
+    $db = new DataStore();
+    $db->deleteSurvey($survey);
+    echo("Survey deleted.");
 }
 
 }

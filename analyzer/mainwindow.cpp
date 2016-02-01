@@ -23,6 +23,7 @@
 #include "productmodel.h"
 #include "restclient.h"
 #include "serverinfo.h"
+#include "surveydialog.h"
 #include "surveymodel.h"
 
 #include <QApplication>
@@ -108,13 +109,10 @@ MainWindow::MainWindow() :
         const auto product = selectedProduct();
         if (product.isEmpty())
             return;
-        const auto surveyUrl = QInputDialog::getText(this, tr("Add New Survey"), tr("Survey URL:"));
-        if (surveyUrl.isEmpty())
+        SurveyDialog dlg(this);
+        if (!dlg.exec())
             return;
-        Survey survey;
-        survey.setName(surveyUrl); // TODO
-        survey.setUrl(QUrl(surveyUrl));
-        auto reply = m_restClient->post(QStringLiteral("surveys/") + product, survey.toJson());
+        auto reply = m_restClient->post(QStringLiteral("surveys/") + product, dlg.survey().toJson());
         connect(reply, &QNetworkReply::finished, this, [this, reply]() {
             if (reply->error() == QNetworkReply::NoError) {
                 logMessage(QString::fromUtf8(reply->readAll()));
@@ -128,7 +126,20 @@ MainWindow::MainWindow() :
         const auto product = selectedProduct();
         if (product.isEmpty())
             return;
-        // TODO
+        // TODO safety check
+        const auto selection = ui->surveyView->selectionModel()->selectedRows();
+        if (selection.isEmpty())
+            return;
+        const auto survey = selection.first().data(SurveyModel::SurveyRole).value<Survey>();
+        if (survey.id() < 0)
+            return;
+        auto reply = m_restClient->deleteResource(QStringLiteral("surveys/") + QString::number(survey.id()));
+        connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+            if (reply->error() != QNetworkReply::NoError)
+                return;
+            logMessage(QString::fromUtf8(reply->readAll()));
+            m_surveyModel->reload();
+        });
     });
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);

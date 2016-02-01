@@ -1,0 +1,50 @@
+/*
+    Copyright (C) 2016 Volker Krause <vkrause@kde.org>
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Library General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or (at your
+    option) any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Library General Public
+    License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#include "surveydialog.h"
+#include "ui_surveydialog.h"
+
+#include "survey.h"
+
+#include <QIcon>
+#include <QUrl>
+
+using namespace UserFeedback::Analyzer;
+
+SurveyDialog::SurveyDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::SurveyDialog)
+{
+    ui->setupUi(this);
+    setWindowIcon(QIcon::fromTheme(QStringLiteral("dialog-question")));
+}
+
+SurveyDialog::~SurveyDialog() = default;
+
+Survey SurveyDialog::survey() const
+{
+    Survey s;
+    s.setName(ui->name->text());
+    s.setUrl(QUrl(ui->url->text()));
+    return s;
+}
+
+void SurveyDialog::setSurvey(const Survey& survey)
+{
+    ui->name->setText(survey.name());
+    ui->url->setText(survey.url().toString());
+}

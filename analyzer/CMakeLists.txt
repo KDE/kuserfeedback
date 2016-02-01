@@ -8,6 +8,7 @@ set(analyzer_srcs
     restclient.cpp
     serverinfo.cpp
     survey.cpp
+    surveydialog.cpp
     surveymodel.cpp
 )
 

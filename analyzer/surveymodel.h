@@ -31,6 +31,10 @@ class SurveyModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
+    enum Role {
+        SurveyRole = Qt::UserRole + 1
+    };
+
     explicit SurveyModel(QObject *parent = nullptr);
     ~SurveyModel();
 

@@ -183,6 +183,14 @@ public function addSurvey($productId, $survey)
         $this->fatalDbError();
 }
 
+/** Delete a survey given its internal id. */
+public function deleteSurvey($surveyId)
+{
+    $res = $this->db->exec('DELETE FROM surveys WHERE id = ' . $this->db->quote($surveyId));
+    if ($res === FALSE)
+        $this->fatalDbError();
+}
+
 }
 
 ?>

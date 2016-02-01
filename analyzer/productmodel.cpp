@@ -49,8 +49,6 @@ void ProductModel::reload()
             auto json = reply->readAll();
             m_products = Product::fromJson(json);
             endResetModel();
-        } else {
-            qWarning() << Q_FUNC_INFO << reply->errorString(); // TODO
         }
     });
 }

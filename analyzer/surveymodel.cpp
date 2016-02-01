@@ -57,8 +57,6 @@ void SurveyModel::reload()
             const auto data = reply->readAll();
             m_surveys = Survey::fromJson(data);
             endResetModel();
-        } else {
-            qWarning() << reply->errorString();
         }
     });
 }

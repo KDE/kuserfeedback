@@ -52,6 +52,7 @@ MainWindow::MainWindow() :
     ui->surveyView->setModel(m_surveyModel);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
 
+    connect(m_restClient, &RESTClient::errorMessage, this, &MainWindow::logError);
     m_productModel->setRESTClient(m_restClient);
     m_dataModel->setRESTClient(m_restClient);
     m_surveyModel->setRESTClient(m_restClient);
@@ -82,8 +83,6 @@ MainWindow::MainWindow() :
             if (reply->error() == QNetworkReply::NoError) {
                 logMessage(QString::fromUtf8(reply->readAll()));
                 m_productModel->reload();
-            } else {
-                logError(reply->errorString());
             }
         });
     });
@@ -99,8 +98,6 @@ MainWindow::MainWindow() :
         connect(reply, &QNetworkReply::finished, this, [this, reply]() {
             if (reply->error() == QNetworkReply::NoError) {
                 logMessage(QString::fromUtf8(reply->readAll()));
-            } else {
-                logError(reply->errorString());
             }
             m_productModel->reload();
         });
@@ -121,8 +118,6 @@ MainWindow::MainWindow() :
         connect(reply, &QNetworkReply::finished, this, [this, reply]() {
             if (reply->error() == QNetworkReply::NoError) {
                 logMessage(QString::fromUtf8(reply->readAll()));
-            } else {
-                logError(reply->errorString());
             }
             m_surveyModel->reload();
         });

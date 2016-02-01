@@ -53,7 +53,10 @@ QNetworkReply* RESTClient::get(const QString& command)
     const auto authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
     request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
     auto reply = m_networkAccessManager->get(request);
-    // TODO error handling
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() != QNetworkReply::NoError)
+            emit errorMessage(reply->errorString());
+    });
     return reply;
 }
 
@@ -67,7 +70,10 @@ QNetworkReply* RESTClient::post(const QString& command, const QByteArray& data)
     request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
     auto reply = m_networkAccessManager->post(request, data);
-    // TODO error handling
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() != QNetworkReply::NoError)
+            emit errorMessage(reply->errorString());
+    });
     return reply;
 }
 
@@ -80,6 +86,9 @@ QNetworkReply* RESTClient::deleteResource(const QString& command)
     const auto authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
     request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
     auto reply = m_networkAccessManager->deleteResource(request);
-    // TODO error handling
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() != QNetworkReply::NoError)
+            emit errorMessage(reply->errorString());
+    });
     return reply;
 }

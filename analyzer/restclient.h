@@ -45,6 +45,7 @@ public:
 
 signals:
     void clientConnected();
+    void errorMessage(const QString &msg);
 
 private:
     ServerInfo m_serverInfo;

@@ -58,8 +58,6 @@ void UserFeedback::Analyzer::DataModel::reload()
             beginResetModel();
             m_data = QJsonDocument::fromJson(reply->readAll()).array();
             endResetModel();
-        } else {
-            qDebug() << Q_FUNC_INFO << reply->errorString();
         }
     });
 }

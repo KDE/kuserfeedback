@@ -126,11 +126,18 @@ void ProviderPrivate::submitFinished()
     auto reply = qobject_cast<QNetworkReply*>(q->sender());
     Q_ASSERT(reply);
 
-    qDebug() << Q_FUNC_INFO << reply->error() << reply->readAll();
-    if (reply->error() != QNetworkReply::NoError)
+    if (reply->error() != QNetworkReply::NoError) {
+        qWarning() << "failed to submit user feedback:" << reply->errorString();
         return;
+    }
 
     lastSubmitTime = QDateTime::currentDateTime();
+
+    const auto obj = QJsonDocument::fromJson(reply->readAll()).object();
+    if (obj.contains(QStringLiteral("survey"))) {
+        const auto surveyObj = obj.value(QStringLiteral("survey")).toObject();
+        qDebug() << "got survey: " << surveyObj.value(QStringLiteral("url"));
+    }
 }
 
 
@@ -162,7 +169,6 @@ void Provider::submit()
 
     auto url = d->serverUrl;
     url.setPath(url.path() + QStringLiteral("/receiver/submit"));
-    qDebug() << Q_FUNC_INFO << url << d->jsonData();
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
     auto reply = d->networkAccessManager->post(request, d->jsonData());

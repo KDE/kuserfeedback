@@ -29,7 +29,6 @@ function post_submit()
     // load JSON data sent by the client
     $rawPostData = file_get_contents('php://input');
     $data = json_decode($rawPostData, true);
-    print_r($data);
 
     // look up product
     $db = new DataStore();
@@ -50,9 +49,15 @@ function post_submit()
         die('Failed to record data.');
 
     // read survey from db
+    $responseData = array();
+    $surveys = $db->activeSurveysForProduct($product);
+    if (sizeof($surveys) > 0) {
+        // TODO pick one somehow, and only send relevant data fields
+        $responseData['survey'] = $surveys[0];
+    }
 
-    // send survey data
-    echo("Big Brother is alive!");
+    echo(json_encode($responseData));
+
 }
 
 }

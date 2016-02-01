@@ -172,6 +172,19 @@ public function surveysByProductName($product)
     return $surveys;
 }
 
+/** List all active surveys for a given product. */
+public function activeSurveysForProduct($product)
+{
+    // TODO filter by active flag
+    $res = $this->db->query('SELECT * FROM surveys WHERE productId = ' . $product['id']);
+    if ($res === FALSE)
+        $this->fatalDbError();
+    $surveys = array();
+    foreach ($res as $row)
+        array_push($surveys, $row);
+    return $surveys;
+}
+
 /** Add a new survey for a product given by id. */
 public function addSurvey($productId, $survey)
 {

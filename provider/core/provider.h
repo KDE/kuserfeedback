@@ -50,8 +50,8 @@ public slots:
 private:
     friend class ProviderPrivate;
     ProviderPrivate * const d;
-    Q_PRIVATE_SLOT(d, void aboutToQuit());
-    Q_PRIVATE_SLOT(d, void submitFinished());
+    Q_PRIVATE_SLOT(d, void aboutToQuit())
+    Q_PRIVATE_SLOT(d, void submitFinished())
 };
 
 }

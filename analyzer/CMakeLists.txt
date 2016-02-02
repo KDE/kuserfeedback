@@ -10,6 +10,7 @@ set(analyzer_srcs
     survey.cpp
     surveydialog.cpp
     surveymodel.cpp
+    timeaggregationmodel.cpp
 )
 
 add_executable(UserFeedbackAnalyzer ${analyzer_srcs})

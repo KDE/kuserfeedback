@@ -25,6 +25,7 @@
 #include "serverinfo.h"
 #include "surveydialog.h"
 #include "surveymodel.h"
+#include "timeaggregationmodel.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -45,18 +46,21 @@ MainWindow::MainWindow() :
     m_restClient(new RESTClient(this)),
     m_productModel(new ProductModel(this)),
     m_dataModel(new DataModel(this)),
+    m_timeAggregationModel(new TimeAggregationModel(this)),
     m_surveyModel(new SurveyModel(this))
 {
     ui->setupUi(this);
     ui->productListView->setModel(m_productModel);
     ui->dataView->setModel(m_dataModel);
     ui->surveyView->setModel(m_surveyModel);
+    ui->timeAggregationView->setModel(m_timeAggregationModel);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
 
     connect(m_restClient, &RESTClient::errorMessage, this, &MainWindow::logError);
     m_productModel->setRESTClient(m_restClient);
     m_dataModel->setRESTClient(m_restClient);
     m_surveyModel->setRESTClient(m_restClient);
+    m_timeAggregationModel->setSourceModel(m_dataModel);
 
     ui->actionConnectToServer->setIcon(QIcon::fromTheme(QStringLiteral("network-connect")));
     connect(ui->actionConnectToServer, &QAction::triggered, this, [this]() {

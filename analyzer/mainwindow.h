@@ -37,6 +37,7 @@ class ProductModel;
 class ServerInfo;
 class RESTClient;
 class SurveyModel;
+class TimeAggregationModel;
 
 class MainWindow : public QMainWindow
 {
@@ -56,6 +57,7 @@ private:
     RESTClient *m_restClient;
     ProductModel *m_productModel;
     DataModel *m_dataModel;
+    TimeAggregationModel *m_timeAggregationModel;
     SurveyModel *m_surveyModel;
 };
 }

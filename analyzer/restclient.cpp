@@ -77,6 +77,23 @@ QNetworkReply* RESTClient::post(const QString& command, const QByteArray& data)
     return reply;
 }
 
+QNetworkReply* RESTClient::put(const QString &command, const QByteArray &data)
+{
+    Q_ASSERT(isConnected());
+    auto url = m_serverInfo.url();
+    url.setPath(url.path() + QStringLiteral("/analytics/") + command);
+    QNetworkRequest request(url);
+    const auto authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
+    request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
+    request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
+    auto reply = m_networkAccessManager->put(request, data);
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() != QNetworkReply::NoError)
+            emit errorMessage(reply->errorString());
+    });
+    return reply;
+}
+
 QNetworkReply* RESTClient::deleteResource(const QString& command)
 {
     Q_ASSERT(isConnected());

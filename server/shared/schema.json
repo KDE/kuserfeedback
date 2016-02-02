@@ -13,6 +13,11 @@
         {
             "version": 3,
             "sql": ["CREATE TABLE surveys (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id), name VARCHAR, url VARCHAR NOT NULL)" ]
+        },
+
+        {
+            "version": 4,
+            "sql": ["ALTER TABLE surveys ADD COLUMN active INTEGER DEFAULT 0"]
         }
     ]
 }

@@ -175,8 +175,7 @@ public function surveysByProductName($product)
 /** List all active surveys for a given product. */
 public function activeSurveysForProduct($product)
 {
-    // TODO filter by active flag
-    $res = $this->db->query('SELECT * FROM surveys WHERE productId = ' . $product['id']);
+    $res = $this->db->query('SELECT * FROM surveys WHERE productId = ' . $product['id'] . ' AND active = 1');
     if ($res === FALSE)
         $this->fatalDbError();
     $surveys = array();
@@ -192,6 +191,18 @@ public function addSurvey($productId, $survey)
         . $productId . ', '
         . $this->db->quote($survey['name']) . ', '
         . $this->db->quote($survey['url']) . ')');
+    if ($res === FALSE)
+        $this->fatalDbError();
+}
+
+/** Update an existing survey with id @p $surveyId. */
+public function updateSurvey($surveyId, $surveyData)
+{
+    $res = $this->db->exec('UPDATE surveys SET'
+        . ' name = ' . $this->db->quote($surveyData['name']) . ','
+        . ' url = ' . $this->db->quote($surveyData['url']) . ','
+        . ' active = ' . ($surveyData['active'] ? 1 : 0)
+        . ' WHERE id = ' . $surveyId);
     if ($res === FALSE)
         $this->fatalDbError();
 }

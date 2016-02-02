@@ -41,6 +41,7 @@ public:
 
     QNetworkReply* get(const QString &command);
     QNetworkReply* post(const QString &command, const QByteArray &data);
+    QNetworkReply* put(const QString &command, const QByteArray &data);
     QNetworkReply* deleteResource(const QString &command);
 
 signals:

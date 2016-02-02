@@ -48,6 +48,9 @@ public:
     QUrl url() const;
     void setUrl(const QUrl& url);
 
+    bool isActive() const;
+    void setActive(bool enabled);
+
     QByteArray toJson() const;
     static QVector<Survey> fromJson(const QByteArray &data);
 private:

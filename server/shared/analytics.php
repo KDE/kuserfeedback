@@ -79,6 +79,9 @@ public function get_surveys($product)
 
     $db = new DataStore();
     $res = $db->surveysByProductName($product);
+    for ($i = 0; $i < sizeof($res); $i++) {
+        $res[$i]['active'] = $res[$i]['active'] == "1"; // fixup sqlite bool representation
+    }
     echo(json_encode($res));
 }
 
@@ -98,6 +101,21 @@ public function post_surveys($product)
 
     $db->addSurvey($productData['id'], $survey);
     echo("Survey created for product $product.");
+}
+
+/** Edit an existing survey. */
+public function put_surveys($surveyId)
+{
+    $surveyId = intval($surveyId);
+    if ($surveyId < 0)
+        die("Invalid survey id.");
+
+    $surveyData = file_get_contents('php://input');
+    $surveyData = json_decode($surveyData, true);
+
+    $db = new DataStore();
+    $db->updateSurvey($surveyId, $surveyData);
+    echo("Survery updated.");
 }
 
 /** Delete survey. */

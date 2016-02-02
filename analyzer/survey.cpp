@@ -36,6 +36,7 @@ public:
     QString name;
     QUrl url;
     int id = -1;
+    bool active = false;
 };
 
 }
@@ -76,12 +77,23 @@ void Survey::setUrl(const QUrl& url)
     d->url = url;
 }
 
+bool Survey::isActive() const
+{
+    return d->active;
+}
+
+void Survey::setActive(bool active)
+{
+    d->active = active;
+}
+
 QByteArray Survey::toJson() const
 {
     QJsonObject obj;
     obj.insert(QStringLiteral("id"), id());
     obj.insert(QStringLiteral("name"), name());
     obj.insert(QStringLiteral("url"), url().toString());
+    obj.insert(QStringLiteral("active"), isActive());
     return QJsonDocument(obj).toJson();
 }
 
@@ -100,6 +112,7 @@ QVector<Survey> Survey::fromJson(const QByteArray &data)
             survey.setId(id.toString().toInt());
         survey.setName(obj.value(QStringLiteral("name")).toString());
         survey.setUrl(QUrl(obj.value(QStringLiteral("url")).toString()));
+        survey.setActive(obj.value(QStringLiteral("active")).toBool());
         surveys.push_back(survey);
     }
     return surveys;

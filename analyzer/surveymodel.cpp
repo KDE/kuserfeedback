@@ -64,7 +64,7 @@ void SurveyModel::reload()
 int SurveyModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
-    return 2;
+    return 3;
 }
 
 int SurveyModel::rowCount(const QModelIndex& parent) const
@@ -85,10 +85,29 @@ QVariant SurveyModel::data(const QModelIndex& index, int role) const
             case 0: return survey.name();
             case 1: return survey.url().toString();
         }
+    } else if (role == Qt::CheckStateRole) {
+        if (index.column() == 2)
+            return  m_surveys.at(index.row()).isActive() ? Qt::Checked : Qt::Unchecked;
     } else if (role == SurveyRole) {
         return QVariant::fromValue(m_surveys.at(index.row()));
     }
     return {};
+}
+
+bool SurveyModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (index.column() == 2 && role == Qt::CheckStateRole) {
+        auto &survey = m_surveys[index.row()];
+        survey.setActive(value.toInt() == Qt::Checked);
+        auto reply = m_restClient->put(QStringLiteral("surveys/") + QString::number(survey.id()), survey.toJson());
+        connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+            qDebug() << reply->readAll();
+            reload();
+        });
+        emit dataChanged(index, index);
+        return true;
+    }
+    return false;
 }
 
 QVariant SurveyModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -97,7 +116,16 @@ QVariant SurveyModel::headerData(int section, Qt::Orientation orientation, int r
         switch (section) {
             case 0: return tr("Name");
             case 1: return tr("URL");
+            case 2: return tr("Active");
         }
     }
     return QAbstractTableModel::headerData(section, orientation, role);
+}
+
+Qt::ItemFlags SurveyModel::flags(const QModelIndex &index) const
+{
+    auto f = QAbstractTableModel::flags(index);
+    if (index.column() == 2)
+        return f | Qt::ItemIsUserCheckable;
+    return f;
 }

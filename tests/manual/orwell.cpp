@@ -16,8 +16,10 @@
 */
 
 #include <provider/core/provider.h>
+#include <provider/core/surveyinfo.h>
 
 #include <QApplication>
+#include <QDesktopServices>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -34,6 +36,11 @@ int main(int argc, char** argv)
     UserFeedback::Provider provider;
     provider.setProductIdentifier(QStringLiteral("org.kde.orwell"));
     provider.setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
+
+    QObject::connect(&provider, &UserFeedback::Provider::surveyAvailable, &app, [&provider](const UserFeedback::SurveyInfo &info) {
+        QDesktopServices::openUrl(info.url());
+        provider.setSurveyCompleted(info);
+    });
 
     // TODO
     QWidget top;

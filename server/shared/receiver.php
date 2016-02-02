@@ -52,8 +52,10 @@ function post_submit()
     $responseData = array();
     $surveys = $db->activeSurveysForProduct($product);
     if (sizeof($surveys) > 0) {
-        // TODO pick one somehow, and only send relevant data fields
-        $responseData['survey'] = $surveys[0];
+        $surveyInfo = array();
+        $surveyInfo['id'] = intval($surveys[0]['id']);
+        $surveyInfo['url'] = $surveys[0]['url'];
+        $responseData['survey'] = $surveyInfo;
     }
 
     echo(json_encode($responseData));

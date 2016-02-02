@@ -1,5 +1,6 @@
 set(userfeedback_core_srcs
     provider.cpp
+    surveyinfo.cpp
 )
 
 add_library(UserFeedbackCore SHARED ${userfeedback_core_srcs})

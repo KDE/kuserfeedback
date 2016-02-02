@@ -27,6 +27,7 @@
 namespace UserFeedback {
 
 class ProviderPrivate;
+class SurveyInfo;
 
 /** The central object managing data sources and transmitting feedback to the server. */
 class USERFEEDBACKCORE_EXPORT Provider : public QObject
@@ -43,9 +44,20 @@ public:
     /** Set the feedback server URL. */
     void setFeedbackServer(const QUrl &url);
 
+    /** Marks the given survey as completed. This avoids getting further notification
+     *  about the same survey.
+     */
+    void setSurveyCompleted(const SurveyInfo &info);
+
 public slots:
     /** Manually submit currently recorded data. */
     void submit();
+
+signals:
+    /** Emitted whenever there is a new survey available that can be presented
+     *  to the user.
+     */
+    void surveyAvailable(const SurveyInfo &survey);
 
 private:
     friend class ProviderPrivate;

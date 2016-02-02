@@ -16,6 +16,7 @@
 */
 
 #include "provider.h"
+#include "surveyinfo.h"
 
 #include <QCoreApplication>
 #include <QDateTime>
@@ -26,6 +27,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSettings>
+#include <QStringList>
 #include <QTime>
 #include <QUrl>
 
@@ -58,6 +60,8 @@ public:
     QNetworkAccessManager *networkAccessManager;
     QUrl serverUrl;
     QDateTime lastSubmitTime;
+
+    QStringList completedSurveys;
 
     QTime startTime;
     int startCount;
@@ -93,6 +97,7 @@ void ProviderPrivate::load()
     lastSubmitTime = settings.value(QStringLiteral("LastSubmission")).toDateTime();
     startCount = std::max(settings.value(QStringLiteral("ApplicationStartCount"), 0).toInt() + 1, 1);
     usageTime = std::max(settings.value(QStringLiteral("ApplicationTime"), 0).toInt(), 0);
+    completedSurveys = settings.value(QStringLiteral("CompletedSurveys"), QStringList()).toStringList();
 }
 
 void ProviderPrivate::store()
@@ -102,6 +107,7 @@ void ProviderPrivate::store()
     settings.setValue(QStringLiteral("LastSubmission"), lastSubmitTime);
     settings.setValue(QStringLiteral("ApplicationStartCount"), startCount);
     settings.setValue(QStringLiteral("ApplicationTime"), currentApplicationTime());
+    settings.setValue(QStringLiteral("CompletedSurveys"), completedSurveys);
 }
 
 void ProviderPrivate::aboutToQuit()
@@ -136,7 +142,11 @@ void ProviderPrivate::submitFinished()
     const auto obj = QJsonDocument::fromJson(reply->readAll()).object();
     if (obj.contains(QStringLiteral("survey"))) {
         const auto surveyObj = obj.value(QStringLiteral("survey")).toObject();
-        qDebug() << "got survey: " << surveyObj.value(QStringLiteral("url"));
+        const auto survey = SurveyInfo::fromJson(surveyObj);
+        qDebug() << Q_FUNC_INFO << "got survey:" << survey.url();
+        if (!survey.isValid() || completedSurveys.contains(QString::number(survey.id())))
+            return;
+        emit q->surveyAvailable(survey);
     }
 }
 
@@ -160,6 +170,12 @@ void Provider::setProductIdentifier(const QString &productId)
 void Provider::setFeedbackServer(const QUrl &url)
 {
     d->serverUrl = url;
+}
+
+void Provider::setSurveyCompleted(const SurveyInfo &info)
+{
+    d->completedSurveys.push_back(QString::number(info.id()));
+    d->store();
 }
 
 void Provider::submit()

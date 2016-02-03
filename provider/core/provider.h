@@ -64,6 +64,9 @@ private:
     ProviderPrivate * const d;
     Q_PRIVATE_SLOT(d, void aboutToQuit())
     Q_PRIVATE_SLOT(d, void submitFinished())
+    // for testing
+    Q_PRIVATE_SLOT(d, void load())
+    Q_PRIVATE_SLOT(d, void store())
 };
 
 }

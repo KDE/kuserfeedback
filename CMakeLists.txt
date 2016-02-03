@@ -133,11 +133,11 @@ set(
 # Actually build the stuff
 #
 add_subdirectory(provider)
+add_subdirectory(server)
 if(Qt5Widgets_FOUND AND NOT CMAKE_VERSION VERSION_LESS 3.0) # analyzer is Qt5 only and needs AUTOUIC support
     add_subdirectory(analyzer)
+    add_subdirectory(tests/manual)
 endif()
-add_subdirectory(server)
-add_subdirectory(tests/manual)
 
 #
 # CMake package config file generation

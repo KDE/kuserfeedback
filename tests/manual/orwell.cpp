@@ -15,14 +15,64 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "orwell.h"
+#include "ui_orwell.h"
+
 #include <provider/core/provider.h>
 #include <provider/core/surveyinfo.h>
 
 #include <QApplication>
 #include <QDesktopServices>
-#include <QPushButton>
-#include <QVBoxLayout>
-#include <QWidget>
+#include <QSettings>
+
+static std::unique_ptr<UserFeedback::Provider> provider; // TODO make this nicer
+
+Orwell::Orwell(QWidget* parent) :
+    QMainWindow(parent),
+    ui(new Ui::Orwell)
+{
+    ui->setupUi(this);
+    loadStats();
+
+    connect(ui->version, &QLineEdit::textChanged, this, [this]() {
+        QCoreApplication::setApplicationVersion(ui->version->text());
+    });
+
+    connect(ui->submitButton, &QPushButton::clicked, provider.get(), &UserFeedback::Provider::submit);
+    connect(ui->overrideButton, &QPushButton::clicked, this, [this] (){
+        writeStats();
+        QMetaObject::invokeMethod(provider.get(), "load");
+        loadStats();
+    });
+
+    connect(provider.get(), &UserFeedback::Provider::surveyAvailable, this, [](const UserFeedback::SurveyInfo &info) {
+        QDesktopServices::openUrl(info.url());
+        provider->setSurveyCompleted(info);
+    });
+
+    connect(ui->actionQuit, &QAction::triggered, qApp, &QCoreApplication::quit);
+}
+
+Orwell::~Orwell() = default;
+
+void Orwell::loadStats()
+{
+    ui->version->setText(QCoreApplication::applicationVersion());
+
+    QSettings settings;
+    ui->startCount->setValue(settings.value(QStringLiteral("UserFeedback/ApplicationStartCount")).toInt());
+    ui->runtime->setValue(settings.value(QStringLiteral("UserFeedback/ApplicationTime")).toInt());
+    ui->surveys->setText(settings.value(QStringLiteral("UserFeedback/CompletedSurveys")).toStringList().join(QStringLiteral(", ")));
+}
+
+void Orwell::writeStats()
+{
+    QSettings settings;
+    settings.setValue(QStringLiteral("UserFeedback/ApplicationStartCount"), ui->startCount->value());
+    settings.setValue(QStringLiteral("UserFeedback/ApplicationTime"), ui->runtime->value());
+    settings.setValue(QStringLiteral("UserFeedback/CompletedSurveys"), ui->surveys->text().split(QStringLiteral(", ")));
+}
+
 
 int main(int argc, char** argv)
 {
@@ -33,25 +83,12 @@ int main(int argc, char** argv)
 
     QApplication app(argc, argv);
 
-    UserFeedback::Provider provider;
-    provider.setProductIdentifier(QStringLiteral("org.kde.orwell"));
-    provider.setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
+    provider.reset(new UserFeedback::Provider);
+    provider->setProductIdentifier(QStringLiteral("org.kde.orwell"));
+    provider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
 
-    QObject::connect(&provider, &UserFeedback::Provider::surveyAvailable, &app, [&provider](const UserFeedback::SurveyInfo &info) {
-        QDesktopServices::openUrl(info.url());
-        provider.setSurveyCompleted(info);
-    });
-
-    // TODO
-    QWidget top;
-    top.show();
-
-    auto topLayout = new QVBoxLayout;
-    top.setLayout(topLayout);
-
-    auto submitButton = new QPushButton(QStringLiteral("Submit Manually"));
-    topLayout->addWidget(submitButton);
-    QObject::connect(submitButton, SIGNAL(clicked()), &provider, SLOT(submit()));
+    Orwell mainWindow;
+    mainWindow.show();
 
     return app.exec();
 }

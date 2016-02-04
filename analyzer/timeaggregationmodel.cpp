@@ -37,6 +37,12 @@ void TimeAggregationModel::setSourceModel(QAbstractItemModel* model)
     reload();
 }
 
+void TimeAggregationModel::setAggregationMode(AggregationMode mode)
+{
+    m_mode = mode;
+    reload();
+}
+
 void TimeAggregationModel::reload()
 {
     if (!m_sourceModel)
@@ -46,15 +52,36 @@ void TimeAggregationModel::reload()
 
     for (int i = 0; i < m_sourceModel->rowCount(); ++i) {
         const auto dt = m_sourceModel->index(i, 0).data().toDateTime();
-        const auto aggr = QString::number(dt.date().year()) + QLatin1Char('-') + QString::number(dt.date().month());
+        const auto aggr = aggregate(dt);
         m_aggregator[aggr]++;
     }
 
     beginResetModel();
+    m_data.clear();
     for (auto it = m_aggregator.constBegin(); it != m_aggregator.constEnd(); ++it) {
         m_data.push_back({ it.key(), it.value() });
     }
     endResetModel();
+}
+
+QString TimeAggregationModel::aggregate(const QDateTime& dt) const
+{
+    switch (m_mode) {
+        case AggregateYear:
+            return QString::number(dt.date().year());
+        case AggregateMonth:
+            return dt.date().toString(QStringLiteral("yyyy-MM"));
+        case AggregateWeek:
+        {
+            int year = 0;
+            int week = dt.date().weekNumber(&year);
+            return QString::number(year) + QStringLiteral("-w") + QString::number(week);
+        }
+        case AggregateDay:
+            return dt.date().toString(Qt::ISODate);
+    }
+
+    Q_UNREACHABLE();
 }
 
 int TimeAggregationModel::columnCount(const QModelIndex& parent) const

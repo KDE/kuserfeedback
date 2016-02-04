@@ -28,10 +28,18 @@ class TimeAggregationModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
+    enum AggregationMode {
+        AggregateYear,
+        AggregateMonth,
+        AggregateWeek,
+        AggregateDay
+    };
     explicit TimeAggregationModel(QObject *parent = nullptr);
     ~TimeAggregationModel();
 
     void setSourceModel(QAbstractItemModel *model);
+
+    void setAggregationMode(AggregationMode mode);
 
     int rowCount(const QModelIndex &parent) const override;
     int columnCount(const QModelIndex &parent) const override;
@@ -40,6 +48,7 @@ public:
 
 private:
     void reload();
+    QString aggregate(const QDateTime &dt) const;
 
     QAbstractItemModel *m_sourceModel = nullptr;
     struct Data {
@@ -47,6 +56,7 @@ private:
         int samples;
     };
     QVector<Data> m_data;
+    AggregationMode m_mode = AggregateYear;
 };
 
 }

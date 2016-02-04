@@ -38,6 +38,23 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Time intervals:</string>
+            </property>
+            <property name="buddy">
+             <cstring>timeAggregationMode</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="timeAggregationMode"/>
+          </item>
+         </layout>
+        </item>
+        <item>
          <widget class="QTableView" name="timeAggregationView"/>
         </item>
        </layout>

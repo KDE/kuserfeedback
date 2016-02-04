@@ -53,6 +53,13 @@ MainWindow::MainWindow() :
     ui->productListView->setModel(m_productModel);
     ui->dataView->setModel(m_dataModel);
     ui->surveyView->setModel(m_surveyModel);
+    ui->timeAggregationMode->addItem(tr("Year"), TimeAggregationModel::AggregateYear);
+    ui->timeAggregationMode->addItem(tr("Month"), TimeAggregationModel::AggregateMonth);
+    ui->timeAggregationMode->addItem(tr("Week"), TimeAggregationModel::AggregateWeek);
+    ui->timeAggregationMode->addItem(tr("Day"), TimeAggregationModel::AggregateDay);
+    connect(ui->timeAggregationMode, &QComboBox::currentTextChanged, this, [this]() {
+        m_timeAggregationModel->setAggregationMode(static_cast<TimeAggregationModel::AggregationMode>(ui->timeAggregationMode->currentData().toInt()));
+    });
     ui->timeAggregationView->setModel(m_timeAggregationModel);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
 

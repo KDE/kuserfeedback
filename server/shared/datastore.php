@@ -113,7 +113,6 @@ public function addProduct($product)
     $tableName = Utils::tableNameForProduct($product['name']);
     $res = $this->db->exec('CREATE TABLE ' . $tableName . ' ('
         . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
-        . 'productId INTEGER REFERENCES products (id), '
         . 'timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP, '
         . 'version VARCHAR, '
         . 'platform VARCHAR, '
@@ -155,8 +154,15 @@ public function rawDataForProduct($name)
     if ($res === FALSE)
         $this->fatalDbError();
     $data = array();
-    foreach ($res as $row)
-        array_push($data, $row);
+    foreach ($res as $row) {
+        $sample = array();
+        $sample['timestamp'] = $row['timestamp'];
+        $sample['version'] = $row['version'];
+        $sample['platform'] = $row['platform'];
+        $sample['startCount'] = intval($row['startCount']);
+        $sample['usageTime'] = intval($row['usageTime']);
+        array_push($data, $sample);
+    }
     return $data;
 }
 

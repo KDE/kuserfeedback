@@ -6,6 +6,7 @@ set(analyzer_srcs
     product.cpp
     productmodel.cpp
     restclient.cpp
+    sample.cpp
     serverinfo.cpp
     survey.cpp
     surveydialog.cpp

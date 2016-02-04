@@ -18,11 +18,14 @@
 #include "datamodel.h"
 
 #include "restclient.h"
+#include "sample.h"
 
 #include <QDebug>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkReply>
+
+#include <algorithm>
 
 using namespace UserFeedback::Analyzer;
 
@@ -56,7 +59,10 @@ void UserFeedback::Analyzer::DataModel::reload()
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
             beginResetModel();
-            m_data = QJsonDocument::fromJson(reply->readAll()).array();
+            m_data = Sample::fromJson(reply->readAll());
+            std::sort(m_data.begin(), m_data.end(), [](const Sample &lhs, const Sample &rhs) {
+                return lhs.timestamp() < rhs.timestamp();
+            });
             endResetModel();
         }
     });
@@ -81,14 +87,16 @@ QVariant DataModel::data(const QModelIndex &index, int role) const
         return {};
 
     if (role == Qt::DisplayRole) {
-        const auto obj = m_data.at(index.row()).toObject();
+        const auto sample = m_data.at(index.row());
         switch (index.column()) {
-            case 0: return obj.value(QStringLiteral("timestamp")).toString();
-            case 1: return obj.value(QStringLiteral("version")).toString();
-            case 2: return obj.value(QStringLiteral("platform")).toString();
-            case 3: return obj.value(QStringLiteral("startCount")).toString();
-            case 4: return obj.value(QStringLiteral("usageTime")).toString();
+            case 0: return sample.timestamp();
+            case 1: return sample.version();
+            case 2: return {}; // TODO platform
+            case 3: return sample.startCount();
+            case 4: return sample.usageTime();
         }
+    } else if (role == SampleRole) {
+        return QVariant::fromValue(m_data.at(index.row()));
     }
 
     return {};

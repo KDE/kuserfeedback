@@ -45,7 +45,7 @@ void TimeAggregationModel::reload()
     QHash<QString, int> m_aggregator;
 
     for (int i = 0; i < m_sourceModel->rowCount(); ++i) {
-        const auto dt = QDateTime::fromString(m_sourceModel->index(i, 0).data().toString(), Qt::ISODate);
+        const auto dt = m_sourceModel->index(i, 0).data().toDateTime();
         const auto aggr = QString::number(dt.date().year()) + QLatin1Char('-') + QString::number(dt.date().month());
         m_aggregator[aggr]++;
     }

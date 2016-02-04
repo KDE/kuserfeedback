@@ -25,12 +25,17 @@ namespace UserFeedback {
 namespace Analyzer {
 
 class RESTClient;
+class Sample;
 
 /** Raw data model showing reported data of a product. */
 class DataModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
+    enum {
+        SampleRole = Qt::UserRole + 1
+    };
+
     explicit DataModel(QObject *parent = nullptr);
     ~DataModel();
 
@@ -46,7 +51,7 @@ public:
 private:
     QString m_productId;
     RESTClient *m_restClient = nullptr;
-    QJsonArray m_data;
+    QVector<Sample> m_data;
 };
 
 }

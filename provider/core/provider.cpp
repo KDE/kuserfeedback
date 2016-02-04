@@ -122,6 +122,7 @@ QByteArray ProviderPrivate::jsonData() const
     obj.insert(QStringLiteral("productId"), productId);
     obj.insert(QStringLiteral("startCount"), startCount);
     obj.insert(QStringLiteral("usageTime"), currentApplicationTime());
+    obj.insert(QStringLiteral("version"), QCoreApplication::applicationVersion());
 
     QJsonDocument doc(obj);
     return doc.toJson();

@@ -20,6 +20,8 @@
 #include <QDebug>
 #include <QDateTime>
 
+#include <algorithm>
+
 using namespace UserFeedback::Analyzer;
 
 TimeAggregationModel::TimeAggregationModel(QObject *parent) :
@@ -61,6 +63,9 @@ void TimeAggregationModel::reload()
     for (auto it = m_aggregator.constBegin(); it != m_aggregator.constEnd(); ++it) {
         m_data.push_back({ it.key(), it.value() });
     }
+    std::sort(m_data.begin(), m_data.end(), [](const Data &lhs, const Data &rhs) {
+        return lhs.timeLabel < rhs.timeLabel;
+    });
     endResetModel();
 }
 

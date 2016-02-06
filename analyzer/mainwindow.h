@@ -48,6 +48,13 @@ public:
 
 private:
     void connectToServer(const ServerInfo &info);
+
+    void createProduct();
+    void deleteProduct();
+
+    void createSurvey();
+    void deleteSurvey();
+
     void logMessage(const QString &msg);
     void logError(const QString &msg);
 

@@ -84,73 +84,14 @@ MainWindow::MainWindow() :
     });
 
     ui->actionAddProduct->setIcon(QIcon::fromTheme(QStringLiteral("folder-add")));
-    connect(ui->actionAddProduct, &QAction::triggered, this, [this]() {
-        const auto name = QInputDialog::getText(this, tr("Add New Product"), tr("Product Identifier:"));
-        if (name.isEmpty())
-            return;
-        Product product;
-        product.setName(name);
-        auto reply = m_restClient->post(QStringLiteral("products"), product.toJson());
-        connect(reply, &QNetworkReply::finished, this, [this, reply, name]() {
-            if (reply->error() == QNetworkReply::NoError) {
-                logMessage(QString::fromUtf8(reply->readAll()));
-                m_productModel->reload();
-            }
-        });
-    });
-
+    connect(ui->actionAddProduct, &QAction::triggered, this, &MainWindow::createProduct);
     ui->actionDeleteProduct->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
-    connect(ui->actionDeleteProduct, &QAction::triggered, this, [this]() {
-        auto sel = ui->productListView->selectionModel()->selectedRows();
-        if (sel.isEmpty())
-            return;
-        const auto product = sel.first().data(ProductModel::ProductRole).value<Product>();
-        // TODO saftey question
-        auto reply = m_restClient->deleteResource(QStringLiteral("products/") + product.name());
-        connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-            if (reply->error() == QNetworkReply::NoError) {
-                logMessage(QString::fromUtf8(reply->readAll()));
-            }
-            m_productModel->reload();
-        });
-    });
+    connect(ui->actionDeleteProduct, &QAction::triggered, this, &MainWindow::deleteProduct);
 
     ui->actionAddSurvey->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
-    connect(ui->actionAddSurvey, &QAction::triggered, this, [this]() {
-        const auto product = selectedProduct();
-        if (product.isEmpty())
-            return;
-        SurveyDialog dlg(this);
-        if (!dlg.exec())
-            return;
-        auto reply = m_restClient->post(QStringLiteral("surveys/") + product, dlg.survey().toJson());
-        connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-            if (reply->error() == QNetworkReply::NoError) {
-                logMessage(QString::fromUtf8(reply->readAll()));
-            }
-            m_surveyModel->reload();
-        });
-    });
-
+    connect(ui->actionAddSurvey, &QAction::triggered, this, &MainWindow::createSurvey);
     ui->actionDeleteSurvey->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")));
-    connect(ui->actionDeleteSurvey, &QAction::triggered, this, [this]() {
-        const auto product = selectedProduct();
-        if (product.isEmpty())
-            return;
-        // TODO safety check
-        const auto selection = ui->surveyView->selectionModel()->selectedRows();
-        if (selection.isEmpty())
-            return;
-        const auto survey = selection.first().data(SurveyModel::SurveyRole).value<Survey>();
-        if (survey.id() < 0)
-            return;
-        auto reply = m_restClient->deleteResource(QStringLiteral("surveys/") + QString::number(survey.id()));
-        connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-            if (reply->error() != QNetworkReply::NoError)
-                return;
-            logMessage(QString::fromUtf8(reply->readAll()));
-            m_surveyModel->reload();
-        });
+    connect(ui->actionDeleteSurvey, &QAction::triggered, this, &MainWindow::deleteSurvey);
     });
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
@@ -181,6 +122,76 @@ void MainWindow::connectToServer(const ServerInfo& info)
         } else {
             logError(reply->errorString());
         }
+    });
+}
+
+void MainWindow::createProduct()
+{
+    const auto name = QInputDialog::getText(this, tr("Add New Product"), tr("Product Identifier:"));
+    if (name.isEmpty())
+        return;
+    Product product;
+    product.setName(name);
+    auto reply = m_restClient->post(QStringLiteral("products"), product.toJson());
+    connect(reply, &QNetworkReply::finished, this, [this, reply, name]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            logMessage(QString::fromUtf8(reply->readAll()));
+            m_productModel->reload();
+        }
+    });
+}
+
+void MainWindow::deleteProduct()
+{
+    auto sel = ui->productListView->selectionModel()->selectedRows();
+    if (sel.isEmpty())
+        return;
+    const auto product = sel.first().data(ProductModel::ProductRole).value<Product>();
+    // TODO saftey question
+    auto reply = m_restClient->deleteResource(QStringLiteral("products/") + product.name());
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            logMessage(QString::fromUtf8(reply->readAll()));
+        }
+        m_productModel->reload();
+    });
+}
+
+void MainWindow::createSurvey()
+{
+    const auto product = selectedProduct();
+    if (product.isEmpty())
+        return;
+    SurveyDialog dlg(this);
+    if (!dlg.exec())
+        return;
+    auto reply = m_restClient->post(QStringLiteral("surveys/") + product, dlg.survey().toJson());
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            logMessage(QString::fromUtf8(reply->readAll()));
+        }
+        m_surveyModel->reload();
+    });
+}
+
+void MainWindow::deleteSurvey()
+{
+    const auto product = selectedProduct();
+    if (product.isEmpty())
+        return;
+    // TODO safety check
+    const auto selection = ui->surveyView->selectionModel()->selectedRows();
+    if (selection.isEmpty())
+        return;
+    const auto survey = selection.first().data(SurveyModel::SurveyRole).value<Survey>();
+    if (survey.id() < 0)
+        return;
+    auto reply = m_restClient->deleteResource(QStringLiteral("surveys/") + QString::number(survey.id()));
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() != QNetworkReply::NoError)
+            return;
+        logMessage(QString::fromUtf8(reply->readAll()));
+        m_surveyModel->reload();
     });
 }
 

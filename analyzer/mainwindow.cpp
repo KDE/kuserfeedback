@@ -18,6 +18,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "aggregateddatamodel.h"
 #include "chart.h"
 #include "connectdialog.h"
 #include "datamodel.h"
@@ -48,6 +49,7 @@ MainWindow::MainWindow() :
     m_productModel(new ProductModel(this)),
     m_dataModel(new DataModel(this)),
     m_timeAggregationModel(new TimeAggregationModel(this)),
+    m_aggregatedDataModel(new AggregatedDataModel(this)),
     m_surveyModel(new SurveyModel(this)),
     m_chart(new Chart(this))
 {
@@ -55,7 +57,7 @@ MainWindow::MainWindow() :
     ui->productListView->setModel(m_productModel);
     ui->dataView->setModel(m_dataModel);
     ui->surveyView->setModel(m_surveyModel);
-    ui->timeAggregationView->setModel(m_timeAggregationModel);
+    ui->aggregatedDataView->setModel(m_aggregatedDataModel);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
 
     connect(m_restClient, &RESTClient::errorMessage, this, &MainWindow::logError);
@@ -63,6 +65,7 @@ MainWindow::MainWindow() :
     m_dataModel->setRESTClient(m_restClient);
     m_surveyModel->setRESTClient(m_restClient);
     m_timeAggregationModel->setSourceModel(m_dataModel);
+    m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
 
     m_chart->setModel(m_timeAggregationModel);
 

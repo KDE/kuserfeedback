@@ -1,4 +1,5 @@
 set(analyzer_srcs
+    aggregateddatamodel.cpp
     chart.cpp
     connectdialog.cpp
     datamodel.cpp

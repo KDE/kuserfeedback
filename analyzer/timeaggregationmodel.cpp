@@ -137,11 +137,13 @@ QVariant TimeAggregationModel::data(const QModelIndex& index, int role) const
     if (role == Qt::DisplayRole) {
         const auto d = m_data.at(index.row());
         switch (index.column()) {
-            case 0: return d.time.toMSecsSinceEpoch();//timeToString(d.time);
+            case 0: return d.time.toMSecsSinceEpoch(); // this is required by QtCharts...
             case 1: return d.samples;
         }
     } else if (role == DateTimeRole) {
         return m_data.at(index.row()).time;
+    } else if (role == TimeDisplayRole) {
+        return timeToString(m_data.at(index.row()).time);
     } else if (role == MaximumValueRole) {
         return m_maxValue;
     }

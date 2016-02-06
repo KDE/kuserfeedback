@@ -69,7 +69,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
-         <widget class="QTableView" name="timeAggregationView"/>
+         <widget class="QTableView" name="aggregatedDataView"/>
         </item>
        </layout>
       </widget>

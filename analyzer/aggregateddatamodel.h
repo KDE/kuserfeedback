@@ -15,41 +15,24 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_ANALYZER_TIMEAGGREGATIONMODEL_H
-#define USERFEEDBACK_ANALYZER_TIMEAGGREGATIONMODEL_H
+#ifndef USERFEEDBACK_ANALYZER_AGGREGATEDDATAMODEL_H
+#define USERFEEDBACK_ANALYZER_AGGREGATEDDATAMODEL_H
 
 #include <QAbstractTableModel>
-#include <QDateTime>
 #include <QVector>
 
 namespace UserFeedback {
 namespace Analyzer {
 
-class TimeAggregationModel : public QAbstractTableModel
+/** Joint model for all time-aggregated data, for user display and export. */
+class AggregatedDataModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    enum AggregationMode {
-        AggregateYear,
-        AggregateMonth,
-        AggregateWeek,
-        AggregateDay
-    };
+    explicit AggregatedDataModel(QObject *parent = nullptr);
+    ~AggregatedDataModel();
 
-    enum Role {
-        DateTimeRole = Qt::UserRole + 1,
-        MaximumValueRole,
-        TimeDisplayRole,
-        UserRole
-    };
-
-    explicit TimeAggregationModel(QObject *parent = nullptr);
-    ~TimeAggregationModel();
-
-    void setSourceModel(QAbstractItemModel *model);
-
-    AggregationMode aggregationMode() const;
-    void setAggregationMode(AggregationMode mode);
+    void addSourceModel(QAbstractItemModel *model);
 
     int rowCount(const QModelIndex &parent) const override;
     int columnCount(const QModelIndex &parent) const override;
@@ -57,21 +40,14 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    void reload();
-    QDateTime aggregate(const QDateTime &dt) const;
-    QString timeToString(const QDateTime &dt) const;
+    void recreateColumnMapping();
 
-    QAbstractItemModel *m_sourceModel = nullptr;
-    struct Data {
-        QDateTime time;
-        int samples;
-    };
-    QVector<Data> m_data;
-    int m_maxValue = 0;
-    AggregationMode m_mode = AggregateYear;
+    QVector<QAbstractItemModel*> m_models;
+    QVector<int> m_columnMapping;
+    QVector<int> m_columnOffset;
 };
 
 }
 }
 
-#endif // USERFEEDBACK_ANALYZER_TIMEAGGREGATIONMODEL_H
+#endif // USERFEEDBACK_ANALYZER_AGGREGATEDDATAMODEL_H

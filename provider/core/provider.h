@@ -45,6 +45,9 @@ public:
     /** Set the feedback server URL. */
     void setFeedbackServer(const QUrl &url);
 
+    /** Set the automatic submission interval. */
+    void setSubmissionInterval(int days);
+
     /** Marks the given survey as completed. This avoids getting further notification
      *  about the same survey.
      */

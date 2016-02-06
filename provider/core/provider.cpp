@@ -29,6 +29,7 @@
 #include <QSettings>
 #include <QStringList>
 #include <QTime>
+#include <QTimer>
 #include <QUrl>
 
 #include <algorithm>
@@ -60,6 +61,7 @@ public:
     QNetworkAccessManager *networkAccessManager;
     QUrl serverUrl;
     QDateTime lastSubmitTime;
+    int submissionInterval;
 
     QStringList completedSurveys;
 
@@ -72,6 +74,7 @@ public:
 ProviderPrivate::ProviderPrivate(Provider *qq)
     : q(qq)
     , networkAccessManager(Q_NULLPTR)
+    , submissionInterval(-1)
     , startCount(0)
     , usageTime(0)
 {
@@ -153,6 +156,9 @@ void ProviderPrivate::submitFinished()
             return;
         emit q->surveyAvailable(survey);
     }
+
+    if (submissionInterval > 0)
+        QTimer::singleShot(submissionInterval * 24 * 60 * 60 * 1000, q, SLOT(submit()));
 }
 
 
@@ -180,6 +186,20 @@ void Provider::setProductIdentifier(const QString &productId)
 void Provider::setFeedbackServer(const QUrl &url)
 {
     d->serverUrl = url;
+}
+
+void Provider::setSubmissionInterval(int days)
+{
+    d->submissionInterval = days;
+    if (d->submissionInterval <= 0)
+        return;
+
+    const auto nextSubmission = d->lastSubmitTime.addDays(days);
+    const auto now = QDateTime::currentDateTime();
+    if (nextSubmission <= now)
+        submit();
+    else
+        QTimer::singleShot(now.msecsTo(nextSubmission), this, SLOT(submit()));
 }
 
 void Provider::setSurveyCompleted(const SurveyInfo &info)

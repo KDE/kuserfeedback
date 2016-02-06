@@ -33,6 +33,7 @@ class MainWindow;
 }
 
 class AggregatedDataModel;
+class CategoryAggregationModel;
 class Chart;
 class DataModel;
 class ProductModel;
@@ -67,6 +68,7 @@ private:
     ProductModel *m_productModel;
     DataModel *m_dataModel;
     TimeAggregationModel *m_timeAggregationModel;
+    CategoryAggregationModel *m_versionModel;
     AggregatedDataModel *m_aggregatedDataModel;
     SurveyModel *m_surveyModel;
     Chart *m_chart;

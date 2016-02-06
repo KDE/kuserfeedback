@@ -15,44 +15,25 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_ANALYZER_TIMEAGGREGATIONMODEL_H
-#define USERFEEDBACK_ANALYZER_TIMEAGGREGATIONMODEL_H
+#ifndef USERFEEDBACK_ANALYZER_CATEGORYAGGREGATIONMODEL_H
+#define USERFEEDBACK_ANALYZER_CATEGORYAGGREGATIONMODEL_H
 
 #include <QAbstractTableModel>
-#include <QDateTime>
 #include <QVector>
 
 namespace UserFeedback {
 namespace Analyzer {
 
-class Sample;
-
-class TimeAggregationModel : public QAbstractTableModel
+/** Aggregate by time and one string category value (e.g. version. platform, etc). */
+class CategoryAggregationModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    enum AggregationMode {
-        AggregateYear,
-        AggregateMonth,
-        AggregateWeek,
-        AggregateDay
-    };
-
-    enum Role {
-        DateTimeRole = Qt::UserRole + 1,
-        MaximumValueRole,
-        TimeDisplayRole,
-        SamplesRole,
-        AllSamplesRole
-    };
-
-    explicit TimeAggregationModel(QObject *parent = nullptr);
-    ~TimeAggregationModel();
+    explicit CategoryAggregationModel(QObject *parent = nullptr);
+    ~CategoryAggregationModel();
 
     void setSourceModel(QAbstractItemModel *model);
-
-    AggregationMode aggregationMode() const;
-    void setAggregationMode(AggregationMode mode);
+    // TODO customize which data field to Sample should be used as category
 
     int rowCount(const QModelIndex &parent) const override;
     int columnCount(const QModelIndex &parent) const override;
@@ -60,21 +41,15 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    void reload();
-    QDateTime aggregate(const QDateTime &dt) const;
-    QString timeToString(const QDateTime &dt) const;
+    void recompute();
 
     QAbstractItemModel *m_sourceModel = nullptr;
-    struct Data {
-        QDateTime time;
-        QVector<Sample> samples;
-    };
-    QVector<Data> m_data;
-    int m_maxValue = 0;
-    AggregationMode m_mode = AggregateYear;
+    QVector<QString> m_categories;
+    int *m_data = nullptr;
+    int m_maxValue;
 };
 
 }
 }
 
-#endif // USERFEEDBACK_ANALYZER_TIMEAGGREGATIONMODEL_H
+#endif // USERFEEDBACK_ANALYZER_CATEGORYAGGREGATIONMODEL_H

@@ -33,7 +33,8 @@ class DataModel : public QAbstractTableModel
     Q_OBJECT
 public:
     enum {
-        SampleRole = Qt::UserRole + 1
+        SampleRole = Qt::UserRole + 1,
+        AllSamplesRole
     };
 
     explicit DataModel(QObject *parent = nullptr);

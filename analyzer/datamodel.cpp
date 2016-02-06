@@ -97,6 +97,8 @@ QVariant DataModel::data(const QModelIndex &index, int role) const
         }
     } else if (role == SampleRole) {
         return QVariant::fromValue(m_data.at(index.row()));
+    } else if (role == AllSamplesRole) {
+        return QVariant::fromValue(m_data);
     }
 
     return {};

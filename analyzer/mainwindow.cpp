@@ -19,6 +19,7 @@
 #include "ui_mainwindow.h"
 
 #include "aggregateddatamodel.h"
+#include "categoryaggregationmodel.h"
 #include "chart.h"
 #include "connectdialog.h"
 #include "datamodel.h"
@@ -49,6 +50,7 @@ MainWindow::MainWindow() :
     m_productModel(new ProductModel(this)),
     m_dataModel(new DataModel(this)),
     m_timeAggregationModel(new TimeAggregationModel(this)),
+    m_versionModel(new CategoryAggregationModel(this)),
     m_aggregatedDataModel(new AggregatedDataModel(this)),
     m_surveyModel(new SurveyModel(this)),
     m_chart(new Chart(this))
@@ -65,7 +67,9 @@ MainWindow::MainWindow() :
     m_dataModel->setRESTClient(m_restClient);
     m_surveyModel->setRESTClient(m_restClient);
     m_timeAggregationModel->setSourceModel(m_dataModel);
+    m_versionModel->setSourceModel(m_timeAggregationModel);
     m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
+    m_aggregatedDataModel->addSourceModel(m_versionModel);
 
     m_chart->setModel(m_timeAggregationModel);
 

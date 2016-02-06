@@ -38,12 +38,11 @@ function post_submit()
 
     // write to db
     $tableName = Utils::tableNameForProduct($product['name']);
-    $res = $db->db->exec('INSERT INTO ' . $tableName . ' (productId, version, platform, startCount, usageTime) VALUES('
-        . $product['id'] . ', '
+    $res = $db->db->exec('INSERT INTO ' . $tableName . ' (version, platform, startCount, usageTime) VALUES('
         . $db->db->quote($data['version']) . ', '
         . $db->db->quote($data['platform']) . ', '
-        . $db->db->quote($data['startCount']) . ', '
-        . $db->db->quote($data['usageTime'])
+        . intval($data['startCount']) . ', '
+        . intval($data['usageTime'])
         . ')');
     if ($res === FALSE)
         die('Failed to record data.');

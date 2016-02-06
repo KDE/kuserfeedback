@@ -31,6 +31,8 @@
 #include "surveymodel.h"
 #include "timeaggregationmodel.h"
 
+#include "provider/core/provider.h"
+
 #include <QApplication>
 #include <QDebug>
 #include <QIcon>
@@ -55,7 +57,8 @@ MainWindow::MainWindow() :
     m_versionModel(new CategoryAggregationModel(this)),
     m_aggregatedDataModel(new AggregatedDataModel(this)),
     m_surveyModel(new SurveyModel(this)),
-    m_chart(new Chart(this))
+    m_chart(new Chart(this)),
+    m_feedbackProvider(new UserFeedback::Provider(this))
 {
     ui->setupUi(this);
     ui->productListView->setModel(m_productModel);
@@ -153,6 +156,9 @@ MainWindow::MainWindow() :
     restoreState(settings.value(QStringLiteral("State")).toByteArray());
 
     QTimer::singleShot(0, ui->actionConnectToServer, &QAction::trigger);
+
+    m_feedbackProvider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
+    m_feedbackProvider->setSubmissionInterval(1);
 }
 
 MainWindow::~MainWindow()

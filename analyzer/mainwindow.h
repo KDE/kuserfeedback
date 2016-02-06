@@ -25,6 +25,9 @@
 class QNetworkAccessManager;
 
 namespace UserFeedback {
+
+class Provider;
+
 namespace Analyzer {
 
 namespace Ui
@@ -72,6 +75,8 @@ private:
     AggregatedDataModel *m_aggregatedDataModel;
     SurveyModel *m_surveyModel;
     Chart *m_chart;
+
+    UserFeedback::Provider *m_feedbackProvider;
 };
 }
 }

@@ -120,6 +120,12 @@ MainWindow::MainWindow() :
     settings.endGroup();
 
     ui->chartView->setChart(m_chart->chart());
+    ui->chartType->addItem(tr("Samples"), QVariant::fromValue(m_timeAggregationModel));
+    ui->chartType->addItem(tr("Versions"), QVariant::fromValue(m_versionModel));
+    connect(ui->chartType, &QComboBox::currentTextChanged, this, [this]() {
+        const auto model = ui->chartType->currentData().value<QAbstractItemModel*>();
+        m_chart->setModel(model);
+    });
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     ui->actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit")));

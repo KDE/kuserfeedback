@@ -73,16 +73,25 @@ void Chart::modelReset()
     Q_ASSERT(m_model);
     m_chart->removeAllSeries();
 
-    auto series = new QLineSeries(this);
-    series->setName(m_model->headerData(1, Qt::Horizontal).toString());
+    const auto colCount = m_model->columnCount();
+    if (m_model->rowCount() <= 0 || colCount <= 1)
+        return;
 
-    auto mapper = new QVXYModelMapper(series);
-    mapper->setModel(m_model);
-    mapper->setXColumn(0);
-    mapper->setYColumn(1);
-    mapper->setFirstRow(0);
-    mapper->setSeries(series);
-    m_chart->addSeries(series);
+    for (int i = 1; i < colCount; ++i) {
+        auto series = new QLineSeries(this);
+        series->setName(m_model->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
+
+        auto mapper = new QVXYModelMapper(series);
+        mapper->setModel(m_model);
+        mapper->setXColumn(0);
+        mapper->setYColumn(i);
+        mapper->setFirstRow(0);
+        mapper->setSeries(series);
+        m_chart->addSeries(series);
+
+        series->attachAxis(m_xAxis);
+        series->attachAxis(m_yAxis);
+    }
 
     // auto-scale axes
     if (const auto rcount = m_model->rowCount()) {
@@ -96,6 +105,4 @@ void Chart::modelReset()
         m_yAxis->applyNiceNumbers();
     }
 
-    series->attachAxis(m_xAxis);
-    series->attachAxis(m_yAxis);
 }

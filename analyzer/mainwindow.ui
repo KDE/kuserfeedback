@@ -121,9 +121,25 @@
     <addaction name="actionAddSurvey"/>
     <addaction name="actionDeleteSurvey"/>
    </widget>
+   <widget class="QMenu" name="menu_Analytics">
+    <property name="title">
+     <string>Anal&amp;ytics</string>
+    </property>
+    <widget class="QMenu" name="menu_Time_interval">
+     <property name="title">
+      <string>&amp;Time interval</string>
+     </property>
+     <addaction name="actionAggregateYear"/>
+     <addaction name="actionAggregateMonth"/>
+     <addaction name="actionAggregateWeek"/>
+     <addaction name="actionAggregateDay"/>
+    </widget>
+    <addaction name="menu_Time_interval"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Products"/>
    <addaction name="menu_Survery"/>
+   <addaction name="menu_Analytics"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="logDock">
@@ -217,7 +233,58 @@
     <string>Delete a survey.</string>
    </property>
   </action>
+  <action name="actionAggregateYear">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Year</string>
+   </property>
+   <property name="toolTip">
+    <string>Aggregate data by year.</string>
+   </property>
+  </action>
+  <action name="actionAggregateMonth">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Month</string>
+   </property>
+   <property name="toolTip">
+    <string>Aggregate data by month.</string>
+   </property>
+  </action>
+  <action name="actionAggregateWeek">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Week</string>
+   </property>
+   <property name="toolTip">
+    <string>Aggregate data by week.</string>
+   </property>
+  </action>
+  <action name="actionAggregateDay">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Day</string>
+   </property>
+   <property name="toolTip">
+    <string>Aggregate data by day.</string>
+   </property>
+  </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QtCharts::QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">QChartView</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

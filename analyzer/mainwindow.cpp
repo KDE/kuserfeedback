@@ -53,13 +53,6 @@ MainWindow::MainWindow() :
     ui->productListView->setModel(m_productModel);
     ui->dataView->setModel(m_dataModel);
     ui->surveyView->setModel(m_surveyModel);
-    ui->timeAggregationMode->addItem(tr("Year"), TimeAggregationModel::AggregateYear);
-    ui->timeAggregationMode->addItem(tr("Month"), TimeAggregationModel::AggregateMonth);
-    ui->timeAggregationMode->addItem(tr("Week"), TimeAggregationModel::AggregateWeek);
-    ui->timeAggregationMode->addItem(tr("Day"), TimeAggregationModel::AggregateDay);
-    connect(ui->timeAggregationMode, &QComboBox::currentTextChanged, this, [this]() {
-        m_timeAggregationModel->setAggregationMode(static_cast<TimeAggregationModel::AggregationMode>(ui->timeAggregationMode->currentData().toInt()));
-    });
     ui->timeAggregationView->setModel(m_timeAggregationModel);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
 
@@ -92,7 +85,27 @@ MainWindow::MainWindow() :
     connect(ui->actionAddSurvey, &QAction::triggered, this, &MainWindow::createSurvey);
     ui->actionDeleteSurvey->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")));
     connect(ui->actionDeleteSurvey, &QAction::triggered, this, &MainWindow::deleteSurvey);
+
+    ui->actionAggregateYear->setData(TimeAggregationModel::AggregateYear);
+    ui->actionAggregateMonth->setData(TimeAggregationModel::AggregateMonth);
+    ui->actionAggregateWeek->setData(TimeAggregationModel::AggregateWeek);
+    ui->actionAggregateDay->setData(TimeAggregationModel::AggregateDay);
+    auto aggrGroup = new QActionGroup(this);
+    aggrGroup->addAction(ui->actionAggregateYear);
+    aggrGroup->addAction(ui->actionAggregateMonth);
+    aggrGroup->addAction(ui->actionAggregateWeek);
+    aggrGroup->addAction(ui->actionAggregateDay);
+    aggrGroup->setExclusive(true);
+    connect(aggrGroup, &QActionGroup::triggered, this, [this, aggrGroup]() {
+        m_timeAggregationModel->setAggregationMode(static_cast<TimeAggregationModel::AggregationMode>(aggrGroup->checkedAction()->data().toInt()));
     });
+
+    QSettings settings;
+    settings.beginGroup(QStringLiteral("Analytics"));
+    const auto aggrSetting = settings.value(QStringLiteral("TimeAggregationMode"), TimeAggregationModel::AggregateMonth).toInt();
+    foreach (auto act, aggrGroup->actions())
+        act->setChecked(act->data().toInt() == aggrSetting);
+    m_timeAggregationModel->setAggregationMode(static_cast<TimeAggregationModel::AggregationMode>(aggrSetting));
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     ui->actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit")));
@@ -109,7 +122,12 @@ MainWindow::MainWindow() :
     QTimer::singleShot(0, ui->actionConnectToServer, &QAction::trigger);
 }
 
-MainWindow::~MainWindow() = default;
+MainWindow::~MainWindow()
+{
+    QSettings settings;
+    settings.beginGroup(QStringLiteral("Analytics"));
+    settings.setValue(QStringLiteral("TimeAggregationMode"), m_timeAggregationModel->aggregationMode());
+}
 
 void MainWindow::connectToServer(const ServerInfo& info)
 {

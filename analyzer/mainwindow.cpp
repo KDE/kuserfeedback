@@ -106,6 +106,7 @@ MainWindow::MainWindow() :
     foreach (auto act, aggrGroup->actions())
         act->setChecked(act->data().toInt() == aggrSetting);
     m_timeAggregationModel->setAggregationMode(static_cast<TimeAggregationModel::AggregationMode>(aggrSetting));
+    settings.endGroup();
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     ui->actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit")));
@@ -119,6 +120,10 @@ MainWindow::MainWindow() :
         m_surveyModel->setProductId(product);
     });
 
+    settings.beginGroup(QStringLiteral("MainWindow"));
+    restoreGeometry(settings.value(QStringLiteral("Geometry")).toByteArray());
+    restoreState(settings.value(QStringLiteral("State")).toByteArray());
+
     QTimer::singleShot(0, ui->actionConnectToServer, &QAction::trigger);
 }
 
@@ -127,6 +132,11 @@ MainWindow::~MainWindow()
     QSettings settings;
     settings.beginGroup(QStringLiteral("Analytics"));
     settings.setValue(QStringLiteral("TimeAggregationMode"), m_timeAggregationModel->aggregationMode());
+    settings.endGroup();
+
+    settings.beginGroup(QStringLiteral("MainWindow"));
+    settings.setValue(QStringLiteral("State"), saveState());
+    settings.setValue(QStringLiteral("Geometry"), saveGeometry());
 }
 
 void MainWindow::connectToServer(const ServerInfo& info)

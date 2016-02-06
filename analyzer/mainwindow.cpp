@@ -18,6 +18,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "chart.h"
 #include "connectdialog.h"
 #include "datamodel.h"
 #include "productmodel.h"
@@ -47,7 +48,8 @@ MainWindow::MainWindow() :
     m_productModel(new ProductModel(this)),
     m_dataModel(new DataModel(this)),
     m_timeAggregationModel(new TimeAggregationModel(this)),
-    m_surveyModel(new SurveyModel(this))
+    m_surveyModel(new SurveyModel(this)),
+    m_chart(new Chart(this))
 {
     ui->setupUi(this);
     ui->productListView->setModel(m_productModel);
@@ -61,6 +63,8 @@ MainWindow::MainWindow() :
     m_dataModel->setRESTClient(m_restClient);
     m_surveyModel->setRESTClient(m_restClient);
     m_timeAggregationModel->setSourceModel(m_dataModel);
+
+    m_chart->setModel(m_timeAggregationModel);
 
     ui->actionConnectToServer->setIcon(QIcon::fromTheme(QStringLiteral("network-connect")));
     connect(ui->actionConnectToServer, &QAction::triggered, this, [this]() {
@@ -107,6 +111,8 @@ MainWindow::MainWindow() :
         act->setChecked(act->data().toInt() == aggrSetting);
     m_timeAggregationModel->setAggregationMode(static_cast<TimeAggregationModel::AggregationMode>(aggrSetting));
     settings.endGroup();
+
+    ui->chartView->setChart(m_chart->chart());
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     ui->actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit")));

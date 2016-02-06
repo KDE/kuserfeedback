@@ -35,6 +35,13 @@ public:
         AggregateWeek,
         AggregateDay
     };
+
+    enum Role {
+        DateTimeRole = Qt::UserRole + 1,
+        MaximumValueRole,
+        UserRole
+    };
+
     explicit TimeAggregationModel(QObject *parent = nullptr);
     ~TimeAggregationModel();
 
@@ -59,6 +66,7 @@ private:
         int samples;
     };
     QVector<Data> m_data;
+    int m_maxValue = 0;
     AggregationMode m_mode = AggregateYear;
 };
 

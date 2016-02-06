@@ -32,28 +32,42 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="timeAggregationTab">
+      <widget class="QWidget" name="chartTab">
        <attribute name="title">
-        <string>Time Aggregation</string>
+        <string>Charts</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_6">
+       <layout class="QVBoxLayout" name="verticalLayout_7">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Time intervals:</string>
+             <string>Chart type:</string>
             </property>
             <property name="buddy">
-             <cstring>timeAggregationMode</cstring>
+             <cstring>chartType</cstring>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="timeAggregationMode"/>
+           <widget class="QComboBox" name="chartType"/>
           </item>
          </layout>
         </item>
+        <item>
+         <widget class="QtCharts::QChartView" name="chartView">
+          <property name="renderHints">
+           <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="aggregationTab">
+       <attribute name="title">
+        <string>Aggregated Data</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
          <widget class="QTableView" name="timeAggregationView"/>
         </item>

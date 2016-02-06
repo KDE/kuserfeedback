@@ -20,6 +20,7 @@
 #include <QDebug>
 
 #include <algorithm>
+#include <numeric>
 
 using namespace UserFeedback::Analyzer;
 
@@ -64,8 +65,10 @@ void TimeAggregationModel::reload()
 
     beginResetModel();
     m_data.clear();
+    m_maxValue = 0;
     for (auto it = m_aggregator.constBegin(); it != m_aggregator.constEnd(); ++it) {
         m_data.push_back({ it.key(), it.value() });
+        m_maxValue = std::max(m_maxValue, it.value());
     }
     std::sort(m_data.begin(), m_data.end(), [](const Data &lhs, const Data &rhs) {
         return lhs.time < rhs.time;
@@ -134,9 +137,13 @@ QVariant TimeAggregationModel::data(const QModelIndex& index, int role) const
     if (role == Qt::DisplayRole) {
         const auto d = m_data.at(index.row());
         switch (index.column()) {
-            case 0: return timeToString(d.time);
+            case 0: return d.time.toMSecsSinceEpoch();//timeToString(d.time);
             case 1: return d.samples;
         }
+    } else if (role == DateTimeRole) {
+        return m_data.at(index.row()).time;
+    } else if (role == MaximumValueRole) {
+        return m_maxValue;
     }
 
     return {};

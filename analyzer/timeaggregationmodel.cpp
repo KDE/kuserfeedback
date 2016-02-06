@@ -18,7 +18,6 @@
 #include "timeaggregationmodel.h"
 
 #include <QDebug>
-#include <QDateTime>
 
 #include <algorithm>
 
@@ -39,6 +38,11 @@ void TimeAggregationModel::setSourceModel(QAbstractItemModel* model)
     reload();
 }
 
+TimeAggregationModel::AggregationMode TimeAggregationModel::aggregationMode() const
+{
+    return m_mode;
+}
+
 void TimeAggregationModel::setAggregationMode(AggregationMode mode)
 {
     m_mode = mode;
@@ -50,8 +54,8 @@ void TimeAggregationModel::reload()
     if (!m_sourceModel)
         return;
 
-    QHash<QString, int> m_aggregator;
-
+    // TODO use the fact that the source model is sorted by time!
+    QHash<QDateTime, int> m_aggregator;
     for (int i = 0; i < m_sourceModel->rowCount(); ++i) {
         const auto dt = m_sourceModel->index(i, 0).data().toDateTime();
         const auto aggr = aggregate(dt);
@@ -64,12 +68,32 @@ void TimeAggregationModel::reload()
         m_data.push_back({ it.key(), it.value() });
     }
     std::sort(m_data.begin(), m_data.end(), [](const Data &lhs, const Data &rhs) {
-        return lhs.timeLabel < rhs.timeLabel;
+        return lhs.time < rhs.time;
     });
     endResetModel();
 }
 
-QString TimeAggregationModel::aggregate(const QDateTime& dt) const
+QDateTime TimeAggregationModel::aggregate(const QDateTime &dt) const
+{
+    switch (m_mode) {
+        case AggregateYear:
+            return QDateTime(QDate(dt.date().year(), 1, 1));
+        case AggregateMonth:
+            return QDateTime(QDate(dt.date().year(), dt.date().month(), 1));
+        case AggregateWeek:
+        {
+            auto d = dt.date();
+            d = d.addDays(1 - d.dayOfWeek());
+            return QDateTime(d);
+        }
+        case AggregateDay:
+            return QDateTime(dt.date());
+    }
+
+    Q_UNREACHABLE();
+}
+
+QString TimeAggregationModel::timeToString(const QDateTime &dt) const
 {
     switch (m_mode) {
         case AggregateYear:
@@ -110,7 +134,7 @@ QVariant TimeAggregationModel::data(const QModelIndex& index, int role) const
     if (role == Qt::DisplayRole) {
         const auto d = m_data.at(index.row());
         switch (index.column()) {
-            case 0: return d.timeLabel;
+            case 0: return timeToString(d.time);
             case 1: return d.samples;
         }
     }

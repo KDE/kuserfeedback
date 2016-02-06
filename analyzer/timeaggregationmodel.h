@@ -19,6 +19,7 @@
 #define USERFEEDBACK_ANALYZER_TIMEAGGREGATIONMODEL_H
 
 #include <QAbstractTableModel>
+#include <QDateTime>
 #include <QVector>
 
 namespace UserFeedback {
@@ -39,6 +40,7 @@ public:
 
     void setSourceModel(QAbstractItemModel *model);
 
+    AggregationMode aggregationMode() const;
     void setAggregationMode(AggregationMode mode);
 
     int rowCount(const QModelIndex &parent) const override;
@@ -48,11 +50,12 @@ public:
 
 private:
     void reload();
-    QString aggregate(const QDateTime &dt) const;
+    QDateTime aggregate(const QDateTime &dt) const;
+    QString timeToString(const QDateTime &dt) const;
 
     QAbstractItemModel *m_sourceModel = nullptr;
     struct Data {
-        QString timeLabel;
+        QDateTime time;
         int samples;
     };
     QVector<Data> m_data;

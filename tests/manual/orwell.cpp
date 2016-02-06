@@ -84,7 +84,6 @@ int main(int argc, char** argv)
     QApplication app(argc, argv);
 
     provider.reset(new UserFeedback::Provider);
-    provider->setProductIdentifier(QStringLiteral("org.kde.orwell"));
     provider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
 
     Orwell mainWindow;

@@ -35,6 +35,7 @@ class USERFEEDBACKCORE_EXPORT Provider : public QObject
     Q_OBJECT
 public:
     explicit Provider(QObject *parent = Q_NULLPTR);
+    ~Provider();
 
     /** Set the product identifier.
      *  This is used to distinguish independent products on the same server.

@@ -31,8 +31,8 @@
 #include <QTime>
 #include <QUrl>
 
+#include <algorithm>
 #include <numeric>
-
 
 using namespace UserFeedback;
 
@@ -75,6 +75,10 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
     , startCount(0)
     , usageTime(0)
 {
+    auto domain = QCoreApplication::organizationDomain().split(QLatin1Char('.'));
+    std::reverse(domain.begin(), domain.end());
+    productId = domain.join(QLatin1Char('.')) + QLatin1Char('.') + QCoreApplication::applicationName();
+
     startTime.start();
 }
 
@@ -161,6 +165,11 @@ Provider::Provider(QObject *parent) :
     connect(QCoreApplication::instance(), SIGNAL(aboutToQuit()), this, SLOT(aboutToQuit()));
 
     d->load();
+}
+
+Provider::~Provider()
+{
+    delete d;
 }
 
 void Provider::setProductIdentifier(const QString &productId)

@@ -16,18 +16,32 @@ if(NOT DEFINED CMAKE_MACOSX_RPATH)
     set(CMAKE_MACOSX_RPATH TRUE)
 endif()
 
+include(ECMGeneratePriFile)
+include(ECMEnableSanitizers)
+include(FeatureSummary)
+include(GenerateExportHeader)
+
 enable_testing()
 
 set(USERFEEDBACK_VERSION_MAJOR "1")
 set(USERFEEDBACK_VERSION_MINOR "9")
 set(USERFEEDBACK_VERSION_PATCH "84")
 set(USERFEEDBACK_VERSION "${USERFEEDBACK_VERSION_MAJOR}.${USERFEEDBACK_VERSION_MINOR}.${USERFEEDBACK_VERSION_PATCH}")
+set(USERFEEDBACK_VERSION_STRING "${USERFEEDBACK_VERSION}")
 set(PROJECT_VERSION_STRING ${USERFEEDBACK_VERSION}) # for the ECM pri generator
-
-include(ECMGeneratePriFile)
-include(ECMEnableSanitizers)
-include(FeatureSummary)
-include(GenerateExportHeader)
+if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
+  find_package(Git)
+  set_package_properties(Git PROPERTIES TYPE OPTIONAL PURPOSE "Determine exact build version.")
+  if(GIT_FOUND)
+    execute_process(
+      COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+      WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+      OUTPUT_VARIABLE _git_revision
+    )
+    string(REGEX REPLACE "\n" "" _git_revision "${_git_revision}")
+    set(USERFEEDBACK_VERSION_STRING "${USERFEEDBACK_VERSION_STRING} (revision: ${_git_revision})")
+  endif()
+endif()
 
 #
 # Compiler & linker settings
@@ -129,6 +143,9 @@ set(
     ARCHIVE DESTINATION ${LIB_INSTALL_DIR} COMPONENT Devel
     BUNDLE DESTINATION ${BUNDLE_INSTALL_DIR}
 )
+
+include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
+configure_file(config-userfeedback-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback-version.h)
 
 #
 # Actually build the stuff

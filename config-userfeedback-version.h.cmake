@@ -15,22 +15,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-userfeedback-version.h>
-#include "mainwindow.h"
+#ifndef CONIFG_USER_FEEDBACK_VERSION_H
+#define CONIFG_USER_FEEDBACK_VERSION_H
 
-#include <QApplication>
+#define USERFEEDBACK_VERSION_MAJOR ${USERFEEDBACK_VERSION_MAJOR}
+#define USERFEEDBACK_VERSION_MINOR ${USERFEEDBACK_VERSION_MINOR}
+#define USERFEEDBACK_VERSION_PATCH ${USERFEEDBACK_VERSION_PATCH}
+#define USERFEEDBACK_VERSION "${USERFEEDBACK_VERSION}"
+#define USERFEEDBACK_VERSION_STRING "${USERFEEDBACK_VERSION_STRING}"
 
-int main(int argc, char** argv)
-{
-    QCoreApplication::setApplicationName(QStringLiteral("UserFeedbackAnalyzer"));
-    QCoreApplication::setApplicationVersion(QStringLiteral(USERFEEDBACK_VERSION));
-    QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
-    QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
-
-    QApplication app(argc, argv);
-
-    UserFeedback::Analyzer::MainWindow mainWindow;
-    mainWindow.show();
-
-    return app.exec();
-}
+#endif

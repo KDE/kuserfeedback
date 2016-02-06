@@ -15,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <config-userfeedback-version.h>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -35,6 +36,7 @@
 #include <QIcon>
 #include <QInputDialog>
 #include <QKeySequence>
+#include <QMessageBox>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -130,6 +132,13 @@ MainWindow::MainWindow() :
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     ui->actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit")));
     connect(ui->actionQuit, &QAction::triggered, QCoreApplication::instance(), &QCoreApplication::quit);
+    connect(ui->actionAbout, &QAction::triggered, this, [this]() {
+        QMessageBox::about(this, tr("About User Feedback Analyzer"), tr(
+            "Version: %1\n"
+            "License: LGPLv2+\n"
+            "Copyright ⓒ 2016 Volker Krause <vkrause@kde.org>"
+        ).arg(QStringLiteral(USERFEEDBACK_VERSION_STRING)));
+    });
 
     connect(ui->productListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, [this]() {
         const auto product = selectedProduct();

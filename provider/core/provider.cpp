@@ -210,6 +210,11 @@ void Provider::setSurveyCompleted(const SurveyInfo &info)
 
 void Provider::submit()
 {
+    if (!d->serverUrl.isValid()) {
+        qWarning() << "No feedback server URL specified!";
+        return;
+    }
+
     if (!d->networkAccessManager)
         d->networkAccessManager = new QNetworkAccessManager(this);
 

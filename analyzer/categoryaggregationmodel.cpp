@@ -99,6 +99,7 @@ void CategoryAggregationModel::recompute()
     beginResetModel();
     m_categories.clear();
     delete[] m_data;
+    m_data = nullptr;
     m_maxValue = 0;
 
     if (rowCount <= 0) {

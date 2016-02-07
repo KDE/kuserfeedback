@@ -24,6 +24,7 @@
 
 class QNetworkAccessManager;
 class QNetworkReply;
+class QNetworkRequest;
 
 namespace UserFeedback {
 namespace Analyzer {
@@ -49,6 +50,8 @@ signals:
     void errorMessage(const QString &msg);
 
 private:
+    QNetworkRequest makeRequest(const QString &command);
+
     ServerInfo m_serverInfo;
     QNetworkAccessManager *m_networkAccessManager;
 };

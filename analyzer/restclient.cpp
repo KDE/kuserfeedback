@@ -15,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <config-userfeedback-version.h>
 #include "restclient.h"
 
 #include <QDebug>
@@ -46,12 +47,7 @@ bool UserFeedback::Analyzer::RESTClient::isConnected() const
 
 QNetworkReply* RESTClient::get(const QString& command)
 {
-    Q_ASSERT(isConnected());
-    auto url = m_serverInfo.url();
-    url.setPath(url.path() + QStringLiteral("/analytics/") + command);
-    QNetworkRequest request(url);
-    const auto authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
-    request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
+    const auto request = makeRequest(command);
     auto reply = m_networkAccessManager->get(request);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() != QNetworkReply::NoError)
@@ -62,13 +58,7 @@ QNetworkReply* RESTClient::get(const QString& command)
 
 QNetworkReply* RESTClient::post(const QString& command, const QByteArray& data)
 {
-    Q_ASSERT(isConnected());
-    auto url = m_serverInfo.url();
-    url.setPath(url.path() + QStringLiteral("/analytics/") + command);
-    QNetworkRequest request(url);
-    const auto authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
-    request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
-    request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
+    const auto request = makeRequest(command);
     auto reply = m_networkAccessManager->post(request, data);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() != QNetworkReply::NoError)
@@ -79,13 +69,7 @@ QNetworkReply* RESTClient::post(const QString& command, const QByteArray& data)
 
 QNetworkReply* RESTClient::put(const QString &command, const QByteArray &data)
 {
-    Q_ASSERT(isConnected());
-    auto url = m_serverInfo.url();
-    url.setPath(url.path() + QStringLiteral("/analytics/") + command);
-    QNetworkRequest request(url);
-    const auto authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
-    request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
-    request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
+    const auto request = makeRequest(command);
     auto reply = m_networkAccessManager->put(request, data);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() != QNetworkReply::NoError)
@@ -96,16 +80,23 @@ QNetworkReply* RESTClient::put(const QString &command, const QByteArray &data)
 
 QNetworkReply* RESTClient::deleteResource(const QString& command)
 {
-    Q_ASSERT(isConnected());
-    auto url = m_serverInfo.url();
-    url.setPath(url.path() + QStringLiteral("/analytics/") + command);
-    QNetworkRequest request(url);
-    const auto authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
-    request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
+    const auto request = makeRequest(command);
     auto reply = m_networkAccessManager->deleteResource(request);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() != QNetworkReply::NoError)
             emit errorMessage(reply->errorString());
     });
     return reply;
+}
+
+QNetworkRequest RESTClient::makeRequest(const QString& command)
+{
+    Q_ASSERT(isConnected());
+    auto url = m_serverInfo.url();
+    url.setPath(url.path() + QStringLiteral("/analytics/") + command);
+    QNetworkRequest request(url);
+    const auto authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
+    request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
+    request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("UserFeedbackAnalyzer/") + QStringLiteral(USERFEEDBACK_VERSION));
+    return request;
 }

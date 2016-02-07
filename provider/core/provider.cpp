@@ -15,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <config-userfeedback-version.h>
 #include "provider.h"
 #include "surveyinfo.h"
 
@@ -222,6 +223,7 @@ void Provider::submit()
     url.setPath(url.path() + QStringLiteral("/receiver/submit"));
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
+    request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("UserFeedback/") + QStringLiteral(USERFEEDBACK_VERSION));
     auto reply = d->networkAccessManager->post(request, d->jsonData());
     connect(reply, SIGNAL(finished()), this, SLOT(submitFinished()));
 }

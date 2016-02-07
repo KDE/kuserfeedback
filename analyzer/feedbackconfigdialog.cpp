@@ -52,6 +52,9 @@ FeedbackConfigDialog::~FeedbackConfigDialog() = default;
 void FeedbackConfigDialog::setFeedbackProvider(UserFeedback::Provider* provider)
 {
     m_provider = provider;
+    ui->advancedStats->setChecked(m_provider->statisticsCollectionMode() == Provider::AllStatistics);
+    ui->basicStats->setChecked(m_provider->statisticsCollectionMode() != Provider::NoStatistics);
+
     ui->allSurveys->setChecked(m_provider->surveyInterval() >= 0 && m_provider->surveyInterval() < 90);
     ui->basicSurveys->setChecked(m_provider->surveyInterval() >= 90);
     updateButtonState();
@@ -59,7 +62,12 @@ void FeedbackConfigDialog::setFeedbackProvider(UserFeedback::Provider* provider)
 
 void FeedbackConfigDialog::accept()
 {
-    qDebug();
+    if (!ui->basicStats->isChecked()) {
+        m_provider->setStatisticsCollectionMode(Provider::NoStatistics);
+    } else {
+        m_provider->setStatisticsCollectionMode(ui->advancedStats->isChecked() ? Provider::AllStatistics : Provider::BasicStatistics);
+    }
+
     if (!ui->basicSurveys->isChecked()) {
         m_provider->setSurveyInterval(-1);
     } else {

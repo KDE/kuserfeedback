@@ -34,6 +34,13 @@ class USERFEEDBACKCORE_EXPORT Provider : public QObject
 {
     Q_OBJECT
 public:
+    enum StatisticsCollectionMode {
+        NoStatistics,
+        BasicStatistics,
+        AllStatistics
+    };
+    Q_ENUMS(StatisticsCollectionMode);
+
     explicit Provider(QObject *parent = Q_NULLPTR);
     ~Provider();
 
@@ -47,6 +54,12 @@ public:
 
     /** Set the automatic submission interval. */
     void setSubmissionInterval(int days);
+
+    /** Returns the current statistics collection mode. */
+    StatisticsCollectionMode statisticsCollectionMode() const;
+
+    /** Set which statistics should be submitted. */
+    void setStatisticsCollectionMode(StatisticsCollectionMode mode);
 
     /** Returns the minimum time between two surveys in days. */
     int surveyInterval() const;

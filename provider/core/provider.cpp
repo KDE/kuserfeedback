@@ -64,6 +64,7 @@ public:
     QUrl serverUrl;
     QDateTime lastSubmitTime;
     int submissionInterval;
+    Provider::StatisticsCollectionMode statisticsMode;
 
     int surveyInterval;
     QDateTime lastSurveyTime;
@@ -79,6 +80,7 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
     : q(qq)
     , networkAccessManager(Q_NULLPTR)
     , submissionInterval(-1)
+    , statisticsMode(Provider::NoStatistics)
     , surveyInterval(-1)
     , startCount(0)
     , usageTime(0)
@@ -107,11 +109,15 @@ void ProviderPrivate::load()
     QSettings settings;
     settings.beginGroup(QStringLiteral("UserFeedback"));
     lastSubmitTime = settings.value(QStringLiteral("LastSubmission")).toDateTime();
-    startCount = std::max(settings.value(QStringLiteral("ApplicationStartCount"), 0).toInt() + 1, 1);
-    usageTime = std::max(settings.value(QStringLiteral("ApplicationTime"), 0).toInt(), 0);
+    // TODO store as string via QMetaEnum
+    statisticsMode = static_cast<Provider::StatisticsCollectionMode>(settings.value(QStringLiteral("StatisticsCollectionMode"), Provider::NoStatistics).toInt());
+
     surveyInterval = settings.value(QStringLiteral("SurveyInterval"), -1).toInt();
     lastSurveyTime = settings.value(QStringLiteral("LastSurvey")).toDateTime();
     completedSurveys = settings.value(QStringLiteral("CompletedSurveys"), QStringList()).toStringList();
+
+    startCount = std::max(settings.value(QStringLiteral("ApplicationStartCount"), 0).toInt() + 1, 1);
+    usageTime = std::max(settings.value(QStringLiteral("ApplicationTime"), 0).toInt(), 0);
 }
 
 void ProviderPrivate::store()
@@ -119,11 +125,14 @@ void ProviderPrivate::store()
     QSettings settings;
     settings.beginGroup(QStringLiteral("UserFeedback"));
     settings.setValue(QStringLiteral("LastSubmission"), lastSubmitTime);
-    settings.setValue(QStringLiteral("ApplicationStartCount"), startCount);
-    settings.setValue(QStringLiteral("ApplicationTime"), currentApplicationTime());
+    settings.setValue(QStringLiteral("StatisticsCollectionMode"), statisticsMode);
+
     settings.setValue(QStringLiteral("SurveyInterval"), surveyInterval);
     settings.setValue(QStringLiteral("LastSurvey"), lastSurveyTime);
     settings.setValue(QStringLiteral("CompletedSurveys"), completedSurveys);
+
+    settings.setValue(QStringLiteral("ApplicationStartCount"), startCount);
+    settings.setValue(QStringLiteral("ApplicationTime"), currentApplicationTime());
 }
 
 void ProviderPrivate::aboutToQuit()
@@ -136,9 +145,12 @@ QByteArray ProviderPrivate::jsonData() const
 {
     QJsonObject obj;
     obj.insert(QStringLiteral("productId"), productId);
-    obj.insert(QStringLiteral("startCount"), startCount);
-    obj.insert(QStringLiteral("usageTime"), currentApplicationTime());
-    obj.insert(QStringLiteral("version"), QCoreApplication::applicationVersion());
+
+    if (statisticsMode != Provider::NoStatistics) {
+        obj.insert(QStringLiteral("startCount"), startCount);
+        obj.insert(QStringLiteral("usageTime"), currentApplicationTime());
+        obj.insert(QStringLiteral("version"), QCoreApplication::applicationVersion());
+    }
 
     QJsonDocument doc(obj);
     return doc.toJson();
@@ -221,6 +233,16 @@ void Provider::setSubmissionInterval(int days)
         submit();
     else
         QTimer::singleShot(now.msecsTo(nextSubmission), this, SLOT(submit()));
+}
+
+Provider::StatisticsCollectionMode Provider::statisticsCollectionMode() const
+{
+    return d->statisticsMode;
+}
+
+void Provider::setStatisticsCollectionMode(StatisticsCollectionMode mode)
+{
+    d->statisticsMode = mode;
 }
 
 int Provider::surveyInterval() const

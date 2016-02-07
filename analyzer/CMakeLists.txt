@@ -4,6 +4,7 @@ set(analyzer_srcs
     chart.cpp
     connectdialog.cpp
     datamodel.cpp
+    feedbackconfigdialog.cpp
     main.cpp
     mainwindow.cpp
     product.cpp

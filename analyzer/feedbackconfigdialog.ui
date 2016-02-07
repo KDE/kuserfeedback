@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>UserFeedback::Analyzer::FeedbackConfigDialog</class>
+ <widget class="QDialog" name="UserFeedback::Analyzer::FeedbackConfigDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>584</width>
+    <height>536</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Feedback Settings</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="introLabel">
+     <property name="text">
+      <string>We make $APPLICATION for you, for free. Contribute to make it even better and more useful to you!&lt;br/&gt;
+&lt;a href=&quot;https://feedback.volkerkrause.eu/feedback.html&quot;&gt;Learn more...&lt;/a&gt;</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="basicStats">
+     <property name="text">
+      <string>I'll contribute basic usage statistics!</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="basicStatsLabel">
+     <property name="text">
+      <string>This will automatically gather statistics on how often $APPLICATION is used, and sent this information to $VENDOR. No unique  identification of you is included, nor any data your process with $APPLICATION. &lt;br/&gt;
+&lt;a href=&quot;https://feedback.volkerkrause.eu/feedback.html#basic-stats&quot;&gt;Learn more...&lt;/a&gt;</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="advancedStats">
+     <property name="text">
+      <string>I'll contribute detailed usage statistics!</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="advancedStatsLabel">
+     <property name="text">
+      <string>This will automatically gather statistics on how often individual features of $APPLICATION are used, and send this information to $VENDOR. No unique identification of you is included, nor any data you process with $APPLICAITON. &lt;br/&gt;
+&lt;a href=&quot;https://feedback.volkerkrause.eu/feedback.html#detailed-stats&quot;&gt;Learn more...&lt;/a&gt;</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="basicSurveys">
+     <property name="text">
+      <string>I'll participate occasionally in user surveys.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="basicSurveyLabel">
+     <property name="text">
+      <string>This will ask you occasionally to participate in a web survey about aspects of $APPLICATION we are currently working on, not more than 4 times a year though.&lt;br/&gt;
+&lt;a href=&quot;https://feedback.volkerkrause.eu/feedback.html#basic-surveys&quot;&gt;Learn more...&lt;/a&gt;</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="allSurveys">
+     <property name="text">
+      <string>I'll participate in user surveys whenever you have one!</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="allSurveyLabel">
+     <property name="text">
+      <string>This will offer you to participate in web surveys about $APPLICATION whenever we have questions for you. You of course will have the option to skip or defer those. &lt;br/&gt;
+&lt;a href=&quot;https://feedback.volkerkrause.eu/feedback.html#all-surveys&quot;&gt;Learn more...&lt;/a&gt;</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Close|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>UserFeedback::Analyzer::FeedbackConfigDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>510</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>UserFeedback::Analyzer::FeedbackConfigDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>292</x>
+     <y>516</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

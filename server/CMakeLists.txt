@@ -1,3 +1,7 @@
+set(server_top_srcs
+    feedback.html
+)
+
 set(server_analytics_srcs
     analytics/index.php
     analytics/.htaccess
@@ -25,6 +29,7 @@ set(server_receiver_srcs
 
 if (SERVER_DEPLOY_DESTINATION)
     add_custom_target(deploy
+        COMMAND scp ${server_top_srcs} ${SERVER_DEPLOY_DESTINATION}/
         COMMAND scp ${server_analytics_srcs} ${SERVER_DEPLOY_DESTINATION}/analytics
         COMMAND scp ${server_config_srcs} ${SERVER_DEPLOY_DESTINATION}/config
         COMMAND scp ${server_receiver_srcs} ${SERVER_DEPLOY_DESTINATION}/receiver

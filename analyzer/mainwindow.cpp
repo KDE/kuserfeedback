@@ -24,6 +24,7 @@
 #include "chart.h"
 #include "connectdialog.h"
 #include "datamodel.h"
+#include "feedbackconfigdialog.h"
 #include "productmodel.h"
 #include "restclient.h"
 #include "serverinfo.h"
@@ -135,6 +136,11 @@ MainWindow::MainWindow() :
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     ui->actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit")));
     connect(ui->actionQuit, &QAction::triggered, QCoreApplication::instance(), &QCoreApplication::quit);
+    connect(ui->actionContribute, &QAction::triggered, this, [this]() {
+        FeedbackConfigDialog dlg(this);
+        dlg.setFeedbackProvider(m_feedbackProvider);
+        dlg.exec();
+    });
     connect(ui->actionAbout, &QAction::triggered, this, [this]() {
         QMessageBox::about(this, tr("About User Feedback Analyzer"), tr(
             "Version: %1\n"

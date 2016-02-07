@@ -154,6 +154,7 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
+    <addaction name="actionContribute"/>
     <addaction name="actionAbout"/>
    </widget>
    <addaction name="menu_File"/>
@@ -307,6 +308,14 @@
    </property>
    <property name="menuRole">
     <enum>QAction::AboutRole</enum>
+   </property>
+  </action>
+  <action name="actionContribute">
+   <property name="text">
+    <string>&amp;Contribute...</string>
+   </property>
+   <property name="toolTip">
+    <string>Help to make this application better for you!</string>
    </property>
   </action>
  </widget>

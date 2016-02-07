@@ -88,6 +88,7 @@ int main(int argc, char** argv)
     provider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
     provider->setSubmissionInterval(1);
     provider->setSurveyInterval(0);
+    provider->setStatisticsCollectionMode(UserFeedback::Provider::AllStatistics);
 
     Orwell mainWindow;
     mainWindow.show();

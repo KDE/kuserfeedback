@@ -53,6 +53,7 @@ public:
     void aboutToQuit();
 
     QByteArray jsonData() const;
+    void scheduleNextSubmission();
     void submitFinished();
     void selectSurvey(const SurveyInfo &survey) const;
 
@@ -60,6 +61,7 @@ public:
 
     QString productId;
 
+    QTimer submissionTimer;
     QNetworkAccessManager *networkAccessManager;
     QUrl serverUrl;
     QDateTime lastSubmitTime;
@@ -88,6 +90,9 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
     auto domain = QCoreApplication::organizationDomain().split(QLatin1Char('.'));
     std::reverse(domain.begin(), domain.end());
     productId = domain.join(QLatin1Char('.')) + QLatin1Char('.') + QCoreApplication::applicationName();
+
+    submissionTimer.setSingleShot(true);
+    QObject::connect(&submissionTimer, SIGNAL(timeout()), q, SLOT(submit()));
 
     startTime.start();
 }
@@ -156,6 +161,19 @@ QByteArray ProviderPrivate::jsonData() const
     return doc.toJson();
 }
 
+void ProviderPrivate::scheduleNextSubmission()
+{
+    submissionTimer.stop();
+    if (submissionInterval <= 0 || (statisticsMode == Provider::NoStatistics && surveyInterval < 0))
+        return;
+
+    Q_ASSERT(submissionInterval > 0);
+
+    const auto nextSubmission = lastSubmitTime.addDays(submissionInterval);
+    const auto now = QDateTime::currentDateTime();
+    submissionTimer.start(std::max(0ll, now.msecsTo(nextSubmission)));
+}
+
 void ProviderPrivate::submitFinished()
 {
     auto reply = qobject_cast<QNetworkReply*>(q->sender());
@@ -175,8 +193,7 @@ void ProviderPrivate::submitFinished()
         selectSurvey(survey);
     }
 
-    if (submissionInterval > 0)
-        QTimer::singleShot(submissionInterval * 24 * 60 * 60 * 1000, q, SLOT(submit()));
+    scheduleNextSubmission();
 }
 
 void ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
@@ -224,15 +241,7 @@ void Provider::setFeedbackServer(const QUrl &url)
 void Provider::setSubmissionInterval(int days)
 {
     d->submissionInterval = days;
-    if (d->submissionInterval <= 0)
-        return;
-
-    const auto nextSubmission = d->lastSubmitTime.addDays(days);
-    const auto now = QDateTime::currentDateTime();
-    if (nextSubmission <= now)
-        submit();
-    else
-        QTimer::singleShot(now.msecsTo(nextSubmission), this, SLOT(submit()));
+    d->scheduleNextSubmission();
 }
 
 Provider::StatisticsCollectionMode Provider::statisticsCollectionMode() const
@@ -243,6 +252,7 @@ Provider::StatisticsCollectionMode Provider::statisticsCollectionMode() const
 void Provider::setStatisticsCollectionMode(StatisticsCollectionMode mode)
 {
     d->statisticsMode = mode;
+    d->scheduleNextSubmission();
 }
 
 int Provider::surveyInterval() const
@@ -253,6 +263,7 @@ int Provider::surveyInterval() const
 void Provider::setSurveyInterval(int days)
 {
     d->surveyInterval = days;
+    d->scheduleNextSubmission();
 }
 
 void Provider::setSurveyCompleted(const SurveyInfo &info)

@@ -48,6 +48,14 @@ public:
     /** Set the automatic submission interval. */
     void setSubmissionInterval(int days);
 
+    /** Returns the minimum time between two surveys in days. */
+    int surveyInterval() const;
+
+    /** Sets the minimum time in days between two surveys.
+     *  @c -1 indicates no surveys should be requested.
+     */
+    void setSurveyInterval(int days);
+
     /** Marks the given survey as completed. This avoids getting further notification
      *  about the same survey.
      */

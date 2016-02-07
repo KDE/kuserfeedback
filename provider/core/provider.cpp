@@ -54,6 +54,7 @@ public:
 
     QByteArray jsonData() const;
     void submitFinished();
+    void selectSurvey(const SurveyInfo &survey) const;
 
     Provider *q;
 
@@ -64,6 +65,8 @@ public:
     QDateTime lastSubmitTime;
     int submissionInterval;
 
+    int surveyInterval;
+    QDateTime lastSurveyTime;
     QStringList completedSurveys;
 
     QTime startTime;
@@ -76,6 +79,7 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
     : q(qq)
     , networkAccessManager(Q_NULLPTR)
     , submissionInterval(-1)
+    , surveyInterval(-1)
     , startCount(0)
     , usageTime(0)
 {
@@ -105,6 +109,8 @@ void ProviderPrivate::load()
     lastSubmitTime = settings.value(QStringLiteral("LastSubmission")).toDateTime();
     startCount = std::max(settings.value(QStringLiteral("ApplicationStartCount"), 0).toInt() + 1, 1);
     usageTime = std::max(settings.value(QStringLiteral("ApplicationTime"), 0).toInt(), 0);
+    surveyInterval = settings.value(QStringLiteral("SurveyInterval"), -1).toInt();
+    lastSurveyTime = settings.value(QStringLiteral("LastSurvey")).toDateTime();
     completedSurveys = settings.value(QStringLiteral("CompletedSurveys"), QStringList()).toStringList();
 }
 
@@ -115,6 +121,8 @@ void ProviderPrivate::store()
     settings.setValue(QStringLiteral("LastSubmission"), lastSubmitTime);
     settings.setValue(QStringLiteral("ApplicationStartCount"), startCount);
     settings.setValue(QStringLiteral("ApplicationTime"), currentApplicationTime());
+    settings.setValue(QStringLiteral("SurveyInterval"), surveyInterval);
+    settings.setValue(QStringLiteral("LastSurvey"), lastSurveyTime);
     settings.setValue(QStringLiteral("CompletedSurveys"), completedSurveys);
 }
 
@@ -152,14 +160,26 @@ void ProviderPrivate::submitFinished()
     if (obj.contains(QStringLiteral("survey"))) {
         const auto surveyObj = obj.value(QStringLiteral("survey")).toObject();
         const auto survey = SurveyInfo::fromJson(surveyObj);
-        qDebug() << Q_FUNC_INFO << "got survey:" << survey.url();
-        if (!survey.isValid() || completedSurveys.contains(QString::number(survey.id())))
-            return;
-        emit q->surveyAvailable(survey);
+        selectSurvey(survey);
     }
 
     if (submissionInterval > 0)
         QTimer::singleShot(submissionInterval * 24 * 60 * 60 * 1000, q, SLOT(submit()));
+}
+
+void ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
+{
+    qDebug() << Q_FUNC_INFO << "got survey:" << survey.url();
+    if (surveyInterval < 0) // surveys disabled
+        return;
+
+    if (!survey.isValid() || completedSurveys.contains(QString::number(survey.id())))
+        return;
+
+    if (lastSurveyTime.addDays(surveyInterval) > QDateTime::currentDateTime())
+        return;
+
+    emit q->surveyAvailable(survey);
 }
 
 
@@ -203,9 +223,20 @@ void Provider::setSubmissionInterval(int days)
         QTimer::singleShot(now.msecsTo(nextSubmission), this, SLOT(submit()));
 }
 
+int Provider::surveyInterval() const
+{
+    return d->surveyInterval;
+}
+
+void Provider::setSurveyInterval(int days)
+{
+    d->surveyInterval = days;
+}
+
 void Provider::setSurveyCompleted(const SurveyInfo &info)
 {
     d->completedSurveys.push_back(QString::number(info.id()));
+    d->lastSurveyTime = QDateTime::currentDateTime();
     d->store();
 }
 

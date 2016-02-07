@@ -42,7 +42,7 @@
           <item>
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Chart type:</string>
+             <string>&amp;Chart type:</string>
             </property>
             <property name="buddy">
              <cstring>chartType</cstring>
@@ -101,6 +101,9 @@
        </layout>
       </widget>
      </widget>
+    </item>
+    <item>
+     <widget class="UserFeedback::NotificationWidget" name="feedbackNotification" native="true"/>
     </item>
    </layout>
   </widget>
@@ -324,6 +327,12 @@
    <class>QtCharts::QChartView</class>
    <extends>QGraphicsView</extends>
    <header location="global">QChartView</header>
+  </customwidget>
+  <customwidget>
+   <class>UserFeedback::NotificationWidget</class>
+   <extends>QWidget</extends>
+   <header>provider/widgets/notificationwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

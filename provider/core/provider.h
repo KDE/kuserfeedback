@@ -69,7 +69,7 @@ signals:
     /** Emitted whenever there is a new survey available that can be presented
      *  to the user.
      */
-    void surveyAvailable(const SurveyInfo &survey);
+    void surveyAvailable(const UserFeedback::SurveyInfo &survey);
 
 private:
     friend class ProviderPrivate;

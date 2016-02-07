@@ -32,6 +32,7 @@ Orwell::Orwell(QWidget* parent) :
     ui(new Ui::Orwell)
 {
     ui->setupUi(this);
+    ui->notificationWidget->setFeedbackProvider(provider.get());
     loadStats();
 
     connect(ui->version, &QLineEdit::textChanged, this, [this]() {
@@ -45,9 +46,8 @@ Orwell::Orwell(QWidget* parent) :
         loadStats();
     });
 
-    connect(provider.get(), &UserFeedback::Provider::surveyAvailable, this, [](const UserFeedback::SurveyInfo &info) {
-        QDesktopServices::openUrl(info.url());
-        provider->setSurveyCompleted(info);
+    connect(ui->surveyInterval, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, [this](int value) {
+        provider->setSurveyInterval(value);
     });
 
     connect(ui->actionQuit, &QAction::triggered, qApp, &QCoreApplication::quit);
@@ -63,6 +63,7 @@ void Orwell::loadStats()
     ui->startCount->setValue(settings.value(QStringLiteral("UserFeedback/ApplicationStartCount")).toInt());
     ui->runtime->setValue(settings.value(QStringLiteral("UserFeedback/ApplicationTime")).toInt());
     ui->surveys->setText(settings.value(QStringLiteral("UserFeedback/CompletedSurveys")).toStringList().join(QStringLiteral(", ")));
+    ui->surveyInterval->setValue(provider->surveyInterval());
 }
 
 void Orwell::writeStats()

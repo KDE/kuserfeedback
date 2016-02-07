@@ -10,6 +10,7 @@ set_target_properties(UserFeedbackCore PROPERTIES
 )
 generate_export_header(UserFeedbackCore)
 target_link_libraries(UserFeedbackCore PUBLIC ${QT_QTCORE_LIBRARIES} PRIVATE ${QT_QTNETWORK_LIBRARIES})
+target_include_directories(UserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR};>")
 
 install(TARGETS UserFeedbackCore EXPORT UserFeedbackTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 

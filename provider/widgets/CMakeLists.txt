@@ -1,4 +1,5 @@
 set(userfeedback_widgets_srcs
+    feedbackconfigdialog.cpp
     notificationwidget.cpp
 )
 

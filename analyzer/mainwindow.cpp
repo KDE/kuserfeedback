@@ -24,7 +24,6 @@
 #include "chart.h"
 #include "connectdialog.h"
 #include "datamodel.h"
-#include "feedbackconfigdialog.h"
 #include "productmodel.h"
 #include "restclient.h"
 #include "serverinfo.h"
@@ -32,7 +31,8 @@
 #include "surveymodel.h"
 #include "timeaggregationmodel.h"
 
-#include "provider/core/provider.h"
+#include <provider/widgets/feedbackconfigdialog.h>
+#include <provider/core/provider.h>
 
 #include <QApplication>
 #include <QDebug>

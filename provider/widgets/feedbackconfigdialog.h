@@ -18,6 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_FEEDBACKCONFIGDIALOG_H
 #define USERFEEDBACK_ANALYZER_FEEDBACKCONFIGDIALOG_H
 
+#include "userfeedbackwidgets_export.h"
 #include <QDialog>
 
 #include <memory>
@@ -26,15 +27,13 @@ namespace UserFeedback {
 
 class Provider;
 
-namespace Analyzer {
-
 namespace Ui
 {
 class FeedbackConfigDialog;
 }
 
 /** Configure which feedback a user wants to provide. */
-class FeedbackConfigDialog : public QDialog
+class USERFEEDBACKWIDGETS_EXPORT FeedbackConfigDialog : public QDialog
 {
     Q_OBJECT
 public:
@@ -52,7 +51,6 @@ private:
     UserFeedback::Provider *m_provider;
 };
 
-}
 }
 
 #endif // USERFEEDBACK_ANALYZER_FEEDBACKCONFIGDIALOG_H

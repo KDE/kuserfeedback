@@ -18,6 +18,7 @@
 #include "orwell.h"
 #include "ui_orwell.h"
 
+#include <provider/widgets/feedbackconfigdialog.h>
 #include <provider/core/provider.h>
 #include <provider/core/surveyinfo.h>
 
@@ -48,6 +49,12 @@ Orwell::Orwell(QWidget* parent) :
 
     connect(ui->surveyInterval, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, [this](int value) {
         provider->setSurveyInterval(value);
+    });
+
+    connect(ui->actionContribute, &QAction::triggered, this, [this]() {
+        UserFeedback::FeedbackConfigDialog dlg(this);
+        dlg.setFeedbackProvider(provider.get());
+        dlg.exec();
     });
 
     connect(ui->actionQuit, &QAction::triggered, qApp, &QCoreApplication::quit);
@@ -87,8 +94,6 @@ int main(int argc, char** argv)
     provider.reset(new UserFeedback::Provider);
     provider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
     provider->setSubmissionInterval(1);
-    provider->setSurveyInterval(0);
-    provider->setStatisticsCollectionMode(UserFeedback::Provider::AllStatistics);
 
     Orwell mainWindow;
     mainWindow.show();

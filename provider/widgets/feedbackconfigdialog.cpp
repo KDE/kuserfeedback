@@ -25,7 +25,7 @@
 #include <QPushButton>
 #include <QUrl>
 
-using namespace UserFeedback::Analyzer;
+using namespace UserFeedback;
 
 FeedbackConfigDialog::FeedbackConfigDialog(QWidget *parent) :
     QDialog(parent),

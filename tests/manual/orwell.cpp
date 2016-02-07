@@ -94,6 +94,8 @@ int main(int argc, char** argv)
     provider.reset(new UserFeedback::Provider);
     provider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
     provider->setSubmissionInterval(1);
+    provider->setApplicationStartsUntilEncouragement(5);
+    provider->setEncouragementDelay(10);
 
     Orwell mainWindow;
     mainWindow.show();

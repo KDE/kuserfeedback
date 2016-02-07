@@ -16,6 +16,7 @@
 */
 
 #include "notificationwidget.h"
+#include "feedbackconfigdialog.h"
 
 #include <provider/core/provider.h>
 #include <provider/core/surveyinfo.h>
@@ -38,6 +39,7 @@ public:
 
     void clearActions();
     void surveyAvailable(const SurveyInfo &survey);
+    void showEncouragement();
 
     NotificationWidget *q;
     Provider *provider;
@@ -69,6 +71,26 @@ void NotificationWidgetPrivate::surveyAvailable(const SurveyInfo &survey)
     q->animatedShow();
 }
 
+void NotificationWidgetPrivate::showEncouragement()
+{
+    Q_ASSERT(provider);
+    clearActions();
+
+    q->setText(NotificationWidget::tr("Contribute!")); // TODO
+
+    auto configAction = new QAction(q);
+    configAction->setText(NotificationWidget::tr("Contribute..."));
+    QObject::connect(configAction, &QAction::triggered, q, [this]() {
+        FeedbackConfigDialog dlg(q);
+        dlg.setFeedbackProvider(provider);
+        dlg.exec();
+        q->animatedHide();
+    });
+    q->addAction(configAction);
+
+    q->animatedShow();
+}
+
 
 NotificationWidget::NotificationWidget(QWidget *parent) :
     KMessageWidget(parent),
@@ -90,4 +112,5 @@ void NotificationWidget::setFeedbackProvider(Provider* provider)
     connect(provider, &Provider::surveyAvailable, this, [this](const SurveyInfo &survey) {
         d->surveyAvailable(survey);
     });
+    connect(provider, &Provider::showEncouragementMessage, this, [this]() { d->showEncouragement(); });
 }

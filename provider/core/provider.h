@@ -74,6 +74,15 @@ public:
      */
     void setSurveyCompleted(const SurveyInfo &info);
 
+    /** Set the amount of application starts until the encouragement message should be shown. */
+    void setApplicationStartsUntilEncouragement(int starts);
+
+    /** Set the amount of usage time until the encouragement message should be shown. */
+    void setApplicationUsageTimeUntilEncouragement(int minutes);
+
+    /** Set the delay after application start for the earliest display of the encouragement message. */
+    void setEncouragementDelay(int secs);
+
 public slots:
     /** Manually submit currently recorded data. */
     void submit();
@@ -84,11 +93,15 @@ signals:
      */
     void surveyAvailable(const UserFeedback::SurveyInfo &survey);
 
+    /** Indicate that the encouragement notice should be shown. */
+    void showEncouragementMessage();
+
 private:
     friend class ProviderPrivate;
     ProviderPrivate * const d;
     Q_PRIVATE_SLOT(d, void aboutToQuit())
     Q_PRIVATE_SLOT(d, void submitFinished())
+    Q_PRIVATE_SLOT(d, void emitShowEncouragementMessage())
     // for testing
     Q_PRIVATE_SLOT(d, void load())
     Q_PRIVATE_SLOT(d, void store())

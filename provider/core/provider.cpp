@@ -55,7 +55,11 @@ public:
     QByteArray jsonData() const;
     void scheduleNextSubmission();
     void submitFinished();
+
     void selectSurvey(const SurveyInfo &survey) const;
+
+    void scheduleEncouragement();
+    void emitShowEncouragementMessage();
 
     Provider *q;
 
@@ -75,6 +79,12 @@ public:
     QTime startTime;
     int startCount;
     int usageTime;
+
+    QTimer encouragementTimer;
+    int encouragementStarts;
+    int encouragementTime;
+    int encouragementDelay;
+    bool encouragementDisplayed;
 };
 }
 
@@ -86,6 +96,10 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
     , surveyInterval(-1)
     , startCount(0)
     , usageTime(0)
+    , encouragementStarts(-1)
+    , encouragementTime(-1)
+    , encouragementDelay(300)
+    , encouragementDisplayed(false)
 {
     auto domain = QCoreApplication::organizationDomain().split(QLatin1Char('.'));
     std::reverse(domain.begin(), domain.end());
@@ -95,6 +109,9 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
     QObject::connect(&submissionTimer, SIGNAL(timeout()), q, SLOT(submit()));
 
     startTime.start();
+
+    encouragementTimer.setSingleShot(true);
+    QObject::connect(&encouragementTimer, SIGNAL(timeout()), q, SLOT(emitShowEncouragementMessage()));
 }
 
 void ProviderPrivate::reset()
@@ -123,6 +140,8 @@ void ProviderPrivate::load()
 
     startCount = std::max(settings.value(QStringLiteral("ApplicationStartCount"), 0).toInt() + 1, 1);
     usageTime = std::max(settings.value(QStringLiteral("ApplicationTime"), 0).toInt(), 0);
+
+    encouragementDisplayed = settings.value(QStringLiteral("EncouragementDisplayed"), false).toBool();
 }
 
 void ProviderPrivate::store()
@@ -138,6 +157,8 @@ void ProviderPrivate::store()
 
     settings.setValue(QStringLiteral("ApplicationStartCount"), startCount);
     settings.setValue(QStringLiteral("ApplicationTime"), currentApplicationTime());
+
+    settings.setValue(QStringLiteral("EncouragementDisplayed"), encouragementDisplayed);
 }
 
 void ProviderPrivate::aboutToQuit()
@@ -211,6 +232,31 @@ void ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
     emit q->surveyAvailable(survey);
 }
 
+void ProviderPrivate::scheduleEncouragement()
+{
+    encouragementTimer.stop();
+    if (encouragementStarts < 0 && encouragementTime < 0) // encouragement disabled
+        return;
+
+    if (encouragementStarts > startCount) // we need more starts
+        return;
+
+    if (statisticsMode == Provider::AllStatistics && surveyInterval == 0) // already everything enabled
+        return;
+
+    Q_ASSERT(encouragementDelay >= 0);
+    int timeToEncouragement = encouragementDelay;
+    if (encouragementTime > 0)
+        timeToEncouragement = std::max(timeToEncouragement, (encouragementTime * 60) - currentApplicationTime());
+    encouragementTimer.start(timeToEncouragement);
+}
+
+void ProviderPrivate::emitShowEncouragementMessage()
+{
+    encouragementDisplayed = true; // TODO make this explicit, in case the host application decides to delay?
+    emit q->showEncouragementMessage();
+}
+
 
 Provider::Provider(QObject *parent) :
     QObject(parent),
@@ -253,6 +299,7 @@ void Provider::setStatisticsCollectionMode(StatisticsCollectionMode mode)
 {
     d->statisticsMode = mode;
     d->scheduleNextSubmission();
+    d->scheduleEncouragement();
 }
 
 int Provider::surveyInterval() const
@@ -264,6 +311,25 @@ void Provider::setSurveyInterval(int days)
 {
     d->surveyInterval = days;
     d->scheduleNextSubmission();
+    d->scheduleEncouragement();
+}
+
+void Provider::setApplicationStartsUntilEncouragement(int starts)
+{
+    d->encouragementStarts = starts;
+    d->scheduleEncouragement();
+}
+
+void Provider::setApplicationUsageTimeUntilEncouragement(int minutes)
+{
+    d->encouragementTime = minutes;
+    d->scheduleEncouragement();
+}
+
+void Provider::setEncouragementDelay(int secs)
+{
+    d->encouragementDelay = std::max(0, secs);
+    d->scheduleEncouragement();
 }
 
 void Provider::setSurveyCompleted(const SurveyInfo &info)

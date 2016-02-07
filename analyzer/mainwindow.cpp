@@ -165,6 +165,7 @@ MainWindow::MainWindow() :
 
     m_feedbackProvider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
     m_feedbackProvider->setSubmissionInterval(1);
+    m_feedbackProvider->setApplicationUsageTimeUntilEncouragement(10);
 }
 
 MainWindow::~MainWindow()

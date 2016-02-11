@@ -38,6 +38,8 @@ public:
     ~Product();
     Product& operator=(const Product&);
 
+    bool isValid() const;
+
     QString name() const;
     void setName(const QString &name);
 

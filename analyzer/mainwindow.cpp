@@ -151,10 +151,10 @@ MainWindow::MainWindow() :
 
     connect(ui->productListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, [this]() {
         const auto product = selectedProduct();
-        if (product.isEmpty())
+        if (!product.isValid())
             return;
-        m_dataModel->setProductId(product);
-        m_surveyModel->setProductId(product);
+        m_dataModel->setProductId(product.name());
+        m_surveyModel->setProductId(product.name());
     });
 
     settings.beginGroup(QStringLiteral("MainWindow"));
@@ -229,12 +229,12 @@ void MainWindow::deleteProduct()
 void MainWindow::createSurvey()
 {
     const auto product = selectedProduct();
-    if (product.isEmpty())
+    if (!product.isValid())
         return;
     SurveyDialog dlg(this);
     if (!dlg.exec())
         return;
-    auto reply = m_restClient->post(QStringLiteral("surveys/") + product, dlg.survey().toJson());
+    auto reply = m_restClient->post(QStringLiteral("surveys/") + product.name(), dlg.survey().toJson());
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
             logMessage(QString::fromUtf8(reply->readAll()));
@@ -246,7 +246,7 @@ void MainWindow::createSurvey()
 void MainWindow::deleteSurvey()
 {
     const auto product = selectedProduct();
-    if (product.isEmpty())
+    if (!product.isValid())
         return;
     // TODO safety check
     const auto selection = ui->surveyView->selectionModel()->selectedRows();
@@ -276,11 +276,11 @@ void MainWindow::logError(const QString& msg)
     ui->logWidget->append(QStringLiteral("</font>"));
 }
 
-QString MainWindow::selectedProduct() const
+Product MainWindow::selectedProduct() const
 {
     const auto selection = ui->productListView->selectionModel()->selectedRows();
     if (selection.isEmpty())
         return {};
     const auto idx = selection.first();
-    return idx.data().toString();
+    return idx.data(ProductModel::ProductRole).value<Product>();
 }

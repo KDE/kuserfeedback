@@ -39,6 +39,7 @@ class AggregatedDataModel;
 class CategoryAggregationModel;
 class Chart;
 class DataModel;
+class Product;
 class ProductModel;
 class ServerInfo;
 class RESTClient;
@@ -64,7 +65,7 @@ private:
     void logMessage(const QString &msg);
     void logError(const QString &msg);
 
-    QString selectedProduct() const;
+    Product selectedProduct() const;
 
     std::unique_ptr<Ui::MainWindow> ui;
     RESTClient *m_restClient;

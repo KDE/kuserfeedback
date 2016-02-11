@@ -41,6 +41,11 @@ Product::Product(const Product&) = default;
 Product::~Product() = default;
 Product& Product::operator=(const Product&) = default;
 
+bool Product::isValid() const
+{
+    return !d->name.isEmpty();
+}
+
 QString Product::name() const
 {
     return d->name;

@@ -26,6 +26,7 @@
 #include "datamodel.h"
 #include "productmodel.h"
 #include "restclient.h"
+#include "schemamodel.h"
 #include "serverinfo.h"
 #include "surveydialog.h"
 #include "surveymodel.h"
@@ -59,6 +60,7 @@ MainWindow::MainWindow() :
     m_aggregatedDataModel(new AggregatedDataModel(this)),
     m_surveyModel(new SurveyModel(this)),
     m_chart(new Chart(this)),
+    m_schemaModel(new SchemaModel(this)),
     m_feedbackProvider(new UserFeedback::Provider(this))
 {
     ui->setupUi(this);
@@ -66,6 +68,7 @@ MainWindow::MainWindow() :
     ui->dataView->setModel(m_dataModel);
     ui->surveyView->setModel(m_surveyModel);
     ui->aggregatedDataView->setModel(m_aggregatedDataModel);
+    ui->schemaView->setModel(m_schemaModel);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
 
     connect(m_restClient, &RESTClient::errorMessage, this, &MainWindow::logError);
@@ -133,6 +136,11 @@ MainWindow::MainWindow() :
         m_chart->setModel(model);
     });
 
+    connect(ui->addSchemaEntryButton, &QPushButton::clicked, this, [this]() {
+        m_schemaModel->addEntry(ui->newSchemaEntryName->text());
+        ui->newSchemaEntryName->clear();
+    });
+
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     ui->actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit")));
     connect(ui->actionQuit, &QAction::triggered, QCoreApplication::instance(), &QCoreApplication::quit);
@@ -155,6 +163,7 @@ MainWindow::MainWindow() :
             return;
         m_dataModel->setProductId(product.name());
         m_surveyModel->setProductId(product.name());
+        m_schemaModel->setProduct(product);
     });
 
     settings.beginGroup(QStringLiteral("MainWindow"));

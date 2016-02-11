@@ -31,6 +31,7 @@ class ProductData : public QSharedData
 {
 public:
     QString name;
+    QVector<ProductSchemaEntry> schema;
 };
 
 }
@@ -54,6 +55,16 @@ QString Product::name() const
 void Product::setName(const QString& name)
 {
     d->name = name;
+}
+
+QVector<ProductSchemaEntry> Product::schema() const
+{
+    return d->schema;
+}
+
+void Product::setSchema(const QVector<ProductSchemaEntry> &schema)
+{
+    d->schema = schema;
 }
 
 QByteArray Product::toJson() const

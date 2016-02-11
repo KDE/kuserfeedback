@@ -15,51 +15,42 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_ANALYZER_PRODUCT_H
-#define USERFEEDBACK_ANALYZER_PRODUCT_H
+#ifndef USERFEEDBACK_ANALYZER_PRODUCTSCHEMAENTRY_H
+#define USERFEEDBACK_ANALYZER_PRODUCTSCHEMAENTRY_H
 
-#include "productschemaentry.h"
-
-#include <QMetaType>
 #include <QSharedDataPointer>
-#include <QVector>
-
-class QString;
 
 namespace UserFeedback {
 namespace Analyzer {
 
-class ProductData;
+class ProductSchemaEntryData;
 
-/** Product data. */
-class Product
+class ProductSchemaEntry
 {
 public:
-    Product();
-    Product(const Product&);
-    ~Product();
-    Product& operator=(const Product&);
+    enum Type {
+        StringType
+    };
 
-    bool isValid() const;
+    ProductSchemaEntry();
+    ProductSchemaEntry(const ProductSchemaEntry &entry);
+    ~ProductSchemaEntry();
+    ProductSchemaEntry& operator=(const ProductSchemaEntry &entry);
+
+    int internalId() const;
+    void setInternalId(int internalId);
 
     QString name() const;
-    void setName(const QString &name);
+    void setName(const QString& name);
 
-    QVector<ProductSchemaEntry> schema() const;
-    void setSchema(const QVector<ProductSchemaEntry>& schema);
-
-    QByteArray toJson() const;
-    static QVector<Product> fromJson(const QByteArray &data);
+    Type type() const;
+    void setType(Type type);
 
 private:
-    QSharedDataPointer<ProductData> d;
-
+    QSharedDataPointer<ProductSchemaEntryData> d;
 };
 
 }
 }
 
-Q_DECLARE_TYPEINFO(UserFeedback::Analyzer::Product, Q_MOVABLE_TYPE);
-Q_DECLARE_METATYPE(UserFeedback::Analyzer::Product)
-
-#endif // USERFEEDBACK_ANALYZER_PRODUCT_H
+#endif // USERFEEDBACK_ANALYZER_PRODUCTSCHEMAENTRY_H

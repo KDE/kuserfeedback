@@ -43,6 +43,7 @@ class Product;
 class ProductModel;
 class ServerInfo;
 class RESTClient;
+class SchemaModel;
 class SurveyModel;
 class TimeAggregationModel;
 
@@ -76,6 +77,7 @@ private:
     AggregatedDataModel *m_aggregatedDataModel;
     SurveyModel *m_surveyModel;
     Chart *m_chart;
+    SchemaModel *m_schemaModel;
 
     UserFeedback::Provider *m_feedbackProvider;
 };

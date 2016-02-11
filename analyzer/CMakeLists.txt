@@ -8,8 +8,10 @@ set(analyzer_srcs
     mainwindow.cpp
     product.cpp
     productmodel.cpp
+    productschemaentry.cpp
     restclient.cpp
     sample.cpp
+    schemamodel.cpp
     serverinfo.cpp
     survey.cpp
     surveydialog.cpp

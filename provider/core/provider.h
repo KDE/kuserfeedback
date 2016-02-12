@@ -39,7 +39,7 @@ public:
         BasicStatistics,
         AllStatistics
     };
-    Q_ENUMS(StatisticsCollectionMode);
+    Q_ENUMS(StatisticsCollectionMode)
 
     explicit Provider(QObject *parent = Q_NULLPTR);
     ~Provider();

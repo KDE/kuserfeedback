@@ -150,7 +150,7 @@ MainWindow::MainWindow() :
             if (reply->error() != QNetworkReply::NoError)
                 return;
             logMessage(QString::fromUtf8((reply->readAll())));
-            // TODO reload product and update all models using it...
+            m_productModel->reload();
         });
     });
 

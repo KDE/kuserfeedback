@@ -21,6 +21,8 @@
 #include <QObject>
 #include <QSharedDataPointer>
 
+class QJsonObject;
+
 namespace UserFeedback {
 namespace Analyzer {
 
@@ -52,6 +54,8 @@ public:
     void setType(Type type);
 
     static QString displayString(Type type);
+
+    QJsonObject toJsonObject() const;
 
 private:
     QSharedDataPointer<ProductSchemaEntryData> d;

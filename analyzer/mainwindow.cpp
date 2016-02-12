@@ -143,6 +143,16 @@ MainWindow::MainWindow() :
         m_schemaModel->addEntry(ui->newSchemaEntryName->text());
         ui->newSchemaEntryName->clear();
     });
+    connect(ui->saveSchemaButton, &QPushButton::clicked, this, [this]() {
+        const auto p = m_schemaModel->product();
+        auto reply = m_restClient->put(QStringLiteral("products/") + p.name(), p.toJson());
+        connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+            if (reply->error() != QNetworkReply::NoError)
+                return;
+            logMessage(QString::fromUtf8((reply->readAll())));
+            // TODO reload product and update all models using it...
+        });
+    });
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     ui->actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit")));

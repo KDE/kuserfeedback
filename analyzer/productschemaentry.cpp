@@ -17,6 +17,7 @@
 
 #include "productschemaentry.h"
 
+#include <QJsonObject>
 #include <QObject>
 #include <QSharedData>
 
@@ -28,8 +29,9 @@ namespace Analyzer {
 class ProductSchemaEntryData : public QSharedData
 {
 public:
+
     QString name;
-    int internalId;
+    int internalId = -1;
     ProductSchemaEntry::Type type = ProductSchemaEntry::StringType;
 };
 
@@ -80,4 +82,21 @@ QString ProductSchemaEntry::displayString(ProductSchemaEntry::Type type)
     }
 
     Q_UNREACHABLE();
+}
+
+QJsonObject ProductSchemaEntry::toJsonObject() const
+{
+    QJsonObject obj;
+    if (d->internalId >= 0)
+        obj.insert(QStringLiteral("id"), d->internalId);
+    obj.insert(QStringLiteral("name"), d->name);
+
+    QString t;
+    switch (d->type) {
+        case InvalidType: break;
+        case StringType: t = QStringLiteral("string"); break;
+        case IntegerType: t = QStringLiteral("int"); break;
+    }
+    obj.insert(QStringLiteral("type"), t);
+    return obj;
 }

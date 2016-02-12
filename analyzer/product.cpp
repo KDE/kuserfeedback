@@ -71,6 +71,10 @@ QByteArray Product::toJson() const
 {
     QJsonObject obj;
     obj.insert(QStringLiteral("name"), name());
+    QJsonArray schema;
+    foreach (const auto &s, d->schema)
+        schema.push_back(s.toJsonObject());
+    obj.insert(QStringLiteral("schema"), schema);
     QJsonDocument doc(obj);
     return doc.toJson();
 }

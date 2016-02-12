@@ -34,6 +34,7 @@ public:
     explicit SchemaModel(QObject *parent = nullptr);
     ~SchemaModel();
 
+    Product product() const;
     void setProduct(const Product &product);
 
     void addEntry(const QString &name);

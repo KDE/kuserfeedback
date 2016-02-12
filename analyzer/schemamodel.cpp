@@ -26,6 +26,11 @@ SchemaModel::SchemaModel(QObject *parent) :
 
 SchemaModel::~SchemaModel() = default;
 
+Product SchemaModel::product() const
+{
+    return m_product;
+}
+
 void SchemaModel::setProduct(const Product &product)
 {
     beginResetModel();

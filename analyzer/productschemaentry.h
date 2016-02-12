@@ -18,6 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_PRODUCTSCHEMAENTRY_H
 #define USERFEEDBACK_ANALYZER_PRODUCTSCHEMAENTRY_H
 
+#include <QObject>
 #include <QSharedDataPointer>
 
 namespace UserFeedback {
@@ -27,10 +28,14 @@ class ProductSchemaEntryData;
 
 class ProductSchemaEntry
 {
+    Q_GADGET
 public:
     enum Type {
+        InvalidType,
+        IntegerType,
         StringType
     };
+    Q_ENUM(Type)
 
     ProductSchemaEntry();
     ProductSchemaEntry(const ProductSchemaEntry &entry);
@@ -46,11 +51,17 @@ public:
     Type type() const;
     void setType(Type type);
 
+    static QString displayString(Type type);
+
 private:
     QSharedDataPointer<ProductSchemaEntryData> d;
 };
 
 }
 }
+
+Q_DECLARE_METATYPE(UserFeedback::Analyzer::ProductSchemaEntry)
+Q_DECLARE_METATYPE(UserFeedback::Analyzer::ProductSchemaEntry::Type)
+Q_DECLARE_TYPEINFO(UserFeedback::Analyzer::ProductSchemaEntry, Q_MOVABLE_TYPE);
 
 #endif // USERFEEDBACK_ANALYZER_PRODUCTSCHEMAENTRY_H

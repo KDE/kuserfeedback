@@ -16,6 +16,8 @@
 */
 
 #include "productschemaentry.h"
+
+#include <QObject>
 #include <QSharedData>
 
 using namespace UserFeedback::Analyzer;
@@ -67,4 +69,15 @@ ProductSchemaEntry::Type ProductSchemaEntry::type() const
 void ProductSchemaEntry::setType(ProductSchemaEntry::Type type)
 {
     d->type = type;
+}
+
+QString ProductSchemaEntry::displayString(ProductSchemaEntry::Type type)
+{
+    switch (type) {
+        case InvalidType: return QObject::tr("Invalid");
+        case IntegerType: return QObject::tr("Integer");
+        case StringType: return QObject::tr("String");
+    }
+
+    Q_UNREACHABLE();
 }

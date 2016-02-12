@@ -62,11 +62,17 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
     if (!index.isValid())
         return {};
 
-    if (role == Qt::DisplayRole || role == Qt::EditRole) {
-        switch (index.column()) {
-            case 0: return m_product.schema().at(index.row()).name();
-            case 1: return m_product.schema().at(index.row()).type();
-        }
+    switch (index.column()) {
+        case 0:
+            if (role == Qt::DisplayRole || role == Qt::EditRole)
+                return m_product.schema().at(index.row()).name();
+            break;
+        case 1:
+            if (role == Qt::DisplayRole)
+                return ProductSchemaEntry::displayString(m_product.schema().at(index.row()).type());
+            if (role == Qt::EditRole)
+                return QVariant::fromValue(m_product.schema().at(index.row()).type());
+            break;
     }
 
     return {};
@@ -101,7 +107,7 @@ bool SchemaModel::setData(const QModelIndex &index, const QVariant &value, int r
             entry.setName(value.toString());
             break;
         case 1:
-            // TODO
+            entry.setType(value.value<ProductSchemaEntry::Type>());
             break;
     }
 

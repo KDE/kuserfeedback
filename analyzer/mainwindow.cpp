@@ -27,6 +27,7 @@
 #include "productmodel.h"
 #include "restclient.h"
 #include "schemamodel.h"
+#include "schemaentryitemeditorfactory.h"
 #include "serverinfo.h"
 #include "surveydialog.h"
 #include "surveymodel.h"
@@ -45,6 +46,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSettings>
+#include <QStyledItemDelegate>
 #include <QTimer>
 #include <QUrl>
 
@@ -69,6 +71,7 @@ MainWindow::MainWindow() :
     ui->surveyView->setModel(m_surveyModel);
     ui->aggregatedDataView->setModel(m_aggregatedDataModel);
     ui->schemaView->setModel(m_schemaModel);
+    qobject_cast<QStyledItemDelegate*>(ui->schemaView->itemDelegate())->setItemEditorFactory(new SchemaEntryItemEditorFactory);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
 
     connect(m_restClient, &RESTClient::errorMessage, this, &MainWindow::logError);

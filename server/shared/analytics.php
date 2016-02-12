@@ -52,6 +52,24 @@ public function post_products()
     echo('Product ' . $product['name'] . " added.");
 }
 
+/** Update a given product. */
+public function put_products($productId)
+{
+    $raw = file_get_contents('php://input');
+    $productData = json_decode($raw, true);
+
+    $db = new DataStore();
+    $db->db->beginTransaction();
+    $product = $db->productByName($productId);
+    if (is_null($product))
+        die("Unknown product " . $productId . '.');
+
+    // TODO update product table
+    $db->updateProductSchema($product['id'], $productData['schema']);
+    $db->db->commit();
+    echo('Product ' . $productData['name'] . ' updated.');
+}
+
 /** Delete product and associated data. */
 public function delete_products($product)
 {

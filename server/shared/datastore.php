@@ -146,6 +146,66 @@ public function productByName($name)
     return NULL;
 }
 
+/** Get the schema of product $productId. */
+private function productSchema($productId)
+{
+    $res = $this->db->query('SELECT * FROM product_schema WHERE productId = ' . intval($productId));
+    if ($res === FALSE)
+        $this->fatalDbError();
+
+    $schema = array();
+    foreach ($res as $row) {
+        $entry = array();
+        $entry['name'] = $row['name'];
+        $entry['type'] = $row['type'];
+        array_push($schema, $entry);
+    }
+    return $schema;
+}
+
+/** Update product schema to $schema. */
+public function updateProductSchema($productId, $schema)
+{
+    $oldSchema = array();
+    foreach ($this->productSchema($productId) as $o) {
+        $oldSchema[$o['name']] = $o;
+    }
+
+    foreach ($schema as $entry) {
+        if (array_key_exists($entry['name'], $oldSchema)) {
+            // update
+            $res = $this->db->exec('UPDATE product_schema SET ' .
+                'type = ' . $this->db->quote($entry['type']) . ' WHERE ' .
+                'productId = ' . intval($productId) . ' AND ' .
+                'name = ' . $this->db->quote($entry['name'])
+            );
+            if ($res === FALSE)
+                $this->fatalDbError();
+        } else {
+            // insert
+            $res = $this->db->exec('INSERT INTO product_schema (productId, name, type) VALUES (' .
+                intval($productId) . ', ' .
+                $this->db->quote($entry['name']) . ', ' .
+                $this->db->quote($entry['type']) . ')'
+            );
+            if ($res === FALSE)
+                $this->fatalDbError();
+        }
+
+        unset($oldSchema[$entry['name']]);
+    }
+
+    // delete whatever is left
+    foreach($oldSchema as $entry) {
+        $res = $this->db->exec('DELETE FROM product_schema WHERE ' .
+            'productId = ' . intval($productId) . ' AND ' .
+            'name = ' . $this->db->quote($entry['name'])
+        );
+        if ($res === FALSE)
+            $this->fatalDbError();
+    }
+}
+
 /** All data for the give product name. */
 public function rawDataForProduct($name)
 {

@@ -18,6 +18,11 @@
         {
             "version": 4,
             "sql": ["ALTER TABLE surveys ADD COLUMN active INTEGER DEFAULT 0"]
+        },
+
+        {
+            "version": 5,
+            "sql": ["CREATE TABLE product_schema (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id), name VARCHAR, type VARCHAR)" ]
         }
     ]
 }

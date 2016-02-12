@@ -17,6 +17,7 @@
 
 #include "productschemaentry.h"
 
+#include <QJsonArray>
 #include <QJsonObject>
 #include <QObject>
 #include <QSharedData>
@@ -99,4 +100,24 @@ QJsonObject ProductSchemaEntry::toJsonObject() const
     }
     obj.insert(QStringLiteral("type"), t);
     return obj;
+}
+
+QVector<ProductSchemaEntry> ProductSchemaEntry::fromJson(const QJsonArray &array)
+{
+    QVector<ProductSchemaEntry> res;
+    res.reserve(array.size());
+
+    foreach (const auto &v, array) {
+        const auto obj = v.toObject();
+        ProductSchemaEntry entry;
+        entry.setName(obj.value(QStringLiteral("name")).toString());
+        const auto t = obj.value(QStringLiteral("type")).toString();
+        if (t == QStringLiteral("string"))
+            entry.setType(StringType);
+        else if (t == QStringLiteral("int"))
+            entry.setType(IntegerType);
+        res.push_back(entry);
+    }
+
+    return res;
 }

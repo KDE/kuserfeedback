@@ -20,7 +20,9 @@
 
 #include <QObject>
 #include <QSharedDataPointer>
+#include <QVector>
 
+class QJsonArray;
 class QJsonObject;
 
 namespace UserFeedback {
@@ -56,6 +58,7 @@ public:
     static QString displayString(Type type);
 
     QJsonObject toJsonObject() const;
+    static QVector<ProductSchemaEntry> fromJson(const QJsonArray &array);
 
 private:
     QSharedDataPointer<ProductSchemaEntryData> d;

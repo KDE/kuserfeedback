@@ -34,7 +34,15 @@ public function get_products()
 {
     $db = new DataStore();
     $products = $db->allProducts();
-    $json = json_encode($products);
+
+    $result = array();
+    foreach ($products as $p) {
+        $schema = $db->productSchema($p['id']);
+        $p['schema'] = $schema;
+        array_push($result, $p);
+    }
+
+    $json = json_encode($result);
     echo($json);
 }
 

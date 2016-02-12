@@ -147,7 +147,7 @@ public function productByName($name)
 }
 
 /** Get the schema of product $productId. */
-private function productSchema($productId)
+public function productSchema($productId)
 {
     $res = $this->db->query('SELECT * FROM product_schema WHERE productId = ' . intval($productId));
     if ($res === FALSE)

@@ -87,6 +87,7 @@ QVector<Product> Product::fromJson(const QByteArray &data)
         const auto obj = value.toObject();
         Product product;
         product.setName(obj.value(QStringLiteral("name")).toString());
+        product.setSchema(ProductSchemaEntry::fromJson(obj.value(QStringLiteral("schema")).toArray()));
         products.push_back(product);
     }
     return products;

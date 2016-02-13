@@ -21,6 +21,7 @@
 #include <provider/widgets/feedbackconfigdialog.h>
 #include <provider/core/platforminfosource.h>
 #include <provider/core/provider.h>
+#include <provider/core/screeninfosource.h>
 #include <provider/core/surveyinfo.h>
 
 #include <QApplication>
@@ -98,6 +99,7 @@ int main(int argc, char** argv)
     provider->setApplicationStartsUntilEncouragement(5);
     provider->setEncouragementDelay(10);
     provider->addDataSource(new UserFeedback::PlatformInfoSource, UserFeedback::Provider::AllStatistics);
+    provider->addDataSource(new UserFeedback::ScreenInfoSource, UserFeedback::Provider::AllStatistics);
 
     Orwell mainWindow;
     mainWindow.show();

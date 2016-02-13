@@ -2,6 +2,7 @@ set(userfeedback_core_srcs
     abstractdatasource.cpp
     platforminfosource.cpp
     provider.cpp
+    screeninfosource.cpp
     surveyinfo.cpp
 )
 
@@ -11,7 +12,12 @@ set_target_properties(UserFeedbackCore PROPERTIES
     VERSION ${USERFEEDBACK_VERSION}
 )
 generate_export_header(UserFeedbackCore)
-target_link_libraries(UserFeedbackCore PUBLIC ${QT_QTCORE_LIBRARIES} PRIVATE ${QT_QTNETWORK_LIBRARIES})
+
+if(Qt5Core_FOUND)
+    target_link_libraries(UserFeedbackCore PUBLIC Qt5::Core PRIVATE Qt5::Gui Qt5::Network)
+else()
+    target_link_libraries(UserFeedbackCore PUBLIC ${QT_QTCORE_LIBRARIES} PRIVATE ${QT_QTGUI_LIBRARIES} ${QT_QTNETWORK_LIBRARIES})
+endif()
 target_include_directories(UserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR};>")
 
 install(TARGETS UserFeedbackCore EXPORT UserFeedbackTargets ${INSTALL_TARGETS_DEFAULT_ARGS})

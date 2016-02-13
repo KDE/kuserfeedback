@@ -33,7 +33,7 @@ public:
     ~CategoryAggregationModel();
 
     void setSourceModel(QAbstractItemModel *model);
-    // TODO customize which data field to Sample should be used as category
+    void setAggregationValue(const QString &aggrValue);
 
     int rowCount(const QModelIndex &parent) const override;
     int columnCount(const QModelIndex &parent) const override;
@@ -44,6 +44,7 @@ private:
     void recompute();
 
     QAbstractItemModel *m_sourceModel = nullptr;
+    QString m_aggrValue;
     QVector<QString> m_categories;
     int *m_data = nullptr;
     int m_maxValue;

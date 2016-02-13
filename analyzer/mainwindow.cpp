@@ -74,6 +74,7 @@ MainWindow::MainWindow() :
     m_surveyModel->setRESTClient(m_restClient);
     m_timeAggregationModel->setSourceModel(m_dataModel);
     m_versionModel->setSourceModel(m_timeAggregationModel);
+    m_versionModel->setAggregationValue(QStringLiteral("version"));
     m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
     m_aggregatedDataModel->addSourceModel(m_versionModel);
 

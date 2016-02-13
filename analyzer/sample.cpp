@@ -52,11 +52,6 @@ QVariant Sample::value(const QString &name) const
     return d->data.value(name);
 }
 
-QString Sample::version() const
-{
-    return value(QStringLiteral("version")).toString();
-}
-
 QVector<Sample> Sample::fromJson(const QByteArray &json, const Product &product)
 {
     const auto array = QJsonDocument::fromJson(json).array();

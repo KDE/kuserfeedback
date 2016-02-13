@@ -45,6 +45,12 @@ void CategoryAggregationModel::setSourceModel(QAbstractItemModel* model)
     recompute();
 }
 
+void CategoryAggregationModel::setAggregationValue(const QString &aggrValue)
+{
+    m_aggrValue = aggrValue;
+    recompute();
+}
+
 int CategoryAggregationModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
@@ -94,7 +100,9 @@ QVariant CategoryAggregationModel::headerData(int section, Qt::Orientation orien
 
 void CategoryAggregationModel::recompute()
 {
-    Q_ASSERT(m_sourceModel);
+    if (!m_sourceModel)
+        return;
+
     const auto rowCount = m_sourceModel->rowCount();
     beginResetModel();
     m_categories.clear();
@@ -102,7 +110,7 @@ void CategoryAggregationModel::recompute()
     m_data = nullptr;
     m_maxValue = 0;
 
-    if (rowCount <= 0) {
+    if (rowCount <= 0 || m_aggrValue.isEmpty()) {
         endResetModel();
         return;
     }
@@ -112,7 +120,7 @@ void CategoryAggregationModel::recompute()
     QSet<QString> categories;
     const auto allSamples = m_sourceModel->index(0, 0).data(TimeAggregationModel::AllSamplesRole).value<QVector<Sample>>();
     foreach (const auto &s, allSamples)
-        categories.insert(s.version()); // TODO customize this
+        categories.insert(s.value(m_aggrValue).toString());
     m_categories.reserve(categories.size());
     foreach (const auto &cat, categories)
         m_categories.push_back(cat);
@@ -124,7 +132,7 @@ void CategoryAggregationModel::recompute()
     for (int row = 0; row < rowCount; ++row) {
         const auto samples = m_sourceModel->index(row, 0).data(TimeAggregationModel::SamplesRole).value<QVector<Sample>>();
         foreach (const auto &sample, samples) {
-            const auto catIt = std::lower_bound(m_categories.constBegin(), m_categories.constEnd(), sample.version());
+            const auto catIt = std::lower_bound(m_categories.constBegin(), m_categories.constEnd(), sample.value(m_aggrValue).toString());
             Q_ASSERT(catIt != m_categories.constEnd());
             const auto idx = m_categories.size() * row + std::distance(m_categories.constBegin(), catIt);
             m_data[idx]++;

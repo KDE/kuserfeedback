@@ -44,22 +44,22 @@ void DataModel::setRESTClient(RESTClient* client)
         reload();
 }
 
-void DataModel::setProductId(const QString& productId)
+void DataModel::setProduct(const Product& product)
 {
-    m_productId = productId;
+    m_product = product;
     reload();
 }
 
 void UserFeedback::Analyzer::DataModel::reload()
 {
-    if (!m_restClient || !m_restClient->isConnected() || m_productId.isEmpty())
+    if (!m_restClient || !m_restClient->isConnected() || !m_product.isValid())
         return;
 
-    auto reply = m_restClient->get(QStringLiteral("data/") + m_productId);
+    auto reply = m_restClient->get(QStringLiteral("data/") + m_product.name());
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
             beginResetModel();
-            m_data = Sample::fromJson(reply->readAll());
+            m_data = Sample::fromJson(reply->readAll(), m_product);
             std::sort(m_data.begin(), m_data.end(), [](const Sample &lhs, const Sample &rhs) {
                 return lhs.timestamp() < rhs.timestamp();
             });

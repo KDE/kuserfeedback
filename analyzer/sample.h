@@ -28,6 +28,7 @@ class QString;
 namespace UserFeedback {
 namespace Analyzer {
 
+class Product;
 class SampleData;
 
 /** One data sample reported by a client. */
@@ -40,18 +41,13 @@ public:
     Sample& operator=(const Sample&);
 
     QDateTime timestamp() const;
-    void setTimestamp(const QDateTime& timestamp);
+    QVariant value(const QString &name) const;
 
     int startCount() const;
-    void setStartCount(int startCount);
-
     int usageTime() const;
-    void setUsageTime(int usageTime);
-
     QString version() const;
-    void setVersion(const QString& version);
 
-    static QVector<Sample> fromJson(const QByteArray &json);
+    static QVector<Sample> fromJson(const QByteArray &json, const Product &product);
 
 private:
     QSharedDataPointer<SampleData> d;

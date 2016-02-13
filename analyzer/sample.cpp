@@ -16,13 +16,17 @@
 */
 
 #include "sample.h"
+#include "product.h"
+#include "productschemaentry.h"
 
 #include <QDateTime>
 #include <QDebug>
+#include <QHash>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QSharedData>
+#include <QVariant>
 
 using namespace UserFeedback::Analyzer;
 
@@ -30,9 +34,7 @@ class UserFeedback::Analyzer::SampleData : public QSharedData
 {
 public:
     QDateTime timestamp;
-    int startCount;
-    int usageTime;
-    QString version;
+    QHash<QString, QVariant> data;
 };
 
 Sample::Sample() : d(new SampleData) {}
@@ -45,42 +47,27 @@ QDateTime Sample::timestamp() const
     return d->timestamp;
 }
 
-void Sample::setTimestamp(const QDateTime& timestamp)
+QVariant Sample::value(const QString &name) const
 {
-    d->timestamp = timestamp;
+    return d->data.value(name);
 }
 
 int Sample::startCount() const
 {
-    return d->startCount;
-}
-
-void Sample::setStartCount(int startCount)
-{
-    d->startCount = startCount;
+    return value(QStringLiteral("startCount")).toInt();
 }
 
 int Sample::usageTime() const
 {
-    return d->usageTime;
-}
-
-void Sample::setUsageTime(int usageTime)
-{
-    d->usageTime = usageTime;
+    return value(QStringLiteral("usageTime")).toInt();
 }
 
 QString Sample::version() const
 {
-    return d->version;
+    return value(QStringLiteral("version")).toString();
 }
 
-void Sample::setVersion(const QString& version)
-{
-    d->version = version;
-}
-
-QVector<Sample> Sample::fromJson(const QByteArray &json)
+QVector<Sample> Sample::fromJson(const QByteArray &json, const Product &product)
 {
     const auto array = QJsonDocument::fromJson(json).array();
     QVector<Sample> samples;
@@ -88,10 +75,21 @@ QVector<Sample> Sample::fromJson(const QByteArray &json)
     for (auto it = array.begin(); it != array.end(); ++it) {
         const auto obj = it->toObject();
         Sample s;
-        s.setTimestamp(QDateTime::fromString(obj.value(QStringLiteral("timestamp")).toString(), Qt::ISODate));
-        s.setStartCount(obj.value(QStringLiteral("startCount")).toInt());
-        s.setUsageTime(obj.value(QStringLiteral("usageTime")).toInt());
-        s.setVersion(obj.value(QStringLiteral("version")).toString());
+        s.d->timestamp = QDateTime::fromString(obj.value(QStringLiteral("timestamp")).toString(), Qt::ISODate);
+        foreach (const auto &entry, product.schema()) {
+            if (!obj.contains(entry.name()))
+                continue;
+            switch (entry.type()) {
+                case ProductSchemaEntry::InvalidType:
+                    break;
+                case ProductSchemaEntry::StringType:
+                    s.d->data.insert(entry.name(), obj.value(entry.name()).toString());
+                    break;
+                case ProductSchemaEntry::IntegerType:
+                    s.d->data.insert(entry.name(), obj.value(entry.name()).toInt());
+                    break;
+            }
+        }
         samples.push_back(s);
     }
     return samples;

@@ -163,7 +163,7 @@ MainWindow::MainWindow() :
         const auto product = selectedProduct();
         if (!product.isValid())
             return;
-        m_dataModel->setProductId(product.name());
+        m_dataModel->setProduct(product);
         m_surveyModel->setProductId(product.name());
         ui->schemaEdit->setProduct(product);
     });

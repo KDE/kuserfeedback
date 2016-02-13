@@ -18,6 +18,8 @@
 #ifndef USERFEEDBACK_ANALYZER_DATAMODEL_H
 #define USERFEEDBACK_ANALYZER_DATAMODEL_H
 
+#include "product.h"
+
 #include <QAbstractTableModel>
 #include <QJsonArray>
 
@@ -41,7 +43,7 @@ public:
     ~DataModel();
 
     void setRESTClient(RESTClient *client);
-    void setProductId(const QString &productId);
+    void setProduct(const Product &product);
     void reload();
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -50,7 +52,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
 private:
-    QString m_productId;
+    Product m_product;
     RESTClient *m_restClient = nullptr;
     QVector<Sample> m_data;
 };

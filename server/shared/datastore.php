@@ -34,6 +34,17 @@ function __construct()
     }
 }
 
+/** Check database result for errors, and if so, bail out. */
+private function checkError($res)
+{
+    if ($res === FALSE) {
+        http_response_code(500);
+        header('Content-Type: text/plain');
+        print_r($this->db->errorInfo());
+        exit(1);
+    }
+}
+
 /** Begin transaction. */
 public function beginTransaction()
 {
@@ -84,19 +95,10 @@ private function applySchemaChange($schemaDef)
 {
     foreach($schemaDef['sql'] as $cmd) {
         $res = $this->db->exec($cmd);
-        if ($res === FALSE)
-            $this->fatalDbError();
+        $this->checkError($res);
     }
     $res = $this->db->exec('UPDATE schema_version SET version = ' . $schemaDef['version']);
-    if ($res === FALSE)
-        $this->fatalDbError();
-}
-
-/** Prints last database error and dies. */
-private function fatalDbError()
-{
-    print_r($this->db->errorInfo());
-    die('Fatal Database Error.');
+    $this->checkError($res);
 }
 
 /** List all products. */
@@ -104,8 +106,7 @@ public function allProducts()
 {
     $products = array();
     $res = $this->db->query('SELECT * FROM products');
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
     foreach ($res as $row)
         array_push($products, $row);
     return $products;
@@ -116,8 +117,7 @@ public function addProduct($product)
 {
     // create product entry
     $res = $this->db->exec('INSERT INTO products (name) VALUES (' . $this->db->quote($product['name']) . ')');
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
 
     // create product table
     $tableName = Utils::tableNameForProduct($product['name']);
@@ -129,8 +129,7 @@ public function addProduct($product)
         . 'startCount INTEGER, '
         . 'usageTime INTEGER'
         . ')');
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
 
     return $this->db->lastInsertId();
 }
@@ -139,24 +138,20 @@ public function addProduct($product)
 public function deleteProduct($product)
 {
     $res = $this->db->exec('DELETE FROM product_schema WHERE productId = ' . intval($product['id']));
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
 
     $res = $this->db->exec('DELETE FROM products WHERE id = ' . intval($product['id']));
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
 
-    $res = $this->db->exec('DROP TABLE ' . Utils::tableNameForProduct($product));
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $res = $this->db->exec('DROP TABLE ' . Utils::tableNameForProduct($product['name']));
+    $this->checkError($res);
 }
 
 /** Look up product by name. */
 public function productByName($name)
 {
     $res = $this->db->query('SELECT * FROM products WHERE name = ' . $this->db->quote($name));
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
     foreach ($res as $row)
         return $row;
     return NULL;
@@ -166,8 +161,7 @@ public function productByName($name)
 public function productSchema($productId)
 {
     $res = $this->db->query('SELECT * FROM product_schema WHERE productId = ' . intval($productId));
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
 
     $schema = array();
     foreach ($res as $row) {
@@ -195,8 +189,7 @@ public function updateProductSchema($productId, $schema)
                 'productId = ' . intval($productId) . ' AND ' .
                 'name = ' . $this->db->quote($entry['name'])
             );
-            if ($res === FALSE)
-                $this->fatalDbError();
+            $this->checkError($res);
         } else {
             // insert
             $res = $this->db->exec('INSERT INTO product_schema (productId, name, type) VALUES (' .
@@ -204,8 +197,7 @@ public function updateProductSchema($productId, $schema)
                 $this->db->quote($entry['name']) . ', ' .
                 $this->db->quote($entry['type']) . ')'
             );
-            if ($res === FALSE)
-                $this->fatalDbError();
+            $this->checkError($res);
         }
 
         unset($oldSchema[$entry['name']]);
@@ -217,8 +209,7 @@ public function updateProductSchema($productId, $schema)
             'productId = ' . intval($productId) . ' AND ' .
             'name = ' . $this->db->quote($entry['name'])
         );
-        if ($res === FALSE)
-            $this->fatalDbError();
+        $this->checkError($res);
     }
 }
 
@@ -227,8 +218,7 @@ public function rawDataForProduct($name)
 {
     $tableName = Utils::tableNameForProduct($name);
     $res = $this->db->query('SELECT * FROM ' . $tableName);
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
     $data = array();
     foreach ($res as $row) {
         $sample = array();
@@ -246,8 +236,7 @@ public function rawDataForProduct($name)
 public function surveysByProductName($product)
 {
     $res = $this->db->query('SELECT surveys.* FROM surveys JOIN products ON (surveys.productId = products.id) WHERE products.name = ' . $this->db->quote($product));
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
     $surveys = array();
     foreach ($res as $row)
         array_push($surveys, $row);
@@ -258,8 +247,7 @@ public function surveysByProductName($product)
 public function activeSurveysForProduct($product)
 {
     $res = $this->db->query('SELECT * FROM surveys WHERE productId = ' . $product['id'] . ' AND active = 1');
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
     $surveys = array();
     foreach ($res as $row)
         array_push($surveys, $row);
@@ -273,8 +261,7 @@ public function addSurvey($productId, $survey)
         . $productId . ', '
         . $this->db->quote($survey['name']) . ', '
         . $this->db->quote($survey['url']) . ')');
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
 }
 
 /** Update an existing survey with id @p $surveyId. */
@@ -285,16 +272,14 @@ public function updateSurvey($surveyId, $surveyData)
         . ' url = ' . $this->db->quote($surveyData['url']) . ','
         . ' active = ' . ($surveyData['active'] ? 1 : 0)
         . ' WHERE id = ' . $surveyId);
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
 }
 
 /** Delete a survey given its internal id. */
 public function deleteSurvey($surveyId)
 {
     $res = $this->db->exec('DELETE FROM surveys WHERE id = ' . $this->db->quote($surveyId));
-    if ($res === FALSE)
-        $this->fatalDbError();
+    $this->checkError($res);
 }
 
 }

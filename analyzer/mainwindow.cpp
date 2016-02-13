@@ -223,6 +223,22 @@ void MainWindow::createProduct()
         return;
     Product product;
     product.setName(name);
+
+    QVector<ProductSchemaEntry> schema;
+    ProductSchemaEntry entry;
+    entry.setName(QStringLiteral("version"));
+    entry.setType(ProductSchemaEntry::StringType);
+    schema.push_back(entry);
+    entry.setName(QStringLiteral("platform"));
+    schema.push_back(entry);
+    entry.setName(QStringLiteral("startCount"));
+    entry.setType(ProductSchemaEntry::IntegerType);
+    schema.push_back(entry);
+    entry.setName(QStringLiteral("usageTime"));
+    schema.push_back(entry);
+
+    product.setSchema(schema);
+
     auto reply = m_restClient->post(QStringLiteral("products"), product.toJson());
     connect(reply, &QNetworkReply::finished, this, [this, reply, name]() {
         if (reply->error() == QNetworkReply::NoError) {

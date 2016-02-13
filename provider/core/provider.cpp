@@ -16,6 +16,8 @@
 */
 
 #include <config-userfeedback-version.h>
+
+#include "abstractdatasource.h"
 #include "provider.h"
 #include "surveyinfo.h"
 
@@ -85,6 +87,8 @@ public:
     int encouragementTime;
     int encouragementDelay;
     bool encouragementDisplayed;
+
+    QVector<AbstractDataSource*> dataSources;
 };
 }
 
@@ -176,6 +180,10 @@ QByteArray ProviderPrivate::jsonData() const
         obj.insert(QStringLiteral("startCount"), startCount);
         obj.insert(QStringLiteral("usageTime"), currentApplicationTime());
         obj.insert(QStringLiteral("version"), QCoreApplication::applicationVersion());
+        foreach (auto source, dataSources) {
+            if (statisticsMode >= source->collectionMode())
+                source->toJson(obj);
+        }
     }
 
     QJsonDocument doc(obj);
@@ -300,6 +308,13 @@ void Provider::setStatisticsCollectionMode(StatisticsCollectionMode mode)
     d->statisticsMode = mode;
     d->scheduleNextSubmission();
     d->scheduleEncouragement();
+}
+
+void Provider::addDataSource(AbstractDataSource *source, StatisticsCollectionMode mode)
+{
+    Q_ASSERT(mode != NoStatistics);
+    source->setCollectionMode(mode);
+    d->dataSources.push_back(source);
 }
 
 int Provider::surveyInterval() const

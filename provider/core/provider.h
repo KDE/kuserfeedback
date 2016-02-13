@@ -26,6 +26,7 @@
 
 namespace UserFeedback {
 
+class AbstractDataSource;
 class ProviderPrivate;
 class SurveyInfo;
 
@@ -60,6 +61,14 @@ public:
 
     /** Set which statistics should be submitted. */
     void setStatisticsCollectionMode(StatisticsCollectionMode mode);
+
+    /** Adds a data source for statistical data collection.
+     *  @param source The data source to add.
+     *  @param mode The statistics collection mode this source belongs to. Data is only
+     *  send to the server for this source is a sufficiently high collection mode is configured
+     *  by the user. @c NoStatistics is not allowed.
+     */
+    void addDataSource(AbstractDataSource *source, StatisticsCollectionMode mode);
 
     /** Returns the minimum time between two surveys in days. */
     int surveyInterval() const;

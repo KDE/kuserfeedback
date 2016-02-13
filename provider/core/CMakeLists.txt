@@ -1,4 +1,6 @@
 set(userfeedback_core_srcs
+    abstractdatasource.cpp
+    platforminfosource.cpp
     provider.cpp
     surveyinfo.cpp
 )

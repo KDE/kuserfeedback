@@ -19,6 +19,7 @@
 #include "ui_orwell.h"
 
 #include <provider/widgets/feedbackconfigdialog.h>
+#include <provider/core/platforminfosource.h>
 #include <provider/core/provider.h>
 #include <provider/core/surveyinfo.h>
 
@@ -96,6 +97,7 @@ int main(int argc, char** argv)
     provider->setSubmissionInterval(1);
     provider->setApplicationStartsUntilEncouragement(5);
     provider->setEncouragementDelay(10);
+    provider->addDataSource(new UserFeedback::PlatformInfoSource, UserFeedback::Provider::AllStatistics);
 
     Orwell mainWindow;
     mainWindow.show();

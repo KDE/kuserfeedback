@@ -201,7 +201,7 @@ void ProviderPrivate::submitFinished()
     Q_ASSERT(reply);
 
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "failed to submit user feedback:" << reply->errorString();
+        qWarning() << "failed to submit user feedback:" << reply->errorString() << reply->readAll();
         return;
     }
 

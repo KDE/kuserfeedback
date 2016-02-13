@@ -37,7 +37,8 @@ public:
     enum Type {
         InvalidType,
         IntegerType,
-        StringType
+        StringType,
+        StringListType
     };
     Q_ENUM(Type)
 

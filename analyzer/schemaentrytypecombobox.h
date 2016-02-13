@@ -36,6 +36,9 @@ public:
     ProductSchemaEntry::Type type() const;
     void setType(ProductSchemaEntry::Type type);
 
+private:
+    void addEntry(ProductSchemaEntry::Type type);
+
 };
 
 }

@@ -80,6 +80,7 @@ QString ProductSchemaEntry::displayString(ProductSchemaEntry::Type type)
         case InvalidType: return QObject::tr("Invalid");
         case IntegerType: return QObject::tr("Integer");
         case StringType: return QObject::tr("String");
+        case StringListType: return QObject::tr("String List");
     }
 
     Q_UNREACHABLE();
@@ -97,6 +98,7 @@ QJsonObject ProductSchemaEntry::toJsonObject() const
         case InvalidType: break;
         case StringType: t = QStringLiteral("string"); break;
         case IntegerType: t = QStringLiteral("int"); break;
+        case StringListType: t = QStringLiteral("string_list"); break;
     }
     obj.insert(QStringLiteral("type"), t);
     return obj;
@@ -116,6 +118,8 @@ QVector<ProductSchemaEntry> ProductSchemaEntry::fromJson(const QJsonArray &array
             entry.setType(StringType);
         else if (t == QStringLiteral("int"))
             entry.setType(IntegerType);
+        else if (t == QStringLiteral("string_list"))
+            entry.setType(StringListType);
         res.push_back(entry);
     }
 

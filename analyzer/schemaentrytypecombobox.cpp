@@ -24,20 +24,24 @@ using namespace UserFeedback::Analyzer;
 SchemaEntryTypeComboBox::SchemaEntryTypeComboBox(QWidget* parent) :
     QComboBox(parent)
 {
-    addItem(tr("Integer"), QVariant::fromValue(ProductSchemaEntry::IntegerType));
-    addItem(tr("String"), QVariant::fromValue(ProductSchemaEntry::StringType));
+    addEntry(ProductSchemaEntry::IntegerType);
+    addEntry(ProductSchemaEntry::StringType);
+    addEntry(ProductSchemaEntry::StringListType);
 }
 
 SchemaEntryTypeComboBox::~SchemaEntryTypeComboBox() = default;
 
 void SchemaEntryTypeComboBox::setType(ProductSchemaEntry::Type type)
 {
-    qDebug() << type;
     setCurrentIndex(findData(QVariant::fromValue(type)));
 }
 
 ProductSchemaEntry::Type SchemaEntryTypeComboBox::type() const
 {
-    qDebug() << currentData();
     return currentData().value<ProductSchemaEntry::Type>();
+}
+
+void SchemaEntryTypeComboBox::addEntry(ProductSchemaEntry::Type type)
+{
+    addItem(ProductSchemaEntry::displayString(type), QVariant::fromValue(type));
 }

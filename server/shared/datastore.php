@@ -121,12 +121,18 @@ public function addProduct($product)
         . ')');
     if ($res === FALSE)
         $this->fatalDbError();
+
+    return $this->db->lastInsertId();
 }
 
 /** Delete a product. */
 public function deleteProduct($product)
 {
-    $res = $this->db->exec('DELETE FROM products WHERE name = ' . $this->db->quote($product));
+    $res = $this->db->exec('DELETE FROM product_schema WHERE productId = ' . intval($product['id']));
+    if ($res === FALSE)
+        $this->fatalDbError();
+
+    $res = $this->db->exec('DELETE FROM products WHERE id = ' . intval($product['id']));
     if ($res === FALSE)
         $this->fatalDbError();
 

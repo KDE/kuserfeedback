@@ -56,7 +56,11 @@ public function post_products()
         die("Product name is empty.");
 
     $db = new DataStore();
-    $db->addProduct($product);
+    $db->db->beginTransaction();
+    $productId = $db->addProduct($product);
+    $db->updateProductSchema($productId, $product['schema']);
+    $db->db->commit();
+
     echo('Product ' . $product['name'] . " added.");
 }
 
@@ -79,14 +83,18 @@ public function put_products($productId)
 }
 
 /** Delete product and associated data. */
-public function delete_products($product)
+public function delete_products($productName)
 {
-    if ($product == "")
+    if ($productName == "")
         die("Empty product name.");
 
     $db = new DataStore();
+    $product = $db->productByName($productName);
+    if (is_null($product))
+        die("Product not found.");
+
     $db->deleteProduct($product);
-    echo('Product ' . $product . ' deleted.');
+    echo('Product ' . $productName . ' deleted.');
 }
 
 /** List data for a product. */

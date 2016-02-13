@@ -18,6 +18,18 @@
 
 class Utils {
 
+private static function normalizeString($input)
+{
+    $result = '';
+    for ($i = 0; $i < strlen($input); $i++) {
+        $c = $input[$i];
+        if (!ctype_alnum($c))
+            $c = '_';
+        $result .= $c;
+    }
+    return $result;
+}
+
 public static function tableNameForProduct($productName)
 {
     if ($productName == "")
@@ -26,15 +38,17 @@ public static function tableNameForProduct($productName)
     if (!ctype_alpha($productName[0]))
         die("Invalid product name, must start with a letter.");
 
-    $tableName = "product_";
-    for ($i = 0; $i < strlen($productName); $i++) {
-        $c = $productName[$i];
-        if (!ctype_alnum($c))
-            $c = '_';
-        $tableName .= $c;
-    }
-
+    $tableName = 'product_' . Utils::normalizeString($productName);
     return $tableName;
+}
+
+public static function tableNameForComplexEntry($productName, $entryName)
+{
+    $productTableName = Utils::tableNameForProduct($productName);
+    $productTableName .= '_';
+    $productTableName .= Utils::normalizeString($entryName);
+
+    return $productTableName;
 }
 
 }

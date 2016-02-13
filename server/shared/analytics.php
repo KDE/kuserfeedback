@@ -79,7 +79,6 @@ public function put_products($productId)
     if (is_null($product))
         die("Unknown product " . $productId . '.');
 
-    // TODO update product table
     $db->updateProductSchema($product, $productData['schema']);
     $db->commit();
     echo('Product ' . $productData['name'] . ' updated.');
@@ -97,7 +96,9 @@ public function delete_products($productName)
     if (is_null($product))
         die("Product not found.");
 
-    $db->deleteProduct($product);
+    $schema = $db->productSchema($product['id']);
+
+    $db->deleteProduct($product, $schema);
     $db->commit();
     echo('Product ' . $productName . ' deleted.');
 }

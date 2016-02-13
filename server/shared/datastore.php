@@ -130,8 +130,16 @@ public function addProduct($product)
 }
 
 /** Delete a product. */
-public function deleteProduct($product)
+public function deleteProduct($product, $schema)
 {
+    foreach ($schema as $entry) {
+        switch ($entry['type']) {
+            case "string_list":
+                $this->deleteComplexSchemaEntry($product, $entry);
+                break;
+        }
+    }
+
     $res = $this->db->exec('DELETE FROM product_schema WHERE productId = ' . intval($product['id']));
     $this->checkError($res);
 
@@ -230,6 +238,17 @@ private function addProductSchemaEntry($product, $entry)
             $res = $this->db->exec('ALTER TABLE ' . $productTable . ' ADD COLUMN ' . $entry['name'] . ' INTEGER');
             $this->checkError($res);
             break;
+        case "string_list":
+        {
+            $tableName = Utils::tableNameForComplexEntry($product['name'], $entry['name']);
+            $res = $this->db->exec('CREATE TABLE ' . $tableName . ' ('
+                . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                . 'sampleId INTEGER REFERENCES ' . $productTable . '(id), '
+                . 'value VARCHAR)'
+            );
+            $this->checkError($res);
+            break;
+        }
     }
 }
 
@@ -245,7 +264,18 @@ private function deleteProductSchemaEntry($product, $entry)
             // FIXME: DROP COLUMN does not work with sqlite
             //$this->checkError($res);
             break;
+        case "string_list":
+            $this->deleteComplexSchemaEntry($product, $entry);
+            break;
     }
+}
+
+/** Delete database elements for a complex product schema entry. */
+private function deleteComplexSchemaEntry($product, $entry)
+{
+    $tableName = Utils::tableNameForComplexEntry($product['name'], $entry['name']);
+    $res = $this->db->exec("DROP TABLE " . $tableName);
+    $this->checkError($res);
 }
 
 /** All data for the give product table and schema entries. */

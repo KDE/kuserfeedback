@@ -36,17 +36,26 @@ function post_submit()
     $product = $db->productByName($data['productId']);
     if (is_null($product))
         die("Unknown product.");
+    $productSchema = $db->productSchema($product['id']);
 
-    // write to db
+    // write basic record
     $tableName = Utils::tableNameForProduct($product['name']);
-    $res = $db->db->exec('INSERT INTO ' . $tableName . ' (version, platform, startCount, usageTime) VALUES('
-        . $db->db->quote($data['version']) . ', '
-        . $db->db->quote($data['platform']) . ', '
-        . intval($data['startCount']) . ', '
-        . intval($data['usageTime'])
-        . ')');
-    if ($res === FALSE)
-        die('Failed to record data.');
+    $basicData = array();
+    foreach ($productSchema as $entry) {
+        if (!array_key_exists($entry['name'], $data))
+            continue;
+        switch($entry['type']) {
+            case 'string':
+                $basicData[$entry['name']] = $data[$entry['name']];
+                break;
+            case 'int':
+                $basicData[$entry['name']] = intval($data[$entry['name']]);
+                break;
+        }
+    }
+    $recordId = $db->addBasicRecord($tableName, $basicData);
+
+    // TODO add complex data to sub-tables
 
     // read survey from db
     $responseData = array();

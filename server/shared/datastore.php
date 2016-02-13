@@ -22,8 +22,7 @@ include_once('utils.php');
 /** Handles all database operations. */
 class DataStore {
 
-// TODO temporary, make private
-public $db;
+private $db;
 
 function __construct()
 {
@@ -266,6 +265,24 @@ public function rawDataForProduct($name)
         array_push($data, $sample);
     }
     return $data;
+}
+
+/** Add a new record into the given product data table. */
+public function addBasicRecord($productTable, $data)
+{
+    $quotedData = array();
+    foreach(array_keys($data) as $key) {
+        if (is_string($data[$key]))
+            array_push($quotedData, $this->db->quote($data[$key]));
+        else
+            array_push($quotedData, $data[$key]);
+    }
+    $res = $this->db->exec('INSERT INTO ' . $productTable . ' ('
+        . implode(', ', array_keys($data)) . ') VALUES ('
+        . implode(', ', $quotedData) . ')'
+    );
+    $this->checkError($res);
+    return $this->db->lastInsertId();
 }
 
 /** List all survey for a product name. */

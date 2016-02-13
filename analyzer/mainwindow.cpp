@@ -26,8 +26,6 @@
 #include "datamodel.h"
 #include "productmodel.h"
 #include "restclient.h"
-#include "schemamodel.h"
-#include "schemaentryitemeditorfactory.h"
 #include "serverinfo.h"
 #include "surveydialog.h"
 #include "surveymodel.h"
@@ -46,7 +44,6 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSettings>
-#include <QStyledItemDelegate>
 #include <QTimer>
 #include <QUrl>
 
@@ -62,7 +59,6 @@ MainWindow::MainWindow() :
     m_aggregatedDataModel(new AggregatedDataModel(this)),
     m_surveyModel(new SurveyModel(this)),
     m_chart(new Chart(this)),
-    m_schemaModel(new SchemaModel(this)),
     m_feedbackProvider(new UserFeedback::Provider(this))
 {
     ui->setupUi(this);
@@ -70,8 +66,6 @@ MainWindow::MainWindow() :
     ui->dataView->setModel(m_dataModel);
     ui->surveyView->setModel(m_surveyModel);
     ui->aggregatedDataView->setModel(m_aggregatedDataModel);
-    ui->schemaView->setModel(m_schemaModel);
-    qobject_cast<QStyledItemDelegate*>(ui->schemaView->itemDelegate())->setItemEditorFactory(new SchemaEntryItemEditorFactory);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
 
     connect(m_restClient, &RESTClient::errorMessage, this, &MainWindow::logError);
@@ -139,12 +133,7 @@ MainWindow::MainWindow() :
         m_chart->setModel(model);
     });
 
-    connect(ui->addSchemaEntryButton, &QPushButton::clicked, this, [this]() {
-        m_schemaModel->addEntry(ui->newSchemaEntryName->text());
-        ui->newSchemaEntryName->clear();
-    });
-    connect(ui->saveSchemaButton, &QPushButton::clicked, this, [this]() {
-        const auto p = m_schemaModel->product();
+    connect(ui->schemaEdit, &SchemaEditWidget::productChanged, this, [this](const Product &p) {
         auto reply = m_restClient->put(QStringLiteral("products/") + p.name(), p.toJson());
         connect(reply, &QNetworkReply::finished, this, [this, reply]() {
             if (reply->error() != QNetworkReply::NoError)
@@ -176,7 +165,7 @@ MainWindow::MainWindow() :
             return;
         m_dataModel->setProductId(product.name());
         m_surveyModel->setProductId(product.name());
-        m_schemaModel->setProduct(product);
+        ui->schemaEdit->setProduct(product);
     });
 
     settings.beginGroup(QStringLiteral("MainWindow"));

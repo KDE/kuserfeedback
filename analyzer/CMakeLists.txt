@@ -12,6 +12,7 @@ set(analyzer_srcs
     restclient.cpp
     sample.cpp
     schemamodel.cpp
+    schemaeditwidget.cpp
     schemaentryitemeditorfactory.cpp
     schemaentrytypecombobox.cpp
     serverinfo.cpp

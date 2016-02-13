@@ -49,6 +49,15 @@ void SchemaModel::addEntry(const QString &name)
     endInsertRows();
 }
 
+void SchemaModel::deleteEntry(int row)
+{
+    auto schema = m_product.schema();
+    beginRemoveRows(QModelIndex(), row, row);
+    schema.removeAt(row);
+    m_product.setSchema(schema);
+    endRemoveRows();
+}
+
 int SchemaModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);

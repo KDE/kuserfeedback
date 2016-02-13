@@ -106,36 +106,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_8">
         <item>
-         <widget class="QTableView" name="schemaView">
-          <property name="selectionMode">
-           <enum>QAbstractItemView::SingleSelection</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLineEdit" name="newSchemaEntryName">
-            <property name="placeholderText">
-             <string>New entry</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="addSchemaEntryButton">
-            <property name="text">
-             <string>&amp;Add</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="saveSchemaButton">
-            <property name="text">
-             <string>&amp;Save</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="UserFeedback::Analyzer::SchemaEditWidget" name="schemaEdit" native="true"/>
         </item>
        </layout>
       </widget>
@@ -371,6 +342,12 @@
    <class>UserFeedback::NotificationWidget</class>
    <extends>QWidget</extends>
    <header>provider/widgets/notificationwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>UserFeedback::Analyzer::SchemaEditWidget</class>
+   <extends>QWidget</extends>
+   <header>schemaeditwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

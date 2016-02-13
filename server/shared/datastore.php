@@ -123,12 +123,8 @@ public function addProduct($product)
     $tableName = Utils::tableNameForProduct($product['name']);
     $res = $this->db->exec('CREATE TABLE ' . $tableName . ' ('
         . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
-        . 'timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP, '
-        . 'version VARCHAR, '
-        . 'platform VARCHAR, '
-        . 'startCount INTEGER, '
-        . 'usageTime INTEGER'
-        . ')');
+        . 'timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'
+    );
     $this->checkError($res);
 
     return $this->db->lastInsertId();
@@ -174,30 +170,36 @@ public function productSchema($productId)
 }
 
 /** Update product schema to $schema. */
-public function updateProductSchema($productId, $schema)
+public function updateProductSchema($product, $schema)
 {
     $oldSchema = array();
-    foreach ($this->productSchema($productId) as $o) {
+    foreach ($this->productSchema($product['id']) as $o) {
         $oldSchema[$o['name']] = $o;
     }
 
     foreach ($schema as $entry) {
         if (array_key_exists($entry['name'], $oldSchema)) {
             // update
+            $oldType = $oldSchema[$entry['name']]['type'];
+            if ($oldType != $entry['type'])
+                die('Cannot change data type of entry ' . $entry['name'] . '!');
+
             $res = $this->db->exec('UPDATE product_schema SET ' .
                 'type = ' . $this->db->quote($entry['type']) . ' WHERE ' .
-                'productId = ' . intval($productId) . ' AND ' .
+                'productId = ' . intval($product['id']) . ' AND ' .
                 'name = ' . $this->db->quote($entry['name'])
             );
             $this->checkError($res);
         } else {
             // insert
             $res = $this->db->exec('INSERT INTO product_schema (productId, name, type) VALUES (' .
-                intval($productId) . ', ' .
+                intval($product['id']) . ', ' .
                 $this->db->quote($entry['name']) . ', ' .
                 $this->db->quote($entry['type']) . ')'
             );
             $this->checkError($res);
+
+            $this->addProductSchemaEntry($product, $entry);
         }
 
         unset($oldSchema[$entry['name']]);
@@ -206,10 +208,44 @@ public function updateProductSchema($productId, $schema)
     // delete whatever is left
     foreach($oldSchema as $entry) {
         $res = $this->db->exec('DELETE FROM product_schema WHERE ' .
-            'productId = ' . intval($productId) . ' AND ' .
+            'productId = ' . intval($product['id']) . ' AND ' .
             'name = ' . $this->db->quote($entry['name'])
         );
         $this->checkError($res);
+
+        $this->deleteProductSchemaEntry($product, $entry);
+    }
+}
+
+/** Add a database elements needed for a given product schema entry. */
+private function addProductSchemaEntry($product, $entry)
+{
+    $productTable = Utils::tableNameForProduct($product['name']);
+
+    switch ($entry['type']) {
+        case "string":
+            $res = $this->db->exec('ALTER TABLE ' . $productTable . ' ADD COLUMN ' . $entry['name'] . ' VARCHAR');
+            $this->checkError($res);
+            break;
+        case "int":
+            $res = $this->db->exec('ALTER TABLE ' . $productTable . ' ADD COLUMN ' . $entry['name'] . ' INTEGER');
+            $this->checkError($res);
+            break;
+    }
+}
+
+/** Delete database elements for a given product schema entry. */
+private function deleteProductSchemaEntry($product, $entry)
+{
+    $productTable = Utils::tableNameForProduct($product['name']);
+
+    switch ($entry['type']) {
+        case "string":
+        case "int":
+            $res = $this->db->exec('ALTER TABLE ' . $productTable . ' DROP COLUMN ' . $entry['name']);
+            // FIXME: DROP COLUMN does not work with sqlite
+            //$this->checkError($res);
+            break;
     }
 }
 

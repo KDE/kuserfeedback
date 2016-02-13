@@ -59,8 +59,8 @@ public function post_products()
 
     $db = new DataStore();
     $db->beginTransaction();
-    $productId = $db->addProduct($product);
-    $db->updateProductSchema($productId, $product['schema']);
+    $product['id'] = $db->addProduct($product);
+    $db->updateProductSchema($product, $product['schema']);
     $db->commit();
 
     echo('Product ' . $product['name'] . " added.");
@@ -79,7 +79,7 @@ public function put_products($productId)
         die("Unknown product " . $productId . '.');
 
     // TODO update product table
-    $db->updateProductSchema($product['id'], $productData['schema']);
+    $db->updateProductSchema($product, $productData['schema']);
     $db->commit();
     echo('Product ' . $productData['name'] . ' updated.');
 }

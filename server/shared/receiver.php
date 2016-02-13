@@ -32,6 +32,7 @@ function post_submit()
 
     // look up product
     $db = new DataStore();
+    $db->beginTransaction();
     $product = $db->productByName($data['productId']);
     if (is_null($product))
         die("Unknown product.");
@@ -57,8 +58,8 @@ function post_submit()
         $responseData['survey'] = $surveyInfo;
     }
 
+    $db->commit();
     echo(json_encode($responseData));
-
 }
 
 }

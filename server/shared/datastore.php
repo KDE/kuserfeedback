@@ -34,6 +34,18 @@ function __construct()
     }
 }
 
+/** Begin transaction. */
+public function beginTransaction()
+{
+    $this->db->beginTransaction();
+}
+
+/** Commit transaction. */
+public function commit()
+{
+    $this->db->commit();
+}
+
 /** Verify the database schema, and fix if needed. */
 public function checkSchema()
 {
@@ -52,12 +64,10 @@ public function checkSchema()
 
     # apply database updates
     echo('Current schema version: ' . $currentVersion . ' should be: ' . $targetVersion);
-    $this->db->beginTransaction();
     for ($i = $currentVersion; $i < $targetVersion; $i++) {
         echo("Applying update $i...");
         $this->applySchemaChange($schemaDefs['schema'][$i]);
     }
-    $this->db->commit();
 }
 
 /** Returns the current schema version. */

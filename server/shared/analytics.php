@@ -26,7 +26,9 @@ class Analytics
 public function get_check_schema()
 {
     $db = new DataStore();
+    $db->beginTransaction();
     $db->checkSchema();
+    $db->commit();
 }
 
 /** List all products. */
@@ -56,10 +58,10 @@ public function post_products()
         die("Product name is empty.");
 
     $db = new DataStore();
-    $db->db->beginTransaction();
+    $db->beginTransaction();
     $productId = $db->addProduct($product);
     $db->updateProductSchema($productId, $product['schema']);
-    $db->db->commit();
+    $db->commit();
 
     echo('Product ' . $product['name'] . " added.");
 }
@@ -71,14 +73,14 @@ public function put_products($productId)
     $productData = json_decode($raw, true);
 
     $db = new DataStore();
-    $db->db->beginTransaction();
+    $db->beginTransaction();
     $product = $db->productByName($productId);
     if (is_null($product))
         die("Unknown product " . $productId . '.');
 
     // TODO update product table
     $db->updateProductSchema($product['id'], $productData['schema']);
-    $db->db->commit();
+    $db->commit();
     echo('Product ' . $productData['name'] . ' updated.');
 }
 
@@ -89,11 +91,13 @@ public function delete_products($productName)
         die("Empty product name.");
 
     $db = new DataStore();
+    $db->beginTransaction();
     $product = $db->productByName($productName);
     if (is_null($product))
         die("Product not found.");
 
     $db->deleteProduct($product);
+    $db->commit();
     echo('Product ' . $productName . ' deleted.');
 }
 
@@ -129,11 +133,13 @@ public function post_surveys($product)
     $survey= json_decode($rawPostData, true);
 
     $db = new DataStore();
+    $db->beginTransaction();
     $productData = $db->productByName($product);
     if (is_null($productData))
         die("Invalid product identifier.");
 
     $db->addSurvey($productData['id'], $survey);
+    $db->commit();
     echo("Survey created for product $product.");
 }
 
@@ -148,7 +154,9 @@ public function put_surveys($surveyId)
     $surveyData = json_decode($surveyData, true);
 
     $db = new DataStore();
+    $db->beginTransaction();
     $db->updateSurvey($surveyId, $surveyData);
+    $db->commit();
     echo("Survery updated.");
 }
 
@@ -156,7 +164,9 @@ public function put_surveys($surveyId)
 public function delete_surveys($survey)
 {
     $db = new DataStore();
+    $db->beginTransaction();
     $db->deleteSurvey($survey);
+    $db->commit();
     echo("Survey deleted.");
 }
 

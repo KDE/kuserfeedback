@@ -49,10 +49,7 @@ QNetworkReply* RESTClient::get(const QString& command)
 {
     const auto request = makeRequest(command);
     auto reply = m_networkAccessManager->get(request);
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        if (reply->error() != QNetworkReply::NoError)
-            emit errorMessage(reply->errorString());
-    });
+    setupMessageHandler(reply);
     return reply;
 }
 
@@ -60,10 +57,7 @@ QNetworkReply* RESTClient::post(const QString& command, const QByteArray& data)
 {
     const auto request = makeRequest(command);
     auto reply = m_networkAccessManager->post(request, data);
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        if (reply->error() != QNetworkReply::NoError)
-            emit errorMessage(reply->errorString());
-    });
+    setupMessageHandler(reply);
     return reply;
 }
 
@@ -71,10 +65,7 @@ QNetworkReply* RESTClient::put(const QString &command, const QByteArray &data)
 {
     const auto request = makeRequest(command);
     auto reply = m_networkAccessManager->put(request, data);
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        if (reply->error() != QNetworkReply::NoError)
-            emit errorMessage(reply->errorString());
-    });
+    setupMessageHandler(reply);
     return reply;
 }
 
@@ -82,10 +73,7 @@ QNetworkReply* RESTClient::deleteResource(const QString& command)
 {
     const auto request = makeRequest(command);
     auto reply = m_networkAccessManager->deleteResource(request);
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        if (reply->error() != QNetworkReply::NoError)
-            emit errorMessage(reply->errorString());
-    });
+    setupMessageHandler(reply);
     return reply;
 }
 
@@ -99,4 +87,16 @@ QNetworkRequest RESTClient::makeRequest(const QString& command)
     request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
     request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("UserFeedbackAnalyzer/") + QStringLiteral(USERFEEDBACK_VERSION));
     return request;
+}
+
+void RESTClient::setupMessageHandler(QNetworkReply* reply)
+{
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() == QNetworkReply::NoError)
+            return;
+        emit errorMessage(reply->errorString());
+        const auto d = reply->readAll();
+        if (!d.isEmpty())
+            emit errorMessage(QString::fromUtf8(d));
+    });
 }

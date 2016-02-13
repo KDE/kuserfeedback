@@ -51,6 +51,7 @@ signals:
 
 private:
     QNetworkRequest makeRequest(const QString &command);
+    void setupMessageHandler(QNetworkReply *reply);
 
     ServerInfo m_serverInfo;
     QNetworkAccessManager *m_networkAccessManager;

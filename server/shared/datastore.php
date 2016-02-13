@@ -248,20 +248,25 @@ private function deleteProductSchemaEntry($product, $entry)
     }
 }
 
-/** All data for the give product name. */
-public function rawDataForProduct($name)
+/** All data for the give product table and schema entries. */
+public function basicRecords($productTableName, $basicEntries)
 {
-    $tableName = Utils::tableNameForProduct($name);
-    $res = $this->db->query('SELECT * FROM ' . $tableName);
+    $res = $this->db->query('SELECT timestamp, ' . implode(', ', array_keys($basicEntries)) . ' FROM ' . $productTableName);
     $this->checkError($res);
     $data = array();
     foreach ($res as $row) {
         $sample = array();
         $sample['timestamp'] = $row['timestamp'];
-        $sample['version'] = $row['version'];
-        $sample['platform'] = $row['platform'];
-        $sample['startCount'] = intval($row['startCount']);
-        $sample['usageTime'] = intval($row['usageTime']);
+        foreach ($basicEntries as $col) {
+            switch ($col['type']) {
+                case 'int':
+                    $sample[$col['name']] = intval($row[$col['name']]);
+                    break;
+                case 'string':
+                    $sample[$col['name']] = $row[$col['name']];
+                    break;
+            }
+        }
         array_push($data, $sample);
     }
     return $data;

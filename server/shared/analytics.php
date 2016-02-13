@@ -16,7 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-include_once('datastore.php');
+require_once('datastore.php');
+require_once('utils.php');
 
 /** Command handler for the analytics interface. */
 class Analytics
@@ -102,10 +103,29 @@ public function delete_products($productName)
 }
 
 /** List data for a product. */
-public function get_data($product)
+public function get_data($productName)
 {
     $db = new DataStore();
-    $data = $db->rawDataForProduct($product);
+
+    $product = $db->productByName($productName);
+    if (is_null($product))
+        die("Unknown product.");
+    $schema = $db->productSchema($product['id']);
+    $productTableName = Utils::tableNameForProduct($product['name']);
+
+    $basicEntries = array();
+    foreach ($schema as $entry) {
+        switch ($entry['type']) {
+            case 'int':
+            case 'string':
+                $basicEntries[$entry['name']] = $entry;
+                break;
+        }
+    }
+    $data = $db->basicRecords($productTableName, $basicEntries);
+
+    // TODO insert complex data
+
     echo(json_encode($data));
 }
 

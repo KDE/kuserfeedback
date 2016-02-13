@@ -55,7 +55,17 @@ function post_submit()
     }
     $recordId = $db->addBasicRecord($tableName, $basicData);
 
-    // TODO add complex data to sub-tables
+    // add complex data to sub-tables
+    foreach ($productSchema as $entry) {
+        if (!array_key_exists($entry['name'], $data))
+            continue;
+        $tableName = Utils::tableNameForComplexEntry($product['name'], $entry['name']);
+        switch($entry['type']) {
+            case 'string_list':
+                $db->addStringListRecord($tableName, $recordId, $data[$entry['name']]);
+                break;
+        }
+    }
 
     // read survey from db
     $responseData = array();

@@ -320,6 +320,19 @@ public function addBasicRecord($productTable, $data)
     return $this->db->lastInsertId();
 }
 
+/** Add string list records into the given complex entry table. */
+public function addStringListRecord($complexTable, $sampleId, $stringList)
+{
+    foreach ($stringList as $str) {
+        if (!is_string($str))
+            continue;
+        $res = $this->db->exec('INSERT INTO ' . $complexTable . ' (sampleId, value) VALUES('
+            . intval($sampleId) . ', ' . $this->db->quote($str) . ')'
+        );
+        $this->checkError($res);
+    }
+}
+
 /** List all survey for a product name. */
 public function surveysByProductName($product)
 {

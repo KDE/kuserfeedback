@@ -28,6 +28,12 @@ PlatformInfoSource::PlatformInfoSource()
 
 void PlatformInfoSource::toJson(QJsonObject& obj)
 {
+#if (defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID))
+    // on Linux productType() is the distro name
+    obj.insert(QStringLiteral("platformOS"), QStringLiteral("linux"));
+    obj.insert(QStringLiteral("platformVersion"), QSysInfo::productType() + QLatin1Char('-') + QSysInfo::productVersion());
+#else
     obj.insert(QStringLiteral("platformOS"), QSysInfo::productType());
     obj.insert(QStringLiteral("platformVersion"), QSysInfo::productVersion());
+#endif
 }

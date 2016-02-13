@@ -71,7 +71,7 @@ void UserFeedback::Analyzer::DataModel::reload()
 int DataModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
-    return 5;
+    return m_product.schema().size() + 1;
 }
 
 int DataModel::rowCount(const QModelIndex& parent) const
@@ -88,13 +88,9 @@ QVariant DataModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole) {
         const auto sample = m_data.at(index.row());
-        switch (index.column()) {
-            case 0: return sample.timestamp();
-            case 1: return sample.version();
-            case 2: return {}; // TODO platform
-            case 3: return sample.startCount();
-            case 4: return sample.usageTime();
-        }
+        if (index.column() == 0)
+            return sample.timestamp();
+        return sample.value(m_product.schema().at(index.column() - 1).name());
     } else if (role == SampleRole) {
         return QVariant::fromValue(m_data.at(index.row()));
     } else if (role == AllSamplesRole) {
@@ -106,14 +102,11 @@ QVariant DataModel::data(const QModelIndex &index, int role) const
 
 QVariant DataModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
-        switch(section) {
-            case 0: return tr("Timestamp");
-            case 1: return tr("Version");
-            case 2: return tr("Platform");
-            case 3: return tr("Starts");
-            case 4: return tr("Used Time");
-        }
+    if (orientation == Qt::Horizontal && role == Qt::DisplayRole && m_product.isValid()) {
+        if (section == 0)
+            return tr("Timestamp");
+        if (section - 1 < m_product.schema().size())
+            return m_product.schema().at(section - 1).name();
     }
     return QAbstractTableModel::headerData(section, orientation, role);
 }

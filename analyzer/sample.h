@@ -43,9 +43,7 @@ public:
     QDateTime timestamp() const;
     QVariant value(const QString &name) const;
 
-    int startCount() const;
-    int usageTime() const;
-    QString version() const;
+    QString version() const; // TODO DEPRECATED
 
     static QVector<Sample> fromJson(const QByteArray &json, const Product &product);
 

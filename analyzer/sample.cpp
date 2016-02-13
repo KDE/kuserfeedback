@@ -52,16 +52,6 @@ QVariant Sample::value(const QString &name) const
     return d->data.value(name);
 }
 
-int Sample::startCount() const
-{
-    return value(QStringLiteral("startCount")).toInt();
-}
-
-int Sample::usageTime() const
-{
-    return value(QStringLiteral("usageTime")).toInt();
-}
-
 QString Sample::version() const
 {
     return value(QStringLiteral("version")).toString();

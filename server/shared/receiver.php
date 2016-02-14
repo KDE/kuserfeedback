@@ -64,6 +64,9 @@ function post_submit()
             case 'string_list':
                 $db->addStringListRecord($tableName, $recordId, $data[$entry['name']]);
                 break;
+            case 'ratio_set':
+                $db->addRatioSetRecord($tableName, $recordId, $data[$entry['name']]);
+                break;
         }
     }
 

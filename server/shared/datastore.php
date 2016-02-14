@@ -355,8 +355,21 @@ public function addStringListRecord($complexTable, $sampleId, $stringList)
     foreach ($stringList as $str) {
         if (!is_string($str))
             continue;
-        $res = $this->db->exec('INSERT INTO ' . $complexTable . ' (sampleId, value) VALUES('
+        $res = $this->db->exec('INSERT INTO ' . $complexTable . ' (sampleId, value) VALUES ('
             . intval($sampleId) . ', ' . $this->db->quote($str) . ')'
+        );
+        $this->checkError($res);
+    }
+}
+
+/** Add ratio set record into the given complex entry table. */
+public function addRatioSetRecord($complexTable, $sampleId, $ratioSet)
+{
+    foreach (array_keys($ratioSet) as $ratioKey) {
+        $res = $this->db->exec('INSERT INTO ' . $complexTable . ' (sampleId, key, value) VALUES ('
+            . intval($sampleId) . ', '
+            . $this->db->quote($ratioKey) . ', '
+            . floatval($ratioSet[$ratioKey]) . ')'
         );
         $this->checkError($res);
     }

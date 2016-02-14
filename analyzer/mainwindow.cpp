@@ -180,6 +180,11 @@ MainWindow::MainWindow() :
     m_feedbackProvider->setSubmissionInterval(1);
     m_feedbackProvider->setApplicationUsageTimeUntilEncouragement(10);
     auto viewModeSource = new UserFeedback::PropertyRatioSource(ui->tabWidget, "currentIndex", QStringLiteral("viewRatio"));
+    viewModeSource->addValueMapping(0, QStringLiteral("chart"));
+    viewModeSource->addValueMapping(1, QStringLiteral("aggregated_data"));
+    viewModeSource->addValueMapping(2, QStringLiteral("raw_data"));
+    viewModeSource->addValueMapping(3, QStringLiteral("surveys"));
+    viewModeSource->addValueMapping(4, QStringLiteral("schema"));
     m_feedbackProvider->addDataSource(viewModeSource, Provider::AllStatistics);
 }
 

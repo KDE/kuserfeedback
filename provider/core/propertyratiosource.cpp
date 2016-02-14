@@ -32,7 +32,9 @@ class PropertyRatioSourcePrivate : public AbstractDataSourcePrivate
 {
 public:
     ~PropertyRatioSourcePrivate();
+
     void propertyChanged();
+    QString valueToString(const QVariant &value) const;
 
     QObject *obj = nullptr; // TODO make this a QPointer?
     QObject *signalMonitor = nullptr;
@@ -40,6 +42,7 @@ public:
     QVariant previousValue;
     QTime lastChangeTime;
     QMap<QVariant, int> ratioSet;
+    QMap<QVariant, QString> valueMap;
     QString sampleName;
 };
 
@@ -73,8 +76,14 @@ void PropertyRatioSourcePrivate::propertyChanged()
 
     lastChangeTime.start();
     previousValue = property.read(obj);
+}
 
-    qDebug() << Q_FUNC_INFO << ratioSet;
+QString PropertyRatioSourcePrivate::valueToString(const QVariant &value) const
+{
+    const auto it = valueMap.constFind(value);
+    if (it != valueMap.constEnd())
+        return it.value();
+    return value.toString();
 }
 
 PropertyRatioSource::PropertyRatioSource(QObject *obj, const char *propertyName, const QString &sampleName) :
@@ -109,6 +118,13 @@ PropertyRatioSource::PropertyRatioSource(QObject *obj, const char *propertyName,
     d->propertyChanged();
 }
 
+void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &str)
+{
+    Q_D(PropertyRatioSource);
+    d->valueMap.insert(value, str);
+}
+
+
 void PropertyRatioSource::toJson(QJsonObject &obj)
 {
     Q_D(const PropertyRatioSource);
@@ -120,7 +136,7 @@ void PropertyRatioSource::toJson(QJsonObject &obj)
         total += it.value();
 
     for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it)
-        set.insert(it.key().toString(), (double)it.value() / (double)(total));
+        set.insert(d->valueToString(it.key()), (double)it.value() / (double)(total));
 
     obj.insert(d->sampleName, set);
 }

@@ -36,11 +36,18 @@ public:
     /** Create a new property ratio data source.
      * @param obj the QObject of which a property should be monitored.
      * @param propertyName The name of the property to monitor.
-     * This property must have a change notification signal.
+     * This property must have a change notification signal. The value must have
+     * comparison operators registerd.
      * @param sampleName This is the name of the database field this data source is
      * associated with.
      */
     explicit PropertyRatioSource(QObject *obj, const char* propertyName, const QString &sampleName);
+
+    /** Map property value @value to @str for sending to the server.
+     *  This is useful to map internal identifiers to portable and persistable values,
+     *  such as turning pointers or indexes into meaningful descriptions.
+     */
+    void addValueMapping(const QVariant &value, const QString &str);
 
     void toJson(QJsonObject &obj) Q_DECL_OVERRIDE;
 

@@ -23,6 +23,7 @@
 #include <QMap>
 #include <QMetaProperty>
 #include <QObject>
+#include <QSettings>
 #include <QTime>
 
 using namespace UserFeedback;
@@ -139,6 +140,45 @@ void PropertyRatioSource::toJson(QJsonObject &obj)
         set.insert(d->valueToString(it.key()), (double)it.value() / (double)(total));
 
     obj.insert(d->sampleName, set);
+}
+
+void PropertyRatioSource::load(QSettings *settings)
+{
+    Q_D(PropertyRatioSource);
+    settings->beginGroup(QStringLiteral("PropertyRatioSource"));
+    settings->beginGroup(d->sampleName);
+    const auto count = settings->beginReadArray(QStringLiteral("RatioSet"));
+
+    for (int i = 0; i < count; ++i) {
+        settings->setArrayIndex(i);
+        const auto value = settings->value(QStringLiteral("Value"));
+        const auto amount = settings->value(QStringLiteral("Amount"), 0).toInt();
+        d->ratioSet.insert(value, amount);
+    }
+
+    settings->endArray();
+    settings->endGroup();
+    settings->endGroup();
+}
+
+
+void PropertyRatioSource::store(QSettings *settings)
+{
+    Q_D(const PropertyRatioSource);
+    settings->beginGroup(QStringLiteral("PropertyRatioSource"));
+    settings->beginGroup(d->sampleName);
+    settings->beginWriteArray(QStringLiteral("RatioSet"), d->ratioSet.size());
+
+    int i = 0;
+    for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it) {
+        settings->setArrayIndex(i++);
+        settings->setValue(QStringLiteral("Value"), it.key());
+        settings->setValue(QStringLiteral("Amount"), it.value());
+    }
+
+    settings->endArray();
+    settings->endGroup();
+    settings->endGroup();
 }
 
 #include "propertyratiosource.moc"

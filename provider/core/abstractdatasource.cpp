@@ -39,6 +39,16 @@ AbstractDataSource::~AbstractDataSource()
     delete d_ptr;
 }
 
+void AbstractDataSource::load(QSettings *settings)
+{
+    Q_UNUSED(settings);
+}
+
+void AbstractDataSource::store(QSettings *settings)
+{
+    Q_UNUSED(settings);
+}
+
 Provider::StatisticsCollectionMode AbstractDataSource::collectionMode() const
 {
     Q_D(const AbstractDataSource);

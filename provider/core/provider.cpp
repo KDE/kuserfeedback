@@ -163,6 +163,9 @@ void ProviderPrivate::store()
     settings.setValue(QStringLiteral("ApplicationTime"), currentApplicationTime());
 
     settings.setValue(QStringLiteral("EncouragementDisplayed"), encouragementDisplayed);
+
+    foreach (auto source, dataSources)
+        source->store(&settings);
 }
 
 void ProviderPrivate::aboutToQuit()
@@ -315,6 +318,10 @@ void Provider::addDataSource(AbstractDataSource *source, StatisticsCollectionMod
     Q_ASSERT(mode != NoStatistics);
     source->setCollectionMode(mode);
     d->dataSources.push_back(source);
+
+    QSettings settings;
+    settings.beginGroup(QStringLiteral("UserFeedback"));
+    source->load(&settings);
 }
 
 int Provider::surveyInterval() const

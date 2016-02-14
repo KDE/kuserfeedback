@@ -22,6 +22,7 @@
 #include "provider.h"
 
 class QJsonObject;
+class QSettings;
 
 namespace UserFeedback {
 
@@ -36,6 +37,12 @@ public:
 
     /** Override this to serialize the data you collected. */
     virtual void toJson(QJsonObject &obj) = 0;
+
+    /** Load persistent state for this data source. */
+    virtual void load(QSettings *settings);
+
+    /** Store persistent state for this data source. */
+    virtual void store(QSettings *settings);
 
     /** Returns which colleciton mode this data source belongs to. */
     Provider::StatisticsCollectionMode collectionMode() const;

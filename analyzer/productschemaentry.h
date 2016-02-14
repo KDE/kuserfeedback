@@ -38,7 +38,8 @@ public:
         InvalidType,
         IntegerType,
         StringType,
-        StringListType
+        StringListType,
+        RatioSetType
     };
     Q_ENUM(Type)
 

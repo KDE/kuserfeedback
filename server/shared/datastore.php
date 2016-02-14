@@ -230,21 +230,33 @@ private function addProductSchemaEntry($product, $entry)
     $productTable = Utils::tableNameForProduct($product['name']);
 
     switch ($entry['type']) {
-        case "string":
+        case 'string':
             $res = $this->db->exec('ALTER TABLE ' . $productTable . ' ADD COLUMN ' . $entry['name'] . ' VARCHAR');
             $this->checkError($res);
             break;
-        case "int":
+        case 'int':
             $res = $this->db->exec('ALTER TABLE ' . $productTable . ' ADD COLUMN ' . $entry['name'] . ' INTEGER');
             $this->checkError($res);
             break;
-        case "string_list":
+        case 'string_list':
         {
             $tableName = Utils::tableNameForComplexEntry($product['name'], $entry['name']);
             $res = $this->db->exec('CREATE TABLE ' . $tableName . ' ('
                 . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 . 'sampleId INTEGER REFERENCES ' . $productTable . '(id), '
                 . 'value VARCHAR)'
+            );
+            $this->checkError($res);
+            break;
+        }
+        case 'ratio_set':
+        {
+            $tableName = Utils::tableNameForComplexEntry($product['name'], $entry['name']);
+            $res = $this->db->exec('CREATE TABLE ' . $tableName . ' ('
+                . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                . 'sampleId INTEGER REFERENCES ' . $productTable . '(id), '
+                . 'key VARCHAR, '
+                . 'value DOUBLE)'
             );
             $this->checkError($res);
             break;
@@ -258,13 +270,14 @@ private function deleteProductSchemaEntry($product, $entry)
     $productTable = Utils::tableNameForProduct($product['name']);
 
     switch ($entry['type']) {
-        case "string":
-        case "int":
+        case 'string':
+        case 'int':
             $res = $this->db->exec('ALTER TABLE ' . $productTable . ' DROP COLUMN ' . $entry['name']);
             // FIXME: DROP COLUMN does not work with sqlite
             //$this->checkError($res);
             break;
-        case "string_list":
+        case 'string_list':
+        case 'ratio_set':
             $this->deleteComplexSchemaEntry($product, $entry);
             break;
     }

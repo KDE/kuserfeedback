@@ -27,6 +27,7 @@ SchemaEntryTypeComboBox::SchemaEntryTypeComboBox(QWidget* parent) :
     addEntry(ProductSchemaEntry::IntegerType);
     addEntry(ProductSchemaEntry::StringType);
     addEntry(ProductSchemaEntry::StringListType);
+    addEntry(ProductSchemaEntry::RatioSetType);
 }
 
 SchemaEntryTypeComboBox::~SchemaEntryTypeComboBox() = default;

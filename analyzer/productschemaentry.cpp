@@ -81,6 +81,7 @@ QString ProductSchemaEntry::displayString(ProductSchemaEntry::Type type)
         case IntegerType: return QObject::tr("Integer");
         case StringType: return QObject::tr("String");
         case StringListType: return QObject::tr("String List");
+        case RatioSetType: return QObject::tr("Ratio Set");
     }
 
     Q_UNREACHABLE();
@@ -99,6 +100,7 @@ QJsonObject ProductSchemaEntry::toJsonObject() const
         case StringType: t = QStringLiteral("string"); break;
         case IntegerType: t = QStringLiteral("int"); break;
         case StringListType: t = QStringLiteral("string_list"); break;
+        case RatioSetType: t = QStringLiteral("ratio_set"); break;
     }
     obj.insert(QStringLiteral("type"), t);
     return obj;
@@ -120,6 +122,8 @@ QVector<ProductSchemaEntry> ProductSchemaEntry::fromJson(const QJsonArray &array
             entry.setType(IntegerType);
         else if (t == QStringLiteral("string_list"))
             entry.setType(StringListType);
+        else if (t == QStringLiteral("ratio_set"))
+            entry.setType(RatioSetType);
         res.push_back(entry);
     }
 

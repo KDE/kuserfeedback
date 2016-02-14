@@ -73,6 +73,16 @@ QVector<Sample> Sample::fromJson(const QByteArray &json, const Product &product)
                 case ProductSchemaEntry::IntegerType:
                     s.d->data.insert(entry.name(), obj.value(entry.name()).toInt());
                     break;
+                case ProductSchemaEntry::StringListType:
+                {
+                    QStringList l;
+                    const auto a = obj.value(entry.name()).toArray();
+                    l.reserve(a.size());
+                    foreach (const auto &v, a)
+                        l.push_back(v.toString());
+                    s.d->data.insert(entry.name(), l);
+                    break;
+                }
             }
         }
         samples.push_back(s);

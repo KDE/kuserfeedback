@@ -90,7 +90,10 @@ QVariant DataModel::data(const QModelIndex &index, int role) const
         const auto sample = m_data.at(index.row());
         if (index.column() == 0)
             return sample.timestamp();
-        return sample.value(m_product.schema().at(index.column() - 1).name());
+        const auto v = sample.value(m_product.schema().at(index.column() - 1).name());
+        if (v.type() == QVariant::StringList)
+            return v.toStringList().join(QStringLiteral(", "));
+        return v;
     } else if (role == SampleRole) {
         return QVariant::fromValue(m_data.at(index.row()));
     } else if (role == AllSamplesRole) {

@@ -281,11 +281,12 @@ private function deleteComplexSchemaEntry($product, $entry)
 /** All data for the give product table and schema entries. */
 public function basicRecords($productTableName, $basicEntries)
 {
-    $res = $this->db->query('SELECT timestamp, ' . implode(', ', array_keys($basicEntries)) . ' FROM ' . $productTableName);
+    $res = $this->db->query('SELECT id, timestamp, ' . implode(', ', array_keys($basicEntries)) . ' FROM ' . $productTableName);
     $this->checkError($res);
     $data = array();
     foreach ($res as $row) {
         $sample = array();
+        $sample['id'] = $row['id'];
         $sample['timestamp'] = $row['timestamp'];
         foreach ($basicEntries as $col) {
             switch ($col['type']) {
@@ -318,6 +319,21 @@ public function addBasicRecord($productTable, $data)
     );
     $this->checkError($res);
     return $this->db->lastInsertId();
+}
+
+/** Returns all string list records for the given complex entry table. */
+public function stringListRecords($tableName)
+{
+    $res = $this->db->query('SELECT sampleId, value FROM ' . $tableName);
+    $this->checkError($res);
+
+    $data = array();
+    foreach ($res as $row) {
+        if (!array_key_exists($row['sampleId'], $data))
+            $data[$row['sampleId']] = array();
+        array_push($data[$row['sampleId']], $row['value']);
+    }
+    return $data;
 }
 
 /** Add string list records into the given complex entry table. */

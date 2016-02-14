@@ -125,7 +125,22 @@ public function get_data($productName)
     }
     $data = $db->basicRecords($productTableName, $basicEntries);
 
-    // TODO insert complex data
+    foreach ($schema as $entry) {
+        $complexRecords = NULL;
+        $complexTableName = Utils::tableNameForComplexEntry($product['name'], $entry['name']);
+        switch ($entry['type']) {
+            case 'string_list':
+                $complexRecords = $db->stringListRecords($complexTableName);
+                break;
+        }
+        if (is_null($complexRecords))
+            continue;
+        foreach ($data as &$row) {
+            if (!array_key_exists($row['id'], $complexRecords))
+                continue;
+            $row[$entry['name']] = $complexRecords[$row['id']];
+        }
+    }
 
     echo(json_encode($data));
 }

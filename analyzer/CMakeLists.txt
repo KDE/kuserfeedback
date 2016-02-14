@@ -9,6 +9,7 @@ set(analyzer_srcs
     product.cpp
     productmodel.cpp
     productschemaentry.cpp
+    ratioset.cpp
     restclient.cpp
     sample.cpp
     schemamodel.cpp

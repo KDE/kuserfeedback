@@ -18,6 +18,7 @@
 #include "sample.h"
 #include "product.h"
 #include "productschemaentry.h"
+#include "ratioset.h"
 
 #include <QDateTime>
 #include <QDebug>
@@ -81,6 +82,12 @@ QVector<Sample> Sample::fromJson(const QByteArray &json, const Product &product)
                     foreach (const auto &v, a)
                         l.push_back(v.toString());
                     s.d->data.insert(entry.name(), l);
+                    break;
+                }
+                case ProductSchemaEntry::RatioSetType:
+                {
+                    const auto set = RatioSet::fromJson(obj.value(entry.name()).toObject());
+                    s.d->data.insert(entry.name(), QVariant::fromValue(set));
                     break;
                 }
             }

@@ -17,6 +17,7 @@
 
 #include "datamodel.h"
 
+#include "ratioset.h"
 #include "restclient.h"
 #include "sample.h"
 
@@ -93,6 +94,8 @@ QVariant DataModel::data(const QModelIndex &index, int role) const
         const auto v = sample.value(m_product.schema().at(index.column() - 1).name());
         if (v.type() == QVariant::StringList)
             return v.toStringList().join(QStringLiteral(", "));
+        if (v.userType() == qMetaTypeId<RatioSet>())
+            return v.value<RatioSet>().displayString();
         return v;
     } else if (role == SampleRole) {
         return QVariant::fromValue(m_data.at(index.row()));

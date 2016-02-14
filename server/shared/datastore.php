@@ -302,6 +302,8 @@ public function basicRecords($productTableName, $basicEntries)
         $sample['id'] = $row['id'];
         $sample['timestamp'] = $row['timestamp'];
         foreach ($basicEntries as $col) {
+            if (is_null($row[$col['name']]))
+                continue;
             switch ($col['type']) {
                 case 'int':
                     $sample[$col['name']] = intval($row[$col['name']]);

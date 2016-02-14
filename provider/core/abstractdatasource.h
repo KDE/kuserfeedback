@@ -42,9 +42,13 @@ public:
     /** Sets which colleciton mode this data source belongs to. */
     void setCollectionMode(Provider::StatisticsCollectionMode mode);
 
+protected:
+    explicit AbstractDataSource(AbstractDataSourcePrivate *dd);
+    class AbstractDataSourcePrivate* const d_ptr;
+
 private:
+    Q_DECLARE_PRIVATE(AbstractDataSource)
     Q_DISABLE_COPY(AbstractDataSource)
-    class AbstractDataSourcePrivate* const d;
 };
 }
 

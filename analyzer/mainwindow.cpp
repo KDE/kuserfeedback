@@ -32,6 +32,7 @@
 #include "timeaggregationmodel.h"
 
 #include <provider/widgets/feedbackconfigdialog.h>
+#include <provider/core/propertyratiosource.h>
 #include <provider/core/provider.h>
 
 #include <QApplication>
@@ -178,6 +179,8 @@ MainWindow::MainWindow() :
     m_feedbackProvider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
     m_feedbackProvider->setSubmissionInterval(1);
     m_feedbackProvider->setApplicationUsageTimeUntilEncouragement(10);
+    auto viewModeSource = new UserFeedback::PropertyRatioSource(ui->tabWidget, "currentIndex", QStringLiteral("viewRatio"));
+    m_feedbackProvider->addDataSource(viewModeSource, Provider::AllStatistics);
 }
 
 MainWindow::~MainWindow()

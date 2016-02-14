@@ -25,17 +25,24 @@ AbstractDataSourcePrivate::AbstractDataSourcePrivate() = default;
 AbstractDataSourcePrivate::~AbstractDataSourcePrivate() = default;
 
 AbstractDataSource::AbstractDataSource() :
-    d(new AbstractDataSourcePrivate)
+    d_ptr(new AbstractDataSourcePrivate)
+{
+}
+
+AbstractDataSource::AbstractDataSource(AbstractDataSourcePrivate* dd) :
+    d_ptr(dd)
 {
 }
 
 AbstractDataSource::~AbstractDataSource()
 {
-    delete d;
+    delete d_ptr;
 }
 
 Provider::StatisticsCollectionMode AbstractDataSource::collectionMode() const
 {
+    Q_D(const AbstractDataSource);
+
     Q_ASSERT(d->mode != Provider::NoStatistics);
     if (d->mode == Provider::NoStatistics)
         return Provider::AllStatistics;
@@ -44,6 +51,7 @@ Provider::StatisticsCollectionMode AbstractDataSource::collectionMode() const
 
 void AbstractDataSource::setCollectionMode(Provider::StatisticsCollectionMode mode)
 {
+    Q_D(AbstractDataSource);
     Q_ASSERT(mode != Provider::NoStatistics);
     d->mode = mode;
 }

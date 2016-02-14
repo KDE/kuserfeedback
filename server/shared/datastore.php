@@ -362,6 +362,21 @@ public function addStringListRecord($complexTable, $sampleId, $stringList)
     }
 }
 
+/** Returns all ratio set record for the given complex entry table. */
+public function ratioSetRecords($tableName)
+{
+    $res = $this->db->query('SELECT sampleId, key, value FROM ' . $tableName);
+    $this->checkError($res);
+
+    $data = array();
+    foreach ($res as $row) {
+        if (!array_key_exists($row['sampleId'], $data))
+            $data[$row['sampleId']] = array();
+        $data[$row['sampleId']][$row['key']] = floatval($row['value']);
+    }
+    return $data;
+}
+
 /** Add ratio set record into the given complex entry table. */
 public function addRatioSetRecord($complexTable, $sampleId, $ratioSet)
 {

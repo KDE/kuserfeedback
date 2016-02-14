@@ -132,6 +132,9 @@ public function get_data($productName)
             case 'string_list':
                 $complexRecords = $db->stringListRecords($complexTableName);
                 break;
+            case 'ratio_set':
+                $complexRecords = $db->ratioSetRecords($complexTableName);
+                break;
         }
         if (is_null($complexRecords))
             continue;

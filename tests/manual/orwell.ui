@@ -112,17 +112,34 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
+      <item row="6" column="1">
        <widget class="QPushButton" name="overrideButton">
         <property name="text">
          <string>Override Stats</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
+      <item row="7" column="1">
        <widget class="QPushButton" name="submitButton">
         <property name="text">
          <string>Submit Manually</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QDial" name="dial">
+        <property name="maximum">
+         <number>11</number>
+        </property>
+        <property name="pageStep">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Property Source Test:</string>
         </property>
        </widget>
       </item>

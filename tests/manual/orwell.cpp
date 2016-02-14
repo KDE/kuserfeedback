@@ -20,6 +20,7 @@
 
 #include <provider/widgets/feedbackconfigdialog.h>
 #include <provider/core/platforminfosource.h>
+#include <provider/core/propertyratiosource.h>
 #include <provider/core/provider.h>
 #include <provider/core/screeninfosource.h>
 #include <provider/core/surveyinfo.h>
@@ -60,6 +61,11 @@ Orwell::Orwell(QWidget* parent) :
     });
 
     connect(ui->actionQuit, &QAction::triggered, qApp, &QCoreApplication::quit);
+
+    auto propertyMonitorSource = new UserFeedback::PropertyRatioSource(ui->dial, "value", QStringLiteral("dialRatio"));
+    propertyMonitorSource->addValueMapping(0, QStringLiteral("off"));
+    propertyMonitorSource->addValueMapping(11, QStringLiteral("max"));
+    provider->addDataSource(propertyMonitorSource, UserFeedback::Provider::AllStatistics);
 }
 
 Orwell::~Orwell() = default;

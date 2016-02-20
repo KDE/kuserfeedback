@@ -19,9 +19,11 @@
 #define USERFEEDBACK_ANALYZER_MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVector>
 
 #include <memory>
 
+class QAbstractItemModel;
 class QNetworkAccessManager;
 
 namespace UserFeedback {
@@ -36,7 +38,6 @@ class MainWindow;
 }
 
 class AggregatedDataModel;
-class CategoryAggregationModel;
 class Chart;
 class DataModel;
 class Product;
@@ -58,6 +59,7 @@ private:
 
     void createProduct();
     void deleteProduct();
+    void productSelected();
 
     void createSurvey();
     void deleteSurvey();
@@ -72,7 +74,7 @@ private:
     ProductModel *m_productModel;
     DataModel *m_dataModel;
     TimeAggregationModel *m_timeAggregationModel;
-    CategoryAggregationModel *m_versionModel;
+    QVector<QAbstractItemModel*> m_aggregationModels;
     AggregatedDataModel *m_aggregatedDataModel;
     SurveyModel *m_surveyModel;
     Chart *m_chart;

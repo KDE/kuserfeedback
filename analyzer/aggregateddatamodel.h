@@ -32,7 +32,8 @@ public:
     explicit AggregatedDataModel(QObject *parent = nullptr);
     ~AggregatedDataModel();
 
-    void addSourceModel(QAbstractItemModel *model);
+    void addSourceModel(QAbstractItemModel *model, const QString &prefix = QString());
+    void clear();
 
     int rowCount(const QModelIndex &parent) const override;
     int columnCount(const QModelIndex &parent) const override;
@@ -43,6 +44,7 @@ private:
     void recreateColumnMapping();
 
     QVector<QAbstractItemModel*> m_models;
+    QVector<QString> m_prefixes;
     QVector<int> m_columnMapping;
     QVector<int> m_columnOffset;
 };

@@ -60,10 +60,10 @@ void Chart::setModel(QAbstractItemModel* model)
     if (m_model)
         disconnect(m_model, &QAbstractItemModel::modelReset, this, &Chart::modelReset);
 
+    m_model = model;
     if (!model)
         return;
 
-    m_model = model;
     connect(m_model, &QAbstractItemModel::modelReset, this, &Chart::modelReset);
     modelReset();
 }

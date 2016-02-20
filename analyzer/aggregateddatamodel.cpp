@@ -18,6 +18,8 @@
 #include "aggregateddatamodel.h"
 #include "timeaggregationmodel.h"
 
+#include <QDebug>
+
 using namespace UserFeedback::Analyzer;
 
 AggregatedDataModel::AggregatedDataModel(QObject *parent) :
@@ -27,12 +29,25 @@ AggregatedDataModel::AggregatedDataModel(QObject *parent) :
 
 AggregatedDataModel::~AggregatedDataModel() = default;
 
-void AggregatedDataModel::addSourceModel(QAbstractItemModel* model)
+void AggregatedDataModel::addSourceModel(QAbstractItemModel* model, const QString &prefix)
 {
     Q_ASSERT(model);
     m_models.push_back(model);
+    m_prefixes.push_back(prefix);
     connect(model, &QAbstractItemModel::modelReset, this, &AggregatedDataModel::recreateColumnMapping);
     recreateColumnMapping();
+}
+
+void AggregatedDataModel::clear()
+{
+    beginResetModel();
+    m_columnMapping.clear();
+    m_columnOffset.clear();
+    foreach (auto model, m_models)
+        disconnect(model, &QAbstractItemModel::modelReset, this, &AggregatedDataModel::recreateColumnMapping);
+    m_models.clear();
+    m_prefixes.clear();
+    endResetModel();
 }
 
 int AggregatedDataModel::columnCount(const QModelIndex& parent) const
@@ -65,7 +80,10 @@ QVariant AggregatedDataModel::data(const QModelIndex& index, int role) const
 QVariant AggregatedDataModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (orientation == Qt::Horizontal && !m_models.isEmpty()) {
-        return m_models.at(m_columnMapping.at(section))->headerData(m_columnOffset.at(section), orientation, role);
+        const auto v = m_models.at(m_columnMapping.at(section))->headerData(m_columnOffset.at(section), orientation, role);
+        if (role != Qt::DisplayRole || m_prefixes.at(m_columnMapping.at(section)).isEmpty())
+            return v;
+        return m_prefixes.at(m_columnMapping.at(section)) + QStringLiteral(": ") + v.toString();
     }
     return QAbstractTableModel::headerData(section, orientation, role);
 }

@@ -56,7 +56,6 @@ MainWindow::MainWindow() :
     m_productModel(new ProductModel(this)),
     m_dataModel(new DataModel(this)),
     m_timeAggregationModel(new TimeAggregationModel(this)),
-    m_versionModel(new CategoryAggregationModel(this)),
     m_aggregatedDataModel(new AggregatedDataModel(this)),
     m_surveyModel(new SurveyModel(this)),
     m_chart(new Chart(this)),
@@ -74,10 +73,6 @@ MainWindow::MainWindow() :
     m_dataModel->setRESTClient(m_restClient);
     m_surveyModel->setRESTClient(m_restClient);
     m_timeAggregationModel->setSourceModel(m_dataModel);
-    m_versionModel->setSourceModel(m_timeAggregationModel);
-    m_versionModel->setAggregationValue(QStringLiteral("version"));
-    m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
-    m_aggregatedDataModel->addSourceModel(m_versionModel);
 
     m_chart->setModel(m_timeAggregationModel);
 
@@ -128,8 +123,6 @@ MainWindow::MainWindow() :
     settings.endGroup();
 
     ui->chartView->setChart(m_chart->chart());
-    ui->chartType->addItem(tr("Samples"), QVariant::fromValue(m_timeAggregationModel));
-    ui->chartType->addItem(tr("Versions"), QVariant::fromValue(m_versionModel));
     connect(ui->chartType, &QComboBox::currentTextChanged, this, [this]() {
         const auto model = ui->chartType->currentData().value<QAbstractItemModel*>();
         m_chart->setModel(model);
@@ -161,14 +154,7 @@ MainWindow::MainWindow() :
         ).arg(QStringLiteral(USERFEEDBACK_VERSION_STRING)));
     });
 
-    connect(ui->productListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, [this]() {
-        const auto product = selectedProduct();
-        if (!product.isValid())
-            return;
-        m_dataModel->setProduct(product);
-        m_surveyModel->setProductId(product.name());
-        ui->schemaEdit->setProduct(product);
-    });
+    connect(ui->productListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &MainWindow::productSelected);
 
     settings.beginGroup(QStringLiteral("MainWindow"));
     restoreGeometry(settings.value(QStringLiteral("Geometry")).toByteArray());
@@ -260,6 +246,43 @@ void MainWindow::deleteProduct()
         }
         m_productModel->reload();
     });
+}
+
+void MainWindow::productSelected()
+{
+    const auto product = selectedProduct();
+    if (!product.isValid())
+        return;
+    m_dataModel->setProduct(product);
+    m_surveyModel->setProductId(product.name());
+    ui->schemaEdit->setProduct(product);
+
+    m_chart->setModel(nullptr);
+    ui->chartType->clear();
+    m_aggregatedDataModel->clear();
+    qDeleteAll(m_aggregationModels);
+    m_aggregationModels.clear();
+
+    m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
+    ui->chartType->addItem(tr("Samples"), QVariant::fromValue(m_timeAggregationModel));
+
+    foreach (const auto &schemaEntry, product.schema()) {
+        switch (schemaEntry.type()) {
+            case ProductSchemaEntry::InvalidType:
+            case ProductSchemaEntry::StringListType:
+                break;
+            case ProductSchemaEntry::StringType:
+            {
+                auto model = new CategoryAggregationModel(this);
+                model->setSourceModel(m_timeAggregationModel);
+                model->setAggregationValue(schemaEntry.name());
+                m_aggregationModels.push_back(model);
+                m_aggregatedDataModel->addSourceModel(model, schemaEntry.name());
+                ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
+                break;
+            }
+        }
+    }
 }
 
 void MainWindow::createSurvey()

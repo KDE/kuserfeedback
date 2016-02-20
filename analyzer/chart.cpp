@@ -16,12 +16,17 @@
 */
 
 #include "chart.h"
+#include "categoryaggregationmodel.h"
+#include "numericaggregationmodel.h"
 #include "timeaggregationmodel.h"
 
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QBoxPlotSeries>
 #include <QtCharts/QChart>
 #include <QtCharts/QDateTimeAxis>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
+#include <QtCharts/QVBoxPlotModelMapper>
 #include <QtCharts/QVXYModelMapper>
 
 #include <QAbstractItemModel>
@@ -37,12 +42,14 @@ Chart::Chart(QObject *parent) :
     QObject(parent),
     m_chart(new QChart),
     m_xAxis(new QDateTimeAxis(this)),
+    m_boxXAxis(new QBarCategoryAxis(this)),
     m_yAxis(new QValueAxis(this))
 {
     m_chart->setTheme(qApp->palette().color(QPalette::Window).lightnessF() < 0.25 ? QChart::ChartThemeDark : QChart::ChartThemeLight);
 
     m_xAxis->setFormat(QStringLiteral("yyyy-MM-dd")); // TODO, follow aggregation mode
     m_chart->addAxis(m_xAxis, Qt::AlignBottom);
+    m_chart->addAxis(m_boxXAxis, Qt::AlignBottom);
     m_yAxis->setTickCount(5);
     m_yAxis->setMinorTickCount(4);
     m_chart->addAxis(m_yAxis, Qt::AlignLeft);
@@ -77,20 +84,47 @@ void Chart::modelReset()
     if (m_model->rowCount() <= 0 || colCount <= 1)
         return;
 
-    for (int i = 1; i < colCount; ++i) {
-        auto series = new QLineSeries(this);
-        series->setName(m_model->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
+    if (qobject_cast<NumericAggregationModel*>(m_model)) {
+        auto series = new QBoxPlotSeries(this);
+        series->setName(tr("TODO"));
 
-        auto mapper = new QVXYModelMapper(series);
+        auto mapper = new QVBoxPlotModelMapper(series);
         mapper->setModel(m_model);
-        mapper->setXColumn(0);
-        mapper->setYColumn(i);
-        mapper->setFirstRow(0);
+        mapper->setFirstBoxSetColumn(1);
+        mapper->setLastBoxSetColumn(5);
         mapper->setSeries(series);
         m_chart->addSeries(series);
 
-        series->attachAxis(m_xAxis);
+        series->attachAxis(m_boxXAxis);
         series->attachAxis(m_yAxis);
+
+        QStringList l;
+        for (int i = 0; i < m_model->rowCount(); ++i) {
+            l.push_back(m_model->index(i, 0).data(TimeAggregationModel::DateTimeRole).toDateTime().toString(QStringLiteral("yyyy-MM-dd")));
+        }
+
+        m_boxXAxis->setCategories(l);
+        m_boxXAxis->show();
+        m_xAxis->hide();
+    } else {
+        for (int i = 1; i < colCount; ++i) {
+            auto series = new QLineSeries(this);
+            series->setName(m_model->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
+
+            auto mapper = new QVXYModelMapper(series);
+            mapper->setModel(m_model);
+            mapper->setXColumn(0);
+            mapper->setYColumn(i);
+            mapper->setFirstRow(0);
+            mapper->setSeries(series);
+            m_chart->addSeries(series);
+
+            series->attachAxis(m_xAxis);
+            series->attachAxis(m_yAxis);
+        }
+
+        m_boxXAxis->hide();
+        m_xAxis->show();
     }
 
     // auto-scale axes
@@ -104,5 +138,4 @@ void Chart::modelReset()
         m_yAxis->setRange(0, max);
         m_yAxis->applyNiceNumbers();
     }
-
 }

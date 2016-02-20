@@ -25,6 +25,7 @@
 class QAbstractItemModel;
 
 namespace QtCharts {
+class QBarCategoryAxis;
 class QChart;
 class QDateTimeAxis;
 class QValueAxis;
@@ -50,6 +51,7 @@ private:
     std::unique_ptr<QtCharts::QChart> m_chart;
     QAbstractItemModel *m_model = nullptr;
     QtCharts::QDateTimeAxis *m_xAxis;
+    QtCharts::QBarCategoryAxis *m_boxXAxis;
     QtCharts::QValueAxis *m_yAxis;
 };
 

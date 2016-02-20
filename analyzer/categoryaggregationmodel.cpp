@@ -69,14 +69,15 @@ QVariant CategoryAggregationModel::data(const QModelIndex& index, int role) cons
     if (!index.isValid() || !m_sourceModel)
         return {};
 
+    if (role == TimeAggregationModel::MaximumValueRole)
+        return m_maxValue;
+
     if (index.column() == 0) {
         const auto srcIdx = m_sourceModel->index(index.row(), 0);
         return m_sourceModel->data(srcIdx, role);
     }
     if (role == Qt::DisplayRole) {
         return m_data[index.row() * m_categories.size() + index.column() - 1];
-    } else if (role == TimeAggregationModel::MaximumValueRole) {
-        return m_maxValue;
     }
 
     return {};

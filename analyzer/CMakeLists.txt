@@ -6,6 +6,7 @@ set(analyzer_srcs
     datamodel.cpp
     main.cpp
     mainwindow.cpp
+    numericaggregationmodel.cpp
     product.cpp
     productmodel.cpp
     productschemaentry.cpp

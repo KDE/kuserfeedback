@@ -37,6 +37,7 @@ public:
     RatioSet& operator=(const RatioSet&);
 
     QString displayString() const;
+    QHash<QString, double> data() const;
 
     static RatioSet fromJson(const QJsonObject &obj);
 

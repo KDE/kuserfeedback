@@ -11,6 +11,7 @@ set(analyzer_srcs
     productmodel.cpp
     productschemaentry.cpp
     ratioset.cpp
+    ratiosetaggregationmodel.cpp
     restclient.cpp
     sample.cpp
     schemamodel.cpp

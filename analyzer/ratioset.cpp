@@ -66,6 +66,11 @@ QString RatioSet::displayString() const
     return l.join(QStringLiteral(", "));
 }
 
+QHash<QString, double> RatioSet::data() const
+{
+    return d->ratioSet;
+}
+
 RatioSet RatioSet::fromJson(const QJsonObject& obj)
 {
     RatioSet set;

@@ -26,6 +26,7 @@
 #include "datamodel.h"
 #include "numericaggregationmodel.h"
 #include "productmodel.h"
+#include "ratiosetaggregationmodel.h"
 #include "restclient.h"
 #include "serverinfo.h"
 #include "surveydialog.h"
@@ -285,6 +286,16 @@ void MainWindow::productSelected()
             case ProductSchemaEntry::IntegerType:
             {
                 auto model = new NumericAggregationModel(this);
+                model->setSourceModel(m_timeAggregationModel);
+                model->setAggregationValue(schemaEntry.name());
+                m_aggregationModels.push_back(model);
+                m_aggregatedDataModel->addSourceModel(model, schemaEntry.name());
+                ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
+                break;
+            }
+            case ProductSchemaEntry::RatioSetType:
+            {
+                auto model = new RatioSetAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);
                 model->setAggregationValue(schemaEntry.name());
                 m_aggregationModels.push_back(model);

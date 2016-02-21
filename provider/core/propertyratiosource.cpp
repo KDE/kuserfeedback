@@ -82,8 +82,9 @@ void PropertyRatioSourcePrivate::propertyChanged()
 QString PropertyRatioSourcePrivate::valueToString(const QVariant &value) const
 {
     const auto it = valueMap.constFind(value);
-    if (it != valueMap.constEnd())
+    if (it != valueMap.constEnd() && it.key() == value) {
         return it.value();
+    }
     return value.toString();
 }
 

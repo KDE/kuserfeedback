@@ -19,6 +19,7 @@
 #include "abstractdatasource_p.h"
 
 #include <QDebug>
+#include <QHash>
 #include <QJsonObject>
 #include <QMap>
 #include <QMetaProperty>
@@ -40,9 +41,9 @@ public:
     QObject *obj = nullptr; // TODO make this a QPointer?
     QObject *signalMonitor = nullptr;
     QMetaProperty property;
-    QVariant previousValue;
+    QString previousValue;
     QTime lastChangeTime;
-    QMap<QVariant, int> ratioSet;
+    QHash<QString, int> ratioSet;
     QMap<QVariant, QString> valueMap;
     QString sampleName;
 };
@@ -71,12 +72,12 @@ PropertyRatioSourcePrivate::~PropertyRatioSourcePrivate()
 
 void PropertyRatioSourcePrivate::propertyChanged()
 {
-    if (previousValue.isValid() && lastChangeTime.elapsed() > 1000) {
+    if (!previousValue.isEmpty() && lastChangeTime.elapsed() > 1000) {
         ratioSet[previousValue] += lastChangeTime.elapsed() / 1000;
     }
 
     lastChangeTime.start();
-    previousValue = property.read(obj);
+    previousValue = valueToString(property.read(obj));
 }
 
 QString PropertyRatioSourcePrivate::valueToString(const QVariant &value) const
@@ -114,10 +115,11 @@ PropertyRatioSource::PropertyRatioSource(QObject *obj, const char *propertyName,
     d->signalMonitor = new SignalMonitor(d);
     idx = d->signalMonitor->metaObject()->indexOfMethod("propertyChanged()");
     Q_ASSERT(idx >= 0);
-    QObject::connect(obj, d->property.notifySignal(), d->signalMonitor, d->signalMonitor->metaObject()->method(idx));
+    const auto propertyChangedMethod = d->signalMonitor->metaObject()->method(idx);
+    QObject::connect(obj, d->property.notifySignal(), d->signalMonitor, propertyChangedMethod);
 
     d->lastChangeTime.start();
-    d->propertyChanged();
+    propertyChangedMethod.invoke(d->signalMonitor, Qt::QueuedConnection);
 }
 
 void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &str)
@@ -138,7 +140,7 @@ void PropertyRatioSource::toJson(QJsonObject &obj)
         total += it.value();
 
     for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it)
-        set.insert(d->valueToString(it.key()), (double)it.value() / (double)(total));
+        set.insert(it.key(), (double)it.value() / (double)(total));
 
     obj.insert(d->sampleName, set);
 }
@@ -152,7 +154,7 @@ void PropertyRatioSource::load(QSettings *settings)
 
     for (int i = 0; i < count; ++i) {
         settings->setArrayIndex(i);
-        const auto value = settings->value(QStringLiteral("Value"));
+        const auto value = settings->value(QStringLiteral("Value")).toString();
         const auto amount = settings->value(QStringLiteral("Amount"), 0).toInt();
         d->ratioSet.insert(value, amount);
     }
@@ -165,7 +167,9 @@ void PropertyRatioSource::load(QSettings *settings)
 
 void PropertyRatioSource::store(QSettings *settings)
 {
-    Q_D(const PropertyRatioSource);
+    Q_D(PropertyRatioSource);
+    d->propertyChanged();
+
     settings->beginGroup(QStringLiteral("PropertyRatioSource"));
     settings->beginGroup(d->sampleName);
     settings->beginWriteArray(QStringLiteral("RatioSet"), d->ratioSet.size());

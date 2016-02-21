@@ -74,6 +74,8 @@ QVariant AggregatedDataModel::data(const QModelIndex& index, int role) const
 
     const auto model = m_models.at(m_columnMapping.at(index.column()));
     const auto srcIdx = model->index(index.row(), m_columnOffset.at(index.column()));
+    if (role == Qt::DisplayRole)
+        return srcIdx.data(TimeAggregationModel::DataDisplayRole);
     return srcIdx.data(role);
 }
 

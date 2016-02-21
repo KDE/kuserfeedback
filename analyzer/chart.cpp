@@ -20,6 +20,7 @@
 #include "numericaggregationmodel.h"
 #include "timeaggregationmodel.h"
 
+#include <QtCharts/QAreaSeries>
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QBoxPlotSeries>
 #include <QtCharts/QChart>
@@ -107,9 +108,9 @@ void Chart::modelReset()
         m_boxXAxis->show();
         m_xAxis->hide();
     } else {
+        QLineSeries *prevSeries = nullptr;
         for (int i = 1; i < colCount; ++i) {
             auto series = new QLineSeries(this);
-            series->setName(m_model->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
 
             auto mapper = new QVXYModelMapper(series);
             mapper->setModel(m_model);
@@ -117,10 +118,15 @@ void Chart::modelReset()
             mapper->setYColumn(i);
             mapper->setFirstRow(0);
             mapper->setSeries(series);
-            m_chart->addSeries(series);
 
-            series->attachAxis(m_xAxis);
-            series->attachAxis(m_yAxis);
+            auto areaSeries = new QAreaSeries(series, prevSeries);
+            areaSeries->setName(m_model->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
+            m_chart->addSeries(areaSeries);
+
+            areaSeries->attachAxis(m_xAxis);
+            areaSeries->attachAxis(m_yAxis);
+
+            prevSeries = series;
         }
 
         m_boxXAxis->hide();

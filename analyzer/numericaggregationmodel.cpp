@@ -67,7 +67,7 @@ QVariant NumericAggregationModel::data(const QModelIndex& index, int role) const
         const auto srcIdx = m_sourceModel->index(index.row(), 0);
         return m_sourceModel->data(srcIdx, role);
     }
-    if (role == Qt::DisplayRole) {
+    if (role == Qt::DisplayRole || role == TimeAggregationModel::DataDisplayRole) {
         const auto d = m_data.at(index.row());
         switch (index.column()) {
             case 1: return d.lowerExtreme;

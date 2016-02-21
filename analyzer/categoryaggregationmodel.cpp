@@ -76,8 +76,14 @@ QVariant CategoryAggregationModel::data(const QModelIndex& index, int role) cons
         const auto srcIdx = m_sourceModel->index(index.row(), 0);
         return m_sourceModel->data(srcIdx, role);
     }
+
+    const auto idx = index.row() * m_categories.size() + index.column() - 1;
     if (role == Qt::DisplayRole) {
-        return m_data[index.row() * m_categories.size() + index.column() - 1];
+        return m_data[idx];
+    } else if (role == TimeAggregationModel::DataDisplayRole) {
+        if (index.column() == 1)
+            return m_data[idx];
+        return m_data[idx] - m_data[idx - 1];
     }
 
     return {};
@@ -126,20 +132,27 @@ void CategoryAggregationModel::recompute()
     foreach (const auto &cat, categories)
         m_categories.push_back(cat);
     std::sort(m_categories.begin(), m_categories.end());
+    const auto colCount = m_categories.size();
 
     // compute the counts per cell, we could do that on demand, but we need the maximum for QtCharts...
-    m_data = new int[m_categories.size() * rowCount];
-    memset(m_data, 0, sizeof(int) * m_categories.size() * rowCount);
+    m_data = new int[colCount * rowCount];
+    memset(m_data, 0, sizeof(int) * colCount * rowCount);
     for (int row = 0; row < rowCount; ++row) {
         const auto samples = m_sourceModel->index(row, 0).data(TimeAggregationModel::SamplesRole).value<QVector<Sample>>();
         foreach (const auto &sample, samples) {
             const auto catIt = std::lower_bound(m_categories.constBegin(), m_categories.constEnd(), sample.value(m_aggrValue).toString());
             Q_ASSERT(catIt != m_categories.constEnd());
-            const auto idx = m_categories.size() * row + std::distance(m_categories.constBegin(), catIt);
+            const auto idx = colCount * row + std::distance(m_categories.constBegin(), catIt);
             m_data[idx]++;
-            m_maxValue = std::max(m_maxValue, m_data[idx]);
         }
+        // accumulate per row for stacked plots
+        for (int col = 1; col < colCount; ++col) {
+            const auto idx = colCount * row + col;
+            m_data[idx] += m_data[idx - 1];
+        }
+        m_maxValue = std::max(m_maxValue, m_data[row * colCount + colCount - 1]);
     }
+
 
     endResetModel();
 }

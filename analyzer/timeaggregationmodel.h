@@ -42,6 +42,7 @@ public:
         DateTimeRole = Qt::UserRole + 1,
         MaximumValueRole,
         TimeDisplayRole,
+        DataDisplayRole,
         SamplesRole,
         AllSamplesRole
     };

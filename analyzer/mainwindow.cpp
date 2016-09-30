@@ -198,6 +198,7 @@ void MainWindow::connectToServer(const ServerInfo& info)
             logMessage(QString::fromUtf8(reply->readAll()));
         } else {
             logError(reply->errorString());
+            QMessageBox::critical(this, tr("Connection Failure"), tr("Failed to connect to server: %1").arg(reply->errorString()));
         }
     });
 }

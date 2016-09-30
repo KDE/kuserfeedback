@@ -187,7 +187,7 @@
    <widget class="QWidget" name="dockWidgetContents">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QTextBrowser" name="logWidget"/>
+      <widget class="QPlainTextEdit" name="logWidget"/>
      </item>
     </layout>
    </widget>

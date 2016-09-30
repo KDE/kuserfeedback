@@ -348,14 +348,12 @@ void MainWindow::deleteSurvey()
 
 void MainWindow::logMessage(const QString& msg)
 {
-    ui->logWidget->append(msg);
+    ui->logWidget->appendPlainText(msg);
 }
 
 void MainWindow::logError(const QString& msg)
 {
-    ui->logWidget->append(QStringLiteral("<font color=\"red\">"));
-    ui->logWidget->append(msg);
-    ui->logWidget->append(QStringLiteral("</font>"));
+    ui->logWidget->appendHtml( QStringLiteral("<font color=\"red\">") + msg + QStringLiteral("</font>"));
 }
 
 Product MainWindow::selectedProduct() const

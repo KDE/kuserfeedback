@@ -56,7 +56,7 @@ public function post_products()
     $product = json_decode($rawPostData, true);
 
     if ($product['name'] == "")
-        die("Product name is empty.");
+        Utils::httpError(400, "Product name is empty.");
 
     $db = new DataStore();
     $db->beginTransaction();
@@ -77,7 +77,7 @@ public function put_products($productId)
     $db->beginTransaction();
     $product = $db->productByName($productId);
     if (is_null($product))
-        die("Unknown product " . $productId . '.');
+        Utils::httpError(404, "Unknown product " . $productId . '.');
 
     $db->updateProductSchema($product, $productData['schema']);
     $db->commit();
@@ -88,13 +88,13 @@ public function put_products($productId)
 public function delete_products($productName)
 {
     if ($productName == "")
-        die("Empty product name.");
+        Utils::httpError(400, "Empty product name.");
 
     $db = new DataStore();
     $db->beginTransaction();
     $product = $db->productByName($productName);
     if (is_null($product))
-        die("Product not found.");
+        Utils::httpError(404, "Product not found.");
 
     $schema = $db->productSchema($product['id']);
 
@@ -110,7 +110,7 @@ public function get_data($productName)
 
     $product = $db->productByName($productName);
     if (is_null($product))
-        die("Unknown product.");
+        Utils::httpError(404, "Unknown product.");
     $schema = $db->productSchema($product['id']);
     $productTableName = Utils::tableNameForProduct($product['name']);
 
@@ -152,7 +152,7 @@ public function get_data($productName)
 public function get_surveys($product)
 {
     if ($product == "")
-        die("No product id specified.");
+        Utils::httpError(400, "No product id specified.");
 
     $db = new DataStore();
     $res = $db->surveysByProductName($product);
@@ -166,7 +166,7 @@ public function get_surveys($product)
 public function post_surveys($product)
 {
     if ($product == "")
-        die("No product id specified.");
+        Utils::httpError(400, "No product id specified.");
 
     $rawPostData = file_get_contents('php://input');
     $survey= json_decode($rawPostData, true);
@@ -175,7 +175,7 @@ public function post_surveys($product)
     $db->beginTransaction();
     $productData = $db->productByName($product);
     if (is_null($productData))
-        die("Invalid product identifier.");
+        Utils::httpError(404, "Invalid product identifier.");
 
     $db->addSurvey($productData['id'], $survey);
     $db->commit();
@@ -187,7 +187,7 @@ public function put_surveys($surveyId)
 {
     $surveyId = intval($surveyId);
     if ($surveyId < 0)
-        die("Invalid survey id.");
+        Utils::httpError(400, "Invalid survey id.");
 
     $surveyData = file_get_contents('php://input');
     $surveyData = json_decode($surveyData, true);

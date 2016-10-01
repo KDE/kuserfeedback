@@ -51,6 +51,14 @@ public static function tableNameForComplexEntry($productName, $entryName)
     return $productTableName;
 }
 
+public static function httpError($responseCode, $message)
+{
+    http_response_code($responseCode);
+    header('Content-Type: text/plain');
+    print($message);
+    exit(1);
+}
+
 }
 
 ?>

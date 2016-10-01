@@ -33,8 +33,11 @@ ProductModel::~ProductModel() = default;
 
 void ProductModel::setRESTClient(RESTClient* client)
 {
+    Q_ASSERT(client);
     m_restClient = client;
     connect(m_restClient, &RESTClient::clientConnected, this, &ProductModel::reload);
+    if (m_restClient->isConnected())
+        reload();
 }
 
 void ProductModel::reload()

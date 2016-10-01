@@ -5,6 +5,8 @@ set(analyzer_lib_srcs
     rest/restapi.cpp
     rest/restclient.cpp
     rest/serverinfo.cpp
+
+    model/productmodel.cpp
 )
 
 add_library(UserFeedbackAnalyzer STATIC ${analyzer_lib_srcs})
@@ -20,7 +22,6 @@ set(analyzer_srcs
     main.cpp
     mainwindow.cpp
     numericaggregationmodel.cpp
-    productmodel.cpp
     ratioset.cpp
     ratiosetaggregationmodel.cpp
     sample.cpp

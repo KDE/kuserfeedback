@@ -25,11 +25,12 @@
 #include "connectdialog.h"
 #include "datamodel.h"
 #include "numericaggregationmodel.h"
-#include "productmodel.h"
 #include "ratiosetaggregationmodel.h"
 #include "surveydialog.h"
 #include "surveymodel.h"
 #include "timeaggregationmodel.h"
+
+#include <model/productmodel.h>
 
 #include <rest/restapi.h>
 #include <rest/restclient.h>

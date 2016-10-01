@@ -17,7 +17,7 @@
 
 #include "sample.h"
 #include <core/product.h>
-#include <core/productschemaentry.h>
+#include <core/schemaentry.h>
 #include "ratioset.h"
 
 #include <QDateTime>
@@ -66,15 +66,15 @@ QVector<Sample> Sample::fromJson(const QByteArray &json, const Product &product)
             if (!obj.contains(entry.name()))
                 continue;
             switch (entry.type()) {
-                case ProductSchemaEntry::InvalidType:
+                case SchemaEntry::InvalidType:
                     break;
-                case ProductSchemaEntry::StringType:
+                case SchemaEntry::StringType:
                     s.d->data.insert(entry.name(), obj.value(entry.name()).toString());
                     break;
-                case ProductSchemaEntry::IntegerType:
+                case SchemaEntry::IntegerType:
                     s.d->data.insert(entry.name(), obj.value(entry.name()).toInt());
                     break;
-                case ProductSchemaEntry::StringListType:
+                case SchemaEntry::StringListType:
                 {
                     QStringList l;
                     const auto a = obj.value(entry.name()).toArray();
@@ -84,7 +84,7 @@ QVector<Sample> Sample::fromJson(const QByteArray &json, const Product &product)
                     s.d->data.insert(entry.name(), l);
                     break;
                 }
-                case ProductSchemaEntry::RatioSetType:
+                case SchemaEntry::RatioSetType:
                 {
                     const auto set = RatioSet::fromJson(obj.value(entry.name()).toObject());
                     s.d->data.insert(entry.name(), QVariant::fromValue(set));

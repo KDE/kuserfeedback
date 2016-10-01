@@ -214,15 +214,15 @@ void MainWindow::createProduct()
     Product product;
     product.setName(name);
 
-    QVector<ProductSchemaEntry> schema;
-    ProductSchemaEntry entry;
+    QVector<SchemaEntry> schema;
+    SchemaEntry entry;
     entry.setName(QStringLiteral("version"));
-    entry.setType(ProductSchemaEntry::StringType);
+    entry.setType(SchemaEntry::StringType);
     schema.push_back(entry);
     entry.setName(QStringLiteral("platform"));
     schema.push_back(entry);
     entry.setName(QStringLiteral("startCount"));
-    entry.setType(ProductSchemaEntry::IntegerType);
+    entry.setType(SchemaEntry::IntegerType);
     schema.push_back(entry);
     entry.setName(QStringLiteral("usageTime"));
     schema.push_back(entry);
@@ -274,10 +274,10 @@ void MainWindow::productSelected()
 
     foreach (const auto &schemaEntry, product.schema()) {
         switch (schemaEntry.type()) {
-            case ProductSchemaEntry::InvalidType:
-            case ProductSchemaEntry::StringListType:
+            case SchemaEntry::InvalidType:
+            case SchemaEntry::StringListType:
                 break;
-            case ProductSchemaEntry::StringType:
+            case SchemaEntry::StringType:
             {
                 auto model = new CategoryAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);
@@ -287,7 +287,7 @@ void MainWindow::productSelected()
                 ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
                 break;
             }
-            case ProductSchemaEntry::IntegerType:
+            case SchemaEntry::IntegerType:
             {
                 auto model = new NumericAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);
@@ -297,7 +297,7 @@ void MainWindow::productSelected()
                 ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
                 break;
             }
-            case ProductSchemaEntry::RatioSetType:
+            case SchemaEntry::RatioSetType:
             {
                 auto model = new RatioSetAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);

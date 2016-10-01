@@ -16,7 +16,7 @@
 */
 
 #include "schemaentryitemeditorfactory.h"
-#include <core/productschemaentry.h>
+#include <core/schemaentry.h>
 #include "schemaentrytypecombobox.h"
 
 #include <QDebug>
@@ -25,5 +25,5 @@ using namespace UserFeedback::Analyzer;
 
 SchemaEntryItemEditorFactory::SchemaEntryItemEditorFactory()
 {
-   registerEditor(qMetaTypeId<ProductSchemaEntry::Type>(), new QStandardItemEditorCreator<SchemaEntryTypeComboBox>());
+   registerEditor(qMetaTypeId<SchemaEntry::Type>(), new QStandardItemEditorCreator<SchemaEntryTypeComboBox>());
 }

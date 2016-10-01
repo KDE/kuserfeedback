@@ -1,6 +1,6 @@
 set(analyzer_lib_srcs
     core/product.cpp
-    core/productschemaentry.cpp
+    core/schemaentry.cpp
 
     rest/restapi.cpp
     rest/restclient.cpp

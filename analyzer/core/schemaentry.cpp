@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "productschemaentry.h"
+#include "schemaentry.h"
 
 #include <QJsonArray>
 #include <QJsonObject>
@@ -27,54 +27,54 @@ using namespace UserFeedback::Analyzer;
 namespace UserFeedback {
 namespace Analyzer {
 
-class ProductSchemaEntryData : public QSharedData
+class SchemaEntryData : public QSharedData
 {
 public:
 
     QString name;
     int internalId = -1;
-    ProductSchemaEntry::Type type = ProductSchemaEntry::StringType;
+    SchemaEntry::Type type = SchemaEntry::StringType;
 };
 
 }
 }
 
-ProductSchemaEntry::ProductSchemaEntry() : d(new ProductSchemaEntryData) {}
-ProductSchemaEntry::ProductSchemaEntry(const ProductSchemaEntry&) = default;
-ProductSchemaEntry::~ProductSchemaEntry() = default;
-ProductSchemaEntry& ProductSchemaEntry::operator=(const ProductSchemaEntry&) = default;
+SchemaEntry::SchemaEntry() : d(new SchemaEntryData) {}
+SchemaEntry::SchemaEntry(const SchemaEntry&) = default;
+SchemaEntry::~SchemaEntry() = default;
+SchemaEntry& SchemaEntry::operator=(const SchemaEntry&) = default;
 
-int ProductSchemaEntry::internalId() const
+int SchemaEntry::internalId() const
 {
     return d->internalId;
 }
 
-void ProductSchemaEntry::setInternalId(int internalId)
+void SchemaEntry::setInternalId(int internalId)
 {
     d->internalId = internalId;
 }
 
-QString ProductSchemaEntry::name() const
+QString SchemaEntry::name() const
 {
     return d->name;
 }
 
-void ProductSchemaEntry::setName(const QString& name)
+void SchemaEntry::setName(const QString& name)
 {
     d->name = name;
 }
 
-ProductSchemaEntry::Type ProductSchemaEntry::type() const
+SchemaEntry::Type SchemaEntry::type() const
 {
     return d->type;
 }
 
-void ProductSchemaEntry::setType(ProductSchemaEntry::Type type)
+void SchemaEntry::setType(SchemaEntry::Type type)
 {
     d->type = type;
 }
 
-QString ProductSchemaEntry::displayString(ProductSchemaEntry::Type type)
+QString SchemaEntry::displayString(SchemaEntry::Type type)
 {
     switch (type) {
         case InvalidType: return QObject::tr("Invalid");
@@ -87,7 +87,7 @@ QString ProductSchemaEntry::displayString(ProductSchemaEntry::Type type)
     Q_UNREACHABLE();
 }
 
-QJsonObject ProductSchemaEntry::toJsonObject() const
+QJsonObject SchemaEntry::toJsonObject() const
 {
     QJsonObject obj;
     if (d->internalId >= 0)
@@ -106,14 +106,14 @@ QJsonObject ProductSchemaEntry::toJsonObject() const
     return obj;
 }
 
-QVector<ProductSchemaEntry> ProductSchemaEntry::fromJson(const QJsonArray &array)
+QVector<SchemaEntry> SchemaEntry::fromJson(const QJsonArray &array)
 {
-    QVector<ProductSchemaEntry> res;
+    QVector<SchemaEntry> res;
     res.reserve(array.size());
 
     foreach (const auto &v, array) {
         const auto obj = v.toObject();
-        ProductSchemaEntry entry;
+        SchemaEntry entry;
         entry.setName(obj.value(QStringLiteral("name")).toString());
         const auto t = obj.value(QStringLiteral("type")).toString();
         if (t == QStringLiteral("string"))

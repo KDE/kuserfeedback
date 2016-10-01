@@ -42,7 +42,7 @@ void SchemaModel::addEntry(const QString &name)
 {
     auto schema = m_product.schema();
     beginInsertRows(QModelIndex(), schema.size(), schema.size());
-    ProductSchemaEntry entry;
+    SchemaEntry entry;
     entry.setName(name);
     schema.push_back(entry);
     m_product.setSchema(schema);
@@ -83,7 +83,7 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
             break;
         case 1:
             if (role == Qt::DisplayRole)
-                return ProductSchemaEntry::displayString(m_product.schema().at(index.row()).type());
+                return SchemaEntry::displayString(m_product.schema().at(index.row()).type());
             if (role == Qt::EditRole)
                 return QVariant::fromValue(m_product.schema().at(index.row()).type());
             break;
@@ -121,7 +121,7 @@ bool SchemaModel::setData(const QModelIndex &index, const QVariant &value, int r
             entry.setName(value.toString());
             break;
         case 1:
-            entry.setType(value.value<ProductSchemaEntry::Type>());
+            entry.setType(value.value<SchemaEntry::Type>());
             break;
     }
 

@@ -18,7 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_PRODUCT_H
 #define USERFEEDBACK_ANALYZER_PRODUCT_H
 
-#include "productschemaentry.h"
+#include "schemaentry.h"
 
 #include <QMetaType>
 #include <QSharedDataPointer>
@@ -45,8 +45,8 @@ public:
     QString name() const;
     void setName(const QString &name);
 
-    QVector<ProductSchemaEntry> schema() const;
-    void setSchema(const QVector<ProductSchemaEntry>& schema);
+    QVector<SchemaEntry> schema() const;
+    void setSchema(const QVector<SchemaEntry>& schema);
 
     QByteArray toJson() const;
     static QVector<Product> fromJson(const QByteArray &data);

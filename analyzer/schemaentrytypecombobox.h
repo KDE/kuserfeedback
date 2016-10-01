@@ -18,7 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_SCHEMAENTRYTYPECOMBOBOX_H
 #define USERFEEDBACK_ANALYZER_SCHEMAENTRYTYPECOMBOBOX_H
 
-#include <core/productschemaentry.h>
+#include <core/schemaentry.h>
 
 #include <QComboBox>
 
@@ -28,16 +28,16 @@ namespace Analyzer {
 class SchemaEntryTypeComboBox : public QComboBox
 {
     Q_OBJECT
-    Q_PROPERTY(UserFeedback::Analyzer::ProductSchemaEntry::Type type READ type WRITE setType USER true)
+    Q_PROPERTY(UserFeedback::Analyzer::SchemaEntry::Type type READ type WRITE setType USER true)
 public:
     explicit SchemaEntryTypeComboBox(QWidget *parent = nullptr);
     ~SchemaEntryTypeComboBox();
 
-    ProductSchemaEntry::Type type() const;
-    void setType(ProductSchemaEntry::Type type);
+    SchemaEntry::Type type() const;
+    void setType(SchemaEntry::Type type);
 
 private:
-    void addEntry(ProductSchemaEntry::Type type);
+    void addEntry(SchemaEntry::Type type);
 
 };
 

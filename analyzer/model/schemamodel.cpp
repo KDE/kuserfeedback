@@ -105,7 +105,10 @@ QVariant SchemaModel::headerData(int section, Qt::Orientation orientation, int r
 
 Qt::ItemFlags SchemaModel::flags(const QModelIndex &index) const
 {
-    return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
+    const auto baseFlags = QAbstractTableModel::flags(index);
+    if (index.isValid())
+        return baseFlags | Qt::ItemIsEditable;
+    return baseFlags;
 }
 
 bool SchemaModel::setData(const QModelIndex &index, const QVariant &value, int role)

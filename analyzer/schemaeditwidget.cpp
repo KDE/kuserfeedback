@@ -18,9 +18,9 @@
 #include "schemaeditwidget.h"
 #include "ui_schemaeditwidget.h"
 
+#include <model/schemamodel.h>
 #include <core/product.h>
 #include "schemaentryitemeditorfactory.h"
-#include "schemamodel.h"
 
 #include <QDebug>
 #include <QMessageBox>

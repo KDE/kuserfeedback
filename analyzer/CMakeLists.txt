@@ -7,6 +7,7 @@ set(analyzer_lib_srcs
     rest/serverinfo.cpp
 
     model/productmodel.cpp
+    model/schemamodel.cpp
 )
 
 add_library(UserFeedbackAnalyzer STATIC ${analyzer_lib_srcs})
@@ -25,7 +26,6 @@ set(analyzer_srcs
     ratioset.cpp
     ratiosetaggregationmodel.cpp
     sample.cpp
-    schemamodel.cpp
     schemaeditwidget.cpp
     schemaentryitemeditorfactory.cpp
     schemaentrytypecombobox.cpp

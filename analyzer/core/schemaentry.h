@@ -72,6 +72,8 @@ public:
     ~SchemaEntry();
     SchemaEntry& operator=(const SchemaEntry &entry);
 
+    bool operator==(const SchemaEntry &other) const;
+
     int internalId() const;
     void setInternalId(int internalId);
 

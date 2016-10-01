@@ -107,7 +107,9 @@ private slots:
         QCOMPARE(reply->error(), QNetworkReply::NoError);
         auto newProducts = Product::fromJson(reply->readAll());
         QCOMPARE(newProducts.size(), products.size() + 1);
-        QVERIFY(findProduct(newProducts, QLatin1String("org.kde.UserFeedback.UnitTestProduct")).isValid());
+        const auto createdProduct = findProduct(newProducts, QLatin1String("org.kde.UserFeedback.UnitTestProduct"));
+        QVERIFY(createdProduct.isValid());
+        QCOMPARE(createdProduct.schema(), newProduct.schema());
 
         // update a product
         reply = RESTApi::updateProduct(&client, newProduct);

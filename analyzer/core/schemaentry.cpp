@@ -44,6 +44,13 @@ SchemaEntry::SchemaEntry(const SchemaEntry&) = default;
 SchemaEntry::~SchemaEntry() = default;
 SchemaEntry& SchemaEntry::operator=(const SchemaEntry&) = default;
 
+bool SchemaEntry::operator==(const SchemaEntry &other) const
+{
+    return d->name == other.d->name
+        && d->internalId == other.d->internalId
+        && d->type == other.d->internalId;
+}
+
 int SchemaEntry::internalId() const
 {
     return d->internalId;

@@ -85,17 +85,26 @@ private slots:
         RESTClient client;
         client.connectToServer(testServer());
         QVERIFY(client.isConnected());
+        Product newProduct;
+        newProduct.setName(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
+
+        // clean up from previous failed runs, if needed
+        auto reply = RESTApi::deleteProduct(&client, newProduct);
+        waitForFinished(reply);
 
         // list existing products
-        auto reply = RESTApi::getProducts(&client);
+        reply = RESTApi::getProducts(&client);
         QVERIFY(waitForFinished(reply));
         QCOMPARE(reply->error(), QNetworkReply::NoError);
         const auto products = Product::fromJson(reply->readAll());
         QVERIFY(!findProduct(products, QLatin1String("org.kde.UserFeedback.UnitTestProduct")).isValid());
 
         // add new product
-        Product newProduct;
-        newProduct.setName(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
+        SchemaEntry entry;
+        entry.setName(QStringLiteral("entry1"));
+        entry.setType(SchemaEntry::StringType);
+        entry.setAggregationType(SchemaEntry::Category);
+        newProduct.setSchema({entry});
         QVERIFY(newProduct.isValid());
         reply = RESTApi::createProduct(&client, newProduct);
         QVERIFY(waitForFinished(reply));

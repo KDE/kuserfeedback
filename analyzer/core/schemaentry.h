@@ -29,6 +29,7 @@ namespace UserFeedback {
 namespace Analyzer {
 
 class SchemaEntryData;
+class SchemaEntryElement;
 
 /** Represents one schema entry.
  *  A schema entry can be a scalar, a list or a map, and consists of one or
@@ -58,6 +59,22 @@ class SchemaEntry
 {
     Q_GADGET
 public:
+    enum DataType {
+        Scalar,
+        List,
+        Map
+    };
+    Q_ENUM(DataType)
+
+    enum AggregationType {
+        None,
+        Category,
+        RatioSet,
+        Numeric,
+        XY
+    };
+    Q_ENUM(AggregationType)
+
     enum Type {
         InvalidType,
         IntegerType,
@@ -82,6 +99,15 @@ public:
 
     Type type() const;
     void setType(Type type);
+
+    AggregationType aggregationType() const;
+    void setAggregationType(AggregationType type);
+
+    DataType dataType() const;
+    void setDataType(DataType type);
+
+    QVector<SchemaEntryElement> elements() const;
+    void setElements(const QVector<SchemaEntryElement> &elements);
 
     static QString displayString(Type type);
 

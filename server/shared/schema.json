@@ -23,6 +23,11 @@
         {
             "version": 5,
             "sql": ["CREATE TABLE product_schema (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id), name VARCHAR, type VARCHAR)" ]
+        },
+
+        {
+            "version": 6,
+            "sql": ["ALTER TABLE product_schema ADD COLUMN aggregation VARCHAR"]
         }
     ]
 }

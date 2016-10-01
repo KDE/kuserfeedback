@@ -171,6 +171,7 @@ public function productSchema($productId)
         $entry = array();
         $entry['name'] = $row['name'];
         $entry['type'] = $row['type'];
+        $entry['aggregation'] = $row['aggregation'];
         array_push($schema, $entry);
     }
     return $schema;
@@ -192,17 +193,18 @@ public function updateProductSchema($product, $schema)
                 die('Cannot change data type of entry ' . $entry['name'] . '!');
 
             $res = $this->db->exec('UPDATE product_schema SET ' .
-                'type = ' . $this->db->quote($entry['type']) . ' WHERE ' .
+                'aggregation = ' . $this->db->quote($entry['aggregation']) . ' WHERE ' .
                 'productId = ' . intval($product['id']) . ' AND ' .
                 'name = ' . $this->db->quote($entry['name'])
             );
             $this->checkError($res);
         } else {
             // insert
-            $res = $this->db->exec('INSERT INTO product_schema (productId, name, type) VALUES (' .
+            $res = $this->db->exec('INSERT INTO product_schema (productId, name, type, aggregation) VALUES (' .
                 intval($product['id']) . ', ' .
                 $this->db->quote($entry['name']) . ', ' .
-                $this->db->quote($entry['type']) . ')'
+                $this->db->quote($entry['type']) . ', ' .
+                $this->db->quote($entry['aggregation']) . ')'
             );
             $this->checkError($res);
 

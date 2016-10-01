@@ -17,10 +17,16 @@
 
 #include "schemamodel.h"
 
+#include <core/schemaentryelement.h>
+
+#include <limits>
+
 using namespace UserFeedback::Analyzer;
 
+static const auto TOPLEVEL = std::numeric_limits<quintptr>::max();
+
 SchemaModel::SchemaModel(QObject *parent) :
-    QAbstractTableModel(parent)
+    QAbstractItemModel(parent)
 {
 }
 
@@ -61,19 +67,21 @@ void SchemaModel::deleteEntry(int row)
 int SchemaModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return 2;
+    return 3;
 }
 
 int SchemaModel::rowCount(const QModelIndex& parent) const
 {
-    if (parent.isValid())
-        return 0;
-    return m_product.schema().size();
+    if (!parent.isValid())
+        return m_product.schema().size();
+    if (parent.internalId() == TOPLEVEL)
+        return m_product.schema().at(parent.row()).elements().size();
+    return 0;
 }
 
 QVariant SchemaModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid())
+    if (!index.isValid() || index.internalId() != TOPLEVEL)
         return {};
 
     switch (index.column()) {
@@ -87,6 +95,9 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
             if (role == Qt::EditRole)
                 return QVariant::fromValue(m_product.schema().at(index.row()).type());
             break;
+        case 2:
+            if (role == Qt::DisplayRole)
+                return m_product.schema().at(index.row()).aggregationType();
     }
 
     return {};
@@ -98,14 +109,15 @@ QVariant SchemaModel::headerData(int section, Qt::Orientation orientation, int r
         switch (section) {
             case 0: return tr("Name");
             case 1: return tr("Type");
+            case 2: return tr("Aggregation");
         }
     }
-    return QAbstractTableModel::headerData(section, orientation, role);
+    return QAbstractItemModel::headerData(section, orientation, role);
 }
 
 Qt::ItemFlags SchemaModel::flags(const QModelIndex &index) const
 {
-    const auto baseFlags = QAbstractTableModel::flags(index);
+    const auto baseFlags = QAbstractItemModel::flags(index);
     if (index.isValid())
         return baseFlags | Qt::ItemIsEditable;
     return baseFlags;
@@ -132,4 +144,22 @@ bool SchemaModel::setData(const QModelIndex &index, const QVariant &value, int r
 
     emit dataChanged(index, index);
     return false;
+}
+
+QModelIndex SchemaModel::index(int row, int column, const QModelIndex &parent) const
+{
+    if (!hasIndex(row, column, parent))
+        return {};
+    if (!parent.isValid())
+        return createIndex(row, column, TOPLEVEL);
+    if (parent.internalId() == TOPLEVEL)
+        return createIndex(row, column, parent.row());
+    return {};
+}
+
+QModelIndex SchemaModel::parent(const QModelIndex &index) const
+{
+    if (!index.isValid() || index.internalId() == TOPLEVEL)
+        return {};
+    return createIndex(index.internalId(), 0);
 }

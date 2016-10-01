@@ -16,7 +16,10 @@
 */
 
 #include "schemaentry.h"
+#include "schemaentryelement.h"
+#include "util.h"
 
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QObject>
@@ -30,10 +33,23 @@ namespace Analyzer {
 class SchemaEntryData : public QSharedData
 {
 public:
-
     QString name;
     int internalId = -1;
     SchemaEntry::Type type = SchemaEntry::StringType;
+    SchemaEntry::DataType dataType = SchemaEntry::Scalar;
+    SchemaEntry::AggregationType aggregation = SchemaEntry::None;
+    QVector<SchemaEntryElement> elements;
+};
+
+static const struct {
+    SchemaEntry::AggregationType type;
+    const char *name;
+} aggregation_types_table[] {
+    { SchemaEntry::None, "none" },
+    { SchemaEntry::Category, "category" },
+    { SchemaEntry::RatioSet, "ratio_set" },
+    { SchemaEntry::Numeric, "numeric" },
+    { SchemaEntry::XY, "xy" }
 };
 
 }
@@ -48,7 +64,10 @@ bool SchemaEntry::operator==(const SchemaEntry &other) const
 {
     return d->name == other.d->name
         && d->internalId == other.d->internalId
-        && d->type == other.d->internalId;
+        && d->type == other.d->type
+        && d->dataType == other.d->dataType
+        && d->aggregation == other.d->aggregation
+        && d->elements == other.d->elements;
 }
 
 int SchemaEntry::internalId() const
@@ -81,6 +100,36 @@ void SchemaEntry::setType(SchemaEntry::Type type)
     d->type = type;
 }
 
+SchemaEntry::DataType SchemaEntry::dataType() const
+{
+    return d->dataType;
+}
+
+void SchemaEntry::setDataType(SchemaEntry::DataType type)
+{
+    d->dataType = type;
+}
+
+SchemaEntry::AggregationType SchemaEntry::aggregationType() const
+{
+    return d->aggregation;
+}
+
+void SchemaEntry::setAggregationType(SchemaEntry::AggregationType type)
+{
+    d->aggregation = type;
+}
+
+QVector<SchemaEntryElement> SchemaEntry::elements() const
+{
+    return d->elements;
+}
+
+void SchemaEntry::setElements(const QVector<SchemaEntryElement> &elements)
+{
+    d->elements = elements;
+}
+
 QString SchemaEntry::displayString(SchemaEntry::Type type)
 {
     switch (type) {
@@ -110,6 +159,12 @@ QJsonObject SchemaEntry::toJsonObject() const
         case RatioSetType: t = QStringLiteral("ratio_set"); break;
     }
     obj.insert(QStringLiteral("type"), t);
+    obj.insert(QStringLiteral("aggregation"), QLatin1String(aggregation_types_table[d->aggregation].name));
+
+    QJsonArray array;
+    for (const auto &element : qAsConst(d->elements))
+        array.push_back(element.toJsonObject());
+    obj.insert(QStringLiteral("elements"), array);
     return obj;
 }
 
@@ -122,7 +177,7 @@ QVector<SchemaEntry> SchemaEntry::fromJson(const QJsonArray &array)
         const auto obj = v.toObject();
         SchemaEntry entry;
         entry.setName(obj.value(QStringLiteral("name")).toString());
-        const auto t = obj.value(QStringLiteral("type")).toString();
+        auto t = obj.value(QStringLiteral("type")).toString();
         if (t == QStringLiteral("string"))
             entry.setType(StringType);
         else if (t == QStringLiteral("int"))
@@ -131,6 +186,9 @@ QVector<SchemaEntry> SchemaEntry::fromJson(const QJsonArray &array)
             entry.setType(StringListType);
         else if (t == QStringLiteral("ratio_set"))
             entry.setType(RatioSetType);
+        entry.setAggregationType(Util::stringToEnum<AggregationType>(obj.value(QLatin1String("aggregation")).toString(), aggregation_types_table));
+        entry.setElements(SchemaEntryElement::fromJson(obj.value(QLatin1String("elements")).toArray()));
+
         res.push_back(entry);
     }
 

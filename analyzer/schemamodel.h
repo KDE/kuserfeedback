@@ -18,7 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_SCHEMAMODEL_H
 #define USERFEEDBACK_ANALYZER_SCHEMAMODEL_H
 
-#include "product.h"
+#include <core/product.h>
 
 #include <QAbstractTableModel>
 

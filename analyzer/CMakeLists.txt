@@ -1,3 +1,16 @@
+set(analyzer_lib_srcs
+    core/product.cpp
+    core/productschemaentry.cpp
+
+    rest/restapi.cpp
+    rest/restclient.cpp
+    rest/serverinfo.cpp
+)
+
+add_library(UserFeedbackAnalyzer STATIC ${analyzer_lib_srcs})
+target_link_libraries(UserFeedbackAnalyzer Qt5::Network)
+target_include_directories(UserFeedbackAnalyzer PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};>")
+
 set(analyzer_srcs
     aggregateddatamodel.cpp
     categoryaggregationmodel.cpp
@@ -7,25 +20,22 @@ set(analyzer_srcs
     main.cpp
     mainwindow.cpp
     numericaggregationmodel.cpp
-    product.cpp
     productmodel.cpp
-    productschemaentry.cpp
     ratioset.cpp
     ratiosetaggregationmodel.cpp
-    restclient.cpp
     sample.cpp
     schemamodel.cpp
     schemaeditwidget.cpp
     schemaentryitemeditorfactory.cpp
     schemaentrytypecombobox.cpp
-    serverinfo.cpp
     survey.cpp
     surveydialog.cpp
     surveymodel.cpp
     timeaggregationmodel.cpp
 )
 
-add_executable(UserFeedbackAnalyzer ${analyzer_srcs})
-target_link_libraries(UserFeedbackAnalyzer Qt5::Widgets Qt5::Network Qt5::Charts UserFeedbackWidgets)
+add_executable(UserFeedbackAnalyzerApplication ${analyzer_srcs})
+set_target_properties(UserFeedbackAnalyzerApplication PROPERTIES OUTPUT_NAME UserFeedbackAnalyzer)
+target_link_libraries(UserFeedbackAnalyzerApplication Qt5::Widgets Qt5::Network Qt5::Charts UserFeedbackWidgets UserFeedbackAnalyzer)
 
-install(TARGETS UserFeedbackAnalyzer ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS UserFeedbackAnalyzerApplication ${INSTALL_TARGETS_DEFAULT_ARGS})

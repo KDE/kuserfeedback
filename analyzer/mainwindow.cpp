@@ -27,11 +27,13 @@
 #include "numericaggregationmodel.h"
 #include "productmodel.h"
 #include "ratiosetaggregationmodel.h"
-#include "restclient.h"
-#include "serverinfo.h"
 #include "surveydialog.h"
 #include "surveymodel.h"
 #include "timeaggregationmodel.h"
+
+#include <rest/restapi.h>
+#include <rest/restclient.h>
+#include <rest/serverinfo.h>
 
 #include <provider/widgets/feedbackconfigdialog.h>
 #include <provider/core/propertyratiosource.h>
@@ -131,7 +133,7 @@ MainWindow::MainWindow() :
     });
 
     connect(ui->schemaEdit, &SchemaEditWidget::productChanged, this, [this](const Product &p) {
-        auto reply = m_restClient->put(QStringLiteral("products/") + p.name(), p.toJson());
+        auto reply = RESTApi::updateProduct(m_restClient, p);
         connect(reply, &QNetworkReply::finished, this, [this, reply]() {
             if (reply->error() != QNetworkReply::NoError)
                 return;
@@ -226,7 +228,7 @@ void MainWindow::createProduct()
 
     product.setSchema(schema);
 
-    auto reply = m_restClient->post(QStringLiteral("products"), product.toJson());
+    auto reply = RESTApi::createProduct(m_restClient, product);
     connect(reply, &QNetworkReply::finished, this, [this, reply, name]() {
         if (reply->error() == QNetworkReply::NoError) {
             logMessage(QString::fromUtf8(reply->readAll()));
@@ -242,7 +244,7 @@ void MainWindow::deleteProduct()
         return;
     const auto product = sel.first().data(ProductModel::ProductRole).value<Product>();
     // TODO saftey question
-    auto reply = m_restClient->deleteResource(QStringLiteral("products/") + product.name());
+    auto reply = RESTApi::deleteProduct(m_restClient, product);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
             logMessage(QString::fromUtf8(reply->readAll()));

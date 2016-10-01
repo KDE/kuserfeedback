@@ -17,7 +17,7 @@
 
 #include "surveymodel.h"
 
-#include "restclient.h"
+#include <rest/restclient.h>
 
 #include <QDebug>
 #include <QNetworkReply>

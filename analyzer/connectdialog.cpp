@@ -18,7 +18,7 @@
 #include "connectdialog.h"
 #include "ui_connectdialog.h"
 
-#include "serverinfo.h"
+#include <rest/serverinfo.h>
 
 #include <QIcon>
 #include <QUrl>

@@ -18,7 +18,7 @@
 #include "datamodel.h"
 
 #include "ratioset.h"
-#include "restclient.h"
+#include <rest/restclient.h>
 #include "sample.h"
 
 #include <QDebug>

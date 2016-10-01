@@ -18,7 +18,7 @@
 #include "schemaeditwidget.h"
 #include "ui_schemaeditwidget.h"
 
-#include "product.h"
+#include <core/product.h>
 #include "schemaentryitemeditorfactory.h"
 #include "schemamodel.h"
 

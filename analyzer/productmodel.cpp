@@ -16,7 +16,9 @@
 */
 
 #include "productmodel.h"
-#include "restclient.h"
+
+#include <rest/restapi.h>
+#include <rest/restclient.h>
 
 #include <QNetworkReply>
 
@@ -42,7 +44,7 @@ void ProductModel::reload()
     if (!m_restClient->isConnected())
         return;
 
-    auto reply = m_restClient->get(QStringLiteral("products"));
+    auto reply = RESTApi::getProducts(m_restClient);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
             beginResetModel();

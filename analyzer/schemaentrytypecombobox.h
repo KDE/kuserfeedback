@@ -18,7 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_SCHEMAENTRYTYPECOMBOBOX_H
 #define USERFEEDBACK_ANALYZER_SCHEMAENTRYTYPECOMBOBOX_H
 
-#include "productschemaentry.h"
+#include <core/productschemaentry.h>
 
 #include <QComboBox>
 

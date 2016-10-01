@@ -55,7 +55,8 @@ QNetworkReply* RESTClient::get(const QString& command)
 
 QNetworkReply* RESTClient::post(const QString& command, const QByteArray& data)
 {
-    const auto request = makeRequest(command);
+    auto request = makeRequest(command);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
     auto reply = m_networkAccessManager->post(request, data);
     setupMessageHandler(reply);
     return reply;

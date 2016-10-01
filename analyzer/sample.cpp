@@ -16,8 +16,8 @@
 */
 
 #include "sample.h"
-#include "product.h"
-#include "productschemaentry.h"
+#include <core/product.h>
+#include <core/productschemaentry.h>
 #include "ratioset.h"
 
 #include <QDateTime>

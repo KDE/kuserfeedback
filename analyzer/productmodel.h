@@ -18,8 +18,8 @@
 #ifndef USERFEEDBACK_ANALYZER_PRODUCTMODEL_H
 #define USERFEEDBACK_ANALYZER_PRODUCTMODEL_H
 
-#include "product.h"
-#include "serverinfo.h"
+#include <core/product.h>
+#include <rest/serverinfo.h>
 
 #include <QAbstractListModel>
 #include <QVector>

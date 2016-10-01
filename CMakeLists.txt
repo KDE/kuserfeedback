@@ -75,7 +75,7 @@ endif()
 if(Qt5Core_FOUND)
     set_package_properties(Qt5Core PROPERTIES TYPE REQUIRED)
     find_package(Qt5 NO_MODULE REQUIRED COMPONENTS Network)
-    find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts)
+    find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test)
     find_package(KF5WidgetsAddons NO_MODULE QUIET)
 
     if(Qt5_POSITION_INDEPENDENT_CODE AND NOT WIN32)
@@ -157,6 +157,7 @@ if(Qt5Charts_FOUND AND KF5WidgetsAddons_FOUND AND NOT CMAKE_VERSION VERSION_LESS
     add_subdirectory(analyzer)
     add_subdirectory(tests/manual)
 endif()
+add_subdirectory(tests/auto)
 
 #
 # CMake package config file generation

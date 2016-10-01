@@ -15,15 +15,32 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "schemaentryitemeditorfactory.h"
-#include <core/productschemaentry.h>
-#include "schemaentrytypecombobox.h"
+#include "restapi.h"
+#include "restclient.h"
 
-#include <QDebug>
+#include <core/product.h>
 
 using namespace UserFeedback::Analyzer;
 
-SchemaEntryItemEditorFactory::SchemaEntryItemEditorFactory()
+QNetworkReply* RESTApi::getProducts(RESTClient *client)
 {
-   registerEditor(qMetaTypeId<ProductSchemaEntry::Type>(), new QStandardItemEditorCreator<SchemaEntryTypeComboBox>());
+    return client->get(QStringLiteral("products"));
+}
+
+QNetworkReply* RESTApi::createProduct(RESTClient *client, const Product &p)
+{
+    Q_ASSERT(p.isValid());
+    return client->post(QStringLiteral("products"),  p.toJson());
+}
+
+QNetworkReply* RESTApi::updateProduct(RESTClient *client, const Product &p)
+{
+    Q_ASSERT(p.isValid());
+    return client->put(QStringLiteral("products/") + p.name(), p.toJson());
+}
+
+QNetworkReply* RESTApi::deleteProduct(RESTClient *client, const Product &p)
+{
+    Q_ASSERT(p.isValid());
+    return client->deleteResource(QStringLiteral("products/") + p.name());
 }

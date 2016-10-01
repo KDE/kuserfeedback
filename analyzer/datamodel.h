@@ -18,7 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_DATAMODEL_H
 #define USERFEEDBACK_ANALYZER_DATAMODEL_H
 
-#include "product.h"
+#include <core/product.h>
 
 #include <QAbstractTableModel>
 #include <QJsonArray>

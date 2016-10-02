@@ -18,7 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_SURVEYMODEL_H
 #define USERFEEDBACK_ANALYZER_SURVEYMODEL_H
 
-#include "survey.h"
+#include <core/survey.h>
 
 #include <QAbstractTableModel>
 

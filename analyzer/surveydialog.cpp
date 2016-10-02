@@ -18,7 +18,7 @@
 #include "surveydialog.h"
 #include "ui_surveydialog.h"
 
-#include "survey.h"
+#include <core/survey.h>
 
 #include <QIcon>
 #include <QUrl>

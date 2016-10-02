@@ -27,10 +27,10 @@
 #include "numericaggregationmodel.h"
 #include "ratiosetaggregationmodel.h"
 #include "surveydialog.h"
-#include "surveymodel.h"
 #include "timeaggregationmodel.h"
 
 #include <model/productmodel.h>
+#include <model/surveymodel.h>
 
 #include <rest/restapi.h>
 #include <rest/restclient.h>

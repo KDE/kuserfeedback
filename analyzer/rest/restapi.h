@@ -32,7 +32,7 @@ class RESTClient;
 namespace RESTApi
 {
     /** List all products. */
-    QNetworkReply* getProducts(RESTClient *client);
+    QNetworkReply* listProducts(RESTClient *client);
 
     /** Add a new product.
      *  @param p The product to add. Must be valid.

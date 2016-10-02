@@ -47,7 +47,7 @@ void ProductModel::reload()
     if (!m_restClient->isConnected())
         return;
 
-    auto reply = RESTApi::getProducts(m_restClient);
+    auto reply = RESTApi::listProducts(m_restClient);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
             beginResetModel();

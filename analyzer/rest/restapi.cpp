@@ -22,7 +22,7 @@
 
 using namespace UserFeedback::Analyzer;
 
-QNetworkReply* RESTApi::getProducts(RESTClient *client)
+QNetworkReply* RESTApi::listProducts(RESTClient *client)
 {
     return client->get(QStringLiteral("products"));
 }

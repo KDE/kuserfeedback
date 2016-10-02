@@ -75,7 +75,7 @@ private slots:
         client.connectToServer(serverInfo);
         QVERIFY(client.isConnected());
 
-        auto reply = RESTApi::getProducts(&client);
+        auto reply = RESTApi::listProducts(&client);
         QVERIFY(waitForFinished(reply));
         QVERIFY(reply->error() != QNetworkReply::NoError);
     }
@@ -93,7 +93,7 @@ private slots:
         waitForFinished(reply);
 
         // list existing products
-        reply = RESTApi::getProducts(&client);
+        reply = RESTApi::listProducts(&client);
         QVERIFY(waitForFinished(reply));
         QCOMPARE(reply->error(), QNetworkReply::NoError);
         const auto products = Product::fromJson(reply->readAll());
@@ -111,7 +111,7 @@ private slots:
         QCOMPARE(reply->error(), QNetworkReply::NoError);
 
         // verify the new product is there
-        reply = RESTApi::getProducts(&client);
+        reply = RESTApi::listProducts(&client);
         QVERIFY(waitForFinished(reply));
         QCOMPARE(reply->error(), QNetworkReply::NoError);
         auto newProducts = Product::fromJson(reply->readAll());
@@ -131,7 +131,7 @@ private slots:
         QVERIFY(reply->error() != QNetworkReply::NoError);
 
         // verify it really wasn't added
-        reply = RESTApi::getProducts(&client);
+        reply = RESTApi::listProducts(&client);
         QVERIFY(waitForFinished(reply));
         QCOMPARE(reply->error(), QNetworkReply::NoError);
         newProducts = Product::fromJson(reply->readAll());
@@ -143,7 +143,7 @@ private slots:
         QCOMPARE(reply->error(), QNetworkReply::NoError);
 
         // verify it's gone, and nothing else was harmed
-        reply = RESTApi::getProducts(&client);
+        reply = RESTApi::listProducts(&client);
         QVERIFY(waitForFinished(reply));
         QCOMPARE(reply->error(), QNetworkReply::NoError);
         newProducts = Product::fromJson(reply->readAll());

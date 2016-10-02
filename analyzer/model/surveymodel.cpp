@@ -17,6 +17,7 @@
 
 #include "surveymodel.h"
 
+#include <rest/restapi.h>
 #include <rest/restclient.h>
 
 #include <QDebug>
@@ -39,18 +40,18 @@ void SurveyModel::setRESTClient(RESTClient* client)
     reload();
 }
 
-void SurveyModel::setProductId(const QString& product)
+void SurveyModel::setProduct(const Product& product)
 {
-    m_productId = product;
+    m_product = product;
     reload();
 }
 
 void SurveyModel::reload()
 {
-    if (!m_restClient || !m_restClient->isConnected() || m_productId.isEmpty())
+    if (!m_restClient || !m_restClient->isConnected() || !m_product.isValid())
         return;
 
-    auto reply = m_restClient->get(QStringLiteral("surveys/") + m_productId);
+    auto reply = RESTApi::listSurveys(m_restClient, m_product);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
             beginResetModel();
@@ -99,7 +100,7 @@ bool SurveyModel::setData(const QModelIndex &index, const QVariant &value, int r
     if (index.column() == 2 && role == Qt::CheckStateRole) {
         auto &survey = m_surveys[index.row()];
         survey.setActive(value.toInt() == Qt::Checked);
-        auto reply = m_restClient->put(QStringLiteral("surveys/") + QString::number(survey.id()), survey.toJson());
+        auto reply = RESTApi::updateSurvey(m_restClient, survey);
         connect(reply, &QNetworkReply::finished, this, [this, reply]() {
             qDebug() << reply->readAll();
             reload();

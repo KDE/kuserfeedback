@@ -260,7 +260,7 @@ void MainWindow::productSelected()
     if (!product.isValid())
         return;
     m_dataModel->setProduct(product);
-    m_surveyModel->setProductId(product.name());
+    m_surveyModel->setProduct(product);
     ui->schemaEdit->setProduct(product);
 
     m_chart->setModel(nullptr);
@@ -319,7 +319,7 @@ void MainWindow::createSurvey()
     SurveyDialog dlg(this);
     if (!dlg.exec())
         return;
-    auto reply = m_restClient->post(QStringLiteral("surveys/") + product.name(), dlg.survey().toJson());
+    auto reply = RESTApi::createSurvey(m_restClient, product, dlg.survey());
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
             logMessage(QString::fromUtf8(reply->readAll()));
@@ -340,7 +340,7 @@ void MainWindow::deleteSurvey()
     const auto survey = selection.first().data(SurveyModel::SurveyRole).value<Survey>();
     if (survey.id() < 0)
         return;
-    auto reply = m_restClient->deleteResource(QStringLiteral("surveys/") + QString::number(survey.id()));
+    auto reply = RESTApi::deleteSurvey(m_restClient, survey);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() != QNetworkReply::NoError)
             return;

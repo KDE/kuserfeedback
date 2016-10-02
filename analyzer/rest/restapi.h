@@ -25,6 +25,7 @@ namespace Analyzer {
 
 class Product;
 class RESTClient;
+class Survey;
 
 /** C++ wrapper for the server-side API.
  *  Precondition for all methods is that client->isConnected() returns @c true.
@@ -48,6 +49,18 @@ namespace RESTApi
      *  @param p The product to add. Must be valid.
      */
     QNetworkReply* deleteProduct(RESTClient *client, const Product &p);
+
+    /** List all surveys for product @p p. */
+    QNetworkReply* listSurveys(RESTClient *client, const Product &p);
+
+    /** Create a new survey. */
+    QNetworkReply* createSurvey(RESTClient *client, const Product &p, const Survey &s);
+
+    /** Update an existing survey. */
+    QNetworkReply* updateSurvey(RESTClient *client, const Survey &s);
+
+    /** Delete a survey. */
+    QNetworkReply* deleteSurvey(RESTClient *client, const Survey &s);
 }
 
 }

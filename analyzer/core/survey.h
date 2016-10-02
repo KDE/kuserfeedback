@@ -39,6 +39,9 @@ public:
     ~Survey();
     Survey& operator=(const Survey&);
 
+    bool operator==(const Survey &other) const;
+    bool operator!=(const Survey &other) const;
+
     int id() const;
     void setId(int id);
 

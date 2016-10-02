@@ -18,6 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_SURVEYMODEL_H
 #define USERFEEDBACK_ANALYZER_SURVEYMODEL_H
 
+#include <core/product.h>
 #include <core/survey.h>
 
 #include <QAbstractTableModel>
@@ -39,7 +40,7 @@ public:
     ~SurveyModel();
 
     void setRESTClient(RESTClient *client);
-    void setProductId(const QString &product);
+    void setProduct(const Product &product);
     void reload();
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -51,7 +52,7 @@ public:
 
 private:
     RESTClient *m_restClient = nullptr;
-    QString m_productId;
+    Product m_product;
     QVector<Survey> m_surveys;
 };
 

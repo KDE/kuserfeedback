@@ -19,6 +19,7 @@
 #include "restclient.h"
 
 #include <core/product.h>
+#include <core/survey.h>
 
 using namespace UserFeedback::Analyzer;
 
@@ -43,4 +44,26 @@ QNetworkReply* RESTApi::deleteProduct(RESTClient *client, const Product &p)
 {
     Q_ASSERT(p.isValid());
     return client->deleteResource(QStringLiteral("products/") + p.name());
+}
+
+QNetworkReply* RESTApi::listSurveys(RESTClient *client, const Product &p)
+{
+    Q_ASSERT(p.isValid());
+    return client->get(QStringLiteral("surveys/") + p.name());
+}
+
+QNetworkReply* RESTApi::createSurvey(RESTClient *client, const Product &p, const Survey &s)
+{
+    Q_ASSERT(p.isValid());
+    return client->post(QStringLiteral("surveys/") + p.name(), s.toJson());
+}
+
+QNetworkReply* RESTApi::updateSurvey(RESTClient *client, const Survey &s)
+{
+    return client->put(QStringLiteral("surveys/") + QString::number(s.id()), s.toJson());
+}
+
+QNetworkReply* RESTApi::deleteSurvey(RESTClient *client, const Survey &s)
+{
+    return client->deleteResource(QStringLiteral("surveys/") + QString::number(s.id()));
 }

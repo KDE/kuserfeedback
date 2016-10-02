@@ -47,6 +47,19 @@ Survey::Survey(const Survey&) = default;
 Survey::~Survey() = default;
 Survey& Survey::operator=(const Survey&) = default;
 
+bool Survey::operator==(const Survey& other) const
+{
+    return d->name == other.d->name
+        && d->url == other.d->url
+        && d->id == other.d->id
+        && d->active == other.d->active;
+}
+
+bool Survey::operator!=(const Survey& other) const
+{
+    return !(*this == other);
+}
+
 int Survey::id() const
 {
     return d->id;

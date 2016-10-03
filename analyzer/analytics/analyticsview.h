@@ -15,61 +15,55 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_ANALYZER_MAINWINDOW_H
-#define USERFEEDBACK_ANALYZER_MAINWINDOW_H
+#ifndef USERFEEDBACK_ANALYZER_ANALYTICSVIEW_H
+#define USERFEEDBACK_ANALYZER_ANALYTICSVIEW_H
 
-#include <QMainWindow>
+#include <core/product.h>
+
 #include <QVector>
+#include <QWidget>
 
 #include <memory>
 
 class QAbstractItemModel;
-class QNetworkAccessManager;
 
 namespace UserFeedback {
-
-class Provider;
-
 namespace Analyzer {
+
+class AggregatedDataModel;
+class Chart;
+class DataModel;
+class RESTClient;
+class TimeAggregationModel;
 
 namespace Ui
 {
-class MainWindow;
+class AnalyticsView;
 }
 
-class Product;
-class ProductModel;
-class ServerInfo;
-class RESTClient;
-
-class MainWindow : public QMainWindow
+class AnalyticsView : public QWidget
 {
     Q_OBJECT
 public:
-    MainWindow();
-    ~MainWindow();
+    explicit AnalyticsView(QWidget *parent = nullptr);
+    ~AnalyticsView();
+
+    void setProduct(const Product &product);
+    void setRESTClient(RESTClient *client);
+
+signals:
+    void logMessage(const QString &msg);
 
 private:
-    void connectToServer(const ServerInfo &info);
+    std::unique_ptr<Ui::AnalyticsView> ui;
 
-    void createProduct();
-    void deleteProduct();
-    void productSelected();
-
-    void logMessage(const QString &msg);
-    void logError(const QString &msg);
-
-    Product selectedProduct() const;
-
-    template <typename T> void addView(T *view, QMenu *menu);
-
-    std::unique_ptr<Ui::MainWindow> ui;
-    RESTClient *m_restClient;
-    ProductModel *m_productModel;
-
-    UserFeedback::Provider *m_feedbackProvider;
+    DataModel *m_dataModel;
+    TimeAggregationModel *m_timeAggregationModel;
+    QVector<QAbstractItemModel*> m_aggregationModels;
+    AggregatedDataModel *m_aggregatedDataModel;
+    Chart *m_chart;
 };
 }
 }
 
-#endif // USERFEEDBACK_ANALYZER_MAINWINDOW_H
+#endif // USERFEEDBACK_ANALYZER_ANALYTICSVIEW_H

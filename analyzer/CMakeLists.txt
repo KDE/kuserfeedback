@@ -31,6 +31,8 @@ set(analyzer_srcs
     sample.cpp
     timeaggregationmodel.cpp
 
+    analytics/analyticsview.cpp
+
     schemaeditor/schemaeditwidget.cpp
     schemaeditor/schemaentryitemeditorfactory.cpp
     schemaeditor/schemaentrytypecombobox.cpp

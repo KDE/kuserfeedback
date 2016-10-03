@@ -19,14 +19,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "aggregateddatamodel.h"
-#include "categoryaggregationmodel.h"
-#include "chart.h"
 #include "connectdialog.h"
-#include "datamodel.h"
-#include "numericaggregationmodel.h"
-#include "ratiosetaggregationmodel.h"
-#include "timeaggregationmodel.h"
 
 #include <model/productmodel.h>
 
@@ -57,27 +50,35 @@ MainWindow::MainWindow() :
     ui(new Ui::MainWindow),
     m_restClient(new RESTClient(this)),
     m_productModel(new ProductModel(this)),
-    m_dataModel(new DataModel(this)),
-    m_timeAggregationModel(new TimeAggregationModel(this)),
-    m_aggregatedDataModel(new AggregatedDataModel(this)),
-    m_chart(new Chart(this)),
     m_feedbackProvider(new UserFeedback::Provider(this))
 {
     ui->setupUi(this);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
+
     addView(ui->surveyEditor, ui->menuSurvery);
+    addView(ui->schemaEdit, ui->menuSchema);
+    addView(ui->analyticsView, ui->menuAnalytics);
 
     ui->productListView->setModel(m_productModel);
-    ui->dataView->setModel(m_dataModel);
-    ui->aggregatedDataView->setModel(m_aggregatedDataModel);
 
     connect(m_restClient, &RESTClient::errorMessage, this, &MainWindow::logError);
     m_productModel->setRESTClient(m_restClient);
-    m_dataModel->setRESTClient(m_restClient);
     ui->surveyEditor->setRESTClient(m_restClient);
-    m_timeAggregationModel->setSourceModel(m_dataModel);
+    ui->analyticsView->setRESTClient(m_restClient);
 
-    m_chart->setModel(m_timeAggregationModel);
+    ui->actionViewAnalytics->setData(QVariant::fromValue(ui->analyticsView));
+    ui->actionViewSurveys->setData(QVariant::fromValue(ui->surveyEditor));
+    ui->actionViewSchema->setData(QVariant::fromValue(ui->schemaEdit));
+    auto viewGroup = new QActionGroup(this);
+    viewGroup->setExclusive(true);
+    viewGroup->addAction(ui->actionViewAnalytics);
+    viewGroup->addAction(ui->actionViewSurveys);
+    viewGroup->addAction(ui->actionViewSchema);
+    connect(viewGroup, &QActionGroup::triggered, this, [this](QAction *action) {
+        auto view = action->data().value<QWidget*>();
+        ui->viewStack->setCurrentWidget(view);
+    });
+    ui->actionViewAnalytics->setChecked(true); // TODO save/restore from settings
 
     ui->actionConnectToServer->setIcon(QIcon::fromTheme(QStringLiteral("network-connect")));
     connect(ui->actionConnectToServer, &QAction::triggered, this, [this]() {
@@ -97,34 +98,6 @@ MainWindow::MainWindow() :
     connect(ui->actionAddProduct, &QAction::triggered, this, &MainWindow::createProduct);
     ui->actionDeleteProduct->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
     connect(ui->actionDeleteProduct, &QAction::triggered, this, &MainWindow::deleteProduct);
-
-    ui->actionAggregateYear->setData(TimeAggregationModel::AggregateYear);
-    ui->actionAggregateMonth->setData(TimeAggregationModel::AggregateMonth);
-    ui->actionAggregateWeek->setData(TimeAggregationModel::AggregateWeek);
-    ui->actionAggregateDay->setData(TimeAggregationModel::AggregateDay);
-    auto aggrGroup = new QActionGroup(this);
-    aggrGroup->addAction(ui->actionAggregateYear);
-    aggrGroup->addAction(ui->actionAggregateMonth);
-    aggrGroup->addAction(ui->actionAggregateWeek);
-    aggrGroup->addAction(ui->actionAggregateDay);
-    aggrGroup->setExclusive(true);
-    connect(aggrGroup, &QActionGroup::triggered, this, [this, aggrGroup]() {
-        m_timeAggregationModel->setAggregationMode(static_cast<TimeAggregationModel::AggregationMode>(aggrGroup->checkedAction()->data().toInt()));
-    });
-
-    QSettings settings;
-    settings.beginGroup(QStringLiteral("Analytics"));
-    const auto aggrSetting = settings.value(QStringLiteral("TimeAggregationMode"), TimeAggregationModel::AggregateMonth).toInt();
-    foreach (auto act, aggrGroup->actions())
-        act->setChecked(act->data().toInt() == aggrSetting);
-    m_timeAggregationModel->setAggregationMode(static_cast<TimeAggregationModel::AggregationMode>(aggrSetting));
-    settings.endGroup();
-
-    ui->chartView->setChart(m_chart->chart());
-    connect(ui->chartType, &QComboBox::currentTextChanged, this, [this]() {
-        const auto model = ui->chartType->currentData().value<QAbstractItemModel*>();
-        m_chart->setModel(model);
-    });
 
     connect(ui->schemaEdit, &SchemaEditWidget::productChanged, this, [this](const Product &p) {
         auto reply = RESTApi::updateProduct(m_restClient, p);
@@ -154,6 +127,7 @@ MainWindow::MainWindow() :
 
     connect(ui->productListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &MainWindow::productSelected);
 
+    QSettings settings;
     settings.beginGroup(QStringLiteral("MainWindow"));
     restoreGeometry(settings.value(QStringLiteral("Geometry")).toByteArray());
     restoreState(settings.value(QStringLiteral("State")).toByteArray());
@@ -163,22 +137,16 @@ MainWindow::MainWindow() :
     m_feedbackProvider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
     m_feedbackProvider->setSubmissionInterval(1);
     m_feedbackProvider->setApplicationUsageTimeUntilEncouragement(10);
-    auto viewModeSource = new UserFeedback::PropertyRatioSource(ui->tabWidget, "currentIndex", QStringLiteral("viewRatio"));
-    viewModeSource->addValueMapping(0, QStringLiteral("chart"));
-    viewModeSource->addValueMapping(1, QStringLiteral("aggregated_data"));
-    viewModeSource->addValueMapping(2, QStringLiteral("raw_data"));
-    viewModeSource->addValueMapping(3, QStringLiteral("surveys"));
-    viewModeSource->addValueMapping(4, QStringLiteral("schema"));
+    auto viewModeSource = new UserFeedback::PropertyRatioSource(ui->viewStack, "currentIndex", QStringLiteral("viewRatio"));
+    viewModeSource->addValueMapping(0, QStringLiteral("analytics"));
+    viewModeSource->addValueMapping(1, QStringLiteral("surveyEditor"));
+    viewModeSource->addValueMapping(2, QStringLiteral("schemaEditor"));
     m_feedbackProvider->addDataSource(viewModeSource, Provider::AllStatistics);
 }
 
 MainWindow::~MainWindow()
 {
     QSettings settings;
-    settings.beginGroup(QStringLiteral("Analytics"));
-    settings.setValue(QStringLiteral("TimeAggregationMode"), m_timeAggregationModel->aggregationMode());
-    settings.endGroup();
-
     settings.beginGroup(QStringLiteral("MainWindow"));
     settings.setValue(QStringLiteral("State"), saveState());
     settings.setValue(QStringLiteral("Geometry"), saveGeometry());
@@ -261,56 +229,9 @@ void MainWindow::productSelected()
     const auto product = selectedProduct();
     if (!product.isValid())
         return;
-    m_dataModel->setProduct(product);
     ui->surveyEditor->setProduct(product);
     ui->schemaEdit->setProduct(product);
-
-    m_chart->setModel(nullptr);
-    ui->chartType->clear();
-    m_aggregatedDataModel->clear();
-    qDeleteAll(m_aggregationModels);
-    m_aggregationModels.clear();
-
-    m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
-    ui->chartType->addItem(tr("Samples"), QVariant::fromValue(m_timeAggregationModel));
-
-    foreach (const auto &schemaEntry, product.schema()) {
-        switch (schemaEntry.type()) {
-            case SchemaEntry::InvalidType:
-            case SchemaEntry::StringListType:
-                break;
-            case SchemaEntry::StringType:
-            {
-                auto model = new CategoryAggregationModel(this);
-                model->setSourceModel(m_timeAggregationModel);
-                model->setAggregationValue(schemaEntry.name());
-                m_aggregationModels.push_back(model);
-                m_aggregatedDataModel->addSourceModel(model, schemaEntry.name());
-                ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
-                break;
-            }
-            case SchemaEntry::IntegerType:
-            {
-                auto model = new NumericAggregationModel(this);
-                model->setSourceModel(m_timeAggregationModel);
-                model->setAggregationValue(schemaEntry.name());
-                m_aggregationModels.push_back(model);
-                m_aggregatedDataModel->addSourceModel(model, schemaEntry.name());
-                ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
-                break;
-            }
-            case SchemaEntry::RatioSetType:
-            {
-                auto model = new RatioSetAggregationModel(this);
-                model->setSourceModel(m_timeAggregationModel);
-                model->setAggregationValue(schemaEntry.name());
-                m_aggregationModels.push_back(model);
-                m_aggregatedDataModel->addSourceModel(model, schemaEntry.name());
-                ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
-                break;
-            }
-        }
-    }
+    ui->analyticsView->setProduct(product);
 }
 
 void MainWindow::logMessage(const QString& msg)

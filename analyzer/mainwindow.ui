@@ -28,81 +28,10 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="chartTab">
-       <attribute name="title">
-        <string>Charts</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_7">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>&amp;Chart type:</string>
-            </property>
-            <property name="buddy">
-             <cstring>chartType</cstring>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="chartType"/>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QtCharts::QChartView" name="chartView">
-          <property name="renderHints">
-           <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="aggregationTab">
-       <attribute name="title">
-        <string>Aggregated Data</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_6">
-        <item>
-         <widget class="QTableView" name="aggregatedDataView"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="dataTab">
-       <attribute name="title">
-        <string>Raw Data</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <widget class="QTableView" name="dataView"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="surveyTab">
-       <attribute name="title">
-        <string>Surveys</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
-        <item>
-         <widget class="UserFeedback::Analyzer::SurveyEditor" name="surveyEditor" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="schemaTab">
-       <attribute name="title">
-        <string>Schema</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_8">
-        <item>
-         <widget class="UserFeedback::Analyzer::SchemaEditWidget" name="schemaEdit" native="true"/>
-        </item>
-       </layout>
-      </widget>
+     <widget class="QStackedWidget" name="viewStack">
+      <widget class="UserFeedback::Analyzer::AnalyticsView" name="analyticsView"/>
+      <widget class="UserFeedback::Analyzer::SurveyEditor" name="surveyEditor"/>
+      <widget class="UserFeedback::Analyzer::SchemaEditWidget" name="schemaEdit"/>
      </widget>
     </item>
     <item>
@@ -143,16 +72,6 @@
     <property name="title">
      <string>Anal&amp;ytics</string>
     </property>
-    <widget class="QMenu" name="menu_Time_interval">
-     <property name="title">
-      <string>&amp;Time interval</string>
-     </property>
-     <addaction name="actionAggregateYear"/>
-     <addaction name="actionAggregateMonth"/>
-     <addaction name="actionAggregateWeek"/>
-     <addaction name="actionAggregateDay"/>
-    </widget>
-    <addaction name="menu_Time_interval"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
@@ -161,10 +80,31 @@
     <addaction name="actionContribute"/>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuSchema">
+    <property name="title">
+     <string>S&amp;chema</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_Window">
+    <property name="title">
+     <string>&amp;Window</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionViewAnalytics"/>
+    <addaction name="actionViewSurveys"/>
+    <addaction name="actionViewSchema"/>
+   </widget>
    <addaction name="menu_File"/>
+   <addaction name="menu_View"/>
    <addaction name="menu_Products"/>
    <addaction name="menuSurvery"/>
    <addaction name="menuAnalytics"/>
+   <addaction name="menuSchema"/>
+   <addaction name="menu_Window"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -247,50 +187,6 @@
     <string>Delete product and all associated data.</string>
    </property>
   </action>
-  <action name="actionAggregateYear">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Year</string>
-   </property>
-   <property name="toolTip">
-    <string>Aggregate data by year.</string>
-   </property>
-  </action>
-  <action name="actionAggregateMonth">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Month</string>
-   </property>
-   <property name="toolTip">
-    <string>Aggregate data by month.</string>
-   </property>
-  </action>
-  <action name="actionAggregateWeek">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Week</string>
-   </property>
-   <property name="toolTip">
-    <string>Aggregate data by week.</string>
-   </property>
-  </action>
-  <action name="actionAggregateDay">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Day</string>
-   </property>
-   <property name="toolTip">
-    <string>Aggregate data by day.</string>
-   </property>
-  </action>
   <action name="actionAbout">
    <property name="text">
     <string>&amp;About...</string>
@@ -310,13 +206,32 @@
     <string>Help to make this application better for you!</string>
    </property>
   </action>
+  <action name="actionViewSchema">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Schema</string>
+   </property>
+  </action>
+  <action name="actionViewSurveys">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>S&amp;urveys</string>
+   </property>
+  </action>
+  <action name="actionViewAnalytics">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Analytics</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>QtCharts::QChartView</class>
-   <extends>QGraphicsView</extends>
-   <header location="global">QChartView</header>
-  </customwidget>
   <customwidget>
    <class>UserFeedback::NotificationWidget</class>
    <extends>QWidget</extends>
@@ -333,6 +248,12 @@
    <class>UserFeedback::Analyzer::SurveyEditor</class>
    <extends>QWidget</extends>
    <header location="global">surveyeditor/surveyeditor.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>UserFeedback::Analyzer::AnalyticsView</class>
+   <extends>QWidget</extends>
+   <header location="global">analytics/analyticsview.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

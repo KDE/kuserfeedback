@@ -61,6 +61,8 @@ private:
 
     Product selectedProduct() const;
 
+    void updateActions();
+
     template <typename T> void addView(T *view, QMenu *menu);
 
     std::unique_ptr<Ui::MainWindow> ui;

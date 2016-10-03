@@ -132,6 +132,9 @@ MainWindow::MainWindow() :
     restoreGeometry(settings.value(QStringLiteral("Geometry")).toByteArray());
     restoreState(settings.value(QStringLiteral("State")).toByteArray());
 
+    connect(ui->viewStack, &QStackedWidget::currentChanged, this, &MainWindow::updateActions);
+    updateActions();
+
     QTimer::singleShot(0, ui->actionConnectToServer, &QAction::trigger);
 
     m_feedbackProvider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
@@ -251,4 +254,21 @@ Product MainWindow::selectedProduct() const
         return {};
     const auto idx = selection.first();
     return idx.data(ProductModel::ProductRole).value<Product>();
+}
+
+void MainWindow::updateActions()
+{
+    // only show actions from the currently active view
+    for (int i = 0; i < ui->viewStack->count(); ++i) {
+        const auto w = ui->viewStack->widget(i);
+        const auto isActive = ui->viewStack->currentIndex() == i;
+
+        for (auto action : w->actions())
+            action->setVisible(isActive);
+    }
+
+    // deactivate empty menus
+    ui->menuAnalytics->setEnabled(!ui->menuAnalytics->isEmpty());
+    ui->menuSurvery->setEnabled(!ui->menuSurvery->isEmpty());
+    ui->menuSchema->setEnabled(!ui->menuSchema->isEmpty());
 }

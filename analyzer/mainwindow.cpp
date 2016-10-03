@@ -26,11 +26,9 @@
 #include "datamodel.h"
 #include "numericaggregationmodel.h"
 #include "ratiosetaggregationmodel.h"
-#include "surveydialog.h"
 #include "timeaggregationmodel.h"
 
 #include <model/productmodel.h>
-#include <model/surveymodel.h>
 
 #include <rest/restapi.h>
 #include <rest/restclient.h>
@@ -62,21 +60,21 @@ MainWindow::MainWindow() :
     m_dataModel(new DataModel(this)),
     m_timeAggregationModel(new TimeAggregationModel(this)),
     m_aggregatedDataModel(new AggregatedDataModel(this)),
-    m_surveyModel(new SurveyModel(this)),
     m_chart(new Chart(this)),
     m_feedbackProvider(new UserFeedback::Provider(this))
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
+    addView(ui->surveyEditor, ui->menuSurvery);
+
     ui->productListView->setModel(m_productModel);
     ui->dataView->setModel(m_dataModel);
-    ui->surveyView->setModel(m_surveyModel);
     ui->aggregatedDataView->setModel(m_aggregatedDataModel);
-    setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
 
     connect(m_restClient, &RESTClient::errorMessage, this, &MainWindow::logError);
     m_productModel->setRESTClient(m_restClient);
     m_dataModel->setRESTClient(m_restClient);
-    m_surveyModel->setRESTClient(m_restClient);
+    ui->surveyEditor->setRESTClient(m_restClient);
     m_timeAggregationModel->setSourceModel(m_dataModel);
 
     m_chart->setModel(m_timeAggregationModel);
@@ -99,11 +97,6 @@ MainWindow::MainWindow() :
     connect(ui->actionAddProduct, &QAction::triggered, this, &MainWindow::createProduct);
     ui->actionDeleteProduct->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
     connect(ui->actionDeleteProduct, &QAction::triggered, this, &MainWindow::deleteProduct);
-
-    ui->actionAddSurvey->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
-    connect(ui->actionAddSurvey, &QAction::triggered, this, &MainWindow::createSurvey);
-    ui->actionDeleteSurvey->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")));
-    connect(ui->actionDeleteSurvey, &QAction::triggered, this, &MainWindow::deleteSurvey);
 
     ui->actionAggregateYear->setData(TimeAggregationModel::AggregateYear);
     ui->actionAggregateMonth->setData(TimeAggregationModel::AggregateMonth);
@@ -191,6 +184,15 @@ MainWindow::~MainWindow()
     settings.setValue(QStringLiteral("Geometry"), saveGeometry());
 }
 
+template <typename T>
+void MainWindow::addView(T *view, QMenu *menu)
+{
+    for (auto action : view->actions())
+        menu->addAction(action);
+
+    connect(view, &T::logMessage, this, &MainWindow::logMessage);
+}
+
 void MainWindow::connectToServer(const ServerInfo& info)
 {
     m_restClient->connectToServer(info);
@@ -260,7 +262,7 @@ void MainWindow::productSelected()
     if (!product.isValid())
         return;
     m_dataModel->setProduct(product);
-    m_surveyModel->setProduct(product);
+    ui->surveyEditor->setProduct(product);
     ui->schemaEdit->setProduct(product);
 
     m_chart->setModel(nullptr);
@@ -309,44 +311,6 @@ void MainWindow::productSelected()
             }
         }
     }
-}
-
-void MainWindow::createSurvey()
-{
-    const auto product = selectedProduct();
-    if (!product.isValid())
-        return;
-    SurveyDialog dlg(this);
-    if (!dlg.exec())
-        return;
-    auto reply = RESTApi::createSurvey(m_restClient, product, dlg.survey());
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        if (reply->error() == QNetworkReply::NoError) {
-            logMessage(QString::fromUtf8(reply->readAll()));
-        }
-        m_surveyModel->reload();
-    });
-}
-
-void MainWindow::deleteSurvey()
-{
-    const auto product = selectedProduct();
-    if (!product.isValid())
-        return;
-    // TODO safety check
-    const auto selection = ui->surveyView->selectionModel()->selectedRows();
-    if (selection.isEmpty())
-        return;
-    const auto survey = selection.first().data(SurveyModel::SurveyRole).value<Survey>();
-    if (survey.id() < 0)
-        return;
-    auto reply = RESTApi::deleteSurvey(m_restClient, survey);
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        if (reply->error() != QNetworkReply::NoError)
-            return;
-        logMessage(QString::fromUtf8(reply->readAll()));
-        m_surveyModel->reload();
-    });
 }
 
 void MainWindow::logMessage(const QString& msg)

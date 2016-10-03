@@ -89,14 +89,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QTreeView" name="surveyView">
-          <property name="rootIsDecorated">
-           <bool>false</bool>
-          </property>
-          <property name="uniformRowHeights">
-           <bool>true</bool>
-          </property>
-         </widget>
+         <widget class="UserFeedback::Analyzer::SurveyEditor" name="surveyEditor" native="true"/>
         </item>
        </layout>
       </widget>
@@ -141,14 +134,12 @@
     <addaction name="actionAddProduct"/>
     <addaction name="actionDeleteProduct"/>
    </widget>
-   <widget class="QMenu" name="menu_Survery">
+   <widget class="QMenu" name="menuSurvery">
     <property name="title">
      <string>&amp;Survery</string>
     </property>
-    <addaction name="actionAddSurvey"/>
-    <addaction name="actionDeleteSurvey"/>
    </widget>
-   <widget class="QMenu" name="menu_Analytics">
+   <widget class="QMenu" name="menuAnalytics">
     <property name="title">
      <string>Anal&amp;ytics</string>
     </property>
@@ -172,8 +163,8 @@
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Products"/>
-   <addaction name="menu_Survery"/>
-   <addaction name="menu_Analytics"/>
+   <addaction name="menuSurvery"/>
+   <addaction name="menuAnalytics"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -256,22 +247,6 @@
     <string>Delete product and all associated data.</string>
    </property>
   </action>
-  <action name="actionAddSurvey">
-   <property name="text">
-    <string>&amp;Add Survey...</string>
-   </property>
-   <property name="toolTip">
-    <string>Add new survery.</string>
-   </property>
-  </action>
-  <action name="actionDeleteSurvey">
-   <property name="text">
-    <string>&amp;Delete Survey</string>
-   </property>
-   <property name="toolTip">
-    <string>Delete a survey.</string>
-   </property>
-  </action>
   <action name="actionAggregateYear">
    <property name="checkable">
     <bool>true</bool>
@@ -352,6 +327,12 @@
    <class>UserFeedback::Analyzer::SchemaEditWidget</class>
    <extends>QWidget</extends>
    <header>schemaeditor/schemaeditwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>UserFeedback::Analyzer::SurveyEditor</class>
+   <extends>QWidget</extends>
+   <header location="global">surveyeditor/surveyeditor.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

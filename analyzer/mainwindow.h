@@ -44,7 +44,6 @@ class Product;
 class ProductModel;
 class ServerInfo;
 class RESTClient;
-class SurveyModel;
 class TimeAggregationModel;
 
 class MainWindow : public QMainWindow
@@ -61,13 +60,12 @@ private:
     void deleteProduct();
     void productSelected();
 
-    void createSurvey();
-    void deleteSurvey();
-
     void logMessage(const QString &msg);
     void logError(const QString &msg);
 
     Product selectedProduct() const;
+
+    template <typename T> void addView(T *view, QMenu *menu);
 
     std::unique_ptr<Ui::MainWindow> ui;
     RESTClient *m_restClient;
@@ -76,7 +74,6 @@ private:
     TimeAggregationModel *m_timeAggregationModel;
     QVector<QAbstractItemModel*> m_aggregationModels;
     AggregatedDataModel *m_aggregatedDataModel;
-    SurveyModel *m_surveyModel;
     Chart *m_chart;
 
     UserFeedback::Provider *m_feedbackProvider;

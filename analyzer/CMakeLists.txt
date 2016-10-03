@@ -29,11 +29,12 @@ set(analyzer_srcs
     ratioset.cpp
     ratiosetaggregationmodel.cpp
     sample.cpp
-    schemaeditwidget.cpp
-    schemaentryitemeditorfactory.cpp
-    schemaentrytypecombobox.cpp
     surveydialog.cpp
     timeaggregationmodel.cpp
+
+    schemaeditor/schemaeditwidget.cpp
+    schemaeditor/schemaentryitemeditorfactory.cpp
+    schemaeditor/schemaentrytypecombobox.cpp
 )
 
 add_executable(UserFeedbackAnalyzerApplication ${analyzer_srcs})

@@ -351,7 +351,7 @@
   <customwidget>
    <class>UserFeedback::Analyzer::SchemaEditWidget</class>
    <extends>QWidget</extends>
-   <header>schemaeditwidget.h</header>
+   <header>schemaeditor/schemaeditwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

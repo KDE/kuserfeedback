@@ -80,7 +80,6 @@ MainWindow::MainWindow() :
     });
     ui->actionViewAnalytics->setChecked(true); // TODO save/restore from settings
 
-    ui->actionConnectToServer->setIcon(QIcon::fromTheme(QStringLiteral("network-connect")));
     connect(ui->actionConnectToServer, &QAction::triggered, this, [this]() {
         QSettings settings;
         auto info = ServerInfo::load(settings.value(QStringLiteral("LastServerInfo")).toString());
@@ -94,9 +93,7 @@ MainWindow::MainWindow() :
         }
     });
 
-    ui->actionAddProduct->setIcon(QIcon::fromTheme(QStringLiteral("folder-add")));
     connect(ui->actionAddProduct, &QAction::triggered, this, &MainWindow::createProduct);
-    ui->actionDeleteProduct->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
     connect(ui->actionDeleteProduct, &QAction::triggered, this, &MainWindow::deleteProduct);
 
     connect(ui->schemaEdit, &SchemaEditWidget::productChanged, this, [this](const Product &p) {
@@ -110,7 +107,6 @@ MainWindow::MainWindow() :
     });
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
-    ui->actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit")));
     connect(ui->actionQuit, &QAction::triggered, QCoreApplication::instance(), &QCoreApplication::quit);
     connect(ui->actionContribute, &QAction::triggered, this, [this]() {
         FeedbackConfigDialog dlg(this);

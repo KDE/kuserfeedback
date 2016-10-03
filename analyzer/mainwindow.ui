@@ -152,7 +152,33 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QToolBar" name="viewToolBar">
+   <property name="windowTitle">
+    <string>View Toolbar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionViewAnalytics"/>
+   <addaction name="actionViewSurveys"/>
+   <addaction name="actionViewSchema"/>
+  </widget>
   <action name="actionConnectToServer">
+   <property name="icon">
+    <iconset theme="network-connect"/>
+   </property>
    <property name="text">
     <string>&amp;Connect to server...</string>
    </property>
@@ -161,6 +187,9 @@
    </property>
   </action>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset theme="application-exit"/>
+   </property>
    <property name="text">
     <string>&amp;Quit</string>
    </property>
@@ -172,6 +201,9 @@
    </property>
   </action>
   <action name="actionAddProduct">
+   <property name="icon">
+    <iconset theme="folder-add"/>
+   </property>
    <property name="text">
     <string>&amp;Add Product...</string>
    </property>
@@ -180,6 +212,9 @@
    </property>
   </action>
   <action name="actionDeleteProduct">
+   <property name="icon">
+    <iconset theme="edit-delete"/>
+   </property>
    <property name="text">
     <string>&amp;Delete Product</string>
    </property>
@@ -210,24 +245,42 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset theme="document-edit"/>
+   </property>
    <property name="text">
     <string>&amp;Schema</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit product telemetry schema.</string>
    </property>
   </action>
   <action name="actionViewSurveys">
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset theme="question"/>
+   </property>
    <property name="text">
     <string>S&amp;urveys</string>
+   </property>
+   <property name="toolTip">
+    <string>Manage product surveys.</string>
    </property>
   </action>
   <action name="actionViewAnalytics">
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset theme="office-chart-area"/>
+   </property>
    <property name="text">
     <string>&amp;Analytics</string>
+   </property>
+   <property name="toolTip">
+    <string>Analyze product telemetry.</string>
    </property>
   </action>
  </widget>

@@ -40,8 +40,6 @@ QVector<SchemaEntry> SchemaEntryTemplates::availableTemplates()
         QDirIterator it(dir, {QStringLiteral("*.json")}, QDir::Files | QDir::Readable);
         while (it.hasNext()) {
             const auto fileName = it.next();
-            qDebug() << fileName;
-
             QFile f(fileName);
             if (!f.open(QFile::ReadOnly))
                 continue;

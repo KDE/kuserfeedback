@@ -16,6 +16,7 @@
 */
 
 #include <model/schemamodel.h>
+#include <core/schemaentrytemplates.h>
 
 #include <3rdparty/qt/modeltest.h>
 
@@ -33,6 +34,7 @@ class SchemaModelTest : public QObject
 private slots:
     void initTestCase()
     {
+        Q_INIT_RESOURCE(schemaentrytemplates);
         QStandardPaths::setTestModeEnabled(true);
     }
 
@@ -56,6 +58,10 @@ private slots:
         p.setSchema(schema);
         model.setProduct(p);
         QCOMPARE(model.rowCount(), schema.size());
+
+        p.setSchema(SchemaEntryTemplates::availableTemplates());
+        model.setProduct(p);
+        QVERIFY(model.rowCount() > 0);
     }
 };
 

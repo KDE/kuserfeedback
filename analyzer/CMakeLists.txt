@@ -2,6 +2,7 @@ set(analyzer_lib_srcs
     core/product.cpp
     core/schemaentry.cpp
     core/schemaentryelement.cpp
+    core/schemaentrytemplates.cpp
     core/survey.cpp
 
     rest/restapi.cpp
@@ -11,6 +12,8 @@ set(analyzer_lib_srcs
     model/productmodel.cpp
     model/schemamodel.cpp
     model/surveymodel.cpp
+
+    schemaentrytemplates/schemaentrytemplates.qrc
 )
 
 add_library(UserFeedbackAnalyzer STATIC ${analyzer_lib_srcs})
@@ -35,10 +38,7 @@ set(analyzer_srcs
 
     schemaeditor/schemaeditwidget.cpp
     schemaeditor/schemaentryitemeditorfactory.cpp
-    schemaeditor/schemaentrytemplates.cpp
     schemaeditor/schemaentrytypecombobox.cpp
-
-    schemaentrytemplates/schemaentrytemplates.qrc
 
     surveyeditor/surveydialog.cpp
     surveyeditor/surveyeditor.cpp

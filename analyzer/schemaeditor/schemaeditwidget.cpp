@@ -18,11 +18,11 @@
 #include "schemaeditwidget.h"
 #include "ui_schemaeditwidget.h"
 #include "schemaentryitemeditorfactory.h"
-#include "schemaentrytemplates.h"
 
 #include <model/schemamodel.h>
 #include <rest/restapi.h>
 #include <core/product.h>
+#include <core/schemaentrytemplates.h>
 
 #include <QDebug>
 #include <QMenu>

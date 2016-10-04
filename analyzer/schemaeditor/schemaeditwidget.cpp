@@ -18,12 +18,14 @@
 #include "schemaeditwidget.h"
 #include "ui_schemaeditwidget.h"
 #include "schemaentryitemeditorfactory.h"
+#include "schemaentrytemplates.h"
 
 #include <model/schemamodel.h>
 #include <rest/restapi.h>
 #include <core/product.h>
 
 #include <QDebug>
+#include <QMenu>
 #include <QMessageBox>
 #include <QNetworkReply>
 #include <QStyledItemDelegate>
@@ -47,9 +49,20 @@ SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
 
     connect(ui->schemaView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &SchemaEditWidget::updateState);
     connect(ui->newEntryName, &QLineEdit::textChanged, this, &SchemaEditWidget::updateState);
-    updateState();
 
-    addActions({ ui->actionSave });
+    auto templateMenu = new QMenu(tr("Schema entry templates"), this);
+    for (const auto &t : SchemaEntryTemplates::availableTemplates()) {
+        auto a = templateMenu->addAction(t.name());
+        a->setData(QVariant::fromValue(t));
+        connect(a, &QAction::triggered, this, [this, a]() {
+            m_schemaModel->addEntry(a->data().value<SchemaEntry>());
+        });
+    }
+
+    m_createFromTemplateAction = templateMenu->menuAction();
+    m_createFromTemplateAction->setIcon(QIcon::fromTheme(QStringLiteral("document-new-from-template")));
+    addActions({ m_createFromTemplateAction, ui->actionSave });
+    updateState();
 }
 
 SchemaEditWidget::~SchemaEditWidget() = default;
@@ -104,5 +117,6 @@ void SchemaEditWidget::updateState()
 
     ui->addEntryButton->setEnabled(!ui->newEntryName->text().isEmpty());
 
+    m_createFromTemplateAction->setEnabled(m_schemaModel->product().isValid());
     ui->actionSave->setEnabled(m_schemaModel->product().isValid());
 }

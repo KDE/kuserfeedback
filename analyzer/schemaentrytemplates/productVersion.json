@@ -1,0 +1,14 @@
+[
+    {
+        "name": "productVersion",
+        "type": "scalar",
+        "aggregation": "category",
+        "elements": [
+            {
+                "name": "productVersion",
+                "type": "string"
+            }
+        ]
+    }
+]
+

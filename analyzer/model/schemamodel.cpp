@@ -46,10 +46,15 @@ void SchemaModel::setProduct(const Product &product)
 
 void SchemaModel::addEntry(const QString &name)
 {
-    auto schema = m_product.schema();
-    beginInsertRows(QModelIndex(), schema.size(), schema.size());
     SchemaEntry entry;
     entry.setName(name);
+    addEntry(entry);
+}
+
+void SchemaModel::addEntry(const SchemaEntry &entry)
+{
+    auto schema = m_product.schema();
+    beginInsertRows(QModelIndex(), schema.size(), schema.size());
     schema.push_back(entry);
     m_product.setSchema(schema);
     endInsertRows();

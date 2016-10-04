@@ -38,6 +38,7 @@ public:
     void setProduct(const Product &product);
 
     void addEntry(const QString &name);
+    void addEntry(const SchemaEntry &entry);
     void deleteEntry(int row);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;

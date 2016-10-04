@@ -1,0 +1,17 @@
+[
+    {
+        "name": "platform",
+        "type": "scalar",
+        "aggregation": "category",
+        "elements": [
+            {
+                "name": "platform.os",
+                "type": "string"
+            },
+            {
+                "name": "platform.version",
+                "type": "string"
+            }
+        ]
+    }
+]

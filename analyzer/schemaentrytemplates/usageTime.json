@@ -1,0 +1,13 @@
+[
+    {
+        "name": "usageTime",
+        "type": "scalar",
+        "aggregation": "numeric",
+        "elements": [
+            {
+                "name": "usageTime",
+                "type": "int"
+            }
+        ]
+    }
+]

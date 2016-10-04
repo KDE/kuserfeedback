@@ -58,6 +58,7 @@ private:
     std::unique_ptr<Ui::SchemaEditWidget> ui;
     RESTClient *m_restClient;
     SchemaModel *m_schemaModel;
+    QAction *m_createFromTemplateAction;
 };
 
 }

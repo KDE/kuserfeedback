@@ -1,0 +1,14 @@
+[
+    {
+        "name": "qtVersion",
+        "type": "scalar",
+        "aggregation": "category",
+        "elements": [
+            {
+                "name": "qtVersion",
+                "type": "string"
+            }
+        ]
+    }
+]
+

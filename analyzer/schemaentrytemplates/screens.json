@@ -1,0 +1,18 @@
+[
+    {
+        "name": "screens",
+        "type": "list",
+        "aggregation": "numeric",
+        "elements": [
+            {
+                "name": "screen.width",
+                "type": "int"
+            },
+            {
+                "name": "screen.height",
+                "type": "int"
+            }
+        ]
+    }
+]
+

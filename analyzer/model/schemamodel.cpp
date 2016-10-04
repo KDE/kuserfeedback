@@ -79,30 +79,45 @@ int SchemaModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid())
         return m_product.schema().size();
-    if (parent.internalId() == TOPLEVEL)
+    if (parent.internalId() == TOPLEVEL && parent.column() == 0)
         return m_product.schema().at(parent.row()).elements().size();
     return 0;
 }
 
 QVariant SchemaModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || index.internalId() != TOPLEVEL)
+    if (!index.isValid())
         return {};
 
-    switch (index.column()) {
-        case 0:
-            if (role == Qt::DisplayRole || role == Qt::EditRole)
-                return m_product.schema().at(index.row()).name();
-            break;
-        case 1:
-            if (role == Qt::DisplayRole)
-                return SchemaEntry::displayString(m_product.schema().at(index.row()).type());
-            if (role == Qt::EditRole)
-                return QVariant::fromValue(m_product.schema().at(index.row()).type());
-            break;
-        case 2:
-            if (role == Qt::DisplayRole)
-                return m_product.schema().at(index.row()).aggregationType();
+    if (index.internalId() == TOPLEVEL) {
+        switch (index.column()) {
+            case 0:
+                if (role == Qt::DisplayRole || role == Qt::EditRole)
+                    return m_product.schema().at(index.row()).name();
+                break;
+            case 1:
+                if (role == Qt::DisplayRole)
+                    return SchemaEntry::displayString(m_product.schema().at(index.row()).type());
+                if (role == Qt::EditRole)
+                    return QVariant::fromValue(m_product.schema().at(index.row()).type());
+                break;
+            case 2:
+                if (role == Qt::DisplayRole)
+                    return m_product.schema().at(index.row()).aggregationType();
+        }
+    } else {
+        const auto entry = m_product.schema().at(index.internalId());
+        const auto elem = entry.elements().at(index.row());
+        switch (index.column()) {
+            case 0:
+                if (role == Qt::DisplayRole || role == Qt::EditRole)
+                    return elem.name();
+            case 1:
+                if (role == Qt::DisplayRole)
+                    return elem.type(); // TODO stringify
+                else if (role == Qt::EditRole)
+                    return elem.type();
+        }
     }
 
     return {};
@@ -166,5 +181,5 @@ QModelIndex SchemaModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid() || index.internalId() == TOPLEVEL)
         return {};
-    return createIndex(index.internalId(), 0);
+    return createIndex(index.internalId(), 0, TOPLEVEL);
 }

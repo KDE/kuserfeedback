@@ -17,13 +17,15 @@
 
 #include "schemaeditwidget.h"
 #include "ui_schemaeditwidget.h"
+#include "schemaentryitemeditorfactory.h"
 
 #include <model/schemamodel.h>
+#include <rest/restapi.h>
 #include <core/product.h>
-#include "schemaentryitemeditorfactory.h"
 
 #include <QDebug>
 #include <QMessageBox>
+#include <QNetworkReply>
 #include <QStyledItemDelegate>
 
 using namespace UserFeedback::Analyzer;
@@ -41,16 +43,21 @@ SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
     connect(ui->addEntryButton, &QPushButton::clicked, this, &SchemaEditWidget::addEntry);
     connect(ui->newEntryName, &QLineEdit::returnPressed, this, &SchemaEditWidget::addEntry);
     connect(ui->deleteEntryButton, &QPushButton::clicked, this, &SchemaEditWidget::deleteEntry);
-    connect(ui->saveButton, &QPushButton::clicked, this, [this]() {
-        emit productChanged(m_schemaModel->product());
-    });
+    connect(ui->actionSave, &QAction::triggered, this, &SchemaEditWidget::save);
 
     connect(ui->schemaView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &SchemaEditWidget::updateState);
     connect(ui->newEntryName, &QLineEdit::textChanged, this, &SchemaEditWidget::updateState);
     updateState();
+
+    addActions({ ui->actionSave });
 }
 
 SchemaEditWidget::~SchemaEditWidget() = default;
+
+void SchemaEditWidget::setRESTClient(RESTClient* client)
+{
+    m_restClient = client;
+}
 
 void SchemaEditWidget::setProduct(const Product& product)
 {
@@ -79,6 +86,17 @@ void SchemaEditWidget::deleteEntry()
     m_schemaModel->deleteEntry(idx);
 }
 
+void SchemaEditWidget::save()
+{
+    auto reply = RESTApi::updateProduct(m_restClient, m_schemaModel->product());
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() != QNetworkReply::NoError)
+            return;
+        emit logMessage(QString::fromUtf8((reply->readAll())));
+        emit productChanged(m_schemaModel->product());
+    });
+}
+
 void SchemaEditWidget::updateState()
 {
     const auto selection = ui->schemaView->selectionModel()->selection();
@@ -86,5 +104,5 @@ void SchemaEditWidget::updateState()
 
     ui->addEntryButton->setEnabled(!ui->newEntryName->text().isEmpty());
 
-    ui->saveButton->setEnabled(m_schemaModel->product().isValid());
+    ui->actionSave->setEnabled(m_schemaModel->product().isValid());
 }

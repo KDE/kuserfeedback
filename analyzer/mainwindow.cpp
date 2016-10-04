@@ -63,8 +63,6 @@ MainWindow::MainWindow() :
 
     connect(m_restClient, &RESTClient::errorMessage, this, &MainWindow::logError);
     m_productModel->setRESTClient(m_restClient);
-    ui->surveyEditor->setRESTClient(m_restClient);
-    ui->analyticsView->setRESTClient(m_restClient);
 
     ui->actionViewAnalytics->setData(QVariant::fromValue(ui->analyticsView));
     ui->actionViewSurveys->setData(QVariant::fromValue(ui->surveyEditor));
@@ -96,15 +94,7 @@ MainWindow::MainWindow() :
     connect(ui->actionAddProduct, &QAction::triggered, this, &MainWindow::createProduct);
     connect(ui->actionDeleteProduct, &QAction::triggered, this, &MainWindow::deleteProduct);
 
-    connect(ui->schemaEdit, &SchemaEditWidget::productChanged, this, [this](const Product &p) {
-        auto reply = RESTApi::updateProduct(m_restClient, p);
-        connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-            if (reply->error() != QNetworkReply::NoError)
-                return;
-            logMessage(QString::fromUtf8((reply->readAll())));
-            m_productModel->reload();
-        });
-    });
+    connect(ui->schemaEdit, &SchemaEditWidget::productChanged, m_productModel, &ProductModel::reload);
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     connect(ui->actionQuit, &QAction::triggered, QCoreApplication::instance(), &QCoreApplication::quit);
@@ -157,6 +147,7 @@ void MainWindow::addView(T *view, QMenu *menu)
     for (auto action : view->actions())
         menu->addAction(action);
 
+    view->setRESTClient(m_restClient);
     connect(view, &T::logMessage, this, &MainWindow::logMessage);
 }
 

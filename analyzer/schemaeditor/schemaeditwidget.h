@@ -31,6 +31,7 @@ class SchemaEditWidget;
 }
 
 class Product;
+class RESTClient;
 class SchemaModel;
 
 class SchemaEditWidget : public QWidget
@@ -40,6 +41,7 @@ public:
     explicit SchemaEditWidget(QWidget *parent = nullptr);
     ~SchemaEditWidget();
 
+    void setRESTClient(RESTClient *client);
     void setProduct(const Product &product);
 
 signals:
@@ -49,10 +51,12 @@ signals:
 private:
     void addEntry();
     void deleteEntry();
+    void save();
 
     void updateState();
 
     std::unique_ptr<Ui::SchemaEditWidget> ui;
+    RESTClient *m_restClient;
     SchemaModel *m_schemaModel;
 };
 

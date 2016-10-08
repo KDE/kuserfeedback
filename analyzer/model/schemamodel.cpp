@@ -104,6 +104,8 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
             case 2:
                 if (role == Qt::DisplayRole)
                     return m_product.schema().at(index.row()).aggregationType();
+                if (role == Qt::EditRole)
+                    return QVariant::fromValue(m_product.schema().at(index.row()).aggregationType());
         }
     } else {
         const auto entry = m_product.schema().at(index.internalId());
@@ -116,7 +118,7 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
                 if (role == Qt::DisplayRole)
                     return elem.type(); // TODO stringify
                 else if (role == Qt::EditRole)
-                    return elem.type();
+                    return QVariant::fromValue(elem.type());
         }
     }
 
@@ -158,6 +160,9 @@ bool SchemaModel::setData(const QModelIndex &index, const QVariant &value, int r
                 break;
             case 1:
                 entry.setType(value.value<SchemaEntry::Type>());
+                break;
+            case 2:
+                entry.setAggregationType(value.value<SchemaEntry::AggregationType>());
                 break;
         }
     } else {

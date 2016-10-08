@@ -15,19 +15,30 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "schemaentryitemeditorfactory.h"
-#include <core/schemaentry.h>
-#include <core/schemaentryelement.h>
-#include "schemaentrytypecombobox.h"
-#include <widgets/metaenumcombobox.h>
+#ifndef USERFEEDBACK_ANALYZER_METAENUMCOMBOBOX_H
+#define USERFEEDBACK_ANALYZER_METAENUMCOMBOBOX_H
 
-#include <QDebug>
+#include <QComboBox>
 
-using namespace UserFeedback::Analyzer;
+namespace UserFeedback {
+namespace Analyzer {
 
-SchemaEntryItemEditorFactory::SchemaEntryItemEditorFactory()
+class MetaEnumComboBox : public QComboBox
 {
-   registerEditor(qMetaTypeId<SchemaEntry::Type>(), new QStandardItemEditorCreator<SchemaEntryTypeComboBox>());
-   registerEditor(qMetaTypeId<SchemaEntry::AggregationType>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
-   registerEditor(qMetaTypeId<SchemaEntryElement::Type>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
+    Q_OBJECT
+    Q_PROPERTY(QVariant value READ value WRITE setValue USER true)
+public:
+    explicit MetaEnumComboBox(QWidget *parent = nullptr);
+    ~MetaEnumComboBox();
+
+    QVariant value() const;
+    void setValue(const QVariant &value);
+
+private:
+    QVariant m_value;
+};
+
 }
+}
+
+#endif // USERFEEDBACK_ANALYZER_METAENUMCOMBOBOX_H

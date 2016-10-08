@@ -42,6 +42,8 @@ set(analyzer_srcs
 
     surveyeditor/surveydialog.cpp
     surveyeditor/surveyeditor.cpp
+
+    widgets/metaenumcombobox.cpp
 )
 
 add_executable(UserFeedbackAnalyzerApplication ${analyzer_srcs})

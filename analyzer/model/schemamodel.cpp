@@ -149,15 +149,30 @@ bool SchemaModel::setData(const QModelIndex &index, const QVariant &value, int r
         return false;
 
     auto schema = m_product.schema();
-    auto &entry = schema[index.row()];
 
-    switch (index.column()) {
-        case 0:
-            entry.setName(value.toString());
-            break;
-        case 1:
-            entry.setType(value.value<SchemaEntry::Type>());
-            break;
+    if (index.internalId() == TOPLEVEL) {
+        auto &entry = schema[index.row()];
+        switch (index.column()) {
+            case 0:
+                entry.setName(value.toString());
+                break;
+            case 1:
+                entry.setType(value.value<SchemaEntry::Type>());
+                break;
+        }
+    } else {
+        auto &entry = schema[index.internalId()];
+        auto elems = entry.elements();
+        auto &elem = elems[index.row()];
+        switch (index.column()) {
+            case 0:
+                elem.setName(value.toString());
+                break;
+            case 1:
+                elem.setType(value.value<SchemaEntryElement::Type>());
+                break;
+        }
+        entry.setElements(elems);
     }
 
     m_product.setSchema(schema);

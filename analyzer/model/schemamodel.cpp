@@ -18,6 +18,7 @@
 #include "schemamodel.h"
 
 #include <core/schemaentryelement.h>
+#include <core/util.h>
 
 #include <limits>
 
@@ -103,7 +104,7 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
                 break;
             case 2:
                 if (role == Qt::DisplayRole)
-                    return m_product.schema().at(index.row()).aggregationType();
+                    return Util::enumToString(m_product.schema().at(index.row()).aggregationType());
                 if (role == Qt::EditRole)
                     return QVariant::fromValue(m_product.schema().at(index.row()).aggregationType());
         }
@@ -116,7 +117,7 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
                     return elem.name();
             case 1:
                 if (role == Qt::DisplayRole)
-                    return elem.type(); // TODO stringify
+                    return Util::enumToString(elem.type());
                 else if (role == Qt::EditRole)
                     return QVariant::fromValue(elem.type());
         }

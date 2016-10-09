@@ -18,6 +18,9 @@
 #ifndef USERFEEDBACK_ANALYZER_UTIL_H
 #define USERFEEDBACK_ANALYZER_UTIL_H
 
+#include <QMetaEnum>
+#include <QMetaType>
+
 class QString;
 
 namespace UserFeedback {
@@ -32,6 +35,27 @@ namespace Util
                 return lookupTable[i].type;
         }
         return Enum();
+    }
+
+    template<typename Enum>
+    QByteArray enumToString(Enum v)
+    {
+        const auto mo = QMetaType::metaObjectForType(qMetaTypeId<Enum>());
+        if (!mo)
+            return {};
+
+        const QByteArray typeName = QMetaType::typeName(qMetaTypeId<Enum>());
+        const auto idx = typeName.lastIndexOf("::");
+        if (idx <= 0)
+            return {};
+
+        const auto enumName = typeName.mid(idx + 2);
+        const auto enumIdx = mo->indexOfEnumerator(enumName);
+        if (enumIdx < 0)
+            return {};
+
+        const auto me = mo->enumerator(enumIdx);
+        return me.valueToKeys(v);
     }
 }
 }

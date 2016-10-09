@@ -61,11 +61,21 @@ void SchemaModel::addEntry(const SchemaEntry &entry)
     endInsertRows();
 }
 
-void SchemaModel::deleteEntry(int row)
+void SchemaModel::deleteRow(const QModelIndex &idx)
 {
+    if (!idx.isValid())
+        return;
+
     auto schema = m_product.schema();
-    beginRemoveRows(QModelIndex(), row, row);
-    schema.removeAt(row);
+    beginRemoveRows(idx.parent(), idx.row(), idx.row());
+    if (idx.internalId() == TOPLEVEL) {
+        schema.removeAt(idx.row());
+    } else {
+        auto &entry = schema[idx.internalId()];
+        auto elements = entry.elements();
+        elements.removeAt(idx.row());
+        entry.setElements(elements);
+    }
     m_product.setSchema(schema);
     endRemoveRows();
 }

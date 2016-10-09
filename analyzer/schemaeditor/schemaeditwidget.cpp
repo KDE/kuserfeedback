@@ -44,7 +44,7 @@ SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
 
     connect(ui->addEntryButton, &QPushButton::clicked, this, &SchemaEditWidget::addEntry);
     connect(ui->newEntryName, &QLineEdit::returnPressed, this, &SchemaEditWidget::addEntry);
-    connect(ui->deleteEntryButton, &QPushButton::clicked, this, &SchemaEditWidget::deleteEntry);
+    connect(ui->actionDelete, &QAction::triggered, this, &SchemaEditWidget::deleteEntry);
     connect(ui->actionSave, &QAction::triggered, this, &SchemaEditWidget::save);
 
     connect(ui->schemaView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &SchemaEditWidget::updateState);
@@ -61,7 +61,7 @@ SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
 
     m_createFromTemplateAction = templateMenu->menuAction();
     m_createFromTemplateAction->setIcon(QIcon::fromTheme(QStringLiteral("document-new-from-template")));
-    addActions({ m_createFromTemplateAction, ui->actionSave });
+    addActions({ m_createFromTemplateAction, ui->actionDelete, ui->actionSave });
     updateState();
 }
 
@@ -95,8 +95,8 @@ void SchemaEditWidget::deleteEntry()
     if (r != QMessageBox::Discard)
         return;
 
-    const auto idx = selection.first().topLeft().row();
-    m_schemaModel->deleteEntry(idx);
+    const auto idx = selection.first().topLeft();
+    m_schemaModel->deleteRow(idx);
 }
 
 void SchemaEditWidget::save()
@@ -113,7 +113,7 @@ void SchemaEditWidget::save()
 void SchemaEditWidget::updateState()
 {
     const auto selection = ui->schemaView->selectionModel()->selection();
-    ui->deleteEntryButton->setEnabled(!selection.isEmpty());
+    ui->actionDelete->setEnabled(!selection.isEmpty());
 
     ui->addEntryButton->setEnabled(!ui->newEntryName->text().isEmpty());
 

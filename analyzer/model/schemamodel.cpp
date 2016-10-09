@@ -141,7 +141,9 @@ QVariant SchemaModel::headerData(int section, Qt::Orientation orientation, int r
 Qt::ItemFlags SchemaModel::flags(const QModelIndex &index) const
 {
     const auto baseFlags = QAbstractItemModel::flags(index);
-    if (index.isValid())
+    if (!index.isValid())
+        return baseFlags;
+    if (index.internalId() == TOPLEVEL || index.column() < 2)
         return baseFlags | Qt::ItemIsEditable;
     return baseFlags;
 }

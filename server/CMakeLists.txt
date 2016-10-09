@@ -27,6 +27,11 @@ set(server_receiver_srcs
     receiver/.htaccess
 )
 
+php_lint(${server_analytics_srcs})
+php_lint(${server_config_srcs})
+php_lint(${server_shared_srcs})
+php_lint(${server_receiver_srcs})
+
 if (SERVER_DEPLOY_DESTINATION)
     add_custom_target(deploy
         COMMAND scp ${server_top_srcs} ${SERVER_DEPLOY_DESTINATION}/

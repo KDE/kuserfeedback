@@ -17,6 +17,7 @@ set(server_shared_srcs
     shared/datastore.php
     shared/receiver.php
     shared/restdispatcher.php
+    shared/restexception.php
     shared/schema.json
     shared/utils.php
     shared/.htaccess

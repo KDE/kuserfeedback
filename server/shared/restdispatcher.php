@@ -16,6 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+require_once('restexception.php');
+require_once('utils.php');
+
 /** Turns REST requests into method calls. */
 class RESTDispatcher
 {
@@ -24,24 +27,29 @@ public static function dispatch($handler)
 {
     $prefix = dirname($_SERVER['PHP_SELF']);
     $command = explode('/', substr($_SERVER['REQUEST_URI'], strlen($prefix) + 1), 3);
-    if (sizeof($command) < 1)
-        die('Empty REST command.');
 
-    $method = strtolower($_SERVER['REQUEST_METHOD']) . '_' . $command[0];
+    try {
+        if (sizeof($command) < 1)
+            die('Empty REST command.');
 
-    if (!method_exists($handler, $method))
-        die('Invalid REST command ' . $method . '.');
+        $method = strtolower($_SERVER['REQUEST_METHOD']) . '_' . $command[0];
 
-    switch(sizeof($command)) {
-        case 1:
-            $handler->$method();
-            break;
-        case 2:
-            $handler->$method($command[1]);
-            break;
-        case 3:
-            $handler->$method($command[1], $command[2]);
-            break;
+        if (!method_exists($handler, $method))
+            die('Invalid REST command ' . $method . '.');
+
+        switch(sizeof($command)) {
+            case 1:
+                $handler->$method();
+                break;
+            case 2:
+                $handler->$method($command[1]);
+                break;
+            case 3:
+                $handler->$method($command[1], $command[2]);
+                break;
+        }
+    } catch (RESTException $e) {
+        Utils::httpError($e->code, $e->message);
     }
 }
 

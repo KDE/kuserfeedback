@@ -24,4 +24,19 @@ class UtilTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(Utils::tableNameForProduct("foo.bar"), "product_foo_bar");
     }
+
+    public function testNormalize_data()
+    {
+        return [
+            'empty' => [ '', '' ],
+            'normal' => [ 'foo', 'foo' ],
+            'dot' => [ 'org.kde.foo', 'org_kde_foo' ]
+        ];
+    }
+
+    /** @dataProvider testNormalize_data */
+    public function testNormalize($input, $output)
+    {
+        $this->assertEquals($output, Utils::normalizeString($input));
+    }
 }

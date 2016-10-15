@@ -18,7 +18,7 @@
 
 class Utils {
 
-private static function normalizeString($input)
+public static function normalizeString($input)
 {
     $result = '';
     for ($i = 0; $i < strlen($input); $i++) {

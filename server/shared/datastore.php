@@ -83,9 +83,11 @@ public function checkSchema()
 /** Returns the current schema version. */
 private function schemaVersion()
 {
-    foreach ($this->db->query('SELECT version FROM schema_version') as $row) {
+    $res = $this->db->query('SELECT version FROM schema_version');
+    if ($res === FALSE)
+        return 0;
+    foreach ($res as $row)
         return $row['version'];
-    }
     return 0;
 }
 

@@ -15,10 +15,13 @@ set(server_config_srcs
 set(server_shared_srcs
     shared/analytics.php
     shared/datastore.php
+    shared/product.php
     shared/receiver.php
     shared/restdispatcher.php
     shared/restexception.php
     shared/schema.json
+    shared/schemaentry.php
+    shared/schemaentryelement.php
     shared/utils.php
     shared/.htaccess
 )

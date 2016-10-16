@@ -16,20 +16,53 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-include_once('../config/config.php');
-include_once('utils.php');
+require_once( __DIR__ . '/../config/config.php');
+require_once('restexception.php');
+require_once('utils.php');
 
 /** Handles all database operations. */
 class DataStore {
 
 private $db;
 
-function __construct()
+function __construct($dsn = NULL)
 {
     try {
-        $this->db = new PDO(Config::dsn());
+        if (is_null($dsn))
+            $this->db = new PDO(Config::dsn());
+        else
+            $this->db = new PDO($dsn);
     } catch (PDOException $e) {
         die('Database connection failed: ' . $e->getMessage());
+    }
+}
+
+/** Access to the PDO handle. */
+public function pdoHandle()
+{
+    return $this->db;
+}
+
+/** Prepare a query. */
+public function prepare($queryString)
+{
+    try {
+        $res = $this->db->prepare($queryString);
+        $this->checkError($res);
+    } catch (PDOException $e) {
+        throw new RESTException($e->getMessage(), 500);
+    }
+    return $res;
+}
+
+/** Execute a prepared query. */
+public function execute(PDOStatement $stmt, $bindValues = array())
+{
+    try {
+        $stmt->execute($bindValues);
+        $this->checkError($stmt);
+    } catch (PDOException $e) {
+        throw new RESTException($e->getMessage(), 500);
     }
 }
 
@@ -37,10 +70,9 @@ function __construct()
 private function checkError($res)
 {
     if ($res === FALSE) {
-        http_response_code(500);
-        header('Content-Type: text/plain');
-        print_r($this->db->errorInfo());
-        exit(1);
+        $err = $res->errorInfo();
+        $msg = "SQLSTATE: " . $err[0] . "\nDriver error code: " . $err[1] . "\nDriver error message: " . $err[2];
+        throw RESTException($msg);
     }
 }
 

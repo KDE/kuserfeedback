@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="schema_version"/>
+    <table name="products">
+        <column>id</column>
+        <column>name</column>
+        <row>
+            <value>2</value>
+            <value>org.kde.UnitTest</value>
+        </row>
+    </table>
+    <table name="product_schema">
+        <column>id</column>
+        <column>productId</column>
+        <column>name</column>
+        <column>type</column>
+        <column>aggregation</column>
+        <row>
+            <value>31</value>
+            <value>2</value>
+            <value>entry1</value>
+            <value>scalar</value>
+            <value>category</value>
+        </row>
+        <row>
+            <value>32</value>
+            <value>2</value>
+            <value>entry2</value>
+            <value>list</value>
+            <value>xy</value>
+        </row>
+    </table>
+    <table name="schema_elements">
+        <column>id</column>
+        <column>schemaId</column>
+        <column>name</column>
+        <column>type</column>
+        <row>
+            <value>42</value>
+            <value>31</value>
+            <value>element11</value>
+            <value>string</value>
+        </row>
+        <row>
+            <value>43</value>
+            <value>31</value>
+            <value>element12</value>
+            <value>bool</value>
+        </row>
+        <row>
+            <value>44</value>
+            <value>32</value>
+            <value>element21</value>
+            <value>int</value>
+        </row>
+        <row>
+            <value>45</value>
+            <value>32</value>
+            <value>element22</value>
+            <value>number</value>
+        </row>
+    </table>
+</dataset>

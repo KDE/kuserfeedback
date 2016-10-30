@@ -27,10 +27,16 @@ class SchemaEntry
     public $elements = array();
 
     private $entryId = -1;
+    private $product = null;
 
     const SCALAR_TPYE = 'scalar';
     const LIST_TYPE = 'list';
     const MAP_TYPE = 'map';
+
+    public function __construct(Product &$product)
+    {
+        $this->product = &$product;
+    }
 
     /** Checks if this is a schema entry. */
     public function isValid()
@@ -41,7 +47,7 @@ class SchemaEntry
     }
 
     /** Load product schema from storage. */
-    static public function loadSchema(Datastore $db, $productId)
+    static public function loadSchema(Datastore $db, Product &$product)
     {
         $stmt = $db->prepare('SELECT
                 product_schema.id, product_schema.name, product_schema.type, product_schema.aggregation, schema_elements.name, schema_elements.type
@@ -49,14 +55,14 @@ class SchemaEntry
             WHERE product_schema.productId = :productId
             ORDER BY product_schema.id
         ');
-        $db->execute($stmt, array(':productId' => $productId));
+        $db->execute($stmt, array(':productId' => $product->id()));
         $schema = array();
-        $entry = new SchemaEntry();
+        $entry = new SchemaEntry($product);
         foreach ($stmt as $row) {
             if ($entry->entryId != $row[0]) {
                 if ($entry->isValid()) {
                     array_push($schema, $entry);
-                    $entry = new SchemaEntry();
+                    $entry = new SchemaEntry($product);
                 }
                 $entry->entryId = $row[0];
                 $entry->name = $row[1];
@@ -149,11 +155,11 @@ class SchemaEntry
     }
 
     /** Convert a JSON object into an array of SchemaEntry instances. */
-    static public function fromJson($jsonArray)
+    static public function fromJson($jsonArray, Product &$product)
     {
         $entries = array();
         foreach ($jsonArray as $jsonObj) {
-            $e = new SchemaEntry();
+            $e = new SchemaEntry($product);
             $e->name = $jsonObj->name;
             $e->type = $jsonObj->type;
             $e->aggregationType = $jsonObj->aggregationType;

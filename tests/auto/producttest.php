@@ -76,7 +76,7 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
     {
         $p = new Product();
         $p->name = 'org.kde.product';
-        $entry = new SchemaEntry();
+        $entry = new SchemaEntry($p);
         $entry->name = 'entry1';
         $entry->type = 'list';
         $entry->aggregationType = 'numeric';

@@ -36,6 +36,12 @@ class Product
         return $tableName;
     }
 
+    /** Returns the numeric database id of this product for use in queries. */
+    public function id()
+    {
+        return $this->productId;
+    }
+
     /** Retrieve all products from storage. */
     public static function allProducts(Datastore $db)
     {
@@ -46,7 +52,7 @@ class Product
             $p = new Product();
             $p->productId = $row['id'];
             $p->name = $row['name'];
-            $p->schema = SchemaEntry::loadSchema($db, $p->productId);
+            $p->schema = SchemaEntry::loadSchema($db, $p);
             array_push($products, $p);
         }
         return $products;
@@ -61,7 +67,7 @@ class Product
             $p = new Product();
             $p->productId = $row['id'];
             $p->name = $row['name'];
-            $p->schema = SchemaEntry::loadSchema($db, $p->productId);
+            $p->schema = SchemaEntry::loadSchema($db, $p);
             return $p;
         }
         return null;
@@ -136,7 +142,7 @@ class Product
 
         $p = new Product();
         $p->name = $jsonObj->name;
-        $p->schema = SchemaEntry::fromJson($jsonObj->schema);
+        $p->schema = SchemaEntry::fromJson($jsonObj->schema, $p);
 
         // verify
         if (strlen($p->name) <= 0 || !is_string($p->name))

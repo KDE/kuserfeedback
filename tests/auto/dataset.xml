@@ -60,4 +60,25 @@
             <value>number</value>
         </row>
     </table>
+    <table name="surveys">
+        <column>id</column>
+        <column>productId</column>
+        <column>name</column>
+        <column>url</column>
+        <column>active</column>
+        <row>
+            <value>101</value>
+            <value>2</value>
+            <value>myActiveSurvey</value>
+            <value>http://survey.example/active</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>102</value>
+            <value>2</value>
+            <value>myInactiveSurvey</value>
+            <value>http://survey.example/inactive</value>
+            <value>0</value>
+        </row>
+    </table>
 </dataset>

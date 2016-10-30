@@ -133,7 +133,7 @@ class Product
         $db->execute($stmt, array(':id' => $this->productId));
     }
 
-    /** Create on Product instance based on JSON input and verifies it is valid. */
+    /** Create one Product instance based on JSON input and verifies it is valid. */
     public static function fromJson($jsonString)
     {
         $jsonObj = json_decode($jsonString);

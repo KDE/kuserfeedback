@@ -22,6 +22,7 @@ set(server_shared_srcs
     shared/schema.json
     shared/schemaentry.php
     shared/schemaentryelement.php
+    shared/survey.php
     shared/utils.php
     shared/.htaccess
 )

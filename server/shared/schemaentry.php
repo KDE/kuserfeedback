@@ -27,7 +27,7 @@ class SchemaEntry
     public $elements = array();
 
     private $entryId = -1;
-    private $product = null;
+    private $m_product = null;
 
     const SCALAR_TPYE = 'scalar';
     const LIST_TYPE = 'list';
@@ -35,7 +35,7 @@ class SchemaEntry
 
     public function __construct(Product $product)
     {
-        $this->product = &$product;
+        $this->m_product = &$product;
     }
 
     /** Checks if this is a schema entry. */
@@ -50,6 +50,12 @@ class SchemaEntry
     public function isScalar()
     {
         return $this->type === self::SCALAR_TPYE;
+    }
+
+    /** Returns the product this entry belongs to. */
+    public function product()
+    {
+        return $this->m_product;
     }
 
     /** Load product schema from storage. */
@@ -101,8 +107,6 @@ class SchemaEntry
         ));
         $this->entryId = $db->pdoHandle()->lastInsertId();
 
-        // TODO add primary data table columns for scalars -> in separate method
-
         // add secondary data tables for non-scalars
         switch ($this->type) {
             case self::LIST_TYPE:
@@ -144,7 +148,6 @@ class SchemaEntry
             } else {
                 // insert
                 $newElem->insert($db, $this->entryId);
-                // TODO create data columns/tables
             }
             unset($oldElements[$newElem->name]);
         }
@@ -190,7 +193,7 @@ class SchemaEntry
     /** Data table name for secondary data tables. */
     public function dataTableName()
     {
-        return $this->product->dataTableName() . '_' . Utils::normalizeString($this->name);
+        return $this->product()->dataTableName() . '_' . Utils::normalizeString($this->name);
     }
 
 
@@ -199,7 +202,7 @@ class SchemaEntry
     {
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
             . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
-            . 'sampleId INTEGER REFERENCES ' . $this->product->dataTableName() . '(id))'
+            . 'sampleId INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id))'
         );
         $db->execute($stmt);
     }
@@ -209,7 +212,7 @@ class SchemaEntry
     {
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
             . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
-            . 'sampleId INTEGER REFERENCES ' . $this->product->dataTableName() . '(id), '
+            . 'sampleId INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id), '
             . 'key VARCHAR NOT NULL)'
         );
         $db->execute($stmt);

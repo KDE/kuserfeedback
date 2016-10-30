@@ -49,8 +49,10 @@ class SchemaEntryElement
             ':type' => $this->type
         ));
 
-        if (!$this->schemaEntry->isScalar())
-            $this->createNonScalarDataTableColor($db);
+        if ($this->schemaEntry->isScalar())
+            $this->createScalarDataTableColumn($db);
+        else
+            $this->createNonScalarDataTableColumn($db);
     }
 
     /** Delete this element from storage. */
@@ -92,8 +94,16 @@ class SchemaEntryElement
         throw new RESTException('Unsupported schema entry element type.', 400);
     }
 
-    /** Creates a data table entry for non-scalar types. */
-    private function createNonScalarDataTableColor(Datastore $db)
+    /** Creates a data table entry for scalar elements. */
+    private function createScalarDataTableColumn(Datastore $db)
+    {
+        $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->product()->dataTableName()
+            . ' ADD COLUMN ' . $this->name . ' ' . $this->sqlType());
+        $db->execute($stmt);
+    }
+
+    /** Creates a data table entry for non-scalar elements. */
+    private function createNonScalarDataTableColumn(Datastore $db)
     {
         $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->dataTableName()
             . ' ADD COLUMN ' . $this->name . ' ' . $this->sqlType());

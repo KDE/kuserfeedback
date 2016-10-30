@@ -46,6 +46,12 @@ class SchemaEntry
         return false;
     }
 
+    /** Checks if this is a scalar type, ie. samples go into the primary data table. */
+    public function isScalar()
+    {
+        return $this->type === self::SCALAR_TPYE;
+    }
+
     /** Load product schema from storage. */
     static public function loadSchema(Datastore $db, Product &$product)
     {
@@ -101,7 +107,7 @@ class SchemaEntry
         // TODO add primary data table columns for scalars -> in separate method
 
         // add secondary data tables for non-scalars
-        if ($this->type == self::LIST_TYPE || $this->type == self::MAP_TYPE)
+        if (!$this->isScalar())
             $this->createDataTable($db);
     }
 
@@ -147,7 +153,7 @@ class SchemaEntry
     {
         // TODO drop primary data table columns
         // drop secondary data tables
-        if ($this->type == self::LIST_TYPE || $this->type == self::MAP_TYPE)
+        if (!$this->isScalar())
             $this->dropDataTable($db);
 
         // delete elements

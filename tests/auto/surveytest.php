@@ -139,7 +139,28 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
 
     public function testSurveyUpdate()
     {
-        // TODO
+        $json = '{
+            "name": "myChangedSurvey",
+            "url": "http://survey.example/changed",
+            "active": false,
+            "id": 101
+        }';
+
+        $s = Survey::fromJson($json);
+        $s->update(self::$db);
+
+        $surveys = Survey::surveysForProduct(self::$db, 'org.kde.UnitTest');
+        $s = null;
+        foreach ($surveys as $survey) {
+            if ($survey->name == 'myChangedSurvey') {
+                $s = $survey;
+                break;
+            }
+        }
+        $this->assertNotNull($s);
+        $this->assertEquals($s->name, 'myChangedSurvey');
+        $this->assertEquals($s->url, 'http://survey.example/changed');
+        $this->assertEquals($s->active, false);
     }
 
     public function testSurveyDelete()

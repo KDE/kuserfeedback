@@ -92,7 +92,19 @@ class Survey
     /** Update an existing survey in storage. */
     public function update(Datastore $db)
     {
-        // TODO
+        $stmt = $db->prepare('
+            UPDATE surveys SET
+                name = :name,
+                url = :url,
+                active = :active
+            WHERE id = :surveyId
+        ');
+        $db->execute($stmt, array(
+            ':name' => $this->name,
+            ':url' => $this->url,
+            ':active' => $this->active,
+            ':surveyId' => $this->id
+        ));
     }
 
     /** Delete this existing survey from storage. */

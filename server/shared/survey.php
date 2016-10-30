@@ -98,7 +98,8 @@ class Survey
     /** Delete this existing survey from storage. */
     public function delete(Datastore $db)
     {
-        // TODO
+        $stmt = $db->prepare('DELETE FROM surveys WHERE id = :surveyId');
+        $db->execute($stmt, array(':surveyId' => $this->id));
     }
 
     /** Create one Survey instance based on JSON input and verifies it is valid. */
@@ -112,10 +113,14 @@ class Survey
         $s->name = $jsonObj->name;
         $s->url = $jsonObj->url;
         $s->active = $jsonObj->active;
+        if (property_exists($jsonObj, 'id'))
+            $s->id = $jsonObj->id;
 
         // verify
         if (strlen($s->name) <= 0 || !is_string($s->name))
             throw new RESTException('Empty product name.', 400);
+        if (!is_numeric($s->id))
+            throw new RESTException('Invalid survey id.', 400);
 
         return $s;
     }
@@ -128,4 +133,3 @@ class Survey
 }
 
 ?>
-

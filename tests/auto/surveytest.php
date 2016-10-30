@@ -47,11 +47,13 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
         $s = Survey::fromJson('{
             "name": "mySurvey",
             "url": "http://survey.example/",
-            "active": true
+            "active": true,
+            "id": 42
         }');
         $this->assertEquals($s->name, 'mySurvey');
         $this->assertEquals($s->url, 'http://survey.example/');
         $this->assertEquals($s->active, true);
+        $this->assertEquals($s->id, 42);
     }
 
     public function testToJson()
@@ -142,7 +144,25 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
 
     public function testSurveyDelete()
     {
-        // TODO
+        $json = '{
+            "name": "myInactiveSurvey",
+            "url": "http://survey.example/inactive",
+            "active": false,
+            "id": 102
+        }';
+
+        $s = Survey::fromJson($json);
+        $s->delete(self::$db);
+
+        $surveys = Survey::surveysForProduct(self::$db, 'org.kde.UnitTest');
+        $s = null;
+        foreach ($surveys as $survey) {
+            if ($survey->name == 'myInactiveSurvey') {
+                $s = $survey;
+                break;
+            }
+        }
+        $this->assertNull($s);
     }
 
     public function testInvalidInput_data()
@@ -152,7 +172,8 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
             'mising url' => [ '{ "name": "surveyName" }' ],
             'missing active' => [ '{ "name": "surveyName", "url": "http://survey.example/" }' ],
             'empty name' => [ '{ "name": "", "url": "http://survey.example/", "active": false }' ],
-            'non-string name' => [ '{ "name": 123, "url": "http://survey.example/", "active": false }' ]
+            'non-string name' => [ '{ "name": 123, "url": "http://survey.example/", "active": false }' ],
+            'non-numberic id' => [ '{ "name": "myName", "url": "http://survey.example/", "active": true, "id": "string" }' ]
         ];
     }
 

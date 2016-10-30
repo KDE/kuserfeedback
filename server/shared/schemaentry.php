@@ -101,14 +101,15 @@ class SchemaEntry
         ));
         $this->entryId = $db->pdoHandle()->lastInsertId();
 
-        foreach ($this->elements as $elem)
-            $elem->insert($db, $this->entryId);
-
         // TODO add primary data table columns for scalars -> in separate method
 
         // add secondary data tables for non-scalars
         if (!$this->isScalar())
             $this->createDataTable($db);
+
+        // add elements (which will create data table columns, so this needs to be last)
+        foreach ($this->elements as $elem)
+            $elem->insert($db, $this->entryId);
     }
 
     /** Update this schema entry in storage. */
@@ -181,10 +182,11 @@ class SchemaEntry
     }
 
     /** Data table name for secondary data tables. */
-    private function dataTableName()
+    public function dataTableName()
     {
         return $this->product->dataTableName() . '_' . Utils::normalizeString($this->name);
     }
+
 
     /** Create secondary data tables for non-scalar types. */
     private function createDataTable(Datastore $db)

@@ -33,7 +33,7 @@ class SchemaEntry
     const LIST_TYPE = 'list';
     const MAP_TYPE = 'map';
 
-    public function __construct(Product &$product)
+    public function __construct(Product $product)
     {
         $this->product = &$product;
     }

@@ -24,7 +24,7 @@ class SchemaEntryElement
 
     private $schemaEntry = null;
 
-    public function __construct(SchemaEntry &$entry)
+    public function __construct(SchemaEntry $entry)
     {
         $this->schemaEntry = &$entry;
     }

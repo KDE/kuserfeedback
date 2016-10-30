@@ -99,7 +99,10 @@ class SchemaEntry
             $elem->insert($db, $this->entryId);
 
         // TODO add primary data table columns for scalars -> in separate method
-        // TODO add secondary data tables for non-scalars -> in separate method
+
+        // add secondary data tables for non-scalars
+        if ($this->type == self::LIST_TYPE || $this->type == self::MAP_TYPE)
+            $this->createDataTable($db);
     }
 
     /** Update this schema entry in storage. */
@@ -143,7 +146,9 @@ class SchemaEntry
     public function delete(Datastore $db, $productId)
     {
         // TODO drop primary data table columns
-        // TODO drop secondary data tables
+        // drop secondary data tables
+        if ($this->type == self::LIST_TYPE || $this->type == self::MAP_TYPE)
+            $this->dropDataTable($db);
 
         // delete elements
         $stmt = $db->prepare('DELETE FROM schema_elements WHERE schemaId = :id');
@@ -167,6 +172,29 @@ class SchemaEntry
             array_push($entries, $e);
         }
         return $entries;
+    }
+
+    /** Data table name for secondary data tables. */
+    private function dataTableName()
+    {
+        return $this->product->dataTableName() . '_' . Utils::normalizeString($this->name);
+    }
+
+    /** Create secondary data tables for non-scalar types. */
+    private function createDataTable(Datastore $db)
+    {
+        $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
+            . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+            . 'sampleId INTEGER REFERENCES '
+            . $this->product->dataTableName() . '(id))');
+        $db->execute($stmt);
+    }
+
+    /** Drop secondary data tables for non-scalar types. */
+    private function dropDataTable(Datastore $db)
+    {
+        $stmt = $db->prepare('DROP TABLE ' . $this->dataTableName());
+        $db->execute($stmt);
     }
 }
 

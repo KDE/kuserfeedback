@@ -104,8 +104,14 @@ class SchemaEntry
         // TODO add primary data table columns for scalars -> in separate method
 
         // add secondary data tables for non-scalars
-        if (!$this->isScalar())
-            $this->createDataTable($db);
+        switch ($this->type) {
+            case self::LIST_TYPE:
+                $this->createListDataTable($db);
+                break;
+            case self::MAP_TYPE:
+                $this->createMapDataTable($db);
+                break;
+        }
 
         // add elements (which will create data table columns, so this needs to be last)
         foreach ($this->elements as $elem)
@@ -188,13 +194,24 @@ class SchemaEntry
     }
 
 
-    /** Create secondary data tables for non-scalar types. */
-    private function createDataTable(Datastore $db)
+    /** Create secondary data tables for list types. */
+    private function createListDataTable(Datastore $db)
     {
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
             . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
-            . 'sampleId INTEGER REFERENCES '
-            . $this->product->dataTableName() . '(id))');
+            . 'sampleId INTEGER REFERENCES ' . $this->product->dataTableName() . '(id))'
+        );
+        $db->execute($stmt);
+    }
+
+    /** Create secondary data tables for map types. */
+    private function createMapDataTable(Datastore $db)
+    {
+        $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
+            . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+            . 'sampleId INTEGER REFERENCES ' . $this->product->dataTableName() . '(id), '
+            . 'key VARCHAR NOT NULL)'
+        );
         $db->execute($stmt);
     }
 

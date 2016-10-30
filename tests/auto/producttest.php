@@ -80,7 +80,7 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $entry->name = 'entry1';
         $entry->type = 'list';
         $entry->aggregationType = 'numeric';
-        $elem = new SchemaEntryElement();
+        $elem = new SchemaEntryElement($entry);
         $elem->name = 'element3';
         $elem->type = 'number';
         array_push($entry->elements, $elem);

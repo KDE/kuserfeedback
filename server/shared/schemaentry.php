@@ -69,7 +69,7 @@ class SchemaEntry
                 $entry->type = $row[2];
                 $entry->aggregationType = $row[3];
             }
-            $elem = new SchemaEntryElement();
+            $elem = new SchemaEntryElement($entry);
             $elem->name = $row[4];
             $elem->type = $row[5];
             array_push($entry->elements, $elem);
@@ -168,7 +168,7 @@ class SchemaEntry
             $e->name = $jsonObj->name;
             $e->type = $jsonObj->type;
             $e->aggregationType = $jsonObj->aggregationType;
-            $e->elements = SchemaEntryElement::fromJson($jsonObj->elements);
+            $e->elements = SchemaEntryElement::fromJson($jsonObj->elements, $e);
             array_push($entries, $e);
         }
         return $entries;

@@ -22,6 +22,13 @@ class SchemaEntryElement
     public $name;
     public $type;
 
+    private $schemaEntry = null;
+
+    public function __construct(SchemaEntry &$entry)
+    {
+        $this->schemaEntry = &$entry;
+    }
+
     /** Insert this element into storage. */
     public function insert(Datastore $db, $entryId)
     {
@@ -50,11 +57,11 @@ class SchemaEntryElement
     }
 
     /** Convert a JSON array into an array of SchemaEntryElement instances. */
-    static public function fromJson($jsonArray)
+    static public function fromJson($jsonArray, SchemaEntry &$entry)
     {
         $elems = array();
         foreach ($jsonArray as $jsonObj) {
-            $e = new SchemaEntryElement();
+            $e = new SchemaEntryElement($entry);
             $e->name = $jsonObj->name;
             $e->type = $jsonObj->type;
             array_push($elems, $e);

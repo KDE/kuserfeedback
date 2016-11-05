@@ -61,6 +61,7 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
         }';
 
         Sample::insert(self::$db, $sample, $p);
+        // TODO test insertion of map entries
     }
 }
 

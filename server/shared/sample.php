@@ -31,6 +31,12 @@ class Sample
     {
         $jsonObj = json_decode($jsonData);
         $sampleId = self::insertScalar($db, $jsonObj, $product);
+
+        foreach ($product->schema as $entry) {
+            if ($entry->isScalar())
+                continue;
+            self::insertNonScalar($db, $jsonObj, $entry, $sampleId);
+        }
     }
 
     /** Insert scalar data for @p product.
@@ -89,6 +95,48 @@ class Sample
         $db->execute($stmt, $values);
 
         return $db->pdoHandle()->lastInsertId();
+    }
+
+    /** Insert non-scalar elements in seconadary data tables. */
+    private static function insertNonScalar(Datastore $db, $jsonObj, SchemaEntry $schemaEntry, $sampleId)
+    {
+        if (!property_exists($jsonObj, $schemaEntry->name))
+            return;
+        $data = $jsonObj->{$schemaEntry->name};
+        if (!is_array($data))
+            return;
+
+        $columns = array('sampleId');
+        $binds = array(':sampleId');
+        if ($schemaEntry->type == SchemaEntry::MAP_TYPE) {
+            array_push($columns, 'key');
+            array_push($binds, ':key');
+        }
+        foreach ($schemaEntry->elements as $elem) {
+            array_push($columns, $elem->name);
+            array_push($binds, ':' . $elem->name);
+        }
+        $sql = 'INSERT INTO ' . $schemaEntry->dataTableName()
+             . ' (' . implode(', ', $columns) . ') VALUES ('
+             . implode(', ', $binds) . ')';
+        $stmt = $db->prepare($sql);
+
+        foreach ($data as $key => $entry) {
+            $bindValues = array(':sampleId' => $sampleId);
+            if ($schemaEntry->type == SchemaEntry::MAP_TYPE) {
+                if (!is_string($key) || strlen($key) == 0)
+                    continue;
+                $bindValues[':key'] = $key;
+            }
+            foreach ($schemaEntry->elements as $elem) {
+                $bindValues[':' . $elem->name] = null;
+                if (!property_exists($entry, $elem->name))
+                    continue;
+                // TODO type check, as done for scalar values
+                $bindValues[':' . $elem->name] = $entry->{$elem->name};
+            }
+            $db->execute($stmt, $bindValues);
+        }
     }
 }
 

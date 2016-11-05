@@ -17,6 +17,7 @@ add_test(NAME surveyapitest COMMAND surveyapitest)
 set(php_test_srcs
     utilstest.php
     producttest.php
+    sampletest.php
     surveytest.php
 )
 

@@ -19,6 +19,7 @@ set(server_shared_srcs
     shared/receiver.php
     shared/restdispatcher.php
     shared/restexception.php
+    shared/sample.php
     shared/schema.json
     shared/schemaentry.php
     shared/schemaentryelement.php

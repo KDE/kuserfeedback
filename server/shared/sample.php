@@ -25,6 +25,67 @@ require_once('schemaentryelement.php');
 /** Represents a data sample received from a user. */
 class Sample
 {
+    /** JSON for all data of the given product. */
+    public static function dataAsJson(Datastore $db, Product $product)
+    {
+        $data = array();
+        $sampleIdIndex = array();
+        $i = 0;
+
+        // query scalar table
+        $scalarSql = 'SELECT id, timestamp ';
+        foreach ($product->schema as $entry) {
+            if (!$entry->isScalar())
+                continue;
+            foreach ($entry->elements as $elem)
+                $scalarSql .= ', ' . $elem->name;
+        }
+        $scalarSql .= ' FROM ' . $product->dataTableName() . ' ORDER BY timestamp ASC';
+        $scalarStmt = $db->prepare($scalarSql);
+        $db->execute($scalarStmt, array());
+        foreach ($scalarStmt as $scalarRow) {
+            $rowData['id'] = intval($scalarRow['id']);
+            $rowData['timestamp'] = $scalarRow['timestamp'];
+            foreach ($product->schema as $entry) {
+                if (!$entry->isScalar())
+                    continue;
+                $entryData = null;
+                foreach ($entry->elements as $elem)
+                    $entryData[$elem->name] = self::valueFromDb($elem, $scalarRow[$elem->name]);
+                $rowData[$entry->name] = $entryData;
+            }
+            array_push($data, $rowData);
+            $sampleIdIndex[$rowData['id']] = $i++;
+        }
+
+        // query each non-scalar table
+        foreach ($product->schema as $entry) {
+            if ($entry->isScalar())
+                continue;
+            $sql = 'SELECT sampleId';
+            if ($entry->type == SchemaEntry::MAP_TYPE)
+                $sql .= ', key';
+            foreach ($entry->elements as $elem)
+                $sql .= ', ' . $elem->name;
+            $sql .= ' FROM ' . $entry->dataTableName() . ' ORDER BY id ASC';
+            $stmt = $db->prepare($sql);
+            $db->execute($stmt, array());
+            foreach ($stmt as $row) {
+                $entryData = null;
+                foreach ($entry->elements as $elem)
+                    $entryData[$elem->name] = self::valueFromDb($elem, $row[$elem->name]);
+                $idx = $sampleIdIndex[$row['sampleId']];
+                if (!array_key_exists($entry->name, $data[$idx]))
+                    $data[$idx][$entry->name] = array();
+                if ($entry->type == SchemaEntry::MAP_TYPE)
+                    $data[$idx][$entry->name][$row['key']] = $entryData;
+                else
+                    array_push($data[$idx][$entry->name], $entryData);
+            }
+        }
+
+        return json_encode($data);
+    }
 
     /** Insert a received sample for @p product into the data store. */
     public static function insert(Datastore $db, $jsonData, Product $product)
@@ -103,8 +164,18 @@ class Sample
         if (!property_exists($jsonObj, $schemaEntry->name))
             return;
         $data = $jsonObj->{$schemaEntry->name};
-        if (!is_array($data))
-            return;
+        switch ($schemaEntry->type) {
+            case SchemaEntry::LIST_TYPE:
+                if (!is_array($data))
+                    return;
+                break;
+            case SchemaEntry::MAP_TYPE:
+                if (!is_object($data))
+                    return;
+                break;
+            default:
+                Utils::httpError(500, "Unknown non-scalar schema entry type.");
+        }
 
         $columns = array('sampleId');
         $binds = array(':sampleId');
@@ -138,7 +209,22 @@ class Sample
             $db->execute($stmt, $bindValues);
         }
     }
+
+    /** Fix database output that lost the correct type for a schema entry element. */
+    private static function valueFromDb(SchemaEntryElement $elem, $dbValue)
+    {
+        switch ($elem->type) {
+            case SchemaEntryElement::STRING_TYPE:
+                return strval($dbValue);
+            case SchemaEntryElement::INT_TYPE:
+                return intval($dbValue);
+            case SchemaEntryElement::NUMBER_TYPE:
+                return floatval($dbValue);
+            case SchemaEntryElement::BOOL_TYPE:
+                return boolval($dbValue);
+        }
+        Utils::httpError(500, "Invalid schema entry element type.");
+    }
 }
 
 ?>
-

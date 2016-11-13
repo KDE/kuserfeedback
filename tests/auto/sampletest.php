@@ -42,11 +42,11 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
         return $this->createXmlDataSet(__DIR__ . '/dataset.xml');
     }
 
-    public function testSampleInsert()
+    public function testListSampleInsert()
     {
         $p = Product::productByName(self::$db, 'org.kde.UnitTest');
         $this->assertNotNull($p);
-        $p->name = 'org.kde.MyProduct';
+        $p->name = 'org.kde.MyListProduct';
         $p->insert(self::$db); // HACK create a new product, so the data tables are created correctly
 
         $sample = '{
@@ -61,9 +61,52 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
         }';
 
         Sample::insert(self::$db, $sample, $p);
-        // TODO test insertion of map entries
+        Sample::insert(self::$db, $sample, $p);
+
+        $dataJson = Sample::dataAsJson(self::$db, $p);
+        echo ("\n $dataJson \n");
+        $data = json_decode($dataJson);
+        $this->assertTrue(is_array($data));
+        $this->assertCount(2, $data);
+        $d0 = $data[0];
+        $this->assertObjectHasAttribute('timestamp', $d0);
+        $this->assertObjectHasAttribute('entry1', $d0);
+        $this->assertObjectHasAttribute('entry2', $d0);
+        $d01 = $d0->{'entry2'};
+        $this->assertCount(2, $d01);
+    }
+
+    public function testMapSampleInsert()
+    {
+        $p = Product::productByName(self::$db, 'org.kde.UnitTest');
+        $this->assertNotNull($p);
+        $p->name = 'org.kde.MyMapProduct';
+        $p->schema[1]->type = SchemaEntry::MAP_TYPE;
+        $p->insert(self::$db);
+
+        $sample = '{
+            "entry1": {
+                "element11": "aString",
+                "element12": true
+            },
+            "entry2": {
+                "key1": { "element21": 14, "element22": 1.5 },
+                "key2": { "element21": 16, "element22": 1.7 }
+            }
+        }';
+
+        Sample::insert(self::$db, $sample, $p);
+        $dataJson = Sample::dataAsJson(self::$db, $p);
+        echo ("\n $dataJson \n");
+        $data = json_decode($dataJson);
+        $this->assertTrue(is_array($data));
+        $this->assertCount(1, $data);
+        $d0 = $data[0];
+        $this->assertObjectHasAttribute('timestamp', $d0);
+        $this->assertObjectHasAttribute('entry1', $d0);
+        $this->assertObjectHasAttribute('entry2', $d0);
+        $d01 = $d0->{'entry2'};
+        $this->assertObjectHasAttribute('key1', $d01);
+        $this->assertObjectHasAttribute('key2', $d01);
     }
 }
-
-
-

@@ -23,6 +23,11 @@
 
 using namespace UserFeedback::Analyzer;
 
+QNetworkReply* RESTApi::checkSchema(RESTClient *client)
+{
+    return client->get(QStringLiteral("check_schema"));
+}
+
 QNetworkReply* RESTApi::listProducts(RESTClient *client)
 {
     return client->get(QStringLiteral("products"));

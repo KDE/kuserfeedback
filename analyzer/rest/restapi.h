@@ -32,6 +32,9 @@ class Survey;
  */
 namespace RESTApi
 {
+    /** Check if server database schema is up-to-date. */
+    QNetworkReply* checkSchema(RESTClient *client);
+
     /** List all products. */
     QNetworkReply* listProducts(RESTClient *client);
 

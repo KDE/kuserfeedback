@@ -154,7 +154,7 @@ void MainWindow::addView(T *view, QMenu *menu)
 void MainWindow::connectToServer(const ServerInfo& info)
 {
     m_restClient->connectToServer(info);
-    auto reply = m_restClient->get(QStringLiteral("check_schema"));
+    auto reply = RESTApi::checkSchema(m_restClient);
     connect(reply, &QNetworkReply::finished, this, [this, reply, info]() {
         if (reply->error() == QNetworkReply::NoError) {
             logMessage(tr("Connected to %1.").arg(info.url().toString()));

@@ -30,12 +30,12 @@ public static function dispatch($handler)
 
     try {
         if (sizeof($command) < 1)
-            die('Empty REST command.');
+            Utils::httpError(400, 'Empty REST command.');
 
         $method = strtolower($_SERVER['REQUEST_METHOD']) . '_' . $command[0];
 
         if (!method_exists($handler, $method))
-            die('Invalid REST command ' . $method . '.');
+            Utils::httpError(400, 'Invalid REST command ' . $method . '.');
 
         switch(sizeof($command)) {
             case 1:
@@ -49,7 +49,7 @@ public static function dispatch($handler)
                 break;
         }
     } catch (RESTException $e) {
-        Utils::httpError($e->code, $e->message);
+        Utils::httpError($e->getCode(), $e->getMessage());
     }
 }
 

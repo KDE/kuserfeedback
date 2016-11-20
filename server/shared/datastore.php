@@ -70,9 +70,9 @@ public function execute(PDOStatement $stmt, $bindValues = array())
 private function checkError($res)
 {
     if ($res === FALSE) {
-        $err = $res->errorInfo();
+        $err = $this->db->errorInfo();
         $msg = "SQLSTATE: " . $err[0] . "\nDriver error code: " . $err[1] . "\nDriver error message: " . $err[2];
-        throw RESTException($msg);
+        throw new RESTException($msg, 500);
     }
 }
 

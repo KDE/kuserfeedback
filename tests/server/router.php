@@ -16,18 +16,23 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/** Database configuration. */
-class Config
-{
+/** NOTE: This file is for local autotests only, do not deploy! */
 
-/** PDO DSN */
-public static function dsn()
-{
-    return 'sqlite:' . __DIR__ . '/../data/db.sqlite';
+$path = explode('/', $_SERVER['REQUEST_URI']);
+
+switch ($path[1]) {
+    case 'analytics':
+        $_SERVER['PHP_SELF'] = '/analytics/index.php';
+        include '../../server/analytics/index.php';
+        return;
+    case 'receiver':
+        $_SERVER['PHP_SELF'] = '/receiver/index.php';
+        include '../../server/receiver/index.php';
+        return;
 }
 
-// TODO user, password
-
-}
+http_response_code(404);
+header('Content-Type: text/plain');
+print('Invalid request URI: ' . $_SERVER['REQUEST_URI']);
 
 ?>

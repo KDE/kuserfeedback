@@ -1,4 +1,3 @@
-<?php
 /*
     Copyright (C) 2016 Volker Krause <vkrause@kde.org>
 
@@ -16,18 +15,25 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/** Database configuration. */
-class Config
+#ifndef SERVERCONTROLLER_H
+#define SERVERCONTROLLER_H
+
+#include <QProcess>
+
+/** Controls a local PHP test server for automatic tests. */
+class ServerController
 {
+public:
+    ServerController();
+    ~ServerController();
 
-/** PDO DSN */
-public static function dsn()
-{
-    return 'sqlite:' . __DIR__ . '/../data/db.sqlite';
-}
+    bool start();
+    void stop();
 
-// TODO user, password
+    QUrl url() const;
 
-}
+private:
+    QProcess m_process;
+};
 
-?>
+#endif // SERVERCONTROLLER_H

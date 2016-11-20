@@ -16,8 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-include_once('../shared/restdispatcher.php');
-include_once('../shared/analytics.php');
+include_once(__DIR__ . '/../shared/restdispatcher.php');
+include_once(__DIR__ . '/../shared/analytics.php');
 
 $handler = new Analytics();
 RESTDispatcher::dispatch($handler);

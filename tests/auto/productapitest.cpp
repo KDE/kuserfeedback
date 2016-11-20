@@ -15,6 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "servercontroller.h"
+
 #include <rest/restapi.h>
 #include <rest/restclient.h>
 
@@ -33,13 +35,12 @@ class ProductApiTest : public QObject
 {
     Q_OBJECT
 private:
+    ServerController m_server;
+
     ServerInfo testServer() const
     {
-        // TODO this needs to be read from an external file, and the test needs to be skipped if not available
         ServerInfo s;
-        s.setUrl(QUrl(QStringLiteral("https://feedback.volkerkrause.eu/")));
-        s.setUserName(QStringLiteral("orwell"));
-        s.setPassword(QStringLiteral("1984"));
+        s.setUrl(m_server.url());
         return s;
     }
 
@@ -65,6 +66,7 @@ private slots:
     void initTestCase()
     {
         QStandardPaths::setTestModeEnabled(true);
+        QVERIFY(m_server.start());
     }
 
     void testInvalidList()
@@ -77,6 +79,7 @@ private slots:
 
         auto reply = RESTApi::listProducts(&client);
         QVERIFY(waitForFinished(reply));
+        QEXPECT_FAIL("", "local PHP tests don't authenticate", Continue);
         QVERIFY(reply->error() != QNetworkReply::NoError);
     }
 

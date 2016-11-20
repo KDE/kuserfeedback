@@ -15,6 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "servercontroller.h"
+
 #include <rest/restclient.h>
 #include <model/productmodel.h>
 
@@ -32,11 +34,12 @@ class ProductModelTest : public QObject
 {
     Q_OBJECT
 private:
+    ServerController m_server;
+
     ServerInfo testServer() const
     {
-        // TODO this needs to be read from an external file, and the test needs to be skipped if not available
         ServerInfo s;
-        s.setUrl(QUrl(QStringLiteral("https://feedback.volkerkrause.eu/")));
+        s.setUrl(m_server.url());
         s.setUserName(QStringLiteral("orwell"));
         s.setPassword(QStringLiteral("1984"));
         return s;
@@ -46,6 +49,7 @@ private slots:
     void initTestCase()
     {
         QStandardPaths::setTestModeEnabled(true);
+        QVERIFY(m_server.start());
     }
 
     void testProductModel()

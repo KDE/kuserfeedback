@@ -180,6 +180,8 @@ class SchemaEntry
     {
         $entries = array();
         foreach ($jsonArray as $jsonObj) {
+            if (!property_exists($jsonObj, 'name') || !property_exists($jsonObj, 'type') || !property_exists($jsonObj, 'aggregationType'))
+                throw new RESTException('Incomplete schema entry object.', 400);
             $e = new SchemaEntry($product);
             $e->name = $jsonObj->name;
             $e->type = $jsonObj->type;

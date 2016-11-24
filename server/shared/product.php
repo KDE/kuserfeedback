@@ -62,7 +62,7 @@ class Product
     public static function productByName(Datastore $db, $name)
     {
         $stmt = $db->prepare('SELECT * FROM products WHERE name = :name');
-        $db->execute($stmt, array(':name' => $name));
+        $db->execute($stmt, array(':name' => strval($name)));
         foreach ($stmt as $row) {
             $p = new Product();
             $p->productId = $row['id'];

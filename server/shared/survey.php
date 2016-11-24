@@ -35,7 +35,7 @@ class Survey
             FROM surveys JOIN products ON (surveys.productId = products.id)
             WHERE products.name = :productName
         ');
-        $db->execute($stmt, array('productName' => $productName));
+        $db->execute($stmt, array('productName' => strval($productName)));
 
         $surveys = array();
         foreach ($stmt as $row) {
@@ -58,7 +58,7 @@ class Survey
             FROM surveys JOIN products ON (surveys.productId = products.id)
             WHERE products.name = :productName AND surveys.active = 1
         ');
-        $db->execute($stmt, array('productName' => $productName));
+        $db->execute($stmt, array('productName' => strval($productName)));
 
         $surveys = array();
         foreach ($stmt as $row) {
@@ -123,8 +123,8 @@ class Survey
 
         $s = new Survey();
         $s->name = $jsonObj->name;
-        $s->url = $jsonObj->url;
-        $s->active = $jsonObj->active;
+        $s->url = strval($jsonObj->url);
+        $s->active = boolval($jsonObj->active);
         if (property_exists($jsonObj, 'id'))
             $s->id = $jsonObj->id;
 

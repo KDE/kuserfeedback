@@ -86,7 +86,7 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         array_push($entry->elements, $elem);
         array_push($p->schema, $entry);
 
-        $this->assertJsonStringEqualsJsonString($p->toJson(), '{
+        $this->assertJsonStringEqualsJsonString(json_encode($p), '{
             "name": "org.kde.product",
             "schema": [
                 {
@@ -195,7 +195,7 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $p->insert(self::$db);
 
         $p = Product::productByName(self::$db, 'org.kde.NewProduct');
-        $this->assertJsonStringEqualsJsonString($json, $p->toJson());
+        $this->assertJsonStringEqualsJsonString($json, json_encode($p));
     }
 
     public function testProductUpdate()
@@ -228,7 +228,7 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $p->insert(self::$db);
 
         $p = Product::productByName(self::$db, 'org.kde.ProductToUpdate');
-        $this->assertJsonStringEqualsJsonString($jsonOld, $p->toJson());
+        $this->assertJsonStringEqualsJsonString($jsonOld, json_encode($p));
 
         $jsonNew = '{
             "name": "org.kde.ProductToUpdate",
@@ -256,7 +256,7 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $p->update(self::$db, $newP);
 
         $p = Product::productByName(self::$db, 'org.kde.ProductToUpdate');
-        $this->assertJsonStringEqualsJsonString($jsonNew, $p->toJson());
+        $this->assertJsonStringEqualsJsonString($jsonNew, json_encode($p));
     }
 
     public function testProductDelete()
@@ -278,7 +278,7 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $p = Product::fromJson($json);
         $p->insert(self::$db);
         $p = Product::productByName(self::$db, 'org.kde.DeletedProduct');
-        $this->assertJsonStringEqualsJsonString($json, $p->toJson());
+        $this->assertJsonStringEqualsJsonString($json, json_encode($p));
 
         $p->delete(self::$db);
         $p = Product::productByName(self::$db, 'org.kde.DeletedProduct');

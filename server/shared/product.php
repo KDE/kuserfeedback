@@ -153,12 +153,6 @@ class Product
 
         return $p;
     }
-
-    /** Serialize product to JSON for sending to the client. */
-    public function toJson()
-    {
-        return json_encode($this);
-    }
 }
 
 ?>

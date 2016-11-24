@@ -64,7 +64,7 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
         $s->active = true;
         $s->id = 42;
 
-        $this->assertJsonStringEqualsJsonString($s->toJson(), '{
+        $this->assertJsonStringEqualsJsonString(json_encode($s), '{
             "name": "mySurvey",
             "url": "http://survey.example/",
             "active": true,

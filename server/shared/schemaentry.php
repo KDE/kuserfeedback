@@ -41,6 +41,8 @@ class SchemaEntry
     /** Checks if this is a schema entry. */
     public function isValid()
     {
+        if ($this->type != self::SCALAR_TPYE && $this->type != self::LIST_TYPE && $this->type != self::MAP_TYPE)
+            return false;
         if ($this->name != "")
             return true;
         return false;
@@ -183,10 +185,12 @@ class SchemaEntry
             if (!property_exists($jsonObj, 'name') || !property_exists($jsonObj, 'type') || !property_exists($jsonObj, 'aggregationType'))
                 throw new RESTException('Incomplete schema entry object.', 400);
             $e = new SchemaEntry($product);
-            $e->name = $jsonObj->name;
-            $e->type = $jsonObj->type;
-            $e->aggregationType = $jsonObj->aggregationType;
+            $e->name = strval($jsonObj->name);
+            $e->type = strval($jsonObj->type);
+            $e->aggregationType = strval($jsonObj->aggregationType);
             $e->elements = SchemaEntryElement::fromJson($jsonObj->elements, $e);
+            if (!$e->isValid())
+                throw new RESTException('Invalid schema entry.', 400);
             array_push($entries, $e);
         }
         return $entries;

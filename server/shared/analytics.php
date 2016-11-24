@@ -17,6 +17,8 @@
 */
 
 require_once('datastore.php');
+require_once('product.php');
+require_once('survey.php');
 require_once('utils.php');
 
 /** Command handler for the analytics interface. */
@@ -149,37 +151,34 @@ public function get_data($productName)
 }
 
 /** List all surveys for a product. */
-public function get_surveys($product)
+public function get_surveys($productName)
 {
-    if ($product == "")
+    if ($productName == "")
         Utils::httpError(400, "No product id specified.");
 
     $db = new DataStore();
-    $res = $db->surveysByProductName($product);
-    for ($i = 0; $i < sizeof($res); $i++) {
-        $res[$i]['active'] = $res[$i]['active'] == "1"; // fixup sqlite bool representation
-    }
-    echo(json_encode($res));
+    $surveys = Survey::surveysForProduct($db, $productName);
+    echo(json_encode($surveys));
 }
 
 /** Add new survey. */
-public function post_surveys($product)
+public function post_surveys($productName)
 {
-    if ($product == "")
+    if ($productName == "")
         Utils::httpError(400, "No product id specified.");
 
     $rawPostData = file_get_contents('php://input');
-    $survey= json_decode($rawPostData, true);
+    $survey = Survey::fromJson($rawPostData);
 
     $db = new DataStore();
     $db->beginTransaction();
-    $productData = $db->productByName($product);
-    if (is_null($productData))
+    $product = Product::productByName($db, $productName);
+    if (is_null($product))
         Utils::httpError(404, "Invalid product identifier.");
 
-    $db->addSurvey($productData['id'], $survey);
+    $survey->insert($db, $product);
     $db->commit();
-    echo("Survey created for product $product.");
+    echo('Survey created for product ' . $product->name . '.');
 }
 
 /** Edit an existing survey. */
@@ -190,21 +189,27 @@ public function put_surveys($surveyId)
         Utils::httpError(400, "Invalid survey id.");
 
     $surveyData = file_get_contents('php://input');
-    $surveyData = json_decode($surveyData, true);
+    $survey = Survey::fromJson($surveyData);
+    $survey->id = $surveyId;
 
     $db = new DataStore();
     $db->beginTransaction();
-    $db->updateSurvey($surveyId, $surveyData);
+    $survey->update($db);
     $db->commit();
     echo("Survery updated.");
 }
 
 /** Delete survey. */
-public function delete_surveys($survey)
+public function delete_surveys($surveyId)
 {
+    $survey = new Survey;
+    $survey->id = intval($surveyId);
+    if ($survey->id < 0)
+        Utils::httpError(400, "Invalid survey id.");
+
     $db = new DataStore();
     $db->beginTransaction();
-    $db->deleteSurvey($survey);
+    $survey->delete($db);
     $db->commit();
     echo("Survey deleted.");
 }

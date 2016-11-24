@@ -428,17 +428,6 @@ public function addRatioSetRecord($complexTable, $sampleId, $ratioSet)
     }
 }
 
-/** List all survey for a product name. */
-public function surveysByProductName($product)
-{
-    $res = $this->db->query('SELECT surveys.* FROM surveys JOIN products ON (surveys.productId = products.id) WHERE products.name = ' . $this->db->quote($product));
-    $this->checkError($res);
-    $surveys = array();
-    foreach ($res as $row)
-        array_push($surveys, $row);
-    return $surveys;
-}
-
 /** List all active surveys for a given product. */
 public function activeSurveysForProduct($product)
 {
@@ -448,34 +437,6 @@ public function activeSurveysForProduct($product)
     foreach ($res as $row)
         array_push($surveys, $row);
     return $surveys;
-}
-
-/** Add a new survey for a product given by id. */
-public function addSurvey($productId, $survey)
-{
-    $res = $this->db->exec('INSERT INTO surveys (productId, name, url) VALUES ('
-        . $productId . ', '
-        . $this->db->quote($survey['name']) . ', '
-        . $this->db->quote($survey['url']) . ')');
-    $this->checkError($res);
-}
-
-/** Update an existing survey with id @p $surveyId. */
-public function updateSurvey($surveyId, $surveyData)
-{
-    $res = $this->db->exec('UPDATE surveys SET'
-        . ' name = ' . $this->db->quote($surveyData['name']) . ','
-        . ' url = ' . $this->db->quote($surveyData['url']) . ','
-        . ' active = ' . ($surveyData['active'] ? 1 : 0)
-        . ' WHERE id = ' . $surveyId);
-    $this->checkError($res);
-}
-
-/** Delete a survey given its internal id. */
-public function deleteSurvey($surveyId)
-{
-    $res = $this->db->exec('DELETE FROM surveys WHERE id = ' . $this->db->quote($surveyId));
-    $this->checkError($res);
 }
 
 }

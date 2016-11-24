@@ -159,7 +159,7 @@ QJsonObject SchemaEntry::toJsonObject() const
         case RatioSetType: t = QStringLiteral("ratio_set"); break;
     }
     obj.insert(QStringLiteral("type"), t);
-    obj.insert(QStringLiteral("aggregation"), QLatin1String(aggregation_types_table[d->aggregation].name));
+    obj.insert(QStringLiteral("aggregationType"), QLatin1String(aggregation_types_table[d->aggregation].name));
 
     QJsonArray array;
     for (const auto &element : qAsConst(d->elements))
@@ -186,7 +186,7 @@ QVector<SchemaEntry> SchemaEntry::fromJson(const QJsonArray &array)
             entry.setType(StringListType);
         else if (t == QStringLiteral("ratio_set"))
             entry.setType(RatioSetType);
-        entry.setAggregationType(Util::stringToEnum<AggregationType>(obj.value(QLatin1String("aggregation")).toString(), aggregation_types_table));
+        entry.setAggregationType(Util::stringToEnum<AggregationType>(obj.value(QLatin1String("aggregationType")).toString(), aggregation_types_table));
         entry.setElements(SchemaEntryElement::fromJson(obj.value(QLatin1String("elements")).toArray()));
 
         res.push_back(entry);

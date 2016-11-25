@@ -25,6 +25,10 @@ add_executable(datasourcetest datasourcetest.cpp)
 target_link_libraries(datasourcetest UserFeedbackCore Qt5::Gui Qt5::Test) # needs Gui for ScreenInfoSource
 add_test(NAME datasourcetest COMMAND datasourcetest)
 
+add_executable(providertest providertest.cpp)
+target_link_libraries(providertest UserFeedbackTestUtils UserFeedbackCore)
+add_test(NAME providertest COMMAND providertest)
+
 set(php_test_srcs
     utilstest.php
     producttest.php

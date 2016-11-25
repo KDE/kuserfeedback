@@ -16,8 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-include_once('../shared/restdispatcher.php');
-include_once('../shared/receiver.php');
+require_once(__DIR__ . '/../shared/restdispatcher.php');
+require_once(__DIR__ . '/../shared/receiver.php');
 
 $handler = new Receiver();
 RESTDispatcher::dispatch($handler);

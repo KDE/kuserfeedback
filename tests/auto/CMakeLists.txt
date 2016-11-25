@@ -21,6 +21,10 @@ add_executable(surveyapitest surveyapitest.cpp)
 target_link_libraries(surveyapitest UserFeedbackTestUtils)
 add_test(NAME surveyapitest COMMAND surveyapitest)
 
+add_executable(datasourcetest datasourcetest.cpp)
+target_link_libraries(datasourcetest UserFeedbackCore Qt5::Gui Qt5::Test) # needs Gui for ScreenInfoSource
+add_test(NAME datasourcetest COMMAND datasourcetest)
+
 set(php_test_srcs
     utilstest.php
     producttest.php

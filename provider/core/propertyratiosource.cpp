@@ -131,7 +131,8 @@ void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &
 
 void PropertyRatioSource::toJson(QJsonObject &obj)
 {
-    Q_D(const PropertyRatioSource);
+    Q_D(PropertyRatioSource);
+    d->propertyChanged();
 
     QJsonObject set;
 

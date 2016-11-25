@@ -51,6 +51,12 @@ QNetworkReply* RESTApi::deleteProduct(RESTClient *client, const Product &p)
     return client->deleteResource(QStringLiteral("products/") + p.name());
 }
 
+QNetworkReply* RESTApi::listSamples(RESTClient *client, const Product &p)
+{
+    Q_ASSERT(p.isValid());
+    return client->get(QStringLiteral("data/") + p.name());
+}
+
 QNetworkReply* RESTApi::listSurveys(RESTClient *client, const Product &p)
 {
     Q_ASSERT(p.isValid());

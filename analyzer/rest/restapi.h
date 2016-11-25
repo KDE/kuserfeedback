@@ -53,6 +53,11 @@ namespace RESTApi
      */
     QNetworkReply* deleteProduct(RESTClient *client, const Product &p);
 
+    /** Get all samples for a product.
+     *  @param p The product to add. Must be valid.
+     */
+    QNetworkReply* listSamples(RESTClient *client, const Product &p);
+
     /** List all surveys for product @p p. */
     QNetworkReply* listSurveys(RESTClient *client, const Product &p);
 

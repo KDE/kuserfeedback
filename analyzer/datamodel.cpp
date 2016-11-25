@@ -18,6 +18,7 @@
 #include "datamodel.h"
 
 #include "ratioset.h"
+#include <rest/restapi.h>
 #include <rest/restclient.h>
 #include "sample.h"
 
@@ -56,7 +57,7 @@ void UserFeedback::Analyzer::DataModel::reload()
     if (!m_restClient || !m_restClient->isConnected() || !m_product.isValid())
         return;
 
-    auto reply = m_restClient->get(QStringLiteral("data/") + m_product.name());
+    auto reply = RESTApi::listSamples(m_restClient, m_product);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
             beginResetModel();

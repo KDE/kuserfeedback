@@ -61,6 +61,9 @@ class Product
     /** Retrieve a specific product by name from storage. */
     public static function productByName(Datastore $db, $name)
     {
+        if (!is_string($name) || strlen($name) <= 0)
+            throw new RESTException('Invalid product name.', 400);
+
         $stmt = $db->prepare('SELECT * FROM products WHERE name = :name');
         $db->execute($stmt, array(':name' => strval($name)));
         foreach ($stmt as $row) {

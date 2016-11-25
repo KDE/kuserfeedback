@@ -41,6 +41,22 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         return $this->createXmlDataSet(__DIR__ . '/dataset.xml');
     }
 
+    public function testTableName_data()
+    {
+        return [
+            'normal' => [ 'foo', 'product_foo' ],
+            'dot' => [ 'org.kde.foo', 'product_org_kde_foo' ]
+        ];
+    }
+
+    /** @dataProvider testTableName_data */
+    public function testTableName($input, $output)
+    {
+        $p = new Product;
+        $p->name = $input;
+        $this->assertEquals($output, $p->dataTableName());
+    }
+
     public function testFromJson()
     {
         $p = Product::fromJson('{

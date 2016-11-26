@@ -195,6 +195,8 @@ class Sample
         $stmt = $db->prepare($sql);
 
         foreach ($data as $key => $entry) {
+            if (!is_object($entry))
+                continue;
             $bindValues = array(':sampleId' => $sampleId);
             if ($schemaEntry->type == SchemaEntry::MAP_TYPE) {
                 if (!is_string($key) || strlen($key) == 0)

@@ -112,7 +112,7 @@ class Sample
         foreach ($product->schema as $entry) {
             if (!$entry->isScalar())
                 continue;
-            if (!property_exists($jsonObj, $entry->name))
+            if (!property_exists($jsonObj, $entry->name) || !is_object($jsonObj->{$entry->name}))
                 continue;
             foreach ($entry->elements as $elem) {
                 if (!property_exists($jsonObj->{$entry->name}, $elem->name))

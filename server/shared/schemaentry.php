@@ -43,9 +43,9 @@ class SchemaEntry
     {
         if ($this->type != self::SCALAR_TPYE && $this->type != self::LIST_TYPE && $this->type != self::MAP_TYPE)
             return false;
-        if ($this->name != "")
-            return true;
-        return false;
+        if (!Utils::isValidIdentifier($this->name))
+            return false;
+        return true;
     }
 
     /** Checks if this is a scalar type, ie. samples go into the primary data table. */
@@ -188,7 +188,8 @@ class SchemaEntry
             $e->name = strval($jsonObj->name);
             $e->type = strval($jsonObj->type);
             $e->aggregationType = strval($jsonObj->aggregationType);
-            $e->elements = SchemaEntryElement::fromJson($jsonObj->elements, $e);
+            if (property_exists($jsonObj, 'elements'))
+                $e->elements = SchemaEntryElement::fromJson($jsonObj->elements, $e);
             if (!$e->isValid())
                 throw new RESTException('Invalid schema entry.', 400);
             array_push($entries, $e);

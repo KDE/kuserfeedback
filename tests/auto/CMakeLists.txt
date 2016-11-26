@@ -31,6 +31,7 @@ add_test(NAME providertest COMMAND providertest)
 
 set(php_test_srcs
     utilstest.php
+    schemaentrytest.php
     producttest.php
     sampletest.php
     surveytest.php

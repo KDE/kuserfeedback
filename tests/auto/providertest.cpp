@@ -86,10 +86,12 @@ private slots:
 
         // submit data
         Provider provider;
+        provider.setStatisticsCollectionMode(Provider::AllStatistics); // TODO test with no stats, should not create a sample record
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
         provider.setFeedbackServer(m_server.url());
         provider.addDataSource(new ScreenInfoSource, Provider::AllStatistics);
         provider.submit();
+        QTest::qWait(10); // HACK submit is async
 
         // retrieve data
         reply = RESTApi::listSamples(&client, p);

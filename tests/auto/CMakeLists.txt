@@ -26,7 +26,7 @@ target_link_libraries(datasourcetest UserFeedbackCore Qt5::Gui Qt5::Test) # need
 add_test(NAME datasourcetest COMMAND datasourcetest)
 
 add_executable(providertest providertest.cpp)
-target_link_libraries(providertest UserFeedbackTestUtils UserFeedbackCore)
+target_link_libraries(providertest UserFeedbackTestUtils UserFeedbackCore Qt5::Gui)
 add_test(NAME providertest COMMAND providertest)
 
 set(php_test_srcs

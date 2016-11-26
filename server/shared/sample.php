@@ -50,9 +50,13 @@ class Sample
                 if (!$entry->isScalar())
                     continue;
                 $entryData = null;
-                foreach ($entry->elements as $elem)
-                    $entryData[$elem->name] = self::valueFromDb($elem, $scalarRow[$elem->dataColumnName()]);
-                $rowData[$entry->name] = $entryData;
+                foreach ($entry->elements as $elem) {
+                    $value = self::valueFromDb($elem, $scalarRow[$elem->dataColumnName()]);
+                    if (!is_null($value))
+                        $entryData[$elem->name] = $value;
+                }
+                if (!is_null($entryData))
+                    $rowData[$entry->name] = $entryData;
             }
             array_push($data, $rowData);
             $sampleIdIndex[$rowData['id']] = $i++;
@@ -72,8 +76,11 @@ class Sample
             $db->execute($stmt, array());
             foreach ($stmt as $row) {
                 $entryData = null;
-                foreach ($entry->elements as $elem)
-                    $entryData[$elem->name] = self::valueFromDb($elem, $row[$elem->dataColumnName()]);
+                foreach ($entry->elements as $elem) {
+                    $value = self::valueFromDb($elem, $row[$elem->dataColumnName()]);
+                    if (!is_null($value))
+                        $entryData[$elem->name] = $value;
+                }
                 $idx = $sampleIdIndex[$row['sampleId']];
                 if (!array_key_exists($entry->name, $data[$idx]))
                     $data[$idx][$entry->name] = array();
@@ -217,6 +224,8 @@ class Sample
     /** Fix database output that lost the correct type for a schema entry element. */
     private static function valueFromDb(SchemaEntryElement $elem, $dbValue)
     {
+        if (is_null($dbValue))
+            return null;
         switch ($elem->type) {
             case SchemaEntryElement::STRING_TYPE:
                 return strval($dbValue);

@@ -98,7 +98,9 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
         $this->assertEquals($survey2->url, 'http://survey.example/inactive');
         $this->assertEquals($survey2->active, false);
 
-        $surveys = Survey::activeSurveysForProduct(self::$db, 'org.kde.UnitTest');
+        $p = Product::productByName(self::$db, 'org.kde.UnitTest');
+        $this->assertNotNull($p);
+        $surveys = Survey::activeSurveysForProduct(self::$db, $p);
         $this->assertCount(1, $surveys);
 
         $s = $surveys[0];
@@ -123,7 +125,7 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
         $s->insert(self::$db, $p);
         $this->assertGreaterThan(0, $s->id);
 
-        $surveys = Survey::activeSurveysForProduct(self::$db, 'org.kde.UnitTest');
+        $surveys = Survey::activeSurveysForProduct(self::$db, $p);
         $s = null;
         foreach ($surveys as $survey) {
             if ($survey->name == 'newSurvey') {

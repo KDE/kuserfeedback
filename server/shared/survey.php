@@ -50,15 +50,11 @@ class Survey
         return $surveys;
     }
 
-    /** Returns an array of all active surveys for @p productName. */
-    public function activeSurveysForProduct(Datastore $db, $productName)
+    /** Returns an array of all active surveys for @p product. */
+    public function activeSurveysForProduct(Datastore $db, Product $product)
     {
-        $stmt = $db->prepare('
-            SELECT surveys.id, surveys.name, surveys.url
-            FROM surveys JOIN products ON (surveys.productId = products.id)
-            WHERE products.name = :productName AND surveys.active = 1
-        ');
-        $db->execute($stmt, array('productName' => strval($productName)));
+        $stmt = $db->prepare('SELECT id, name, url FROM surveys WHERE productId = :productId AND active = 1');
+        $db->execute($stmt, array(':productId' => intval($product->id())));
 
         $surveys = array();
         foreach ($stmt as $row) {

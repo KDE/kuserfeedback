@@ -28,6 +28,9 @@
 #include <core/schemaentrytemplates.h>
 
 #include <QDebug>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QtTest/qtest.h>
 #include <QNetworkReply>
 #include <QObject>
@@ -95,8 +98,17 @@ private slots:
 
         // retrieve data
         reply = RESTApi::listSamples(&client, p);
-        waitForFinished(reply);
-        qDebug() << "RESULT:" << reply->readAll();
+        QVERIFY(waitForFinished(reply));
+        auto doc = QJsonDocument::fromJson(reply->readAll());
+        QVERIFY(doc.isArray());
+        auto a = doc.array();
+        QCOMPARE(a.size(), 1);
+
+        auto obj = a.at(0).toObject();
+        QVERIFY(!obj.isEmpty());
+        QVERIFY(obj.contains(QLatin1String("id")));
+        QVERIFY(obj.contains(QLatin1String("timestamp")));
+        qDebug() << doc.toJson();
     }
 };
 

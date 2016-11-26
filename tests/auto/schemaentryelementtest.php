@@ -22,6 +22,26 @@ require_once('../../server/shared/schemaentryelement.php');
 
 class SchemaEntryElementTest extends PHPUnit_Framework_TestCase
 {
+    public function testDataColumnName_data()
+    {
+        return [
+            'normal' => [ 'foo', 'entry_foo' ],
+            'dot' => [ 'my.value', 'entry_my_value' ]
+        ];
+    }
+
+    /** @dataProvider testDataColumnName_data */
+    public function testDataTableName($input, $output)
+    {
+        $p = new Product;
+        $p->name = 'org.kde.TestProduct';
+        $se = new SchemaEntry($p);
+        $se->name = 'entry';
+        $see = new SchemaEntryElement($se);
+        $see->name = $input;
+        $this->assertEquals($output, $see->dataColumnName());
+    }
+
     public function testInvalidJson_data()
     {
         return [

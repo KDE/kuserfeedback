@@ -47,6 +47,12 @@ class SchemaEntryElement
         return true;
     }
 
+    /** Column name in the data table. */
+    public function dataColumnName()
+    {
+        return Utils::normalizeString($this->schemaEntry->name) . '_' . Utils::normalizeString($this->name);
+    }
+
     /** Insert this element into storage. */
     public function insert(Datastore $db, $entryId)
     {
@@ -113,7 +119,7 @@ class SchemaEntryElement
     private function createScalarDataTableColumn(Datastore $db)
     {
         $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->product()->dataTableName()
-            . ' ADD COLUMN ' . $this->name . ' ' . $this->sqlType());
+            . ' ADD COLUMN ' . $this->dataColumnName() . ' ' . $this->sqlType());
         $db->execute($stmt);
     }
 
@@ -121,7 +127,7 @@ class SchemaEntryElement
     private function createNonScalarDataTableColumn(Datastore $db)
     {
         $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->dataTableName()
-            . ' ADD COLUMN ' . $this->name . ' ' . $this->sqlType());
+            . ' ADD COLUMN ' . $this->dataColumnName() . ' ' . $this->sqlType());
         $db->execute($stmt);
     }
 }

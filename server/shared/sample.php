@@ -38,7 +38,7 @@ class Sample
             if (!$entry->isScalar())
                 continue;
             foreach ($entry->elements as $elem)
-                $scalarSql .= ', ' . $elem->name;
+                $scalarSql .= ', ' . $elem->dataColumnName();
         }
         $scalarSql .= ' FROM ' . $product->dataTableName() . ' ORDER BY timestamp ASC';
         $scalarStmt = $db->prepare($scalarSql);
@@ -51,7 +51,7 @@ class Sample
                     continue;
                 $entryData = null;
                 foreach ($entry->elements as $elem)
-                    $entryData[$elem->name] = self::valueFromDb($elem, $scalarRow[$elem->name]);
+                    $entryData[$elem->name] = self::valueFromDb($elem, $scalarRow[$elem->dataColumnName()]);
                 $rowData[$entry->name] = $entryData;
             }
             array_push($data, $rowData);
@@ -66,14 +66,14 @@ class Sample
             if ($entry->type == SchemaEntry::MAP_TYPE)
                 $sql .= ', key';
             foreach ($entry->elements as $elem)
-                $sql .= ', ' . $elem->name;
+                $sql .= ', ' . $elem->dataColumnName();
             $sql .= ' FROM ' . $entry->dataTableName() . ' ORDER BY id ASC';
             $stmt = $db->prepare($sql);
             $db->execute($stmt, array());
             foreach ($stmt as $row) {
                 $entryData = null;
                 foreach ($entry->elements as $elem)
-                    $entryData[$elem->name] = self::valueFromDb($elem, $row[$elem->name]);
+                    $entryData[$elem->name] = self::valueFromDb($elem, $row[$elem->dataColumnName()]);
                 $idx = $sampleIdIndex[$row['sampleId']];
                 if (!array_key_exists($entry->name, $data[$idx]))
                     $data[$idx][$entry->name] = array();
@@ -140,8 +140,8 @@ class Sample
                         continue;
                 }
 
-                $bind = ':' . $elem->name;
-                array_push($columns, $elem->name);
+                $bind = ':' . $elem->dataColumnName();
+                array_push($columns, $elem->dataColumnName());
                 array_push($binds, $bind);
                 $values[$bind] = $v;
             }
@@ -184,8 +184,8 @@ class Sample
             array_push($binds, ':key');
         }
         foreach ($schemaEntry->elements as $elem) {
-            array_push($columns, $elem->name);
-            array_push($binds, ':' . $elem->name);
+            array_push($columns, $elem->dataColumnName());
+            array_push($binds, ':' . $elem->dataColumnName());
         }
         $sql = 'INSERT INTO ' . $schemaEntry->dataTableName()
              . ' (' . implode(', ', $columns) . ') VALUES ('
@@ -200,11 +200,11 @@ class Sample
                 $bindValues[':key'] = $key;
             }
             foreach ($schemaEntry->elements as $elem) {
-                $bindValues[':' . $elem->name] = null;
+                $bindValues[':' . $elem->dataColumnName()] = null;
                 if (!property_exists($entry, $elem->name))
                     continue;
                 // TODO type check, as done for scalar values
-                $bindValues[':' . $elem->name] = $entry->{$elem->name};
+                $bindValues[':' . $elem->dataColumnName()] = $entry->{$elem->name};
             }
             $db->execute($stmt, $bindValues);
         }

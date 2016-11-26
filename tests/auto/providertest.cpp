@@ -82,7 +82,6 @@ private slots:
         QVERIFY(p.isValid());
         reply = RESTApi::createProduct(&client, p);
         QVERIFY(waitForFinished(reply));
-        QEXPECT_FAIL("", "field name validation not not implemented", Continue);
         QCOMPARE(reply->error(), QNetworkReply::NoError);
 
         // submit data

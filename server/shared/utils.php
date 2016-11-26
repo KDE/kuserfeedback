@@ -18,6 +18,19 @@
 
 class Utils {
 
+public static function isValidIdentifier($str)
+{
+    if (!is_string($str) || strlen($str) <= 0)
+        return false;
+    if (!ctype_alpha($str[0]) && $str[0] != '_') // must start with a letter or underscore
+        return false;
+    for ($i = 0; $i < strlen($str); $i++) {
+        if (ctype_space($str[$i]) || ctype_cntrl($str[$i]))
+            return false;
+    }
+    return true;
+}
+
 public static function normalizeString($input)
 {
     $result = '';

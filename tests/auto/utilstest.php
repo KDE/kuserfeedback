@@ -25,6 +25,31 @@ class UtilTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Utils::tableNameForProduct("foo.bar"), "product_foo_bar");
     }
 
+    public function testIsValidIdentifier_data()
+    {
+        return [
+            'empty' => [ '', false ],
+            'number' => [ 42, false ],
+            'numstring' => [ '42', false ],
+            'leading number' => [ '1foo', false ],
+            'alpha only' => [ 'foo', true ],
+            'leading space' => [ ' foo', false ],
+            'middle space' => [ 'f o o', false ],
+            'trailing space' => [ 'foo ', false ],
+            'valid' => [ 'foo42', true ],
+            'leading underscore' => [ '_foo', true ],
+            'underscore' => [ 'f_o_o', true ],
+            'dots and dashes' => [ 'org.kde.unit-test', true ],
+            'control' => [ "fo\no", false ]
+        ];
+    }
+
+    /** @dataProvider testIsValidIdentifier_data */
+    public function testIsValidIdentifier($str, $result)
+    {
+        $this->assertEquals($result, Utils::isValidIdentifier($str));
+    }
+
     public function testNormalize_data()
     {
         return [

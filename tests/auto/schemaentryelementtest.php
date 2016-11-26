@@ -18,36 +18,19 @@
 
 require_once('../../server/shared/product.php');
 require_once('../../server/shared/schemaentry.php');
+require_once('../../server/shared/schemaentryelement.php');
 
-class SchemaEntryTest extends PHPUnit_Framework_TestCase
+class SchemaEntryElementTest extends PHPUnit_Framework_TestCase
 {
-    public function testDataTableName_data()
-    {
-        return [
-            'normal' => [ 'foo', 'product_org_kde_TestProduct_foo' ],
-            'dot' => [ 'my.value', 'product_org_kde_TestProduct_my_value' ]
-        ];
-    }
-
-    /** @dataProvider testDataTableName_data */
-    public function testDataTableName($input, $output)
-    {
-        $p = new Product;
-        $p->name = 'org.kde.TestProduct';
-        $se = new SchemaEntry($p);
-        $se->name = $input;
-        $this->assertEquals($output, $se->dataTableName());
-    }
-
     public function testInvalidJson_data()
     {
         return [
             'empty' => [ '{}' ],
-            'empty name' => [ '{ "name": "", "type": "scalar", "aggregationType": "none" }' ],
-            'empty type' => [ '{ "name": "foo", "type": "", "aggregationType": "none" }' ],
-            'invalid type' => [ '{ "name": "foo", "type": "bla", "aggregationType": "none" }' ],
-            'invalid name' => [ '{ "name": " foo ", "type": "scalar", "aggregationType": "none" }' ],
-            'invalid name 2' => [ '{ "name": "1foo ", "type": "scalar", "aggregationType": "none" }' ]
+            'empty name' => [ '{ "name": "", "type": "string" }' ],
+            'empty type' => [ '{ "name": "foo", "type": "" }' ],
+            'invalid type' => [ '{ "name": "foo", "type": "bla" }' ],
+            'invalid name' => [ '{ "name": " foo ", "type": "string" }' ],
+            'invalid name 2' => [ '{ "name": "1foo ", "type": "string" }' ]
         ];
     }
 
@@ -59,7 +42,7 @@ class SchemaEntryTest extends PHPUnit_Framework_TestCase
     public function testInvalidJson($input)
     {
         $p = new Product;
-        $se = SchemaEntry::fromJson(json_decode('[ ' . $input . ' ]'), $p);
+        $se = new SchemaEntry($p);
+        SchemaEntryElement::fromJson(json_decode('[ ' . $input . ' ]'), $se);
     }
 }
-

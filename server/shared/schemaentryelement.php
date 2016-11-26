@@ -17,6 +17,7 @@
 */
 
 require_once('restexception.php');
+require_once('utils.php');
 
 /** Represents a product schema entry element. */
 class SchemaEntryElement
@@ -34,6 +35,16 @@ class SchemaEntryElement
     public function __construct(SchemaEntry $entry)
     {
         $this->schemaEntry = &$entry;
+    }
+
+    /** Checks if this schema entry element is valid. */
+    public function isValid()
+    {
+        if ($this->type != self::STRING_TYPE && $this->type != self::INT_TYPE && $this->type != self::NUMBER_TYPE && $this->type != self::BOOL_TYPE)
+            return false;
+        if (!Utils::isValidIdentifier($this->name))
+            return false;
+        return true;
     }
 
     /** Insert this element into storage. */
@@ -73,9 +84,13 @@ class SchemaEntryElement
     {
         $elems = array();
         foreach ($jsonArray as $jsonObj) {
+            if (!property_exists($jsonObj, 'name') || !property_exists($jsonObj, 'type'))
+                throw new RESTException('Incomplete schema entry element.', 400);
             $e = new SchemaEntryElement($entry);
             $e->name = $jsonObj->name;
             $e->type = $jsonObj->type;
+            if (!$e->isValid())
+                throw new RESTException('Invalid schema entry element.', 400);
             array_push($elems, $e);
         }
         return $elems;

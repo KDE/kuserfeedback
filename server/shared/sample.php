@@ -151,6 +151,8 @@ class Sample
         if (count($columns) > 0) {
             $sql .= ' (' . implode(', ', $columns) . ') VALUES (';
             $sql .= implode(', ', $binds) . ')';
+        } else {
+            $sql .= ' DEFAULT VALUES';
         }
         $stmt = $db->prepare($sql);
         $db->execute($stmt, $values);

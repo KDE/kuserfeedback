@@ -152,7 +152,6 @@ class Product
             throw new RESTException('Empty product name.', 400);
         if (!ctype_alpha($p->name[0]))
             throw new RESTException("Invalid product name, must start with a letter.", 400);
-        // TODO verify schema
 
         return $p;
     }

@@ -66,6 +66,7 @@ public static function tableNameForComplexEntry($productName, $entryName)
 
 public static function httpError($responseCode, $message)
 {
+    error_log('UserFeedback ERROR: ' . $message . ' (' . $responseCode . ')');
     http_response_code($responseCode);
     header('Content-Type: text/plain');
     print($message);

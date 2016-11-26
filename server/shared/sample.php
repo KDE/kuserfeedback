@@ -126,26 +126,8 @@ class Sample
                     continue;
 
                 $v = $jsonObj->{$entry->name}->{$elem->name};
-                switch ($entry->type) {
-                    case SchemaEntryElement::STRING_TYPE:
-                        if (!is_string($v))
-                            continue;
-                        break;
-                    case SchemaEntryElement::INT_TYPE:
-                        if (!is_int($v))
-                            continue;
-                        break;
-                    case SchemaEntryElement::NUMBER_TYPE:
-                        if (!is_float($v))
-                            continue;
-                        break;
-                    case SchemaEntryElement::BOOL_TYPE:
-                        if (!is_bool($v))
-                            continue;
-                        break;
-                    default:
-                        continue;
-                }
+                if (!self::isCorrectType($elem, $v))
+                    continue;
 
                 $bind = ':' . $elem->dataColumnName();
                 array_push($columns, $elem->dataColumnName());
@@ -214,8 +196,10 @@ class Sample
                 $bindValues[':' . $elem->dataColumnName()] = null;
                 if (!property_exists($entry, $elem->name))
                     continue;
-                // TODO type check, as done for scalar values
-                $bindValues[':' . $elem->dataColumnName()] = $entry->{$elem->name};
+                $v = $entry->{$elem->name};
+                if (!self::isCorrectType($elem, $v))
+                    continue;
+                $bindValues[':' . $elem->dataColumnName()] = $v;
             }
             $db->execute($stmt, $bindValues);
         }
@@ -237,6 +221,30 @@ class Sample
                 return boolval($dbValue);
         }
         Utils::httpError(500, "Invalid schema entry element type.");
+    }
+
+    /** Check if the given input value @p $v matches the expected type for element @p $elem. */
+    private static function isCorrectType(SchemaEntryElement $elem, $v)
+    {
+        switch ($elem->type) {
+            case SchemaEntryElement::STRING_TYPE:
+                if (!is_string($v))
+                    return false;
+                break;
+            case SchemaEntryElement::INT_TYPE:
+                if (!is_int($v))
+                    return false;
+                break;
+            case SchemaEntryElement::NUMBER_TYPE:
+                if (!is_float($v))
+                    return false;
+                break;
+            case SchemaEntryElement::BOOL_TYPE:
+                if (!is_bool($v))
+                    return false;
+                break;
+        }
+        return true;
     }
 }
 

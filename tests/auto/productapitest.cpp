@@ -21,6 +21,7 @@
 #include <rest/restclient.h>
 
 #include <core/product.h>
+#include <core/schemaentryelement.h>
 
 #include <QDebug>
 #include <QtTest/qtest.h>
@@ -107,6 +108,10 @@ private slots:
         entry.setName(QStringLiteral("entry1"));
         entry.setType(SchemaEntry::StringType);
         entry.setAggregationType(SchemaEntry::Category);
+        SchemaEntryElement elem1;
+        elem1.setName(QStringLiteral("elem11"));
+        elem1.setType(SchemaEntryElement::Integer);
+        entry.setElements({elem1});
         newProduct.setSchema({entry});
         QVERIFY(newProduct.isValid());
         reply = RESTApi::createProduct(&client, newProduct);

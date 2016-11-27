@@ -24,19 +24,21 @@ AbstractDataSourcePrivate::AbstractDataSourcePrivate() = default;
 
 AbstractDataSourcePrivate::~AbstractDataSourcePrivate() = default;
 
-AbstractDataSource::AbstractDataSource() :
-    d_ptr(new AbstractDataSourcePrivate)
+AbstractDataSource::AbstractDataSource(const QString &name, AbstractDataSourcePrivate* dd) :
+    d_ptr(dd ? dd : new AbstractDataSourcePrivate)
 {
-}
-
-AbstractDataSource::AbstractDataSource(AbstractDataSourcePrivate* dd) :
-    d_ptr(dd)
-{
+    Q_ASSERT(!name.isEmpty());
+    d_ptr->name = name;
 }
 
 AbstractDataSource::~AbstractDataSource()
 {
     delete d_ptr;
+}
+
+QString AbstractDataSource::name() const
+{
+    return d_ptr->name;
 }
 
 void AbstractDataSource::load(QSettings *settings)

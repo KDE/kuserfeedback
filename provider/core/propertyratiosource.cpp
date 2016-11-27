@@ -45,7 +45,6 @@ public:
     QTime lastChangeTime;
     QHash<QString, int> ratioSet;
     QMap<QVariant, QString> valueMap;
-    QString sampleName;
 };
 
 // inefficient workaround for not being able to connect QMetaMethod to a function directly
@@ -90,14 +89,12 @@ QString PropertyRatioSourcePrivate::valueToString(const QVariant &value) const
 }
 
 PropertyRatioSource::PropertyRatioSource(QObject *obj, const char *propertyName, const QString &sampleName) :
-    AbstractDataSource(new PropertyRatioSourcePrivate)
+    AbstractDataSource(sampleName, new PropertyRatioSourcePrivate)
 {
     Q_D(PropertyRatioSource);
 
     d->obj = obj;
     Q_ASSERT(obj);
-    d->sampleName = sampleName;
-    Q_ASSERT(!sampleName.isEmpty());
 
     auto idx = obj->metaObject()->indexOfProperty(propertyName);
     Q_ASSERT(idx >= 0);
@@ -143,14 +140,14 @@ void PropertyRatioSource::toJson(QJsonObject &obj)
     for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it)
         set.insert(it.key(), (double)it.value() / (double)(total));
 
-    obj.insert(d->sampleName, set);
+    obj.insert(name(), set);
 }
 
 void PropertyRatioSource::load(QSettings *settings)
 {
     Q_D(PropertyRatioSource);
     settings->beginGroup(QStringLiteral("PropertyRatioSource"));
-    settings->beginGroup(d->sampleName);
+    settings->beginGroup(name());
     const auto count = settings->beginReadArray(QStringLiteral("RatioSet"));
 
     for (int i = 0; i < count; ++i) {
@@ -172,7 +169,7 @@ void PropertyRatioSource::store(QSettings *settings)
     d->propertyChanged();
 
     settings->beginGroup(QStringLiteral("PropertyRatioSource"));
-    settings->beginGroup(d->sampleName);
+    settings->beginGroup(name());
     settings->beginWriteArray(QStringLiteral("RatioSet"), d->ratioSet.size());
 
     int i = 0;

@@ -22,7 +22,8 @@
 
 using namespace UserFeedback;
 
-PlatformInfoSource::PlatformInfoSource()
+PlatformInfoSource::PlatformInfoSource() :
+    AbstractDataSource(QStringLiteral("platform"))
 {
 }
 

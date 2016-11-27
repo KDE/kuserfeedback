@@ -29,6 +29,11 @@ QString screenToString(QScreen *screen)
     return QStringLiteral("%1x%2 %3dpi").arg(screen->size().width()).arg(screen->size().height()).arg((int)screen->physicalDotsPerInch());
 }
 
+ScreenInfoSource::ScreenInfoSource() :
+    AbstractDataSource(QStringLiteral("screens"))
+{
+}
+
 void ScreenInfoSource::toJson(QJsonObject &obj)
 {
     QJsonArray a;

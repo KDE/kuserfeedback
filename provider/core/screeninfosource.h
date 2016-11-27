@@ -26,6 +26,8 @@ namespace UserFeedback {
 class USERFEEDBACKCORE_EXPORT ScreenInfoSource :  public AbstractDataSource
 {
 public:
+    ScreenInfoSource();
+
     void toJson(QJsonObject &obj) override;
 };
 

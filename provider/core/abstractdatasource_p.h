@@ -28,6 +28,7 @@ public:
     AbstractDataSourcePrivate();
     virtual ~AbstractDataSourcePrivate();
 
+    QString name;
     Provider::StatisticsCollectionMode mode = Provider::AllStatistics;
 };
 

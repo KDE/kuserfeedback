@@ -32,8 +32,10 @@ class AbstractDataSourcePrivate;
 class USERFEEDBACKCORE_EXPORT AbstractDataSource
 {
 public:
-    AbstractDataSource();
     virtual ~AbstractDataSource();
+
+    /** Returns the name of this data source. */
+    QString name() const;
 
     /** Override this to serialize the data you collected. */
     virtual void toJson(QJsonObject &obj) = 0;
@@ -50,7 +52,12 @@ public:
     void setCollectionMode(Provider::StatisticsCollectionMode mode);
 
 protected:
-    explicit AbstractDataSource(AbstractDataSourcePrivate *dd);
+    /** Create a new data source named @p name.
+     *  The name of the data source must match the corresponding
+     *  product schema entry.
+     *  @param name Must not be empty.
+     */
+    explicit AbstractDataSource(const QString &name, AbstractDataSourcePrivate *dd = Q_NULLPTR);
     class AbstractDataSourcePrivate* const d_ptr;
 
 private:

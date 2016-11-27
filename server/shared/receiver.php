@@ -16,71 +16,38 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-include_once('datastore.php');
-include_once('utils.php');
+require_once('datastore.php');
+require_once('product.php');
+require_once('restexception.php');
+require_once('utils.php');
+require_once('sample.php');
+require_once('survey.php');
 
 /** Command handler for the data receiver. */
 class Receiver
 {
 
 /** Data submission command. */
-function post_submit()
+function post_submit($productName)
 {
     // load JSON data sent by the client
     $rawPostData = file_get_contents('php://input');
-    $data = json_decode($rawPostData, true);
 
     // look up product
     $db = new DataStore();
     $db->beginTransaction();
-    $product = $db->productByName($data['productId']);
+    $product = Product::productByName($db, $productName);
     if (is_null($product))
-        die("Unknown product.");
-    $productSchema = $db->productSchema($product['id']);
+        throw RESTException('Unknown product.', 404);
 
-    // write basic record
-    $tableName = Utils::tableNameForProduct($product['name']);
-    $basicData = array();
-    foreach ($productSchema as $entry) {
-        if (!array_key_exists($entry['name'], $data))
-            continue;
-        switch($entry['type']) {
-            case 'string':
-                $basicData[$entry['name']] = $data[$entry['name']];
-                break;
-            case 'int':
-                $basicData[$entry['name']] = intval($data[$entry['name']]);
-                break;
-        }
-    }
-    $recordId = $db->addBasicRecord($tableName, $basicData);
-
-    // add complex data to sub-tables
-    foreach ($productSchema as $entry) {
-        if (!array_key_exists($entry['name'], $data))
-            continue;
-        $tableName = Utils::tableNameForComplexEntry($product['name'], $entry['name']);
-        switch($entry['type']) {
-            case 'string_list':
-                $db->addStringListRecord($tableName, $recordId, $data[$entry['name']]);
-                break;
-            case 'ratio_set':
-                $db->addRatioSetRecord($tableName, $recordId, $data[$entry['name']]);
-                break;
-        }
-    }
+    Sample::insert($db, $rawPostData, $product);
 
     // read survey from db
     $responseData = array();
-    $surveys = $db->activeSurveysForProduct($product);
-    if (sizeof($surveys) > 0) {
-        $surveyInfo = array();
-        $surveyInfo['id'] = intval($surveys[0]['id']);
-        $surveyInfo['url'] = $surveys[0]['url'];
-        $responseData['survey'] = $surveyInfo;
-    }
-
+    $surveys = Survey::activeSurveysForProduct($db, $product);
+    $responseData['surveys'] = $surveys;
     $db->commit();
+
     echo(json_encode($responseData));
 }
 

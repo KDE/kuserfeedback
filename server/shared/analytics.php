@@ -18,6 +18,7 @@
 
 require_once('datastore.php');
 require_once('product.php');
+require_once('sample.php');
 require_once('survey.php');
 require_once('utils.php');
 
@@ -38,16 +39,8 @@ public function get_check_schema()
 public function get_products()
 {
     $db = new DataStore();
-    $products = $db->allProducts();
-
-    $result = array();
-    foreach ($products as $p) {
-        $schema = $db->productSchema($p['id']);
-        $p['schema'] = $schema;
-        array_push($result, $p);
-    }
-
-    $json = json_encode($result);
+    $products = Product::allProducts($db);
+    $json = json_encode($products);
     echo($json);
 }
 
@@ -55,52 +48,42 @@ public function get_products()
 public function post_products()
 {
     $rawPostData = file_get_contents('php://input');
-    $product = json_decode($rawPostData, true);
-
-    if ($product['name'] == "")
-        Utils::httpError(400, "Product name is empty.");
+    $product = Product::fromJson($rawPostData);
 
     $db = new DataStore();
     $db->beginTransaction();
-    $product['id'] = $db->addProduct($product);
-    $db->updateProductSchema($product, $product['schema']);
+    $product->insert($db);
     $db->commit();
 
-    echo('Product ' . $product['name'] . " added.");
+    echo('Product ' . $product->name . " added.");
 }
 
 /** Update a given product. */
-public function put_products($productId)
+public function put_products($productName)
 {
     $raw = file_get_contents('php://input');
-    $productData = json_decode($raw, true);
+    $newProduct = Product::fromJson($raw);
 
     $db = new DataStore();
     $db->beginTransaction();
-    $product = $db->productByName($productId);
-    if (is_null($product))
-        Utils::httpError(404, "Unknown product " . $productId . '.');
+    $oldProduct = Product::productByName($db, $productName);
+    if (is_null($oldProduct))
+        throw new RESTException('Product not found.', 404);
 
-    $db->updateProductSchema($product, $productData['schema']);
+    $oldProduct->update($db, $newProduct);
     $db->commit();
-    echo('Product ' . $productData['name'] . ' updated.');
+    echo('Product ' . $productName . ' updated.');
 }
 
 /** Delete product and associated data. */
 public function delete_products($productName)
 {
-    if ($productName == "")
-        Utils::httpError(400, "Empty product name.");
-
     $db = new DataStore();
     $db->beginTransaction();
-    $product = $db->productByName($productName);
+    $product = Product::productByName($db, $productName);
     if (is_null($product))
-        Utils::httpError(404, "Product not found.");
-
-    $schema = $db->productSchema($product['id']);
-
-    $db->deleteProduct($product, $schema);
+        throw new RESTException('Product not found.', 404);
+    $product->delete($db);
     $db->commit();
     echo('Product ' . $productName . ' deleted.');
 }
@@ -109,45 +92,10 @@ public function delete_products($productName)
 public function get_data($productName)
 {
     $db = new DataStore();
-
-    $product = $db->productByName($productName);
+    $product = Product::productByName($db, $productName);
     if (is_null($product))
-        Utils::httpError(404, "Unknown product.");
-    $schema = $db->productSchema($product['id']);
-    $productTableName = Utils::tableNameForProduct($product['name']);
-
-    $basicEntries = array();
-    foreach ($schema as $entry) {
-        switch ($entry['type']) {
-            case 'int':
-            case 'string':
-                $basicEntries[$entry['name']] = $entry;
-                break;
-        }
-    }
-    $data = $db->basicRecords($productTableName, $basicEntries);
-
-    foreach ($schema as $entry) {
-        $complexRecords = NULL;
-        $complexTableName = Utils::tableNameForComplexEntry($product['name'], $entry['name']);
-        switch ($entry['type']) {
-            case 'string_list':
-                $complexRecords = $db->stringListRecords($complexTableName);
-                break;
-            case 'ratio_set':
-                $complexRecords = $db->ratioSetRecords($complexTableName);
-                break;
-        }
-        if (is_null($complexRecords))
-            continue;
-        foreach ($data as &$row) {
-            if (!array_key_exists($row['id'], $complexRecords))
-                continue;
-            $row[$entry['name']] = $complexRecords[$row['id']];
-        }
-    }
-
-    echo(json_encode($data));
+        throw new RESTException('Product not found.', 404);
+    echo(Sample::dataAsJson($db, $product));
 }
 
 /** List all surveys for a product. */

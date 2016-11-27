@@ -17,7 +17,7 @@
 
 #include "timeaggregationmodel.h"
 #include "datamodel.h"
-#include "sample.h"
+#include <core/sample.h>
 
 #include <QDebug>
 

@@ -16,7 +16,7 @@
 */
 
 #include "categoryaggregationmodel.h"
-#include "sample.h"
+#include <core/sample.h>
 #include "timeaggregationmodel.h"
 
 #include <QDebug>

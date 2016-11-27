@@ -1,5 +1,7 @@
 set(analyzer_lib_srcs
     core/product.cpp
+    core/ratioset.cpp
+    core/sample.cpp
     core/schemaentry.cpp
     core/schemaentryelement.cpp
     core/schemaentrytemplates.cpp
@@ -29,9 +31,7 @@ set(analyzer_srcs
     main.cpp
     mainwindow.cpp
     numericaggregationmodel.cpp
-    ratioset.cpp
     ratiosetaggregationmodel.cpp
-    sample.cpp
     timeaggregationmodel.cpp
 
     analytics/analyticsview.cpp

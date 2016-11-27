@@ -17,10 +17,10 @@
 
 #include "datamodel.h"
 
-#include "ratioset.h"
 #include <rest/restapi.h>
 #include <rest/restclient.h>
-#include "sample.h"
+#include <core/ratioset.h>
+#include <core/sample.h>
 
 #include <QDebug>
 #include <QJsonDocument>

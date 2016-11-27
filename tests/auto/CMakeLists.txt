@@ -29,6 +29,10 @@ add_executable(providertest providertest.cpp)
 target_link_libraries(providertest UserFeedbackTestUtils UserFeedbackCore Qt5::Gui)
 add_test(NAME providertest COMMAND providertest)
 
+add_executable(sampletest sampletest.cpp)
+target_link_libraries(sampletest UserFeedbackAnalyzer Qt5::Test)
+add_test(NAME sampletest COMMAND sampletest)
+
 set(php_test_srcs
     utilstest.php
     schemaentrytest.php

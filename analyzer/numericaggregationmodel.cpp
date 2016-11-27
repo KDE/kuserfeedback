@@ -16,7 +16,7 @@
 */
 
 #include "numericaggregationmodel.h"
-#include "sample.h"
+#include <core/sample.h>
 #include "timeaggregationmodel.h"
 
 using namespace UserFeedback::Analyzer;

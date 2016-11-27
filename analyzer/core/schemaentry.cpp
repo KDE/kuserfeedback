@@ -52,6 +52,15 @@ static const struct {
     { SchemaEntry::XY, "xy" }
 };
 
+static const struct {
+    SchemaEntry::DataType type;
+    const char *name;
+} data_types_table[] {
+    { SchemaEntry::Scalar, "scalar" },
+    { SchemaEntry::List, "list" },
+    { SchemaEntry::Map, "map" }
+};
+
 }
 }
 
@@ -158,7 +167,7 @@ QJsonObject SchemaEntry::toJsonObject() const
         case StringListType: t = QStringLiteral("string_list"); break;
         case RatioSetType: t = QStringLiteral("ratio_set"); break;
     }
-    obj.insert(QStringLiteral("type"), t);
+    obj.insert(QStringLiteral("type"), QLatin1String(data_types_table[d->dataType].name));
     obj.insert(QStringLiteral("aggregationType"), QLatin1String(aggregation_types_table[d->aggregation].name));
 
     QJsonArray array;
@@ -177,15 +186,7 @@ QVector<SchemaEntry> SchemaEntry::fromJson(const QJsonArray &array)
         const auto obj = v.toObject();
         SchemaEntry entry;
         entry.setName(obj.value(QStringLiteral("name")).toString());
-        auto t = obj.value(QStringLiteral("type")).toString();
-        if (t == QStringLiteral("string"))
-            entry.setType(StringType);
-        else if (t == QStringLiteral("int"))
-            entry.setType(IntegerType);
-        else if (t == QStringLiteral("string_list"))
-            entry.setType(StringListType);
-        else if (t == QStringLiteral("ratio_set"))
-            entry.setType(RatioSetType);
+        entry.setDataType(Util::stringToEnum<DataType>(obj.value(QLatin1String("type")).toString(), data_types_table));
         entry.setAggregationType(Util::stringToEnum<AggregationType>(obj.value(QLatin1String("aggregationType")).toString(), aggregation_types_table));
         entry.setElements(SchemaEntryElement::fromJson(obj.value(QLatin1String("elements")).toArray()));
 

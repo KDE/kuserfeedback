@@ -24,6 +24,7 @@
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkAccessManager>
@@ -177,15 +178,18 @@ void ProviderPrivate::aboutToQuit()
 QByteArray ProviderPrivate::jsonData() const
 {
     QJsonObject obj;
-    obj.insert(QStringLiteral("productId"), productId);
-
     if (statisticsMode != Provider::NoStatistics) {
         obj.insert(QStringLiteral("startCount"), startCount);
         obj.insert(QStringLiteral("usageTime"), currentApplicationTime());
         obj.insert(QStringLiteral("version"), QCoreApplication::applicationVersion());
         foreach (auto source, dataSources) {
-            if (statisticsMode >= source->collectionMode())
-                source->toJson(obj);
+            if (statisticsMode < source->collectionMode())
+                continue;
+            const auto data = source->data();
+            if (data.canConvert<QVariantMap>())
+                obj.insert(source->name(), QJsonObject::fromVariantMap(data.toMap()));
+            else if (data.canConvert<QVariantList>())
+                obj.insert(source->name(), QJsonArray::fromVariantList(data.value<QVariantList>()));
         }
     }
 
@@ -372,7 +376,7 @@ void Provider::submit()
         d->networkAccessManager = new QNetworkAccessManager(this);
 
     auto url = d->serverUrl;
-    url.setPath(url.path() + QStringLiteral("/receiver/submit"));
+    url.setPath(url.path() + QStringLiteral("/receiver/submit/") + d->productId);
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
     request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("UserFeedback/") + QStringLiteral(USERFEEDBACK_VERSION));

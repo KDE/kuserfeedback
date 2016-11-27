@@ -5,11 +5,11 @@
         "aggregation": "numeric",
         "elements": [
             {
-                "name": "screen.width",
+                "name": "width",
                 "type": "int"
             },
             {
-                "name": "screen.height",
+                "name": "height",
                 "type": "int"
             }
         ]

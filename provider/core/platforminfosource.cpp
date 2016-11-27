@@ -17,8 +17,8 @@
 
 #include "platforminfosource.h"
 
-#include <QJsonObject>
 #include <QSysInfo>
+#include <QVariant>
 
 using namespace UserFeedback;
 
@@ -27,14 +27,16 @@ PlatformInfoSource::PlatformInfoSource() :
 {
 }
 
-void PlatformInfoSource::toJson(QJsonObject& obj)
+QVariant PlatformInfoSource::data()
 {
+    QVariantMap m;
 #if (defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID))
     // on Linux productType() is the distro name
-    obj.insert(QStringLiteral("platformOS"), QStringLiteral("linux"));
-    obj.insert(QStringLiteral("platformVersion"), QSysInfo::productType() + QLatin1Char('-') + QSysInfo::productVersion());
+    m.insert(QStringLiteral("os"), QStringLiteral("linux"));
+    m.insert(QStringLiteral("version"), QSysInfo::productType() + QLatin1Char('-') + QSysInfo::productVersion());
 #else
-    obj.insert(QStringLiteral("platformOS"), QSysInfo::productType());
-    obj.insert(QStringLiteral("platformVersion"), QSysInfo::productVersion());
+    m.insert(QStringLiteral("os"), QSysInfo::productType());
+    m.insert(QStringLiteral("version"), QSysInfo::productVersion());
 #endif
+    return m;
 }

@@ -31,7 +31,7 @@ class USERFEEDBACKCORE_EXPORT PlatformInfoSource : public AbstractDataSource
 {
 public:
     PlatformInfoSource();
-    void toJson(QJsonObject &obj) Q_DECL_OVERRIDE;
+    QVariant data() Q_DECL_OVERRIDE;
 };
 
 }

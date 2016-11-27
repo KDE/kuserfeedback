@@ -18,8 +18,6 @@
 #include "screeninfosource.h"
 
 #include <QGuiApplication>
-#include <QJsonArray>
-#include <QJsonObject>
 #include <QScreen>
 
 using namespace UserFeedback;
@@ -34,13 +32,14 @@ ScreenInfoSource::ScreenInfoSource() :
 {
 }
 
-void ScreenInfoSource::toJson(QJsonObject &obj)
+QVariant ScreenInfoSource::data()
 {
-    QJsonArray a;
-
+    QVariantList l;
     foreach (auto screen, QGuiApplication::screens()) {
-        a.push_back(screenToString(screen));
+        QVariantMap m;
+        m.insert(QStringLiteral("width"), screen->size().width());
+        m.insert(QStringLiteral("height"), screen->size().height());
+        l.push_back(m);
     }
-
-    obj.insert(QStringLiteral("screens"), a);
+    return l;
 }

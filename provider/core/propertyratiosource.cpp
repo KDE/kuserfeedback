@@ -20,7 +20,6 @@
 
 #include <QDebug>
 #include <QHash>
-#include <QJsonObject>
 #include <QMap>
 #include <QMetaProperty>
 #include <QObject>
@@ -125,22 +124,20 @@ void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &
     d->valueMap.insert(value, str);
 }
 
-
-void PropertyRatioSource::toJson(QJsonObject &obj)
+QVariant PropertyRatioSource::data()
 {
     Q_D(PropertyRatioSource);
     d->propertyChanged();
 
-    QJsonObject set;
-
+    QVariantMap m;
     int total = 0;
     for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it)
         total += it.value();
 
     for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it)
-        set.insert(it.key(), (double)it.value() / (double)(total));
+        m.insert(it.key(), (double)it.value() / (double)(total));
 
-    obj.insert(name(), set);
+    return m;
 }
 
 void PropertyRatioSource::load(QSettings *settings)

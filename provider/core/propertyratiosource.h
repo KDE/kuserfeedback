@@ -49,7 +49,7 @@ public:
      */
     void addValueMapping(const QVariant &value, const QString &str);
 
-    void toJson(QJsonObject &obj) Q_DECL_OVERRIDE;
+    QVariant data() Q_DECL_OVERRIDE;
     void load(QSettings *settings) Q_DECL_OVERRIDE;
     void store(QSettings *settings) Q_DECL_OVERRIDE;
 

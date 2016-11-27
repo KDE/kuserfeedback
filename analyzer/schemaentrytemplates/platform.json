@@ -5,11 +5,11 @@
         "aggregation": "category",
         "elements": [
             {
-                "name": "platform.os",
+                "name": "os",
                 "type": "string"
             },
             {
-                "name": "platform.version",
+                "name": "version",
                 "type": "string"
             }
         ]

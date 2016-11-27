@@ -21,6 +21,7 @@
 #include <rest/restclient.h>
 
 #include <provider/core/provider.h>
+#include <provider/core/platforminfosource.h>
 #include <provider/core/screeninfosource.h>
 
 #include <core/product.h>
@@ -93,6 +94,7 @@ private slots:
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
         provider.setFeedbackServer(m_server.url());
         provider.addDataSource(new ScreenInfoSource, Provider::AllStatistics);
+        provider.addDataSource(new PlatformInfoSource, Provider::AllStatistics);
         provider.submit();
         QTest::qWait(10); // HACK submit is async
 
@@ -108,7 +110,18 @@ private slots:
         QVERIFY(!obj.isEmpty());
         QVERIFY(obj.contains(QLatin1String("id")));
         QVERIFY(obj.contains(QLatin1String("timestamp")));
-        qDebug() << doc.toJson();
+
+        QVERIFY(obj.contains(QLatin1String("platform")));
+        auto sub = obj.value(QLatin1String("platform")).toObject();
+        QVERIFY(sub.contains(QLatin1String("os")));
+        QVERIFY(sub.contains(QLatin1String("version")));
+
+        QVERIFY(obj.contains(QLatin1String("screens")));
+        a = obj.value(QLatin1String("screens")).toArray();
+        QVERIFY(a.size() > 0);
+        sub = a.at(0).toObject();
+        QVERIFY(sub.contains(QLatin1String("height")));
+        QVERIFY(sub.contains(QLatin1String("width")));
     }
 };
 

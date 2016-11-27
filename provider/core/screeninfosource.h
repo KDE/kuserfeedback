@@ -28,7 +28,7 @@ class USERFEEDBACKCORE_EXPORT ScreenInfoSource :  public AbstractDataSource
 public:
     ScreenInfoSource();
 
-    void toJson(QJsonObject &obj) override;
+    QVariant data() Q_DECL_OVERRIDE;
 };
 
 }

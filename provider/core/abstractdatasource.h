@@ -21,7 +21,6 @@
 #include "userfeedbackcore_export.h"
 #include "provider.h"
 
-class QJsonObject;
 class QSettings;
 
 namespace UserFeedback {
@@ -37,8 +36,21 @@ public:
     /** Returns the name of this data source. */
     QString name() const;
 
-    /** Override this to serialize the data you collected. */
-    virtual void toJson(QJsonObject &obj) = 0;
+    /** Implement this to return the data gathered by this source.
+     *  Depending on the schema entry type for this source, the following
+     *  formats are expected:
+     *  - scalar entries: QAssiciativeIterable
+     *  - list entries: QSequentialIterable containing QAssociativeIterable
+     *  - map entries: QAssiciativeIterable containing QAssociativeIterable
+     * The innermost QAssiciativeIterable must only contain one of the following
+     * base types (which has to match the corresponding schema entry element):
+     * - QString
+     * - int
+     * - double
+     * - bool
+     * All keys must be strings.
+     */
+    virtual QVariant data() = 0;
 
     /** Load persistent state for this data source. */
     virtual void load(QSettings *settings);

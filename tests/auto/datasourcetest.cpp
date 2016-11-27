@@ -20,8 +20,6 @@
 #include <provider/core/screeninfosource.h>
 
 #include <QDebug>
-#include <QJsonArray>
-#include <QJsonObject>
 #include <QtTest/qtest.h>
 #include <QObject>
 #include <QStandardPaths>
@@ -59,17 +57,16 @@ private slots:
     void testPlatformInfoSource()
     {
         PlatformInfoSource src;
-        QJsonObject obj;
-        src.toJson(obj);
-        QVERIFY(obj.contains(QLatin1String("platformOS")));
-        auto v = obj.value(QLatin1String("platformOS"));
-        QVERIFY(v.isString());
+        auto obj = src.data().toMap();
+        QVERIFY(obj.contains(QLatin1String("os")));
+        auto v = obj.value(QLatin1String("os"));
+        QCOMPARE(v.type(), QVariant::String);
         auto s = v.toString();
         QVERIFY(!s.isEmpty());
 
-        QVERIFY(obj.contains(QLatin1String("platformVersion")));
-        v = obj.value(QLatin1String("platformVersion"));
-        QVERIFY(v.isString());
+        QVERIFY(obj.contains(QLatin1String("version")));
+        v = obj.value(QLatin1String("version"));
+        QCOMPARE(v.type(), QVariant::String);
         s = v.toString();
         QVERIFY(!s.isEmpty());
     }
@@ -77,12 +74,9 @@ private slots:
     void testScreenInfoSource()
     {
         ScreenInfoSource src;
-        QJsonObject obj;
-        src.toJson(obj);
-        QVERIFY(obj.contains(QLatin1String("screens")));
-        auto v = obj.value(QLatin1String("screens"));
-        QVERIFY(v.isArray());
-        auto a = v.toArray();
+        auto v = src.data();
+        QVERIFY(v.canConvert<QVariantList>());
+        auto a = v.value<QVariantList>();
         QVERIFY(a.size() > 0);
     }
 
@@ -93,38 +87,30 @@ private slots:
         src.addValueMapping(23, QStringLiteral("value2"));
         QTest::qWait(1);
 
-        QJsonObject obj;
-        src.toJson(obj);
-        QVERIFY(obj.contains(QLatin1String("ratioSample")));
-        auto v = obj.value(QLatin1String("ratioSample"));
-        QVERIFY(v.isObject());
-        auto o = v.toObject();
+        auto v = src.data();
+        QVERIFY(v.canConvert<QVariantMap>());
+        auto o = v.toMap();
         QCOMPARE(o.size(), 0); // nothing recorded
 
         QTest::qWait(1000);
-        obj = {};
-        src.toJson(obj);
-        v = obj.value(QLatin1String("ratioSample"));
-        o = v.toObject();
+        v = src.data();
+        o = v.toMap();
         QCOMPARE(o.size(), 1);
         QVERIFY(o.contains(QLatin1String("value1")));
         v = o.value(QLatin1String("value1"));
-        QVERIFY(v.isDouble());
+        QCOMPARE(v.type(), QVariant::Double);
 
         setProp(23);
         QTest::qWait(1000);
-        obj = {};
-        src.toJson(obj);
-        v = obj.value(QLatin1String("ratioSample"));
-        o = v.toObject();
+        v = src.data();
+        o = v.toMap();
         QCOMPARE(o.size(), 2);
         QVERIFY(o.contains(QLatin1String("value2")));
         v = o.value(QLatin1String("value2"));
-        QVERIFY(v.isDouble());
+        QCOMPARE(v.type(), QVariant::Double);
     }
 };
 
 QTEST_MAIN(DataSourceTest)
 
 #include "datasourcetest.moc"
-

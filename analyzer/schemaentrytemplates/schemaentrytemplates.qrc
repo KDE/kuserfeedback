@@ -2,7 +2,7 @@
 <RCC version="1.0">
     <qresource prefix="/org.kde.user-feedback/schemaentrytemplates">
         <file>platform.json</file>
-        <file>productVersion.json</file>
+        <file>applicationVersion.json</file>
         <file>qtVersion.json</file>
         <file>screens.json</file>
         <file>usageCount.json</file>

@@ -28,6 +28,7 @@
 #include <rest/serverinfo.h>
 
 #include <provider/widgets/feedbackconfigdialog.h>
+#include <provider/core/applicationversionsource.h>
 #include <provider/core/propertyratiosource.h>
 #include <provider/core/provider.h>
 
@@ -131,6 +132,7 @@ MainWindow::MainWindow() :
     viewModeSource->addValueMapping(1, QStringLiteral("surveyEditor"));
     viewModeSource->addValueMapping(2, QStringLiteral("schemaEditor"));
     m_feedbackProvider->addDataSource(viewModeSource, Provider::AllStatistics);
+    m_feedbackProvider->addDataSource(new ApplicationVersionSource, Provider::BasicStatistics);
 }
 
 MainWindow::~MainWindow()

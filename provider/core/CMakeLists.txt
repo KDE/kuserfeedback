@@ -1,5 +1,6 @@
 set(userfeedback_core_srcs
     abstractdatasource.cpp
+    applicationversionsource.cpp
     platforminfosource.cpp
     propertyratiosource.cpp
     provider.cpp

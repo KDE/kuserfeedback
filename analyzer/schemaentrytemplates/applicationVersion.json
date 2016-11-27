@@ -1,11 +1,11 @@
 [
     {
-        "name": "productVersion",
+        "name": "applicationVersion",
         "type": "scalar",
         "aggregation": "category",
         "elements": [
             {
-                "name": "productVersion",
+                "name": "value",
                 "type": "string"
             }
         ]

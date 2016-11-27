@@ -181,7 +181,6 @@ QByteArray ProviderPrivate::jsonData() const
     if (statisticsMode != Provider::NoStatistics) {
         obj.insert(QStringLiteral("startCount"), startCount);
         obj.insert(QStringLiteral("usageTime"), currentApplicationTime());
-        obj.insert(QStringLiteral("version"), QCoreApplication::applicationVersion());
         foreach (auto source, dataSources) {
             if (statisticsMode < source->collectionMode())
                 continue;

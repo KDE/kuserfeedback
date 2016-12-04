@@ -18,6 +18,7 @@
 #include "sample.h"
 #include <core/product.h>
 #include <core/schemaentry.h>
+#include <core/schemaentryelement.h>
 #include "ratioset.h"
 
 #include <QDateTime>
@@ -65,29 +66,53 @@ QVector<Sample> Sample::fromJson(const QByteArray &json, const Product &product)
         foreach (const auto &entry, product.schema()) {
             if (!obj.contains(entry.name()))
                 continue;
-            switch (entry.type()) {
-                case SchemaEntry::InvalidType:
-                    break;
-                case SchemaEntry::StringType:
-                    s.d->data.insert(entry.name(), obj.value(entry.name()).toString());
-                    break;
-                case SchemaEntry::IntegerType:
-                    s.d->data.insert(entry.name(), obj.value(entry.name()).toInt());
-                    break;
-                case SchemaEntry::StringListType:
+            switch (entry.dataType()) {
+                case SchemaEntry::Scalar:
                 {
-                    QStringList l;
-                    const auto a = obj.value(entry.name()).toArray();
-                    l.reserve(a.size());
-                    foreach (const auto &v, a)
-                        l.push_back(v.toString());
+                    const auto entryData = obj.value(entry.name()).toObject();
+                    foreach (const auto &elem, entry.elements()) {
+                        if (!entryData.contains(elem.name()))
+                            continue;
+                        // TODO schema-dependent type conversion
+                        s.d->data.insert(entry.name() + QLatin1Char('.') + elem.name(), entryData.value(elem.name()).toVariant());
+                    }
+                    break;
+                }
+                case SchemaEntry::List:
+                {
+                    const auto entryArray = obj.value(entry.name()).toArray();
+                    QVariantList l;
+                    l.reserve(entryArray.size());
+                    foreach (const auto &entryDataValue, entryArray) {
+                        const auto entryData = entryDataValue.toObject();
+                        QVariantMap m;
+                        foreach (const auto &elem, entry.elements()) {
+                            if (!entryData.contains(elem.name()))
+                                continue;
+                            // TODO schema-dependent type conversion
+                            m.insert(elem.name(), entryData.value(elem.name()).toVariant());
+                        }
+                        l.push_back(m);
+                    }
                     s.d->data.insert(entry.name(), l);
                     break;
                 }
-                case SchemaEntry::RatioSetType:
+                case SchemaEntry::Map:
                 {
-                    const auto set = RatioSet::fromJson(obj.value(entry.name()).toObject());
-                    s.d->data.insert(entry.name(), QVariant::fromValue(set));
+                    const auto entryMap = obj.value(entry.name()).toObject();
+                    QVariantMap m;
+                    for (auto it = entryMap.begin(); it != entryMap.end(); ++it) {
+                        const auto entryData = it.value().toObject();
+                        QVariantMap m2;
+                        foreach (const auto &elem, entry.elements()) {
+                            if (!entryData.contains(elem.name()))
+                                continue;
+                            // TODO schema-dependent type conversion
+                            m2.insert(elem.name(), entryData.value(elem.name()).toVariant());
+                        }
+                        m.insert(it.key(), m2);
+                    }
+                    s.d->data.insert(entry.name(), m);
                     break;
                 }
             }

@@ -7,5 +7,6 @@
         <file>screens.json</file>
         <file>usageCount.json</file>
         <file>usageTime.json</file>
+        <file>propertyRatio.json</file>
     </qresource>
 </RCC>

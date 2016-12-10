@@ -11,6 +11,7 @@ set(analyzer_lib_srcs
     rest/restclient.cpp
     rest/serverinfo.cpp
 
+    model/datamodel.cpp
     model/productmodel.cpp
     model/schemamodel.cpp
     model/surveymodel.cpp
@@ -27,7 +28,6 @@ set(analyzer_srcs
     categoryaggregationmodel.cpp
     chart.cpp
     connectdialog.cpp
-    datamodel.cpp
     main.cpp
     mainwindow.cpp
     numericaggregationmodel.cpp

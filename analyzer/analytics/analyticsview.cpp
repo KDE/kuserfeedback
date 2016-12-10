@@ -21,7 +21,7 @@
 #include "aggregateddatamodel.h"
 #include "categoryaggregationmodel.h"
 #include "chart.h"
-#include "datamodel.h"
+#include <model/datamodel.h>
 #include "numericaggregationmodel.h"
 #include "ratiosetaggregationmodel.h"
 #include "timeaggregationmodel.h"

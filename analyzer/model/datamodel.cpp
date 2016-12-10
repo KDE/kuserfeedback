@@ -48,8 +48,16 @@ void DataModel::setRESTClient(RESTClient* client)
 
 void DataModel::setProduct(const Product& product)
 {
+    beginResetModel();
     m_product = product;
+    m_columns.clear();
+    for (const auto &entry : product.schema()) {
+        for (const auto &elem : entry.elements())
+            m_columns.push_back({entry, elem});
+    }
+    m_data.clear();
     reload();
+    endResetModel();
 }
 
 void UserFeedback::Analyzer::DataModel::reload()
@@ -73,7 +81,7 @@ void UserFeedback::Analyzer::DataModel::reload()
 int DataModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
-    return m_product.schema().size() + 1;
+    return m_columns.size() + 1;
 }
 
 int DataModel::rowCount(const QModelIndex& parent) const
@@ -92,7 +100,8 @@ QVariant DataModel::data(const QModelIndex &index, int role) const
         const auto sample = m_data.at(index.row());
         if (index.column() == 0)
             return sample.timestamp();
-        const auto v = sample.value(m_product.schema().at(index.column() - 1).name());
+        const auto col = m_columns.at(index.column() - 1);
+        const auto v = sample.value(col.entry.name() + QLatin1Char('.') + col.element.name());
         if (v.type() == QVariant::StringList)
             return v.toStringList().join(QStringLiteral(", "));
         if (v.userType() == qMetaTypeId<RatioSet>())
@@ -112,8 +121,8 @@ QVariant DataModel::headerData(int section, Qt::Orientation orientation, int rol
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole && m_product.isValid()) {
         if (section == 0)
             return tr("Timestamp");
-        if (section - 1 < m_product.schema().size())
-            return m_product.schema().at(section - 1).name();
+        const auto col = m_columns.at(section - 1);
+        return QString(col.entry.name() + QLatin1Char('.') + col.element.name());
     }
     return QAbstractTableModel::headerData(section, orientation, role);
 }

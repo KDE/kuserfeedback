@@ -33,6 +33,10 @@ add_executable(sampletest sampletest.cpp)
 target_link_libraries(sampletest UserFeedbackAnalyzer Qt5::Test)
 add_test(NAME sampletest COMMAND sampletest)
 
+add_executable(datamodeltest datamodeltest.cpp)
+target_link_libraries(datamodeltest  UserFeedbackTestUtils Qt5::Test)
+add_test(NAME datamodeltest COMMAND datamodeltest)
+
 set(php_test_srcs
     utilstest.php
     schemaentrytest.php

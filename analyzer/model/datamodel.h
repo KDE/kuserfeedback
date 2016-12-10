@@ -19,9 +19,10 @@
 #define USERFEEDBACK_ANALYZER_DATAMODEL_H
 
 #include <core/product.h>
+#include <core/schemaentry.h>
+#include <core/schemaentryelement.h>
 
 #include <QAbstractTableModel>
-#include <QJsonArray>
 
 namespace UserFeedback {
 namespace Analyzer {
@@ -53,6 +54,11 @@ public:
 
 private:
     Product m_product;
+    struct Column {
+        SchemaEntry entry;
+        SchemaEntryElement element;
+    };
+    QVector<Column> m_columns;
     RESTClient *m_restClient = nullptr;
     QVector<Sample> m_data;
 };

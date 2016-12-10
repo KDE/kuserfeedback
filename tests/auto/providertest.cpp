@@ -96,11 +96,12 @@ private slots:
         provider.addDataSource(new ScreenInfoSource, Provider::AllStatistics);
         provider.addDataSource(new PlatformInfoSource, Provider::AllStatistics);
         provider.submit();
-        QTest::qWait(10); // HACK submit is async
+        QTest::qWait(100); // HACK submit is async
 
         // retrieve data
         reply = RESTApi::listSamples(&client, p);
         QVERIFY(waitForFinished(reply));
+        QCOMPARE(reply->header(QNetworkRequest::ContentTypeHeader).toString(), QLatin1String("text/json"));
         auto doc = QJsonDocument::fromJson(reply->readAll());
         QVERIFY(doc.isArray());
         auto a = doc.array();

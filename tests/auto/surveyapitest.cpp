@@ -94,6 +94,7 @@ private slots:
         auto reply = RESTApi::listSurveys(&client, p);
         QVERIFY(waitForFinished(reply));
         QCOMPARE(reply->error(), QNetworkReply::NoError);
+        QCOMPARE(reply->header(QNetworkRequest::ContentTypeHeader).toString(), QLatin1String("text/json"));
         auto surveys = Survey::fromJson(reply->readAll());
         QVERIFY(surveys.isEmpty());
 

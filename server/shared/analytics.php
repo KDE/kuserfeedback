@@ -41,6 +41,8 @@ public function get_products()
     $db = new DataStore();
     $products = Product::allProducts($db);
     $json = json_encode($products);
+
+    header('Content-Type: text/json');
     echo($json);
 }
 
@@ -95,6 +97,8 @@ public function get_data($productName)
     $product = Product::productByName($db, $productName);
     if (is_null($product))
         throw new RESTException('Product not found.', 404);
+
+    header('Content-Type: text/json');
     echo(Sample::dataAsJson($db, $product));
 }
 
@@ -106,6 +110,8 @@ public function get_surveys($productName)
 
     $db = new DataStore();
     $surveys = Survey::surveysForProduct($db, $productName);
+
+    header('Content-Type: text/json');
     echo(json_encode($surveys));
 }
 

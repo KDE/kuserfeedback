@@ -48,6 +48,7 @@ function post_submit($productName)
     $responseData['surveys'] = $surveys;
     $db->commit();
 
+    header('Content-Type: text/json');
     echo(json_encode($responseData));
 }
 

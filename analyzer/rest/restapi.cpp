@@ -19,6 +19,7 @@
 #include "restclient.h"
 
 #include <core/product.h>
+#include <core/sample.h>
 #include <core/survey.h>
 
 using namespace UserFeedback::Analyzer;
@@ -55,6 +56,12 @@ QNetworkReply* RESTApi::listSamples(RESTClient *client, const Product &p)
 {
     Q_ASSERT(p.isValid());
     return client->get(QStringLiteral("data/") + p.name());
+}
+
+QNetworkReply* RESTApi::addSamples(RESTClient *client, const Product &p, const QVector<Sample> &samples)
+{
+    Q_ASSERT(p.isValid());
+    return client->post(QStringLiteral("data/") + p.name(), Sample::toJson(samples, p));
 }
 
 QNetworkReply* RESTApi::listSurveys(RESTClient *client, const Product &p)

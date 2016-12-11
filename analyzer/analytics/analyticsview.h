@@ -60,6 +60,7 @@ private:
 
     std::unique_ptr<Ui::AnalyticsView> ui;
 
+    RESTClient *m_client = nullptr;
     DataModel *m_dataModel;
     TimeAggregationModel *m_timeAggregationModel;
     QVector<QAbstractItemModel*> m_aggregationModels;

@@ -26,12 +26,14 @@
 #include "timeaggregationmodel.h"
 
 #include <model/datamodel.h>
+#include <rest/restapi.h>
 #include <core/sample.h>
 
 #include <QFile>
 #include <QFileDialog>
 #include <QMenu>
 #include <QMessageBox>
+#include <QNetworkReply>
 #include <QSettings>
 
 using namespace UserFeedback::Analyzer;
@@ -102,6 +104,7 @@ AnalyticsView::~AnalyticsView()
 
 void AnalyticsView::setRESTClient(RESTClient* client)
 {
+    m_client = client;
     m_dataModel->setRESTClient(client);
 }
 
@@ -171,10 +174,29 @@ void AnalyticsView::exportData()
 
     const auto samples = m_dataModel->index(0, 0).data(DataModel::AllSamplesRole).value<QVector<Sample>>();
     f.write(Sample::toJson(samples, m_dataModel->product()));
-    logMessage(tr("Sample data of %1 exported to %2.").arg(m_dataModel->product().name(), f.fileName()));
+    emit logMessage(tr("Sample data of %1 exported to %2.").arg(m_dataModel->product().name(), f.fileName()));
 }
 
 void AnalyticsView::importData()
 {
-    // TODO
+    const auto fileName = QFileDialog::getOpenFileName(this, tr("Import Data"));
+    if (fileName.isEmpty())
+        return;
+
+    QFile f(fileName);
+    if (!f.open(QFile::ReadOnly)) {
+        QMessageBox::critical(this, tr("Import Failed"), tr("Could not open file: %1").arg(f.errorString()));
+        return;
+    }
+    const auto samples = Sample::fromJson(f.readAll(), m_dataModel->product());
+    if (samples.isEmpty()) {
+        QMessageBox::critical(this, tr("Import Failed"), tr("Selected file contains no valid data."));
+        return;
+    }
+
+    auto reply = RESTApi::addSamples(m_client, m_dataModel->product(), samples);
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() == QNetworkReply::NoError)
+            emit logMessage(tr("Samples imported."));
+    });
 }

@@ -19,12 +19,14 @@
 #define USERFEEDBACK_ANALYZER_RESTAPI_H
 
 class QNetworkReply;
+template <typename T> class QVector;
 
 namespace UserFeedback {
 namespace Analyzer {
 
 class Product;
 class RESTClient;
+class Sample;
 class Survey;
 
 /** C++ wrapper for the server-side API.
@@ -57,6 +59,11 @@ namespace RESTApi
      *  @param p The product to add. Must be valid.
      */
     QNetworkReply* listSamples(RESTClient *client, const Product &p);
+
+    /** Add the given samples to a product.
+     *  @param p The product to add. Must be valid.
+     */
+    QNetworkReply* addSamples(RESTClient *client, const Product &p, const QVector<Sample> &samples);
 
     /** List all surveys for product @p p. */
     QNetworkReply* listSurveys(RESTClient *client, const Product &p);

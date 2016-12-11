@@ -18,7 +18,7 @@
 #include "chart.h"
 #include "categoryaggregationmodel.h"
 #include "numericaggregationmodel.h"
-#include "timeaggregationmodel.h"
+#include <model/timeaggregationmodel.h>
 
 #include <QtCharts/QAreaSeries>
 #include <QtCharts/QBarCategoryAxis>

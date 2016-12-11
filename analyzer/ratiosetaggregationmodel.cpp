@@ -16,9 +16,9 @@
 */
 
 #include "ratiosetaggregationmodel.h"
+#include <model/timeaggregationmodel.h>
 #include <core/ratioset.h>
 #include <core/sample.h>
-#include "timeaggregationmodel.h"
 
 #include <QSet>
 

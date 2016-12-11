@@ -15,6 +15,7 @@ set(analyzer_lib_srcs
     model/productmodel.cpp
     model/schemamodel.cpp
     model/surveymodel.cpp
+    model/timeaggregationmodel.cpp
 
     schemaentrytemplates/schemaentrytemplates.qrc
 )
@@ -32,7 +33,6 @@ set(analyzer_srcs
     mainwindow.cpp
     numericaggregationmodel.cpp
     ratiosetaggregationmodel.cpp
-    timeaggregationmodel.cpp
 
     analytics/analyticsview.cpp
 

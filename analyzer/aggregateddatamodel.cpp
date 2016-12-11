@@ -16,7 +16,7 @@
 */
 
 #include "aggregateddatamodel.h"
-#include "timeaggregationmodel.h"
+#include <model/timeaggregationmodel.h>
 
 #include <QDebug>
 

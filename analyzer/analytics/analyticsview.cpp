@@ -23,9 +23,9 @@
 #include "chart.h"
 #include "numericaggregationmodel.h"
 #include "ratiosetaggregationmodel.h"
-#include "timeaggregationmodel.h"
 
 #include <model/datamodel.h>
+#include <model/timeaggregationmodel.h>
 #include <rest/restapi.h>
 #include <core/sample.h>
 

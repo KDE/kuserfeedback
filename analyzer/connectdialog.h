@@ -42,7 +42,11 @@ public:
     ServerInfo serverInfo() const;
     void setServerInfo(const ServerInfo &serverInfo);
 
+    void addRecentServerInfos(const QStringList &serverInfoNames);
+
 private:
+    void serverSelected();
+
     std::unique_ptr<Ui::ConnectDialog> ui;
 };
 

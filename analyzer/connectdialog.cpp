@@ -20,6 +20,7 @@
 
 #include <rest/serverinfo.h>
 
+#include <QDebug>
 #include <QIcon>
 #include <QUrl>
 
@@ -30,6 +31,7 @@ ConnectDialog::ConnectDialog(QWidget *parent) :
     ui(new Ui::ConnectDialog)
 {
     ui->setupUi(this);
+    connect(ui->serverUrl, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConnectDialog::serverSelected);
 
     setWindowIcon(QIcon::fromTheme(QStringLiteral("network-connect")));
 }
@@ -41,7 +43,7 @@ ConnectDialog::~ConnectDialog()
 ServerInfo ConnectDialog::serverInfo() const
 {
     ServerInfo info;
-    info.setUrl(QUrl(ui->serverUrl->text()));
+    info.setUrl(QUrl(ui->serverUrl->currentText()));
     info.setUserName(ui->userName->text());
     info.setPassword(ui->password->text());
     return info;
@@ -49,7 +51,19 @@ ServerInfo ConnectDialog::serverInfo() const
 
 void ConnectDialog::setServerInfo(const ServerInfo& serverInfo)
 {
-    ui->serverUrl->setText(serverInfo.url().toString());
+    ui->serverUrl->setCurrentText(serverInfo.url().toString());
     ui->userName->setText(serverInfo.userName());
     ui->password->setText(serverInfo.password());
+}
+
+void ConnectDialog::addRecentServerInfos(const QStringList& serverInfoNames)
+{
+    ui->serverUrl->addItems(serverInfoNames);
+}
+
+void ConnectDialog::serverSelected()
+{
+    auto info = ServerInfo::load(ui->serverUrl->currentText());
+    if (!info.url().isEmpty())
+        setServerInfo(info);
 }

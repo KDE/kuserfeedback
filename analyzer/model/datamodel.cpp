@@ -73,6 +73,11 @@ void DataModel::setRESTClient(RESTClient* client)
         reload();
 }
 
+Product DataModel::product() const
+{
+    return m_product;
+}
+
 void DataModel::setProduct(const Product& product)
 {
     beginResetModel();

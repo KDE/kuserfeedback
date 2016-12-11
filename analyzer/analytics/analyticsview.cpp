@@ -21,12 +21,17 @@
 #include "aggregateddatamodel.h"
 #include "categoryaggregationmodel.h"
 #include "chart.h"
-#include <model/datamodel.h>
 #include "numericaggregationmodel.h"
 #include "ratiosetaggregationmodel.h"
 #include "timeaggregationmodel.h"
 
+#include <model/datamodel.h>
+#include <core/sample.h>
+
+#include <QFile>
+#include <QFileDialog>
 #include <QMenu>
+#include <QMessageBox>
 #include <QSettings>
 
 using namespace UserFeedback::Analyzer;
@@ -66,7 +71,11 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     timeAggrMenu->addAction(ui->actionAggregateWeek);
     timeAggrMenu->addAction(ui->actionAggregateMonth);
     timeAggrMenu->addAction(ui->actionAggregateYear);
-    addAction(timeAggrMenu->menuAction());
+
+    connect(ui->actionExportData, &QAction::triggered, this, &AnalyticsView::exportData);
+    connect(ui->actionImportData, &QAction::triggered, this, &AnalyticsView::importData);
+
+    addActions({timeAggrMenu->menuAction(), ui->actionExportData, ui->actionImportData});
 
     QSettings settings;
     settings.beginGroup(QStringLiteral("Analytics"));
@@ -146,4 +155,26 @@ void AnalyticsView::setProduct(const Product& product)
             }
         }
     }
+}
+
+void AnalyticsView::exportData()
+{
+    const auto fileName = QFileDialog::getSaveFileName(this, tr("Export Data"));
+    if (fileName.isEmpty())
+        return;
+
+    QFile f(fileName);
+    if (!f.open(QFile::WriteOnly)) {
+        QMessageBox::critical(this, tr("Export Failed"), tr("Could not open file: %1").arg(f.errorString()));
+        return;
+    }
+
+    const auto samples = m_dataModel->index(0, 0).data(DataModel::AllSamplesRole).value<QVector<Sample>>();
+    f.write(Sample::toJson(samples, m_dataModel->product()));
+    logMessage(tr("Sample data of %1 exported to %2.").arg(m_dataModel->product().name(), f.fileName()));
+}
+
+void AnalyticsView::importData()
+{
+    // TODO
 }

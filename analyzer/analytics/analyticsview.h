@@ -55,6 +55,9 @@ signals:
     void logMessage(const QString &msg);
 
 private:
+    void exportData();
+    void importData();
+
     std::unique_ptr<Ui::AnalyticsView> ui;
 
     DataModel *m_dataModel;

@@ -44,6 +44,7 @@ public:
     QVariant value(const QString &name) const;
 
     static QVector<Sample> fromJson(const QByteArray &json, const Product &product);
+    static QByteArray toJson(const QVector<Sample> &samples, const Product &product);
 
 private:
     QSharedDataPointer<SampleData> d;

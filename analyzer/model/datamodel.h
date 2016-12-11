@@ -44,7 +44,10 @@ public:
     ~DataModel();
 
     void setRESTClient(RESTClient *client);
+
+    Product product() const;
     void setProduct(const Product &product);
+
     void setSamples(const QVector<Sample> &samples);
     void reload();
 

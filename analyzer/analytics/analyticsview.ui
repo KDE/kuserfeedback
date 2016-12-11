@@ -126,6 +126,28 @@
     <string>Aggregate data by day.</string>
    </property>
   </action>
+  <action name="actionExportData">
+   <property name="icon">
+    <iconset theme="document-export"/>
+   </property>
+   <property name="text">
+    <string>&amp;Export Data...</string>
+   </property>
+   <property name="toolTip">
+    <string>Export all recorded data.</string>
+   </property>
+  </action>
+  <action name="actionImportData">
+   <property name="icon">
+    <iconset theme="document-import"/>
+   </property>
+   <property name="text">
+    <string>&amp;Import Data...</string>
+   </property>
+   <property name="toolTip">
+    <string>Import sample data.</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

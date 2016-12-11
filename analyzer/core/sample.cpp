@@ -121,3 +121,71 @@ QVector<Sample> Sample::fromJson(const QByteArray &json, const Product &product)
     }
     return samples;
 }
+
+QByteArray Sample::toJson(const QVector<Sample> &samples, const Product &product)
+{
+    QJsonArray array;
+    for (const auto &s : samples) {
+        QJsonObject obj;
+        obj[QLatin1String("timestamp")] = s.timestamp().toString(Qt::ISODate);
+        foreach (const auto &entry, product.schema()) {
+            switch (entry.dataType()) {
+                case SchemaEntry::Scalar:
+                {
+                    QJsonObject subObj;
+                    const auto entryData = obj.value(entry.name()).toObject();
+                    foreach (const auto &elem, entry.elements()) {
+                        const auto it = s.d->data.constFind(entry.name() + QLatin1Char('.') + elem.name());
+                        if (it == s.d->data.constEnd())
+                            continue;
+                        subObj[elem.name()] = QJsonValue::fromVariant(it.value());
+                    }
+                    if (!subObj.isEmpty())
+                        obj[entry.name()] = subObj;
+                    break;
+                }
+                case SchemaEntry::List:
+                {
+                    QJsonArray a;
+                    const auto it = s.d->data.constFind(entry.name());
+                    if (it == s.d->data.constEnd())
+                        continue;
+                    const auto l = it.value().toList();
+                    for (const auto &v : l) {
+                        QJsonObject subObj;
+                        const auto m = v.toMap();
+                        for (auto it = m.begin(); it != m.end(); ++it) {
+                            subObj[it.key()] = QJsonValue::fromVariant(it.value());
+                        }
+                        a.push_back(subObj);
+                    }
+                    obj[entry.name()] = a;
+                    break;
+                }
+                case SchemaEntry::Map:
+                {
+                    QJsonObject map;
+                    const auto it = s.d->data.constFind(entry.name());
+                    if (it == s.d->data.constEnd())
+                        continue;
+                    const auto m = it.value().toMap();
+                    for (auto it = m.begin(); it != m.end(); ++it) {
+                        QJsonObject subObj;
+                        const auto m = it.value().toMap();
+                        for (auto it = m.begin(); it != m.end(); ++it) {
+                            subObj[it.key()] = QJsonValue::fromVariant(it.value());
+                        }
+                        map[it.key()] = subObj;
+                    }
+                    obj[entry.name()] = map;
+                    break;
+                }
+            }
+        }
+        array.push_back(obj);
+    }
+
+    QJsonDocument doc;
+    doc.setArray(array);
+    return doc.toJson();
+}

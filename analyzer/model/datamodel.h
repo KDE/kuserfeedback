@@ -45,6 +45,7 @@ public:
 
     void setRESTClient(RESTClient *client);
     void setProduct(const Product &product);
+    void setSamples(const QVector<Sample> &samples);
     void reload();
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -57,6 +58,8 @@ private:
     struct Column {
         SchemaEntry entry;
         SchemaEntryElement element;
+
+        QString name() const;
     };
     QVector<Column> m_columns;
     RESTClient *m_restClient = nullptr;

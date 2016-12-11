@@ -74,6 +74,28 @@
     <string>Del</string>
    </property>
   </action>
+  <action name="actionExportSchema">
+   <property name="icon">
+    <iconset theme="document-export"/>
+   </property>
+   <property name="text">
+    <string>&amp;Export Schema</string>
+   </property>
+   <property name="toolTip">
+    <string>Export the schema of this product.</string>
+   </property>
+  </action>
+  <action name="actionImportSchema">
+   <property name="icon">
+    <iconset theme="document-import"/>
+   </property>
+   <property name="text">
+    <string>&amp;Import Schema</string>
+   </property>
+   <property name="toolTip">
+    <string>Import a schema for this product.</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

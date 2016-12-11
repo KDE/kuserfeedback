@@ -25,6 +25,7 @@
 #include <core/schemaentrytemplates.h>
 
 #include <QDebug>
+#include <QFileDialog>
 #include <QMenu>
 #include <QMessageBox>
 #include <QNetworkReply>
@@ -46,6 +47,8 @@ SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
     connect(ui->newEntryName, &QLineEdit::returnPressed, this, &SchemaEditWidget::addEntry);
     connect(ui->actionDelete, &QAction::triggered, this, &SchemaEditWidget::deleteEntry);
     connect(ui->actionSave, &QAction::triggered, this, &SchemaEditWidget::save);
+    connect(ui->actionImportSchema, &QAction::triggered, this, &SchemaEditWidget::importSchema);
+    connect(ui->actionExportSchema, &QAction::triggered, this, &SchemaEditWidget::exportSchema);
 
     connect(ui->schemaView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &SchemaEditWidget::updateState);
     connect(ui->newEntryName, &QLineEdit::textChanged, this, &SchemaEditWidget::updateState);
@@ -61,7 +64,7 @@ SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
 
     m_createFromTemplateAction = templateMenu->menuAction();
     m_createFromTemplateAction->setIcon(QIcon::fromTheme(QStringLiteral("document-new-from-template")));
-    addActions({ m_createFromTemplateAction, ui->actionDelete, ui->actionSave });
+    addActions({ m_createFromTemplateAction, ui->actionDelete, ui->actionSave, ui->actionImportSchema, ui->actionExportSchema });
     updateState();
 }
 
@@ -119,4 +122,42 @@ void SchemaEditWidget::updateState()
 
     m_createFromTemplateAction->setEnabled(m_schemaModel->product().isValid());
     ui->actionSave->setEnabled(m_schemaModel->product().isValid());
+}
+
+void SchemaEditWidget::exportSchema()
+{
+    const auto fileName = QFileDialog::getSaveFileName(this, tr("Export Schema"));
+    if (fileName.isEmpty())
+        return;
+
+    QFile f(fileName);
+    if (!f.open(QFile::WriteOnly)) {
+        QMessageBox::critical(this, tr("Export Failed"), tr("Could not open file: %1").arg(f.errorString()));
+        return;
+    }
+    f.write(m_schemaModel->product().toJson());
+    logMessage(tr("Schema of %1 exported to %2.").arg(m_schemaModel->product().name(), f.fileName()));
+}
+
+void SchemaEditWidget::importSchema()
+{
+    const auto fileName = QFileDialog::getOpenFileName(this, tr("Import Schema"));
+    if (fileName.isEmpty())
+        return;
+
+    QFile f(fileName);
+    if (!f.open(QFile::ReadOnly)) {
+        QMessageBox::critical(this, tr("Import Failed"), tr("Could not open file: %1").arg(f.errorString()));
+        return;
+    }
+    const auto products = Product::fromJson(f.readAll());
+    if (products.size() != 1 || !products.at(0).isValid()) {
+        QMessageBox::critical(this, tr("Import Failed"), tr("Selected file contains no valid product schema."));
+        return;
+    }
+
+    auto p = products.at(0);
+    p.setName(m_schemaModel->product().name());
+    m_schemaModel->setProduct(p);
+    logMessage(tr("Schema of %1 imported from %2.").arg(m_schemaModel->product().name(), f.fileName()));
 }

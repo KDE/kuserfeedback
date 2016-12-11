@@ -52,6 +52,8 @@ private:
     void addEntry();
     void deleteEntry();
     void save();
+    void exportSchema();
+    void importSchema();
 
     void updateState();
 

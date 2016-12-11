@@ -79,16 +79,27 @@ QByteArray Product::toJson() const
     return doc.toJson();
 }
 
+static Product productFromJsonObject(const QJsonObject &obj)
+{
+    Product product;
+    product.setName(obj.value(QStringLiteral("name")).toString());
+    product.setSchema(SchemaEntry::fromJson(obj.value(QStringLiteral("schema")).toArray()));
+    return product;
+}
+
 QVector<Product> Product::fromJson(const QByteArray &data)
 {
     QVector<Product> products;
     const auto doc = QJsonDocument::fromJson(data);
-    foreach (const auto &value, doc.array()) {
-        const auto obj = value.toObject();
-        Product product;
-        product.setName(obj.value(QStringLiteral("name")).toString());
-        product.setSchema(SchemaEntry::fromJson(obj.value(QStringLiteral("schema")).toArray()));
-        products.push_back(product);
+    if (doc.isArray()) {
+        const auto array = doc.array();
+        products.reserve(array.size());
+        foreach (const auto &value, array) {
+            const auto obj = value.toObject();
+            products.push_back(productFromJsonObject(obj));
+        }
+    } else if (doc.isObject()) {
+        products.push_back(productFromJsonObject(doc.object()));
     }
     return products;
 }

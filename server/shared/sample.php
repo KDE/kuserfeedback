@@ -112,6 +112,28 @@ class Sample
         }
     }
 
+    /** Insert a array of samples previously exported for @p product.
+     *  Unlike Sample::insert, this will preserve ids and timestamps.
+     */
+    public static function import(DataStore $db, $jsonData, Product $product)
+    {
+        $jsonArray = json_decode($jsonData);
+        if (!is_array($jsonArray))
+            throw new RESTException('Invalid sample data format.', 400);
+
+        foreach ($jsonArray as $sampleObj) {
+            if (!property_exists($sampleObj, 'id') || !property_exists($sampleObj, 'timestamp'))
+                throw new RESTException('Invalid sample data.', 400);
+
+            self::insertScalar($db, $sampleObj, $product);
+            foreach ($product->schema as $entry) {
+                if ($entry->isScalar())
+                    continue;
+                self::insertNonScalar($db, $sampleObj, $entry, $sampleObj->id);
+            }
+        }
+    }
+
     /** Insert scalar data for @p product.
      *  @return The sample id for use in non-scalar data tables.
      */
@@ -120,6 +142,17 @@ class Sample
         $columns = array();
         $binds = array();
         $values = array();
+
+        if (property_exists($jsonObj, 'id')) {
+            array_push($columns, 'id');
+            array_push($binds, ':id');
+            array_push($values, intval($jsonObj->id));
+        }
+        if (property_exists($jsonObj, 'timestamp')) {
+            array_push($columns, 'timestamp');
+            array_push($binds, ':timestamp');
+            array_push($values, $jsonObj->timestamp);
+        }
 
         foreach ($product->schema as $entry) {
             if (!$entry->isScalar())

@@ -132,4 +132,52 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
 
         Sample::insert(self::$db, $input, $p);
     }
+
+    public function testImport()
+    {
+        $p = Product::productByName(self::$db, 'org.kde.UnitTest');
+        $this->assertNotNull($p);
+        $p->name = 'org.kde.MyCleanProduct';
+        $p->insert(self::$db);
+
+        $input = '[{
+            "id": 42,
+            "timestamp": "2016-12-18 12:42:35",
+            "entry1": { "element11": "firstString" },
+            "entry2": [ { "element21": 12 } ]
+        }, {
+            "id": 43,
+            "timestamp": "2016-12-19 15:12:10",
+            "entry1": { "element12": true },
+            "entry2": [ { "element22": 1.3 } ]
+        }]';
+        Sample::import(self::$db, $input, $p);
+
+        $output = Sample::dataAsJson(self::$db, $p);
+        $this->assertJsonStringEqualsJsonString($input, $output);
+    }
+
+    public function testInvalidImport_data()
+    {
+        return [
+            'nothing' => [ '' ],
+            'empty' => [ '{}' ],
+            'object' => [ '{ "id": 42, "timestamp": "2016-12-18 12:42:35" }' ],
+            'missing id' => [ '{ "timestamp": "2016-12-18 12:42:35" }' ],
+            'missing timestamp' => [ '{ "id": 42 }' ]
+        ];
+    }
+
+    /**
+     * @dataProvider testInvalidImport_data
+     * @expectedException RESTException
+     * @exceptedExceptionCode 400
+     */
+    public function testInvalidImport($input)
+    {
+        $p = Product::productByName(self::$db, 'org.kde.UnitTest');
+        $this->assertNotNull($p);
+
+        Sample::import(self::$db, $input, $p);
+    }
 }

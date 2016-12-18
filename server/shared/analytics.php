@@ -102,6 +102,19 @@ public function get_data($productName)
     echo(Sample::dataAsJson($db, $product));
 }
 
+/** Import data for a product. */
+public function post_data($productName)
+{
+    $db = new DataStore();
+    $db->beginTransaction();
+    $product = Product::productByName($db, $productName);
+    if (is_null($product))
+        throw RESTException('Unknown product.', 404);
+    Sample::import($db, file_get_contents('php://input'), $product);
+    $db->commit();
+    echo('Data imported.');
+}
+
 /** List all surveys for a product. */
 public function get_surveys($productName)
 {

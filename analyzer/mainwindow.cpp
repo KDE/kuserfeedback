@@ -182,21 +182,6 @@ void MainWindow::createProduct()
     Product product;
     product.setName(name);
 
-    QVector<SchemaEntry> schema;
-    SchemaEntry entry;
-    entry.setName(QStringLiteral("version"));
-    entry.setType(SchemaEntry::StringType);
-    schema.push_back(entry);
-    entry.setName(QStringLiteral("platform"));
-    schema.push_back(entry);
-    entry.setName(QStringLiteral("startCount"));
-    entry.setType(SchemaEntry::IntegerType);
-    schema.push_back(entry);
-    entry.setName(QStringLiteral("usageTime"));
-    schema.push_back(entry);
-
-    product.setSchema(schema);
-
     auto reply = RESTApi::createProduct(m_restClient, product);
     connect(reply, &QNetworkReply::finished, this, [this, reply, name]() {
         if (reply->error() == QNetworkReply::NoError) {

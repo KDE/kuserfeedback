@@ -122,11 +122,10 @@ void AnalyticsView::setProduct(const Product& product)
     ui->chartType->addItem(tr("Samples"), QVariant::fromValue(m_timeAggregationModel));
 
     foreach (const auto &schemaEntry, product.schema()) {
-        switch (schemaEntry.type()) {
-            case SchemaEntry::InvalidType:
-            case SchemaEntry::StringListType:
+        switch (schemaEntry.aggregationType()) {
+            case SchemaEntry::None:
                 break;
-            case SchemaEntry::StringType:
+            case SchemaEntry::Category:
             {
                 auto model = new CategoryAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);
@@ -136,7 +135,7 @@ void AnalyticsView::setProduct(const Product& product)
                 ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
                 break;
             }
-            case SchemaEntry::IntegerType:
+            case SchemaEntry::Numeric:
             {
                 auto model = new NumericAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);
@@ -146,7 +145,7 @@ void AnalyticsView::setProduct(const Product& product)
                 ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
                 break;
             }
-            case SchemaEntry::RatioSetType:
+            case SchemaEntry::RatioSet:
             {
                 auto model = new RatioSetAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);
@@ -156,6 +155,9 @@ void AnalyticsView::setProduct(const Product& product)
                 ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
                 break;
             }
+            case SchemaEntry::XY:
+                // TODO
+                break;
         }
     }
 }

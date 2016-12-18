@@ -18,7 +18,6 @@
 #include "schemaentryitemeditorfactory.h"
 #include <core/schemaentry.h>
 #include <core/schemaentryelement.h>
-#include "schemaentrytypecombobox.h"
 #include <widgets/metaenumcombobox.h>
 
 #include <QDebug>
@@ -27,7 +26,6 @@ using namespace UserFeedback::Analyzer;
 
 SchemaEntryItemEditorFactory::SchemaEntryItemEditorFactory()
 {
-   registerEditor(qMetaTypeId<SchemaEntry::Type>(), new QStandardItemEditorCreator<SchemaEntryTypeComboBox>());
    registerEditor(qMetaTypeId<SchemaEntry::AggregationType>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
    registerEditor(qMetaTypeId<SchemaEntryElement::Type>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
 }

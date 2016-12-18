@@ -38,7 +38,6 @@ set(analyzer_srcs
 
     schemaeditor/schemaeditwidget.cpp
     schemaeditor/schemaentryitemeditorfactory.cpp
-    schemaeditor/schemaentrytypecombobox.cpp
 
     surveyeditor/surveydialog.cpp
     surveyeditor/surveyeditor.cpp

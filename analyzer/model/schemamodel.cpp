@@ -106,12 +106,6 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
                 if (role == Qt::DisplayRole || role == Qt::EditRole)
                     return m_product.schema().at(index.row()).name();
                 break;
-            case 1:
-                if (role == Qt::DisplayRole)
-                    return SchemaEntry::displayString(m_product.schema().at(index.row()).type());
-                if (role == Qt::EditRole)
-                    return QVariant::fromValue(m_product.schema().at(index.row()).type());
-                break;
             case 2:
                 if (role == Qt::DisplayRole)
                     return Util::enumToString(m_product.schema().at(index.row()).aggregationType());
@@ -153,7 +147,7 @@ Qt::ItemFlags SchemaModel::flags(const QModelIndex &index) const
     const auto baseFlags = QAbstractItemModel::flags(index);
     if (!index.isValid())
         return baseFlags;
-    if (index.internalId() == TOPLEVEL || index.column() < 2)
+    if ((index.internalId() == TOPLEVEL && index.column() != 1) || (index.internalId() != TOPLEVEL && index.column() < 2))
         return baseFlags | Qt::ItemIsEditable;
     return baseFlags;
 }
@@ -170,9 +164,6 @@ bool SchemaModel::setData(const QModelIndex &index, const QVariant &value, int r
         switch (index.column()) {
             case 0:
                 entry.setName(value.toString());
-                break;
-            case 1:
-                entry.setType(value.value<SchemaEntry::Type>());
                 break;
             case 2:
                 entry.setAggregationType(value.value<SchemaEntry::AggregationType>());

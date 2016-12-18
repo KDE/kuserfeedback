@@ -75,15 +75,6 @@ public:
     };
     Q_ENUM(AggregationType)
 
-    enum Type {
-        InvalidType,
-        IntegerType,
-        StringType,
-        StringListType,
-        RatioSetType
-    };
-    Q_ENUM(Type)
-
     SchemaEntry();
     SchemaEntry(const SchemaEntry &entry);
     ~SchemaEntry();
@@ -97,9 +88,6 @@ public:
     QString name() const;
     void setName(const QString& name);
 
-    Type type() const;
-    void setType(Type type);
-
     AggregationType aggregationType() const;
     void setAggregationType(AggregationType type);
 
@@ -108,8 +96,6 @@ public:
 
     QVector<SchemaEntryElement> elements() const;
     void setElements(const QVector<SchemaEntryElement> &elements);
-
-    static QString displayString(Type type);
 
     QJsonObject toJsonObject() const;
     static QVector<SchemaEntry> fromJson(const QJsonArray &array);
@@ -122,7 +108,6 @@ private:
 }
 
 Q_DECLARE_METATYPE(UserFeedback::Analyzer::SchemaEntry)
-Q_DECLARE_METATYPE(UserFeedback::Analyzer::SchemaEntry::Type)
 Q_DECLARE_TYPEINFO(UserFeedback::Analyzer::SchemaEntry, Q_MOVABLE_TYPE);
 
 #endif // USERFEEDBACK_ANALYZER_PRODUCTSCHEMAENTRY_H

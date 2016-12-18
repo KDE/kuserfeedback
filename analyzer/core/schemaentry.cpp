@@ -35,7 +35,6 @@ class SchemaEntryData : public QSharedData
 public:
     QString name;
     int internalId = -1;
-    SchemaEntry::Type type = SchemaEntry::StringType;
     SchemaEntry::DataType dataType = SchemaEntry::Scalar;
     SchemaEntry::AggregationType aggregation = SchemaEntry::None;
     QVector<SchemaEntryElement> elements;
@@ -73,7 +72,6 @@ bool SchemaEntry::operator==(const SchemaEntry &other) const
 {
     return d->name == other.d->name
         && d->internalId == other.d->internalId
-        && d->type == other.d->type
         && d->dataType == other.d->dataType
         && d->aggregation == other.d->aggregation
         && d->elements == other.d->elements;
@@ -97,16 +95,6 @@ QString SchemaEntry::name() const
 void SchemaEntry::setName(const QString& name)
 {
     d->name = name;
-}
-
-SchemaEntry::Type SchemaEntry::type() const
-{
-    return d->type;
-}
-
-void SchemaEntry::setType(SchemaEntry::Type type)
-{
-    d->type = type;
 }
 
 SchemaEntry::DataType SchemaEntry::dataType() const
@@ -139,19 +127,6 @@ void SchemaEntry::setElements(const QVector<SchemaEntryElement> &elements)
     d->elements = elements;
 }
 
-QString SchemaEntry::displayString(SchemaEntry::Type type)
-{
-    switch (type) {
-        case InvalidType: return QObject::tr("Invalid");
-        case IntegerType: return QObject::tr("Integer");
-        case StringType: return QObject::tr("String");
-        case StringListType: return QObject::tr("String List");
-        case RatioSetType: return QObject::tr("Ratio Set");
-    }
-
-    Q_UNREACHABLE();
-}
-
 QJsonObject SchemaEntry::toJsonObject() const
 {
     QJsonObject obj;
@@ -160,13 +135,6 @@ QJsonObject SchemaEntry::toJsonObject() const
     obj.insert(QStringLiteral("name"), d->name);
 
     QString t;
-    switch (d->type) {
-        case InvalidType: break;
-        case StringType: t = QStringLiteral("string"); break;
-        case IntegerType: t = QStringLiteral("int"); break;
-        case StringListType: t = QStringLiteral("string_list"); break;
-        case RatioSetType: t = QStringLiteral("ratio_set"); break;
-    }
     obj.insert(QStringLiteral("type"), QLatin1String(data_types_table[d->dataType].name));
     obj.insert(QStringLiteral("aggregationType"), QLatin1String(aggregation_types_table[d->aggregation].name));
 

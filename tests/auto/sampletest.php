@@ -141,20 +141,20 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
         $p->insert(self::$db);
 
         $input = '[{
-            "id": 42,
             "timestamp": "2016-12-18 12:42:35",
             "entry1": { "element11": "firstString" },
             "entry2": [ { "element21": 12 } ]
         }, {
-            "id": 43,
             "timestamp": "2016-12-19 15:12:10",
             "entry1": { "element12": true },
             "entry2": [ { "element22": 1.3 } ]
         }]';
         Sample::import(self::$db, $input, $p);
 
-        $output = Sample::dataAsJson(self::$db, $p);
-        $this->assertJsonStringEqualsJsonString($input, $output);
+        $jsonOutput = json_decode(Sample::dataAsJson(self::$db, $p), true);
+        unset($jsonOutput[0]['id']);
+        unset($jsonOutput[1]['id']);
+        $this->assertJsonStringEqualsJsonString($input, json_encode($jsonOutput));
     }
 
     public function testInvalidImport_data()
@@ -163,8 +163,8 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
             'nothing' => [ '' ],
             'empty' => [ '{}' ],
             'object' => [ '{ "id": 42, "timestamp": "2016-12-18 12:42:35" }' ],
-            'missing id' => [ '{ "timestamp": "2016-12-18 12:42:35" }' ],
-            'missing timestamp' => [ '{ "id": 42 }' ]
+            'missing timestamp' => [ '[{ "id": 42 }]' ],
+            'id present' => [ '[{ "id": 42, "timestamp": "2016-12-18 12:42:35" }]' ]
         ];
     }
 

@@ -98,6 +98,11 @@ class Sample
     public static function insert(DataStore $db, $jsonData, Product $product)
     {
         $jsonObj = json_decode($jsonData);
+        if (!is_object($jsonObj))
+            throw new RESTException('Invalid sample data format.', 400);
+        if (property_exists($jsonObj, 'id') || property_exists($jsonObj, 'timestamp'))
+            throw new RESTException('Invalid sample data.', 400);
+
         $sampleId = self::insertScalar($db, $jsonObj, $product);
 
         foreach ($product->schema as $entry) {

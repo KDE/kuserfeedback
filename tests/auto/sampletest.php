@@ -109,4 +109,27 @@ class SurveyTest extends PHPUnit_Extensions_Database_TestCase
         $this->assertObjectHasAttribute('key1', $d01);
         $this->assertObjectHasAttribute('key2', $d01);
     }
+
+    public function testInvalidInsert_data()
+    {
+        return [
+            'empty' => [ '' ],
+            'array' => [ '[]' ],
+            'missing id' => [ '{ "timestamp": "2016-12-18 12:42:35" }' ],
+            'missing timestamp' => [ '{ "id": 42 }' ]
+        ];
+    }
+
+    /**
+     * @dataProvider testInvalidInsert_data
+     * @expectedException RESTException
+     * @exceptedExceptionCode 400
+     */
+    public function testInvalidInsert($input)
+    {
+        $p = Product::productByName(self::$db, 'org.kde.UnitTest');
+        $this->assertNotNull($p);
+
+        Sample::insert(self::$db, $input, $p);
+    }
 }

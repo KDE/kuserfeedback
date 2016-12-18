@@ -26,7 +26,7 @@ require_once('schemaentryelement.php');
 class Sample
 {
     /** JSON for all data of the given product. */
-    public static function dataAsJson(Datastore $db, Product $product)
+    public static function dataAsJson(DataStore $db, Product $product)
     {
         $data = array();
         $sampleIdIndex = array();
@@ -95,7 +95,7 @@ class Sample
     }
 
     /** Insert a received sample for @p product into the data store. */
-    public static function insert(Datastore $db, $jsonData, Product $product)
+    public static function insert(DataStore $db, $jsonData, Product $product)
     {
         $jsonObj = json_decode($jsonData);
         $sampleId = self::insertScalar($db, $jsonObj, $product);
@@ -110,7 +110,7 @@ class Sample
     /** Insert scalar data for @p product.
      *  @return The sample id for use in non-scalar data tables.
      */
-    private static function insertScalar(Datastore $db, $jsonObj, Product $product)
+    private static function insertScalar(DataStore $db, $jsonObj, Product $product)
     {
         $columns = array();
         $binds = array();
@@ -150,7 +150,7 @@ class Sample
     }
 
     /** Insert non-scalar elements in seconadary data tables. */
-    private static function insertNonScalar(Datastore $db, $jsonObj, SchemaEntry $schemaEntry, $sampleId)
+    private static function insertNonScalar(DataStore $db, $jsonObj, SchemaEntry $schemaEntry, $sampleId)
     {
         if (!property_exists($jsonObj, $schemaEntry->name))
             return;

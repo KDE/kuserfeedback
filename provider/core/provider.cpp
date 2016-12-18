@@ -179,8 +179,11 @@ QByteArray ProviderPrivate::jsonData() const
 {
     QJsonObject obj;
     if (statisticsMode != Provider::NoStatistics) {
-        obj.insert(QStringLiteral("startCount"), startCount);
-        obj.insert(QStringLiteral("usageTime"), currentApplicationTime());
+        QJsonObject valueObj;
+        valueObj.insert(QStringLiteral("value"), startCount);
+        obj.insert(QStringLiteral("startCount"), valueObj);
+        valueObj.insert(QStringLiteral("value"), currentApplicationTime());
+        obj.insert(QStringLiteral("usageTime"), valueObj);
         foreach (auto source, dataSources) {
             if (statisticsMode < source->collectionMode())
                 continue;

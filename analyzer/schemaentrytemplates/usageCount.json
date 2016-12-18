@@ -5,10 +5,9 @@
         "aggregation": "numeric",
         "elements": [
             {
-                "name": "startCount",
+                "name": "value",
                 "type": "int"
             }
         ]
     }
 ]
-

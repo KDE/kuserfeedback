@@ -5,7 +5,7 @@
         "aggregation": "numeric",
         "elements": [
             {
-                "name": "usageTime",
+                "name": "value",
                 "type": "int"
             }
         ]

@@ -13,6 +13,7 @@ set(analyzer_lib_srcs
 
     model/categoryaggregationmodel.cpp
     model/datamodel.cpp
+    model/numericaggregationmodel.cpp
     model/productmodel.cpp
     model/schemamodel.cpp
     model/surveymodel.cpp
@@ -31,7 +32,6 @@ set(analyzer_srcs
     connectdialog.cpp
     main.cpp
     mainwindow.cpp
-    numericaggregationmodel.cpp
     ratiosetaggregationmodel.cpp
 
     analytics/analyticsview.cpp

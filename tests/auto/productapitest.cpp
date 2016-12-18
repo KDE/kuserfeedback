@@ -100,7 +100,7 @@ private slots:
         reply = RESTApi::listProducts(&client);
         QVERIFY(waitForFinished(reply));
         QCOMPARE(reply->error(), QNetworkReply::NoError);
-        QCOMPARE(reply->header(QNetworkRequest::ContentTypeHeader).toString(), QLatin1String("text/json"));
+        QVERIFY(reply->header(QNetworkRequest::ContentTypeHeader).toString().startsWith(QLatin1String("text/json")));
         const auto products = Product::fromJson(reply->readAll());
         QVERIFY(!findProduct(products, QLatin1String("org.kde.UserFeedback.UnitTestProduct")).isValid());
 

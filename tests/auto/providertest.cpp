@@ -101,7 +101,7 @@ private slots:
         // retrieve data
         reply = RESTApi::listSamples(&client, p);
         QVERIFY(waitForFinished(reply));
-        QCOMPARE(reply->header(QNetworkRequest::ContentTypeHeader).toString(), QLatin1String("text/json"));
+        QVERIFY(reply->header(QNetworkRequest::ContentTypeHeader).toString().startsWith(QLatin1String("text/json")));
         auto doc = QJsonDocument::fromJson(reply->readAll());
         QVERIFY(doc.isArray());
         auto a = doc.array();

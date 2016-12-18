@@ -11,6 +11,7 @@ set(analyzer_lib_srcs
     rest/restclient.cpp
     rest/serverinfo.cpp
 
+    model/categoryaggregationmodel.cpp
     model/datamodel.cpp
     model/productmodel.cpp
     model/schemamodel.cpp
@@ -26,7 +27,6 @@ target_include_directories(UserFeedbackAnalyzer PUBLIC "$<BUILD_INTERFACE:${CMAK
 
 set(analyzer_srcs
     aggregateddatamodel.cpp
-    categoryaggregationmodel.cpp
     chart.cpp
     connectdialog.cpp
     main.cpp

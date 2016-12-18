@@ -19,11 +19,11 @@
 #include "ui_analyticsview.h"
 
 #include "aggregateddatamodel.h"
-#include "categoryaggregationmodel.h"
 #include "chart.h"
 #include "numericaggregationmodel.h"
 #include "ratiosetaggregationmodel.h"
 
+#include <model/categoryaggregationmodel.h>
 #include <model/datamodel.h>
 #include <model/timeaggregationmodel.h>
 #include <rest/restapi.h>
@@ -129,7 +129,7 @@ void AnalyticsView::setProduct(const Product& product)
             {
                 auto model = new CategoryAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);
-                model->setAggregationValue(schemaEntry.name());
+                model->setAggregationValue(schemaEntry.name() + QLatin1Char('.') + schemaEntry.elements().at(0).name());
                 m_aggregationModels.push_back(model);
                 m_aggregatedDataModel->addSourceModel(model, schemaEntry.name());
                 ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));

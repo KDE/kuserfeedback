@@ -41,6 +41,10 @@ add_executable(timeaggregationmodeltest timeaggregationmodeltest.cpp)
 target_link_libraries(timeaggregationmodeltest  UserFeedbackTestUtils Qt5::Test)
 add_test(NAME timeaggregationmodeltest COMMAND timeaggregationmodeltest)
 
+add_executable(categoryaggregationmodeltest categoryaggregationmodeltest.cpp)
+target_link_libraries(categoryaggregationmodeltest  UserFeedbackTestUtils Qt5::Test)
+add_test(NAME categoryaggregationmodeltest COMMAND categoryaggregationmodeltest)
+
 set(php_test_srcs
     utilstest.php
     schemaentrytest.php

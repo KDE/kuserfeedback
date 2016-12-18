@@ -30,6 +30,7 @@ PlatformInfoSource::PlatformInfoSource() :
 QVariant PlatformInfoSource::data()
 {
     QVariantMap m;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #if (defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID))
     // on Linux productType() is the distro name
     m.insert(QStringLiteral("os"), QStringLiteral("linux"));
@@ -37,6 +38,7 @@ QVariant PlatformInfoSource::data()
 #else
     m.insert(QStringLiteral("os"), QSysInfo::productType());
     m.insert(QStringLiteral("version"), QSysInfo::productVersion());
+#endif
 #endif
     return m;
 }

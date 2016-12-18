@@ -24,9 +24,11 @@
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#endif
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -108,7 +110,7 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
 {
     auto domain = QCoreApplication::organizationDomain().split(QLatin1Char('.'));
     std::reverse(domain.begin(), domain.end());
-    productId = domain.join(QLatin1Char('.')) + QLatin1Char('.') + QCoreApplication::applicationName();
+    productId = domain.join(QLatin1String(".")) + QLatin1Char('.') + QCoreApplication::applicationName();
 
     submissionTimer.setSingleShot(true);
     QObject::connect(&submissionTimer, SIGNAL(timeout()), q, SLOT(submit()));
@@ -177,6 +179,7 @@ void ProviderPrivate::aboutToQuit()
 
 QByteArray ProviderPrivate::jsonData() const
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QJsonObject obj;
     if (statisticsMode != Provider::NoStatistics) {
         QJsonObject valueObj;
@@ -197,6 +200,10 @@ QByteArray ProviderPrivate::jsonData() const
 
     QJsonDocument doc(obj);
     return doc.toJson();
+#else
+    qCritical("NOT IMPLEMENTED YET");
+    return QByteArray();
+#endif
 }
 
 void ProviderPrivate::scheduleNextSubmission()
@@ -224,12 +231,14 @@ void ProviderPrivate::submitFinished()
 
     lastSubmitTime = QDateTime::currentDateTime();
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     const auto obj = QJsonDocument::fromJson(reply->readAll()).object();
     if (obj.contains(QStringLiteral("survey"))) {
         const auto surveyObj = obj.value(QStringLiteral("survey")).toObject();
         const auto survey = SurveyInfo::fromJson(surveyObj);
         selectSurvey(survey);
     }
+#endif
 
     scheduleNextSubmission();
 }
@@ -381,7 +390,9 @@ void Provider::submit()
     url.setPath(url.path() + QStringLiteral("/receiver/submit/") + d->productId);
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("UserFeedback/") + QStringLiteral(USERFEEDBACK_VERSION));
+#endif
     auto reply = d->networkAccessManager->post(request, d->jsonData());
     connect(reply, SIGNAL(finished()), this, SLOT(submitFinished()));
 }

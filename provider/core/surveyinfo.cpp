@@ -17,7 +17,9 @@
 
 #include "surveyinfo.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QJsonObject>
+#endif
 #include <QSharedData>
 #include <QUrl>
 
@@ -68,7 +70,9 @@ void SurveyInfo::setUrl(const QUrl& url)
 SurveyInfo SurveyInfo::fromJson(const QJsonObject& obj)
 {
     SurveyInfo s;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     s.setId(obj.value(QStringLiteral("id")).toInt());
     s.setUrl(QUrl(obj.value(QStringLiteral("url")).toString()));
+#endif
     return s;
 }

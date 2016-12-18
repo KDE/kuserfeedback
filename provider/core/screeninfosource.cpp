@@ -17,15 +17,13 @@
 
 #include "screeninfosource.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QGuiApplication>
+#endif
 #include <QScreen>
+#include <QVariant>
 
 using namespace UserFeedback;
-
-QString screenToString(QScreen *screen)
-{
-    return QStringLiteral("%1x%2 %3dpi").arg(screen->size().width()).arg(screen->size().height()).arg((int)screen->physicalDotsPerInch());
-}
 
 ScreenInfoSource::ScreenInfoSource() :
     AbstractDataSource(QStringLiteral("screens"))
@@ -35,11 +33,13 @@ ScreenInfoSource::ScreenInfoSource() :
 QVariant ScreenInfoSource::data()
 {
     QVariantList l;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     foreach (auto screen, QGuiApplication::screens()) {
         QVariantMap m;
         m.insert(QStringLiteral("width"), screen->size().width());
         m.insert(QStringLiteral("height"), screen->size().height());
         l.push_back(m);
     }
+#endif
     return l;
 }

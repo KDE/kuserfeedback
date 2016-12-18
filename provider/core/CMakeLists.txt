@@ -2,11 +2,14 @@ set(userfeedback_core_srcs
     abstractdatasource.cpp
     applicationversionsource.cpp
     platforminfosource.cpp
-    propertyratiosource.cpp
     provider.cpp
     screeninfosource.cpp
     surveyinfo.cpp
 )
+
+if(Qt5Core_FOUND)
+    list(APPEND userfeedback_core_srcs propertyratiosource.cpp)
+endif()
 
 add_library(UserFeedbackCore SHARED ${userfeedback_core_srcs})
 set_target_properties(UserFeedbackCore PROPERTIES

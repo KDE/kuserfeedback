@@ -163,7 +163,9 @@ if(Qt5Charts_FOUND AND KF5WidgetsAddons_FOUND AND NOT CMAKE_VERSION VERSION_LESS
     add_subdirectory(analyzer)
     add_subdirectory(tests/manual)
 endif()
-add_subdirectory(tests/auto)
+if(Qt5Core_FOUND)
+    add_subdirectory(tests/auto)
+endif()
 
 #
 # CMake package config file generation

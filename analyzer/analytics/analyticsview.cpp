@@ -204,7 +204,9 @@ void AnalyticsView::importData()
 
     auto reply = RESTApi::addSamples(m_client, m_dataModel->product(), samples);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        if (reply->error() == QNetworkReply::NoError)
+        if (reply->error() == QNetworkReply::NoError) {
             emit logMessage(tr("Samples imported."));
+            m_dataModel->reload();
+        }
     });
 }

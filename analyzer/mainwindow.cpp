@@ -211,8 +211,6 @@ void MainWindow::deleteProduct()
 void MainWindow::productSelected()
 {
     const auto product = selectedProduct();
-    if (!product.isValid())
-        return;
     ui->surveyEditor->setProduct(product);
     ui->schemaEdit->setProduct(product);
     ui->analyticsView->setProduct(product);

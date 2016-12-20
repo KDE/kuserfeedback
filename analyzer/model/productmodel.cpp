@@ -33,27 +33,33 @@ ProductModel::~ProductModel() = default;
 
 void ProductModel::setRESTClient(RESTClient* client)
 {
+    if (client != m_restClient)
+        clear();
     Q_ASSERT(client);
     m_restClient = client;
     connect(m_restClient, &RESTClient::clientConnected, this, &ProductModel::reload);
-    if (m_restClient->isConnected())
-        reload();
+    reload();
+}
+
+void ProductModel::clear()
+{
+    if (m_products.isEmpty())
+        return;
+    beginRemoveRows({}, 0, m_products.size() - 1);
+    m_products.clear();
+    endRemoveRows();
 }
 
 void ProductModel::reload()
 {
-    qDebug() << Q_FUNC_INFO;
-    Q_ASSERT(m_restClient);
-    if (!m_restClient->isConnected())
+    if (!m_restClient || !m_restClient->isConnected())
         return;
 
     auto reply = RESTApi::listProducts(m_restClient);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
-            beginResetModel();
             auto json = reply->readAll();
-            m_products = Product::fromJson(json);
-            endResetModel();
+            mergeProducts(Product::fromJson(json));
         }
     });
 }
@@ -87,4 +93,49 @@ QVariant ProductModel::headerData(int section, Qt::Orientation orientation, int 
         }
     }
     return QAbstractListModel::headerData(section, orientation, role);
+}
+
+void ProductModel::mergeProducts(QVector<Product> &&products)
+{
+    std::sort(products.begin(), products.end(), [](const Product &lhs, const Product &rhs) {
+        Q_ASSERT(lhs.isValid());
+        Q_ASSERT(rhs.isValid());
+        return lhs.name() < rhs.name();
+    });
+
+    auto newIt = products.cbegin();
+    auto it = m_products.begin();
+
+    while (it != m_products.end() && newIt != products.cend()) {
+        const auto row = std::distance(m_products.begin(), it);
+        if ((*newIt).name() < (*it).name()) {
+            beginInsertRows({}, row, row);
+            it = m_products.insert(it, (*newIt));
+            endInsertRows();
+            ++it;
+            ++newIt;
+        } else if ((*it).name() < (*newIt).name()) {
+            beginRemoveRows({}, row, row);
+            it = m_products.erase(it);
+            endRemoveRows();
+        } else {
+            emit dataChanged(index(row, 0), index(row, 0));
+            ++it;
+            ++newIt;
+        }
+    }
+
+    if (it == m_products.end() && newIt != products.cend()) { // trailing insert
+        const auto count = std::distance(newIt, products.cend());
+        beginInsertRows({}, m_products.size(), m_products.size() + count - 1);
+        while (newIt != products.cend())
+            m_products.push_back(*newIt++);
+        endInsertRows();
+    } else if (newIt == products.cend() && it != m_products.end()) { // trailing remove
+        const auto start = std::distance(m_products.begin(), it);
+        const auto end = m_products.size() - 1;
+        beginRemoveRows({}, start, end);
+        m_products.resize(start);
+        endResetModel();
+    }
 }

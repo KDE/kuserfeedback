@@ -17,6 +17,7 @@
 
 #include "servercontroller.h"
 
+#include <rest/restapi.h>
 #include <rest/restclient.h>
 #include <model/productmodel.h>
 
@@ -40,9 +41,15 @@ private:
     {
         ServerInfo s;
         s.setUrl(m_server.url());
-        s.setUserName(QStringLiteral("orwell"));
-        s.setPassword(QStringLiteral("1984"));
         return s;
+    }
+
+    bool waitForFinished(QNetworkReply *reply)
+    {
+        Q_ASSERT(reply);
+        QSignalSpy spy(reply, &QNetworkReply::finished);
+        Q_ASSERT(spy.isValid());
+        return spy.wait();
     }
 
 private slots:
@@ -58,12 +65,40 @@ private slots:
         client.connectToServer(testServer());
         QVERIFY(client.isConnected());
 
+        Product p;
+        p.setName(QStringLiteral("org.kde.NewUnitTestProduct"));
+        auto reply = RESTApi::deleteProduct(&client, p);
+        waitForFinished(reply);
+
         ProductModel model;
         ModelTest modelTest(&model);
+        QSignalSpy resetSpy(&model, &ProductModel::modelReset);
+        QSignalSpy insertSpy(&model, &ProductModel::rowsInserted);
+        QSignalSpy removeSpy(&model, &ProductModel::rowsRemoved);
 
         model.setRESTClient(&client);
-        QSignalSpy spy(&model, &ProductModel::modelReset);
-        QVERIFY(spy.wait());
+        QVERIFY(insertSpy.wait());
+        const auto baseCount = model.rowCount();
+
+        insertSpy.clear();
+        reply = RESTApi::createProduct(&client, p);
+        QVERIFY(waitForFinished(reply));
+        resetSpy.clear();
+        model.reload();
+        QVERIFY(insertSpy.wait());
+        QCOMPARE(model.rowCount(), baseCount + 1);
+
+        reply = RESTApi::deleteProduct(&client, p);
+        QVERIFY(waitForFinished(reply));
+        resetSpy.clear();
+        model.reload();
+        QVERIFY(removeSpy.wait());
+        QCOMPARE(model.rowCount(), baseCount);
+
+        removeSpy.clear();
+        model.clear();
+        QCOMPARE(removeSpy.size(), 1);
+        QVERIFY(resetSpy.isEmpty());
     }
 };
 

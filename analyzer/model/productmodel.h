@@ -42,6 +42,7 @@ public:
     };
 
     void setRESTClient(RESTClient *client);
+    void clear();
     void reload();
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -49,6 +50,8 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
 private:
+    void mergeProducts(QVector<Product> &&products);
+
     RESTClient *m_restClient = nullptr;
     QVector<Product> m_products;
 };

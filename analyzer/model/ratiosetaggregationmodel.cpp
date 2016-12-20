@@ -66,7 +66,7 @@ QVariant RatioSetAggregationModel::data(const QModelIndex& index, int role) cons
         return {};
 
     if (role == TimeAggregationModel::MaximumValueRole)
-        return m_maxValue;
+        return 1.0;
 
     if (index.column() == 0) {
         const auto srcIdx = m_sourceModel->index(index.row(), 0);
@@ -111,7 +111,6 @@ void RatioSetAggregationModel::recompute()
     m_categories.clear();
     delete[] m_data;
     m_data = nullptr;
-    m_maxValue = 1.0;
 
     if (rowCount <= 0 || m_aggrValue.isEmpty()) {
         endResetModel();
@@ -133,23 +132,40 @@ void RatioSetAggregationModel::recompute()
 
     // compute the counts per cell, we could do that on demand, but we need the maximum for QtCharts...
     m_data = new double[colCount * rowCount];
+    auto rowData = new double[colCount];
     memset(m_data, 0, sizeof(double) * colCount * rowCount);
     for (int row = 0; row < rowCount; ++row) {
         const auto samples = m_sourceModel->index(row, 0).data(TimeAggregationModel::SamplesRole).value<QVector<Sample>>();
-        if (samples.isEmpty())
-            continue; // avoid division by zero below
+        int validSampleCount = 0;
         foreach (const auto &sample, samples) {
+            // extract raw data for one sample
+            memset(rowData, 0, sizeof(double) * colCount);
             const auto rs = sample.value(m_aggrValue).value<QVariantMap>();
             for (auto it = rs.begin(); it != rs.end(); ++it) {
                 const auto catIt = std::lower_bound(m_categories.constBegin(), m_categories.constEnd(), it.key());
                 Q_ASSERT(catIt != m_categories.constEnd());
-                const auto idx = colCount * row + std::distance(m_categories.constBegin(), catIt);
-                m_data[idx] += it.value().toMap().value(QLatin1String("property")).toDouble(); // TODO: make this configurable
+                const auto idx = std::distance(m_categories.constBegin(), catIt);
+                rowData[idx] += it.value().toMap().value(QLatin1String("property")).toDouble(); // TODO: make this configurable
             }
+
+            // filter invalid samples, normalize to 1
+            // TODO: deal with negative values
+            const auto sampleSum = std::accumulate(rowData, rowData + colCount, 0.0);
+            if (sampleSum <= 0.0)
+                continue;
+            for (int i = 0; i < colCount; ++i)
+                rowData[i] /= sampleSum;
+
+            // aggregate
+            ++validSampleCount;
+            for (int i = 0; i < colCount; ++i)
+                m_data[row * colCount + i] += rowData[i];
         }
 
         // normalize to 1 and accumulate per row for stacked plots
-        const double scale = samples.size();
+        if (!validSampleCount)
+            continue;
+        const double scale = validSampleCount;
         for (int col = 0; col < colCount; ++col) {
             const auto idx = colCount * row + col;
             m_data[idx] /= scale;
@@ -157,9 +173,10 @@ void RatioSetAggregationModel::recompute()
                 m_data[idx] += m_data[idx - 1];
         }
 
-        m_maxValue = std::max(m_maxValue, m_data[row * colCount + colCount - 1]);
+        Q_ASSERT(m_data[row * colCount + colCount - 1] <= 1.0);
     }
 
+    delete[] rowData;
     endResetModel();
 }
 

@@ -45,7 +45,6 @@ private:
     QString m_aggrValue;
     QVector<QString> m_categories;
     double *m_data = nullptr;
-    double m_maxValue;
 };
 
 }

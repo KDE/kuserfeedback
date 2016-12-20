@@ -119,6 +119,7 @@ MainWindow::MainWindow() :
     });
 
     connect(ui->productListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &MainWindow::productSelected);
+    connect(m_productModel, &QAbstractItemModel::dataChanged, this, &MainWindow::productSelected);
 
     QSettings settings;
     settings.beginGroup(QStringLiteral("MainWindow"));

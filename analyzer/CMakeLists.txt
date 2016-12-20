@@ -1,6 +1,5 @@
 set(analyzer_lib_srcs
     core/product.cpp
-    core/ratioset.cpp
     core/sample.cpp
     core/schemaentry.cpp
     core/schemaentryelement.cpp

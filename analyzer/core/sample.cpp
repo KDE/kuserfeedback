@@ -19,7 +19,6 @@
 #include <core/product.h>
 #include <core/schemaentry.h>
 #include <core/schemaentryelement.h>
-#include "ratioset.h"
 
 #include <QDateTime>
 #include <QDebug>

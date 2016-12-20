@@ -116,9 +116,9 @@ void AnalyticsView::setRESTClient(RESTClient* client)
 
 void AnalyticsView::setProduct(const Product& product)
 {
+    m_chart->setModel(nullptr);
     m_dataModel->setProduct(product);
 
-    m_chart->setModel(nullptr);
     ui->chartType->clear();
     m_aggregatedDataModel->clear();
     qDeleteAll(m_aggregationModels);

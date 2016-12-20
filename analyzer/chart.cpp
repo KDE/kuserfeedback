@@ -70,8 +70,10 @@ void Chart::setModel(QAbstractItemModel* model)
         disconnect(m_model, &QAbstractItemModel::modelReset, this, &Chart::modelReset);
 
     m_model = model;
-    if (!model)
+    if (!model) {
+        m_chart->removeAllSeries();
         return;
+    }
 
     connect(m_model, &QAbstractItemModel::modelReset, this, &Chart::modelReset);
     modelReset();
@@ -111,7 +113,7 @@ void Chart::modelReset()
     } else {
         QLineSeries *prevSeries = nullptr;
         for (int i = 1; i < colCount; ++i) {
-            auto series = new QLineSeries(this);
+            auto series = new QLineSeries;
 
             auto mapper = new QVXYModelMapper(series);
             mapper->setModel(m_model);
@@ -121,6 +123,7 @@ void Chart::modelReset()
             mapper->setSeries(series);
 
             auto areaSeries = new QAreaSeries(series, prevSeries);
+            series->setParent(areaSeries); // otherwise series isn't deleted by removeAllSeries!
             areaSeries->setName(m_model->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
             m_chart->addSeries(areaSeries);
 

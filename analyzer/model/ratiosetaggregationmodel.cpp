@@ -17,7 +17,6 @@
 
 #include "ratiosetaggregationmodel.h"
 #include <model/timeaggregationmodel.h>
-#include <core/ratioset.h>
 #include <core/sample.h>
 
 #include <QSet>
@@ -122,7 +121,7 @@ void RatioSetAggregationModel::recompute()
     QSet<QString> categories;
     const auto allSamples = m_sourceModel->index(0, 0).data(TimeAggregationModel::AllSamplesRole).value<QVector<Sample>>();
     foreach (const auto &s, allSamples) {
-        const auto rs = s.value(m_aggrValue).value<RatioSet>().data();
+        const auto rs = s.value(m_aggrValue).value<QVariantMap>();
         for (auto it = rs.begin(); it != rs.end(); ++it)
             categories.insert(it.key());
     }
@@ -138,12 +137,12 @@ void RatioSetAggregationModel::recompute()
     for (int row = 0; row < rowCount; ++row) {
         const auto samples = m_sourceModel->index(row, 0).data(TimeAggregationModel::SamplesRole).value<QVector<Sample>>();
         foreach (const auto &sample, samples) {
-            const auto rs = sample.value(m_aggrValue).value<RatioSet>().data();
+            const auto rs = sample.value(m_aggrValue).value<QVariantMap>();
             for (auto it = rs.begin(); it != rs.end(); ++it) {
                 const auto catIt = std::lower_bound(m_categories.constBegin(), m_categories.constEnd(), it.key());
                 Q_ASSERT(catIt != m_categories.constEnd());
                 const auto idx = colCount * row + std::distance(m_categories.constBegin(), catIt);
-                m_data[idx] += it.value();
+                m_data[idx] += it.value().toMap().value(QLatin1String("property")).toDouble(); // TODO: make this configurable
             }
         }
 

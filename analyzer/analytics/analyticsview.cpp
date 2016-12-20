@@ -20,11 +20,11 @@
 
 #include "aggregateddatamodel.h"
 #include "chart.h"
-#include "ratiosetaggregationmodel.h"
 
 #include <model/categoryaggregationmodel.h>
 #include <model/datamodel.h>
 #include <model/numericaggregationmodel.h>
+#include <model/ratiosetaggregationmodel.h>
 #include <model/timeaggregationmodel.h>
 #include <rest/restapi.h>
 #include <core/sample.h>

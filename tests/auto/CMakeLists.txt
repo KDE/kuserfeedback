@@ -49,6 +49,10 @@ add_executable(numericaggregationmodeltest numericaggregationmodeltest.cpp)
 target_link_libraries(numericaggregationmodeltest  UserFeedbackTestUtils Qt5::Test)
 add_test(NAME numericaggregationmodeltest COMMAND numericaggregationmodeltest)
 
+add_executable(ratiosetaggregationmodeltest ratiosetaggregationmodeltest.cpp)
+target_link_libraries(ratiosetaggregationmodeltest  UserFeedbackTestUtils Qt5::Test)
+add_test(NAME ratiosetaggregationmodeltest COMMAND ratiosetaggregationmodeltest)
+
 set(php_test_srcs
     utilstest.php
     schemaentrytest.php

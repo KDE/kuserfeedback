@@ -148,6 +148,17 @@
     <string>Import sample data.</string>
    </property>
   </action>
+  <action name="actionReload">
+   <property name="icon">
+    <iconset theme="view-refresh"/>
+   </property>
+   <property name="text">
+    <string>&amp;Reload Data</string>
+   </property>
+   <property name="toolTip">
+    <string>Refresh data from the server.</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

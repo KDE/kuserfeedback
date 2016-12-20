@@ -74,10 +74,16 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     timeAggrMenu->addAction(ui->actionAggregateMonth);
     timeAggrMenu->addAction(ui->actionAggregateYear);
 
+    connect(ui->actionReload, &QAction::triggered, m_dataModel, &DataModel::reload);
     connect(ui->actionExportData, &QAction::triggered, this, &AnalyticsView::exportData);
     connect(ui->actionImportData, &QAction::triggered, this, &AnalyticsView::importData);
 
-    addActions({timeAggrMenu->menuAction(), ui->actionExportData, ui->actionImportData});
+    addActions({
+        timeAggrMenu->menuAction(),
+        ui->actionReload,
+        ui->actionExportData,
+        ui->actionImportData
+    });
 
     QSettings settings;
     settings.beginGroup(QStringLiteral("Analytics"));

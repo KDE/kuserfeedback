@@ -173,7 +173,7 @@ void RatioSetAggregationModel::recompute()
                 m_data[idx] += m_data[idx - 1];
         }
 
-        Q_ASSERT(m_data[row * colCount + colCount - 1] <= 1.0);
+        Q_ASSERT(m_data[row * colCount + colCount - 1] <= 1.0001);
     }
 
     delete[] rowData;

@@ -1,0 +1,90 @@
+{
+    "name": "org.kde.UserFeedback.orwell",
+    "schema": [
+        {
+            "aggregationType": "category",
+            "elements": [
+                {
+                    "name": "value",
+                    "type": "string"
+                }
+            ],
+            "name": "applicationVersion",
+            "type": "scalar"
+        },
+        {
+            "aggregationType": "ratio_set",
+            "elements": [
+                {
+                    "name": "property",
+                    "type": "number"
+                }
+            ],
+            "name": "dialRatio",
+            "type": "map"
+        },
+        {
+            "aggregationType": "category",
+            "elements": [
+                {
+                    "name": "os",
+                    "type": "string"
+                },
+                {
+                    "name": "version",
+                    "type": "string"
+                }
+            ],
+            "name": "platform",
+            "type": "scalar"
+        },
+        {
+            "aggregationType": "category",
+            "elements": [
+                {
+                    "name": "value",
+                    "type": "string"
+                }
+            ],
+            "name": "qtVersion",
+            "type": "scalar"
+        },
+        {
+            "aggregationType": "none",
+            "elements": [
+                {
+                    "name": "width",
+                    "type": "int"
+                },
+                {
+                    "name": "height",
+                    "type": "int"
+                }
+            ],
+            "name": "screens",
+            "type": "list"
+        },
+        {
+            "aggregationType": "numeric",
+            "elements": [
+                {
+                    "name": "value",
+                    "type": "int"
+                }
+            ],
+            "name": "startCount",
+            "type": "scalar"
+        },
+        {
+            "aggregationType": "numeric",
+            "elements": [
+                {
+                    "name": "value",
+                    "type": "int"
+                }
+            ],
+            "name": "usageTime",
+            "type": "scalar"
+        }
+    ]
+}

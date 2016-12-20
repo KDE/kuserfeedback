@@ -136,6 +136,8 @@ void RatioSetAggregationModel::recompute()
     memset(m_data, 0, sizeof(double) * colCount * rowCount);
     for (int row = 0; row < rowCount; ++row) {
         const auto samples = m_sourceModel->index(row, 0).data(TimeAggregationModel::SamplesRole).value<QVector<Sample>>();
+        if (samples.isEmpty())
+            continue; // avoid division by zero below
         foreach (const auto &sample, samples) {
             const auto rs = sample.value(m_aggrValue).value<QVariantMap>();
             for (auto it = rs.begin(); it != rs.end(); ++it) {

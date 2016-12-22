@@ -99,7 +99,7 @@ private slots:
         o = v.toMap();
         QCOMPARE(o.size(), 1);
         QVERIFY(o.contains(QLatin1String("value1")));
-        v = o.value(QLatin1String("value1"));
+        v = o.value(QLatin1String("value1")).toMap().value(QLatin1String("property"));;
         QCOMPARE(v.type(), QVariant::Double);
 
         setProp(23);
@@ -108,7 +108,7 @@ private slots:
         o = v.toMap();
         QCOMPARE(o.size(), 2);
         QVERIFY(o.contains(QLatin1String("value2")));
-        v = o.value(QLatin1String("value2"));
+        v = o.value(QLatin1String("value2")).toMap().value(QLatin1String("property"));
         QCOMPARE(v.type(), QVariant::Double);
     }
 

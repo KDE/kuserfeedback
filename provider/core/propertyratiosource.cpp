@@ -134,8 +134,11 @@ QVariant PropertyRatioSource::data()
     for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it)
         total += it.value();
 
-    for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it)
-        m.insert(it.key(), (double)it.value() / (double)(total));
+    for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it) {
+        QVariantMap v;
+        v.insert(QStringLiteral("property"), (double)it.value() / (double)(total));
+        m.insert(it.key(), v);
+    }
 
     return m;
 }

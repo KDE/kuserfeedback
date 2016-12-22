@@ -38,7 +38,7 @@ function post_submit($productName)
     $db->beginTransaction();
     $product = Product::productByName($db, $productName);
     if (is_null($product))
-        throw RESTException('Unknown product.', 404);
+        throw new RESTException('Unknown product.', 404);
 
     Sample::insert($db, $rawPostData, $product);
 

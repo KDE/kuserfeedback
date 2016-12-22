@@ -18,6 +18,7 @@
 #include <provider/core/applicationversionsource.h>
 #include <provider/core/platforminfosource.h>
 #include <provider/core/propertyratiosource.h>
+#include <provider/core/qtversionsource.h>
 #include <provider/core/screeninfosource.h>
 
 #include <QDebug>
@@ -121,6 +122,14 @@ private slots:
         auto m = src.data().toMap();
         QVERIFY(m.contains(QLatin1String("value")));
         QCOMPARE(m.value(QLatin1String("value")).toString(), QLatin1String("1.9.84"));
+    }
+
+    void testQtVersionSource()
+    {
+        QtVersionSource src;
+        const auto m = src.data().toMap();
+        QVERIFY(m.contains(QLatin1String("value")));
+        QCOMPARE(m.value(QLatin1String("value")).toString(), QLatin1String(QT_VERSION_STR));
     }
 };
 

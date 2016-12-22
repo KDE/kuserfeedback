@@ -3,6 +3,7 @@ set(userfeedback_core_srcs
     applicationversionsource.cpp
     platforminfosource.cpp
     provider.cpp
+    qtversionsource.cpp
     screeninfosource.cpp
     surveyinfo.cpp
 )

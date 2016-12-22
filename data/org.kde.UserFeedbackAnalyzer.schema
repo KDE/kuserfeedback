@@ -42,7 +42,7 @@
             "aggregationType": "category",
             "elements": [
                 {
-                    "name": "qtVersion",
+                    "name": "value",
                     "type": "string"
                 }
             ],

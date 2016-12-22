@@ -29,8 +29,10 @@
 
 #include <provider/widgets/feedbackconfigdialog.h>
 #include <provider/core/applicationversionsource.h>
+#include <provider/core/platforminfosource.h>
 #include <provider/core/propertyratiosource.h>
 #include <provider/core/provider.h>
+#include <provider/core/qtversionsource.h>
 
 #include <QApplication>
 #include <QDebug>
@@ -140,6 +142,8 @@ MainWindow::MainWindow() :
     viewModeSource->addValueMapping(2, QStringLiteral("schemaEditor"));
     m_feedbackProvider->addDataSource(viewModeSource, Provider::AllStatistics);
     m_feedbackProvider->addDataSource(new ApplicationVersionSource, Provider::BasicStatistics);
+    m_feedbackProvider->addDataSource(new PlatformInfoSource, Provider::AllStatistics);
+    m_feedbackProvider->addDataSource(new QtVersionSource, Provider::AllStatistics);
 }
 
 MainWindow::~MainWindow()

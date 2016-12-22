@@ -23,6 +23,7 @@
 #include <provider/core/platforminfosource.h>
 #include <provider/core/propertyratiosource.h>
 #include <provider/core/provider.h>
+#include <provider/core/qtversionsource.h>
 #include <provider/core/screeninfosource.h>
 #include <provider/core/surveyinfo.h>
 
@@ -107,6 +108,7 @@ int main(int argc, char** argv)
     provider->setEncouragementDelay(10);
     provider->addDataSource(new UserFeedback::ApplicationVersionSource, UserFeedback::Provider::BasicStatistics);
     provider->addDataSource(new UserFeedback::PlatformInfoSource, UserFeedback::Provider::AllStatistics);
+    provider->addDataSource(new UserFeedback::QtVersionSource, UserFeedback::Provider::BasicStatistics);
     provider->addDataSource(new UserFeedback::ScreenInfoSource, UserFeedback::Provider::AllStatistics);
 
     Orwell mainWindow;

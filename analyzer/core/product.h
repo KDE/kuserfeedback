@@ -29,6 +29,7 @@ class QString;
 namespace UserFeedback {
 namespace Analyzer {
 
+class Aggregation;
 class ProductData;
 
 /** Product data. */
@@ -47,6 +48,9 @@ public:
 
     QVector<SchemaEntry> schema() const;
     void setSchema(const QVector<SchemaEntry>& schema);
+
+    QVector<Aggregation> aggregations() const;
+    void setAggregations(const QVector<Aggregation> &aggregations);
 
     QByteArray toJson() const;
     static QVector<Product> fromJson(const QByteArray &data);

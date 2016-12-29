@@ -1,4 +1,5 @@
 set(analyzer_lib_srcs
+    core/aggregation.cpp
     core/product.cpp
     core/sample.cpp
     core/schemaentry.cpp
@@ -10,6 +11,8 @@ set(analyzer_lib_srcs
     rest/restclient.cpp
     rest/serverinfo.cpp
 
+    model/aggregationeditormodel.cpp
+    model/aggregationelementmodel.cpp
     model/categoryaggregationmodel.cpp
     model/datamodel.cpp
     model/numericaggregationmodel.cpp
@@ -35,6 +38,8 @@ set(analyzer_srcs
 
     analytics/analyticsview.cpp
 
+    schemaeditor/aggregationeditwidget.cpp
+    schemaeditor/schemaeditor.cpp
     schemaeditor/schemaeditwidget.cpp
     schemaeditor/schemaentryitemeditorfactory.cpp
 

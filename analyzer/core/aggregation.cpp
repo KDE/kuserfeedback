@@ -15,32 +15,29 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_ANALYZER_SCHEMAENTRYITEMEDITORFACTORY_H
-#define USERFEEDBACK_ANALYZER_SCHEMAENTRYITEMEDITORFACTORY_H
+#include "aggregation.h"
 
-#include <QItemEditorFactory>
+using namespace UserFeedback::Analyzer;
 
-#include <memory>
+Aggregation::Aggregation() = default;
+Aggregation::~Aggregation() = default;
 
-namespace UserFeedback {
-namespace Analyzer {
-
-class AggregationElementModel;
-class Product;
-
-class SchemaEntryItemEditorFactory : public QItemEditorFactory
+Aggregation::Type Aggregation::type() const
 {
-public:
-    SchemaEntryItemEditorFactory();
-
-    void setProduct(const Product &product);
-
-private:
-    std::unique_ptr<AggregationElementModel> m_elementModel;
-};
-
-
-}
+    return m_type;
 }
 
-#endif // USERFEEDBACK_ANALYZER_SCHEMAENTRYITEMEDITORFACTORY_H
+void Aggregation::setType(Aggregation::Type t)
+{
+    m_type = t;
+}
+
+QVector<Aggregation::Element> Aggregation::elements() const
+{
+    return m_elements;
+}
+
+void Aggregation::setElements(const QVector<Aggregation::Element>& elements)
+{
+    m_elements = elements;
+}

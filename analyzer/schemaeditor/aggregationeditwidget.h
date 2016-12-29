@@ -15,32 +15,40 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_ANALYZER_SCHEMAENTRYITEMEDITORFACTORY_H
-#define USERFEEDBACK_ANALYZER_SCHEMAENTRYITEMEDITORFACTORY_H
+#ifndef USERFEEDBACK_ANALYZER_AGGREGATIONEDITWIDGET_H
+#define USERFEEDBACK_ANALYZER_AGGREGATIONEDITWIDGET_H
 
-#include <QItemEditorFactory>
+#include <QWidget>
 
 #include <memory>
 
 namespace UserFeedback {
 namespace Analyzer {
 
-class AggregationElementModel;
+class AggregationEditorModel;
 class Product;
+class SchemaEntryItemEditorFactory;
 
-class SchemaEntryItemEditorFactory : public QItemEditorFactory
+namespace Ui
 {
+class AggregationEditWidget;
+}
+
+class AggregationEditWidget : public QWidget
+{
+    Q_OBJECT
 public:
-    SchemaEntryItemEditorFactory();
+    explicit AggregationEditWidget(QWidget *parent = nullptr);
+    ~AggregationEditWidget();
 
     void setProduct(const Product &product);
 
 private:
-    std::unique_ptr<AggregationElementModel> m_elementModel;
+    std::unique_ptr<Ui::AggregationEditWidget> ui;
+    AggregationEditorModel *m_model;
+    SchemaEntryItemEditorFactory *m_editorFactory;
 };
-
-
 }
 }
 
-#endif // USERFEEDBACK_ANALYZER_SCHEMAENTRYITEMEDITORFACTORY_H
+#endif // USERFEEDBACK_ANALYZER_AGGREGATIONEDITWIDGET_H

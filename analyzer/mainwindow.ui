@@ -31,7 +31,7 @@
      <widget class="QStackedWidget" name="viewStack">
       <widget class="UserFeedback::Analyzer::AnalyticsView" name="analyticsView"/>
       <widget class="UserFeedback::Analyzer::SurveyEditor" name="surveyEditor"/>
-      <widget class="UserFeedback::Analyzer::SchemaEditWidget" name="schemaEdit"/>
+      <widget class="UserFeedback::Analyzer::SchemaEditor" name="schemaEdit"/>
      </widget>
     </item>
     <item>
@@ -292,9 +292,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>UserFeedback::Analyzer::SchemaEditWidget</class>
+   <class>UserFeedback::Analyzer::SchemaEditor</class>
    <extends>QWidget</extends>
-   <header>schemaeditor/schemaeditwidget.h</header>
+   <header>schemaeditor/schemaeditor.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

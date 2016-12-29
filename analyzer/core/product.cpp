@@ -16,6 +16,7 @@
 */
 
 #include "product.h"
+#include "aggregation.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -32,6 +33,7 @@ class ProductData : public QSharedData
 public:
     QString name;
     QVector<SchemaEntry> schema;
+    QVector<Aggregation> aggregations;
 };
 
 }
@@ -67,6 +69,16 @@ void Product::setSchema(const QVector<SchemaEntry> &schema)
     d->schema = schema;
 }
 
+QVector<Aggregation> Product::aggregations() const
+{
+    return d->aggregations;
+}
+
+void Product::setAggregations(const QVector<Aggregation>& aggregations)
+{
+    d->aggregations = aggregations;
+}
+
 QByteArray Product::toJson() const
 {
     QJsonObject obj;
@@ -84,6 +96,19 @@ static Product productFromJsonObject(const QJsonObject &obj)
     Product product;
     product.setName(obj.value(QStringLiteral("name")).toString());
     product.setSchema(SchemaEntry::fromJson(obj.value(QStringLiteral("schema")).toArray()));
+
+    // ### temporary HACK
+    QVector<Aggregation> aggrs;
+    for (const auto &entry : product.schema()) {
+        for (const auto &elem : entry.elements()) {
+            Aggregation aggr;
+            aggr.setType(Aggregation::Category);
+            aggr.setElements({{ entry, elem }});
+            aggrs.push_back(aggr);
+        }
+    }
+    product.setAggregations(aggrs);
+
     return product;
 }
 

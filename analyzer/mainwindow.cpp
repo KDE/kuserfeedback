@@ -103,7 +103,7 @@ MainWindow::MainWindow() :
     connect(ui->actionAddProduct, &QAction::triggered, this, &MainWindow::createProduct);
     connect(ui->actionDeleteProduct, &QAction::triggered, this, &MainWindow::deleteProduct);
 
-    connect(ui->schemaEdit, &SchemaEditWidget::productChanged, m_productModel, &ProductModel::reload);
+    connect(ui->schemaEdit, &SchemaEditor::productChanged, m_productModel, &ProductModel::reload);
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     connect(ui->actionQuit, &QAction::triggered, QCoreApplication::instance(), &QCoreApplication::quit);

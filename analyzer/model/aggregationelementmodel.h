@@ -15,32 +15,37 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_ANALYZER_SCHEMAENTRYITEMEDITORFACTORY_H
-#define USERFEEDBACK_ANALYZER_SCHEMAENTRYITEMEDITORFACTORY_H
 
-#include <QItemEditorFactory>
+#ifndef USERFEEDBACK_ANALYZER_AGGREGATIONELEMENTMODEL_H
+#define USERFEEDBACK_ANALYZER_AGGREGATIONELEMENTMODEL_H
 
-#include <memory>
+#include <core/aggregation.h>
+
+#include <QAbstractListModel>
+#include <QVector>
 
 namespace UserFeedback {
 namespace Analyzer {
 
-class AggregationElementModel;
 class Product;
 
-class SchemaEntryItemEditorFactory : public QItemEditorFactory
+class AggregationElementModel : public QAbstractListModel
 {
+    Q_OBJECT
 public:
-    SchemaEntryItemEditorFactory();
+    explicit AggregationElementModel(QObject *parent = nullptr);
+    ~AggregationElementModel();
 
     void setProduct(const Product &product);
 
+    int rowCount(const QModelIndex & parent) const override;
+    QVariant data(const QModelIndex & index, int role) const override;
+    QModelIndexList match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const override;
+
 private:
-    std::unique_ptr<AggregationElementModel> m_elementModel;
+    QVector<Aggregation::Element> m_elements;
 };
-
-
 }
 }
 
-#endif // USERFEEDBACK_ANALYZER_SCHEMAENTRYITEMEDITORFACTORY_H
+#endif // USERFEEDBACK_ANALYZER_AGGREGATIONELEMENTMODEL_H

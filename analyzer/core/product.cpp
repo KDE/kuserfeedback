@@ -103,7 +103,10 @@ static Product productFromJsonObject(const QJsonObject &obj)
         for (const auto &elem : entry.elements()) {
             Aggregation aggr;
             aggr.setType(Aggregation::Category);
-            aggr.setElements({{ entry, elem }});
+            AggregationElement e;
+            e.setSchemaEntry(entry);
+            e.setSchemaEntryElement(elem);
+            aggr.setElements({e});
             aggrs.push_back(aggr);
         }
     }

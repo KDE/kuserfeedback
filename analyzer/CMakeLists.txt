@@ -1,5 +1,6 @@
 set(analyzer_lib_srcs
     core/aggregation.cpp
+    core/aggregationelement.cpp
     core/product.cpp
     core/sample.cpp
     core/schemaentry.cpp

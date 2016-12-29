@@ -80,7 +80,7 @@ SchemaEntryItemEditorFactory::SchemaEntryItemEditorFactory() :
    registerEditor(qMetaTypeId<SchemaEntry::AggregationType>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
    registerEditor(qMetaTypeId<SchemaEntryElement::Type>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
    registerEditor(qMetaTypeId<Aggregation::Type>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
-   registerEditor(qMetaTypeId<Aggregation::Element>(), new AggregationElementEditorCreator(m_elementModel.get()));
+   registerEditor(qMetaTypeId<AggregationElement>(), new AggregationElementEditorCreator(m_elementModel.get()));
 }
 
 void SchemaEntryItemEditorFactory::setProduct(const Product& product)

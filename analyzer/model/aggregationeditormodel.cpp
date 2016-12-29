@@ -65,7 +65,7 @@ QVariant AggregationEditorModel::data(const QModelIndex& index, int role) const
             case 1:
                 if (aggr.elements().isEmpty())
                     return tr("<none>");
-                return QString(aggr.elements().at(0).entry.name() + QLatin1Char('.') + aggr.elements().at(0).element.name());
+                return aggr.elements().at(0).displayString();
         }
     } else if (role == Qt::EditRole) {
         const auto aggr = m_product.aggregations().at(index.row());
@@ -115,7 +115,7 @@ bool AggregationEditorModel::setData(const QModelIndex& index, const QVariant& v
             aggr.setType(value.value<Aggregation::Type>());
             break;
         case 1:
-            aggr.setElements({ value.value<Aggregation::Element>() });
+            aggr.setElements({ value.value<AggregationElement>() });
             break;
     }
     m_product.setAggregations(aggrs);

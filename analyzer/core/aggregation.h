@@ -18,8 +18,7 @@
 #ifndef USERFEEDBACK_ANALYZER_AGGREGATION_H
 #define USERFEEDBACK_ANALYZER_AGGREGATION_H
 
-#include <core/schemaentry.h>
-#include <core/schemaentryelement.h>
+#include <core/aggregationelement.h>
 
 #include <QTypeInfo>
 
@@ -45,23 +44,18 @@ public:
     Type type() const;
     void setType(Type t);
 
-    struct Element {
-        SchemaEntry entry;
-        SchemaEntryElement element;
-    };
-    QVector<Element> elements() const;
-    void setElements(const QVector<Element> &elements);
+    QVector<AggregationElement> elements() const;
+    void setElements(const QVector<AggregationElement> &elements);
 
 private:
     Type m_type = None;
-    QVector<Element> m_elements;
+    QVector<AggregationElement> m_elements;
 };
 
 }
 }
 
 Q_DECLARE_TYPEINFO(UserFeedback::Analyzer::Aggregation, Q_MOVABLE_TYPE);
-Q_DECLARE_METATYPE(UserFeedback::Analyzer::Aggregation::Element)
 Q_DECLARE_METATYPE(UserFeedback::Analyzer::Aggregation::Type)
 
 #endif // USERFEEDBACK_ANALYZER_AGGREGATION_H

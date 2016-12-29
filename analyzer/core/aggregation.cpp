@@ -32,12 +32,12 @@ void Aggregation::setType(Aggregation::Type t)
     m_type = t;
 }
 
-QVector<Aggregation::Element> Aggregation::elements() const
+QVector<AggregationElement> Aggregation::elements() const
 {
     return m_elements;
 }
 
-void Aggregation::setElements(const QVector<Aggregation::Element>& elements)
+void Aggregation::setElements(const QVector<AggregationElement>& elements)
 {
     m_elements = elements;
 }

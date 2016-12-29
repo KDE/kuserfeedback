@@ -43,7 +43,7 @@ public:
     QModelIndexList match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const override;
 
 private:
-    QVector<Aggregation::Element> m_elements;
+    QVector<AggregationElement> m_elements;
 };
 }
 }

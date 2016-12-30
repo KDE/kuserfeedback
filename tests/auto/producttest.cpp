@@ -33,7 +33,6 @@ class ProductTest : public QObject
 private slots:
     void initTestCase()
     {
-        Q_INIT_RESOURCE(schemaentrytemplates);
         QStandardPaths::setTestModeEnabled(true);
     }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
-    <qresource prefix="/org.kde.user-feedback/schemaentrytemplates">
+    <qresource prefix="/org.kde.user-feedback/schematemplates">
         <file>platform.json</file>
         <file>applicationVersion.json</file>
         <file>qtVersion.json</file>

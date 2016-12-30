@@ -27,7 +27,7 @@ int main(int argc, char** argv)
     QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
     QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
 
-    Q_INIT_RESOURCE(schemaentrytemplates);
+    Q_INIT_RESOURCE(schematemplates);
 
     QApplication app(argc, argv);
 

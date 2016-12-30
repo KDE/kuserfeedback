@@ -23,7 +23,7 @@ set(analyzer_lib_srcs
     model/surveymodel.cpp
     model/timeaggregationmodel.cpp
 
-    schemaentrytemplates/schemaentrytemplates.qrc
+    schematemplates/schematemplates.qrc
 )
 
 add_library(UserFeedbackAnalyzer STATIC ${analyzer_lib_srcs})

@@ -44,7 +44,7 @@ private:
 private slots:
     void initTestCase()
     {
-        Q_INIT_RESOURCE(schemaentrytemplates);
+        Q_INIT_RESOURCE(schematemplates);
         QStandardPaths::setTestModeEnabled(true);
     }
 

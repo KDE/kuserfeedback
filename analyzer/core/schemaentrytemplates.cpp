@@ -34,8 +34,8 @@ QVector<SchemaEntry> SchemaEntryTemplates::availableTemplates()
 {
     QVector<SchemaEntry> templates;
 
-    auto dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("org.kde.user-feedback/schemaentrytemplates"), QStandardPaths::LocateDirectory);
-    dirs += QStringLiteral(":/org.kde.user-feedback/schemaentrytemplates");
+    auto dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("org.kde.user-feedback/schematemplates"), QStandardPaths::LocateDirectory);
+    dirs += QStringLiteral(":/org.kde.user-feedback/schematemplates");
     foreach (const auto &dir, dirs) {
         QDirIterator it(dir, {QStringLiteral("*.json")}, QDir::Files | QDir::Readable);
         while (it.hasNext()) {

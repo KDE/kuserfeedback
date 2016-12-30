@@ -18,6 +18,11 @@
 #include "schemaeditor.h"
 #include "ui_schemaeditor.h"
 
+#include <core/product.h>
+#include <core/schemaentrytemplates.h>
+
+#include <QMenu>
+
 using namespace UserFeedback::Analyzer;
 
 SchemaEditor::SchemaEditor(QWidget* parent) :
@@ -29,8 +34,25 @@ SchemaEditor::SchemaEditor(QWidget* parent) :
     connect(ui->schema, &SchemaEditWidget::logMessage, this, &SchemaEditor::logMessage);
     connect(ui->schema, &SchemaEditWidget::productChanged, this, &SchemaEditor::productChanged);
 
+    auto templateMenu = new QMenu(tr("Schema entry templates"), this);
+    for (const auto &t : SchemaEntryTemplates::availableTemplates()) {
+        auto a = templateMenu->addAction(t.name());
+        a->setData(QVariant::fromValue(t));
+        connect(a, &QAction::triggered, this, [this, a]() {
+            const auto t = a->data().value<Product>();
+            auto p = ui->schema->product();
+            p.addTemplate(t);
+            setProduct(p);
+        });
+    }
+
+    m_createFromTemplateAction = templateMenu->menuAction();
+    m_createFromTemplateAction->setIcon(QIcon::fromTheme(QStringLiteral("document-new-from-template")));
+
+    addActions({ m_createFromTemplateAction });
     addActions(ui->schema->actions());
     addActions(ui->aggregation->actions());
+    updateState();
 }
 
 SchemaEditor::~SchemaEditor() = default;
@@ -44,4 +66,10 @@ void SchemaEditor::setProduct(const Product& product)
 {
     ui->schema->setProduct(product);
     ui->aggregation->setProduct(product);
+    updateState();
+}
+
+void SchemaEditor::updateState()
+{
+    m_createFromTemplateAction->setEnabled(ui->schema->product().isValid());
 }

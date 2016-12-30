@@ -23,11 +23,11 @@ template <typename T> class QVector;
 namespace UserFeedback {
 namespace Analyzer {
 
-class SchemaEntry;
+class Product;
 
 namespace SchemaEntryTemplates
 {
-    QVector<SchemaEntry> availableTemplates();
+    QVector<Product> availableTemplates();
 }
 
 }

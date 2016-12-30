@@ -42,6 +42,7 @@ public:
     ~SchemaEditWidget();
 
     void setRESTClient(RESTClient *client);
+    Product product() const;
     void setProduct(const Product &product);
 
 signals:
@@ -60,7 +61,6 @@ private:
     std::unique_ptr<Ui::SchemaEditWidget> ui;
     RESTClient *m_restClient;
     SchemaModel *m_schemaModel;
-    QAction *m_createFromTemplateAction;
 };
 
 }

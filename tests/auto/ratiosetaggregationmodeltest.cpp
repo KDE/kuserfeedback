@@ -57,7 +57,8 @@ private slots:
         QCOMPARE(model.columnCount(), 1);
 
         Product p;
-        p.setSchema(SchemaEntryTemplates::availableTemplates());
+        for (const auto &tpl : SchemaEntryTemplates::availableTemplates())
+            p.addTemplate(tpl);
         p.setName(QStringLiteral("org.kde.UserFeedback.UnitTest"));
         srcModel.setProduct(p);
         QCOMPARE(model.columnCount(), 1);
@@ -77,7 +78,8 @@ private slots:
         timeModel.setSourceModel(&srcModel);
         timeModel.setAggregationMode(TimeAggregationModel::AggregateDay);
         Product p;
-        p.setSchema(SchemaEntryTemplates::availableTemplates());
+        for (const auto &tpl : SchemaEntryTemplates::availableTemplates())
+            p.addTemplate(tpl);
         p.setName(QStringLiteral("org.kde.UserFeedback.UnitTest"));
         srcModel.setProduct(p);
 

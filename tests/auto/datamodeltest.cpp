@@ -58,7 +58,8 @@ private slots:
         QCOMPARE(model.columnCount(), 1);
 
         Product p;
-        p.setSchema(SchemaEntryTemplates::availableTemplates());
+        for (const auto &tpl : SchemaEntryTemplates::availableTemplates())
+            p.addTemplate(tpl);
         p.setName(QStringLiteral("org.kde.UserFeedback.UnitTest"));
         model.setProduct(p);
         QVERIFY(model.columnCount() > 8);
@@ -69,7 +70,8 @@ private slots:
         DataModel model;
         ModelTest modelTest(&model);
         Product p;
-        p.setSchema(SchemaEntryTemplates::availableTemplates());
+        for (const auto &tpl : SchemaEntryTemplates::availableTemplates())
+            p.addTemplate(tpl);
         p.setName(QStringLiteral("org.kde.UserFeedback.UnitTest"));
         model.setProduct(p);
 

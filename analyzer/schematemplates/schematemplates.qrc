@@ -1,12 +1,12 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource prefix="/org.kde.user-feedback/schematemplates">
-        <file>platform.json</file>
-        <file>applicationVersion.json</file>
-        <file>qtVersion.json</file>
-        <file>screens.json</file>
-        <file>usageCount.json</file>
-        <file>usageTime.json</file>
-        <file>propertyRatio.json</file>
+        <file>applicationVersion.schema</file>
+        <file>platform.schema</file>
+        <file>propertyRatio.schema</file>
+        <file>qtVersion.schema</file>
+        <file>screens.schema</file>
+        <file>usageCount.schema</file>
+        <file>usageTime.schema</file>
     </qresource>
 </RCC>

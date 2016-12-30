@@ -59,7 +59,8 @@ private slots:
         model.setProduct(p);
         QCOMPARE(model.rowCount(), schema.size());
 
-        p.setSchema(SchemaEntryTemplates::availableTemplates());
+        for (const auto &tpl : SchemaEntryTemplates::availableTemplates())
+            p.addTemplate(tpl);
         model.setProduct(p);
         QVERIFY(model.rowCount() > 0);
     }

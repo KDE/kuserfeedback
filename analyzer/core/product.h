@@ -53,6 +53,8 @@ public:
     QVector<Aggregation> aggregations() const;
     void setAggregations(const QVector<Aggregation> &aggregations);
 
+    void addTemplate(const Product &tpl);
+
     QByteArray toJson() const;
     static QVector<Product> fromJson(const QByteArray &data);
 

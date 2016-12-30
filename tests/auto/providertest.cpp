@@ -82,7 +82,8 @@ private slots:
         waitForFinished(reply);
 
         // create test product
-        p.setSchema(SchemaEntryTemplates::availableTemplates());
+        for (const auto &tpl : SchemaEntryTemplates::availableTemplates())
+            p.addTemplate(tpl);
         QVERIFY(p.isValid());
         reply = RESTApi::createProduct(&client, p);
         QVERIFY(waitForFinished(reply));

@@ -1,0 +1,23 @@
+{
+    "name": "Platform",
+    "schema": [
+        {
+            "name": "platform",
+            "type": "scalar",
+            "aggregation": "category",
+            "elements": [
+                {
+                    "name": "os",
+                    "type": "string"
+                },
+                {
+                    "name": "version",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "aggregation": [
+        { "type": "category", "elements": [ { "type": "value", "schemaEntry": "platform", "schemaEntryElement": "os" } ] }
+    ]
+}

@@ -40,7 +40,8 @@ private slots:
     {
         Product p;
         p.setName(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
-        p.setSchema(SchemaEntryTemplates::availableTemplates());
+        for (const auto &tpl : SchemaEntryTemplates::availableTemplates())
+            p.addTemplate(tpl);
         QVERIFY(p.isValid());
 
         auto samples = Sample::fromJson("[]", p);

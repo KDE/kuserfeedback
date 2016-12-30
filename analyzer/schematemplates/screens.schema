@@ -1,0 +1,27 @@
+{
+    "name": "Screens",
+    "schema": [
+        {
+            "name": "screens",
+            "type": "list",
+            "aggregation": "numeric",
+            "elements": [
+                {
+                    "name": "width",
+                    "type": "int"
+                },
+                {
+                    "name": "height",
+                    "type": "int"
+                }
+            ]
+        }
+    ],
+    "aggregation": [
+        { "type": "category", "elements": [ { "type": "size", "schemaEntry": "screens" } ] },
+        { "type": "xy", "elements": [
+            { "type": "value", "schemaEntry": "screens", "schemaEntryElement": "width" },
+            { "type": "value", "schemaEntry": "screens", "schemaEntryElement": "height" }
+        ] }
+    ]
+}

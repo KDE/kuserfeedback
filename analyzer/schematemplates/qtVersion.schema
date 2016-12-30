@@ -1,0 +1,22 @@
+{
+    "name": "Qt Version",
+    "schema": [
+        {
+            "name": "qtVersion",
+            "type": "scalar",
+            "aggregation": "category",
+            "elements": [
+                {
+                    "name": "value",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "aggregation": [
+        {
+            "type": "category",
+            "elements": [ { "type": "value", "schemaEntry": "qtVersion", "schemaEntryElement": "value" } ]
+        }
+    ]
+}

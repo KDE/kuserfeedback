@@ -89,6 +89,13 @@ void Product::setAggregations(const QVector<Aggregation>& aggregations)
     d->aggregations = aggregations;
 }
 
+void Product::addTemplate(const Product& tpl)
+{
+    // TODO could be done slighty more clever
+    d->schema += tpl.schema();
+    d->aggregations += tpl.aggregations();
+}
+
 QByteArray Product::toJson() const
 {
     QJsonObject obj;

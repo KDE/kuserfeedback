@@ -17,7 +17,7 @@
 
 #include "schemaentrytemplates.h"
 
-#include <core/schemaentry.h>
+#include <core/product.h>
 
 #include <QDebug>
 #include <QDirIterator>
@@ -30,25 +30,27 @@
 
 using namespace UserFeedback::Analyzer;
 
-QVector<SchemaEntry> SchemaEntryTemplates::availableTemplates()
+QVector<Product> SchemaEntryTemplates::availableTemplates()
 {
-    QVector<SchemaEntry> templates;
+    QVector<Product> templates;
 
     auto dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("org.kde.user-feedback/schematemplates"), QStandardPaths::LocateDirectory);
     dirs += QStringLiteral(":/org.kde.user-feedback/schematemplates");
     foreach (const auto &dir, dirs) {
-        QDirIterator it(dir, {QStringLiteral("*.json")}, QDir::Files | QDir::Readable);
+        QDirIterator it(dir, {QStringLiteral("*.schema")}, QDir::Files | QDir::Readable);
         while (it.hasNext()) {
             const auto fileName = it.next();
             QFile f(fileName);
             if (!f.open(QFile::ReadOnly))
                 continue;
-            const auto doc = QJsonDocument::fromJson(f.readAll());
-            templates += SchemaEntry::fromJson(doc.array());
+            const auto ps = Product::fromJson(f.readAll());
+            if (ps.isEmpty())
+                qWarning() << "Failed to read template" << fileName;
+            templates += ps;
         }
     }
 
-    std::sort(templates.begin(), templates.end(), [](const SchemaEntry &lhs, const SchemaEntry &rhs) {
+    std::sort(templates.begin(), templates.end(), [](const auto &lhs, const auto &rhs) {
         return lhs.name() < rhs.name();
     });
 

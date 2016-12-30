@@ -1,0 +1,22 @@
+{
+    "name": "Application Version",
+    "schema": [
+        {
+            "name": "applicationVersion",
+            "type": "scalar",
+            "aggregation": "category",
+            "elements": [
+                {
+                    "name": "value",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "aggregation": [
+        {
+            "type": "category",
+            "elements": [ { "type": "value", "schemaEntry": "applicationVersion", "schemaEntryElement": "value" } ]
+        }
+    ]
+}

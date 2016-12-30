@@ -22,6 +22,8 @@
 
 #include <memory>
 
+class QAction;
+
 namespace UserFeedback {
 namespace Analyzer {
 
@@ -47,7 +49,10 @@ signals:
     void logMessage(const QString &msg);
 
 private:
+    void updateState();
+
     std::unique_ptr<Ui::SchemaEditor> ui;
+    QAction *m_createFromTemplateAction;
 };
 
 }

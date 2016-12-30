@@ -53,18 +53,7 @@ SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
     connect(ui->schemaView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &SchemaEditWidget::updateState);
     connect(ui->newEntryName, &QLineEdit::textChanged, this, &SchemaEditWidget::updateState);
 
-    auto templateMenu = new QMenu(tr("Schema entry templates"), this);
-    for (const auto &t : SchemaEntryTemplates::availableTemplates()) {
-        auto a = templateMenu->addAction(t.name());
-        a->setData(QVariant::fromValue(t));
-        connect(a, &QAction::triggered, this, [this, a]() {
-            m_schemaModel->addEntry(a->data().value<SchemaEntry>());
-        });
-    }
-
-    m_createFromTemplateAction = templateMenu->menuAction();
-    m_createFromTemplateAction->setIcon(QIcon::fromTheme(QStringLiteral("document-new-from-template")));
-    addActions({ m_createFromTemplateAction, ui->actionDelete, ui->actionSave, ui->actionImportSchema, ui->actionExportSchema });
+    addActions({ ui->actionDelete, ui->actionSave, ui->actionImportSchema, ui->actionExportSchema });
     updateState();
 }
 
@@ -73,6 +62,11 @@ SchemaEditWidget::~SchemaEditWidget() = default;
 void SchemaEditWidget::setRESTClient(RESTClient* client)
 {
     m_restClient = client;
+}
+
+Product SchemaEditWidget::product() const
+{
+    return m_schemaModel->product();
 }
 
 void SchemaEditWidget::setProduct(const Product& product)
@@ -120,7 +114,6 @@ void SchemaEditWidget::updateState()
 
     ui->addEntryButton->setEnabled(!ui->newEntryName->text().isEmpty());
 
-    m_createFromTemplateAction->setEnabled(m_schemaModel->product().isValid());
     ui->actionSave->setEnabled(m_schemaModel->product().isValid());
 }
 

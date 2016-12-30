@@ -5,53 +5,26 @@ add_library(UserFeedbackTestUtils STATIC
 )
 target_link_libraries(UserFeedbackTestUtils LINK_PUBLIC Qt5::Test UserFeedbackAnalyzer)
 
-add_executable(productapitest productapitest.cpp)
-target_link_libraries(productapitest UserFeedbackTestUtils)
-add_test(NAME productapitest COMMAND productapitest)
+function(uf_add_test _file)
+    get_filename_component(_name ${_file} NAME_WE)
+    add_executable(${_name} ${_file})
+    target_link_libraries(${_name} Qt5::Test ${ARGN})
+    add_test(NAME ${_name} COMMAND ${_name})
+endfunction()
 
-add_executable(productmodeltest productmodeltest.cpp)
-target_link_libraries(productmodeltest UserFeedbackTestUtils)
-add_test(NAME productmodeltest COMMAND productmodeltest)
+uf_add_test(productapitest UserFeedbackTestUtils)
+uf_add_test(productmodeltest UserFeedbackTestUtils)
+uf_add_test(schemamodeltest UserFeedbackTestUtils)
+uf_add_test(surveyapitest UserFeedbackTestUtils)
+uf_add_test(datasourcetest UserFeedbackCore Qt5::Gui) # needs Gui for ScreenInfoSource to work
+uf_add_test(providertest UserFeedbackTestUtils UserFeedbackCore Qt5::Gui)
+uf_add_test(sampletest UserFeedbackAnalyzer)
+uf_add_test(datamodeltest UserFeedbackTestUtils)
+uf_add_test(timeaggregationmodeltest UserFeedbackTestUtils)
+uf_add_test(categoryaggregationmodeltest UserFeedbackTestUtils)
+uf_add_test(numericaggregationmodeltest UserFeedbackTestUtils)
+uf_add_test(ratiosetaggregationmodeltest UserFeedbackTestUtils)
 
-add_executable(schemamodeltest schemamodeltest.cpp)
-target_link_libraries(schemamodeltest UserFeedbackTestUtils)
-add_test(NAME schemamodeltest COMMAND schemamodeltest)
-
-add_executable(surveyapitest surveyapitest.cpp)
-target_link_libraries(surveyapitest UserFeedbackTestUtils)
-add_test(NAME surveyapitest COMMAND surveyapitest)
-
-add_executable(datasourcetest datasourcetest.cpp)
-target_link_libraries(datasourcetest UserFeedbackCore Qt5::Gui Qt5::Test) # needs Gui for ScreenInfoSource
-add_test(NAME datasourcetest COMMAND datasourcetest)
-
-add_executable(providertest providertest.cpp)
-target_link_libraries(providertest UserFeedbackTestUtils UserFeedbackCore Qt5::Gui)
-add_test(NAME providertest COMMAND providertest)
-
-add_executable(sampletest sampletest.cpp)
-target_link_libraries(sampletest UserFeedbackAnalyzer Qt5::Test)
-add_test(NAME sampletest COMMAND sampletest)
-
-add_executable(datamodeltest datamodeltest.cpp)
-target_link_libraries(datamodeltest  UserFeedbackTestUtils Qt5::Test)
-add_test(NAME datamodeltest COMMAND datamodeltest)
-
-add_executable(timeaggregationmodeltest timeaggregationmodeltest.cpp)
-target_link_libraries(timeaggregationmodeltest  UserFeedbackTestUtils Qt5::Test)
-add_test(NAME timeaggregationmodeltest COMMAND timeaggregationmodeltest)
-
-add_executable(categoryaggregationmodeltest categoryaggregationmodeltest.cpp)
-target_link_libraries(categoryaggregationmodeltest  UserFeedbackTestUtils Qt5::Test)
-add_test(NAME categoryaggregationmodeltest COMMAND categoryaggregationmodeltest)
-
-add_executable(numericaggregationmodeltest numericaggregationmodeltest.cpp)
-target_link_libraries(numericaggregationmodeltest  UserFeedbackTestUtils Qt5::Test)
-add_test(NAME numericaggregationmodeltest COMMAND numericaggregationmodeltest)
-
-add_executable(ratiosetaggregationmodeltest ratiosetaggregationmodeltest.cpp)
-target_link_libraries(ratiosetaggregationmodeltest  UserFeedbackTestUtils Qt5::Test)
-add_test(NAME ratiosetaggregationmodeltest COMMAND ratiosetaggregationmodeltest)
 
 set(php_test_srcs
     utilstest.php

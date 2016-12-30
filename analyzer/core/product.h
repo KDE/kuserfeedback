@@ -48,6 +48,7 @@ public:
 
     QVector<SchemaEntry> schema() const;
     void setSchema(const QVector<SchemaEntry>& schema);
+    SchemaEntry schemaEntry(const QString &name) const;
 
     QVector<Aggregation> aggregations() const;
     void setAggregations(const QVector<Aggregation> &aggregations);

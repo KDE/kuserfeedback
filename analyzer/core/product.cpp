@@ -64,6 +64,16 @@ QVector<SchemaEntry> Product::schema() const
     return d->schema;
 }
 
+SchemaEntry Product::schemaEntry(const QString& name) const
+{
+    const auto it = std::find_if(d->schema.cbegin(), d->schema.cend(), [name](const auto &entry) {
+        return entry.name() == name;
+    });
+    if (it == d->schema.cend())
+        return {};
+    return *it;
+}
+
 void Product::setSchema(const QVector<SchemaEntry> &schema)
 {
     d->schema = schema;
@@ -83,10 +93,19 @@ QByteArray Product::toJson() const
 {
     QJsonObject obj;
     obj.insert(QStringLiteral("name"), name());
-    QJsonArray schema;
-    foreach (const auto &s, d->schema)
-        schema.push_back(s.toJsonObject());
-    obj.insert(QStringLiteral("schema"), schema);
+    {
+        QJsonArray schema;
+        foreach (const auto &s, d->schema)
+            schema.push_back(s.toJsonObject());
+        obj.insert(QStringLiteral("schema"), schema);
+    }
+
+    {
+        QJsonArray aggrs;
+        foreach (const auto &a, d->aggregations)
+            aggrs.push_back(a.toJsonObject());
+        obj.insert(QStringLiteral("aggregation"), aggrs);
+    }
     QJsonDocument doc(obj);
     return doc.toJson();
 }
@@ -96,21 +115,24 @@ static Product productFromJsonObject(const QJsonObject &obj)
     Product product;
     product.setName(obj.value(QStringLiteral("name")).toString());
     product.setSchema(SchemaEntry::fromJson(obj.value(QStringLiteral("schema")).toArray()));
+    product.setAggregations(Aggregation::fromJson(product, obj.value(QLatin1String("aggregation")).toArray()));
 
     // ### temporary HACK
-    QVector<Aggregation> aggrs;
-    for (const auto &entry : product.schema()) {
-        for (const auto &elem : entry.elements()) {
-            Aggregation aggr;
-            aggr.setType(Aggregation::Category);
-            AggregationElement e;
-            e.setSchemaEntry(entry);
-            e.setSchemaEntryElement(elem);
-            aggr.setElements({e});
-            aggrs.push_back(aggr);
+    if (product.aggregations().isEmpty()) {
+        QVector<Aggregation> aggrs;
+        for (const auto &entry : product.schema()) {
+            for (const auto &elem : entry.elements()) {
+                Aggregation aggr;
+                aggr.setType(Aggregation::Category);
+                AggregationElement e;
+                e.setSchemaEntry(entry);
+                e.setSchemaEntryElement(elem);
+                aggr.setElements({e});
+                aggrs.push_back(aggr);
+            }
         }
+        product.setAggregations(aggrs);
     }
-    product.setAggregations(aggrs);
 
     return product;
 }

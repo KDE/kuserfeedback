@@ -12,6 +12,7 @@ function(uf_add_test _file)
     add_test(NAME ${_name} COMMAND ${_name})
 endfunction()
 
+uf_add_test(producttest UserFeedbackAnalyzer)
 uf_add_test(productapitest UserFeedbackTestUtils)
 uf_add_test(productmodeltest UserFeedbackTestUtils)
 uf_add_test(schemamodeltest UserFeedbackTestUtils)

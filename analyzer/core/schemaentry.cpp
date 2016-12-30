@@ -127,6 +127,16 @@ void SchemaEntry::setElements(const QVector<SchemaEntryElement> &elements)
     d->elements = elements;
 }
 
+SchemaEntryElement SchemaEntry::element(const QString& name) const
+{
+    const auto it = std::find_if(d->elements.cbegin(), d->elements.cend(), [name](const auto &entry) {
+        return entry.name() == name;
+    });
+    if (it == d->elements.cend())
+        return {};
+    return *it;
+}
+
 QJsonObject SchemaEntry::toJsonObject() const
 {
     QJsonObject obj;

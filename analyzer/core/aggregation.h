@@ -22,8 +22,13 @@
 
 #include <QTypeInfo>
 
+class QJsonArray;
+class QJsonObject;
+
 namespace UserFeedback {
 namespace Analyzer {
+
+class Product;
 
 class Aggregation
 {
@@ -46,6 +51,9 @@ public:
 
     QVector<AggregationElement> elements() const;
     void setElements(const QVector<AggregationElement> &elements);
+
+    QJsonObject toJsonObject() const;
+    static QVector<Aggregation> fromJson(const Product &product, const QJsonArray &a);
 
 private:
     Type m_type = None;

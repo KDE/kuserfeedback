@@ -21,8 +21,13 @@
 #include "schemaentry.h"
 #include "schemaentryelement.h"
 
+class QJsonArray;
+class QJsonObject;
+
 namespace UserFeedback {
 namespace Analyzer {
+
+class Product;
 
 class AggregationElement
 {
@@ -46,6 +51,9 @@ public:
     void setSchemaEntryElement(const SchemaEntryElement &element);
 
     QString displayString() const;
+
+    QJsonObject toJsonObject() const;
+    static QVector<AggregationElement> fromJson(const Product &product, const QJsonArray &a);
 
 private:
     SchemaEntry m_entry;

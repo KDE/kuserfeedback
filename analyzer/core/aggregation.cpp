@@ -16,8 +16,23 @@
 */
 
 #include "aggregation.h"
+#include "util.h"
+
+#include <QJsonArray>
+#include <QJsonObject>
 
 using namespace UserFeedback::Analyzer;
+
+static const struct {
+    Aggregation::Type type;
+    const char *name;
+} aggregation_types_table[] {
+    { Aggregation::None, "none" },
+    { Aggregation::Category, "category" },
+    { Aggregation::RatioSet, "ratio_set" },
+    { Aggregation::Numeric, "numeric" },
+    { Aggregation::XY, "xy" }
+};
 
 Aggregation::Aggregation() = default;
 Aggregation::~Aggregation() = default;
@@ -40,4 +55,32 @@ QVector<AggregationElement> Aggregation::elements() const
 void Aggregation::setElements(const QVector<AggregationElement>& elements)
 {
     m_elements = elements;
+}
+
+QJsonObject Aggregation::toJsonObject() const
+{
+    QJsonObject obj;
+    obj.insert(QStringLiteral("type"), QLatin1String(aggregation_types_table[m_type].name));
+    QJsonArray elems;
+    for (const auto &e : m_elements)
+        elems.push_back(e.toJsonObject());
+    obj.insert(QStringLiteral("elements"), elems);
+    return obj;
+}
+
+QVector<Aggregation> Aggregation::fromJson(const Product &product, const QJsonArray& a)
+{
+    QVector<Aggregation> aggrs;
+    aggrs.reserve(a.size());
+    for (const auto &v : a) {
+        if (!v.isObject())
+            continue;
+        const auto obj = v.toObject();
+
+        Aggregation aggr;
+        aggr.setType(Util::stringToEnum<Aggregation::Type>(obj.value(QLatin1String("type")).toString(), aggregation_types_table));
+        aggr.setElements(AggregationElement::fromJson(product, obj.value(QLatin1String("elements")).toArray()));
+        aggrs.push_back(aggr);
+    }
+    return aggrs;
 }

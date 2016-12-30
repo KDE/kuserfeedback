@@ -96,6 +96,7 @@ public:
 
     QVector<SchemaEntryElement> elements() const;
     void setElements(const QVector<SchemaEntryElement> &elements);
+    SchemaEntryElement element(const QString &name) const;
 
     QJsonObject toJsonObject() const;
     static QVector<SchemaEntry> fromJson(const QJsonArray &array);

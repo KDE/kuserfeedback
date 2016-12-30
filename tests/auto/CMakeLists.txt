@@ -13,6 +13,7 @@ function(uf_add_test _file)
 endfunction()
 
 uf_add_test(producttest UserFeedbackAnalyzer)
+uf_add_test(schematemplatetest.cpp UserFeedbackAnalyzer)
 uf_add_test(productapitest UserFeedbackTestUtils)
 uf_add_test(productmodeltest UserFeedbackTestUtils)
 uf_add_test(schemamodeltest UserFeedbackTestUtils)

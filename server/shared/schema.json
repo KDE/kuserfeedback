@@ -33,6 +33,11 @@
         {
             "version": 7,
             "sql": ["CREATE TABLE schema_elements (id INTEGER PRIMARY KEY AUTOINCREMENT, schemaId INTEGER REFERENCES product_schema (id), name VARCHAR NOT NULL, type VARCHAR NOT NULL)" ]
+        },
+
+        {
+            "version": 8,
+            "sql": ["CREATE TABLE aggregation (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id) ON DELETE CASCADE, type VARCHAR NOT NULL, elements VARCHAR)" ]
         }
     ]
 }

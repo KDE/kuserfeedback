@@ -35,6 +35,7 @@ set(php_test_srcs
     producttest.php
     sampletest.php
     surveytest.php
+    aggregationtest.php
 )
 
 php_lint(${php_test_srcs})

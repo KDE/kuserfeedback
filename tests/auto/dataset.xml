@@ -81,4 +81,22 @@
             <value>0</value>
         </row>
     </table>
+    <table name="aggregation">
+        <column>id</column>
+        <column>productId</column>
+        <column>type</column>
+        <column>elements</column>
+        <row>
+            <value>201</value>
+            <value>2</value>
+            <value>category</value>
+            <value>[ { "type": "value", "schemaEntry": "entry1", "schemaEntryElement": "element11" } ]</value>
+        </row>
+        <row>
+            <value>202</value>
+            <value>2</value>
+            <value>numeric</value>
+            <value>[ { "type": "size", "schemaEntry": "entry2" } ]</value>
+        </row>
+    </table>
 </dataset>

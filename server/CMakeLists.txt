@@ -13,6 +13,7 @@ set(server_config_srcs
 )
 
 set(server_shared_srcs
+    shared/aggregation.php
     shared/analytics.php
     shared/datastore.php
     shared/product.php

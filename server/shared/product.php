@@ -16,6 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+require_once('aggregation.php');
 require_once('schemaentry.php');
 require_once('utils.php');
 
@@ -24,6 +25,7 @@ class Product
 {
     public $name;
     public $schema = array();
+    public $aggregation = array();
 
     private $productId = -1;
 
@@ -53,6 +55,7 @@ class Product
             $p->productId = $row['id'];
             $p->name = $row['name'];
             $p->schema = SchemaEntry::loadSchema($db, $p);
+            $p->aggregation = Aggregation::aggregationsForProduct($db, $p);
             array_push($products, $p);
         }
         return $products;
@@ -94,6 +97,9 @@ class Product
         // create schema entries
         foreach ($this->schema as $entry)
             $entry->insert($db, $this->productId);
+
+        // store aggregation settings
+        Aggregation::update($db, $this, $this->aggregation);
     }
 
     /** Update an existing product in the database to match @p $newProduct. */
@@ -118,11 +124,17 @@ class Product
         // delete whatever is left
         foreach($oldSchema as $entry)
             $entry->delete($db, $this->productId);
+
+        // store aggregation settings
+        Aggregation::update($db, $this, $newProduct->aggregation);
     }
 
     /** Delete an existing product in the database. */
     public function delete(Datastore $db)
     {
+        // delete aggregation settings
+        Aggregation::delete($db, $this);
+
         // delete schema entries
         foreach ($this->schema as $entry)
             $entry->delete($db, $this->productId);
@@ -146,6 +158,8 @@ class Product
         $p = new Product();
         $p->name = $jsonObj->name;
         $p->schema = SchemaEntry::fromJson($jsonObj->schema, $p);
+        if (property_exists($jsonObj, 'aggregation'))
+            $p->aggregation = Aggregation::fromJson($jsonObj->aggregation);
 
         // verify
         if (strlen($p->name) <= 0 || !is_string($p->name))

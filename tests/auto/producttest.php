@@ -71,7 +71,10 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                         { "name": "element2", "type": "bool" }
                     ]
                 }
-            ]
+            ],
+            "aggregation": [ { "type": "category", "elements": [
+                { "type": "value", "schemaEntry": "entry1", "schemaEntryElement": "element1" }
+            ] } ]
         }');
         $this->assertEquals($p->name, 'org.kde.product');
         $this->assertEquals(1, count($p->schema));
@@ -86,6 +89,8 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $this->assertInstanceOf(SchemaEntryElement::class, $elem);
         $this->assertEquals('element2', $elem->name);
         $this->assertEquals('bool', $elem->type);
+
+        $this->assertCount(1, $p->aggregation);
     }
 
     public function testToJson()
@@ -101,6 +106,10 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $elem->type = 'number';
         array_push($entry->elements, $elem);
         array_push($p->schema, $entry);
+        $a = new Aggregation;
+        $a->type = 'numeric';
+        $a->elements = json_decode('[{ "type": "size", "schemaEntry": "entry1" }]');
+        array_push($p->aggregation, $a);
 
         $this->assertJsonStringEqualsJsonString(json_encode($p), '{
             "name": "org.kde.product",
@@ -113,7 +122,10 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                         { "name": "element3", "type": "number" }
                     ]
                 }
-            ]
+            ],
+            "aggregation": [ { "type": "numeric", "elements": [
+                { "type": "size", "schemaEntry": "entry1" }
+            ] } ]
         }');
     }
 
@@ -147,6 +159,8 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $this->assertEquals($entry2->name, 'entry2');
         $this->assertEquals($entry2->type, 'list');
         $this->assertEquals($entry2->aggregationType, 'xy');
+
+        $this->assertCount(2, $p->aggregation);
     }
 
     public function testProductByName()
@@ -204,6 +218,20 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                         { "name": "elementB2", "type": "string" }
                     ]
                 }
+            ],
+            "aggregation": [
+                {
+                    "type": "category",
+                    "elements": [
+                        { "type": "value", "schemaEntry": "entryA", "schemaEntryElement": "elementA1" }
+                    ]
+                },
+                {
+                    "type": "ratio_set",
+                    "elements": [
+                        { "type": "value", "schemaEntry": "entryB", "schemaEntryElement": "elementB1" }
+                    ]
+                }
             ]
         }';
 
@@ -211,6 +239,7 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $p->insert(self::$db);
 
         $p = Product::productByName(self::$db, 'org.kde.NewProduct');
+        $p->aggregation = Aggregation::aggregationsForProduct(self::$db, $p);
         $this->assertJsonStringEqualsJsonString($json, json_encode($p));
     }
 
@@ -237,6 +266,14 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                         { "name": "elementB2", "type": "string" }
                     ]
                 }
+            ],
+            "aggregation": [
+                {
+                    "type": "ratio_set",
+                    "elements": [
+                        { "type": "value", "schemaEntry": "entryB", "schemaEntryElement": "elementB1" }
+                    ]
+                }
             ]
         }';
 
@@ -244,6 +281,7 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $p->insert(self::$db);
 
         $p = Product::productByName(self::$db, 'org.kde.ProductToUpdate');
+        $p->aggregation = Aggregation::aggregationsForProduct(self::$db, $p);
         $this->assertJsonStringEqualsJsonString($jsonOld, json_encode($p));
 
         $jsonNew = '{
@@ -266,12 +304,28 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                         { "name": "elementC2", "type": "number" }
                     ]
                 }
+            ],
+            "aggregation": [
+                {
+                    "type": "category",
+                    "elements": [
+                        { "type": "value", "schemaEntry": "entryA", "schemaEntryElement": "elementA1" }
+                    ]
+                },
+                {
+                    "type": "xy",
+                    "elements": [
+                        { "type": "value", "schemaEntry": "entryC", "schemaEntryElement": "elementC1" },
+                        { "type": "value", "schemaEntry": "entryC", "schemaEntryElement": "elementC2" }
+                    ]
+                }
             ]
         }';
         $newP = Product::fromJson($jsonNew);
         $p->update(self::$db, $newP);
 
         $p = Product::productByName(self::$db, 'org.kde.ProductToUpdate');
+        $p->aggregation = Aggregation::aggregationsForProduct(self::$db, $p);
         $this->assertJsonStringEqualsJsonString($jsonNew, json_encode($p));
     }
 
@@ -288,12 +342,21 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                         { "name": "element3", "type": "number" }
                     ]
                 }
+            ],
+            "aggregation": [
+                {
+                    "type": "numeric",
+                    "elements": [
+                        { "type": "size", "schemaEntry": "entry1" }
+                    ]
+                }
             ]
         }';
 
         $p = Product::fromJson($json);
         $p->insert(self::$db);
         $p = Product::productByName(self::$db, 'org.kde.DeletedProduct');
+        $p->aggregation = Aggregation::aggregationsForProduct(self::$db, $p);
         $this->assertJsonStringEqualsJsonString($json, json_encode($p));
 
         $p->delete(self::$db);

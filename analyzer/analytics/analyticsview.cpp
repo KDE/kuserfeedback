@@ -27,6 +27,7 @@
 #include <model/ratiosetaggregationmodel.h>
 #include <model/timeaggregationmodel.h>
 #include <rest/restapi.h>
+#include <core/aggregation.h>
 #include <core/sample.h>
 
 #include <QFile>
@@ -127,41 +128,50 @@ void AnalyticsView::setProduct(const Product& product)
     m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
     ui->chartType->addItem(tr("Samples"), QVariant::fromValue(m_timeAggregationModel));
 
-    foreach (const auto &schemaEntry, product.schema()) {
-        switch (schemaEntry.aggregationType()) {
-            case SchemaEntry::None:
+    foreach (const auto &aggr, product.aggregations()) {
+        switch (aggr.type()) {
+            case Aggregation::None:
                 break;
-            case SchemaEntry::Category:
+            case Aggregation::Category:
             {
+                if (aggr.elements().isEmpty())
+                    break;
                 auto model = new CategoryAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);
-                model->setAggregationValue(schemaEntry.name() + QLatin1Char('.') + schemaEntry.elements().at(0).name());
+                const auto e = aggr.elements().at(0);
+                model->setAggregationValue(e.schemaEntry().name() + QLatin1Char('.') + e.schemaEntryElement().name());
                 m_aggregationModels.push_back(model);
-                m_aggregatedDataModel->addSourceModel(model, schemaEntry.name());
-                ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
+                m_aggregatedDataModel->addSourceModel(model, e.schemaEntry().name());
+                ui->chartType->addItem(e.schemaEntry().name(), QVariant::fromValue(model));
                 break;
             }
-            case SchemaEntry::Numeric:
+            case Aggregation::Numeric:
             {
+                if (aggr.elements().isEmpty())
+                    break;
                 auto model = new NumericAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);
-                model->setAggregationValue(schemaEntry.name() + QLatin1Char('.') + schemaEntry.elements().at(0).name());
+                const auto e = aggr.elements().at(0);
+                model->setAggregationValue(e.schemaEntry().name() + QLatin1Char('.') + e.schemaEntryElement().name());
                 m_aggregationModels.push_back(model);
-                m_aggregatedDataModel->addSourceModel(model, schemaEntry.name());
-                ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
+                m_aggregatedDataModel->addSourceModel(model, e.schemaEntry().name());
+                ui->chartType->addItem(e.schemaEntry().name(), QVariant::fromValue(model));
                 break;
             }
-            case SchemaEntry::RatioSet:
+            case Aggregation::RatioSet:
             {
+                if (aggr.elements().isEmpty())
+                    break;
                 auto model = new RatioSetAggregationModel(this);
                 model->setSourceModel(m_timeAggregationModel);
-                model->setAggregationValue(schemaEntry.name());
+                const auto e = aggr.elements().at(0);
+                model->setAggregationValue(e.schemaEntry().name());
                 m_aggregationModels.push_back(model);
-                m_aggregatedDataModel->addSourceModel(model, schemaEntry.name());
-                ui->chartType->addItem(schemaEntry.name(), QVariant::fromValue(model));
+                m_aggregatedDataModel->addSourceModel(model, e.schemaEntry().name());
+                ui->chartType->addItem(e.schemaEntry().name(), QVariant::fromValue(model));
                 break;
             }
-            case SchemaEntry::XY:
+            case Aggregation::XY:
                 // TODO
                 break;
         }

@@ -36,7 +36,9 @@ Product AggregationEditorModel::product() const
 
 void AggregationEditorModel::setProduct(const Product& product)
 {
+    beginResetModel();
     m_product = product;
+    endResetModel();
 }
 
 int AggregationEditorModel::columnCount(const QModelIndex& parent) const

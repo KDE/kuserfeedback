@@ -202,7 +202,12 @@ void MainWindow::deleteProduct()
     if (sel.isEmpty())
         return;
     const auto product = sel.first().data(ProductModel::ProductRole).value<Product>();
-    // TODO saftey question
+    const auto mb = QMessageBox::critical(this, tr("Delete Product"),
+                        tr("Do you really want to delete product %1 with all its data?").arg(product.name()),
+                        QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
+    if (mb != QMessageBox::Discard)
+        return;
+
     auto reply = RESTApi::deleteProduct(m_restClient, product);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {

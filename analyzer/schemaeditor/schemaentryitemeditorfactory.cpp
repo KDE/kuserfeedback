@@ -77,7 +77,7 @@ private:
 SchemaEntryItemEditorFactory::SchemaEntryItemEditorFactory() :
     m_elementModel(new AggregationElementModel)
 {
-   registerEditor(qMetaTypeId<SchemaEntry::AggregationType>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
+   registerEditor(qMetaTypeId<SchemaEntry::DataType>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
    registerEditor(qMetaTypeId<SchemaEntryElement::Type>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
    registerEditor(qMetaTypeId<Aggregation::Type>(), new QStandardItemEditorCreator<MetaEnumComboBox>());
    registerEditor(qMetaTypeId<AggregationElement>(), new AggregationElementEditorCreator(m_elementModel.get()));

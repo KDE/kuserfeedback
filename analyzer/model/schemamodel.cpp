@@ -101,13 +101,17 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
         return {};
 
     if (index.internalId() == TOPLEVEL) {
+        const auto entry = m_product.schema().at(index.row());
         switch (index.column()) {
             case 0:
                 if (role == Qt::DisplayRole || role == Qt::EditRole)
-                    return m_product.schema().at(index.row()).name();
+                    return entry.name();
                 break;
             case 1:
                 if (role == Qt::DisplayRole)
+                    return Util::enumToString(entry.dataType());
+                else if (role == Qt::EditRole)
+                    return QVariant::fromValue(entry.dataType());
                 break;
         }
     } else {
@@ -160,6 +164,8 @@ bool SchemaModel::setData(const QModelIndex &index, const QVariant &value, int r
             case 0:
                 entry.setName(value.toString());
                 break;
+            case 1:
+                entry.setDataType(value.value<SchemaEntry::DataType>());
                 break;
         }
     } else {

@@ -65,7 +65,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                 {
                     "name": "entry1",
                     "type": "scalar",
-                    "aggregationType": "category",
                     "elements" : [
                         { "name": "element1", "type": "int" },
                         { "name": "element2", "type": "bool" }
@@ -82,7 +81,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $entry = $p->schema[0];
         $this->assertEquals($entry->name, 'entry1');
         $this->assertEquals($entry->type, 'scalar');
-        $this->assertEquals($entry->aggregationType, 'category');
 
         $this->assertEquals(2, count($entry->elements));
         $elem = $entry->elements[1];
@@ -100,7 +98,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $entry = new SchemaEntry($p);
         $entry->name = 'entry1';
         $entry->type = 'list';
-        $entry->aggregationType = 'numeric';
         $elem = new SchemaEntryElement($entry);
         $elem->name = 'element3';
         $elem->type = 'number';
@@ -117,7 +114,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                 {
                     "name": "entry1",
                     "type": "list",
-                    "aggregationType": "numeric",
                     "elements" : [
                         { "name": "element3", "type": "number" }
                     ]
@@ -148,7 +144,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $this->assertInstanceOf(SchemaEntry::class, $entry1);
         $this->assertEquals($entry1->name, 'entry1');
         $this->assertEquals($entry1->type, 'scalar');
-        $this->assertEquals($entry1->aggregationType, 'category');
         $this->assertEquals(2, count($entry1->elements));
         $elem = $entry1->elements[1];
         $this->assertInstanceOf(SchemaEntryElement::class, $elem);
@@ -158,7 +153,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $this->assertInstanceOf(SchemaEntry::class, $entry2);
         $this->assertEquals($entry2->name, 'entry2');
         $this->assertEquals($entry2->type, 'list');
-        $this->assertEquals($entry2->aggregationType, 'xy');
 
         $this->assertCount(2, $p->aggregation);
     }
@@ -183,7 +177,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $this->assertInstanceOf(SchemaEntry::class, $entry1);
         $this->assertEquals($entry1->name, 'entry1');
         $this->assertEquals($entry1->type, 'scalar');
-        $this->assertEquals($entry1->aggregationType, 'category');
         $elem = $entry1->elements[1];
         $this->assertInstanceOf(SchemaEntryElement::class, $elem);
         $this->assertEquals('element12', $elem->name);
@@ -192,7 +185,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
         $this->assertInstanceOf(SchemaEntry::class, $entry2);
         $this->assertEquals($entry2->name, 'entry2');
         $this->assertEquals($entry2->type, 'list');
-        $this->assertEquals($entry2->aggregationType, 'xy');
     }
 
     public function testProductInsert()
@@ -203,7 +195,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                 {
                     "name": "entryA",
                     "type": "scalar",
-                    "aggregationType": "category",
                     "elements" : [
                         { "name": "elementA1", "type": "int" },
                         { "name": "elementA2", "type": "bool" }
@@ -212,7 +203,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                 {
                     "name": "entryB",
                     "type": "map",
-                    "aggregationType": "ratio_set",
                     "elements" : [
                         { "name": "elementB1", "type": "number" },
                         { "name": "elementB2", "type": "string" }
@@ -251,7 +241,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                 {
                     "name": "entryA",
                     "type": "scalar",
-                    "aggregationType": "none",
                     "elements" : [
                         { "name": "elementA1", "type": "int" },
                         { "name": "elementA2", "type": "bool" }
@@ -260,7 +249,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                 {
                     "name": "entryB",
                     "type": "list",
-                    "aggregationType": "ratio_set",
                     "elements" : [
                         { "name": "elementB1", "type": "number" },
                         { "name": "elementB2", "type": "string" }
@@ -290,7 +278,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                 {
                     "name": "entryA",
                     "type": "scalar",
-                    "aggregationType": "category",
                     "elements" : [
                         { "name": "elementA1", "type": "int" }
                     ]
@@ -298,7 +285,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                 {
                     "name": "entryC",
                     "type": "map",
-                    "aggregationType": "xy",
                     "elements" : [
                         { "name": "elementC1", "type": "number" },
                         { "name": "elementC2", "type": "number" }
@@ -337,7 +323,6 @@ class ProductTest extends PHPUnit_Extensions_Database_TestCase
                 {
                     "name": "entry1",
                     "type": "list",
-                    "aggregationType": "numeric",
                     "elements" : [
                         { "name": "element3", "type": "number" }
                     ]

@@ -36,19 +36,7 @@ public:
     QString name;
     int internalId = -1;
     SchemaEntry::DataType dataType = SchemaEntry::Scalar;
-    SchemaEntry::AggregationType aggregation = SchemaEntry::None;
     QVector<SchemaEntryElement> elements;
-};
-
-static const struct {
-    SchemaEntry::AggregationType type;
-    const char *name;
-} aggregation_types_table[] {
-    { SchemaEntry::None, "none" },
-    { SchemaEntry::Category, "category" },
-    { SchemaEntry::RatioSet, "ratio_set" },
-    { SchemaEntry::Numeric, "numeric" },
-    { SchemaEntry::XY, "xy" }
 };
 
 static const struct {
@@ -73,7 +61,6 @@ bool SchemaEntry::operator==(const SchemaEntry &other) const
     return d->name == other.d->name
         && d->internalId == other.d->internalId
         && d->dataType == other.d->dataType
-        && d->aggregation == other.d->aggregation
         && d->elements == other.d->elements;
 }
 
@@ -107,16 +94,6 @@ void SchemaEntry::setDataType(SchemaEntry::DataType type)
     d->dataType = type;
 }
 
-SchemaEntry::AggregationType SchemaEntry::aggregationType() const
-{
-    return d->aggregation;
-}
-
-void SchemaEntry::setAggregationType(SchemaEntry::AggregationType type)
-{
-    d->aggregation = type;
-}
-
 QVector<SchemaEntryElement> SchemaEntry::elements() const
 {
     return d->elements;
@@ -146,7 +123,6 @@ QJsonObject SchemaEntry::toJsonObject() const
 
     QString t;
     obj.insert(QStringLiteral("type"), QLatin1String(data_types_table[d->dataType].name));
-    obj.insert(QStringLiteral("aggregationType"), QLatin1String(aggregation_types_table[d->aggregation].name));
 
     QJsonArray array;
     for (const auto &element : qAsConst(d->elements))
@@ -165,7 +141,6 @@ QVector<SchemaEntry> SchemaEntry::fromJson(const QJsonArray &array)
         SchemaEntry entry;
         entry.setName(obj.value(QStringLiteral("name")).toString());
         entry.setDataType(Util::stringToEnum<DataType>(obj.value(QLatin1String("type")).toString(), data_types_table));
-        entry.setAggregationType(Util::stringToEnum<AggregationType>(obj.value(QLatin1String("aggregationType")).toString(), aggregation_types_table));
         entry.setElements(SchemaEntryElement::fromJson(obj.value(QLatin1String("elements")).toArray()));
 
         res.push_back(entry);

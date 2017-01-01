@@ -23,7 +23,6 @@ class SchemaEntry
 {
     public $name;
     public $type;
-    public $aggregationType;
     public $elements = array();
 
     private $entryId = -1;
@@ -64,7 +63,7 @@ class SchemaEntry
     static public function loadSchema(Datastore $db, Product &$product)
     {
         $stmt = $db->prepare('SELECT
-                product_schema.id, product_schema.name, product_schema.type, product_schema.aggregation, schema_elements.name, schema_elements.type
+                product_schema.id, product_schema.name, product_schema.type, schema_elements.name, schema_elements.type
             FROM schema_elements JOIN product_schema ON (product_schema.id = schema_elements.schemaId)
             WHERE product_schema.productId = :productId
             ORDER BY product_schema.id
@@ -81,11 +80,10 @@ class SchemaEntry
                 $entry->entryId = $row[0];
                 $entry->name = $row[1];
                 $entry->type = $row[2];
-                $entry->aggregationType = $row[3];
             }
             $elem = new SchemaEntryElement($entry);
-            $elem->name = $row[4];
-            $elem->type = $row[5];
+            $elem->name = $row[3];
+            $elem->type = $row[4];
             array_push($entry->elements, $elem);
         }
         if ($entry->isValid())
@@ -98,14 +96,13 @@ class SchemaEntry
     public function insert(Datastore $db, $productId)
     {
         $stmt = $db->prepare('INSERT INTO
-            product_schema (productId, name, type, aggregation)
-            VALUES (:productId, :name, :type, :aggregation)
+            product_schema (productId, name, type)
+            VALUES (:productId, :name, :type)
         ');
         $db->execute($stmt, array(
             ':productId' => $productId,
             ':name' => $this->name,
             ':type' => $this->type,
-            ':aggregation' => $this->aggregationType
         ));
         $this->entryId = $db->pdoHandle()->lastInsertId();
 
@@ -128,15 +125,6 @@ class SchemaEntry
     public function update(Datastore $db, SchemaEntry $newEntry)
     {
         // TODO reject type changes
-        $stmt = $db->prepare('
-            UPDATE product_schema SET
-                aggregation = :aggregation
-            WHERE id = :id'
-        );
-        $db->execute($stmt, array(
-            ':aggregation' => $newEntry->aggregationType,
-            ':id' => $this->entryId
-        ));
 
         // update elements
         $oldElements = array();
@@ -182,12 +170,11 @@ class SchemaEntry
     {
         $entries = array();
         foreach ($jsonArray as $jsonObj) {
-            if (!property_exists($jsonObj, 'name') || !property_exists($jsonObj, 'type') || !property_exists($jsonObj, 'aggregationType'))
+            if (!property_exists($jsonObj, 'name') || !property_exists($jsonObj, 'type'))
                 throw new RESTException('Incomplete schema entry object.', 400);
             $e = new SchemaEntry($product);
             $e->name = strval($jsonObj->name);
             $e->type = strval($jsonObj->type);
-            $e->aggregationType = strval($jsonObj->aggregationType);
             if (property_exists($jsonObj, 'elements'))
                 $e->elements = SchemaEntryElement::fromJson($jsonObj->elements, $e);
             if (!$e->isValid())

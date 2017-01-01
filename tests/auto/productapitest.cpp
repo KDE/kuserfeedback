@@ -107,7 +107,6 @@ private slots:
         // add new product
         SchemaEntry entry;
         entry.setName(QStringLiteral("entry1"));
-        entry.setAggregationType(SchemaEntry::Category);
         SchemaEntryElement elem1;
         elem1.setName(QStringLiteral("elem11"));
         entry.setElements({elem1});

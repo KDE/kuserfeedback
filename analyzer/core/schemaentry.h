@@ -66,15 +66,6 @@ public:
     };
     Q_ENUM(DataType)
 
-    enum AggregationType {
-        None,
-        Category,
-        RatioSet,
-        Numeric,
-        XY
-    };
-    Q_ENUM(AggregationType)
-
     SchemaEntry();
     SchemaEntry(const SchemaEntry &entry);
     ~SchemaEntry();
@@ -87,9 +78,6 @@ public:
 
     QString name() const;
     void setName(const QString& name);
-
-    AggregationType aggregationType() const;
-    void setAggregationType(AggregationType type);
 
     DataType dataType() const;
     void setDataType(DataType type);

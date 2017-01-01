@@ -83,7 +83,7 @@ void SchemaModel::deleteRow(const QModelIndex &idx)
 int SchemaModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return 3;
+    return 2;
 }
 
 int SchemaModel::rowCount(const QModelIndex& parent) const
@@ -106,11 +106,9 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
                 if (role == Qt::DisplayRole || role == Qt::EditRole)
                     return m_product.schema().at(index.row()).name();
                 break;
-            case 2:
+            case 1:
                 if (role == Qt::DisplayRole)
-                    return Util::enumToString(m_product.schema().at(index.row()).aggregationType());
-                if (role == Qt::EditRole)
-                    return QVariant::fromValue(m_product.schema().at(index.row()).aggregationType());
+                break;
         }
     } else {
         const auto entry = m_product.schema().at(index.internalId());
@@ -136,7 +134,6 @@ QVariant SchemaModel::headerData(int section, Qt::Orientation orientation, int r
         switch (section) {
             case 0: return tr("Name");
             case 1: return tr("Type");
-            case 2: return tr("Aggregation");
         }
     }
     return QAbstractItemModel::headerData(section, orientation, role);
@@ -147,9 +144,7 @@ Qt::ItemFlags SchemaModel::flags(const QModelIndex &index) const
     const auto baseFlags = QAbstractItemModel::flags(index);
     if (!index.isValid())
         return baseFlags;
-    if ((index.internalId() == TOPLEVEL && index.column() != 1) || (index.internalId() != TOPLEVEL && index.column() < 2))
-        return baseFlags | Qt::ItemIsEditable;
-    return baseFlags;
+    return baseFlags | Qt::ItemIsEditable;
 }
 
 bool SchemaModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -165,8 +160,6 @@ bool SchemaModel::setData(const QModelIndex &index, const QVariant &value, int r
             case 0:
                 entry.setName(value.toString());
                 break;
-            case 2:
-                entry.setAggregationType(value.value<SchemaEntry::AggregationType>());
                 break;
         }
     } else {

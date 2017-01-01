@@ -19,6 +19,7 @@
 #include "ui_aggregationeditwidget.h"
 #include "schemaentryitemeditorfactory.h"
 
+#include <core/aggregation.h>
 #include <model/aggregationeditormodel.h>
 
 #include <QStyledItemDelegate>
@@ -35,12 +36,51 @@ AggregationEditWidget::AggregationEditWidget(QWidget* parent) :
 
     ui->aggregationView->setModel(m_model);
     qobject_cast<QStyledItemDelegate*>(ui->aggregationView->itemDelegate())->setItemEditorFactory(m_editorFactory);
+
+    connect(ui->actionAddAggregation, &QAction::triggered, this, &AggregationEditWidget::addAggregation);
+    connect(ui->actionDeleteAggregation, &QAction::triggered, this, &AggregationEditWidget::deleteAggregation);
+
+    addActions({ ui->actionAddAggregation, ui->actionDeleteAggregation });
 }
 
 AggregationEditWidget::~AggregationEditWidget() = default;
+
+Product AggregationEditWidget::product() const
+{
+    return m_model->product();
+}
 
 void AggregationEditWidget::setProduct(const Product& product)
 {
     m_model->setProduct(product);
     m_editorFactory->setProduct(product);
+}
+
+void AggregationEditWidget::addAggregation()
+{
+    auto p = product();
+    auto aggrs = p.aggregations();
+    aggrs += Aggregation();
+    p.setAggregations(aggrs);
+    setProduct(p);
+}
+
+void AggregationEditWidget::deleteAggregation()
+{
+    const auto rows = ui->aggregationView->selectionModel()->selectedRows();
+    if (rows.isEmpty())
+        return;
+
+    const auto idx = rows.at(0);
+    auto p = product();
+    auto aggrs = p.aggregations();
+    aggrs.remove(idx.row());
+    p.setAggregations(aggrs);
+    setProduct(p);
+}
+
+void AggregationEditWidget::updateState()
+{
+    ui->actionAddAggregation->setEnabled(product().isValid());
+    ui->actionDeleteAggregation->setEnabled(ui->aggregationView->selectionModel()->hasSelection());
 }

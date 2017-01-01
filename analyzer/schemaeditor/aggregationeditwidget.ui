@@ -22,6 +22,28 @@
     </widget>
    </item>
   </layout>
+  <action name="actionAddAggregation">
+   <property name="icon">
+    <iconset theme="list-add"/>
+   </property>
+   <property name="text">
+    <string>Add &amp;Aggregation</string>
+   </property>
+   <property name="toolTip">
+    <string>Add a new aggreagation.</string>
+   </property>
+  </action>
+  <action name="actionDeleteAggregation">
+   <property name="icon">
+    <iconset theme="edit-delete"/>
+   </property>
+   <property name="text">
+    <string>&amp;Delete Aggregation</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete the currently selected aggregation.</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

@@ -10,9 +10,6 @@
     <height>300</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
     <number>0</number>
@@ -44,6 +41,42 @@
     </widget>
    </item>
   </layout>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset theme="document-save">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save Schema</string>
+   </property>
+   <property name="toolTip">
+    <string>Save changes to the product schema.</string>
+   </property>
+  </action>
+  <action name="actionImportSchema">
+   <property name="icon">
+    <iconset theme="document-import">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Import Schema</string>
+   </property>
+   <property name="toolTip">
+    <string>Import a schema for this product.</string>
+   </property>
+  </action>
+  <action name="actionExportSchema">
+   <property name="icon">
+    <iconset theme="document-export">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Export Schema</string>
+   </property>
+   <property name="toolTip">
+    <string>Export the schema of this product.</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

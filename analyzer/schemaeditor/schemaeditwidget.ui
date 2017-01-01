@@ -11,18 +11,6 @@
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
    <item>
     <widget class="QTreeView" name="schemaView">
      <property name="selectionMode">
@@ -49,20 +37,10 @@
     </layout>
    </item>
   </layout>
-  <action name="actionSave">
-   <property name="icon">
-    <iconset theme="document-save"/>
-   </property>
-   <property name="text">
-    <string>&amp;Save Schema</string>
-   </property>
-   <property name="toolTip">
-    <string>Save changes to the product schema.</string>
-   </property>
-  </action>
   <action name="actionDelete">
    <property name="icon">
-    <iconset theme="edit-delete"/>
+    <iconset theme="edit-delete">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>&amp;Delete</string>
@@ -72,28 +50,6 @@
    </property>
    <property name="shortcut">
     <string>Del</string>
-   </property>
-  </action>
-  <action name="actionExportSchema">
-   <property name="icon">
-    <iconset theme="document-export"/>
-   </property>
-   <property name="text">
-    <string>&amp;Export Schema</string>
-   </property>
-   <property name="toolTip">
-    <string>Export the schema of this product.</string>
-   </property>
-  </action>
-  <action name="actionImportSchema">
-   <property name="icon">
-    <iconset theme="document-import"/>
-   </property>
-   <property name="text">
-    <string>&amp;Import Schema</string>
-   </property>
-   <property name="toolTip">
-    <string>Import a schema for this product.</string>
    </property>
   </action>
  </widget>

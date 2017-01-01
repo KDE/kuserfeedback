@@ -41,9 +41,15 @@ public:
     explicit AggregationEditWidget(QWidget *parent = nullptr);
     ~AggregationEditWidget();
 
+    Product product() const;
     void setProduct(const Product &product);
 
 private:
+    void addAggregation();
+    void deleteAggregation();
+
+    void updateState();
+
     std::unique_ptr<Ui::AggregationEditWidget> ui;
     AggregationEditorModel *m_model;
     SchemaEntryItemEditorFactory *m_editorFactory;

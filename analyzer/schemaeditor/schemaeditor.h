@@ -42,6 +42,8 @@ public:
     ~SchemaEditor();
 
     void setRESTClient(RESTClient *client);
+
+    Product product() const;
     void setProduct(const Product &product);
 
 signals:
@@ -49,9 +51,14 @@ signals:
     void logMessage(const QString &msg);
 
 private:
+    void save();
+    void exportSchema();
+    void importSchema();
+
     void updateState();
 
     std::unique_ptr<Ui::SchemaEditor> ui;
+    RESTClient *m_restClient = nullptr;
     QAction *m_createFromTemplateAction;
 };
 

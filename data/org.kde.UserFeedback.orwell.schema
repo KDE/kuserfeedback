@@ -1,8 +1,78 @@
 {
+    "aggregation": [
+        {
+            "elements": [
+                {
+                    "schemaEntry": "applicationVersion",
+                    "schemaEntryElement": "value",
+                    "type": "value"
+                }
+            ],
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "dialRatio",
+                    "schemaEntryElement": "property",
+                    "type": "value"
+                }
+            ],
+            "type": "ratio_set"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "platform",
+                    "schemaEntryElement": "os",
+                    "type": "value"
+                }
+            ],
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "qtVersion",
+                    "schemaEntryElement": "value",
+                    "type": "value"
+                }
+            ],
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "screens",
+                    "type": "size"
+                }
+            ],
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "startCount",
+                    "schemaEntryElement": "value",
+                    "type": "value"
+                }
+            ],
+            "type": "numeric"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "usageTime",
+                    "schemaEntryElement": "value",
+                    "type": "value"
+                }
+            ],
+            "type": "numeric"
+        }
+    ],
     "name": "org.kde.UserFeedback.orwell",
     "schema": [
         {
-            "aggregationType": "category",
             "elements": [
                 {
                     "name": "value",
@@ -13,7 +83,6 @@
             "type": "scalar"
         },
         {
-            "aggregationType": "ratio_set",
             "elements": [
                 {
                     "name": "property",
@@ -24,7 +93,6 @@
             "type": "map"
         },
         {
-            "aggregationType": "category",
             "elements": [
                 {
                     "name": "os",
@@ -39,7 +107,6 @@
             "type": "scalar"
         },
         {
-            "aggregationType": "category",
             "elements": [
                 {
                     "name": "value",
@@ -50,7 +117,6 @@
             "type": "scalar"
         },
         {
-            "aggregationType": "none",
             "elements": [
                 {
                     "name": "width",
@@ -65,7 +131,6 @@
             "type": "list"
         },
         {
-            "aggregationType": "numeric",
             "elements": [
                 {
                     "name": "value",
@@ -76,7 +141,6 @@
             "type": "scalar"
         },
         {
-            "aggregationType": "numeric",
             "elements": [
                 {
                     "name": "value",

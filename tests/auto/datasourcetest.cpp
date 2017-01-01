@@ -94,7 +94,7 @@ private slots:
         auto o = v.toMap();
         QCOMPARE(o.size(), 0); // nothing recorded
 
-        QTest::qWait(1000);
+        QTest::qWait(1200);
         v = src.data();
         o = v.toMap();
         QCOMPARE(o.size(), 1);
@@ -103,7 +103,7 @@ private slots:
         QCOMPARE(v.type(), QVariant::Double);
 
         setProp(23);
-        QTest::qWait(1000);
+        QTest::qWait(1200);
         v = src.data();
         o = v.toMap();
         QCOMPARE(o.size(), 2);

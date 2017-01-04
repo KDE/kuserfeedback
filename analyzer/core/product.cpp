@@ -123,24 +123,6 @@ static Product productFromJsonObject(const QJsonObject &obj)
     product.setName(obj.value(QStringLiteral("name")).toString());
     product.setSchema(SchemaEntry::fromJson(obj.value(QStringLiteral("schema")).toArray()));
     product.setAggregations(Aggregation::fromJson(product, obj.value(QLatin1String("aggregation")).toArray()));
-
-    // ### temporary HACK
-    if (product.aggregations().isEmpty()) {
-        QVector<Aggregation> aggrs;
-        for (const auto &entry : product.schema()) {
-            for (const auto &elem : entry.elements()) {
-                Aggregation aggr;
-                aggr.setType(Aggregation::Category);
-                AggregationElement e;
-                e.setSchemaEntry(entry);
-                e.setSchemaEntryElement(elem);
-                aggr.setElements({e});
-                aggrs.push_back(aggr);
-            }
-        }
-        product.setAggregations(aggrs);
-    }
-
     return product;
 }
 

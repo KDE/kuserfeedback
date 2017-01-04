@@ -80,6 +80,15 @@ private slots:
         QVERIFY(v.canConvert<QVariantList>());
         auto a = v.value<QVariantList>();
         QVERIFY(a.size() > 0);
+
+        for (int i = 0; i < a.size(); ++i) {
+            v = a.at(i);
+            QVERIFY(v.canConvert<QVariantMap>());
+            const auto scr = v.toMap();
+            QVERIFY(scr.contains(QLatin1String("height")));
+            QVERIFY(scr.contains(QLatin1String("width")));
+            QVERIFY(scr.contains(QLatin1String("dpi")));
+        }
     }
 
     void testPropertyRatioSource()

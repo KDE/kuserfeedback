@@ -38,6 +38,7 @@ QVariant ScreenInfoSource::data()
         QVariantMap m;
         m.insert(QStringLiteral("width"), screen->size().width());
         m.insert(QStringLiteral("height"), screen->size().height());
+        m.insert(QStringLiteral("dpi"), qRound(screen->physicalDotsPerInch()));
         l.push_back(m);
     }
 #endif

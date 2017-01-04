@@ -13,6 +13,10 @@
                 {
                     "name": "height",
                     "type": "int"
+                },
+                {
+                    "name": "dpi",
+                    "type": "int"
                 }
             ]
         }
@@ -22,6 +26,7 @@
         { "type": "xy", "elements": [
             { "type": "value", "schemaEntry": "screens", "schemaEntryElement": "width" },
             { "type": "value", "schemaEntry": "screens", "schemaEntryElement": "height" }
-        ] }
+        ] },
+        { "type": "numeric", "elements": [ { "type": "value", "schemaEntry": "screens", "schemaEntryElement": "dpi" } ] }
     ]
 }

@@ -18,9 +18,9 @@
 #include "analyticsview.h"
 #include "ui_analyticsview.h"
 
-#include "aggregateddatamodel.h"
 #include "chart.h"
 
+#include <model/aggregateddatamodel.h>
 #include <model/categoryaggregationmodel.h>
 #include <model/datamodel.h>
 #include <model/numericaggregationmodel.h>

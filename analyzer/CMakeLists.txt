@@ -12,6 +12,7 @@ set(analyzer_lib_srcs
     rest/restclient.cpp
     rest/serverinfo.cpp
 
+    model/aggregateddatamodel.cpp
     model/aggregationeditormodel.cpp
     model/aggregationelementmodel.cpp
     model/categoryaggregationmodel.cpp
@@ -32,13 +33,12 @@ target_include_directories(UserFeedbackAnalyzer PUBLIC "$<BUILD_INTERFACE:${CMAK
 target_compile_features(UserFeedbackAnalyzer PRIVATE cxx_generic_lambdas)
 
 set(analyzer_srcs
-    aggregateddatamodel.cpp
-    chart.cpp
     connectdialog.cpp
     main.cpp
     mainwindow.cpp
 
     analytics/analyticsview.cpp
+    analytics/chart.cpp
 
     schemaeditor/aggregationeditwidget.cpp
     schemaeditor/schemaeditor.cpp

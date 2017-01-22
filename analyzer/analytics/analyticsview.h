@@ -30,6 +30,7 @@ class QAbstractItemModel;
 namespace UserFeedback {
 namespace Analyzer {
 
+class Aggregator;
 class AggregatedDataModel;
 class Chart;
 class DataModel;
@@ -55,6 +56,10 @@ signals:
     void logMessage(const QString &msg);
 
 private:
+    void chartSelected();
+
+    Aggregator* createAggregator(const Aggregation &aggr) const;
+
     void exportData();
     void importData();
 
@@ -66,6 +71,8 @@ private:
     QVector<QAbstractItemModel*> m_aggregationModels;
     AggregatedDataModel *m_aggregatedDataModel;
     Chart *m_chart;
+
+    QVector<Aggregator*> m_aggregators;
 };
 }
 }

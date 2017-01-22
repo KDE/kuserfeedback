@@ -18,13 +18,14 @@
 #include "analyticsview.h"
 #include "ui_analyticsview.h"
 
+#include "aggregator.h"
+#include "categoryaggregator.h"
 #include "chart.h"
+#include "numericaggregator.h"
+#include "ratiosetaggregator.h"
 
 #include <model/aggregateddatamodel.h>
-#include <model/categoryaggregationmodel.h>
 #include <model/datamodel.h>
-#include <model/numericaggregationmodel.h>
-#include <model/ratiosetaggregationmodel.h>
 #include <model/timeaggregationmodel.h>
 #include <rest/restapi.h>
 #include <core/aggregation.h>
@@ -95,10 +96,7 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     settings.endGroup();
 
     ui->chartView->setChart(m_chart->chart());
-    connect(ui->chartType, &QComboBox::currentTextChanged, this, [this]() {
-        const auto model = ui->chartType->currentData().value<QAbstractItemModel*>();
-        m_chart->setModel(model);
-    });
+    connect(ui->chartType, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AnalyticsView::chartSelected);
 }
 
 AnalyticsView::~AnalyticsView()
@@ -128,54 +126,61 @@ void AnalyticsView::setProduct(const Product& product)
     m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
     ui->chartType->addItem(tr("Samples"), QVariant::fromValue(m_timeAggregationModel));
 
+    qDeleteAll(m_aggregators);
+    m_aggregators.clear();
+
     foreach (const auto &aggr, product.aggregations()) {
-        switch (aggr.type()) {
-            case Aggregation::None:
-                break;
-            case Aggregation::Category:
-            {
-                if (aggr.elements().isEmpty())
-                    break;
-                auto model = new CategoryAggregationModel(this);
-                model->setSourceModel(m_timeAggregationModel);
-                const auto e = aggr.elements().at(0);
-                model->setAggregationValue(e.schemaEntry().name() + QLatin1Char('.') + e.schemaEntryElement().name());
-                m_aggregationModels.push_back(model);
-                m_aggregatedDataModel->addSourceModel(model, e.schemaEntry().name());
-                ui->chartType->addItem(e.schemaEntry().name(), QVariant::fromValue(model));
-                break;
-            }
-            case Aggregation::Numeric:
-            {
-                if (aggr.elements().isEmpty())
-                    break;
-                auto model = new NumericAggregationModel(this);
-                model->setSourceModel(m_timeAggregationModel);
-                const auto e = aggr.elements().at(0);
-                model->setAggregationValue(e.schemaEntry().name() + QLatin1Char('.') + e.schemaEntryElement().name());
-                m_aggregationModels.push_back(model);
-                m_aggregatedDataModel->addSourceModel(model, e.schemaEntry().name());
-                ui->chartType->addItem(e.schemaEntry().name(), QVariant::fromValue(model));
-                break;
-            }
-            case Aggregation::RatioSet:
-            {
-                if (aggr.elements().isEmpty())
-                    break;
-                auto model = new RatioSetAggregationModel(this);
-                model->setSourceModel(m_timeAggregationModel);
-                const auto e = aggr.elements().at(0);
-                model->setAggregationValue(e.schemaEntry().name());
-                m_aggregationModels.push_back(model);
-                m_aggregatedDataModel->addSourceModel(model, e.schemaEntry().name());
-                ui->chartType->addItem(e.schemaEntry().name(), QVariant::fromValue(model));
-                break;
-            }
-            case Aggregation::XY:
-                // TODO
-                break;
+        auto aggregator = createAggregator(aggr);
+        if (!aggregator)
+            continue;
+        m_aggregators.push_back(aggregator);
+        if (auto model = aggregator->timeAggregationModel()) {
+            m_aggregatedDataModel->addSourceModel(model, aggregator->displayName());
+            // ### temporary
+            ui->chartType->addItem(aggregator->displayName(), QVariant::fromValue(model));
         }
+//         if (aggregator->chartModes() != Aggregator::None)
+//             ui->chartType->addItem(aggregator->displayName(), QVariant::fromValue(aggregator));
     }
+}
+
+void AnalyticsView::chartSelected()
+{
+    const auto model = ui->chartType->currentData().value<QAbstractItemModel*>();
+    m_chart->setModel(model);
+
+    auto aggr = ui->chartType->currentData().value<Aggregator*>();
+    if (!aggr)
+        return;
+//     ui->chartView->setChart(aggr->timelineChart());
+}
+
+Aggregator* AnalyticsView::createAggregator(const Aggregation& aggr) const
+{
+    Aggregator *aggregator = nullptr;
+
+    switch (aggr.type()) {
+        case Aggregation::None:
+            break;
+        case Aggregation::Category:
+            aggregator = new CategoryAggregator;
+            break;
+        case Aggregation::Numeric:
+            aggregator = new NumericAggregator;
+            break;
+        case Aggregation::RatioSet:
+            aggregator = new RatioSetAggregator;
+            break;
+        case Aggregation::XY:
+            break;
+    }
+
+    if (!aggregator)
+        return nullptr;
+
+    aggregator->setAggregation(aggr);
+    aggregator->setSourceModel(m_timeAggregationModel);
+    return aggregator;
 }
 
 void AnalyticsView::exportData()

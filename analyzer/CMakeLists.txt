@@ -37,8 +37,12 @@ set(analyzer_srcs
     main.cpp
     mainwindow.cpp
 
+    analytics/aggregator.cpp
     analytics/analyticsview.cpp
+    analytics/categoryaggregator.cpp
     analytics/chart.cpp
+    analytics/numericaggregator.cpp
+    analytics/ratiosetaggregator.cpp
 
     schemaeditor/aggregationeditwidget.cpp
     schemaeditor/schemaeditor.cpp

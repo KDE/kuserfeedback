@@ -68,7 +68,6 @@ private:
     RESTClient *m_client = nullptr;
     DataModel *m_dataModel;
     TimeAggregationModel *m_timeAggregationModel;
-    QVector<QAbstractItemModel*> m_aggregationModels;
     AggregatedDataModel *m_aggregatedDataModel;
     Chart *m_chart;
 

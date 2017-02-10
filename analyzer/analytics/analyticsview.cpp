@@ -23,6 +23,7 @@
 #include "chart.h"
 #include "numericaggregator.h"
 #include "ratiosetaggregator.h"
+#include "totalaggregator.h"
 
 #include <model/aggregateddatamodel.h>
 #include <model/datamodel.h>
@@ -129,14 +130,14 @@ void AnalyticsView::setProduct(const Product& product)
 
     ui->chartType->clear();
     m_aggregatedDataModel->clear();
-    qDeleteAll(m_aggregationModels);
-    m_aggregationModels.clear();
-
-    m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
-    ui->chartType->addItem(tr("Samples"));
 
     qDeleteAll(m_aggregators);
     m_aggregators.clear();
+
+    m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
+    auto totalsAggr = new TotalAggregator;
+    totalsAggr->setSourceModel(m_timeAggregationModel);
+    ui->chartType->addItem(tr("Samples"), QVariant::fromValue<Aggregator*>(totalsAggr));
 
     foreach (const auto &aggr, product.aggregations()) {
         auto aggregator = createAggregator(aggr);
@@ -154,8 +155,10 @@ void AnalyticsView::setProduct(const Product& product)
 void AnalyticsView::chartSelected()
 {
     auto aggr = ui->chartType->currentData().value<Aggregator*>();
+    if (!aggr)
+        return;
 
-    const auto chartMode = aggr ? aggr->chartModes() : Aggregator::Timeline;
+    const auto chartMode = aggr->chartModes();
     ui->actionSingularChart->setEnabled(chartMode & Aggregator::Singular);
     ui->actionTimelineChart->setEnabled(chartMode & Aggregator::Timeline);
     if (chartMode != (Aggregator::Timeline | Aggregator::Singular)) {
@@ -163,10 +166,7 @@ void AnalyticsView::chartSelected()
         ui->actionTimelineChart->setChecked(chartMode & Aggregator::Timeline);
     }
 
-    if (!aggr)
-        m_chart->setModel(m_timeAggregationModel);
-    else
-        m_chart->setModel(aggr->timeAggregationModel());
+    m_chart->setModel(aggr->timeAggregationModel());
 //     ui->chartView->setChart(aggr->timelineChart());
 }
 

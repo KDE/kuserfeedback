@@ -159,6 +159,28 @@
     <string>Refresh data from the server.</string>
    </property>
   </action>
+  <action name="actionTimelineChart">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Timeline Chart</string>
+   </property>
+   <property name="toolTip">
+    <string>Show development over time.</string>
+   </property>
+  </action>
+  <action name="actionSingularChart">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Singular Chart</string>
+   </property>
+   <property name="toolTip">
+    <string>Show chart for a single time interval.</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

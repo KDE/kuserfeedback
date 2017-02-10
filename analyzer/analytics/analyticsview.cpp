@@ -76,12 +76,21 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     timeAggrMenu->addAction(ui->actionAggregateMonth);
     timeAggrMenu->addAction(ui->actionAggregateYear);
 
+    auto chartModeGroup = new QActionGroup(this);
+    chartModeGroup->addAction(ui->actionSingularChart);
+    chartModeGroup->addAction(ui->actionTimelineChart);
+
+    auto chartMode = new QMenu(tr("&Char mode"), this);
+    chartMode->addAction(ui->actionSingularChart);
+    chartMode->addAction(ui->actionTimelineChart);
+
     connect(ui->actionReload, &QAction::triggered, m_dataModel, &DataModel::reload);
     connect(ui->actionExportData, &QAction::triggered, this, &AnalyticsView::exportData);
     connect(ui->actionImportData, &QAction::triggered, this, &AnalyticsView::importData);
 
     addActions({
         timeAggrMenu->menuAction(),
+        chartMode->menuAction(),
         ui->actionReload,
         ui->actionExportData,
         ui->actionImportData
@@ -124,7 +133,7 @@ void AnalyticsView::setProduct(const Product& product)
     m_aggregationModels.clear();
 
     m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
-    ui->chartType->addItem(tr("Samples"), QVariant::fromValue(m_timeAggregationModel));
+    ui->chartType->addItem(tr("Samples"));
 
     qDeleteAll(m_aggregators);
     m_aggregators.clear();
@@ -136,22 +145,28 @@ void AnalyticsView::setProduct(const Product& product)
         m_aggregators.push_back(aggregator);
         if (auto model = aggregator->timeAggregationModel()) {
             m_aggregatedDataModel->addSourceModel(model, aggregator->displayName());
-            // ### temporary
-            ui->chartType->addItem(aggregator->displayName(), QVariant::fromValue(model));
         }
-//         if (aggregator->chartModes() != Aggregator::None)
-//             ui->chartType->addItem(aggregator->displayName(), QVariant::fromValue(aggregator));
+        if (aggregator->chartModes() != Aggregator::None)
+            ui->chartType->addItem(aggregator->displayName(), QVariant::fromValue(aggregator));
     }
 }
 
 void AnalyticsView::chartSelected()
 {
-    const auto model = ui->chartType->currentData().value<QAbstractItemModel*>();
-    m_chart->setModel(model);
-
     auto aggr = ui->chartType->currentData().value<Aggregator*>();
+
+    const auto chartMode = aggr ? aggr->chartModes() : Aggregator::Timeline;
+    ui->actionSingularChart->setEnabled(chartMode & Aggregator::Singular);
+    ui->actionTimelineChart->setEnabled(chartMode & Aggregator::Timeline);
+    if (chartMode != (Aggregator::Timeline | Aggregator::Singular)) {
+        ui->actionSingularChart->setChecked(chartMode & Aggregator::Singular);
+        ui->actionTimelineChart->setChecked(chartMode & Aggregator::Timeline);
+    }
+
     if (!aggr)
-        return;
+        m_chart->setModel(m_timeAggregationModel);
+    else
+        m_chart->setModel(aggr->timeAggregationModel());
 //     ui->chartView->setChart(aggr->timelineChart());
 }
 

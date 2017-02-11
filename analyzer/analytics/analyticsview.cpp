@@ -80,6 +80,7 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     auto chartModeGroup = new QActionGroup(this);
     chartModeGroup->addAction(ui->actionSingularChart);
     chartModeGroup->addAction(ui->actionTimelineChart);
+    connect(chartModeGroup, &QActionGroup::triggered, this, &AnalyticsView::updateChart);
 
     auto chartMode = new QMenu(tr("&Char mode"), this);
     chartMode->addAction(ui->actionSingularChart);
@@ -111,6 +112,8 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
 
 AnalyticsView::~AnalyticsView()
 {
+    disconnect(ui->chartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
+
     QSettings settings;
     settings.beginGroup(QStringLiteral("Analytics"));
     settings.setValue(QStringLiteral("TimeAggregationMode"), m_timeAggregationModel->aggregationMode());
@@ -166,8 +169,32 @@ void AnalyticsView::chartSelected()
         ui->actionTimelineChart->setChecked(chartMode & Aggregator::Timeline);
     }
 
-    m_chart->setModel(aggr->timeAggregationModel());
-//     ui->chartView->setChart(aggr->timelineChart());
+    updateChart();
+}
+
+void AnalyticsView::updateChart()
+{
+    auto aggr = ui->chartType->currentData().value<Aggregator*>();
+    if (!aggr)
+        return;
+
+    if (ui->chartView->chart())
+        disconnect(ui->chartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
+
+    // TODO
+    if (ui->actionTimelineChart->isChecked()) {
+        if (aggr->timelineChart()) {
+            ui->chartView->setChart(aggr->timelineChart());
+        } else {
+            ui->chartView->setChart(m_chart->chart());
+            m_chart->setModel(aggr->timeAggregationModel());
+        }
+    } else if (ui->actionSingularChart->isChecked()) {
+        ui->chartView->setChart(aggr->singlularChart());
+    }
+
+    if (ui->chartView->chart())
+        connect(ui->chartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
 }
 
 Aggregator* AnalyticsView::createAggregator(const Aggregation& aggr) const

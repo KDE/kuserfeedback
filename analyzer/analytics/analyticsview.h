@@ -57,6 +57,7 @@ signals:
 
 private:
     void chartSelected();
+    void updateChart();
 
     Aggregator* createAggregator(const Aggregation &aggr) const;
 

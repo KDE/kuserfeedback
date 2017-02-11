@@ -93,5 +93,7 @@ QtCharts::QChart* NumericAggregator::timelineChart()
         l.push_back(timeAggregationModel()->index(i, 0).data(TimeAggregationModel::DateTimeRole).toDateTime().toString(QStringLiteral("yyyy-MM-dd")));
     }
     xAxis->setCategories(l);
+    yAxis->setMinorTickCount(4);
+
     return m_timelineChart.get();
 }

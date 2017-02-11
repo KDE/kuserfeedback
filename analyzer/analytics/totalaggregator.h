@@ -22,6 +22,8 @@
 
 #include <QCoreApplication>
 
+#include <memory>
+
 namespace UserFeedback {
 namespace Analyzer {
 
@@ -36,6 +38,9 @@ public:
     QString displayName() const override;
     QAbstractItemModel* timeAggregationModel() override;
     QtCharts::QChart* timelineChart() override;
+
+private:
+    std::unique_ptr<QtCharts::QChart> m_timelineChart;
 };
 
 }}

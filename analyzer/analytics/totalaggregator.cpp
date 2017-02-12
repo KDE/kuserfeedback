@@ -17,7 +17,6 @@
 
 #include "totalaggregator.h"
 
-#include <QtCharts/QAreaSeries>
 #include <QtCharts/QChart>
 #include <QtCharts/QDateTimeAxis>
 #include <QtCharts/QLineSeries>

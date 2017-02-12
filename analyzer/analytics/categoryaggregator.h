@@ -40,6 +40,7 @@ public:
 
 private:
     std::unique_ptr<CategoryAggregationModel> m_model;
+    std::unique_ptr<QtCharts::QChart> m_timelineChart;
 };
 
 }}

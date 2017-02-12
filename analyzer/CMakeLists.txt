@@ -40,7 +40,6 @@ set(analyzer_srcs
     analytics/aggregator.cpp
     analytics/analyticsview.cpp
     analytics/categoryaggregator.cpp
-    analytics/chart.cpp
     analytics/numericaggregator.cpp
     analytics/ratiosetaggregator.cpp
     analytics/totalaggregator.cpp

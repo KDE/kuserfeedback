@@ -20,7 +20,6 @@
 
 #include "aggregator.h"
 #include "categoryaggregator.h"
-#include "chart.h"
 #include "numericaggregator.h"
 #include "ratiosetaggregator.h"
 #include "totalaggregator.h"
@@ -46,8 +45,7 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     ui(new Ui::AnalyticsView),
     m_dataModel(new DataModel(this)),
     m_timeAggregationModel(new TimeAggregationModel(this)),
-    m_aggregatedDataModel(new AggregatedDataModel(this)),
-    m_chart(new Chart(this))
+    m_aggregatedDataModel(new AggregatedDataModel(this))
 {
     ui->setupUi(this);
 
@@ -55,7 +53,6 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     ui->aggregatedDataView->setModel(m_aggregatedDataModel);
 
     m_timeAggregationModel->setSourceModel(m_dataModel);
-    m_chart->setModel(m_timeAggregationModel);
 
     ui->actionAggregateYear->setData(TimeAggregationModel::AggregateYear);
     ui->actionAggregateMonth->setData(TimeAggregationModel::AggregateMonth);
@@ -106,7 +103,6 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     m_timeAggregationModel->setAggregationMode(static_cast<TimeAggregationModel::AggregationMode>(aggrSetting));
     settings.endGroup();
 
-    ui->chartView->setChart(m_chart->chart());
     connect(ui->chartType, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AnalyticsView::chartSelected);
 }
 
@@ -128,7 +124,6 @@ void AnalyticsView::setRESTClient(RESTClient* client)
 
 void AnalyticsView::setProduct(const Product& product)
 {
-    m_chart->setModel(nullptr);
     m_dataModel->setProduct(product);
 
     ui->chartType->clear();
@@ -181,14 +176,8 @@ void AnalyticsView::updateChart()
     if (ui->chartView->chart())
         disconnect(ui->chartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
 
-    // TODO
     if (ui->actionTimelineChart->isChecked()) {
-        if (aggr->timelineChart()) {
-            ui->chartView->setChart(aggr->timelineChart());
-        } else {
-            ui->chartView->setChart(m_chart->chart());
-            m_chart->setModel(aggr->timeAggregationModel());
-        }
+        ui->chartView->setChart(aggr->timelineChart());
     } else if (ui->actionSingularChart->isChecked()) {
         ui->chartView->setChart(aggr->singlularChart());
     }

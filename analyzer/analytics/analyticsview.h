@@ -32,7 +32,6 @@ namespace Analyzer {
 
 class Aggregator;
 class AggregatedDataModel;
-class Chart;
 class DataModel;
 class RESTClient;
 class TimeAggregationModel;
@@ -70,7 +69,6 @@ private:
     DataModel *m_dataModel;
     TimeAggregationModel *m_timeAggregationModel;
     AggregatedDataModel *m_aggregatedDataModel;
-    Chart *m_chart;
 
     QVector<Aggregator*> m_aggregators;
 };

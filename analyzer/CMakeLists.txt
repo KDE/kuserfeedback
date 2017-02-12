@@ -17,6 +17,7 @@ set(analyzer_lib_srcs
     model/aggregationelementmodel.cpp
     model/categoryaggregationmodel.cpp
     model/datamodel.cpp
+    model/extrarowsproxymodel.cpp
     model/numericaggregationmodel.cpp
     model/productmodel.cpp
     model/ratiosetaggregationmodel.cpp

@@ -18,6 +18,7 @@
 #include "categoryaggregator.h"
 
 #include <model/categoryaggregationmodel.h>
+#include <model/extrarowsproxymodel.h>
 
 #include <QtCharts/QAreaSeries>
 #include <QtCharts/QChart>
@@ -116,10 +117,12 @@ QtCharts::QChart* CategoryAggregator::singlularChart()
 
     auto series = new QPieSeries(m_singlularChart.get());
     auto mapper = new QHPieModelMapper(m_singlularChart.get());
-    mapper->setModel(singularAggregationModel());
+    auto modelWithLabels = new ExtraRowsProxyModel(mapper);
+    modelWithLabels->setSourceModel(singularAggregationModel());
+    mapper->setModel(modelWithLabels);
     mapper->setFirstColumn(1);
     mapper->setValuesRow(0);
-    mapper->setLabelsRow(0); // FIXME
+    mapper->setLabelsRow(1);
     mapper->setSeries(series);
 
     m_singlularChart->addSeries(series);

@@ -105,6 +105,11 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     settings.endGroup();
 
     connect(ui->chartType, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AnalyticsView::chartSelected);
+    connect(ui->timeSlider, &QSlider::valueChanged, this, [this](int value) {
+        auto aggr = ui->chartType->currentData().value<Aggregator*>();
+        if (aggr)
+            aggr->setSingularTime(value);
+    });
 }
 
 AnalyticsView::~AnalyticsView()

@@ -22,7 +22,9 @@
 #include <QtCharts/QAreaSeries>
 #include <QtCharts/QChart>
 #include <QtCharts/QDateTimeAxis>
+#include <QtCharts/QHPieModelMapper>
 #include <QtCharts/QLineSeries>
+#include <QtCharts/QPieSeries>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QVXYModelMapper>
 
@@ -112,7 +114,14 @@ QtCharts::QChart* CategoryAggregator::singlularChart()
     m_singlularChart.reset(new QChart);
     m_singlularChart->setTheme(qApp->palette().color(QPalette::Window).lightnessF() < 0.25 ? QChart::ChartThemeDark : QChart::ChartThemeLight);
 
-    // TODO
+    auto series = new QPieSeries(m_singlularChart.get());
+    auto mapper = new QHPieModelMapper(m_singlularChart.get());
+    mapper->setModel(singularAggregationModel());
+    mapper->setFirstColumn(1);
+    mapper->setValuesRow(0);
+    mapper->setLabelsRow(0); // FIXME
+    mapper->setSeries(series);
 
+    m_singlularChart->addSeries(series);
     return m_singlularChart.get();
 }

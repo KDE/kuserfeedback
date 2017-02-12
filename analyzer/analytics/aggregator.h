@@ -20,6 +20,8 @@
 
 #include <core/aggregation.h>
 
+#include <memory>
+
 class QAbstractItemModel;
 
 namespace QtCharts {
@@ -30,6 +32,7 @@ namespace UserFeedback {
 namespace Analyzer {
 
 class Aggregation;
+class SingleRowFilterProxyModel;
 
 class Aggregator
 {
@@ -55,12 +58,15 @@ public:
     virtual ChartModes chartModes() const;
 
     virtual QAbstractItemModel *timeAggregationModel();
+    QAbstractItemModel* singularAggregationModel();
+    void setSingularTime(int row);
 
     virtual QtCharts::QChart *singlularChart();
     virtual QtCharts::QChart *timelineChart();
 
 private:
     QAbstractItemModel *m_sourceModel = nullptr;
+    std::unique_ptr<SingleRowFilterProxyModel> m_singularModel;
     Aggregation m_aggregation;
 };
 

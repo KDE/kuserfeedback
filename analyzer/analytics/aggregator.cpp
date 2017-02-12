@@ -17,6 +17,8 @@
 
 #include "aggregator.h"
 
+#include <model/singlerowfilterproxymodel.h>
+
 using namespace UserFeedback::Analyzer;
 
 Aggregator::Aggregator() = default;
@@ -50,6 +52,21 @@ Aggregator::ChartModes Aggregator::chartModes() const
 QAbstractItemModel* Aggregator::timeAggregationModel()
 {
     return nullptr;
+}
+
+QAbstractItemModel* Aggregator::singularAggregationModel()
+{
+    if (!m_singularModel) {
+        m_singularModel.reset(new SingleRowFilterProxyModel);
+        m_singularModel->setSourceModel(timeAggregationModel());
+    }
+    return m_singularModel.get();
+}
+
+void Aggregator::setSingularTime(int row)
+{
+    singularAggregationModel();
+    m_singularModel->setRow(row);
 }
 
 QtCharts::QChart *Aggregator::singlularChart()

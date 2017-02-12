@@ -19,7 +19,17 @@
 
 #include <model/ratiosetaggregationmodel.h>
 
+#include <QtCharts/QAreaSeries>
+#include <QtCharts/QChart>
+#include <QtCharts/QDateTimeAxis>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QValueAxis>
+#include <QtCharts/QVXYModelMapper>
+
+#include <QApplication>
+
 using namespace UserFeedback::Analyzer;
+using namespace QtCharts;
 
 RatioSetAggregator::RatioSetAggregator() = default;
 RatioSetAggregator::~RatioSetAggregator() = default;
@@ -45,11 +55,52 @@ QAbstractItemModel* RatioSetAggregator::timeAggregationModel()
         m_model->setSourceModel(sourceModel());
         const auto e = aggregation().elements().at(0);
         m_model->setAggregationValue(e.schemaEntry().name());
+        QObject::connect(m_model.get(), &QAbstractItemModel::modelReset, [this]() {
+                m_timelineChart.reset();
+        });
     }
     return m_model.get();
 }
 
 QtCharts::QChart* RatioSetAggregator::timelineChart()
 {
-    return nullptr;
+    if (m_timelineChart)
+        return m_timelineChart.get();
+
+    m_timelineChart.reset(new QChart);
+    m_timelineChart->setTheme(qApp->palette().color(QPalette::Window).lightnessF() < 0.25 ? QChart::ChartThemeDark : QChart::ChartThemeLight);
+    auto xAxis = new QDateTimeAxis(m_timelineChart.get());
+    xAxis->setFormat(QStringLiteral("yyyy-MM-dd")); // TODO, follow aggregation mode
+    auto yAxis = new QValueAxis(m_timelineChart.get());
+    m_timelineChart->addAxis(xAxis, Qt::AlignBottom);
+    m_timelineChart->addAxis(yAxis, Qt::AlignLeft);
+
+    QLineSeries *prevSeries = nullptr;
+    for (int i = 1; i < timeAggregationModel()->columnCount(); ++i) {
+        auto series = new QLineSeries;
+
+        auto mapper = new QVXYModelMapper(series);
+        mapper->setModel(timeAggregationModel());
+        mapper->setXColumn(0);
+        mapper->setYColumn(i);
+        mapper->setFirstRow(0);
+        mapper->setSeries(series);
+
+        auto areaSeries = new QAreaSeries(series, prevSeries);
+        series->setParent(areaSeries); // otherwise series isn't deleted by removeAllSeries!
+        areaSeries->setName(timeAggregationModel()->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
+        m_timelineChart->addSeries(areaSeries);
+
+        areaSeries->attachAxis(xAxis);
+        areaSeries->attachAxis(yAxis);
+
+        prevSeries = series;
+    }
+
+    xAxis->setTickCount(std::min(timeAggregationModel()->rowCount(), 12));
+    yAxis->setMin(0);
+    yAxis->setMax(1); // TODO can we turn this into *100% for display?
+    yAxis->setTickCount(11);
+
+    return m_timelineChart.get();
 }

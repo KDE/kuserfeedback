@@ -57,6 +57,7 @@ signals:
 private:
     void chartSelected();
     void updateChart();
+    void updateTimeSliderRange();
 
     Aggregator* createAggregator(const Aggregation &aggr) const;
 

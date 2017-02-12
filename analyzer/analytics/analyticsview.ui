@@ -51,10 +51,59 @@
         </layout>
        </item>
        <item>
-        <widget class="QtCharts::QChartView" name="chartView">
-         <property name="renderHints">
-          <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
+        <widget class="QStackedWidget" name="chartStack">
+         <property name="currentIndex">
+          <number>0</number>
          </property>
+         <widget class="QWidget" name="timelinePage">
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QtCharts::QChartView" name="timelineChartView">
+             <property name="renderHints">
+              <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="singularPage">
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QtCharts::QChartView" name="singularChartView"/>
+           </item>
+           <item>
+            <widget class="QSlider" name="timeSlider">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>

@@ -53,6 +53,7 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     ui->aggregatedDataView->setModel(m_aggregatedDataModel);
 
     m_timeAggregationModel->setSourceModel(m_dataModel);
+    connect(m_timeAggregationModel, &QAbstractItemModel::modelReset, this, &AnalyticsView::updateTimeSliderRange);
 
     ui->actionAggregateYear->setData(TimeAggregationModel::AggregateYear);
     ui->actionAggregateMonth->setData(TimeAggregationModel::AggregateMonth);
@@ -108,7 +109,10 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
 
 AnalyticsView::~AnalyticsView()
 {
-    disconnect(ui->chartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
+    if (ui->singularChartView->chart())
+        disconnect(ui->singularChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
+    if (ui->timelineChartView->chart())
+        disconnect(ui->timelineChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
 
     QSettings settings;
     settings.beginGroup(QStringLiteral("Analytics"));
@@ -173,17 +177,27 @@ void AnalyticsView::updateChart()
     if (!aggr)
         return;
 
-    if (ui->chartView->chart())
-        disconnect(ui->chartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
+    if (ui->singularChartView->chart())
+        disconnect(ui->singularChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
+    if (ui->timelineChartView->chart())
+        disconnect(ui->timelineChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
 
     if (ui->actionTimelineChart->isChecked()) {
-        ui->chartView->setChart(aggr->timelineChart());
+        ui->timelineChartView->setChart(aggr->timelineChart());
+        connect(ui->timelineChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
+        ui->chartStack->setCurrentWidget(ui->timelinePage);
     } else if (ui->actionSingularChart->isChecked()) {
-        ui->chartView->setChart(aggr->singlularChart());
+        ui->singularChartView->setChart(aggr->singlularChart());
+        connect(ui->singularChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
+        ui->chartStack->setCurrentWidget(ui->singularPage);
     }
+}
 
-    if (ui->chartView->chart())
-        connect(ui->chartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
+void AnalyticsView::updateTimeSliderRange()
+{
+    qDebug() << m_timeAggregationModel->rowCount() << ui->timeSlider->maximum() << ui->timeSlider->minimum();
+    if (m_timeAggregationModel->rowCount() > 0)
+        ui->timeSlider->setRange(0, m_timeAggregationModel->rowCount() - 1);
 }
 
 Aggregator* AnalyticsView::createAggregator(const Aggregation& aggr) const

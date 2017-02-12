@@ -38,7 +38,7 @@ Aggregator::ChartModes CategoryAggregator::chartModes() const
 {
     Aggregator::ChartModes modes = None;
     if (aggregation().elements().size() == 1)
-        modes |= Timeline;
+        modes |= Timeline | Singular;
     return modes;
 }
 
@@ -102,4 +102,17 @@ QtCharts::QChart* CategoryAggregator::timelineChart()
     yAxis->setMinorTickCount(4);
 
     return m_timelineChart.get();
+}
+
+QtCharts::QChart* CategoryAggregator::singlularChart()
+{
+    if (m_singlularChart)
+        return m_singlularChart.get();
+
+    m_singlularChart.reset(new QChart);
+    m_singlularChart->setTheme(qApp->palette().color(QPalette::Window).lightnessF() < 0.25 ? QChart::ChartThemeDark : QChart::ChartThemeLight);
+
+    // TODO
+
+    return m_singlularChart.get();
 }

@@ -78,12 +78,14 @@ QVariant CategoryAggregationModel::data(const QModelIndex& index, int role) cons
     }
 
     const auto idx = index.row() * m_categories.size() + index.column() - 1;
-    if (role == Qt::DisplayRole) {
-        return m_data[idx];
-    } else if (role == TimeAggregationModel::DataDisplayRole) {
-        if (index.column() == 1)
+    switch (role) {
+        case TimeAggregationModel::AccumulatedDisplayRole:
             return m_data[idx];
-        return m_data[idx] - m_data[idx - 1];
+        case Qt::DisplayRole:
+        case TimeAggregationModel::DataDisplayRole:
+            if (index.column() == 1)
+                return m_data[idx];
+            return m_data[idx] - m_data[idx - 1];
     }
 
     return {};

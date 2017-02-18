@@ -43,6 +43,7 @@ public:
         MaximumValueRole,
         TimeDisplayRole,
         DataDisplayRole,
+        AccumulatedDisplayRole,
         SamplesRole,
         AllSamplesRole
     };

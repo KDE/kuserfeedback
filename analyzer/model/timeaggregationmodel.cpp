@@ -136,7 +136,7 @@ QVariant TimeAggregationModel::data(const QModelIndex& index, int role) const
     if (!index.isValid())
         return {};
 
-    if (role == Qt::DisplayRole || role == DataDisplayRole) {
+    if (role == Qt::DisplayRole || role == DataDisplayRole || role == AccumulatedDisplayRole) {
         const auto d = m_data.at(index.row());
         switch (index.column()) {
             case 0: return d.time.toMSecsSinceEpoch(); // this is required by QtCharts...

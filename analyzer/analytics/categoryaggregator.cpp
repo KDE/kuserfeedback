@@ -19,6 +19,8 @@
 
 #include <model/categoryaggregationmodel.h>
 #include <model/extrarowsproxymodel.h>
+#include <model/rolemappingproxymodel.h>
+#include <model/timeaggregationmodel.h>
 
 #include <QtCharts/QAreaSeries>
 #include <QtCharts/QChart>
@@ -79,11 +81,14 @@ QtCharts::QChart* CategoryAggregator::timelineChart()
     m_timelineChart->addAxis(yAxis, Qt::AlignLeft);
 
     QLineSeries *prevSeries = nullptr;
+    auto model = new RoleMappingProxyModel(m_timelineChart.get());
+    model->setSourceModel(timeAggregationModel());
+    model->addRoleMapping(Qt::DisplayRole, TimeAggregationModel::AccumulatedDisplayRole);
     for (int i = 1; i < timeAggregationModel()->columnCount(); ++i) {
         auto series = new QLineSeries;
 
         auto mapper = new QVXYModelMapper(series);
-        mapper->setModel(timeAggregationModel());
+        mapper->setModel(model);
         mapper->setXColumn(0);
         mapper->setYColumn(i);
         mapper->setFirstRow(0);

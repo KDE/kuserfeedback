@@ -63,7 +63,7 @@ public:
     void setStatisticsCollectionMode(StatisticsCollectionMode mode);
 
     /** Adds a data source for statistical data collection.
-     *  @param source The data source to add.
+     *  @param source The data source to add. The Provider takes ownership of @p source.
      *  @param mode The statistics collection mode this source belongs to. Data is only
      *  send to the server for this source is a sufficiently high collection mode is configured
      *  by the user. @c NoStatistics is not allowed.

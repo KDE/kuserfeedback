@@ -48,6 +48,7 @@ class ProviderPrivate
 {
 public:
     ProviderPrivate(Provider *qq);
+    ~ProviderPrivate();
 
     void reset();
     int currentApplicationTime() const;
@@ -119,6 +120,11 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
 
     encouragementTimer.setSingleShot(true);
     QObject::connect(&encouragementTimer, SIGNAL(timeout()), q, SLOT(emitShowEncouragementMessage()));
+}
+
+ProviderPrivate::~ProviderPrivate()
+{
+    qDeleteAll(dataSources);
 }
 
 void ProviderPrivate::reset()

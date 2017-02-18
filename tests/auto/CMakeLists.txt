@@ -14,12 +14,8 @@ endfunction()
 
 uf_add_test(producttest UserFeedbackAnalyzer)
 uf_add_test(schematemplatetest.cpp UserFeedbackAnalyzer)
-uf_add_test(productapitest UserFeedbackTestUtils)
-uf_add_test(productmodeltest UserFeedbackTestUtils)
 uf_add_test(schemamodeltest UserFeedbackTestUtils)
-uf_add_test(surveyapitest UserFeedbackTestUtils)
 uf_add_test(datasourcetest UserFeedbackCore Qt5::Gui) # needs Gui for ScreenInfoSource to work
-uf_add_test(providertest UserFeedbackTestUtils UserFeedbackCore Qt5::Gui)
 uf_add_test(sampletest UserFeedbackAnalyzer)
 uf_add_test(datamodeltest UserFeedbackTestUtils)
 uf_add_test(timeaggregationmodeltest UserFeedbackTestUtils)
@@ -27,6 +23,12 @@ uf_add_test(categoryaggregationmodeltest UserFeedbackTestUtils)
 uf_add_test(numericaggregationmodeltest UserFeedbackTestUtils)
 uf_add_test(ratiosetaggregationmodeltest UserFeedbackTestUtils)
 
+if(Php_FOUND)
+    uf_add_test(productapitest UserFeedbackTestUtils)
+    uf_add_test(productmodeltest UserFeedbackTestUtils)
+    uf_add_test(surveyapitest UserFeedbackTestUtils)
+    uf_add_test(providertest UserFeedbackTestUtils UserFeedbackCore Qt5::Gui)
+endif()
 
 set(php_test_srcs
     utilstest.php

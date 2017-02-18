@@ -133,6 +133,11 @@ AnalyticsView::~AnalyticsView()
     settings.beginGroup(QStringLiteral("Analytics"));
     settings.setValue(QStringLiteral("TimeAggregationMode"), m_timeAggregationModel->aggregationMode());
     settings.endGroup();
+
+    // the chart views can't handle null or deleted charts, so set them to something safe
+    ui->singularChartView->setChart(m_nullSingularChart.get());
+    ui->timelineChartView->setChart(m_nullTimelineChart.get());
+    qDeleteAll(m_aggregators);
 }
 
 void AnalyticsView::setRESTClient(RESTClient* client)

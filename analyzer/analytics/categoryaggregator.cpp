@@ -126,26 +126,26 @@ void CategoryAggregator::updateTimelineChart()
 
 QtCharts::QChart* CategoryAggregator::singlularChart()
 {
-    if (!m_singlularChart) {
-        m_singlularChart.reset(new QChart);
-        ChartUtil::applyTheme(m_singlularChart.get());
+    if (!m_singularChart) {
+        m_singularChart.reset(new QChart);
+        ChartUtil::applyTheme(m_singularChart.get());
         updateSingularChart();
     }
 
-    return m_singlularChart.get();
+    return m_singularChart.get();
 }
 
 void CategoryAggregator::updateSingularChart()
 {
-    if (!m_singlularChart)
+    if (!m_singularChart)
         return;
-    m_singlularChart->removeAllSeries();
+    m_singularChart->removeAllSeries();
 
     if (sourceModel()->rowCount() <= 0)
         return;
 
-    auto series = new QPieSeries(m_singlularChart.get());
-    auto mapper = new QHPieModelMapper(m_singlularChart.get());
+    auto series = new QPieSeries(m_singularChart.get());
+    auto mapper = new QHPieModelMapper(m_singularChart.get());
     auto modelWithLabels = new ExtraRowsProxyModel(mapper);
     modelWithLabels->setSourceModel(singularAggregationModel());
     mapper->setModel(modelWithLabels);
@@ -154,5 +154,5 @@ void CategoryAggregator::updateSingularChart()
     mapper->setLabelsRow(1);
     mapper->setSeries(series);
 
-    m_singlularChart->addSeries(series);
+    m_singularChart->addSeries(series);
 }

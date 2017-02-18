@@ -157,6 +157,7 @@ void AnalyticsView::setProduct(const Product& product)
 
     m_aggregatedDataModel->addSourceModel(m_timeAggregationModel);
     auto totalsAggr = new TotalAggregator;
+    m_aggregators.push_back(totalsAggr);
     totalsAggr->setSourceModel(m_timeAggregationModel);
     ui->chartType->addItem(tr("Samples"), QVariant::fromValue<Aggregator*>(totalsAggr));
 

@@ -35,7 +35,7 @@ AggregationEditWidget::AggregationEditWidget(QWidget* parent) :
     ui->setupUi(this);
 
     ui->aggregationView->setModel(m_model);
-    qobject_cast<QStyledItemDelegate*>(ui->aggregationView->itemDelegate())->setItemEditorFactory(m_editorFactory);
+    qobject_cast<QStyledItemDelegate*>(ui->aggregationView->itemDelegate())->setItemEditorFactory(m_editorFactory.get());
 
     connect(ui->actionAddAggregation, &QAction::triggered, this, &AggregationEditWidget::addAggregation);
     connect(ui->actionDeleteAggregation, &QAction::triggered, this, &AggregationEditWidget::deleteAggregation);

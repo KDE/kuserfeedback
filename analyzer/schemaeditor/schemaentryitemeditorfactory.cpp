@@ -83,6 +83,8 @@ SchemaEntryItemEditorFactory::SchemaEntryItemEditorFactory() :
    registerEditor(qMetaTypeId<AggregationElement>(), new AggregationElementEditorCreator(m_elementModel.get()));
 }
 
+SchemaEntryItemEditorFactory::~SchemaEntryItemEditorFactory() = default;
+
 void SchemaEntryItemEditorFactory::setProduct(const Product& product)
 {
     m_elementModel->setProduct(product);

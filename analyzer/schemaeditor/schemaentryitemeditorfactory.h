@@ -32,6 +32,7 @@ class SchemaEntryItemEditorFactory : public QItemEditorFactory
 {
 public:
     SchemaEntryItemEditorFactory();
+    ~SchemaEntryItemEditorFactory();
 
     void setProduct(const Product &product);
 

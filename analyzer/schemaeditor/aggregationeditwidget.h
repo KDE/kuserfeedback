@@ -52,7 +52,7 @@ private:
 
     std::unique_ptr<Ui::AggregationEditWidget> ui;
     AggregationEditorModel *m_model;
-    SchemaEntryItemEditorFactory *m_editorFactory;
+    std::unique_ptr<SchemaEntryItemEditorFactory> m_editorFactory;
 };
 }
 }

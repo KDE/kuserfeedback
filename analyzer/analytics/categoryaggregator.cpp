@@ -32,6 +32,8 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QVXYModelMapper>
 
+#include <QDebug>
+
 using namespace UserFeedback::Analyzer;
 using namespace QtCharts;
 
@@ -60,7 +62,8 @@ QAbstractItemModel* CategoryAggregator::timeAggregationModel()
         const auto e = aggregation().elements().at(0);
         m_model->setAggregationValue(e.schemaEntry().name() + QLatin1Char('.') + e.schemaEntryElement().name());
         QObject::connect(m_model.get(), &QAbstractItemModel::modelReset, [this]() {
-                m_timelineChart.reset();
+            updateSingularChart();
+            updateTimelineChart();
         });
     }
     return m_model.get();
@@ -68,16 +71,28 @@ QAbstractItemModel* CategoryAggregator::timeAggregationModel()
 
 QtCharts::QChart* CategoryAggregator::timelineChart()
 {
-    if (m_timelineChart)
-        return m_timelineChart.get();
+    if (!m_timelineChart) {
+        m_timelineChart.reset(new QChart);
+        ChartUtil::applyTheme(m_timelineChart.get());
+        auto xAxis = new QDateTimeAxis(m_timelineChart.get());
+        xAxis->setFormat(QStringLiteral("yyyy-MM-dd")); // TODO, follow aggregation mode
+        auto yAxis = new QValueAxis(m_timelineChart.get());
+        xAxis->setTickCount(std::min(timeAggregationModel()->rowCount(), 12));
+        yAxis->setMinorTickCount(4);
 
-    m_timelineChart.reset(new QChart);
-    ChartUtil::applyTheme(m_timelineChart.get());
-    auto xAxis = new QDateTimeAxis(m_timelineChart.get());
-    xAxis->setFormat(QStringLiteral("yyyy-MM-dd")); // TODO, follow aggregation mode
-    auto yAxis = new QValueAxis(m_timelineChart.get());
-    m_timelineChart->addAxis(xAxis, Qt::AlignBottom);
-    m_timelineChart->addAxis(yAxis, Qt::AlignLeft);
+        m_timelineChart->addAxis(xAxis, Qt::AlignBottom);
+        m_timelineChart->addAxis(yAxis, Qt::AlignLeft);
+        updateTimelineChart();
+    }
+
+    return m_timelineChart.get();
+}
+
+void CategoryAggregator::updateTimelineChart()
+{
+    if (!m_timelineChart)
+        return;
+    m_timelineChart->removeAllSeries();
 
     QLineSeries *prevSeries = nullptr;
     auto model = new RoleMappingProxyModel(m_timelineChart.get());
@@ -98,26 +113,36 @@ QtCharts::QChart* CategoryAggregator::timelineChart()
         areaSeries->setName(timeAggregationModel()->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
         m_timelineChart->addSeries(areaSeries);
 
-        areaSeries->attachAxis(xAxis);
-        areaSeries->attachAxis(yAxis);
+        areaSeries->attachAxis(m_timelineChart->axisX());
+        areaSeries->attachAxis(m_timelineChart->axisY());
 
         prevSeries = series;
     }
 
-    xAxis->setTickCount(std::min(timeAggregationModel()->rowCount(), 12));
-    yAxis->setMin(0);
-    yAxis->setMinorTickCount(4);
-
-    return m_timelineChart.get();
+    const auto max = timeAggregationModel()->index(0, 0).data(TimeAggregationModel::MaximumValueRole).toInt();
+    m_timelineChart->axisY()->setRange(0, max);
+    qobject_cast<QValueAxis*>(m_timelineChart->axisY())->applyNiceNumbers();
 }
 
 QtCharts::QChart* CategoryAggregator::singlularChart()
 {
-    if (m_singlularChart)
-        return m_singlularChart.get();
+    if (!m_singlularChart) {
+        m_singlularChart.reset(new QChart);
+        ChartUtil::applyTheme(m_singlularChart.get());
+        updateSingularChart();
+    }
 
-    m_singlularChart.reset(new QChart);
-    ChartUtil::applyTheme(m_singlularChart.get());
+    return m_singlularChart.get();
+}
+
+void CategoryAggregator::updateSingularChart()
+{
+    if (!m_singlularChart)
+        return;
+    m_singlularChart->removeAllSeries();
+
+    if (sourceModel()->rowCount() <= 0)
+        return;
 
     auto series = new QPieSeries(m_singlularChart.get());
     auto mapper = new QHPieModelMapper(m_singlularChart.get());
@@ -130,5 +155,4 @@ QtCharts::QChart* CategoryAggregator::singlularChart()
     mapper->setSeries(series);
 
     m_singlularChart->addSeries(series);
-    return m_singlularChart.get();
 }

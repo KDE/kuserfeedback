@@ -40,6 +40,9 @@ public:
     QtCharts::QChart* singlularChart() override;
 
 private:
+    void updateTimelineChart();
+    void updateSingularChart();
+
     std::unique_ptr<CategoryAggregationModel> m_model;
     std::unique_ptr<QtCharts::QChart> m_timelineChart;
     std::unique_ptr<QtCharts::QChart> m_singlularChart;

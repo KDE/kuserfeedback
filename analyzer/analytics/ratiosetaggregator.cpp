@@ -55,7 +55,7 @@ QAbstractItemModel* RatioSetAggregator::timeAggregationModel()
         const auto e = aggregation().elements().at(0);
         m_model->setAggregationValue(e.schemaEntry().name());
         QObject::connect(m_model.get(), &QAbstractItemModel::modelReset, [this]() {
-                m_timelineChart.reset();
+            updateTimelineChart();
         });
     }
     return m_model.get();
@@ -63,16 +63,26 @@ QAbstractItemModel* RatioSetAggregator::timeAggregationModel()
 
 QtCharts::QChart* RatioSetAggregator::timelineChart()
 {
-    if (m_timelineChart)
-        return m_timelineChart.get();
+    if (!m_timelineChart) {
+        m_timelineChart.reset(new QChart);
+        ChartUtil::applyTheme(m_timelineChart.get());
+        auto xAxis = new QDateTimeAxis(m_timelineChart.get());
+        xAxis->setFormat(QStringLiteral("yyyy-MM-dd")); // TODO, follow aggregation mode
+        auto yAxis = new QValueAxis(m_timelineChart.get());
+        yAxis->setTickCount(11);
+        m_timelineChart->addAxis(xAxis, Qt::AlignBottom);
+        m_timelineChart->addAxis(yAxis, Qt::AlignLeft);
+        updateTimelineChart();
+    }
 
-    m_timelineChart.reset(new QChart);
-    ChartUtil::applyTheme(m_timelineChart.get());
-    auto xAxis = new QDateTimeAxis(m_timelineChart.get());
-    xAxis->setFormat(QStringLiteral("yyyy-MM-dd")); // TODO, follow aggregation mode
-    auto yAxis = new QValueAxis(m_timelineChart.get());
-    m_timelineChart->addAxis(xAxis, Qt::AlignBottom);
-    m_timelineChart->addAxis(yAxis, Qt::AlignLeft);
+    return m_timelineChart.get();
+}
+
+void RatioSetAggregator::updateTimelineChart()
+{
+    if (!m_timelineChart)
+        return;
+    m_timelineChart->removeAllSeries();
 
     QLineSeries *prevSeries = nullptr;
     for (int i = 1; i < timeAggregationModel()->columnCount(); ++i) {
@@ -90,16 +100,12 @@ QtCharts::QChart* RatioSetAggregator::timelineChart()
         areaSeries->setName(timeAggregationModel()->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
         m_timelineChart->addSeries(areaSeries);
 
-        areaSeries->attachAxis(xAxis);
-        areaSeries->attachAxis(yAxis);
+        areaSeries->attachAxis(m_timelineChart->axisX());
+        areaSeries->attachAxis(m_timelineChart->axisY());
 
         prevSeries = series;
     }
 
-    xAxis->setTickCount(std::min(timeAggregationModel()->rowCount(), 12));
-    yAxis->setMin(0);
-    yAxis->setMax(1); // TODO can we turn this into *100% for display?
-    yAxis->setTickCount(11);
-
-    return m_timelineChart.get();
+    qobject_cast<QDateTimeAxis*>(m_timelineChart->axisX())->setTickCount(std::min(timeAggregationModel()->rowCount(), 12));
+    m_timelineChart->axisY()->setRange(0, 1); // TODO can we turn this into *100% for display?
 }

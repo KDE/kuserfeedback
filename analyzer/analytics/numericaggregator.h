@@ -39,6 +39,8 @@ public:
     QtCharts::QChart* timelineChart() override;
 
 private:
+    void updateTimelineChart();
+
     std::unique_ptr<NumericAggregationModel> m_model;
     std::unique_ptr<QtCharts::QChart> m_timelineChart;
 };

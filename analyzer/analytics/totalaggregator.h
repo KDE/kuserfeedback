@@ -40,6 +40,8 @@ public:
     QtCharts::QChart* timelineChart() override;
 
 private:
+    void updateTimelineChart();
+
     std::unique_ptr<QtCharts::QChart> m_timelineChart;
 };
 

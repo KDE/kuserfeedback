@@ -124,11 +124,6 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
 
 AnalyticsView::~AnalyticsView()
 {
-    if (ui->singularChartView->chart())
-        disconnect(ui->singularChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
-    if (ui->timelineChartView->chart())
-        disconnect(ui->timelineChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
-
     QSettings settings;
     settings.beginGroup(QStringLiteral("Analytics"));
     settings.setValue(QStringLiteral("TimeAggregationMode"), m_timeAggregationModel->aggregationMode());
@@ -201,18 +196,11 @@ void AnalyticsView::updateChart()
     if (!aggr)
         return;
 
-    if (ui->singularChartView->chart())
-        disconnect(ui->singularChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
-    if (ui->timelineChartView->chart())
-        disconnect(ui->timelineChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
-
     if (ui->actionTimelineChart->isChecked()) {
         ui->timelineChartView->setChart(aggr->timelineChart());
-        connect(ui->timelineChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
         ui->chartStack->setCurrentWidget(ui->timelinePage);
     } else if (ui->actionSingularChart->isChecked()) {
         ui->singularChartView->setChart(aggr->singlularChart());
-        connect(ui->singularChartView->chart(), &QObject::destroyed, this, &AnalyticsView::updateChart);
         ui->chartStack->setCurrentWidget(ui->singularPage);
     }
 }

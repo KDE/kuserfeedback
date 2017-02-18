@@ -18,6 +18,8 @@
 #include "totalaggregator.h"
 #include "chartutil.h"
 
+#include <model/timeaggregationmodel.h>
+
 #include <QtCharts/QChart>
 #include <QtCharts/QDateTimeAxis>
 #include <QtCharts/QLineSeries>
@@ -51,20 +53,32 @@ QAbstractItemModel* TotalAggregator::timeAggregationModel()
 
 QtCharts::QChart* TotalAggregator::timelineChart()
 {
-    if (m_timelineChart)
-        return m_timelineChart.get();
+    if (!m_timelineChart) {
+        m_timelineChart.reset(new QChart);
+        ChartUtil::applyTheme(m_timelineChart.get());
+        auto xAxis = new QDateTimeAxis(m_timelineChart.get());
+        xAxis->setFormat(QStringLiteral("yyyy-MM-dd")); // TODO, follow aggregation mode
+        auto yAxis = new QValueAxis(m_timelineChart.get());
+        yAxis->setMinorTickCount(4);
+        m_timelineChart->addAxis(xAxis, Qt::AlignBottom);
+        m_timelineChart->addAxis(yAxis, Qt::AlignLeft);
+        updateTimelineChart();
 
-    QObject::connect(sourceModel(), &QAbstractItemModel::modelReset, sourceModel(), [this]() {
-            m_timelineChart.reset();
-    }, Qt::UniqueConnection);
+        QObject::connect(sourceModel(), &QAbstractItemModel::modelReset, [this]() {
+            updateTimelineChart();
+        });
+    }
 
-    m_timelineChart.reset(new QChart);
-    ChartUtil::applyTheme(m_timelineChart.get());
-    auto xAxis = new QDateTimeAxis(m_timelineChart.get());
-    xAxis->setFormat(QStringLiteral("yyyy-MM-dd")); // TODO, follow aggregation mode
-    auto yAxis = new QValueAxis(m_timelineChart.get());
-    m_timelineChart->addAxis(xAxis, Qt::AlignBottom);
-    m_timelineChart->addAxis(yAxis, Qt::AlignLeft);
+    return m_timelineChart.get();
+}
+
+void TotalAggregator::updateTimelineChart()
+{
+    if (!m_timelineChart)
+        return;
+    m_timelineChart->removeAllSeries();
+    if (timeAggregationModel()->rowCount() <= 0)
+        return;
 
     auto series = new QLineSeries(m_timelineChart.get());
     series->setName(displayName());
@@ -76,12 +90,14 @@ QtCharts::QChart* TotalAggregator::timelineChart()
     mapper->setSeries(series);
     m_timelineChart->addSeries(series);
 
-    series->attachAxis(xAxis);
-    series->attachAxis(yAxis);
+    series->attachAxis(m_timelineChart->axisX());
+    series->attachAxis(m_timelineChart->axisY());
 
-    xAxis->setTickCount(std::min(timeAggregationModel()->rowCount(), 12));
-    yAxis->setMin(0);
-    yAxis->setMinorTickCount(4);
-
-    return m_timelineChart.get();
+    const auto beginDt = timeAggregationModel()->index(0, 0).data(TimeAggregationModel::DateTimeRole).toDateTime();
+    const auto endDt = timeAggregationModel()->index(timeAggregationModel()->rowCount() - 1, 0).data(TimeAggregationModel::DateTimeRole).toDateTime();
+    m_timelineChart->axisX()->setRange(beginDt, endDt);
+    qobject_cast<QDateTimeAxis*>(m_timelineChart->axisX())->setTickCount(std::min(timeAggregationModel()->rowCount(), 12));
+    const auto max = timeAggregationModel()->index(0, 0).data(TimeAggregationModel::MaximumValueRole).toInt();
+    m_timelineChart->axisY()->setRange(0, max);
+    qobject_cast<QValueAxis*>(m_timelineChart->axisY())->applyNiceNumbers();
 }

@@ -63,7 +63,7 @@ SchemaEditor::SchemaEditor(QWidget* parent) :
     connect(ui->actionExportSchema, &QAction::triggered, this, &SchemaEditor::exportSchema);
 
     addActions({ m_createFromTemplateAction, ui->actionSave, ui->actionImportSchema, ui->actionExportSchema });
-    auto sep = new QAction(parent);
+    auto sep = new QAction(this);
     sep->setSeparator(true);
     addAction(sep);
     addActions(ui->schema->actions());

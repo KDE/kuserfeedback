@@ -64,7 +64,7 @@ QtCharts::QChart* TotalAggregator::timelineChart()
         m_timelineChart->addAxis(yAxis, Qt::AlignLeft);
         updateTimelineChart();
 
-        QObject::connect(sourceModel(), &QAbstractItemModel::modelReset, [this]() {
+        QObject::connect(sourceModel(), &QAbstractItemModel::modelReset, m_timelineChart.get(), [this]() {
             updateTimelineChart();
         });
     }

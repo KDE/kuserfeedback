@@ -21,6 +21,7 @@ set(analyzer_lib_srcs
     model/numericaggregationmodel.cpp
     model/productmodel.cpp
     model/ratiosetaggregationmodel.cpp
+    model/rolemappingproxymodel.cpp
     model/schemamodel.cpp
     model/singlerowfilterproxymodel.cpp
     model/surveymodel.cpp

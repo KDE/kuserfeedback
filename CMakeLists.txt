@@ -159,7 +159,7 @@ configure_file(config-userfeedback-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/c
 #
 add_subdirectory(provider)
 add_subdirectory(server)
-if(Qt5Charts_FOUND AND KF5WidgetsAddons_FOUND AND NOT CMAKE_VERSION VERSION_LESS 3.0) # analyzer is Qt5 only and needs AUTOUIC support
+if(Qt5Charts_FOUND AND NOT CMAKE_VERSION VERSION_LESS 3.0) # analyzer is Qt5 only and needs AUTOUIC support
     add_subdirectory(analyzer)
     add_subdirectory(tests/manual)
 endif()

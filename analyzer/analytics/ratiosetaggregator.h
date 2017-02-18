@@ -37,12 +37,15 @@ public:
     QString displayName() const override;
     QAbstractItemModel* timeAggregationModel() override;
     QtCharts::QChart* timelineChart() override;
+    QtCharts::QChart* singlularChart() override;
 
 private:
     void updateTimelineChart();
+    void updateSingularChart();
 
     std::unique_ptr<RatioSetAggregationModel> m_model;
     std::unique_ptr<QtCharts::QChart> m_timelineChart;
+    std::unique_ptr<QtCharts::QChart> m_singularChart;
 };
 
 }}

@@ -18,12 +18,15 @@
 #include "ratiosetaggregator.h"
 #include "chartutil.h"
 
+#include <model/extrarowsproxymodel.h>
 #include <model/ratiosetaggregationmodel.h>
 
 #include <QtCharts/QAreaSeries>
 #include <QtCharts/QChart>
 #include <QtCharts/QDateTimeAxis>
+#include <QtCharts/QHPieModelMapper>
 #include <QtCharts/QLineSeries>
+#include <QtCharts/QPieSeries>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QVXYModelMapper>
 
@@ -37,7 +40,7 @@ Aggregator::ChartModes RatioSetAggregator::chartModes() const
 {
     Aggregator::ChartModes modes = None;
     if (aggregation().elements().size() == 1)
-        modes |= Timeline;
+        modes |= Timeline | Singular;
     return modes;
 }
 
@@ -56,6 +59,7 @@ QAbstractItemModel* RatioSetAggregator::timeAggregationModel()
         m_model->setAggregationValue(e.schemaEntry().name());
         QObject::connect(m_model.get(), &QAbstractItemModel::modelReset, [this]() {
             updateTimelineChart();
+            updateSingularChart();
         });
     }
     return m_model.get();
@@ -108,4 +112,37 @@ void RatioSetAggregator::updateTimelineChart()
 
     qobject_cast<QDateTimeAxis*>(m_timelineChart->axisX())->setTickCount(std::min(timeAggregationModel()->rowCount(), 12));
     m_timelineChart->axisY()->setRange(0, 1); // TODO can we turn this into *100% for display?
+}
+
+QtCharts::QChart* RatioSetAggregator::singlularChart()
+{
+    if (!m_singularChart) {
+        m_singularChart.reset(new QChart);
+        ChartUtil::applyTheme(m_singularChart.get());
+        updateSingularChart();
+    }
+
+    return m_singularChart.get();
+}
+
+void RatioSetAggregator::updateSingularChart()
+{
+    if (!m_singularChart)
+        return;
+    m_singularChart->removeAllSeries();
+
+    if (sourceModel()->rowCount() <= 0)
+        return;
+
+    auto series = new QPieSeries(m_singularChart.get());
+    auto mapper = new QHPieModelMapper(m_singularChart.get());
+    auto modelWithLabels = new ExtraRowsProxyModel(mapper);
+    modelWithLabels->setSourceModel(singularAggregationModel());
+    mapper->setModel(modelWithLabels);
+    mapper->setFirstColumn(1);
+    mapper->setValuesRow(0);
+    mapper->setLabelsRow(1);
+    mapper->setSeries(series);
+
+    m_singularChart->addSeries(series);
 }

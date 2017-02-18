@@ -117,8 +117,10 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     connect(ui->chartType, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AnalyticsView::chartSelected);
     connect(ui->timeSlider, &QSlider::valueChanged, this, [this](int value) {
         auto aggr = ui->chartType->currentData().value<Aggregator*>();
-        if (aggr)
-            aggr->setSingularTime(value);
+        if (!aggr)
+            return;
+        aggr->setSingularTime(value);
+        ui->timeLabel->setText(aggr->singularAggregationModel()->index(0, 0).data(TimeAggregationModel::TimeDisplayRole).toString());
     });
 }
 
@@ -208,9 +210,10 @@ void AnalyticsView::updateChart()
 
 void AnalyticsView::updateTimeSliderRange()
 {
-    qDebug() << m_timeAggregationModel->rowCount() << ui->timeSlider->maximum() << ui->timeSlider->minimum();
-    if (m_timeAggregationModel->rowCount() > 0)
+    if (m_timeAggregationModel->rowCount() > 0) {
         ui->timeSlider->setRange(0, m_timeAggregationModel->rowCount() - 1);
+        ui->timeLabel->setText(m_timeAggregationModel->index(ui->timeSlider->value(), 0).data(TimeAggregationModel::TimeDisplayRole).toString());
+    }
 }
 
 Aggregator* AnalyticsView::createAggregator(const Aggregation& aggr) const

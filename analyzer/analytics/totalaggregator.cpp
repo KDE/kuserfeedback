@@ -16,6 +16,7 @@
 */
 
 #include "totalaggregator.h"
+#include "chartutil.h"
 
 #include <QtCharts/QChart>
 #include <QtCharts/QDateTimeAxis>
@@ -23,7 +24,6 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QVXYModelMapper>
 
-#include <QApplication>
 #include <QAbstractItemModel>
 
 #include <numeric>
@@ -59,7 +59,7 @@ QtCharts::QChart* TotalAggregator::timelineChart()
     }, Qt::UniqueConnection);
 
     m_timelineChart.reset(new QChart);
-    m_timelineChart->setTheme(qApp->palette().color(QPalette::Window).lightnessF() < 0.25 ? QChart::ChartThemeDark : QChart::ChartThemeLight);
+    ChartUtil::applyTheme(m_timelineChart.get());
     auto xAxis = new QDateTimeAxis(m_timelineChart.get());
     xAxis->setFormat(QStringLiteral("yyyy-MM-dd")); // TODO, follow aggregation mode
     auto yAxis = new QValueAxis(m_timelineChart.get());

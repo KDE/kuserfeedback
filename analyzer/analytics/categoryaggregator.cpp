@@ -16,6 +16,7 @@
 */
 
 #include "categoryaggregator.h"
+#include "chartutil.h"
 
 #include <model/categoryaggregationmodel.h>
 #include <model/extrarowsproxymodel.h>
@@ -30,8 +31,6 @@
 #include <QtCharts/QPieSeries>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QVXYModelMapper>
-
-#include <QApplication>
 
 using namespace UserFeedback::Analyzer;
 using namespace QtCharts;
@@ -73,7 +72,7 @@ QtCharts::QChart* CategoryAggregator::timelineChart()
         return m_timelineChart.get();
 
     m_timelineChart.reset(new QChart);
-    m_timelineChart->setTheme(qApp->palette().color(QPalette::Window).lightnessF() < 0.25 ? QChart::ChartThemeDark : QChart::ChartThemeLight);
+    ChartUtil::applyTheme(m_timelineChart.get());
     auto xAxis = new QDateTimeAxis(m_timelineChart.get());
     xAxis->setFormat(QStringLiteral("yyyy-MM-dd")); // TODO, follow aggregation mode
     auto yAxis = new QValueAxis(m_timelineChart.get());
@@ -118,7 +117,7 @@ QtCharts::QChart* CategoryAggregator::singlularChart()
         return m_singlularChart.get();
 
     m_singlularChart.reset(new QChart);
-    m_singlularChart->setTheme(qApp->palette().color(QPalette::Window).lightnessF() < 0.25 ? QChart::ChartThemeDark : QChart::ChartThemeLight);
+    ChartUtil::applyTheme(m_singlularChart.get());
 
     auto series = new QPieSeries(m_singlularChart.get());
     auto mapper = new QHPieModelMapper(m_singlularChart.get());

@@ -16,6 +16,7 @@
 */
 
 #include "numericaggregator.h"
+#include "chartutil.h"
 
 #include <model/numericaggregationmodel.h>
 #include <model/timeaggregationmodel.h>
@@ -25,9 +26,6 @@
 #include <QtCharts/QChart>
 #include <QtCharts/QHBoxPlotModelMapper>
 #include <QtCharts/QValueAxis>
-
-#include <QApplication>
-#include <QDateTime>
 
 using namespace UserFeedback::Analyzer;
 using namespace QtCharts;
@@ -69,7 +67,7 @@ QtCharts::QChart* NumericAggregator::timelineChart()
         return m_timelineChart.get();
 
     m_timelineChart.reset(new QChart);
-    m_timelineChart->setTheme(qApp->palette().color(QPalette::Window).lightnessF() < 0.25 ? QChart::ChartThemeDark : QChart::ChartThemeLight);
+    ChartUtil::applyTheme(m_timelineChart.get());
     auto xAxis = new QBarCategoryAxis(m_timelineChart.get());
     auto yAxis = new QValueAxis(m_timelineChart.get());
     m_timelineChart->addAxis(xAxis, Qt::AlignBottom);

@@ -95,7 +95,7 @@ private slots:
         srcModel.setSamples(samples);
 
         QCOMPARE(model.columnCount(), 4);
-        QCOMPARE(model.headerData(1, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("<empty>"));
+        QCOMPARE(model.headerData(1, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("[empty]"));
         QCOMPARE(model.headerData(2, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("1.0"));
         QCOMPARE(model.headerData(3, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("1.9.84"));
 

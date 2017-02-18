@@ -97,7 +97,7 @@ QVariant CategoryAggregationModel::headerData(int section, Qt::Orientation orien
         if (role == Qt::DisplayRole) {
             const auto cat = m_categories.at(section - 1);
             if (cat.isEmpty())
-                return tr("<empty>");
+                return tr("[empty]");
             return cat;
         }
     }

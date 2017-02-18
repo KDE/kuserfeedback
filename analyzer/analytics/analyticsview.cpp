@@ -80,7 +80,7 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     chartModeGroup->addAction(ui->actionTimelineChart);
     connect(chartModeGroup, &QActionGroup::triggered, this, &AnalyticsView::updateChart);
 
-    auto chartMode = new QMenu(tr("&Char mode"), this);
+    auto chartMode = new QMenu(tr("&Chart mode"), this);
     chartMode->addAction(ui->actionSingularChart);
     chartMode->addAction(ui->actionTimelineChart);
 

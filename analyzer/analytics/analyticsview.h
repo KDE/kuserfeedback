@@ -27,6 +27,10 @@
 
 class QAbstractItemModel;
 
+namespace QtCharts {
+class QChart;
+}
+
 namespace UserFeedback {
 namespace Analyzer {
 
@@ -72,6 +76,9 @@ private:
     AggregatedDataModel *m_aggregatedDataModel;
 
     QVector<Aggregator*> m_aggregators;
+
+    std::unique_ptr<QtCharts::QChart> m_nullSingularChart;
+    std::unique_ptr<QtCharts::QChart> m_nullTimelineChart;
 };
 }
 }

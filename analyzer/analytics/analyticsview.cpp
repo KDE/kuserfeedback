@@ -20,6 +20,7 @@
 
 #include "aggregator.h"
 #include "categoryaggregator.h"
+#include "chartutil.h"
 #include "numericaggregator.h"
 #include "ratiosetaggregator.h"
 #include "totalaggregator.h"
@@ -30,6 +31,8 @@
 #include <rest/restapi.h>
 #include <core/aggregation.h>
 #include <core/sample.h>
+
+#include <QtCharts/QChart>
 
 #include <QFile>
 #include <QFileDialog>
@@ -45,9 +48,16 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     ui(new Ui::AnalyticsView),
     m_dataModel(new DataModel(this)),
     m_timeAggregationModel(new TimeAggregationModel(this)),
-    m_aggregatedDataModel(new AggregatedDataModel(this))
+    m_aggregatedDataModel(new AggregatedDataModel(this)),
+    m_nullSingularChart(new QtCharts::QChart),
+    m_nullTimelineChart(new QtCharts::QChart)
 {
     ui->setupUi(this);
+
+    ChartUtil::applyTheme(m_nullSingularChart.get());
+    ChartUtil::applyTheme(m_nullTimelineChart.get());
+    ui->singularChartView->setChart(m_nullSingularChart.get());
+    ui->timelineChartView->setChart(m_nullTimelineChart.get());
 
     ui->dataView->setModel(m_dataModel);
     ui->aggregatedDataView->setModel(m_aggregatedDataModel);
@@ -133,6 +143,10 @@ void AnalyticsView::setRESTClient(RESTClient* client)
 
 void AnalyticsView::setProduct(const Product& product)
 {
+    // the chart views can't handle null or deleted charts, so set them to something safe
+    ui->singularChartView->setChart(m_nullSingularChart.get());
+    ui->timelineChartView->setChart(m_nullTimelineChart.get());
+
     m_dataModel->setProduct(product);
 
     ui->chartType->clear();

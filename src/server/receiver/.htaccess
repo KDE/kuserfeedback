@@ -1,3 +1,4 @@
+Allow from all
 Options +FollowSymLinks
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f

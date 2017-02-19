@@ -23,7 +23,6 @@
 #include <QObject>
 #include <QUrl>
 
-
 namespace UserFeedback {
 
 class AbstractDataSource;

@@ -17,12 +17,12 @@
 
 #include <config-userfeedback-version.h>
 
-#include "abstractdatasource.h"
 #include "provider.h"
+#include "provider_p.h"
+#include "abstractdatasource.h"
 #include "surveyinfo.h"
 
 #include <QCoreApplication>
-#include <QDateTime>
 #include <QDebug>
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QJsonArray>
@@ -33,68 +33,12 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSettings>
-#include <QStringList>
-#include <QTime>
-#include <QTimer>
 #include <QUrl>
 
 #include <algorithm>
 #include <numeric>
 
 using namespace UserFeedback;
-
-namespace UserFeedback {
-class ProviderPrivate
-{
-public:
-    ProviderPrivate(Provider *qq);
-    ~ProviderPrivate();
-
-    void reset();
-    int currentApplicationTime() const;
-
-    void load();
-    void store();
-
-    void aboutToQuit();
-
-    QByteArray jsonData() const;
-    void scheduleNextSubmission();
-    void submitFinished();
-
-    void selectSurvey(const SurveyInfo &survey) const;
-
-    void scheduleEncouragement();
-    void emitShowEncouragementMessage();
-
-    Provider *q;
-
-    QString productId;
-
-    QTimer submissionTimer;
-    QNetworkAccessManager *networkAccessManager;
-    QUrl serverUrl;
-    QDateTime lastSubmitTime;
-    int submissionInterval;
-    Provider::StatisticsCollectionMode statisticsMode;
-
-    int surveyInterval;
-    QDateTime lastSurveyTime;
-    QStringList completedSurveys;
-
-    QTime startTime;
-    int startCount;
-    int usageTime;
-
-    QTimer encouragementTimer;
-    int encouragementStarts;
-    int encouragementTime;
-    int encouragementDelay;
-    bool encouragementDisplayed;
-
-    QVector<AbstractDataSource*> dataSources;
-};
-}
 
 ProviderPrivate::ProviderPrivate(Provider *qq)
     : q(qq)

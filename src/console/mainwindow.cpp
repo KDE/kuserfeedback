@@ -137,6 +137,7 @@ MainWindow::MainWindow() :
     m_feedbackProvider->setSubmissionInterval(1);
     m_feedbackProvider->setApplicationUsageTimeUntilEncouragement(10);
     auto viewModeSource = new UserFeedback::PropertyRatioSource(ui->viewStack, "currentIndex", QStringLiteral("viewRatio"));
+    viewModeSource->setDescription(tr("Usage ratio of the analytics view, survey editor and schema editor."));
     viewModeSource->addValueMapping(0, QStringLiteral("analytics"));
     viewModeSource->addValueMapping(1, QStringLiteral("surveyEditor"));
     viewModeSource->addValueMapping(2, QStringLiteral("schemaEditor"));

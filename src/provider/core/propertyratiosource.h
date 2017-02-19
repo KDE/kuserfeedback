@@ -50,6 +50,12 @@ public:
     void addValueMapping(const QVariant &value, const QString &str);
 
     QString description() const override;
+    /** Set human-readable and translated description of the data provided by this source.
+     *  @note This must be set before adding this source, sources without description are
+     *  discarded.
+     */
+    void setDescription(const QString &desc);
+
     QVariant data() override;
     void load(QSettings *settings) override;
     void store(QSettings *settings) override;

@@ -341,7 +341,20 @@ void Provider::setStatisticsCollectionMode(StatisticsCollectionMode mode)
 
 void Provider::addDataSource(AbstractDataSource *source, StatisticsCollectionMode mode)
 {
+    // sanity-check sources
+    if (mode == NoStatistics) {
+        qCritical() << "Source" << source->name() << "attempts to report data unconditionally, ignoring!";
+        delete source;
+        return;
+    }
+    if (source->description().isEmpty()) {
+        qCritical() << "Source" << source->name() << "has no description, ignoring!";
+        delete source;
+        return;
+    }
+
     Q_ASSERT(mode != NoStatistics);
+    Q_ASSERT(!source->description().isEmpty());
     source->setCollectionMode(mode);
     d->dataSources.push_back(source);
 

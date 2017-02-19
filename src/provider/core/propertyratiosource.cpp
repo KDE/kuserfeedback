@@ -37,6 +37,7 @@ public:
     void propertyChanged();
     QString valueToString(const QVariant &value) const;
 
+    QString description;
     QObject *obj = nullptr; // TODO make this a QPointer?
     QObject *signalMonitor = nullptr;
     QMetaProperty property;
@@ -126,7 +127,14 @@ void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &
 
 QString PropertyRatioSource::description() const
 {
-    return QString(); // TODO
+    Q_D(const PropertyRatioSource);
+    return d->description;
+}
+
+void PropertyRatioSource::setDescription(const QString& desc)
+{
+    Q_D(PropertyRatioSource);
+    d->description = desc;
 }
 
 QVariant PropertyRatioSource::data()

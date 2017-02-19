@@ -65,6 +65,7 @@ Orwell::Orwell(QWidget* parent) :
     connect(ui->actionQuit, &QAction::triggered, qApp, &QCoreApplication::quit);
 
     auto propertyMonitorSource = new UserFeedback::PropertyRatioSource(ui->dial, "value", QStringLiteral("dialRatio"));
+    propertyMonitorSource->setDescription(QStringLiteral("The dial position."));
     propertyMonitorSource->addValueMapping(0, QStringLiteral("off"));
     propertyMonitorSource->addValueMapping(11, QStringLiteral("max"));
     provider->addDataSource(propertyMonitorSource, UserFeedback::Provider::AllStatistics);

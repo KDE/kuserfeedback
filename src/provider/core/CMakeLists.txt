@@ -24,7 +24,7 @@ if(Qt5Core_FOUND)
 else()
     target_link_libraries(UserFeedbackCore PUBLIC ${QT_QTCORE_LIBRARIES} PRIVATE ${QT_QTGUI_LIBRARIES} ${QT_QTNETWORK_LIBRARIES})
 endif()
-target_include_directories(UserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR};>")
+target_include_directories(UserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src;${CMAKE_CURRENT_BINARY_DIR};>")
 
 install(TARGETS UserFeedbackCore EXPORT UserFeedbackTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 

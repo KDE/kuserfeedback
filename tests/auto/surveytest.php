@@ -16,9 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once('../../server/shared/datastore.php');
-require_once('../../server/shared/product.php');
-require_once('../../server/shared/survey.php');
+require_once('../../src/server/shared/datastore.php');
+require_once('../../src/server/shared/product.php');
+require_once('../../src/server/shared/survey.php');
 
 class SurveyTest extends PHPUnit_Extensions_Database_TestCase
 {

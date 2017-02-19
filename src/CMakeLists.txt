@@ -1,0 +1,5 @@
+add_subdirectory(provider)
+add_subdirectory(server)
+if(Qt5Charts_FOUND AND NOT CMAKE_VERSION VERSION_LESS 3.0)
+    add_subdirectory(analyzer)
+endif()

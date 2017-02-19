@@ -101,9 +101,9 @@ else()
 
     # C++11/Qt5 compatibility
     if(MSVC)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /FI\"${CMAKE_SOURCE_DIR}\\compat\\qt4compat.h\"")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /FI\"${CMAKE_SOURCE_DIR}\\src\\compat\\qt4compat.h\"")
     else()
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -include \"${CMAKE_SOURCE_DIR}/compat/qt4compat.h\"")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -include \"${CMAKE_SOURCE_DIR}/src/compat/qt4compat.h\"")
     endif()
 endif()
 
@@ -157,10 +157,8 @@ configure_file(config-userfeedback-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/c
 #
 # Actually build the stuff
 #
-add_subdirectory(provider)
-add_subdirectory(server)
-if(Qt5Charts_FOUND AND NOT CMAKE_VERSION VERSION_LESS 3.0) # analyzer is Qt5 only and needs AUTOUIC support
-    add_subdirectory(analyzer)
+add_subdirectory(src)
+if(Qt5Charts_FOUND AND NOT CMAKE_VERSION VERSION_LESS 3.0)
     add_subdirectory(tests/manual)
 endif()
 if(Qt5Core_FOUND)

@@ -32,7 +32,7 @@ set(analyzer_lib_srcs
 
 add_library(UserFeedbackAnalyzer STATIC ${analyzer_lib_srcs})
 target_link_libraries(UserFeedbackAnalyzer Qt5::Network)
-target_include_directories(UserFeedbackAnalyzer PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};>")
+target_include_directories(UserFeedbackAnalyzer PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
 target_compile_features(UserFeedbackAnalyzer PRIVATE cxx_generic_lambdas)
 
 if(NOT TARGET UserFeedbackWidgets)

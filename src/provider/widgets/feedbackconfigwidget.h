@@ -41,8 +41,11 @@ public:
     explicit FeedbackConfigWidget(QWidget *parent = nullptr);
     ~FeedbackConfigWidget();
 
+    /** Returns the feedback provider configured by this widget. */
+    Provider* feedbackProvier() const;
+
     /** Set the feedback provider that should be configured with this widget. */
-    void setFeedbackProvider(UserFeedback::Provider *provider);
+    void setFeedbackProvider(Provider *provider);
 
 protected:
     bool eventFilter(QObject *receiver, QEvent *event) override;

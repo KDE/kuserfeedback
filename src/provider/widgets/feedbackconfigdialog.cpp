@@ -21,83 +21,49 @@
 #include <provider/core/provider.h>
 
 #include <QDebug>
-#include <QDesktopServices>
 #include <QPushButton>
-#include <QUrl>
 
 using namespace UserFeedback;
 
+namespace UserFeedback {
+class FeedbackConfigDialogPrivate {
+public:
+    void updateButtonState();
+
+    std::unique_ptr<Ui::FeedbackConfigDialog> ui;
+};
+}
+
 FeedbackConfigDialog::FeedbackConfigDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::FeedbackConfigDialog)
+    d(new FeedbackConfigDialogPrivate)
 {
-    ui->setupUi(this);
-    ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Contribute!"));
-    ui->buttonBox->button(QDialogButtonBox::Close)->setText(tr("No, I do not want to contribute."));
-
-    connect(ui->basicStats, &QCheckBox::toggled, this, &FeedbackConfigDialog::updateButtonState);
-    connect(ui->advancedStats, &QCheckBox::toggled, this, &FeedbackConfigDialog::updateButtonState);
-    connect(ui->basicSurveys, &QCheckBox::toggled, this, &FeedbackConfigDialog::updateButtonState);
-    connect(ui->allSurveys, &QCheckBox::toggled, this, &FeedbackConfigDialog::updateButtonState);
-
-    connect(ui->introLabel, &QLabel::linkActivated, this, &FeedbackConfigDialog::linkActivated);
-    connect(ui->basicStatsLabel, &QLabel::linkActivated, this, &FeedbackConfigDialog::linkActivated);
-    connect(ui->advancedStatsLabel, &QLabel::linkActivated, this, &FeedbackConfigDialog::linkActivated);
-    connect(ui->basicSurveyLabel, &QLabel::linkActivated, this, &FeedbackConfigDialog::linkActivated);
-    connect(ui->allSurveyLabel, &QLabel::linkActivated, this, &FeedbackConfigDialog::linkActivated);
+    d->ui.reset(new Ui::FeedbackConfigDialog);
+    d->ui->setupUi(this);
+    d->ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Contribute!"));
+    d->ui->buttonBox->button(QDialogButtonBox::Close)->setText(tr("No, I do not want to contribute."));
 }
 
 FeedbackConfigDialog::~FeedbackConfigDialog() = default;
 
 void FeedbackConfigDialog::setFeedbackProvider(UserFeedback::Provider* provider)
 {
-    m_provider = provider;
-    ui->advancedStats->setChecked(m_provider->statisticsCollectionMode() == Provider::AllStatistics);
-    ui->basicStats->setChecked(m_provider->statisticsCollectionMode() != Provider::NoStatistics);
+    d->ui->configWidget->setFeedbackProvider(provider);
 
-    ui->allSurveys->setChecked(m_provider->surveyInterval() >= 0 && m_provider->surveyInterval() < 90);
-    ui->basicSurveys->setChecked(m_provider->surveyInterval() >= 90);
-    updateButtonState();
+    connect(provider, SIGNAL(surveyIntervalChanged()), this, SLOT(updateButtonState()));
+    connect(provider, SIGNAL(statisticsCollectionModeChanged()), this, SLOT(updateButtonState()));
+    d->updateButtonState();
 }
 
-void FeedbackConfigDialog::accept()
+void FeedbackConfigDialogPrivate::updateButtonState()
 {
-    if (!ui->basicStats->isChecked()) {
-        m_provider->setStatisticsCollectionMode(Provider::NoStatistics);
-    } else {
-        m_provider->setStatisticsCollectionMode(ui->advancedStats->isChecked() ? Provider::AllStatistics : Provider::BasicStatistics);
-    }
+    if (!ui->configWidget->feedbackProvier())
+        return;
+    const auto any = ui->configWidget->feedbackProvier()->surveyInterval() >= 0
+        || ui->configWidget->feedbackProvier()->statisticsCollectionMode() != Provider::NoStatistics;
 
-    if (!ui->basicSurveys->isChecked()) {
-        m_provider->setSurveyInterval(-1);
-    } else {
-        m_provider->setSurveyInterval(ui->allSurveys->isChecked() ? 0 : 90);
-    }
-
-    // TODO store provider settings, to not lose this on a crash
-
-    QDialog::accept();
-}
-
-void FeedbackConfigDialog::linkActivated(const QString& link)
-{
-    QDesktopServices::openUrl(QUrl(link));
-}
-
-void FeedbackConfigDialog::updateButtonState()
-{
-    const auto advStats = ui->advancedStats->isChecked();
-    if (advStats)
-        ui->basicStats->setChecked(true);
-    ui->basicStats->setEnabled(!advStats);
-
-    const auto allSurveys = ui->allSurveys->isChecked();
-    if (allSurveys)
-        ui->basicSurveys->setChecked(true);
-    ui->basicSurveys->setEnabled(!allSurveys);
-
-
-    const auto any = ui->basicStats->isChecked() || ui->basicSurveys->isChecked();
     ui->buttonBox->button(QDialogButtonBox::Ok)->setVisible(any);
     ui->buttonBox->button(QDialogButtonBox::Close)->setVisible(!any);
 }
+
+#include "moc_feedbackconfigdialog.cpp"

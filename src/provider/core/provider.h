@@ -34,6 +34,8 @@ class SurveyInfo;
 class USERFEEDBACKCORE_EXPORT Provider : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(int surveyInterval READ surveyInterval WRITE setSurveyInterval NOTIFY surveyIntervalChanged)
+    Q_PROPERTY(StatisticsCollectionMode statisticsCollectionMode READ statisticsCollectionMode WRITE setStatisticsCollectionMode NOTIFY statisticsCollectionModeChanged)
 public:
     enum StatisticsCollectionMode {
         NoStatistics,
@@ -110,6 +112,12 @@ signals:
 
     /** Indicate that the encouragement notice should be shown. */
     void showEncouragementMessage();
+
+    /** Emitted when the survey interval changed. */
+    void surveyIntervalChanged();
+
+    /** Emitted when the statistics collection mode has changed. */
+    void statisticsCollectionModeChanged();
 
 private:
     friend class ProviderPrivate;

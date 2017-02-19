@@ -95,6 +95,7 @@ void FeedbackConfigWidgetPrivate::telemetrySliderChanged()
 
     if (!provider)
         return;
+    provider->setStatisticsCollectionMode(telemetryModeMap[ui->telemetrySlider->value()]);
 
     if (!ui->rawTelemetryButton->isChecked()) {
         auto detailsStr = QStringLiteral("<ul>");
@@ -108,8 +109,6 @@ void FeedbackConfigWidgetPrivate::telemetrySliderChanged()
         QMetaObject::invokeMethod(provider, "jsonData", Q_RETURN_ARG(QByteArray, jsonData));
         ui->telemetryDetails->setPlainText(QString::fromUtf8(jsonData));
     }
-
-    provider->setStatisticsCollectionMode(telemetryModeMap[ui->telemetrySlider->value()]);
 }
 
 void FeedbackConfigWidgetPrivate::surveySliderChanged()
@@ -179,7 +178,12 @@ FeedbackConfigWidget::~FeedbackConfigWidget()
 {
 }
 
-void FeedbackConfigWidget::setFeedbackProvider(UserFeedback::Provider* provider)
+Provider* FeedbackConfigWidget::feedbackProvier() const
+{
+    return d->provider;
+}
+
+void FeedbackConfigWidget::setFeedbackProvider(Provider* provider)
 {
     d->provider = provider;
     if (!provider) {

@@ -329,10 +329,14 @@ Provider::StatisticsCollectionMode Provider::statisticsCollectionMode() const
 
 void Provider::setStatisticsCollectionMode(StatisticsCollectionMode mode)
 {
+    if (d->statisticsMode == mode)
+        return;
+
     d->statisticsMode = mode;
     d->scheduleNextSubmission();
     d->scheduleEncouragement();
     d->store();
+    emit statisticsCollectionModeChanged();
 }
 
 void Provider::addDataSource(AbstractDataSource *source, StatisticsCollectionMode mode)
@@ -358,10 +362,14 @@ int Provider::surveyInterval() const
 
 void Provider::setSurveyInterval(int days)
 {
+    if (d->surveyInterval == days)
+        return;
+
     d->surveyInterval = days;
     d->scheduleNextSubmission();
     d->scheduleEncouragement();
     d->store();
+    emit surveyIntervalChanged();
 }
 
 void Provider::setApplicationStartsUntilEncouragement(int starts)

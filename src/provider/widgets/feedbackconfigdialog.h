@@ -25,12 +25,8 @@
 
 namespace UserFeedback {
 
+class FeedbackConfigDialogPrivate;
 class Provider;
-
-namespace Ui
-{
-class FeedbackConfigDialog;
-}
 
 /** Configure which feedback a user wants to provide. */
 class USERFEEDBACKWIDGETS_EXPORT FeedbackConfigDialog : public QDialog
@@ -41,14 +37,10 @@ public:
     ~FeedbackConfigDialog();
 
     void setFeedbackProvider(UserFeedback::Provider *provider);
-    void accept() override;
 
 private:
-    void linkActivated(const QString &link);
-    void updateButtonState();
-
-    std::unique_ptr<Ui::FeedbackConfigDialog> ui;
-    UserFeedback::Provider *m_provider;
+    Q_PRIVATE_SLOT(d, void updateButtonState())
+    std::unique_ptr<FeedbackConfigDialogPrivate> d;
 };
 
 }

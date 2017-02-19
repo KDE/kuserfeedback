@@ -1,3 +1,7 @@
+set(server_top_srcs
+    .htaccess
+)
+
 set(server_analytics_srcs
     analytics/index.php
     analytics/.htaccess
@@ -5,7 +9,6 @@ set(server_analytics_srcs
 
 set(server_config_srcs
     config/config.php
-    config/.htaccess
 )
 
 set(server_shared_srcs
@@ -22,7 +25,6 @@ set(server_shared_srcs
     shared/schemaentryelement.php
     shared/survey.php
     shared/utils.php
-    shared/.htaccess
 )
 
 set(server_receiver_srcs
@@ -37,11 +39,11 @@ php_lint(${server_receiver_srcs})
 
 if (SERVER_DEPLOY_DESTINATION)
     add_custom_target(deploy
+        COMMAND scp ${server_top_srcs} ${SERVER_DEPLOY_DESTINATION}/
         COMMAND scp ${server_analytics_srcs} ${SERVER_DEPLOY_DESTINATION}/analytics
         COMMAND scp ${server_config_srcs} ${SERVER_DEPLOY_DESTINATION}/config
         COMMAND scp ${server_receiver_srcs} ${SERVER_DEPLOY_DESTINATION}/receiver
         COMMAND scp ${server_shared_srcs} ${SERVER_DEPLOY_DESTINATION}/shared
-        COMMAND scp data/.htaccess ${SERVER_DEPLOY_DESTINATION}/data/
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
 endif()

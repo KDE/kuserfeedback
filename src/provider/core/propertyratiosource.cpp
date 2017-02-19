@@ -124,6 +124,11 @@ void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &
     d->valueMap.insert(value, str);
 }
 
+QString PropertyRatioSource::description() const
+{
+    return QString(); // TODO
+}
+
 QVariant PropertyRatioSource::data()
 {
     Q_D(PropertyRatioSource);

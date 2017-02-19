@@ -25,10 +25,11 @@ namespace UserFeedback {
 
 class USERFEEDBACKCORE_EXPORT ScreenInfoSource :  public AbstractDataSource
 {
+    Q_DECLARE_TR_FUNCTIONS(ScreenInfoSource)
 public:
     ScreenInfoSource();
-
-    QVariant data() Q_DECL_OVERRIDE;
+    QString description() const override;
+    QVariant data() override;
 };
 
 }

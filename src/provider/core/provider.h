@@ -38,7 +38,8 @@ public:
     enum StatisticsCollectionMode {
         NoStatistics,
         BasicStatistics,
-        AllStatistics
+        AllStatistics,
+        CollectionModeCount = AllStatistics
     };
     Q_ENUMS(StatisticsCollectionMode)
 
@@ -69,6 +70,11 @@ public:
      *  by the user. @c NoStatistics is not allowed.
      */
     void addDataSource(AbstractDataSource *source, StatisticsCollectionMode mode);
+
+    /** Returns all data sources that have been added to this provider.
+     *  @see addDataSource
+     */
+    QVector<AbstractDataSource*> dataSources() const;
 
     /** Returns the minimum time between two surveys in days. */
     int surveyInterval() const;
@@ -111,6 +117,8 @@ private:
     Q_PRIVATE_SLOT(d, void aboutToQuit())
     Q_PRIVATE_SLOT(d, void submitFinished())
     Q_PRIVATE_SLOT(d, void emitShowEncouragementMessage())
+    // for UI
+    Q_PRIVATE_SLOT(d, QByteArray jsonData())
     // for testing
     Q_PRIVATE_SLOT(d, void load())
     Q_PRIVATE_SLOT(d, void store())

@@ -21,6 +21,8 @@
 #include "userfeedbackcore_export.h"
 #include "provider.h"
 
+#include <QCoreApplication>
+
 class QSettings;
 
 namespace UserFeedback {
@@ -35,6 +37,11 @@ public:
 
     /** Returns the name of this data source. */
     QString name() const;
+
+    /** Returns a human-readable, translated description of what
+     *  this source provides.
+     */
+    virtual QString description() const = 0;
 
     /** Implement this to return the data gathered by this source.
      *  Depending on the schema entry type for this source, the following

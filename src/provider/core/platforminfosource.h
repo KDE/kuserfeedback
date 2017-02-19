@@ -29,9 +29,11 @@ namespace UserFeedback {
  */
 class USERFEEDBACKCORE_EXPORT PlatformInfoSource : public AbstractDataSource
 {
+    Q_DECLARE_TR_FUNCTIONS(PlatformInfoSource)
 public:
     PlatformInfoSource();
-    QVariant data() Q_DECL_OVERRIDE;
+    QString description() const override;
+    QVariant data() override;
 };
 
 }

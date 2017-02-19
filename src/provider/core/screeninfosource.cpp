@@ -30,6 +30,11 @@ ScreenInfoSource::ScreenInfoSource() :
 {
 }
 
+QString ScreenInfoSource::description() const
+{
+    return tr("Size and resolution of all connected screens.");
+}
+
 QVariant ScreenInfoSource::data()
 {
     QVariantList l;

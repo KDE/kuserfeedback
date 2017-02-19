@@ -27,6 +27,11 @@ PlatformInfoSource::PlatformInfoSource() :
 {
 }
 
+QString PlatformInfoSource::description() const
+{
+    return tr("Type and version of the operating system.");
+}
+
 QVariant PlatformInfoSource::data()
 {
     QVariantMap m;

@@ -49,9 +49,10 @@ public:
      */
     void addValueMapping(const QVariant &value, const QString &str);
 
-    QVariant data() Q_DECL_OVERRIDE;
-    void load(QSettings *settings) Q_DECL_OVERRIDE;
-    void store(QSettings *settings) Q_DECL_OVERRIDE;
+    QString description() const override;
+    QVariant data() override;
+    void load(QSettings *settings) override;
+    void store(QSettings *settings) override;
 
 private:
     Q_DECLARE_PRIVATE(PropertyRatioSource)

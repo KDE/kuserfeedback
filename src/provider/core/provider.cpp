@@ -332,6 +332,7 @@ void Provider::setStatisticsCollectionMode(StatisticsCollectionMode mode)
     d->statisticsMode = mode;
     d->scheduleNextSubmission();
     d->scheduleEncouragement();
+    d->store();
 }
 
 void Provider::addDataSource(AbstractDataSource *source, StatisticsCollectionMode mode)
@@ -345,6 +346,11 @@ void Provider::addDataSource(AbstractDataSource *source, StatisticsCollectionMod
     source->load(&settings);
 }
 
+QVector<AbstractDataSource*> Provider::dataSources() const
+{
+    return d->dataSources;
+}
+
 int Provider::surveyInterval() const
 {
     return d->surveyInterval;
@@ -355,6 +361,7 @@ void Provider::setSurveyInterval(int days)
     d->surveyInterval = days;
     d->scheduleNextSubmission();
     d->scheduleEncouragement();
+    d->store();
 }
 
 void Provider::setApplicationStartsUntilEncouragement(int starts)

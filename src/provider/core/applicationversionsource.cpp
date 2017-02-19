@@ -27,6 +27,11 @@ ApplicationVersionSource::ApplicationVersionSource() :
 {
 }
 
+QString ApplicationVersionSource::description() const
+{
+    return tr("The version of the application.");
+}
+
 QVariant ApplicationVersionSource::data()
 {
     if (QCoreApplication::applicationVersion().isEmpty())

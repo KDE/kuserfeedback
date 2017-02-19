@@ -26,6 +26,11 @@ QtVersionSource::QtVersionSource() :
 {
 }
 
+QString QtVersionSource::description() const
+{
+    return tr("The Qt version used by this application.");
+}
+
 QVariant QtVersionSource::data()
 {
     QVariantMap m;

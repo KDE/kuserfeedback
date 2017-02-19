@@ -46,6 +46,7 @@ if (SERVER_DEPLOY_DESTINATION)
         COMMAND scp ${server_config_srcs} ${SERVER_DEPLOY_DESTINATION}/config
         COMMAND scp ${server_receiver_srcs} ${SERVER_DEPLOY_DESTINATION}/receiver
         COMMAND scp ${server_shared_srcs} ${SERVER_DEPLOY_DESTINATION}/shared
+        COMMAND scp data/.htaccess ${SERVER_DEPLOY_DESTINATION}/data/
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
 endif()

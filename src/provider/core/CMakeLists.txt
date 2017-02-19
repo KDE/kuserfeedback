@@ -7,6 +7,7 @@ set(userfeedback_core_srcs
     screeninfosource.cpp
     startcountsource.cpp
     surveyinfo.cpp
+    usagetimesource.cpp
 )
 
 if(Qt5Core_FOUND)

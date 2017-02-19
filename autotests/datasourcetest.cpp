@@ -21,6 +21,7 @@
 #include <provider/core/qtversionsource.h>
 #include <provider/core/screeninfosource.h>
 #include <provider/core/startcountsource.h>
+#include <provider/core/usagetimesource.h>
 
 #include <QDebug>
 #include <QtTest/qtest.h>
@@ -148,6 +149,18 @@ private slots:
         auto src = new StartCountSource;
         QVERIFY(!src->description().isEmpty());
         p.addDataSource(src, Provider::AllStatistics);
+        const auto m = src->data().toMap();
+        QVERIFY(m.contains(QLatin1String("value")));
+        QVERIFY(m.value(QLatin1String("value")).toInt() >= 1);
+    }
+
+    void testUsageTimeSource()
+    {
+        Provider p;
+        auto src = new UsageTimeSource;
+        QVERIFY(!src->description().isEmpty());
+        p.addDataSource(src, Provider::AllStatistics);
+        QTest::qWait(1200);
         const auto m = src->data().toMap();
         QVERIFY(m.contains(QLatin1String("value")));
         QVERIFY(m.value(QLatin1String("value")).toInt() >= 1);

@@ -22,6 +22,7 @@
 #include "abstractdatasource.h"
 #include "startcountsource.h"
 #include "surveyinfo.h"
+#include "usagetimesource.h"
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -133,9 +134,6 @@ QByteArray ProviderPrivate::jsonData() const
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QJsonObject obj;
     if (statisticsMode != Provider::NoStatistics) {
-        QJsonObject valueObj;
-        valueObj.insert(QStringLiteral("value"), currentApplicationTime());
-        obj.insert(QStringLiteral("usageTime"), valueObj);
         foreach (auto source, dataSources) {
             if (statisticsMode < source->collectionMode())
                 continue;
@@ -303,6 +301,8 @@ void Provider::addDataSource(AbstractDataSource *source, StatisticsCollectionMod
     // special cases for sources where we track the data here, as it's needed even if we don't report it
     if (auto countSrc = dynamic_cast<StartCountSource*>(source))
         countSrc->setProvider(d);
+    if (auto timeSrc = dynamic_cast<UsageTimeSource*>(source))
+        timeSrc->setProvider(d);
 
     d->dataSources.push_back(source);
 

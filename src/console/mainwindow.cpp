@@ -34,6 +34,7 @@
 #include <provider/core/provider.h>
 #include <provider/core/qtversionsource.h>
 #include <provider/core/startcountsource.h>
+#include <provider/core/usagetimesource.h>
 
 #include <QApplication>
 #include <QDebug>
@@ -147,6 +148,7 @@ MainWindow::MainWindow() :
     m_feedbackProvider->addDataSource(new PlatformInfoSource, Provider::AllStatistics);
     m_feedbackProvider->addDataSource(new QtVersionSource, Provider::AllStatistics);
     m_feedbackProvider->addDataSource(new StartCountSource, Provider::BasicStatistics);
+    m_feedbackProvider->addDataSource(new UsageTimeSource, Provider::BasicStatistics);
 }
 
 MainWindow::~MainWindow()

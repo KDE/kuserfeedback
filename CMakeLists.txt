@@ -158,11 +158,11 @@ configure_file(config-userfeedback-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/c
 # Actually build the stuff
 #
 add_subdirectory(src)
-if(Qt5Charts_FOUND AND NOT CMAKE_VERSION VERSION_LESS 3.0)
-    add_subdirectory(tests/manual)
-endif()
 if(Qt5Core_FOUND)
-    add_subdirectory(tests/auto)
+    add_subdirectory(autotests)
+endif()
+if(Qt5Charts_FOUND AND NOT CMAKE_VERSION VERSION_LESS 3.0)
+    add_subdirectory(tests)
 endif()
 
 #

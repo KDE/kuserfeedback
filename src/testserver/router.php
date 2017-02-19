@@ -23,11 +23,11 @@ $path = explode('/', $_SERVER['REQUEST_URI']);
 switch ($path[1]) {
     case 'analytics':
         $_SERVER['PHP_SELF'] = '/analytics/index.php';
-        include '../../src/server/analytics/index.php';
+        include '../server/analytics/index.php';
         return;
     case 'receiver':
         $_SERVER['PHP_SELF'] = '/receiver/index.php';
-        include '../../src/server/receiver/index.php';
+        include '../server/receiver/index.php';
         return;
 }
 

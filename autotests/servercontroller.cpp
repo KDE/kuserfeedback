@@ -31,7 +31,7 @@ using namespace UserFeedback::Analyzer;
 ServerController::ServerController()
 {
     m_process.setProgram(QStringLiteral(PHP_EXECUTABLE));
-    m_process.setWorkingDirectory(QLatin1String(CURRENT_SOURCE_DIR "/../server"));
+    m_process.setWorkingDirectory(QLatin1String(CURRENT_SOURCE_DIR "/../src/testserver"));
     m_process.setArguments({QStringLiteral("-S"), QStringLiteral("localhost:1984"), QStringLiteral("router.php")});
     m_process.setProcessChannelMode(QProcess::ForwardedChannels);
 }

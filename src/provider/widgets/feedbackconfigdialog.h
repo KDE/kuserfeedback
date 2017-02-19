@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_ANALYZER_FEEDBACKCONFIGDIALOG_H
-#define USERFEEDBACK_ANALYZER_FEEDBACKCONFIGDIALOG_H
+#ifndef USERFEEDBACK_CONSOLE_FEEDBACKCONFIGDIALOG_H
+#define USERFEEDBACK_CONSOLE_FEEDBACKCONFIGDIALOG_H
 
 #include "userfeedbackwidgets_export.h"
 #include <QDialog>
@@ -53,4 +53,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_ANALYZER_FEEDBACKCONFIGDIALOG_H
+#endif // USERFEEDBACK_CONSOLE_FEEDBACKCONFIGDIALOG_H

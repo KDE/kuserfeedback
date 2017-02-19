@@ -26,7 +26,7 @@
 #include <QObject>
 #include <QStandardPaths>
 
-using namespace UserFeedback::Analyzer;
+using namespace UserFeedback::Console;
 
 class SchemaTemplateTest : public QObject
 {

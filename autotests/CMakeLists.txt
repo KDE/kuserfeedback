@@ -3,7 +3,7 @@ add_library(UserFeedbackTestUtils STATIC
     servercontroller.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/qt/modeltest.cpp
 )
-target_link_libraries(UserFeedbackTestUtils LINK_PUBLIC Qt5::Test UserFeedbackAnalyzer)
+target_link_libraries(UserFeedbackTestUtils LINK_PUBLIC Qt5::Test UserFeedbackConsole)
 
 function(uf_add_test _file)
     get_filename_component(_name ${_file} NAME_WE)
@@ -12,11 +12,11 @@ function(uf_add_test _file)
     add_test(NAME ${_name} COMMAND ${_name})
 endfunction()
 
-uf_add_test(producttest UserFeedbackAnalyzer)
-uf_add_test(schematemplatetest.cpp UserFeedbackAnalyzer)
+uf_add_test(producttest UserFeedbackConsole)
+uf_add_test(schematemplatetest.cpp UserFeedbackConsole)
 uf_add_test(schemamodeltest UserFeedbackTestUtils)
 uf_add_test(datasourcetest UserFeedbackCore Qt5::Gui) # needs Gui for ScreenInfoSource to work
-uf_add_test(sampletest UserFeedbackAnalyzer)
+uf_add_test(sampletest UserFeedbackConsole)
 uf_add_test(datamodeltest UserFeedbackTestUtils)
 uf_add_test(timeaggregationmodeltest UserFeedbackTestUtils)
 uf_add_test(categoryaggregationmodeltest UserFeedbackTestUtils)

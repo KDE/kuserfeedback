@@ -89,9 +89,9 @@ if(Qt5Core_FOUND)
     add_definitions(-DQT_DEPRECATED_WARNINGS)
 
     set_package_properties(Qt5 PROPERTIES URL "http://qt-project.org/")
-    set_package_properties(Qt5Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for analyzer and administraion tool.")
-    set_package_properties(Qt5Charts PROPERTIES TYPE RECOMMENDED PURPOSE "Required for analyzer and administraion tool.")
-    set_package_properties(KF5WidgetsAddons PROPERTIES TYPE RECOMMENDED PURPOSE "Required for analyzer and administraion tool.")
+    set_package_properties(Qt5Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
+    set_package_properties(Qt5Charts PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
+    set_package_properties(KF5WidgetsAddons PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
 # Qt4
 else()
     set(QT_USE_IMPORTED_TARGETS true)

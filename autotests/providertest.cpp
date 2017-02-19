@@ -39,7 +39,7 @@
 #include <QStandardPaths>
 
 using namespace UserFeedback;
-using namespace UserFeedback::Analyzer;
+using namespace UserFeedback::Console;
 
 class ProviderTest : public QObject
 {

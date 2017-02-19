@@ -15,11 +15,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <analyzer/model/categoryaggregationmodel.h>
-#include <analyzer/model/datamodel.h>
-#include <analyzer/model/timeaggregationmodel.h>
-#include <analyzer/core/sample.h>
-#include <analyzer/core/schemaentrytemplates.h>
+#include <console/model/categoryaggregationmodel.h>
+#include <console/model/datamodel.h>
+#include <console/model/timeaggregationmodel.h>
+#include <console/core/sample.h>
+#include <console/core/schemaentrytemplates.h>
 
 #include <3rdparty/qt/modeltest.h>
 
@@ -28,7 +28,7 @@
 #include <QObject>
 #include <QStandardPaths>
 
-using namespace UserFeedback::Analyzer;
+using namespace UserFeedback::Console;
 
 class CategoryAggregationModelTest : public QObject
 {

@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <analyzer/core/aggregation.h>
-#include <analyzer/core/product.h>
+#include <console/core/aggregation.h>
+#include <console/core/product.h>
 
 #include <3rdparty/qt/modeltest.h>
 
@@ -25,7 +25,7 @@
 #include <QObject>
 #include <QStandardPaths>
 
-using namespace UserFeedback::Analyzer;
+using namespace UserFeedback::Console;
 
 class ProductTest : public QObject
 {

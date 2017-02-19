@@ -32,7 +32,7 @@
 
 #include <limits>
 
-using namespace UserFeedback::Analyzer;
+using namespace UserFeedback::Console;
 
 class SurveyApiTest : public QObject
 {

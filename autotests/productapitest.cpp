@@ -30,7 +30,7 @@
 #include <QSignalSpy>
 #include <QStandardPaths>
 
-using namespace UserFeedback::Analyzer;
+using namespace UserFeedback::Console;
 
 class ProductApiTest : public QObject
 {

@@ -26,7 +26,7 @@
 #include <QUrl>
 #include <QSignalSpy>
 
-using namespace UserFeedback::Analyzer;
+using namespace UserFeedback::Console;
 
 ServerController::ServerController()
 {

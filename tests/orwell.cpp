@@ -25,6 +25,7 @@
 #include <provider/core/provider.h>
 #include <provider/core/qtversionsource.h>
 #include <provider/core/screeninfosource.h>
+#include <provider/core/startcountsource.h>
 #include <provider/core/surveyinfo.h>
 
 #include <QApplication>
@@ -111,6 +112,7 @@ int main(int argc, char** argv)
     provider->addDataSource(new UserFeedback::PlatformInfoSource, UserFeedback::Provider::AllStatistics);
     provider->addDataSource(new UserFeedback::QtVersionSource, UserFeedback::Provider::BasicStatistics);
     provider->addDataSource(new UserFeedback::ScreenInfoSource, UserFeedback::Provider::AllStatistics);
+    provider->addDataSource(new UserFeedback::StartCountSource, UserFeedback::Provider::BasicStatistics);
 
     Orwell mainWindow;
     mainWindow.show();

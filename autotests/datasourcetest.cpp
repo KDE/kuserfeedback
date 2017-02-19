@@ -20,6 +20,7 @@
 #include <provider/core/propertyratiosource.h>
 #include <provider/core/qtversionsource.h>
 #include <provider/core/screeninfosource.h>
+#include <provider/core/startcountsource.h>
 
 #include <QDebug>
 #include <QtTest/qtest.h>
@@ -139,6 +140,17 @@ private slots:
         const auto m = src.data().toMap();
         QVERIFY(m.contains(QLatin1String("value")));
         QCOMPARE(m.value(QLatin1String("value")).toString(), QLatin1String(QT_VERSION_STR));
+    }
+
+    void testStartCountSource()
+    {
+        Provider p;
+        auto src = new StartCountSource;
+        QVERIFY(!src->description().isEmpty());
+        p.addDataSource(src, Provider::AllStatistics);
+        const auto m = src->data().toMap();
+        QVERIFY(m.contains(QLatin1String("value")));
+        QVERIFY(m.value(QLatin1String("value")).toInt() >= 1);
     }
 };
 

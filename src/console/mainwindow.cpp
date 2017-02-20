@@ -81,7 +81,7 @@ MainWindow::MainWindow() :
         auto view = action->data().value<QWidget*>();
         ui->viewStack->setCurrentWidget(view);
     });
-    ui->actionViewAnalytics->setChecked(true); // TODO save/restore from settings
+    ui->actionViewAnalytics->setChecked(true);
 
     connect(ui->actionConnectToServer, &QAction::triggered, this, [this]() {
         QSettings settings;

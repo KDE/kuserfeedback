@@ -127,13 +127,17 @@ MainWindow::MainWindow() :
     connect(ui->productListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &MainWindow::productSelected);
     connect(m_productModel, &QAbstractItemModel::dataChanged, this, &MainWindow::productSelected);
 
+    connect(ui->viewStack, &QStackedWidget::currentChanged, this, &MainWindow::updateActions);
+    connect(ui->viewStack, &QStackedWidget::currentChanged, this, [viewGroup](int index) {
+        viewGroup->actions().at(index)->setChecked(true);
+    });
+    updateActions();
+
     QSettings settings;
     settings.beginGroup(QStringLiteral("MainWindow"));
     restoreGeometry(settings.value(QStringLiteral("Geometry")).toByteArray());
     restoreState(settings.value(QStringLiteral("State")).toByteArray());
-
-    connect(ui->viewStack, &QStackedWidget::currentChanged, this, &MainWindow::updateActions);
-    updateActions();
+    ui->viewStack->setCurrentIndex(settings.value(QStringLiteral("CurrentView"), 0).toInt());
 
     QTimer::singleShot(0, ui->actionConnectToServer, &QAction::trigger);
 
@@ -159,6 +163,7 @@ MainWindow::~MainWindow()
     settings.beginGroup(QStringLiteral("MainWindow"));
     settings.setValue(QStringLiteral("State"), saveState());
     settings.setValue(QStringLiteral("Geometry"), saveGeometry());
+    settings.setValue(QStringLiteral("CurrentView"), ui->viewStack->currentIndex());
 }
 
 template <typename T>

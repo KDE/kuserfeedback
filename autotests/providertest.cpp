@@ -91,7 +91,7 @@ private slots:
 
         // submit data
         Provider provider;
-        provider.setStatisticsCollectionMode(Provider::AllStatistics); // TODO test with no stats, should not create a sample record
+        provider.setStatisticsCollectionMode(Provider::AllStatistics);
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
         provider.setFeedbackServer(m_server.url());
         provider.addDataSource(new ScreenInfoSource, Provider::AllStatistics);
@@ -124,6 +124,19 @@ private slots:
         sub = a.at(0).toObject();
         QVERIFY(sub.contains(QLatin1String("height")));
         QVERIFY(sub.contains(QLatin1String("width")));
+    }
+
+    void testNoTelemetry()
+    {
+        Provider provider;
+        provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
+        provider.addDataSource(new ScreenInfoSource, Provider::BasicSystemInformation);
+        provider.addDataSource(new PlatformInfoSource, Provider::BasicSystemInformation);
+        provider.setStatisticsCollectionMode(Provider::NoStatistics);
+        QByteArray b;
+        QMetaObject::invokeMethod(&provider, "jsonData", Q_RETURN_ARG(QByteArray, b));
+        b.replace('\n', "");
+        QCOMPARE(b.constData(), "{}");
     }
 };
 

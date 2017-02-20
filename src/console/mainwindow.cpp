@@ -109,6 +109,8 @@ MainWindow::MainWindow() :
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
     connect(ui->actionQuit, &QAction::triggered, QCoreApplication::instance(), &QCoreApplication::quit);
+    ui->menuWindow->addAction(ui->productsDock->toggleViewAction());
+    ui->menuWindow->addAction(ui->logDock->toggleViewAction());
     connect(ui->actionContribute, &QAction::triggered, this, [this]() {
         FeedbackConfigDialog dlg(this);
         dlg.setFeedbackProvider(m_feedbackProvider);

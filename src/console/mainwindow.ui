@@ -85,7 +85,7 @@
      <string>S&amp;chema</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menu_Window">
+   <widget class="QMenu" name="menuWindow">
     <property name="title">
      <string>&amp;Window</string>
     </property>
@@ -104,7 +104,7 @@
    <addaction name="menuSurvery"/>
    <addaction name="menuAnalytics"/>
    <addaction name="menuSchema"/>
-   <addaction name="menu_Window"/>
+   <addaction name="menuWindow"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

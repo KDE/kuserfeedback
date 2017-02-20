@@ -73,19 +73,26 @@ void FeedbackConfigWidgetPrivate::telemetrySliderChanged()
     switch (telemetryModeMap[ui->telemetrySlider->value()]) {
         case Provider::NoStatistics:
             break;
-        case Provider::BasicStatistics:
+        case Provider::BasicSystemInformation:
             ui->telemetryLabel->setText(FeedbackConfigWidget::tr(
-                "Share statistics on how often you use the application. "
+                "Share basic system information. "
                 "No unique identification is included, nor data processed with the application."
             ));
             break;
-            // TODO
-//         case Provider::PlatformInformation:
-//             ui->telemetryLabel->setText(FeedbackConfigWidget::tr("Basic usage stats and system information TODO"));
-//             break;
-        case Provider::AllStatistics:
+        case Provider::BasicUsageStatistics:
             ui->telemetryLabel->setText(FeedbackConfigWidget::tr(
-                "Share statistics on how often individual features of the application are used. "
+                "Share basic system information and basic statistics on how often you use the application. "
+                "No unique identification is included, nor data processed with the application."
+            ));
+            break;
+        case Provider::DetailedSystemInformation:
+            ui->telemetryLabel->setText(FeedbackConfigWidget::tr(
+                "Share basic statistics on how often you use the application, as well as detailed information about your system. "
+                "No unique identification is included, nor data processed with the application."
+            ));
+        case Provider::DetailedUsageStatistics:
+            ui->telemetryLabel->setText(FeedbackConfigWidget::tr(
+                "Share detailed system information and statistics on how often individual features of the application are used. "
                 "No unique identification is included, nor data processed with the application."
             ));
             break;
@@ -193,9 +200,10 @@ void FeedbackConfigWidget::setFeedbackProvider(Provider* provider)
 
     d->telemetryModeMap.clear();
     d->telemetryModeMap.push_back(Provider::NoStatistics);
-    d->telemetryModeMap.push_back(Provider::BasicStatistics);
-    // TODO
-    d->telemetryModeMap.push_back(Provider::AllStatistics);
+    d->telemetryModeMap.push_back(Provider::BasicSystemInformation);
+    d->telemetryModeMap.push_back(Provider::BasicUsageStatistics);
+    d->telemetryModeMap.push_back(Provider::DetailedSystemInformation);
+    d->telemetryModeMap.push_back(Provider::DetailedUsageStatistics);
 
     QSet<Provider::StatisticsCollectionMode> supportedModes;
     supportedModes.reserve(d->telemetryModeMap.size());

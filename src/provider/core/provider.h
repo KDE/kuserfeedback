@@ -38,8 +38,11 @@ class USERFEEDBACKCORE_EXPORT Provider : public QObject
 public:
     enum StatisticsCollectionMode {
         NoStatistics,
-        BasicStatistics,
-        AllStatistics,
+        BasicSystemInformation,
+        BasicUsageStatistics,
+        DetailedSystemInformation,
+        DetailedUsageStatistics,
+        AllStatistics = DetailedUsageStatistics,
         CollectionModeCount = AllStatistics
     };
     Q_ENUMS(StatisticsCollectionMode)

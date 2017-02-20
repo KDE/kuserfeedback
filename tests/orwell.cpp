@@ -70,7 +70,7 @@ Orwell::Orwell(QWidget* parent) :
     propertyMonitorSource->setDescription(QStringLiteral("The dial position."));
     propertyMonitorSource->addValueMapping(0, QStringLiteral("off"));
     propertyMonitorSource->addValueMapping(11, QStringLiteral("max"));
-    provider->addDataSource(propertyMonitorSource, UserFeedback::Provider::AllStatistics);
+    provider->addDataSource(propertyMonitorSource, UserFeedback::Provider::DetailedUsageStatistics);
 }
 
 Orwell::~Orwell() = default;
@@ -109,12 +109,12 @@ int main(int argc, char** argv)
     provider->setSubmissionInterval(1);
     provider->setApplicationStartsUntilEncouragement(5);
     provider->setEncouragementDelay(10);
-    provider->addDataSource(new UserFeedback::ApplicationVersionSource, UserFeedback::Provider::BasicStatistics);
-    provider->addDataSource(new UserFeedback::PlatformInfoSource, UserFeedback::Provider::AllStatistics);
-    provider->addDataSource(new UserFeedback::QtVersionSource, UserFeedback::Provider::BasicStatistics);
-    provider->addDataSource(new UserFeedback::ScreenInfoSource, UserFeedback::Provider::AllStatistics);
-    provider->addDataSource(new UserFeedback::StartCountSource, UserFeedback::Provider::BasicStatistics);
-    provider->addDataSource(new UserFeedback::UsageTimeSource, UserFeedback::Provider::BasicStatistics);
+    provider->addDataSource(new UserFeedback::ApplicationVersionSource, UserFeedback::Provider::BasicSystemInformation);
+    provider->addDataSource(new UserFeedback::PlatformInfoSource, UserFeedback::Provider::BasicSystemInformation);
+    provider->addDataSource(new UserFeedback::QtVersionSource, UserFeedback::Provider::BasicSystemInformation);
+    provider->addDataSource(new UserFeedback::ScreenInfoSource, UserFeedback::Provider::DetailedSystemInformation);
+    provider->addDataSource(new UserFeedback::StartCountSource, UserFeedback::Provider::BasicUsageStatistics);
+    provider->addDataSource(new UserFeedback::UsageTimeSource, UserFeedback::Provider::BasicUsageStatistics);
 
     Orwell mainWindow;
     mainWindow.show();

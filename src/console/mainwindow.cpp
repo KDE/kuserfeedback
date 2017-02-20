@@ -143,12 +143,12 @@ MainWindow::MainWindow() :
     viewModeSource->addValueMapping(0, QStringLiteral("analytics"));
     viewModeSource->addValueMapping(1, QStringLiteral("surveyEditor"));
     viewModeSource->addValueMapping(2, QStringLiteral("schemaEditor"));
-    m_feedbackProvider->addDataSource(viewModeSource, Provider::AllStatistics);
-    m_feedbackProvider->addDataSource(new ApplicationVersionSource, Provider::BasicStatistics);
-    m_feedbackProvider->addDataSource(new PlatformInfoSource, Provider::AllStatistics);
-    m_feedbackProvider->addDataSource(new QtVersionSource, Provider::AllStatistics);
-    m_feedbackProvider->addDataSource(new StartCountSource, Provider::BasicStatistics);
-    m_feedbackProvider->addDataSource(new UsageTimeSource, Provider::BasicStatistics);
+    m_feedbackProvider->addDataSource(viewModeSource, Provider::DetailedUsageStatistics);
+    m_feedbackProvider->addDataSource(new ApplicationVersionSource, Provider::BasicSystemInformation);
+    m_feedbackProvider->addDataSource(new PlatformInfoSource, Provider::BasicSystemInformation);
+    m_feedbackProvider->addDataSource(new QtVersionSource, Provider::BasicSystemInformation);
+    m_feedbackProvider->addDataSource(new StartCountSource, Provider::BasicUsageStatistics);
+    m_feedbackProvider->addDataSource(new UsageTimeSource, Provider::BasicUsageStatistics);
 }
 
 MainWindow::~MainWindow()

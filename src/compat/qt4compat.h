@@ -22,9 +22,6 @@
  *  Compatibility hacks to allow usage of more modern Qt5/C++11 features in Qt4 builds.
  */
 
-#define Q_DECL_OVERRIDE
-#define Q_NULLPTR 0
-
 #define QStringLiteral(str) QString::fromUtf8("" str "", sizeof(str) - 1)
 
 #endif

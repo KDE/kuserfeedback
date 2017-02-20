@@ -47,7 +47,7 @@ public:
     };
     Q_ENUMS(StatisticsCollectionMode)
 
-    explicit Provider(QObject *parent = Q_NULLPTR);
+    explicit Provider(QObject *parent = nullptr);
     ~Provider();
 
     /** Set the product identifier.

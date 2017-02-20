@@ -76,7 +76,7 @@ protected:
      *  product schema entry.
      *  @param name Must not be empty.
      */
-    explicit AbstractDataSource(const QString &name, AbstractDataSourcePrivate *dd = Q_NULLPTR);
+    explicit AbstractDataSource(const QString &name, AbstractDataSourcePrivate *dd = nullptr);
     class AbstractDataSourcePrivate* const d_ptr;
 
 private:

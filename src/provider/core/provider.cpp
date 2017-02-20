@@ -45,7 +45,7 @@ using namespace UserFeedback;
 
 ProviderPrivate::ProviderPrivate(Provider *qq)
     : q(qq)
-    , networkAccessManager(Q_NULLPTR)
+    , networkAccessManager(nullptr)
     , submissionInterval(-1)
     , statisticsMode(Provider::NoStatistics)
     , surveyInterval(-1)

@@ -20,7 +20,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Contribute Telemetry</string>
+      <string>Contribute Statistics</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -68,7 +68,8 @@
        <item>
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>TODO: encourage to contribute telemetry</string>
+          <string>We make this application for you. You can help us improve it by contributing information on how you use it. This allows us to make sure we focus on things that matter to you.
+Contributing statistics is of course entirely anonymous, will not use any kind of unique identifier and will not cover any data you process with this application.</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -158,9 +159,6 @@
    </item>
    <item>
     <widget class="QLabel" name="surveyLabel">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
      <property name="wordWrap">
       <bool>true</bool>
      </property>

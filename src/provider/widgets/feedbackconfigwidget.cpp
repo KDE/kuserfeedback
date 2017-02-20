@@ -125,7 +125,10 @@ void FeedbackConfigWidgetPrivate::surveySliderChanged()
 
     switch (ui->surveySlider->value()) {
         case 0:
-            ui->surveyLabel->setText(FeedbackConfigWidget::tr("Encourage to enable surveys text TODO"));
+            ui->surveyLabel->setText(FeedbackConfigWidget::tr(
+                "We make this application for you. In order to ensure it actually does what you need it to do we "
+                "would like to ask you about your use cases and your feedback, in the form of a web survey."
+            ));
             provider->setSurveyInterval(-1);
             break;
         case 1:

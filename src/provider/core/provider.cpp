@@ -31,6 +31,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #endif
+#include <QMetaEnum>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -85,13 +86,21 @@ int ProviderPrivate::currentApplicationTime() const
     return usageTime + (startTime.elapsed() / 1000);
 }
 
+static QMetaEnum statisticsCollectionModeEnum()
+{
+    const auto idx = Provider::staticMetaObject.indexOfEnumerator("StatisticsCollectionMode");
+    Q_ASSERT(idx >= 0);
+    return Provider::staticMetaObject.enumerator(idx);
+}
+
 void ProviderPrivate::load()
 {
     QSettings settings;
     settings.beginGroup(QStringLiteral("UserFeedback"));
     lastSubmitTime = settings.value(QStringLiteral("LastSubmission")).toDateTime();
-    // TODO store as string via QMetaEnum
-    statisticsMode = static_cast<Provider::StatisticsCollectionMode>(settings.value(QStringLiteral("StatisticsCollectionMode"), Provider::NoStatistics).toInt());
+
+    const auto modeStr = settings.value(QStringLiteral("StatisticsCollectionMode")).toByteArray();
+    statisticsMode = static_cast<Provider::StatisticsCollectionMode>(std::max(statisticsCollectionModeEnum().keyToValue(modeStr), 0));
 
     surveyInterval = settings.value(QStringLiteral("SurveyInterval"), -1).toInt();
     lastSurveyTime = settings.value(QStringLiteral("LastSurvey")).toDateTime();
@@ -108,7 +117,7 @@ void ProviderPrivate::store()
     QSettings settings;
     settings.beginGroup(QStringLiteral("UserFeedback"));
     settings.setValue(QStringLiteral("LastSubmission"), lastSubmitTime);
-    settings.setValue(QStringLiteral("StatisticsCollectionMode"), statisticsMode);
+    settings.setValue(QStringLiteral("StatisticsCollectionMode"), QString::fromLatin1(statisticsCollectionModeEnum().valueToKey(statisticsMode)));
 
     settings.setValue(QStringLiteral("SurveyInterval"), surveyInterval);
     settings.setValue(QStringLiteral("LastSurvey"), lastSurveyTime);

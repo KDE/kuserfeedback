@@ -138,6 +138,29 @@ private slots:
         b.replace('\n', "");
         QCOMPARE(b.constData(), "{}");
     }
+
+    void testLoadStore()
+    {
+        {
+            Provider p;
+            p.setStatisticsCollectionMode(Provider::NoStatistics);
+            p.setSurveyInterval(-1);
+        }
+
+        {
+            Provider p;
+            QCOMPARE(p.statisticsCollectionMode(), Provider::NoStatistics);
+            QCOMPARE(p.surveyInterval(), -1);
+            p.setStatisticsCollectionMode(Provider::DetailedSystemInformation);
+            p.setSurveyInterval(90);
+        }
+
+        {
+            Provider p;
+            QCOMPARE(p.statisticsCollectionMode(), Provider::DetailedSystemInformation);
+            QCOMPARE(p.surveyInterval(), 90);
+        }
+    }
 };
 
 QTEST_MAIN(ProviderTest)

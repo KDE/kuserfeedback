@@ -41,6 +41,7 @@ SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
 
     ui->schemaView->setModel(m_schemaModel);
     qobject_cast<QStyledItemDelegate*>(ui->schemaView->itemDelegate())->setItemEditorFactory(new SchemaEntryItemEditorFactory);
+    ui->schemaView->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
 
     connect(ui->addEntryButton, &QPushButton::clicked, this, &SchemaEditWidget::addEntry);
     connect(ui->newEntryName, &QLineEdit::returnPressed, this, &SchemaEditWidget::addEntry);
@@ -68,6 +69,7 @@ Product SchemaEditWidget::product() const
 void SchemaEditWidget::setProduct(const Product& product)
 {
     m_schemaModel->setProduct(product);
+    ui->schemaView->expandAll();
     updateState();
 }
 

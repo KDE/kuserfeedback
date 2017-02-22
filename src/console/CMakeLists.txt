@@ -34,6 +34,7 @@ add_library(UserFeedbackConsole STATIC ${console_lib_srcs})
 target_link_libraries(UserFeedbackConsole Qt5::Network)
 target_include_directories(UserFeedbackConsole PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
 target_compile_features(UserFeedbackConsole PRIVATE cxx_generic_lambdas)
+target_compile_definitions(UserFeedbackConsole PUBLIC QT_DISABLE_DEPRECATED_BEFORE=0x050600 QT_DEPRECATED_WARNINGS)
 
 if(NOT TARGET UserFeedbackWidgets)
     return()

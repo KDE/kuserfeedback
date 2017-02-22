@@ -23,6 +23,7 @@ generate_export_header(UserFeedbackCore)
 
 if(Qt5Core_FOUND)
     target_link_libraries(UserFeedbackCore PUBLIC Qt5::Core PRIVATE Qt5::Gui Qt5::Network)
+    target_compile_definitions(UserFeedbackCore PRIVATE QT_DISABLE_DEPRECATED_BEFORE=0x040800)
 else()
     target_link_libraries(UserFeedbackCore PUBLIC ${QT_QTCORE_LIBRARIES} PRIVATE ${QT_QTGUI_LIBRARIES} ${QT_QTNETWORK_LIBRARIES})
 endif()

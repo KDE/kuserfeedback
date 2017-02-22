@@ -25,6 +25,7 @@
 #include <core/schemaentrytemplates.h>
 
 #include <QDebug>
+#include <QInputDialog>
 #include <QMenu>
 #include <QMessageBox>
 #include <QNetworkReply>
@@ -43,14 +44,14 @@ SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
     qobject_cast<QStyledItemDelegate*>(ui->schemaView->itemDelegate())->setItemEditorFactory(new SchemaEntryItemEditorFactory);
     ui->schemaView->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
 
-    connect(ui->addEntryButton, &QPushButton::clicked, this, &SchemaEditWidget::addEntry);
-    connect(ui->newEntryName, &QLineEdit::returnPressed, this, &SchemaEditWidget::addEntry);
+    connect(ui->actionAddSource, &QAction::triggered, this, &SchemaEditWidget::addSource);
+    connect(ui->actionAddSourceElement, &QAction::triggered, this, &SchemaEditWidget::addSourceEntry);
     connect(ui->actionDelete, &QAction::triggered, this, &SchemaEditWidget::deleteEntry);
 
     connect(ui->schemaView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &SchemaEditWidget::updateState);
-    connect(ui->newEntryName, &QLineEdit::textChanged, this, &SchemaEditWidget::updateState);
+    connect(ui->schemaView, &QWidget::customContextMenuRequested, this, &SchemaEditWidget::contextMenu);
 
-    addActions({ ui->actionDelete });
+    addActions({ ui->actionAddSource, ui->actionAddSourceElement, ui->actionDelete });
     updateState();
 }
 
@@ -73,10 +74,21 @@ void SchemaEditWidget::setProduct(const Product& product)
     updateState();
 }
 
-void SchemaEditWidget::addEntry()
+void SchemaEditWidget::addSource()
 {
-    m_schemaModel->addEntry(ui->newEntryName->text());
-    ui->newEntryName->clear();
+    const auto name = QInputDialog::getText(this, tr("Add Source"), tr("Name:"));
+    if (name.isEmpty())
+        return;
+    m_schemaModel->addEntry(name);
+}
+
+void SchemaEditWidget::addSourceEntry()
+{
+    const auto name = QInputDialog::getText(this, tr("Add Source Element"), tr("Name:"));
+    if (name.isEmpty())
+        return;
+    m_schemaModel->addElement(currentSource(), name);
+    ui->schemaView->expand(currentSource());
 }
 
 void SchemaEditWidget::deleteEntry()
@@ -85,10 +97,19 @@ void SchemaEditWidget::deleteEntry()
     if (selection.isEmpty())
         return;
 
-    const auto r = QMessageBox::critical(this, tr("Delete Schema Entry"), tr("Do you really want to delete this entry, and all recorded data for it?"),
-                                         QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
-    if (r != QMessageBox::Discard)
-        return;
+    if (currentSource().isValid()) {
+        const auto r = QMessageBox::critical(this, tr("Delete Source"),
+            tr("Do you really want to delete the source '%1', and all recorded data for it?").arg(currentSource().data().toString()),
+            QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
+        if (r != QMessageBox::Discard)
+            return;
+    } else {
+        const auto r = QMessageBox::critical(this, tr("Delete Schema Entry"),
+            tr("Do you really want to delete this entry, and all recorded data for it?"),
+            QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
+        if (r != QMessageBox::Discard)
+            return;
+    }
 
     const auto idx = selection.first().topLeft();
     m_schemaModel->deleteRow(idx);
@@ -98,6 +119,23 @@ void SchemaEditWidget::updateState()
 {
     const auto selection = ui->schemaView->selectionModel()->selection();
     ui->actionDelete->setEnabled(!selection.isEmpty());
+    ui->actionAddSourceElement->setEnabled(currentSource().isValid());
+}
 
-    ui->addEntryButton->setEnabled(!ui->newEntryName->text().isEmpty());
+void SchemaEditWidget::contextMenu(QPoint pos)
+{
+    QMenu menu;
+    menu.addActions({ ui->actionAddSource, ui->actionAddSourceElement, ui->actionDelete });
+    menu.exec(ui->schemaView->viewport()->mapToGlobal(pos));
+}
+
+QModelIndex SchemaEditWidget::currentSource() const
+{
+    const auto selection = ui->schemaView->selectionModel()->selectedRows();
+    if (selection.isEmpty())
+        return {};
+    const auto idx = selection.at(0);
+    if (!idx.parent().isValid())
+        return idx;
+    return {};
 }

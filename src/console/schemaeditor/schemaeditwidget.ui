@@ -13,28 +13,13 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTreeView" name="schemaView">
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::SingleSelection</enum>
      </property>
     </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLineEdit" name="newEntryName">
-       <property name="placeholderText">
-        <string>New entry</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="addEntryButton">
-       <property name="text">
-        <string>&amp;Add</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </item>
   </layout>
   <action name="actionDelete">
@@ -50,6 +35,28 @@
    </property>
    <property name="shortcut">
     <string>Del</string>
+   </property>
+  </action>
+  <action name="actionAddSource">
+   <property name="icon">
+    <iconset theme="folder-add"/>
+   </property>
+   <property name="text">
+    <string>Add &amp;Source...</string>
+   </property>
+   <property name="toolTip">
+    <string>Add a new data source.</string>
+   </property>
+  </action>
+  <action name="actionAddSourceElement">
+   <property name="icon">
+    <iconset theme="list-add"/>
+   </property>
+   <property name="text">
+    <string>Add Source &amp;Element...</string>
+   </property>
+   <property name="toolTip">
+    <string>Add an element to a data source.</string>
    </property>
   </action>
  </widget>

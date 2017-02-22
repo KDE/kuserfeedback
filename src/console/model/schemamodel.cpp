@@ -61,6 +61,21 @@ void SchemaModel::addEntry(const SchemaEntry &entry)
     endInsertRows();
 }
 
+void SchemaModel::addElement(const QModelIndex& parent, const QString& name)
+{
+    Q_ASSERT(parent.isValid());
+    auto schema = m_product.schema();
+    auto &entry = schema[parent.row()];
+    auto elements = entry.elements();
+    SchemaEntryElement e;
+    e.setName(name);
+    beginInsertRows(parent, elements.size(), elements.size());
+    elements.push_back(e);
+    entry.setElements(elements);
+    m_product.setSchema(schema);
+    endInsertRows();
+}
+
 void SchemaModel::deleteRow(const QModelIndex &idx)
 {
     if (!idx.isValid())

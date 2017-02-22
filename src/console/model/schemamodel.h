@@ -39,6 +39,7 @@ public:
 
     void addEntry(const QString &name);
     void addEntry(const SchemaEntry &entry);
+    void addElement(const QModelIndex &parent, const QString &name);
     void deleteRow(const QModelIndex &idx);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;

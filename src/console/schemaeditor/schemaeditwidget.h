@@ -50,10 +50,14 @@ signals:
     void logMessage(const QString &msg);
 
 private:
-    void addEntry();
+    void addSource();
+    void addSourceEntry();
     void deleteEntry();
+    void contextMenu(QPoint pos);
 
     void updateState();
+
+    QModelIndex currentSource() const;
 
     std::unique_ptr<Ui::SchemaEditWidget> ui;
     RESTClient *m_restClient;

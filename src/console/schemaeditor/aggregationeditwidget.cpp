@@ -22,6 +22,7 @@
 #include <core/aggregation.h>
 #include <model/aggregationeditormodel.h>
 
+#include <QMenu>
 #include <QStyledItemDelegate>
 
 using namespace UserFeedback::Console;
@@ -36,6 +37,7 @@ AggregationEditWidget::AggregationEditWidget(QWidget* parent) :
 
     ui->aggregationView->setModel(m_model);
     qobject_cast<QStyledItemDelegate*>(ui->aggregationView->itemDelegate())->setItemEditorFactory(m_editorFactory.get());
+    connect(ui->aggregationView, &QWidget::customContextMenuRequested, this, &AggregationEditWidget::contextMenu);
 
     connect(ui->actionAddAggregation, &QAction::triggered, this, &AggregationEditWidget::addAggregation);
     connect(ui->actionDeleteAggregation, &QAction::triggered, this, &AggregationEditWidget::deleteAggregation);
@@ -83,4 +85,11 @@ void AggregationEditWidget::updateState()
 {
     ui->actionAddAggregation->setEnabled(product().isValid());
     ui->actionDeleteAggregation->setEnabled(ui->aggregationView->selectionModel()->hasSelection());
+}
+
+void AggregationEditWidget::contextMenu(QPoint pos)
+{
+    QMenu menu;
+    menu.addActions({ ui->actionAddAggregation, ui->actionDeleteAggregation });
+    menu.exec(ui->aggregationView->viewport()->mapToGlobal(pos));
 }

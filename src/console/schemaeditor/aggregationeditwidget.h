@@ -49,6 +49,7 @@ private:
     void deleteAggregation();
 
     void updateState();
+    void contextMenu(QPoint pos);
 
     std::unique_ptr<Ui::AggregationEditWidget> ui;
     AggregationEditorModel *m_model;

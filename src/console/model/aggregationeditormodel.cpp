@@ -76,7 +76,7 @@ QVariant AggregationEditorModel::data(const QModelIndex& index, int role) const
                 return QVariant::fromValue(aggr.type());
             case 1:
                 if (aggr.elements().isEmpty())
-                    return {};
+                    return QVariant::fromValue(AggregationElement());
                 return QVariant::fromValue(aggr.elements().at(0));
         }
     }

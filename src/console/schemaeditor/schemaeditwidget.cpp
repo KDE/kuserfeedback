@@ -51,6 +51,10 @@ SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
     connect(ui->schemaView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &SchemaEditWidget::updateState);
     connect(ui->schemaView, &QWidget::customContextMenuRequested, this, &SchemaEditWidget::contextMenu);
 
+    connect(m_schemaModel, &QAbstractItemModel::dataChanged, this, [this]() {
+        emit productChanged();
+    });
+
     addActions({ ui->actionAddSource, ui->actionAddSourceElement, ui->actionDelete });
     updateState();
 }
@@ -80,6 +84,7 @@ void SchemaEditWidget::addSource()
     if (name.isEmpty())
         return;
     m_schemaModel->addEntry(name);
+    emit productChanged();
 }
 
 void SchemaEditWidget::addSourceEntry()
@@ -89,6 +94,7 @@ void SchemaEditWidget::addSourceEntry()
         return;
     m_schemaModel->addElement(currentSource(), name);
     ui->schemaView->expand(currentSource());
+    emit productChanged();
 }
 
 void SchemaEditWidget::deleteEntry()
@@ -113,6 +119,7 @@ void SchemaEditWidget::deleteEntry()
 
     const auto idx = selection.first().topLeft();
     m_schemaModel->deleteRow(idx);
+    emit productChanged();
 }
 
 void SchemaEditWidget::updateState()

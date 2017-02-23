@@ -46,7 +46,7 @@ public:
     void setProduct(const Product &product);
 
 signals:
-    void productChanged(const Product &product);
+    void productChanged();
     void logMessage(const QString &msg);
 
 private:

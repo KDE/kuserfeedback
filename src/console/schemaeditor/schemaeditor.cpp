@@ -38,7 +38,9 @@ SchemaEditor::SchemaEditor(QWidget* parent) :
     ui->setupUi(this);
 
     connect(ui->schema, &SchemaEditWidget::logMessage, this, &SchemaEditor::logMessage);
-    connect(ui->schema, &SchemaEditWidget::productChanged, this, &SchemaEditor::productChanged);
+    connect(ui->schema, &SchemaEditWidget::productChanged, ui->aggregation, [this]() {
+        ui->aggregation->setProduct(product());
+    });
 
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &SchemaEditor::updateState);
 

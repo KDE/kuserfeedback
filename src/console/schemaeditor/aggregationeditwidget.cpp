@@ -23,6 +23,7 @@
 #include <model/aggregationeditormodel.h>
 
 #include <QMenu>
+#include <QMessageBox>
 #include <QStyledItemDelegate>
 
 using namespace UserFeedback::Console;
@@ -71,6 +72,12 @@ void AggregationEditWidget::deleteAggregation()
 {
     const auto rows = ui->aggregationView->selectionModel()->selectedRows();
     if (rows.isEmpty())
+        return;
+
+    const auto r = QMessageBox::critical(this, tr("Delete Aggregation"),
+        tr("Do you want to delete the currently selected aggregation?"),
+        QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Discard);
+    if (r != QMessageBox::Discard)
         return;
 
     const auto idx = rows.at(0);

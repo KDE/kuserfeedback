@@ -108,7 +108,7 @@ MainWindow::MainWindow() :
     connect(ui->schemaEdit, &SchemaEditor::productChanged, m_productModel, &ProductModel::reload);
 
     ui->actionQuit->setShortcut(QKeySequence::Quit);
-    connect(ui->actionQuit, &QAction::triggered, QCoreApplication::instance(), &QCoreApplication::quit);
+    connect(ui->actionQuit, &QAction::triggered, this, &QMainWindow::close);
     ui->menuWindow->addAction(ui->productsDock->toggleViewAction());
     ui->menuWindow->addAction(ui->logDock->toggleViewAction());
     connect(ui->actionContribute, &QAction::triggered, this, [this]() {
@@ -271,4 +271,18 @@ void MainWindow::updateActions()
     ui->menuAnalytics->setEnabled(!ui->menuAnalytics->isEmpty());
     ui->menuSurvery->setEnabled(!ui->menuSurvery->isEmpty());
     ui->menuSchema->setEnabled(!ui->menuSchema->isEmpty());
+}
+
+void MainWindow::closeEvent(QCloseEvent* event)
+{
+    if (ui->schemaEdit->isDirty()) {
+        const auto r = QMessageBox::critical(this, tr("Unsaved Changes"),
+            tr("There are unsaved changes in the schema editor. Do you want to discard them and close the application?"),
+            QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
+        if (r != QMessageBox::Discard) {
+            event->ignore();
+            return;
+        }
+    }
+    return QMainWindow::closeEvent(event);
 }

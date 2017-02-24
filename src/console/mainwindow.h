@@ -49,6 +49,9 @@ public:
     MainWindow();
     ~MainWindow();
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
 private:
     void connectToServer(const ServerInfo &info);
 

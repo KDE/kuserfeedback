@@ -40,6 +40,7 @@ SchemaEditor::SchemaEditor(QWidget* parent) :
     connect(ui->schema, &SchemaEditWidget::logMessage, this, &SchemaEditor::logMessage);
     connect(ui->schema, &SchemaEditWidget::productChanged, ui->aggregation, [this]() {
         ui->aggregation->setProduct(product());
+        m_isDirty = true;
     });
 
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &SchemaEditor::updateState);
@@ -53,6 +54,7 @@ SchemaEditor::SchemaEditor(QWidget* parent) :
             auto p = product();
             p.addTemplate(t);
             setProduct(p);
+            m_isDirty = true;
         });
     }
 
@@ -96,12 +98,18 @@ void SchemaEditor::setProduct(const Product& product)
     updateState();
 }
 
+bool SchemaEditor::isDirty() const
+{
+    return m_isDirty;
+}
+
 void SchemaEditor::save()
 {
     auto reply = RESTApi::updateProduct(m_restClient, product());
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() != QNetworkReply::NoError)
             return;
+        m_isDirty = false;
         emit logMessage(QString::fromUtf8((reply->readAll())));
         emit productChanged(product());
     });
@@ -142,6 +150,7 @@ void SchemaEditor::importSchema()
     auto p = products.at(0);
     p.setName(product().name());
     setProduct(p);
+    m_isDirty = true;
     logMessage(tr("Schema of %1 imported from %2.").arg(product().name(), f.fileName()));
 }
 

@@ -46,6 +46,8 @@ public:
     Product product() const;
     void setProduct(const Product &product);
 
+    bool isDirty() const;
+
 signals:
     void productChanged(const Product &product);
     void logMessage(const QString &msg);
@@ -60,6 +62,7 @@ private:
     std::unique_ptr<Ui::SchemaEditor> ui;
     RESTClient *m_restClient = nullptr;
     QAction *m_createFromTemplateAction;
+    bool m_isDirty = false;
 };
 
 }

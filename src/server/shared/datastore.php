@@ -134,7 +134,13 @@ private function schemaVersion()
 /** Applies a list of schema setup commands. */
 private function applySchemaChange($schemaDef)
 {
-    foreach($schemaDef['sql'] as $cmd) {
+    $driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);
+    if (array_key_exists($driver, $schemaDef))
+        $cmds = $schemaDef[$driver];
+    else
+        $cmds = $schemaDef['sql'];
+
+    foreach($cmds as $cmd) {
         $res = $this->db->exec($cmd);
         $this->checkError($res);
     }

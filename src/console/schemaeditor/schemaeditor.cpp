@@ -42,6 +42,9 @@ SchemaEditor::SchemaEditor(QWidget* parent) :
         ui->aggregation->setProduct(product());
         m_isDirty = true;
     });
+    connect(ui->aggregation, &AggregationEditWidget::productChanged, this, [this]() {
+        m_isDirty = true;
+    });
 
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &SchemaEditor::updateState);
 

@@ -44,6 +44,9 @@ public:
     Product product() const;
     void setProduct(const Product &product);
 
+signals:
+    void productChanged();
+
 private:
     void addAggregation();
     void deleteAggregation();

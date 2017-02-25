@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once( __DIR__ . '/../config/config.php');
+require_once('config.php');
 require_once('restexception.php');
 require_once('utils.php');
 
@@ -28,10 +28,12 @@ private $db;
 function __construct($dsn = NULL)
 {
     try {
-        if (is_null($dsn))
-            $this->db = new PDO(Config::dsn());
-        else
+        if (is_null($dsn)) {
+            $conf = new Config;
+            $this->db = new PDO($conf->dsn(), $conf->username(), $conf->password());
+        } else {
             $this->db = new PDO($dsn);
+        }
     } catch (PDOException $e) {
         die('Database connection failed: ' . $e->getMessage());
     }

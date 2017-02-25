@@ -8,12 +8,13 @@ set(server_analytics_srcs
 )
 
 set(server_config_srcs
-    config/config.php
+    config/localconfig.php.example
 )
 
 set(server_shared_srcs
     shared/aggregation.php
     shared/analytics.php
+    shared/config.php
     shared/datastore.php
     shared/product.php
     shared/receiver.php

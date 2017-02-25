@@ -45,6 +45,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QScopedValueRollback>
 #include <QSettings>
 #include <QTimer>
 #include <QUrl>
@@ -133,7 +134,22 @@ MainWindow::MainWindow() :
         ).arg(QStringLiteral(USERFEEDBACK_VERSION_STRING)));
     });
 
-    connect(ui->productListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &MainWindow::productSelected);
+    connect(ui->productListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, [this](const QItemSelection&, const QItemSelection &deselected) {
+        static bool recursionGuard = false;
+        if (recursionGuard)
+            return;
+        if (ui->viewStack->currentWidget() == ui->schemaEdit && ui->schemaEdit->isDirty()) {
+            const auto r = QMessageBox::critical(this, tr("Unsaved Schema Changes"),
+                tr("You have unsaved changes in the schema editor, do you really want to open another product and discard your changes?"),
+                QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
+            if (r != QMessageBox::Discard) {
+                QScopedValueRollback<bool> guard(recursionGuard, true);
+                ui->productListView->selectionModel()->select(deselected, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Current);
+                return;
+            }
+        }
+        productSelected();
+    });
     connect(m_productModel, &QAbstractItemModel::dataChanged, this, &MainWindow::productSelected);
 
     connect(ui->viewStack, &QStackedWidget::currentChanged, this, &MainWindow::updateActions);

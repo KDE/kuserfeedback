@@ -107,7 +107,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="logDock">
    <property name="windowTitle">
-    <string>&amp;Log Messages</string>
+    <string>Log Messages</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>8</number>
@@ -126,7 +126,7 @@
   </widget>
   <widget class="QDockWidget" name="productsDock">
    <property name="windowTitle">
-    <string>P&amp;roducts</string>
+    <string>Products</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>1</number>

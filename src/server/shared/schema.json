@@ -7,12 +7,14 @@
 
         {
             "version": 2,
-            "sql": ["CREATE TABLE products (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar NOT NULL UNIQUE)" ]
+            "sql": ["CREATE TABLE products (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar NOT NULL UNIQUE)" ],
+            "pgsql": ["CREATE TABLE products (id SERIAL PRIMARY KEY, name varchar NOT NULL UNIQUE)" ]
         },
 
         {
             "version": 3,
-            "sql": ["CREATE TABLE surveys (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id), name VARCHAR, url VARCHAR NOT NULL)" ]
+            "sql": ["CREATE TABLE surveys (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id), name VARCHAR, url VARCHAR NOT NULL)" ],
+            "pgsql": ["CREATE TABLE surveys (id SERIAL PRIMARY KEY, productId INTEGER REFERENCES products (id), name VARCHAR, url VARCHAR NOT NULL)" ]
         },
 
         {
@@ -22,7 +24,8 @@
 
         {
             "version": 5,
-            "sql": ["CREATE TABLE product_schema (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id), name VARCHAR, type VARCHAR)" ]
+            "sql": ["CREATE TABLE product_schema (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id), name VARCHAR, type VARCHAR)" ],
+            "pgsql": ["CREATE TABLE product_schema (id SERIAL PRIMARY KEY, productId INTEGER REFERENCES products (id), name VARCHAR, type VARCHAR)" ]
         },
 
         {
@@ -32,12 +35,14 @@
 
         {
             "version": 7,
-            "sql": ["CREATE TABLE schema_elements (id INTEGER PRIMARY KEY AUTOINCREMENT, schemaId INTEGER REFERENCES product_schema (id), name VARCHAR NOT NULL, type VARCHAR NOT NULL)" ]
+            "sql": ["CREATE TABLE schema_elements (id INTEGER PRIMARY KEY AUTOINCREMENT, schemaId INTEGER REFERENCES product_schema (id), name VARCHAR NOT NULL, type VARCHAR NOT NULL)" ],
+            "pgsql": ["CREATE TABLE schema_elements (id SERIAL PRIMARY KEY, schemaId INTEGER REFERENCES product_schema (id), name VARCHAR NOT NULL, type VARCHAR NOT NULL)" ]
         },
 
         {
             "version": 8,
-            "sql": ["CREATE TABLE aggregation (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id) ON DELETE CASCADE, type VARCHAR NOT NULL, elements VARCHAR)" ]
+            "sql": ["CREATE TABLE aggregation (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER REFERENCES products (id) ON DELETE CASCADE, type VARCHAR NOT NULL, elements VARCHAR)" ],
+            "pgsql": ["CREATE TABLE aggregation (id SERIAL PRIMARY KEY, productId INTEGER REFERENCES products (id) ON DELETE CASCADE, type VARCHAR NOT NULL, elements VARCHAR)" ]
         }
     ]
 }

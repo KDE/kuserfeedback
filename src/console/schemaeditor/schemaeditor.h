@@ -57,6 +57,7 @@ private:
     void exportSchema();
     void importSchema();
 
+    void setDirty(bool dirty = true);
     void updateState();
 
     std::unique_ptr<Ui::SchemaEditor> ui;

@@ -40,10 +40,10 @@ SchemaEditor::SchemaEditor(QWidget* parent) :
     connect(ui->schema, &SchemaEditWidget::logMessage, this, &SchemaEditor::logMessage);
     connect(ui->schema, &SchemaEditWidget::productChanged, ui->aggregation, [this]() {
         ui->aggregation->setProduct(product());
-        m_isDirty = true;
+        setDirty();
     });
     connect(ui->aggregation, &AggregationEditWidget::productChanged, this, [this]() {
-        m_isDirty = true;
+        setDirty();
     });
 
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &SchemaEditor::updateState);
@@ -57,7 +57,7 @@ SchemaEditor::SchemaEditor(QWidget* parent) :
             auto p = product();
             p.addTemplate(t);
             setProduct(p);
-            m_isDirty = true;
+            setDirty();
         });
     }
 
@@ -98,12 +98,18 @@ void SchemaEditor::setProduct(const Product& product)
 {
     ui->schema->setProduct(product);
     ui->aggregation->setProduct(product);
-    updateState();
+    setDirty(false);
 }
 
 bool SchemaEditor::isDirty() const
 {
     return m_isDirty;
+}
+
+void SchemaEditor::setDirty(bool dirty)
+{
+    m_isDirty = dirty;
+    updateState();
 }
 
 void SchemaEditor::save()
@@ -112,7 +118,7 @@ void SchemaEditor::save()
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() != QNetworkReply::NoError)
             return;
-        m_isDirty = false;
+        setDirty(false);
         emit logMessage(QString::fromUtf8((reply->readAll())));
         emit productChanged(product());
     });
@@ -153,7 +159,7 @@ void SchemaEditor::importSchema()
     auto p = products.at(0);
     p.setName(product().name());
     setProduct(p);
-    m_isDirty = true;
+    setDirty();
     logMessage(tr("Schema of %1 imported from %2.").arg(product().name(), f.fileName()));
 }
 
@@ -162,7 +168,7 @@ void SchemaEditor::updateState()
     const auto p = product();
 
     m_createFromTemplateAction->setEnabled(p.isValid());
-    ui->actionSave->setEnabled(p.isValid());
+    ui->actionSave->setEnabled(p.isValid() && isDirty());
     ui->actionExportSchema->setEnabled(p.isValid());
     ui->actionImportSchema->setEnabled(p.isValid());
 

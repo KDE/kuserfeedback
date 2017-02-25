@@ -79,6 +79,15 @@ MainWindow::MainWindow() :
     viewGroup->addAction(ui->actionViewSchema);
     connect(viewGroup, &QActionGroup::triggered, this, [this](QAction *action) {
         auto view = action->data().value<QWidget*>();
+        if (ui->viewStack->currentWidget() == ui->schemaEdit && ui->schemaEdit->isDirty() && view != ui->schemaEdit) {
+            const auto r = QMessageBox::critical(this, tr("Unsaved Schema Changes"),
+                tr("You have unsaved changes in the schema editor. Do you really want to close it and discard your changes?"),
+                QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
+            if (r != QMessageBox::Discard) {
+                ui->actionViewSchema->setChecked(true);
+                return;
+            }
+        }
         ui->viewStack->setCurrentWidget(view);
     });
     ui->actionViewAnalytics->setChecked(true);

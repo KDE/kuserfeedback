@@ -1,4 +1,4 @@
 add_subdirectory(core)
-if(KF5WidgetsAddons_FOUND)
+if(Qt5Widgets_FOUND)
   add_subdirectory(widgets)
 endif()

@@ -77,7 +77,6 @@ if(Qt5Core_FOUND)
     set_package_properties(Qt5Core PROPERTIES TYPE REQUIRED)
     find_package(Qt5 NO_MODULE REQUIRED COMPONENTS Network)
     find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test)
-    find_package(KF5WidgetsAddons NO_MODULE QUIET)
 
     if(Qt5_POSITION_INDEPENDENT_CODE AND NOT WIN32)
         set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -86,9 +85,8 @@ if(Qt5Core_FOUND)
     include("cmake/ECMQt4To5Porting.cmake")
 
     set_package_properties(Qt5 PROPERTIES URL "http://qt-project.org/")
-    set_package_properties(Qt5Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
+    set_package_properties(Qt5Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for feedback configuration and notification widgets.")
     set_package_properties(Qt5Charts PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
-    set_package_properties(KF5WidgetsAddons PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
 # Qt4
 else()
     set(QT_USE_IMPORTED_TARGETS true)

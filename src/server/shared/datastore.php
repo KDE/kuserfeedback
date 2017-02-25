@@ -93,6 +93,7 @@ public function commit()
 /** Verify the database schema, and fix if needed. */
 public function checkSchema()
 {
+    $this->beginTransaction();
     $currentVersion = $this->schemaVersion();
     $schemaFile = __DIR__ . '/schema.json';
     $schemaDefs = json_decode(file_get_contents($schemaFile), true);
@@ -112,14 +113,19 @@ public function checkSchema()
         echo("Applying update $i...");
         $this->applySchemaChange($schemaDefs['schema'][$i]);
     }
+    $this->commit();
 }
 
 /** Returns the current schema version. */
 private function schemaVersion()
 {
     $res = $this->db->query('SELECT version FROM schema_version');
-    if ($res === FALSE)
+    if ($res === FALSE) {
+        // restart transaction, so this fail doesn't block the following commands
+        $this->db->rollback();
+        $this->beginTransaction();
         return 0;
+    }
     foreach ($res as $row)
         return $row['version'];
     return 0;

@@ -30,9 +30,7 @@ class Analytics
 public function get_check_schema()
 {
     $db = new DataStore();
-    $db->beginTransaction();
     $db->checkSchema();
-    $db->commit();
 }
 
 /** List all products. */

@@ -217,6 +217,9 @@ void ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
 void ProviderPrivate::scheduleEncouragement()
 {
     encouragementTimer.stop();
+    if (encouragementDisplayed)
+        return;
+
     if (encouragementStarts < 0 && encouragementTime < 0) // encouragement disabled
         return;
 

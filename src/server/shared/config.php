@@ -36,13 +36,17 @@ public function __construct()
     if (file_exists(__DIR__ . '/../config/localconfig.php'))
         include_once(__DIR__ . '/../config/localconfig.php');
 
-    if ($USERFEEDBACK_DB_DRIVER)
+    if (isset($USERFEEDBACK_DB_DRIVER))
         $this->type = strval($USERFEEDBACK_DB_DRIVER);
     else
         throw new RESTException('Missing database configuration!', 500);
 
-    if ($USERFEEDBACK_DB_NAME)
+    if (isset($USERFEEDBACK_DB_NAME))
         $this->name = strval($USERFEEDBACK_DB_NAME);
+    if (isset($USERFEEDBACK_DB_HOST))
+        $this->host = strval($USERFEEDBACK_DB_HOST);
+    if (isset($USERFEEDBACK_DB_PORT))
+        $this->host = intval($USERFEEDBACK_DB_PORT);
 }
 
 /** PDO DSN */
@@ -52,7 +56,14 @@ public function dsn()
         case 'sqlite':
             return 'sqlite:' . $this->name;
         case 'mysql':
+            break;
         case 'pgsql':
+            $s = 'pgsql:';
+            if ($this->host) $s .= 'host=' . $this->host . ';';
+            if ($this->port) $s .= 'port=' . $this->port . ';';
+            if (is_null($this->name)) break;
+            $s .= 'dbname=' . $this->name;
+            return $s;
     }
     throw new RESTException('Invalid database configuration!', 500);
 }

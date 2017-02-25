@@ -28,6 +28,7 @@
 #include <rest/serverinfo.h>
 
 #include <provider/widgets/feedbackconfigdialog.h>
+#include <provider/widgets/notificationpopup.h>
 #include <provider/core/applicationversionsource.h>
 #include <provider/core/platforminfosource.h>
 #include <provider/core/propertyratiosource.h>
@@ -180,6 +181,9 @@ MainWindow::MainWindow() :
     m_feedbackProvider->addDataSource(new QtVersionSource, Provider::BasicSystemInformation);
     m_feedbackProvider->addDataSource(new StartCountSource, Provider::BasicUsageStatistics);
     m_feedbackProvider->addDataSource(new UsageTimeSource, Provider::BasicUsageStatistics);
+
+    auto notifyPopup = new UserFeedback::NotificationPopup(this);
+    notifyPopup->setFeedbackProvider(m_feedbackProvider);
 }
 
 MainWindow::~MainWindow()

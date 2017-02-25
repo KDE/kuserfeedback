@@ -34,9 +34,6 @@
       <widget class="UserFeedback::Console::SchemaEditor" name="schemaEdit"/>
      </widget>
     </item>
-    <item>
-     <widget class="UserFeedback::NotificationWidget" name="feedbackNotification" native="true"/>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -285,12 +282,6 @@
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>UserFeedback::NotificationWidget</class>
-   <extends>QWidget</extends>
-   <header>provider/widgets/notificationwidget.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>UserFeedback::Console::SchemaEditor</class>
    <extends>QWidget</extends>

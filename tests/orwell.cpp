@@ -19,6 +19,7 @@
 #include "ui_orwell.h"
 
 #include <provider/widgets/feedbackconfigdialog.h>
+#include <provider/widgets/notificationpopup.h>
 #include <provider/core/applicationversionsource.h>
 #include <provider/core/platforminfosource.h>
 #include <provider/core/propertyratiosource.h>
@@ -40,7 +41,6 @@ Orwell::Orwell(QWidget* parent) :
     ui(new Ui::Orwell)
 {
     ui->setupUi(this);
-    ui->notificationWidget->setFeedbackProvider(provider.get());
     loadStats();
 
     connect(ui->version, &QLineEdit::textChanged, this, [this]() {
@@ -71,6 +71,8 @@ Orwell::Orwell(QWidget* parent) :
     propertyMonitorSource->addValueMapping(0, QStringLiteral("off"));
     propertyMonitorSource->addValueMapping(11, QStringLiteral("max"));
     provider->addDataSource(propertyMonitorSource, UserFeedback::Provider::DetailedUsageStatistics);
+    auto notifyPopup = new UserFeedback::NotificationPopup(this);
+    notifyPopup->setFeedbackProvider(provider.get());
 }
 
 Orwell::~Orwell() = default;

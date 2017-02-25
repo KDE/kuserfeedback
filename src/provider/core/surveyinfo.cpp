@@ -28,9 +28,17 @@ using namespace UserFeedback;
 class UserFeedback::SurveyInfoData : public QSharedData
 {
 public:
+    SurveyInfoData();
+
     int id;
     QUrl url;
 };
+
+SurveyInfoData::SurveyInfoData()
+    : id(-1)
+{
+}
+
 
 SurveyInfo::SurveyInfo() : d (new SurveyInfoData)
 {

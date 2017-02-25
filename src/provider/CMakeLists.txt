@@ -1,4 +1,4 @@
 add_subdirectory(core)
-if(Qt5Widgets_FOUND)
+if(TARGET Qt5::Widgets OR QT_QTGUI_LIBRARIES)
   add_subdirectory(widgets)
 endif()

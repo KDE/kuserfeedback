@@ -10,7 +10,11 @@ set_target_properties(UserFeedbackWidgets PROPERTIES
     VERSION ${USERFEEDBACK_VERSION}
 )
 generate_export_header(UserFeedbackWidgets)
-target_link_libraries(UserFeedbackWidgets PUBLIC Qt5::Widgets UserFeedbackCore)
+if(TARGET Qt5::Widgets)
+    target_link_libraries(UserFeedbackWidgets PUBLIC Qt5::Widgets UserFeedbackCore)
+else()
+    target_link_libraries(UserFeedbackWidgets PUBLIC ${QT_QTGUI_LIBRARIES} UserFeedbackCore)
+endif()
 target_include_directories(UserFeedbackWidgets PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR};>")
 
 install(TARGETS UserFeedbackWidgets EXPORT UserFeedbackTargets ${INSTALL_TARGETS_DEFAULT_ARGS})

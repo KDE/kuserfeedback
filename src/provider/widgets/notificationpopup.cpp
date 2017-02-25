@@ -22,9 +22,9 @@
 #include <provider/core/provider.h>
 #include <provider/core/surveyinfo.h>
 
+#include <QApplication>
 #include <QDebug>
 #include <QDesktopServices>
-#include <QGuiApplication>
 #include <QKeyEvent>
 #include <QPropertyAnimation>
 
@@ -139,7 +139,7 @@ void NotificationPopupPrivate::reposition()
 
 int NotificationPopupPrivate::xPosition() const
 {
-    if (QGuiApplication::layoutDirection() == Qt::LeftToRight) {
+    if (QApplication::layoutDirection() == Qt::LeftToRight) {
         return q->parentWidget()->width() - q->width();
     }
     return 0;

@@ -65,11 +65,12 @@ class SchemaEntry
     {
         $stmt = $db->prepare('SELECT
                 product_schema.id, product_schema.name, product_schema.type, schema_elements.name, schema_elements.type
-            FROM schema_elements JOIN product_schema ON (product_schema.id = schema_elements.schemaId)
-            WHERE product_schema.productId = :productId
+            FROM schema_elements JOIN product_schema ON (product_schema.id = schema_elements.schemaid)
+            WHERE product_schema.productid = :productId
             ORDER BY product_schema.id
         ');
-        $db->execute($stmt, array(':productId' => $product->id()));
+        $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
+        $db->execute($stmt);
         $schema = array();
         $entry = new SchemaEntry($product);
         foreach ($stmt as $row) {
@@ -97,14 +98,13 @@ class SchemaEntry
     public function insert(Datastore $db, $productId)
     {
         $stmt = $db->prepare('INSERT INTO
-            product_schema (productId, name, type)
+            product_schema (productid, name, type)
             VALUES (:productId, :name, :type)
         ');
-        $db->execute($stmt, array(
-            ':productId' => $productId,
-            ':name' => $this->name,
-            ':type' => $this->type,
-        ));
+        $stmt->bindValue(':productId', $productId, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $stmt->bindValue(':type', $this->type, PDO::PARAM_STR);
+        $db->execute($stmt);
         $this->entryId = $db->pdoHandle()->lastInsertId();
 
         // add secondary data tables for non-scalars
@@ -158,12 +158,14 @@ class SchemaEntry
             $this->dropDataTable($db);
 
         // delete elements
-        $stmt = $db->prepare('DELETE FROM schema_elements WHERE schemaId = :id');
-        $db->execute($stmt, array(':id' => $this->entryId));
+        $stmt = $db->prepare('DELETE FROM schema_elements WHERE schemaid = :id');
+        $stmt->bindValue(':id', $this->entryId, PDO::PARAM_INT);
+        $db->execute($stmt);
 
         // delete entry
         $stmt = $db->prepare('DELETE FROM product_schema WHERE id = :id');
-        $db->execute($stmt, array(':id' => $this->entryId));
+        $stmt->bindValue(':id', $this->entryId, PDO::PARAM_INT);
+        $db->execute($stmt);
     }
 
     /** Convert a JSON object into an array of SchemaEntry instances. */
@@ -197,7 +199,7 @@ class SchemaEntry
     {
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
             . Utils::primaryKeyColumnDeclaration($db->driver(), 'id') . ', '
-            . 'sampleId INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id))'
+            . 'sampleid INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id))'
         );
         $db->execute($stmt);
     }
@@ -207,7 +209,7 @@ class SchemaEntry
     {
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
             . Utils::primaryKeyColumnDeclaration($db->driver(), 'id') . ', '
-            . 'sampleId INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id), '
+            . 'sampleid INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id), '
             . 'key VARCHAR NOT NULL)'
         );
         $db->execute($stmt);

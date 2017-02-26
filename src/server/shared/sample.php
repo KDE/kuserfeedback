@@ -42,7 +42,7 @@ class Sample
         }
         $scalarSql .= ' FROM ' . $product->dataTableName() . ' ORDER BY timestamp ASC';
         $scalarStmt = $db->prepare($scalarSql);
-        $db->execute($scalarStmt, array());
+        $db->execute($scalarStmt);
         foreach ($scalarStmt as $scalarRow) {
             $rowData['id'] = intval($scalarRow['id']);
             $rowData['timestamp'] = $scalarRow['timestamp'];
@@ -66,14 +66,14 @@ class Sample
         foreach ($product->schema as $entry) {
             if ($entry->isScalar())
                 continue;
-            $sql = 'SELECT sampleId';
+            $sql = 'SELECT sampleid';
             if ($entry->type == SchemaEntry::MAP_TYPE)
                 $sql .= ', key';
             foreach ($entry->elements as $elem)
                 $sql .= ', ' . $elem->dataColumnName();
             $sql .= ' FROM ' . $entry->dataTableName() . ' ORDER BY id ASC';
             $stmt = $db->prepare($sql);
-            $db->execute($stmt, array());
+            $db->execute($stmt);
             foreach ($stmt as $row) {
                 $entryData = null;
                 foreach ($entry->elements as $elem) {
@@ -81,7 +81,7 @@ class Sample
                     if (!is_null($value))
                         $entryData[$elem->name] = $value;
                 }
-                $idx = $sampleIdIndex[$row['sampleId']];
+                $idx = $sampleIdIndex[$row['sampleid']];
                 if (!array_key_exists($entry->name, $data[$idx]))
                     $data[$idx][$entry->name] = array();
                 if ($entry->type == SchemaEntry::MAP_TYPE)
@@ -146,7 +146,7 @@ class Sample
         if (property_exists($jsonObj, 'timestamp')) {
             array_push($columns, 'timestamp');
             array_push($binds, ':timestamp');
-            array_push($values, $jsonObj->timestamp);
+            $values[':timestamp'] = array($jsonObj->timestamp, PDO::PARAM_STR);
         }
 
         foreach ($product->schema as $entry) {
@@ -165,7 +165,7 @@ class Sample
                 $bind = ':' . $elem->dataColumnName();
                 array_push($columns, $elem->dataColumnName());
                 array_push($binds, $bind);
-                $values[$bind] = $v;
+                $values[$bind] = array($v, self::pdoParamType($elem));
             }
         }
 
@@ -177,7 +177,10 @@ class Sample
             $sql .= ' DEFAULT VALUES';
         }
         $stmt = $db->prepare($sql);
-        $db->execute($stmt, $values);
+        foreach ($values as $key => $data) {
+            $stmt->bindValue($key, $data[0], $data[1]);
+        }
+        $db->execute($stmt);
 
         return $db->pdoHandle()->lastInsertId();
     }
@@ -201,7 +204,7 @@ class Sample
                 Utils::httpError(500, "Unknown non-scalar schema entry type.");
         }
 
-        $columns = array('sampleId');
+        $columns = array('sampleid');
         $binds = array(':sampleId');
         if ($schemaEntry->type == SchemaEntry::MAP_TYPE) {
             array_push($columns, 'key');
@@ -219,22 +222,22 @@ class Sample
         foreach ($data as $key => $entry) {
             if (!is_object($entry))
                 continue;
-            $bindValues = array(':sampleId' => $sampleId);
+            $stmt->bindValue(':sampleId', $sampleId, PDO::PARAM_INT);
             if ($schemaEntry->type == SchemaEntry::MAP_TYPE) {
                 if (!is_string($key) || strlen($key) == 0)
                     continue;
-                $bindValues[':key'] = $key;
+                $stmt->bindValue(':key', $key, PDO::PARAM_STR);
             }
             foreach ($schemaEntry->elements as $elem) {
-                $bindValues[':' . $elem->dataColumnName()] = null;
+                $stmt->bindValue(':' . $elem->dataColumnName(), null, self::pdoParamType($elem));
                 if (!property_exists($entry, $elem->name))
                     continue;
                 $v = $entry->{$elem->name};
                 if (!self::isCorrectType($elem, $v))
                     continue;
-                $bindValues[':' . $elem->dataColumnName()] = $v;
+                $stmt->bindValue(':' . $elem->dataColumnName(), $v, self::pdoParamType($elem));
             }
-            $db->execute($stmt, $bindValues);
+            $db->execute($stmt);
         }
     }
 
@@ -278,6 +281,22 @@ class Sample
                 break;
         }
         return true;
+    }
+
+    /** Determine PDO column type for the given element. */
+    private static function pdoParamType(SchemaEntryElement $elem)
+    {
+        switch ($elem->type) {
+            case SchemaEntryElement::STRING_TYPE:
+                return PDO::PARAM_STR;
+            case SchemaEntryElement::INT_TYPE:
+                return PDO::PARAM_INT;
+            case SchemaEntryElement::NUMBER_TYPE:
+                return PDO::PARAM_STR; // yes, really...
+            case SchemaEntryElement::BOOL_TYPE:
+                return PDO::PARAM_BOOL;
+        }
+        throw new RESTException('Unsupported element type.', 500);
     }
 }
 

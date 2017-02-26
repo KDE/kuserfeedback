@@ -65,11 +65,11 @@ public function prepare($queryString)
     return $res;
 }
 
-/** Execute a prepared query. */
-public function execute(PDOStatement $stmt, $bindValues = null)
+/** Execute a prepared query and check the result for errors. */
+public function execute(PDOStatement $stmt)
 {
     try {
-        if (!$stmt->execute($bindValues)) {
+        if (!$stmt->execute()) {
             $err = $stmt->errorInfo();
             $msg = "SQL execution error: SQLSTATE: " . $err[0] . "\nDriver error code: " . $err[1] . "\nDriver error message: " . $err[2];
             throw new RESTException($msg, 500);

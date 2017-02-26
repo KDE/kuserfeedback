@@ -57,14 +57,13 @@ class SchemaEntryElement
     public function insert(Datastore $db, $entryId)
     {
         $stmt = $db->prepare('INSERT INTO
-            schema_elements (schemaId, name, type)
+            schema_elements (schemaid, name, type)
             VALUES (:schemaId, :name, :type)
         ');
-        $db->execute($stmt, array(
-            ':schemaId' => $entryId,
-            ':name' => $this->name,
-            ':type' => $this->type
-        ));
+        $stmt->bindValue(':schemaId', $entryId, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $stmt->bindValue(':type', $this->type, PDO::PARAM_STR);
+        $db->execute($stmt);
 
         if ($this->schemaEntry->isScalar())
             $this->createScalarDataTableColumn($db);
@@ -77,12 +76,11 @@ class SchemaEntryElement
     {
         $stmt = $db->prepare('
             DELETE FROM schema_elements
-            WHERE schemaId = :schemaId AND name = :name
+            WHERE schemaid = :schemaId AND name = :name
         ');
-        $db->execute($stmt, array(
-            ':schemaId' => $entryId,
-            ':name' => $this->name
-        ));
+        $stmt->bindValue(':schemaId', $entryId, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $db->execute($stmt);
     }
 
     /** Convert a JSON array into an array of SchemaEntryElement instances. */

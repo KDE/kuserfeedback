@@ -35,7 +35,8 @@ class Survey
             FROM surveys JOIN products ON (surveys.productId = products.id)
             WHERE products.name = :productName
         ');
-        $db->execute($stmt, array('productName' => strval($productName)));
+        $stmt->bindValue(':productName', $productName, PDO::PARAM_STR);
+        $db->execute($stmt);
 
         $surveys = array();
         foreach ($stmt as $row) {
@@ -53,8 +54,10 @@ class Survey
     /** Returns an array of all active surveys for @p product. */
     public function activeSurveysForProduct(Datastore $db, Product $product)
     {
-        $stmt = $db->prepare('SELECT id, name, url FROM surveys WHERE productId = :productId AND active = 1');
-        $db->execute($stmt, array(':productId' => intval($product->id())));
+        $stmt = $db->prepare('SELECT id, name, url FROM surveys WHERE productid = :productId AND active = :active');
+        $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
+        $stmt->bindValue(':active', true, PDO::PARAM_BOOL);
+        $db->execute($stmt);
 
         $surveys = array();
         foreach ($stmt as $row) {
@@ -73,7 +76,7 @@ class Survey
     public function insert(Datastore $db, Product $product)
     {
         $stmt = $db->prepare('
-            INSERT INTO surveys (productId, name, url, active)
+            INSERT INTO surveys (productid, name, url, active)
             VALUES (:productId, :name, :url, :active)
         ');
         $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
@@ -105,7 +108,8 @@ class Survey
     public function delete(Datastore $db)
     {
         $stmt = $db->prepare('DELETE FROM surveys WHERE id = :surveyId');
-        $db->execute($stmt, array(':surveyId' => $this->id));
+        $stmt->bindValue(':surveyId', $this->id, PDO::PARAM_INT);
+        $db->execute($stmt);
     }
 
     /** Create one Survey instance based on JSON input and verifies it is valid. */

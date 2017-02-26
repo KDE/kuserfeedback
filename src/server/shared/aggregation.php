@@ -28,9 +28,10 @@ class Aggregation
     /** Load aggregation settings for @p $product from storage. */
     static public function aggregationsForProduct(DataStore $db, Product $product)
     {
-        $sql = 'SELECT type, elements FROM aggregation WHERE productId = :productId ORDER BY id';
+        $sql = 'SELECT type, elements FROM aggregation WHERE productid = :productId ORDER BY id';
         $stmt = $db->prepare($sql);
-        $db->execute($stmt, array(':productId' => $product->id()));
+        $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
+        $db->execute($stmt);
 
         $aggrs = array();
         foreach ($stmt as $row) {
@@ -47,23 +48,23 @@ class Aggregation
     {
         Aggregation::delete($db, $product);
 
-        $sql = 'INSERT INTO aggregation (productId, type, elements) VALUES (:productId, :type, :elements)';
+        $sql = 'INSERT INTO aggregation (productid, type, elements) VALUES (:productId, :type, :elements)';
         $stmt = $db->prepare($sql);
+        $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
         foreach ($aggregations as $a) {
-            $db->execute($stmt, array(
-                ':productId' => $product->id(),
-                ':type' => $a->type,
-                ':elements' => json_encode($a->elements)
-            ));
+            $stmt->bindValue(':type', $a->type, PDO::PARAM_STR);
+            $stmt->bindValue(':elements', json_encode($a->elements), PDO::PARAM_STR);
+            $db->execute($stmt);
         }
     }
 
     /** Delete all aggregation settings for @p $product. */
     static public function delete(DataStore $db, Product $product)
     {
-        $sql = 'DELETE FROM aggregation WHERE productId = :productId';
+        $sql = 'DELETE FROM aggregation WHERE productid = :productId';
         $stmt = $db->prepare($sql);
-        $db->execute($stmt, array(':productId' => $product->id()));
+        $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
+        $db->execute($stmt);
     }
 
     /** Convert a JSON object into an array of Aggregation instances. */

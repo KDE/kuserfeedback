@@ -68,7 +68,8 @@ class Product
             throw new RESTException('Invalid product name.', 400);
 
         $stmt = $db->prepare('SELECT * FROM products WHERE name = :name');
-        $db->execute($stmt, array(':name' => strval($name)));
+        $stmt->bindValue(':name', strval($name), PDO::PARAM_STR);
+        $db->execute($stmt);
         foreach ($stmt as $row) {
             $p = new Product();
             $p->productId = $row['id'];
@@ -84,7 +85,8 @@ class Product
     {
         // create product entry
         $stmt = $db->prepare('INSERT INTO products (name) VALUES (:name)');
-        $db->execute($stmt, array(':name' => $this->name));
+        $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $db->execute($stmt);
         $this->productId = $db->pdoHandle()->lastInsertId();
 
         // create data tables;
@@ -145,7 +147,8 @@ class Product
 
         // delete product
         $stmt = $db->prepare('DELETE FROM products WHERE id = :id');
-        $db->execute($stmt, array(':id' => $this->productId));
+        $stmt->bindValue(':id', $this->productId, PDO::PARAM_INT);
+        $db->execute($stmt);
     }
 
     /** Create one Product instance based on JSON input and verifies it is valid. */

@@ -46,7 +46,11 @@ public function __construct()
     if (isset($USERFEEDBACK_DB_HOST))
         $this->host = strval($USERFEEDBACK_DB_HOST);
     if (isset($USERFEEDBACK_DB_PORT))
-        $this->host = intval($USERFEEDBACK_DB_PORT);
+        $this->port = intval($USERFEEDBACK_DB_PORT);
+    if (isset($USERFEEDBACK_DB_USERNAME))
+        $this->username = strval($USERFEEDBACK_DB_USERNAME);
+    if (isset($USERFEEDBACK_DB_PASSWORD))
+        $this->password = strval($USERFEEDBACK_DB_PASSWORD);
 }
 
 /** PDO DSN */
@@ -56,7 +60,13 @@ public function dsn()
         case 'sqlite':
             return 'sqlite:' . $this->name;
         case 'mysql':
-            break;
+            $s = 'mysql:';
+            // TODO: support unix_socket=
+            if ($this->host) $s .= 'host=' . $this->host . ';';
+            if ($this->port) $s .= 'port=' . $this->port . ';';
+            if (is_null($this->name)) break;
+            $s .= 'dbname=' . $this->name;
+            return $s;
         case 'pgsql':
             $s = 'pgsql:';
             if ($this->host) $s .= 'host=' . $this->host . ';';

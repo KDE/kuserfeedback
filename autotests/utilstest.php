@@ -65,7 +65,7 @@ class UtilTest extends PHPUnit_Framework_TestCase
         return [
             'sqlite' => [ 'sqlite', 'id', 'id INTEGER PRIMARY KEY AUTOINCREMENT' ],
             'pgsql' => [ 'pgsql', 'id', 'id SERIAL PRIMARY KEY' ],
-            'mysql' => [ 'mysql', 'id', 'id INTEGER PRIMARY KEY AUTOINCREMENT' ]
+            'mysql' => [ 'mysql', 'id', 'id INTEGER PRIMARY KEY AUTO_INCREMENT' ]
         ];
     }
 

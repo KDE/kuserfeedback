@@ -7,42 +7,48 @@
 
         {
             "version": 2,
-            "sql": ["CREATE TABLE products (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR NOT NULL UNIQUE)" ],
+            "sqlite": ["CREATE TABLE products (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR NOT NULL UNIQUE)" ],
+            "mysql": ["CREATE TABLE products (id INTEGER PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255) NOT NULL UNIQUE)" ],
             "pgsql": ["CREATE TABLE products (id SERIAL PRIMARY KEY, name VARCHAR NOT NULL UNIQUE)" ]
         },
 
         {
             "version": 3,
-            "sql": ["CREATE TABLE surveys (id INTEGER PRIMARY KEY AUTOINCREMENT, productid INTEGER REFERENCES products (id), name VARCHAR, url VARCHAR NOT NULL)" ],
+            "sqlite": ["CREATE TABLE surveys (id INTEGER PRIMARY KEY AUTOINCREMENT, productid INTEGER REFERENCES products (id), name VARCHAR, url VARCHAR NOT NULL)" ],
+            "mysql": ["CREATE TABLE surveys (id INTEGER PRIMARY KEY AUTO_INCREMENT, productid INTEGER REFERENCES products (id), name VARCHAR(255), url VARCHAR(255) NOT NULL)" ],
             "pgsql": ["CREATE TABLE surveys (id SERIAL PRIMARY KEY, productid INTEGER REFERENCES products (id), name VARCHAR, url VARCHAR NOT NULL)" ]
         },
 
         {
             "version": 4,
-            "sql": ["ALTER TABLE surveys ADD COLUMN active INTEGER DEFAULT 0"],
-            "pgsql": ["ALTER TABLE surveys ADD COLUMN active BOOLEAN DEFAULT FALSE"]
+            "sql": ["ALTER TABLE surveys ADD COLUMN active BOOLEAN DEFAULT FALSE"],
+            "sqlite": ["ALTER TABLE surveys ADD COLUMN active INTEGER DEFAULT 0"]
         },
 
         {
             "version": 5,
-            "sql": ["CREATE TABLE product_schema (id INTEGER PRIMARY KEY AUTOINCREMENT, productid INTEGER REFERENCES products (id), name VARCHAR, type VARCHAR)" ],
+            "sqlite": ["CREATE TABLE product_schema (id INTEGER PRIMARY KEY AUTOINCREMENT, productid INTEGER REFERENCES products (id), name VARCHAR, type VARCHAR)" ],
+            "mysql": ["CREATE TABLE product_schema (id INTEGER PRIMARY KEY AUTO_INCREMENT, productid INTEGER REFERENCES products (id), name VARCHAR(255), type VARCHAR(255))" ],
             "pgsql": ["CREATE TABLE product_schema (id SERIAL PRIMARY KEY, productid INTEGER REFERENCES products (id), name VARCHAR, type VARCHAR)" ]
         },
 
         {
             "version": 6,
-            "sql": ["ALTER TABLE product_schema ADD COLUMN aggregation VARCHAR"]
+            "sql": ["ALTER TABLE product_schema ADD COLUMN aggregation VARCHAR"],
+            "mysql": ["ALTER TABLE product_schema ADD COLUMN aggregation VARCHAR(255)"]
         },
 
         {
             "version": 7,
-            "sql": ["CREATE TABLE schema_elements (id INTEGER PRIMARY KEY AUTOINCREMENT, schemaid INTEGER REFERENCES product_schema (id), name VARCHAR NOT NULL, type VARCHAR NOT NULL)" ],
+            "sqlite": ["CREATE TABLE schema_elements (id INTEGER PRIMARY KEY AUTOINCREMENT, schemaid INTEGER REFERENCES product_schema (id), name VARCHAR NOT NULL, type VARCHAR NOT NULL)" ],
+            "mysql": ["CREATE TABLE schema_elements (id INTEGER PRIMARY KEY AUTO_INCREMENT, schemaid INTEGER REFERENCES product_schema (id), name VARCHAR(255) NOT NULL, type VARCHAR(255) NOT NULL)" ],
             "pgsql": ["CREATE TABLE schema_elements (id SERIAL PRIMARY KEY, schemaid INTEGER REFERENCES product_schema (id), name VARCHAR NOT NULL, type VARCHAR NOT NULL)" ]
         },
 
         {
             "version": 8,
-            "sql": ["CREATE TABLE aggregation (id INTEGER PRIMARY KEY AUTOINCREMENT, productid INTEGER REFERENCES products (id) ON DELETE CASCADE, type VARCHAR NOT NULL, elements VARCHAR)" ],
+            "sqlite": ["CREATE TABLE aggregation (id INTEGER PRIMARY KEY AUTOINCREMENT, productid INTEGER REFERENCES products (id) ON DELETE CASCADE, type VARCHAR NOT NULL, elements VARCHAR)" ],
+            "mysql": ["CREATE TABLE aggregation (id INTEGER PRIMARY KEY AUTO_INCREMENT, productid INTEGER REFERENCES products (id) ON DELETE CASCADE, type VARCHAR(255) NOT NULL, elements VARCHAR(255))" ],
             "pgsql": ["CREATE TABLE aggregation (id SERIAL PRIMARY KEY, productid INTEGER REFERENCES products (id) ON DELETE CASCADE, type VARCHAR NOT NULL, elements VARCHAR)" ]
         }
     ]

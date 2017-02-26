@@ -50,8 +50,9 @@ public static function primaryKeyColumnDeclaration($driver, $columnName)
 {
     switch ($driver) {
         case 'sqlite':
-        case 'mysql':
             return $columnName . ' INTEGER PRIMARY KEY AUTOINCREMENT';
+        case 'mysql':
+            return $columnName . ' INTEGER PRIMARY KEY AUTO_INCREMENT';
         case 'pgsql':
             return $columnName . ' SERIAL PRIMARY KEY';
     }

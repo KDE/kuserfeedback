@@ -20,11 +20,6 @@ require_once('../src/server/shared/utils.php');
 
 class UtilTest extends PHPUnit_Framework_TestCase
 {
-    public function testTableName()
-    {
-        $this->assertEquals(Utils::tableNameForProduct("foo.bar"), "product_foo_bar");
-    }
-
     public function testIsValidIdentifier_data()
     {
         return [

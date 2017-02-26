@@ -43,27 +43,6 @@ public static function normalizeString($input)
     return $result;
 }
 
-public static function tableNameForProduct($productName)
-{
-    if ($productName == "")
-        die("Empty product name.");
-
-    if (!ctype_alpha($productName[0]))
-        die("Invalid product name, must start with a letter.");
-
-    $tableName = 'product_' . Utils::normalizeString($productName);
-    return $tableName;
-}
-
-public static function tableNameForComplexEntry($productName, $entryName)
-{
-    $productTableName = Utils::tableNameForProduct($productName);
-    $productTableName .= '_';
-    $productTableName .= Utils::normalizeString($entryName);
-
-    return $productTableName;
-}
-
 public static function httpError($responseCode, $message)
 {
     error_log('UserFeedback ERROR: ' . $message . ' (' . $responseCode . ')');

@@ -16,6 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+require_once('restexception.php');
+
 class Utils {
 
 public static function isValidIdentifier($str)
@@ -41,6 +43,19 @@ public static function normalizeString($input)
         $result .= $c;
     }
     return $result;
+}
+
+/** Driver-dependent column declaration for a numeric auto-increment primary key. */
+public static function primaryKeyColumnDeclaration($driver, $columnName)
+{
+    switch ($driver) {
+        case 'sqlite':
+        case 'mysql':
+            return $columnName . ' INTEGER PRIMARY KEY AUTOINCREMENT';
+        case 'pgsql':
+            return $columnName . ' SERIAL PRIMARY KEY';
+    }
+    throw new RESTException('Unsupported database driver.', 500);
 }
 
 public static function httpError($responseCode, $message)

@@ -59,4 +59,19 @@ class UtilTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals($output, Utils::normalizeString($input));
     }
+
+    public function testPrimaryKeyColumn_data()
+    {
+        return [
+            'sqlite' => [ 'sqlite', 'id', 'id INTEGER PRIMARY KEY AUTOINCREMENT' ],
+            'pgsql' => [ 'pgsql', 'id', 'id SERIAL PRIMARY KEY' ],
+            'mysql' => [ 'mysql', 'id', 'id INTEGER PRIMARY KEY AUTOINCREMENT' ]
+        ];
+    }
+
+    /** @dataProvider testPrimaryKeyColumn_data */
+    public function testPrimaryKeyColumn($driver, $name, $output)
+    {
+        $this->assertEquals($output, Utils::primaryKeyColumnDeclaration($driver, $name));
+    }
 }

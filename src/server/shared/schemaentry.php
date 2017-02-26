@@ -16,7 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-include_once('schemaentryelement.php');
+require_once('schemaentryelement.php');
+require_once('utils.php');
 
 /** Represents a product schema entry. */
 class SchemaEntry
@@ -195,7 +196,7 @@ class SchemaEntry
     private function createListDataTable(Datastore $db)
     {
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
-            . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+            . Utils::primaryKeyColumnDeclaration($db->driver(), 'id') . ', '
             . 'sampleId INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id))'
         );
         $db->execute($stmt);
@@ -205,7 +206,7 @@ class SchemaEntry
     private function createMapDataTable(Datastore $db)
     {
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
-            . 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+            . Utils::primaryKeyColumnDeclaration($db->driver(), 'id') . ', '
             . 'sampleId INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id), '
             . 'key VARCHAR NOT NULL)'
         );

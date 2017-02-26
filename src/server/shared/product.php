@@ -88,9 +88,9 @@ class Product
         $this->productId = $db->pdoHandle()->lastInsertId();
 
         // create data tables;
-        $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName() . ' (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
+        $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName() . ' (' .
+            Utils::primaryKeyColumnDeclaration($db->driver(), 'id') .
+            ', timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
         ');
         $db->execute($stmt);
 

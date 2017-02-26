@@ -211,7 +211,7 @@ class SchemaEntry
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
             . Utils::primaryKeyColumnDeclaration($db->driver(), 'id') . ', '
             . 'sampleid INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id), '
-            . 'key ' . Utils::sqlStringType($db->driver()) . ' NOT NULL)'
+            . 'mapkey ' . Utils::sqlStringType($db->driver()) . ' NOT NULL)'
         );
         $db->execute($stmt);
     }

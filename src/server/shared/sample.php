@@ -68,7 +68,7 @@ class Sample
                 continue;
             $sql = 'SELECT sampleid';
             if ($entry->type == SchemaEntry::MAP_TYPE)
-                $sql .= ', key';
+                $sql .= ', mapkey';
             foreach ($entry->elements as $elem)
                 $sql .= ', ' . $elem->dataColumnName();
             $sql .= ' FROM ' . $entry->dataTableName() . ' ORDER BY id ASC';
@@ -85,7 +85,7 @@ class Sample
                 if (!array_key_exists($entry->name, $data[$idx]))
                     $data[$idx][$entry->name] = array();
                 if ($entry->type == SchemaEntry::MAP_TYPE)
-                    $data[$idx][$entry->name][$row['key']] = $entryData;
+                    $data[$idx][$entry->name][$row['mapkey']] = $entryData;
                 else
                     array_push($data[$idx][$entry->name], $entryData);
             }
@@ -207,7 +207,7 @@ class Sample
         $columns = array('sampleid');
         $binds = array(':sampleId');
         if ($schemaEntry->type == SchemaEntry::MAP_TYPE) {
-            array_push($columns, 'key');
+            array_push($columns, 'mapkey');
             array_push($binds, ':key');
         }
         foreach ($schemaEntry->elements as $elem) {

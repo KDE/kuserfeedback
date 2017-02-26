@@ -65,9 +65,13 @@ private slots:
         client.connectToServer(testServer());
         QVERIFY(client.isConnected());
 
+        // make sure we have at least one product, but not the one we want to create for testing
         Product p;
+        p.setName(QStringLiteral("org.kde.SomeOtherTestProduct"));
+        auto reply = RESTApi::createProduct(&client, p);
+        waitForFinished(reply);
         p.setName(QStringLiteral("org.kde.NewUnitTestProduct"));
-        auto reply = RESTApi::deleteProduct(&client, p);
+        reply = RESTApi::deleteProduct(&client, p);
         waitForFinished(reply);
 
         ProductModel model;

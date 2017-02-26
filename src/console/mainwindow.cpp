@@ -217,6 +217,7 @@ void MainWindow::connectToServer(const ServerInfo& info)
             logError(reply->errorString());
             QMessageBox::critical(this, tr("Connection Failure"), tr("Failed to connect to server: %1").arg(reply->errorString()));
         }
+        updateActions();
     });
 }
 
@@ -264,6 +265,7 @@ void MainWindow::productSelected()
     ui->surveyEditor->setProduct(product);
     ui->schemaEdit->setProduct(product);
     ui->analyticsView->setProduct(product);
+    updateActions();
 }
 
 void MainWindow::logMessage(const QString& msg)
@@ -295,6 +297,10 @@ void MainWindow::updateActions()
         for (auto action : w->actions())
             action->setVisible(isActive);
     }
+
+    // product action state
+    ui->actionAddProduct->setEnabled(m_restClient->isConnected());
+    ui->actionDeleteProduct->setEnabled(selectedProduct().isValid());
 
     // deactivate empty menus
     ui->menuAnalytics->setEnabled(!ui->menuAnalytics->isEmpty());

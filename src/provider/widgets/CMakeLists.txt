@@ -19,6 +19,13 @@ target_include_directories(UserFeedbackWidgets PUBLIC "$<BUILD_INTERFACE:${CMAKE
 
 install(TARGETS UserFeedbackWidgets EXPORT UserFeedbackTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
+install(FILES
+    feedbackconfigdialog.h
+    feedbackconfigwidget.h
+    notificationpopup.h
+    ${CMAKE_CURRENT_BINARY_DIR}/userfeedbackwidgets_export.h
+    DESTINATION include/UserFeedbackWidgets
+)
 
 ecm_generate_pri_file(BASE_NAME UserFeedbackWidgets
                       LIB_NAME UserFeedbackWidgets

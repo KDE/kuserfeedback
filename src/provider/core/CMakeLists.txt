@@ -31,6 +31,19 @@ target_include_directories(UserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_SO
 
 install(TARGETS UserFeedbackCore EXPORT UserFeedbackTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
+install(FILES
+    abstractdatasource.h
+    applicationversionsource.h
+    platforminfosource.h
+    provider.h
+    qtversionsource.h
+    screeninfosource.h
+    startcountsource.h
+    surveyinfo.h
+    usagetimesource.h
+    ${CMAKE_CURRENT_BINARY_DIR}/userfeedbackcore_export.h
+    DESTINATION include/UserFeedbackCore
+)
 
 ecm_generate_pri_file(BASE_NAME UserFeedbackCore
                       LIB_NAME UserFeedbackCore

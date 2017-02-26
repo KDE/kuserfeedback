@@ -19,7 +19,8 @@
 
         {
             "version": 4,
-            "sql": ["ALTER TABLE surveys ADD COLUMN active INTEGER DEFAULT 0"]
+            "sql": ["ALTER TABLE surveys ADD COLUMN active INTEGER DEFAULT 0"],
+            "pgsql": ["ALTER TABLE surveys ADD COLUMN active BOOLEAN DEFAULT FALSE"]
         },
 
         {

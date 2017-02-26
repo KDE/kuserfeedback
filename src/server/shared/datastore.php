@@ -66,7 +66,7 @@ public function prepare($queryString)
 }
 
 /** Execute a prepared query. */
-public function execute(PDOStatement $stmt, $bindValues = array())
+public function execute(PDOStatement $stmt, $bindValues = null)
 {
     try {
         if (!$stmt->execute($bindValues)) {

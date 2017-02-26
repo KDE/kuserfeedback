@@ -43,7 +43,7 @@ class Survey
             $s->id = $row['id'];
             $s->name = $row['name'];
             $s->url = $row['url'];
-            $s->active = $row['active'] == "1"; // fix-up sqlite bools
+            $s->active = boolval($row['active']);
             array_push($surveys, $s);
         }
 
@@ -76,12 +76,11 @@ class Survey
             INSERT INTO surveys (productId, name, url, active)
             VALUES (:productId, :name, :url, :active)
         ');
-        $db->execute($stmt, array(
-            ':productId' => $product->id(),
-            ':name' => $this->name,
-            ':url' => $this->url,
-            ':active' => $this->active
-        ));
+        $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
+        $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $stmt->bindValue(':url', $this->url, PDO::PARAM_STR);
+        $stmt->bindValue(':active', $this->active, PDO::PARAM_BOOL);
+        $db->execute($stmt);
         $this->id = $db->pdoHandle()->lastInsertId();
     }
 
@@ -95,12 +94,11 @@ class Survey
                 active = :active
             WHERE id = :surveyId
         ');
-        $db->execute($stmt, array(
-            ':name' => $this->name,
-            ':url' => $this->url,
-            ':active' => $this->active,
-            ':surveyId' => $this->id
-        ));
+        $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $stmt->bindValue(':url', $this->url, PDO::PARAM_STR);
+        $stmt->bindValue(':active', $this->active, PDO::PARAM_BOOL);
+        $stmt->bindValue(':surveyId', $this->id, PDO::PARAM_INT);
+        $db->execute($stmt);
     }
 
     /** Delete this existing survey from storage. */

@@ -50,7 +50,8 @@ class SchemaEntryElement
     /** Column name in the data table. */
     public function dataColumnName()
     {
-        return Utils::normalizeString($this->schemaEntry->name) . '_' . Utils::normalizeString($this->name);
+        $colName = Utils::normalizeString($this->schemaEntry->name) . '_' . Utils::normalizeString($this->name);
+        return strtolower($colName);
     }
 
     /** Insert this element into storage. */

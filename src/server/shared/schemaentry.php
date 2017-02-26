@@ -190,7 +190,8 @@ class SchemaEntry
     /** Data table name for secondary data tables. */
     public function dataTableName()
     {
-        return $this->product()->dataTableName() . '_' . Utils::normalizeString($this->name);
+        $tableName = $this->product()->dataTableName() . '_' . Utils::normalizeString($this->name);
+        return strtolower($tableName);
     }
 
 

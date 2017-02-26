@@ -35,7 +35,7 @@ class Product
     public function dataTableName()
     {
         $tableName = 'product_' . Utils::normalizeString($this->name);
-        return $tableName;
+        return strtolower($tableName);
     }
 
     /** Returns the numeric database id of this product for use in queries. */

@@ -135,6 +135,9 @@
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="QTreeView" name="productListView">
+       <property name="contextMenuPolicy">
+        <enum>Qt::ActionsContextMenu</enum>
+       </property>
        <property name="rootIsDecorated">
         <bool>false</bool>
        </property>

@@ -67,6 +67,7 @@ MainWindow::MainWindow() :
     addView(ui->analyticsView, ui->menuAnalytics);
 
     ui->productListView->setModel(m_productModel);
+    ui->productListView->addActions({ ui->actionAddProduct, ui->actionDeleteProduct });
 
     connect(m_restClient, &RESTClient::errorMessage, this, &MainWindow::logError);
     m_productModel->setRESTClient(m_restClient);

@@ -30,7 +30,6 @@ function __construct($dsn = NULL)
     try {
         if (is_null($dsn)) {
             $conf = new Config;
-            error_log("config: " . $conf->dsn());
             $this->db = new PDO($conf->dsn(), $conf->username(), $conf->password());
         } else {
             $this->db = new PDO($dsn);
@@ -55,7 +54,6 @@ public function pdoHandle()
 /** Prepare a query. */
 public function prepare($queryString)
 {
-    error_log('prepare:' . $queryString);
     try {
         $res = $this->db->prepare($queryString);
         $this->checkError($res);
@@ -77,7 +75,6 @@ public function execute(PDOStatement $stmt)
     } catch (PDOException $e) {
         throw new RESTException($e->getMessage(), 500);
     }
-    error_log('execute succeeded.');
 }
 
 /** Check database result for errors, and if so, bail out. */
@@ -138,7 +135,6 @@ private function schemaVersion()
         $this->beginTransaction();
         return 0;
     }
-    error_log("Version: " . $row['version']);
     foreach ($res as $row)
         return $row['version'];
     return 0;
@@ -153,11 +149,9 @@ private function applySchemaChange($schemaDef)
         $cmds = $schemaDef['sql'];
 
     foreach($cmds as $cmd) {
-        error_log("Executing $cmd");
         $res = $this->db->exec($cmd);
         $this->checkError($res);
     }
-    error_log("Updating version to " . $schemaDef['version']);
     $res = $this->db->exec('UPDATE schema_version SET version = ' . $schemaDef['version']);
     $this->checkError($res);
 }

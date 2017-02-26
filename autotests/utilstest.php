@@ -74,4 +74,19 @@ class UtilTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals($output, Utils::primaryKeyColumnDeclaration($driver, $name));
     }
+
+    public function testSqlStringType_data()
+    {
+        return [
+            'sqlite' => [ 'sqlite', 'VARCHAR' ],
+            'mysql' => [ 'mysql', 'VARCHAR(255)' ],
+            'pgsql' => [ 'pgsql', 'VARCHAR' ],
+        ];
+    }
+
+    /** @dataProvider testSqlStringType_data */
+    public function testSqlStringType($driver, $output)
+    {
+        $this->assertEquals($output, Utils::sqlStringType($driver));
+    }
 }

@@ -103,10 +103,10 @@ class SchemaEntryElement
 
 
     /** SQL type for this element. */
-    private function sqlType()
+    private function sqlType(Datastore $db)
     {
         switch ($this->type) {
-            case self::STRING_TYPE: return 'VARCHAR';
+            case self::STRING_TYPE: return Utils::sqlStringType($db->driver());
             case self::INT_TYPE: return 'INTEGER';
             case self::NUMBER_TYPE: return 'REAL';
             case self::BOOL_TYPE: return 'BOOLEAN';
@@ -118,7 +118,7 @@ class SchemaEntryElement
     private function createScalarDataTableColumn(Datastore $db)
     {
         $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->product()->dataTableName()
-            . ' ADD COLUMN ' . $this->dataColumnName() . ' ' . $this->sqlType());
+            . ' ADD COLUMN ' . $this->dataColumnName() . ' ' . $this->sqlType($db));
         $db->execute($stmt);
     }
 
@@ -126,7 +126,7 @@ class SchemaEntryElement
     private function createNonScalarDataTableColumn(Datastore $db)
     {
         $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->dataTableName()
-            . ' ADD COLUMN ' . $this->dataColumnName() . ' ' . $this->sqlType());
+            . ' ADD COLUMN ' . $this->dataColumnName() . ' ' . $this->sqlType($db));
         $db->execute($stmt);
     }
 }

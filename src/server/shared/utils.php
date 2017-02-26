@@ -45,6 +45,19 @@ public static function normalizeString($input)
     return $result;
 }
 
+/** Driver-dependen default SQL string type. */
+public static function sqlStringType($driver)
+{
+    switch ($driver) {
+        case 'sqlite':
+        case 'pgsql':
+            return 'VARCHAR';
+        case 'mysql':
+            return 'VARCHAR(255)';
+    }
+    throw new RESTException('Unsupported database driver.', 500);
+}
+
 /** Driver-dependent column declaration for a numeric auto-increment primary key. */
 public static function primaryKeyColumnDeclaration($driver, $columnName)
 {

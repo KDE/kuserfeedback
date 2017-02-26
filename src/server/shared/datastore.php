@@ -69,8 +69,11 @@ public function prepare($queryString)
 public function execute(PDOStatement $stmt, $bindValues = array())
 {
     try {
-        $stmt->execute($bindValues);
-        $this->checkError($stmt);
+        if (!$stmt->execute($bindValues)) {
+            $err = $stmt->errorInfo();
+            $msg = "SQL execution error: SQLSTATE: " . $err[0] . "\nDriver error code: " . $err[1] . "\nDriver error message: " . $err[2];
+            throw new RESTException($msg, 500);
+        }
     } catch (PDOException $e) {
         throw new RESTException($e->getMessage(), 500);
     }

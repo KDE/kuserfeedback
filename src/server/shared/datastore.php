@@ -25,15 +25,11 @@ class DataStore {
 
 private $db;
 
-function __construct($dsn = NULL)
+function __construct()
 {
     try {
-        if (is_null($dsn)) {
-            $conf = new Config;
-            $this->db = new PDO($conf->dsn(), $conf->username(), $conf->password());
-        } else {
-            $this->db = new PDO($dsn);
-        }
+        $conf = new Config;
+        $this->db = new PDO($conf->dsn(), $conf->username(), $conf->password());
     } catch (PDOException $e) {
         die('Database connection failed: ' . $e->getMessage());
     }

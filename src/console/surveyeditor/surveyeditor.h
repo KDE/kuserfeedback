@@ -51,6 +51,7 @@ signals:
 private:
     void createSurvey();
     void deleteSurvey();
+    void updateActions();
 
 private:
     std::unique_ptr<Ui::SurveyEditor> ui;

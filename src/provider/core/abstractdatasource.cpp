@@ -57,7 +57,7 @@ Provider::StatisticsCollectionMode AbstractDataSource::collectionMode() const
 
     Q_ASSERT(d->mode != Provider::NoStatistics);
     if (d->mode == Provider::NoStatistics)
-        return Provider::AllStatistics;
+        return Provider::DetailedUsageStatistics;
     return d->mode;
 }
 

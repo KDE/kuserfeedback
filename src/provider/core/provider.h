@@ -42,8 +42,7 @@ public:
         BasicUsageStatistics,
         DetailedSystemInformation,
         DetailedUsageStatistics,
-        AllStatistics = DetailedUsageStatistics,
-        CollectionModeCount = AllStatistics
+        CollectionModeCount = DetailedUsageStatistics
     };
     Q_ENUMS(StatisticsCollectionMode)
 

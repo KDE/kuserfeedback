@@ -148,7 +148,7 @@ private slots:
         Provider p;
         auto src = new StartCountSource;
         QVERIFY(!src->description().isEmpty());
-        p.addDataSource(src, Provider::AllStatistics);
+        p.addDataSource(src, Provider::DetailedUsageStatistics);
         const auto m = src->data().toMap();
         QVERIFY(m.contains(QLatin1String("value")));
         QVERIFY(m.value(QLatin1String("value")).toInt() >= 1);
@@ -159,7 +159,7 @@ private slots:
         Provider p;
         auto src = new UsageTimeSource;
         QVERIFY(!src->description().isEmpty());
-        p.addDataSource(src, Provider::AllStatistics);
+        p.addDataSource(src, Provider::DetailedUsageStatistics);
         QTest::qWait(1200);
         const auto m = src->data().toMap();
         QVERIFY(m.contains(QLatin1String("value")));

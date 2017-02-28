@@ -29,7 +29,7 @@ public:
     virtual ~AbstractDataSourcePrivate();
 
     QString name;
-    Provider::StatisticsCollectionMode mode = Provider::AllStatistics;
+    Provider::StatisticsCollectionMode mode = Provider::DetailedUsageStatistics;
 };
 
 }

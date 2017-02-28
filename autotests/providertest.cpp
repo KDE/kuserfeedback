@@ -91,11 +91,11 @@ private slots:
 
         // submit data
         Provider provider;
-        provider.setStatisticsCollectionMode(Provider::AllStatistics);
+        provider.setStatisticsCollectionMode(Provider::DetailedUsageStatistics);
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
         provider.setFeedbackServer(m_server.url());
-        provider.addDataSource(new ScreenInfoSource, Provider::AllStatistics);
-        provider.addDataSource(new PlatformInfoSource, Provider::AllStatistics);
+        provider.addDataSource(new ScreenInfoSource, Provider::DetailedUsageStatistics);
+        provider.addDataSource(new PlatformInfoSource, Provider::DetailedUsageStatistics);
         provider.submit();
         QTest::qWait(100); // HACK submit is async
 

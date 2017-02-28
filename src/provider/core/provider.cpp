@@ -226,7 +226,7 @@ void ProviderPrivate::scheduleEncouragement()
     if (encouragementStarts > startCount) // we need more starts
         return;
 
-    if (statisticsMode == Provider::AllStatistics && surveyInterval == 0) // already everything enabled
+    if (statisticsMode == Provider::DetailedUsageStatistics && surveyInterval == 0) // already everything enabled
         return;
 
     Q_ASSERT(encouragementDelay >= 0);

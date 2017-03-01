@@ -1,0 +1,23 @@
+# Telemetry library, management/analysis console
+
+The usual cmake/make/make install.
+
+# Server
+
+Requires PHP >= 5.5 and Sqlite, MySQL or PostgreSQL, Apache with SSL set up.
+
+- copy src/server to your webserver (alternatively, use "make deploy")
+- set up authentication for the analytics sub-folder
+- rename config/localconfig.php.example to config/localconfig.php and adjust
+  settings in there based on your database setup
+- start UserFeedbackConsole, connect to the server, that will trigger the database
+  creation
+
+## Local Development
+
+The following setup works locally without the need of a full webserver with SSL and authentication
+setup. It's also used by the automated tests.
+
+- configure database access via src/server/config/localconfig.php as described above
+- in src/testserver, run: 'php -S localhost:1984 router.php'
+- connect via UserFeedbackConsole to trigger database setup

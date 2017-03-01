@@ -144,18 +144,22 @@ class SchemaEntry
         }
 
         // delete whatever is left
-        // TODO also remove data
-        foreach($oldElements as $elem)
+        foreach($oldElements as $elem) {
+            $elem->dropDataColumn($db);
             $elem->delete($db, $this->entryId);
+        }
     }
 
     /** Delete this schema entry from storage. */
     public function delete(Datastore $db, $productId)
     {
-        // TODO drop primary data table columns
-        // drop secondary data tables
-        if (!$this->isScalar())
+        // delete data
+        if ($this->isScalar()) {
+            foreach ($this->elements as $elem)
+                $elem->dropDataColumn($db);
+        } else {
             $this->dropDataTable($db);
+        }
 
         // delete elements
         $stmt = $db->prepare('DELETE FROM schema_elements WHERE schemaid = :id');

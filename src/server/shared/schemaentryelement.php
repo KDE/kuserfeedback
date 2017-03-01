@@ -84,6 +84,25 @@ class SchemaEntryElement
         $db->execute($stmt);
     }
 
+    /** Drop data table column for this element. */
+    public function dropDataColumn(Datastore $db)
+    {
+        if ($db->driver() == 'sqlite') {
+            error_log('Sqlite does not support dropping columns.');
+            return;
+        }
+
+        if ($this->schemaEntry->isScalar()) {
+            $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->product()->dataTableName()
+                . ' DROP COLUMN ' . $this->dataColumnName());
+            $db->execute();
+        } else {
+            $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->dataTableName()
+                . ' DROP COLUMN ' . $this->dataColumnName());
+            $db->execute($stmt);
+        }
+    }
+
     /** Convert a JSON array into an array of SchemaEntryElement instances. */
     static public function fromJson($jsonArray, SchemaEntry &$entry)
     {

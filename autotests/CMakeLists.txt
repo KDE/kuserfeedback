@@ -22,6 +22,7 @@ uf_add_test(timeaggregationmodeltest UserFeedbackTestUtils)
 uf_add_test(categoryaggregationmodeltest UserFeedbackTestUtils)
 uf_add_test(numericaggregationmodeltest UserFeedbackTestUtils)
 uf_add_test(ratiosetaggregationmodeltest UserFeedbackTestUtils)
+uf_add_test(feedbackconfigtest UserFeedbackWidgets)
 
 if(Php_FOUND)
     uf_add_test(productapitest UserFeedbackTestUtils)

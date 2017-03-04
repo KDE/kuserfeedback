@@ -28,12 +28,18 @@ namespace Console {
 class ServerInfoData : public QSharedData
 {
 public:
+    static QString groupName(const QUrl &url);
     QUrl url;
     QString userName;
     QString password;
 };
 
 }
+}
+
+QString ServerInfoData::groupName(const QUrl& url)
+{
+    return QString::fromLatin1(QUrl::toPercentEncoding(url.toString()));
 }
 
 ServerInfo::ServerInfo() : d(new ServerInfoData) {}
@@ -75,17 +81,17 @@ void ServerInfo::save() const
 {
     QSettings settings;
     settings.beginGroup(QStringLiteral("ServerInfo"));
-    settings.beginGroup(url().toString());
+    settings.beginGroup(ServerInfoData::groupName(url()));
     settings.setValue(QStringLiteral("url"), url().toString());
     settings.setValue(QStringLiteral("userName"), userName());
     settings.setValue(QStringLiteral("password"), password()); // TODO
 }
 
-UserFeedback::Console::ServerInfo UserFeedback::Console::ServerInfo::load(const QString& url)
+ServerInfo ServerInfo::load(const QString& url)
 {
     QSettings settings;
     settings.beginGroup(QStringLiteral("ServerInfo"));
-    settings.beginGroup(url);
+    settings.beginGroup(ServerInfoData::groupName(QUrl(url)));
 
     ServerInfo info;
     info.setUrl(QUrl(settings.value(QStringLiteral("url")).toString()));

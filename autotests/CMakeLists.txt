@@ -12,17 +12,21 @@ function(uf_add_test _file)
     add_test(NAME ${_name} COMMAND ${_name})
 endfunction()
 
+uf_add_test(datasourcetest UserFeedbackCore Qt5::Gui) # needs Gui for ScreenInfoSource to work
+
+uf_add_test(feedbackconfigtest UserFeedbackWidgets)
+
 uf_add_test(producttest UserFeedbackConsole)
 uf_add_test(schematemplatetest.cpp UserFeedbackConsole)
-uf_add_test(schemamodeltest UserFeedbackTestUtils)
-uf_add_test(datasourcetest UserFeedbackCore Qt5::Gui) # needs Gui for ScreenInfoSource to work
 uf_add_test(sampletest UserFeedbackConsole)
+uf_add_test(serverinfotest.cpp UserFeedbackConsole)
+
+uf_add_test(schemamodeltest UserFeedbackTestUtils)
 uf_add_test(datamodeltest UserFeedbackTestUtils)
 uf_add_test(timeaggregationmodeltest UserFeedbackTestUtils)
 uf_add_test(categoryaggregationmodeltest UserFeedbackTestUtils)
 uf_add_test(numericaggregationmodeltest UserFeedbackTestUtils)
 uf_add_test(ratiosetaggregationmodeltest UserFeedbackTestUtils)
-uf_add_test(feedbackconfigtest UserFeedbackWidgets)
 
 if(Php_FOUND)
     uf_add_test(productapitest UserFeedbackTestUtils)

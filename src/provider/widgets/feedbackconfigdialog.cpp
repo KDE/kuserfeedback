@@ -58,6 +58,7 @@ void FeedbackConfigDialog::setFeedbackProvider(UserFeedback::Provider* provider)
 void FeedbackConfigDialog::accept()
 {
     auto p = d->ui->configWidget->feedbackProvider();
+    p->setStatisticsCollectionMode(d->ui->configWidget->statisticsCollectionMode());
     p->setSurveyInterval(d->ui->configWidget->surveyInterval());
     QDialog::accept();
 }

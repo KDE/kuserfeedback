@@ -45,7 +45,7 @@ public:
 
     void aboutToQuit();
 
-    QByteArray jsonData() const;
+    QByteArray jsonData(Provider::StatisticsCollectionMode mode) const;
     void scheduleNextSubmission();
     void submitFinished();
 

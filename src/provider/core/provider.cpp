@@ -138,13 +138,13 @@ void ProviderPrivate::aboutToQuit()
     store();
 }
 
-QByteArray ProviderPrivate::jsonData() const
+QByteArray ProviderPrivate::jsonData(Provider::StatisticsCollectionMode mode) const
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QJsonObject obj;
-    if (statisticsMode != Provider::NoStatistics) {
+    if (mode != Provider::NoStatistics) {
         foreach (auto source, dataSources) {
-            if (statisticsMode < source->collectionMode())
+            if (mode < source->collectionMode())
                 continue;
             const auto data = source->data();
             if (data.canConvert<QVariantMap>())
@@ -387,7 +387,7 @@ void Provider::submit()
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("UserFeedback/") + QStringLiteral(USERFEEDBACK_VERSION));
 #endif
-    auto reply = d->networkAccessManager->post(request, d->jsonData());
+    auto reply = d->networkAccessManager->post(request, d->jsonData(d->statisticsMode));
     connect(reply, SIGNAL(finished()), this, SLOT(submitFinished()));
 }
 

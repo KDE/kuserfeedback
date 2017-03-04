@@ -127,12 +127,14 @@ private:
     Q_PRIVATE_SLOT(d, void submitFinished())
     Q_PRIVATE_SLOT(d, void emitShowEncouragementMessage())
     // for UI
-    Q_PRIVATE_SLOT(d, QByteArray jsonData())
+    Q_PRIVATE_SLOT(d, QByteArray jsonData(UserFeedback::Provider::StatisticsCollectionMode))
     // for testing
     Q_PRIVATE_SLOT(d, void load())
     Q_PRIVATE_SLOT(d, void store())
 };
 
 }
+
+Q_DECLARE_METATYPE(UserFeedback::Provider::StatisticsCollectionMode)
 
 #endif // USERFEEDBACK_PROVIDER_H

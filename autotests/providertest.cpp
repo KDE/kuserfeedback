@@ -134,7 +134,7 @@ private slots:
         provider.addDataSource(new PlatformInfoSource, Provider::BasicSystemInformation);
         provider.setStatisticsCollectionMode(Provider::NoStatistics);
         QByteArray b;
-        QMetaObject::invokeMethod(&provider, "jsonData", Q_RETURN_ARG(QByteArray, b));
+        QMetaObject::invokeMethod(&provider, "jsonData", Q_RETURN_ARG(QByteArray, b), Q_ARG(UserFeedback::Provider::StatisticsCollectionMode, provider.statisticsCollectionMode()));
         b.replace('\n', "");
         QCOMPARE(b.constData(), "{}");
     }

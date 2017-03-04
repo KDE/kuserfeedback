@@ -95,7 +95,7 @@ class SchemaEntryElement
         if ($this->schemaEntry->isScalar()) {
             $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->product()->dataTableName()
                 . ' DROP COLUMN ' . $this->dataColumnName());
-            $db->execute();
+            $db->execute($stmt);
         } else {
             $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->dataTableName()
                 . ' DROP COLUMN ' . $this->dataColumnName());

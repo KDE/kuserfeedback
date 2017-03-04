@@ -30,8 +30,8 @@ class Analytics
 public function get_check_schema()
 {
     // check PHP version
-    if (PHP_VERSION_ID < 50500)
-        throw new RESTException('Minium required PHP version is 5.5, found ' . PHP_VERSION, 500);
+    if (PHP_VERSION_ID < 50400)
+        throw new RESTException('Minium required PHP version is 5.4, found ' . PHP_VERSION, 500);
 
     // check database layout
     $db = new DataStore();

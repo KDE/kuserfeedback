@@ -16,6 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+require_once('compat.php');
 require_once('datastore.php');
 require_once('restexception.php');
 

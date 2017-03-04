@@ -124,7 +124,7 @@ public function checkSchema()
 /** Returns the current schema version. */
 private function schemaVersion()
 {
-    $res = $this->db->query('SELECT version FROM schema_version');
+    $res = $this->db->query('SELECT col_version FROM tbl_version');
     if ($res === FALSE) {
         // restart transaction, so this fail doesn't block the following commands
         $this->db->rollback();
@@ -132,7 +132,7 @@ private function schemaVersion()
         return 0;
     }
     foreach ($res as $row)
-        return $row['version'];
+        return $row['col_version'];
     return 0;
 }
 
@@ -148,7 +148,7 @@ private function applySchemaChange($schemaDef)
         $res = $this->db->exec($cmd);
         $this->checkError($res);
     }
-    $res = $this->db->exec('UPDATE schema_version SET version = ' . $schemaDef['version']);
+    $res = $this->db->exec('UPDATE tbl_version SET col_version = ' . $schemaDef['version']);
     $this->checkError($res);
 }
 

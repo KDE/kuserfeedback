@@ -25,8 +25,8 @@ class SchemaEntryElementTest extends PHPUnit_Framework_TestCase
     public function testDataColumnName_data()
     {
         return [
-            'normal' => [ 'foo', 'entry_foo' ],
-            'dot' => [ 'my.value', 'entry_my_value' ]
+            'normal' => [ 'foo', 'col_data_entry_foo' ],
+            'dot' => [ 'my.value', 'col_data_entry_my_value' ]
         ];
     }
 

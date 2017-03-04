@@ -50,7 +50,7 @@ class SchemaEntryElement
     /** Column name in the data table. */
     public function dataColumnName()
     {
-        $colName = Utils::normalizeString($this->schemaEntry->name) . '_' . Utils::normalizeString($this->name);
+        $colName = 'col_data_' . Utils::normalizeString($this->schemaEntry->name) . '_' . Utils::normalizeString($this->name);
         return strtolower($colName);
     }
 
@@ -58,7 +58,7 @@ class SchemaEntryElement
     public function insert(Datastore $db, $entryId)
     {
         $stmt = $db->prepare('INSERT INTO
-            schema_elements (schemaid, name, type)
+            tbl_schema_element (col_schema_id, col_name, col_type)
             VALUES (:schemaId, :name, :type)
         ');
         $stmt->bindValue(':schemaId', $entryId, PDO::PARAM_INT);
@@ -76,8 +76,8 @@ class SchemaEntryElement
     public function delete(Datastore $db, $entryId)
     {
         $stmt = $db->prepare('
-            DELETE FROM schema_elements
-            WHERE schemaid = :schemaId AND name = :name
+            DELETE FROM tbl_schema_element
+            WHERE col_schema_id = :schemaId AND col_name = :name
         ');
         $stmt->bindValue(':schemaId', $entryId, PDO::PARAM_INT);
         $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);

@@ -34,19 +34,19 @@ class Sample
         $i = 0;
 
         // query scalar table
-        $scalarSql = 'SELECT id, timestamp ';
+        $scalarSql = 'SELECT col_id, col_timestamp ';
         foreach ($product->schema as $entry) {
             if (!$entry->isScalar())
                 continue;
             foreach ($entry->elements as $elem)
                 $scalarSql .= ', ' . $elem->dataColumnName();
         }
-        $scalarSql .= ' FROM ' . $product->dataTableName() . ' ORDER BY timestamp ASC';
+        $scalarSql .= ' FROM ' . $product->dataTableName() . ' ORDER BY col_timestamp ASC';
         $scalarStmt = $db->prepare($scalarSql);
         $db->execute($scalarStmt);
         foreach ($scalarStmt as $scalarRow) {
-            $rowData['id'] = intval($scalarRow['id']);
-            $rowData['timestamp'] = $scalarRow['timestamp'];
+            $rowData['id'] = intval($scalarRow['col_id']);
+            $rowData['timestamp'] = $scalarRow['col_timestamp'];
             foreach ($product->schema as $entry) {
                 if (!$entry->isScalar())
                     continue;
@@ -67,12 +67,12 @@ class Sample
         foreach ($product->schema as $entry) {
             if ($entry->isScalar())
                 continue;
-            $sql = 'SELECT sampleid';
+            $sql = 'SELECT col_sample_id';
             if ($entry->type == SchemaEntry::MAP_TYPE)
-                $sql .= ', mapkey';
+                $sql .= ', col_key';
             foreach ($entry->elements as $elem)
                 $sql .= ', ' . $elem->dataColumnName();
-            $sql .= ' FROM ' . $entry->dataTableName() . ' ORDER BY id ASC';
+            $sql .= ' FROM ' . $entry->dataTableName() . ' ORDER BY col_id ASC';
             $stmt = $db->prepare($sql);
             $db->execute($stmt);
             foreach ($stmt as $row) {
@@ -82,11 +82,11 @@ class Sample
                     if (!is_null($value))
                         $entryData[$elem->name] = $value;
                 }
-                $idx = $sampleIdIndex[$row['sampleid']];
+                $idx = $sampleIdIndex[$row['col_sample_id']];
                 if (!array_key_exists($entry->name, $data[$idx]))
                     $data[$idx][$entry->name] = array();
                 if ($entry->type == SchemaEntry::MAP_TYPE)
-                    $data[$idx][$entry->name][$row['mapkey']] = $entryData;
+                    $data[$idx][$entry->name][$row['col_key']] = $entryData;
                 else
                     array_push($data[$idx][$entry->name], $entryData);
             }
@@ -145,7 +145,7 @@ class Sample
         $values = array();
 
         if (property_exists($jsonObj, 'timestamp')) {
-            array_push($columns, 'timestamp');
+            array_push($columns, 'col_timestamp');
             array_push($binds, ':timestamp');
             $values[':timestamp'] = array($jsonObj->timestamp, PDO::PARAM_STR);
         }
@@ -205,10 +205,10 @@ class Sample
                 Utils::httpError(500, "Unknown non-scalar schema entry type.");
         }
 
-        $columns = array('sampleid');
+        $columns = array('col_sample_id');
         $binds = array(':sampleId');
         if ($schemaEntry->type == SchemaEntry::MAP_TYPE) {
-            array_push($columns, 'mapkey');
+            array_push($columns, 'col_key');
             array_push($binds, ':key');
         }
         foreach ($schemaEntry->elements as $elem) {

@@ -64,10 +64,10 @@ class SchemaEntry
     static public function loadSchema(Datastore $db, Product &$product)
     {
         $stmt = $db->prepare('SELECT
-                product_schema.id, product_schema.name, product_schema.type, schema_elements.name, schema_elements.type
-            FROM schema_elements JOIN product_schema ON (product_schema.id = schema_elements.schemaid)
-            WHERE product_schema.productid = :productId
-            ORDER BY product_schema.id
+                tbl_schema.col_id, tbl_schema.col_name, tbl_schema.col_type, tbl_schema_element.col_name, tbl_schema_element.col_type
+            FROM tbl_schema_element JOIN tbl_schema ON (tbl_schema.col_id = tbl_schema_element.col_schema_id)
+            WHERE tbl_schema.col_product_id = :productId
+            ORDER BY tbl_schema.col_id
         ');
         $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
         $db->execute($stmt);
@@ -98,7 +98,7 @@ class SchemaEntry
     public function insert(Datastore $db, $productId)
     {
         $stmt = $db->prepare('INSERT INTO
-            product_schema (productid, name, type)
+            tbl_schema (col_product_id, col_name, col_type)
             VALUES (:productId, :name, :type)
         ');
         $stmt->bindValue(':productId', $productId, PDO::PARAM_INT);
@@ -162,12 +162,12 @@ class SchemaEntry
         }
 
         // delete elements
-        $stmt = $db->prepare('DELETE FROM schema_elements WHERE schemaid = :id');
+        $stmt = $db->prepare('DELETE FROM tbl_schema_element WHERE col_schema_id = :id');
         $stmt->bindValue(':id', $this->entryId, PDO::PARAM_INT);
         $db->execute($stmt);
 
         // delete entry
-        $stmt = $db->prepare('DELETE FROM product_schema WHERE id = :id');
+        $stmt = $db->prepare('DELETE FROM tbl_schema WHERE col_id = :id');
         $stmt->bindValue(':id', $this->entryId, PDO::PARAM_INT);
         $db->execute($stmt);
     }
@@ -194,7 +194,8 @@ class SchemaEntry
     /** Data table name for secondary data tables. */
     public function dataTableName()
     {
-        $tableName = $this->product()->dataTableName() . '_' . Utils::normalizeString($this->name);
+        $tableName = 'tbl_productdata2_' . Utils::normalizeString($this->product()->name)
+            . '__' . Utils::normalizeString($this->name);
         return strtolower($tableName);
     }
 
@@ -203,8 +204,8 @@ class SchemaEntry
     private function createListDataTable(Datastore $db)
     {
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
-            . Utils::primaryKeyColumnDeclaration($db->driver(), 'id') . ', '
-            . 'sampleid INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id))'
+            . Utils::primaryKeyColumnDeclaration($db->driver(), 'col_id') . ', '
+            . 'col_sample_id INTEGER REFERENCES ' . $this->product()->dataTableName() . '(col_id) ON DELETE CASCADE)'
         );
         $db->execute($stmt);
     }
@@ -213,9 +214,9 @@ class SchemaEntry
     private function createMapDataTable(Datastore $db)
     {
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName(). ' ('
-            . Utils::primaryKeyColumnDeclaration($db->driver(), 'id') . ', '
-            . 'sampleid INTEGER REFERENCES ' . $this->product()->dataTableName() . '(id), '
-            . 'mapkey ' . Utils::sqlStringType($db->driver()) . ' NOT NULL)'
+            . Utils::primaryKeyColumnDeclaration($db->driver(), 'col_id') . ', '
+            . 'col_sample_id INTEGER REFERENCES ' . $this->product()->dataTableName() . '(col_id) ON DELETE CASCADE, '
+            . 'col_key ' . Utils::sqlStringType($db->driver()) . ' NOT NULL)'
         );
         $db->execute($stmt);
     }

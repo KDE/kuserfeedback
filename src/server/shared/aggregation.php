@@ -28,7 +28,7 @@ class Aggregation
     /** Load aggregation settings for @p $product from storage. */
     static public function aggregationsForProduct(DataStore $db, Product $product)
     {
-        $sql = 'SELECT type, elements FROM aggregation WHERE productid = :productId ORDER BY id';
+        $sql = 'SELECT col_type, col_elements FROM tbl_aggregation WHERE col_product_id = :productId ORDER BY col_id';
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
         $db->execute($stmt);
@@ -36,8 +36,8 @@ class Aggregation
         $aggrs = array();
         foreach ($stmt as $row) {
             $a = new Aggregation;
-            $a->type = strval($row['type']);
-            $a->elements = json_decode(strval($row['elements']));
+            $a->type = strval($row['col_type']);
+            $a->elements = json_decode(strval($row['col_elements']));
             array_push($aggrs, $a);
         }
         return $aggrs;
@@ -48,7 +48,7 @@ class Aggregation
     {
         Aggregation::delete($db, $product);
 
-        $sql = 'INSERT INTO aggregation (productid, type, elements) VALUES (:productId, :type, :elements)';
+        $sql = 'INSERT INTO tbl_aggregation (col_product_id, col_type, col_elements) VALUES (:productId, :type, :elements)';
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
         foreach ($aggregations as $a) {
@@ -61,7 +61,7 @@ class Aggregation
     /** Delete all aggregation settings for @p $product. */
     static public function delete(DataStore $db, Product $product)
     {
-        $sql = 'DELETE FROM aggregation WHERE productid = :productId';
+        $sql = 'DELETE FROM tbl_aggregation WHERE col_product_id = :productId';
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
         $db->execute($stmt);

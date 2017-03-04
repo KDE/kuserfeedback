@@ -34,7 +34,7 @@ class Product
      */
     public function dataTableName()
     {
-        $tableName = 'product_' . Utils::normalizeString($this->name);
+        $tableName = 'tbl_productdata_' . Utils::normalizeString($this->name);
         return strtolower($tableName);
     }
 
@@ -48,12 +48,12 @@ class Product
     public static function allProducts(Datastore $db)
     {
         $products = array();
-        $stmt = $db->prepare('SELECT * FROM products');
+        $stmt = $db->prepare('SELECT col_id, col_name FROM tbl_product');
         $db->execute($stmt);
         foreach ($stmt as $row) {
             $p = new Product();
-            $p->productId = $row['id'];
-            $p->name = $row['name'];
+            $p->productId = intval($row['col_id']);
+            $p->name = strval($row['col_name']);
             $p->schema = SchemaEntry::loadSchema($db, $p);
             $p->aggregation = Aggregation::aggregationsForProduct($db, $p);
             array_push($products, $p);
@@ -67,13 +67,13 @@ class Product
         if (!is_string($name) || strlen($name) <= 0)
             throw new RESTException('Invalid product name.', 400);
 
-        $stmt = $db->prepare('SELECT * FROM products WHERE name = :name');
+        $stmt = $db->prepare('SELECT col_id, col_name FROM tbl_product WHERE col_name = :name');
         $stmt->bindValue(':name', strval($name), PDO::PARAM_STR);
         $db->execute($stmt);
         foreach ($stmt as $row) {
             $p = new Product();
-            $p->productId = $row['id'];
-            $p->name = $row['name'];
+            $p->productId = intval($row['col_id']);
+            $p->name = strval($row['col_name']);
             $p->schema = SchemaEntry::loadSchema($db, $p);
             return $p;
         }
@@ -84,15 +84,15 @@ class Product
     public function insert(Datastore $db)
     {
         // create product entry
-        $stmt = $db->prepare('INSERT INTO products (name) VALUES (:name)');
+        $stmt = $db->prepare('INSERT INTO tbl_product (col_name) VALUES (:name)');
         $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
         $db->execute($stmt);
         $this->productId = $db->pdoHandle()->lastInsertId();
 
         // create data tables;
         $stmt = $db->prepare('CREATE TABLE ' . $this->dataTableName() . ' (' .
-            Utils::primaryKeyColumnDeclaration($db->driver(), 'id') .
-            ', timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
+            Utils::primaryKeyColumnDeclaration($db->driver(), 'col_id') .
+            ', col_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
         ');
         $db->execute($stmt);
 
@@ -146,7 +146,7 @@ class Product
         $db->execute($stmt);
 
         // delete product
-        $stmt = $db->prepare('DELETE FROM products WHERE id = :id');
+        $stmt = $db->prepare('DELETE FROM tbl_product WHERE col_id = :id');
         $stmt->bindValue(':id', $this->productId, PDO::PARAM_INT);
         $db->execute($stmt);
     }

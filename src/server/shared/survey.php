@@ -32,9 +32,9 @@ class Survey
     public function surveysForProduct(Datastore $db, $productName)
     {
         $stmt = $db->prepare('
-            SELECT surveys.id, surveys.name, surveys.url, surveys.active
-            FROM surveys JOIN products ON (surveys.productId = products.id)
-            WHERE products.name = :productName
+            SELECT tbl_survey.col_id, tbl_survey.col_name, tbl_survey.col_url, tbl_survey.col_active
+            FROM tbl_survey JOIN tbl_product ON (tbl_survey.col_product_id = tbl_product.col_id)
+            WHERE tbl_product.col_name = :productName
         ');
         $stmt->bindValue(':productName', $productName, PDO::PARAM_STR);
         $db->execute($stmt);
@@ -42,10 +42,10 @@ class Survey
         $surveys = array();
         foreach ($stmt as $row) {
             $s = new Survey();
-            $s->id = $row['id'];
-            $s->name = $row['name'];
-            $s->url = $row['url'];
-            $s->active = boolval($row['active']);
+            $s->id = intval($row['col_id']);
+            $s->name = strval($row['col_name']);
+            $s->url = strval($row['col_url']);
+            $s->active = boolval($row['col_active']);
             array_push($surveys, $s);
         }
 
@@ -55,7 +55,7 @@ class Survey
     /** Returns an array of all active surveys for @p product. */
     public function activeSurveysForProduct(Datastore $db, Product $product)
     {
-        $stmt = $db->prepare('SELECT id, name, url FROM surveys WHERE productid = :productId AND active = :active');
+        $stmt = $db->prepare('SELECT col_id, col_name, col_url FROM tbl_survey WHERE col_product_id = :productId AND col_active = :active');
         $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
         $stmt->bindValue(':active', true, PDO::PARAM_BOOL);
         $db->execute($stmt);
@@ -63,9 +63,9 @@ class Survey
         $surveys = array();
         foreach ($stmt as $row) {
             $s = new Survey();
-            $s->id = $row['id'];
-            $s->name = $row['name'];
-            $s->url = $row['url'];
+            $s->id = intval($row['col_id']);
+            $s->name = strval($row['col_name']);
+            $s->url = strval($row['col_url']);
             $s->active = true;
             array_push($surveys, $s);
         }
@@ -77,7 +77,7 @@ class Survey
     public function insert(Datastore $db, Product $product)
     {
         $stmt = $db->prepare('
-            INSERT INTO surveys (productid, name, url, active)
+            INSERT INTO tbl_survey (col_product_id, col_name, col_url, col_active)
             VALUES (:productId, :name, :url, :active)
         ');
         $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);
@@ -92,11 +92,11 @@ class Survey
     public function update(Datastore $db)
     {
         $stmt = $db->prepare('
-            UPDATE surveys SET
-                name = :name,
-                url = :url,
-                active = :active
-            WHERE id = :surveyId
+            UPDATE tbl_survey SET
+                col_name = :name,
+                col_url = :url,
+                col_active = :active
+            WHERE col_id = :surveyId
         ');
         $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
         $stmt->bindValue(':url', $this->url, PDO::PARAM_STR);
@@ -108,7 +108,7 @@ class Survey
     /** Delete this existing survey from storage. */
     public function delete(Datastore $db)
     {
-        $stmt = $db->prepare('DELETE FROM surveys WHERE id = :surveyId');
+        $stmt = $db->prepare('DELETE FROM tbl_survey WHERE col_id = :surveyId');
         $stmt->bindValue(':surveyId', $this->id, PDO::PARAM_INT);
         $db->execute($stmt);
     }

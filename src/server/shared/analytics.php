@@ -29,6 +29,11 @@ class Analytics
 /** Schema check and update. */
 public function get_check_schema()
 {
+    // check PHP version
+    if (PHP_VERSION_ID < 50500)
+        throw new RESTException('Minium required PHP version is 5.5, found ' . PHP_VERSION, 500);
+
+    // check database layout
     $db = new DataStore();
     $db->checkSchema();
 }

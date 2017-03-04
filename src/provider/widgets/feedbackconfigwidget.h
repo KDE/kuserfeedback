@@ -20,6 +20,8 @@
 
 #include "userfeedbackwidgets_export.h"
 
+#include "../core/provider.h"
+
 #include <QWidget>
 
 #include <memory>
@@ -42,10 +44,15 @@ public:
     ~FeedbackConfigWidget();
 
     /** Returns the feedback provider configured by this widget. */
-    Provider* feedbackProvier() const;
+    Provider* feedbackProvider() const;
 
     /** Set the feedback provider that should be configured with this widget. */
     void setFeedbackProvider(Provider *provider);
+
+    /** Returns the telemetry level currently selected in the widget. */
+    Provider::StatisticsCollectionMode statisticsCollectionMode() const;
+    /** Returns the survey interval currently selected in this widget. */
+    int surveyInterval() const;
 
 protected:
     bool eventFilter(QObject *receiver, QEvent *event) override;

@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <provider/widgets/feedbackconfigwidget.h>
+#include <provider/widgets/feedbackconfigdialog.h>
 
 #include <provider/core/applicationversionsource.h>
 #include <provider/core/platforminfosource.h>
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     provider.addDataSource(new ScreenInfoSource, Provider::DetailedSystemInformation);
     provider.addDataSource(new QtVersionSource, Provider::DetailedSystemInformation);
 
-    FeedbackConfigWidget w;
+    FeedbackConfigDialog w;
     w.setFeedbackProvider(&provider);
     w.show();
     return app.exec();

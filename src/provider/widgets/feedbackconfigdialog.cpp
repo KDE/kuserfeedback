@@ -55,12 +55,19 @@ void FeedbackConfigDialog::setFeedbackProvider(UserFeedback::Provider* provider)
     d->updateButtonState();
 }
 
+void FeedbackConfigDialog::accept()
+{
+    auto p = d->ui->configWidget->feedbackProvider();
+    p->setSurveyInterval(d->ui->configWidget->surveyInterval());
+    QDialog::accept();
+}
+
 void FeedbackConfigDialogPrivate::updateButtonState()
 {
-    if (!ui->configWidget->feedbackProvier())
+    if (!ui->configWidget->feedbackProvider())
         return;
-    const auto any = ui->configWidget->feedbackProvier()->surveyInterval() >= 0
-        || ui->configWidget->feedbackProvier()->statisticsCollectionMode() != Provider::NoStatistics;
+    const auto any = ui->configWidget->feedbackProvider()->surveyInterval() >= 0
+        || ui->configWidget->feedbackProvider()->statisticsCollectionMode() != Provider::NoStatistics;
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setVisible(any);
     ui->buttonBox->button(QDialogButtonBox::Close)->setVisible(!any);

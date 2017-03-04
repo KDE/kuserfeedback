@@ -129,19 +129,16 @@ void FeedbackConfigWidgetPrivate::surveySliderChanged()
                 "We make this application for you. In order to ensure it actually does what you need it to do we "
                 "would like to ask you about your use cases and your feedback, in the form of a web survey."
             ));
-            provider->setSurveyInterval(-1);
             break;
         case 1:
             ui->surveyLabel->setText(FeedbackConfigWidget::tr(
                 "I will occasionally participate in web surveys about the application, not more than four times a year though."
             ));
-            provider->setSurveyInterval(90);
             break;
         case 2:
             ui->surveyLabel->setText(FeedbackConfigWidget::tr(
                 "I will participate in web surveys whenever one is available. Surveys can of course be defered or skipped."
             ));
-            provider->setSurveyInterval(0);
             break;
     }
 
@@ -188,7 +185,7 @@ FeedbackConfigWidget::~FeedbackConfigWidget()
 {
 }
 
-Provider* FeedbackConfigWidget::feedbackProvier() const
+Provider* FeedbackConfigWidget::feedbackProvider() const
 {
     return d->provider;
 }
@@ -252,6 +249,21 @@ bool FeedbackConfigWidget::eventFilter(QObject* receiver, QEvent* event)
         );
     }
     return QWidget::eventFilter(receiver, event);
+}
+
+Provider::StatisticsCollectionMode FeedbackConfigWidget::statisticsCollectionMode() const
+{
+    return d->telemetryModeMap[d->ui->telemetrySlider->value()];
+}
+
+int FeedbackConfigWidget::surveyInterval() const
+{
+    switch (d->ui->surveySlider->value()) {
+        case 0: return -1;
+        case 1: return 90;
+        case 2: return 0;
+    }
+    return -1;
 }
 
 #include "moc_feedbackconfigwidget.cpp"

@@ -38,6 +38,8 @@ public:
 
     void setFeedbackProvider(UserFeedback::Provider *provider);
 
+    void accept() override;
+
 private:
     Q_PRIVATE_SLOT(d, void updateButtonState())
     std::unique_ptr<FeedbackConfigDialogPrivate> d;

@@ -1,3 +1,20 @@
+/*
+    Copyright (C) 2017 Volker Krause <vkrause@kde.org>
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Library General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or (at your
+    option) any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Library General Public
+    License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include <provider/widgets/feedbackconfigwidget.h>
 #include <provider/core/platforminfosource.h>
 #include <provider/core/provider.h>
@@ -40,6 +57,7 @@ private slots:
         QCOMPARE(telemetrySlider->value(), 0);
 
         telemetrySlider->setValue(1);
+        QCOMPARE(w.statisticsCollectionMode(), Provider::BasicSystemInformation);
         QTest::qWait(1);
         QCOMPARE(p.statisticsCollectionMode(), Provider::NoStatistics);
     }
@@ -62,10 +80,12 @@ private slots:
         QCOMPARE(slider->value(), 0);
 
         slider->setValue(1);
+        QCOMPARE(w.surveyInterval(), 90);
         QTest::qWait(1);
         QCOMPARE(p.surveyInterval(), -1);
 
         slider->setValue(2);
+        QCOMPARE(w.surveyInterval(), 0);
         QTest::qWait(1);
         QCOMPARE(p.surveyInterval(), -1);
     }

@@ -24,9 +24,9 @@ class SchemaEntryTest extends PHPUnit_Framework_TestCase
     public function testDataTableName_data()
     {
         return [
-            'normal' => [ 'foo', 'tbl_productdata2_org_kde_testproduct__foo' ],
-            'dot' => [ 'my.value', 'tbl_productdata2_org_kde_testproduct__my_value' ],
-            'uppercase' => [ 'UPPER', 'tbl_productdata2_org_kde_testproduct__upper' ]
+            'normal' => [ 'foo', 'pd2_org_kde_testproduct__foo' ],
+            'dot' => [ 'my.value', 'pd2_org_kde_testproduct__my_value' ],
+            'uppercase' => [ 'UPPER', 'pd2_org_kde_testproduct__upper' ]
         ];
     }
 

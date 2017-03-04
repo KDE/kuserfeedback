@@ -24,8 +24,8 @@ class ProductTest extends AbstractDatastoreTest
     public function testTableName_data()
     {
         return [
-            'normal' => [ 'foo', 'tbl_productdata_foo' ],
-            'dot' => [ 'org.kde.foo', 'tbl_productdata_org_kde_foo' ]
+            'normal' => [ 'foo', 'pd_foo' ],
+            'dot' => [ 'org.kde.foo', 'pd_org_kde_foo' ]
         ];
     }
 
@@ -57,7 +57,7 @@ class ProductTest extends AbstractDatastoreTest
         }');
         $this->assertEquals($p->name, 'org.kde.product');
         $this->assertEquals(1, count($p->schema));
-        $this->assertEquals('tbl_productdata_org_kde_product', $p->dataTableName());
+        $this->assertEquals('pd_org_kde_product', $p->dataTableName());
         $entry = $p->schema[0];
         $this->assertEquals($entry->name, 'entry1');
         $this->assertEquals($entry->type, 'scalar');

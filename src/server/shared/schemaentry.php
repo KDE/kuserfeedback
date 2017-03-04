@@ -194,7 +194,7 @@ class SchemaEntry
     /** Data table name for secondary data tables. */
     public function dataTableName()
     {
-        $tableName = 'tbl_productdata2_' . Utils::normalizeString($this->product()->name)
+        $tableName = 'pd2_' . Utils::normalizeString($this->product()->name)
             . '__' . Utils::normalizeString($this->name);
         return strtolower($tableName);
     }

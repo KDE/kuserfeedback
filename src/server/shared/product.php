@@ -34,7 +34,7 @@ class Product
      */
     public function dataTableName()
     {
-        $tableName = 'tbl_productdata_' . Utils::normalizeString($this->name);
+        $tableName = 'pd_' . Utils::normalizeString($this->name);
         return strtolower($tableName);
     }
 

@@ -189,29 +189,31 @@ void ProviderPrivate::submitFinished()
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     const auto obj = QJsonDocument::fromJson(reply->readAll()).object();
-    if (obj.contains(QStringLiteral("survey"))) {
-        const auto surveyObj = obj.value(QStringLiteral("survey")).toObject();
-        const auto survey = SurveyInfo::fromJson(surveyObj);
-        selectSurvey(survey);
+    const auto it = obj.find(QLatin1String("surveys"));
+    if (it != obj.end() && surveyInterval >= 0) {
+        const auto a = it.value().toArray();
+        foreach(const auto &s, a) {
+            const auto survey = SurveyInfo::fromJson(s.toObject());
+            if (selectSurvey(survey))
+                break;
+        }
     }
 #endif
 
     scheduleNextSubmission();
 }
 
-void ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
+bool ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
 {
     qDebug() << Q_FUNC_INFO << "got survey:" << survey.url();
-    if (surveyInterval < 0) // surveys disabled
-        return;
-
     if (!survey.isValid() || completedSurveys.contains(QString::number(survey.id())))
-        return;
+        return false;
 
     if (lastSurveyTime.addDays(surveyInterval) > QDateTime::currentDateTime())
-        return;
+        return false;
 
     emit q->surveyAvailable(survey);
+    return true;
 }
 
 void ProviderPrivate::scheduleEncouragement()

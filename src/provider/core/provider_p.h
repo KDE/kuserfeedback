@@ -49,7 +49,7 @@ public:
     void scheduleNextSubmission();
     void submitFinished();
 
-    void selectSurvey(const SurveyInfo &survey) const;
+    bool selectSurvey(const SurveyInfo &survey) const;
 
     void scheduleEncouragement();
     void emitShowEncouragementMessage();

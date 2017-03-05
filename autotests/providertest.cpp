@@ -211,7 +211,46 @@ private slots:
             QVERIFY(spy.wait(1200));
             QCOMPARE(spy.count(), 1);
         }
+    }
 
+    void testEncouragementRepetition()
+    {
+        {
+            QSettings s;
+            s.beginGroup(QLatin1String("UserFeedback"));
+            s.setValue(QLatin1String("LastEncouragement"), QDateTime::currentDateTime().addSecs(-24 * 60 * 60 + 1));
+        }
+
+        {
+            Provider p;
+            p.setSurveyInterval(-1);
+            p.setStatisticsCollectionMode(Provider::NoStatistics);
+            QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
+            QVERIFY(spy.isValid());
+            p.setEncouragementDelay(0);
+            p.setApplicationStartsUntilEncouragement(0);
+            p.setEncouragementInterval(1);
+            QVERIFY(spy.wait(1000));
+            QCOMPARE(spy.count(), 1);
+        }
+
+        {
+            QSettings s;
+            s.beginGroup(QLatin1String("UserFeedback"));
+            s.setValue(QLatin1String("LastEncouragement"), QDateTime::currentDateTime().addSecs(-24 * 60 * 60 - 1));
+        }
+
+        {
+            Provider p;
+            p.setSurveyInterval(90);
+            p.setStatisticsCollectionMode(Provider::BasicSystemInformation);
+            QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
+            QVERIFY(spy.isValid());
+            p.setEncouragementDelay(0);
+            p.setApplicationStartsUntilEncouragement(0);
+            p.setEncouragementInterval(1);
+            QVERIFY(!spy.wait(10));
+        }
     }
 };
 

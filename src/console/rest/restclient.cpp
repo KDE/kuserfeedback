@@ -33,16 +33,24 @@ RESTClient::RESTClient(QObject *parent) :
 
 RESTClient::~RESTClient() = default;
 
-void RESTClient::connectToServer(const ServerInfo& info)
+void RESTClient::setServerInfo(const ServerInfo& info)
 {
+    m_isConnected = false;
     m_serverInfo = info;
+}
+
+void RESTClient::setConnected(bool connected)
+{
+    if (m_isConnected == connected)
+        return;
+    m_isConnected = connected;
     if (isConnected())
         emit clientConnected();
 }
 
-bool UserFeedback::Console::RESTClient::isConnected() const
+bool RESTClient::isConnected() const
 {
-    return m_serverInfo.url().isValid();
+    return m_serverInfo.url().isValid() && m_isConnected;
 }
 
 QNetworkReply* RESTClient::get(const QString& command)
@@ -80,7 +88,7 @@ QNetworkReply* RESTClient::deleteResource(const QString& command)
 
 QNetworkRequest RESTClient::makeRequest(const QString& command)
 {
-    Q_ASSERT(isConnected());
+    Q_ASSERT(m_serverInfo.url().isValid());
     auto url = m_serverInfo.url();
     url.setPath(url.path() + QStringLiteral("/analytics/") + command);
     QNetworkRequest request(url);

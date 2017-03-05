@@ -75,7 +75,8 @@ private slots:
         RESTClient client;
         auto serverInfo = testServer();
         serverInfo.setPassword(QStringLiteral("wrong password"));
-        client.connectToServer(serverInfo);
+        client.setServerInfo(serverInfo);
+        client.setConnected(true);
         QVERIFY(client.isConnected());
 
         auto reply = RESTApi::listProducts(&client);
@@ -87,7 +88,8 @@ private slots:
     void testProductCRUD()
     {
         RESTClient client;
-        client.connectToServer(testServer());
+        client.setServerInfo(testServer());
+        client.setConnected(true);
         QVERIFY(client.isConnected());
         Product newProduct;
         newProduct.setName(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
@@ -160,7 +162,8 @@ private slots:
     void testInvalidProductOperations()
     {
         RESTClient client;
-        client.connectToServer(testServer());
+        client.setServerInfo(testServer());
+        client.setConnected(true);
         QVERIFY(client.isConnected());
 
         Product invalidProduct;

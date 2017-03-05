@@ -74,7 +74,8 @@ private slots:
     {
         // delete previous leftovers
         RESTClient client;
-        client.connectToServer(testServer());
+        client.setServerInfo(testServer());
+        client.setConnected(true);
         QVERIFY(client.isConnected());
         Product p;
         p.setName(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));

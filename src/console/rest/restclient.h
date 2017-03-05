@@ -37,7 +37,8 @@ public:
     explicit RESTClient(QObject *parent = nullptr);
     ~RESTClient();
 
-    void connectToServer(const ServerInfo &info);
+    void setServerInfo(const ServerInfo &info);
+    void setConnected(bool connected);
     bool isConnected() const;
 
     QNetworkReply* get(const QString &command);
@@ -55,6 +56,7 @@ private:
 
     ServerInfo m_serverInfo;
     QNetworkAccessManager *m_networkAccessManager;
+    bool m_isConnected = false;
 };
 
 }

@@ -62,7 +62,8 @@ private slots:
     void testProductModel()
     {
         RESTClient client;
-        client.connectToServer(testServer());
+        client.setServerInfo(testServer());
+        client.setConnected(true);
         QVERIFY(client.isConnected());
 
         // make sure we have at least one product, but not the one we want to create for testing

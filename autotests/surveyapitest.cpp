@@ -65,7 +65,7 @@ private slots:
     void init()
     {
         RESTClient client;
-        client.connectToServer(testServer());
+        client.setServerInfo(testServer());
         Product p;
         p.setName(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
         auto reply = RESTApi::createProduct(&client, p);
@@ -75,7 +75,7 @@ private slots:
     void cleanup()
     {
         RESTClient client;
-        client.connectToServer(testServer());
+        client.setServerInfo(testServer());
         Product p;
         p.setName(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
         auto reply = RESTApi::deleteProduct(&client, p);
@@ -85,7 +85,8 @@ private slots:
     void testSurveyCRUD()
     {
         RESTClient client;
-        client.connectToServer(testServer());
+        client.setServerInfo(testServer());
+        client.setConnected(true);
         QVERIFY(client.isConnected());
         Product p;
         p.setName(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
@@ -147,7 +148,8 @@ private slots:
     void testInvalidSurveyOperations()
     {
         RESTClient client;
-        client.connectToServer(testServer());
+        client.setServerInfo(testServer());
+        client.setConnected(true);
         QVERIFY(client.isConnected());
 
         Product invalidProduct;

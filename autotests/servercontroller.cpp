@@ -51,7 +51,7 @@ bool ServerController::start()
     ServerInfo s;
     s.setUrl(url());
     RESTClient client;
-    client.connectToServer(s);
+    client.setServerInfo(s);
     auto reply = RESTApi::checkSchema(&client);
 
     QSignalSpy spy(reply, &QNetworkReply::finished);

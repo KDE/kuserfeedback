@@ -101,6 +101,12 @@ public:
     /** Set the delay after application start for the earliest display of the encouragement message. */
     void setEncouragementDelay(int secs);
 
+    /** Sets the interval after the encouragement should be repeated.
+     *  Encouragement messages are only repeated if no feedback options have been enabled.
+     *  @param days Days between encouragement messages, 0 disables repeated encouragements.
+     */
+    void setEncouragementInterval(int days);
+
 public slots:
     /** Manually submit currently recorded data. */
     void submit();

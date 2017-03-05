@@ -170,7 +170,6 @@ MainWindow::MainWindow() :
 
     m_feedbackProvider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
     m_feedbackProvider->setSubmissionInterval(1);
-    m_feedbackProvider->setApplicationUsageTimeUntilEncouragement(10);
     auto viewModeSource = new UserFeedback::PropertyRatioSource(ui->viewStack, "currentIndex", QStringLiteral("viewRatio"));
     viewModeSource->setDescription(tr("Usage ratio of the analytics view, survey editor and schema editor."));
     viewModeSource->addValueMapping(0, QStringLiteral("analytics"));
@@ -182,6 +181,11 @@ MainWindow::MainWindow() :
     m_feedbackProvider->addDataSource(new QtVersionSource, Provider::BasicSystemInformation);
     m_feedbackProvider->addDataSource(new StartCountSource, Provider::BasicUsageStatistics);
     m_feedbackProvider->addDataSource(new UsageTimeSource, Provider::BasicUsageStatistics);
+
+    m_feedbackProvider->setEncouragementDelay(60);
+    m_feedbackProvider->setEncouragementInterval(5);
+    m_feedbackProvider->setApplicationStartsUntilEncouragement(5);
+    m_feedbackProvider->setApplicationUsageTimeUntilEncouragement(10);
 
     auto notifyPopup = new UserFeedback::NotificationPopup(this);
     notifyPopup->setFeedbackProvider(m_feedbackProvider);

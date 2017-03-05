@@ -35,6 +35,7 @@
 #include <QtTest/qtest.h>
 #include <QNetworkReply>
 #include <QObject>
+#include <QSettings>
 #include <QSignalSpy>
 #include <QStandardPaths>
 
@@ -161,6 +162,56 @@ private slots:
             QCOMPARE(p.statisticsCollectionMode(), Provider::DetailedSystemInformation);
             QCOMPARE(p.surveyInterval(), 90);
         }
+    }
+
+    void testEncouragement()
+    {
+        {
+            QSettings s;
+            s.beginGroup(QLatin1String("UserFeedback"));
+            s.remove(QLatin1String("LastEncouragement"));
+        }
+
+        {
+            Provider p;
+            QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
+            QVERIFY(spy.isValid());
+            p.setEncouragementDelay(0);
+            QVERIFY(!spy.wait(10));
+            p.setApplicationStartsUntilEncouragement(0);
+            p.setApplicationUsageTimeUntilEncouragement(0);
+            QVERIFY(spy.wait(10));
+            QCOMPARE(spy.count(), 1);
+        }
+
+        {
+            Provider p;
+            QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
+            QVERIFY(spy.isValid());
+            p.setEncouragementDelay(0);
+            p.setApplicationStartsUntilEncouragement(0);
+            p.setApplicationUsageTimeUntilEncouragement(0);
+            QVERIFY(!spy.wait(10));
+        }
+
+        {
+            QSettings s;
+            s.beginGroup(QLatin1String("UserFeedback"));
+            s.remove(QLatin1String("LastEncouragement"));
+        }
+
+        {
+            Provider p;
+            QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
+            QVERIFY(spy.isValid());
+            p.setEncouragementDelay(1);
+            p.setApplicationStartsUntilEncouragement(0);
+            p.setApplicationUsageTimeUntilEncouragement(0);
+            QVERIFY(!spy.wait(10));
+            QVERIFY(spy.wait(1200));
+            QCOMPARE(spy.count(), 1);
+        }
+
     }
 };
 

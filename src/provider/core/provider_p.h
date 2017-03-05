@@ -74,10 +74,11 @@ public:
     int usageTime;
 
     QTimer encouragementTimer;
+    QDateTime lastEncouragementTime;
     int encouragementStarts;
     int encouragementTime;
     int encouragementDelay;
-    bool encouragementDisplayed;
+    int encouragementInterval;
 
     QVector<AbstractDataSource*> dataSources;
 };

@@ -20,6 +20,7 @@
 
 #include "userfeedbackcore_export.h"
 
+#include <QMetaType>
 #include <QObject>
 #include <QUrl>
 

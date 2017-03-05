@@ -193,7 +193,10 @@ private slots:
             p.setApplicationUsageTimeUntilEncouragement(0);
             QVERIFY(!spy.wait(10));
         }
+    }
 
+    void testEncouragementDelay()
+    {
         {
             QSettings s;
             s.beginGroup(QLatin1String("UserFeedback"));
@@ -211,6 +214,30 @@ private slots:
             QVERIFY(spy.wait(1200));
             QCOMPARE(spy.count(), 1);
         }
+    }
+
+    void testNoEncouragementWithAllFeedbackEnabled()
+    {
+        {
+            QSettings s;
+            s.beginGroup(QLatin1String("UserFeedback"));
+            s.remove(QLatin1String("LastEncouragement"));
+        }
+
+        {
+            Provider p;
+            p.addDataSource(new PlatformInfoSource, Provider::BasicSystemInformation);
+            p.setSurveyInterval(0);
+            p.setStatisticsCollectionMode(Provider::BasicSystemInformation);
+            QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
+            QVERIFY(spy.isValid());
+            p.setEncouragementDelay(0);
+            p.setApplicationStartsUntilEncouragement(0);
+            p.setApplicationUsageTimeUntilEncouragement(0);
+            QVERIFY(!spy.wait(10));
+            QCOMPARE(spy.count(), 0);
+        }
+
     }
 
     void testEncouragementRepetition()

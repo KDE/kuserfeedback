@@ -51,6 +51,7 @@ public:
 
     bool selectSurvey(const SurveyInfo &survey) const;
 
+    Provider::StatisticsCollectionMode highestStatisticsCollectionMode() const;
     void scheduleEncouragement();
     void emitShowEncouragementMessage();
 

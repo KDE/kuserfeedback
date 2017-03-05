@@ -216,6 +216,14 @@ bool ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
     return true;
 }
 
+Provider::StatisticsCollectionMode ProviderPrivate::highestStatisticsCollectionMode() const
+{
+    auto mode = Provider::NoStatistics;
+    foreach (auto src, dataSources)
+        mode = std::max(mode, src->collectionMode());
+    return mode;
+}
+
 void ProviderPrivate::scheduleEncouragement()
 {
     encouragementTimer.stop();
@@ -230,7 +238,7 @@ void ProviderPrivate::scheduleEncouragement()
     if (encouragementStarts > startCount) // we need more starts
         return;
 
-    if (statisticsMode == Provider::DetailedUsageStatistics && surveyInterval == 0) // already everything enabled
+    if (statisticsMode >= highestStatisticsCollectionMode() && surveyInterval == 0) // already everything enabled
         return;
     // no repetition if some feedback is enabled
     if (lastEncouragementTime.isValid() && (statisticsMode > Provider::NoStatistics || surveyInterval >= 0))

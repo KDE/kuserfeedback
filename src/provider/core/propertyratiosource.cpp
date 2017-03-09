@@ -46,6 +46,9 @@ public:
     QHash<QString, int> ratioSet;
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QMap<QVariant, QString> valueMap;
+#else
+    struct ValueMapEntry { QVariant v; QString n; };
+    QVector<ValueMapEntry> valueMap;
 #endif
 };
 
@@ -88,6 +91,11 @@ QString PropertyRatioSourcePrivate::valueToString(const QVariant &value) const
     if (it != valueMap.constEnd() && it.key() == value) {
         return it.value();
     }
+#else
+    foreach (const auto &e, valueMap) {
+        if (e.v == value)
+            return e.n;
+    }
 #endif
     return value.toString();
 }
@@ -125,9 +133,14 @@ PropertyRatioSource::PropertyRatioSource(QObject *obj, const char *propertyName,
 
 void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &str)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     Q_D(PropertyRatioSource);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     d->valueMap.insert(value, str);
+#else
+    PropertyRatioSourcePrivate::ValueMapEntry e;
+    e.v = value;
+    e.n = str;
+    d->valueMap.push_back(e);
 #endif
 }
 

@@ -26,7 +26,9 @@
 #include <QDebug>
 #include <QtTest/qtest.h>
 #include <QObject>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QStandardPaths>
+#endif
 
 using namespace UserFeedback;
 
@@ -55,7 +57,9 @@ private:
 private slots:
     void initTestCase()
     {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QStandardPaths::setTestModeEnabled(true);
+#endif
     }
 
     void testPlatformInfoSource()

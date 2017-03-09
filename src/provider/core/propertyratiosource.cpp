@@ -44,7 +44,9 @@ public:
     QString previousValue;
     QTime lastChangeTime;
     QHash<QString, int> ratioSet;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QMap<QVariant, QString> valueMap;
+#endif
 };
 
 // inefficient workaround for not being able to connect QMetaMethod to a function directly
@@ -81,10 +83,12 @@ void PropertyRatioSourcePrivate::propertyChanged()
 
 QString PropertyRatioSourcePrivate::valueToString(const QVariant &value) const
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     const auto it = valueMap.constFind(value);
     if (it != valueMap.constEnd() && it.key() == value) {
         return it.value();
     }
+#endif
     return value.toString();
 }
 
@@ -121,8 +125,10 @@ PropertyRatioSource::PropertyRatioSource(QObject *obj, const char *propertyName,
 
 void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &str)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     Q_D(PropertyRatioSource);
     d->valueMap.insert(value, str);
+#endif
 }
 
 QString PropertyRatioSource::description() const

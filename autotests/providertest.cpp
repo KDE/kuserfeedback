@@ -24,7 +24,9 @@
 #include <QObject>
 #include <QSettings>
 #include <QSignalSpy>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QStandardPaths>
+#endif
 
 using namespace UserFeedback;
 
@@ -34,7 +36,9 @@ class ProviderTest : public QObject
 private slots:
     void initTestCase()
     {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QStandardPaths::setTestModeEnabled(true);
+#endif
     }
 
     void testNoTelemetry()
@@ -75,6 +79,7 @@ private slots:
 
     void testEncouragement()
     {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
             QSettings s;
             s.beginGroup(QLatin1String("UserFeedback"));
@@ -102,10 +107,12 @@ private slots:
             p.setApplicationUsageTimeUntilEncouragement(0);
             QVERIFY(!spy.wait(10));
         }
+#endif
     }
 
     void testEncouragementDelay()
     {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
             QSettings s;
             s.beginGroup(QLatin1String("UserFeedback"));
@@ -123,10 +130,12 @@ private slots:
             QVERIFY(spy.wait(1200));
             QCOMPARE(spy.count(), 1);
         }
+#endif
     }
 
     void testNoEncouragementWithAllFeedbackEnabled()
     {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
             QSettings s;
             s.beginGroup(QLatin1String("UserFeedback"));
@@ -146,11 +155,12 @@ private slots:
             QVERIFY(!spy.wait(10));
             QCOMPARE(spy.count(), 0);
         }
-
+#endif
     }
 
     void testEncouragementRepetition()
     {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
             QSettings s;
             s.beginGroup(QLatin1String("UserFeedback"));
@@ -187,6 +197,7 @@ private slots:
             p.setEncouragementInterval(1);
             QVERIFY(!spy.wait(10));
         }
+#endif
     }
 };
 

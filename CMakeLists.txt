@@ -84,7 +84,7 @@ if(Qt5Core_FOUND)
 # Qt4
 else()
     set(QT_USE_IMPORTED_TARGETS true)
-    find_package(Qt4 4.8.0 REQUIRED QtCore QtNetwork QtGui)
+    find_package(Qt4 4.8.0 REQUIRED QtCore QtNetwork QtGui QtTest)
     include(${QT_USE_FILE})
     set_package_properties(Qt4 PROPERTIES URL "http://qt-project.org/")
 
@@ -147,10 +147,8 @@ configure_file(config-userfeedback-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/c
 # Actually build the stuff
 #
 add_subdirectory(src)
+add_subdirectory(autotests)
 if(Qt5Core_FOUND)
-    add_subdirectory(autotests)
-endif()
-if(Qt5Charts_FOUND AND NOT CMAKE_VERSION VERSION_LESS 3.0)
     add_subdirectory(tests)
 endif()
 

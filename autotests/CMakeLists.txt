@@ -13,6 +13,7 @@ function(uf_add_test _file)
 endfunction()
 
 uf_add_test(datasourcetest UserFeedbackCore Qt5::Gui) # needs Gui for ScreenInfoSource to work
+uf_add_test(providertest UserFeedbackCore Qt5::Gui)
 
 uf_add_test(feedbackconfigtest UserFeedbackWidgets)
 
@@ -32,7 +33,7 @@ if(Php_FOUND)
     uf_add_test(productapitest UserFeedbackTestUtils)
     uf_add_test(productmodeltest UserFeedbackTestUtils)
     uf_add_test(surveyapitest UserFeedbackTestUtils)
-    uf_add_test(providertest UserFeedbackTestUtils UserFeedbackCore Qt5::Gui)
+    uf_add_test(submittest UserFeedbackTestUtils UserFeedbackCore Qt5::Gui)
 endif()
 
 set(php_test_srcs

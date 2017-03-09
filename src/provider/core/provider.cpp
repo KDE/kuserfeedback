@@ -138,6 +138,36 @@ void ProviderPrivate::aboutToQuit()
     store();
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+QByteArray variantMapToJson(const QVariantMap &m)
+{
+    QByteArray b = "{";
+    for (auto it = m.begin(); it != m.end(); ++it) {
+        b += " \"" + it.key().toUtf8() + "\": ";
+        switch (it.value().type()) {
+            case QVariant::String:
+                b += '"' + it.value().toString().toUtf8() + '"';
+                break;
+            case QVariant::Int:
+                b += QByteArray::number(it.value().toInt());
+                break;
+            case QVariant::Double:
+                b += QByteArray::number(it.value().toDouble());
+                break;
+            case QVariant::Map:
+                b += variantMapToJson(it.value().toMap());
+                break;
+            default:
+                break;
+        }
+        if (std::distance(it, m.end()) != 1)
+            b += ",\n";
+    }
+    b += " }";
+    return b;
+}
+#endif
+
 QByteArray ProviderPrivate::jsonData(Provider::StatisticsCollectionMode mode) const
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
@@ -157,8 +187,30 @@ QByteArray ProviderPrivate::jsonData(Provider::StatisticsCollectionMode mode) co
     QJsonDocument doc(obj);
     return doc.toJson();
 #else
-    qCritical("NOT IMPLEMENTED YET");
-    return QByteArray();
+    QByteArray b = "{";
+    if (mode != Provider::NoStatistics) {
+        for (auto it = dataSources.begin(); it != dataSources.end(); ++it) {
+            if (mode < (*it)->collectionMode())
+                continue;
+            const auto data = (*it)->data();
+            if (data.canConvert<QVariantList>()) {
+                const auto l = data.value<QVariantList>();
+                b += " \"" + (*it)->name().toUtf8() + "\": [ ";
+                for (auto it2 = l.begin(); it2 != l.end(); ++it2) {
+                    b += variantMapToJson((*it2).toMap());
+                    if (std::distance(it2, l.end()) != 1)
+                        b += ", ";
+                }
+                b += " ]";
+            } else {
+                b += " \"" + (*it)->name().toUtf8() + "\": " + variantMapToJson(data.toMap());
+            }
+            if (std::distance(it, dataSources.end()) != 1)
+                b += ",\n";
+        }
+    }
+    b += '}';
+    return b;
 #endif
 }
 

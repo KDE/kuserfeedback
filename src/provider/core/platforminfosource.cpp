@@ -44,6 +44,43 @@ QVariant PlatformInfoSource::data()
     m.insert(QStringLiteral("os"), QSysInfo::productType());
     m.insert(QStringLiteral("version"), QSysInfo::productVersion());
 #endif
+#else
+
+    // Qt4
+#ifdef Q_OS_LINUX
+    m.insert(QStringLiteral("os"), QStringLiteral("linux"));
+    m.insert(QStringLiteral("version"), QStringLiteral("unknown")); // TODO could be done by reading /etc/os-release
+#elif Q_OS_WIN32
+    m.insert(QStringLiteral("os"), QStringLiteral("windows"));
+    switch (QSysInfo::windowsVersion()) {
+        case QSysInfo::WV_NT: m.insert(QStringLiteral("version"), QStringLiteral("4.0")); break;
+        case QSysInfo::WV_2000: m.insert(QStringLiteral("version"), QStringLiteral("5.0")); break;
+        case QSysInfo::WV_XP: m.insert(QStringLiteral("version"), QStringLiteral("5.1")); break;
+        case QSysInfo::WV_2003: m.insert(QStringLiteral("version"), QStringLiteral("5.2")); break;
+        case QSysInfo::WV_VISTA: m.insert(QStringLiteral("version"), QStringLiteral("6.0")); break;
+        case QSysInfo::WV_WINDOWS7: m.insert(QStringLiteral("version"), QStringLiteral("6.1")); break;
+        case QSysInfo::WV_WINDOWS8: m.insert(QStringLiteral("version"), QStringLiteral("6.2")); break;
+        case QSysInfo::WV_WINDOWS8_1: m.insert(QStringLiteral("version"), QStringLiteral("6.3")); break;
+        case QSysInfo::WV_WINDOWS10: m.insert(QStringLiteral("version"), QStringLiteral("10.0")); break;
+        default: m.insert(QStringLiteral("version"), QStringLiteral("unknown"));
+    }
+#elif Q_OS_MAC
+    m.insert(QStringLiteral("os"), QStringLiteral("mac"));
+    switch (QSysInfo::MacintoshVersion) {
+        case QSysInfo::MV_10_3: m.insert(QStringLiteral("version"), QStringLiteral("10.3")); break;
+        case QSysInfo::MV_10_4: m.insert(QStringLiteral("version"), QStringLiteral("10.4")); break;
+        case QSysInfo::MV_10_5: m.insert(QStringLiteral("version"), QStringLiteral("10.5")); break;
+        case QSysInfo::MV_10_6: m.insert(QStringLiteral("version"), QStringLiteral("10.6")); break;
+        case QSysInfo::MV_10_7: m.insert(QStringLiteral("version"), QStringLiteral("10.7")); break;
+        case QSysInfo::MV_10_8: m.insert(QStringLiteral("version"), QStringLiteral("10.8")); break;
+        case QSysInfo::MV_10_9: m.insert(QStringLiteral("version"), QStringLiteral("10.9")); break;
+        case QSysInfo::MV_10_10: m.insert(QStringLiteral("version"), QStringLiteral("10.10")); break;
+        default: m.insert(QStringLiteral("version"), QStringLiteral("unknown"));
+    }
+#else
+    m.insert(QStringLiteral("os"), QStringLiteral("unusual"));
+#endif
+
 #endif
     return m;
 }

@@ -93,7 +93,9 @@ private slots:
             const auto scr = v.toMap();
             QVERIFY(scr.contains(QLatin1String("height")));
             QVERIFY(scr.contains(QLatin1String("width")));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
             QVERIFY(scr.contains(QLatin1String("dpi")));
+#endif
         }
     }
 

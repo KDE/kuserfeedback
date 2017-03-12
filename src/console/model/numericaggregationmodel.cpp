@@ -36,9 +36,9 @@ void NumericAggregationModel::setSourceModel(QAbstractItemModel* model)
     recompute();
 }
 
-void NumericAggregationModel::setAggregationValue(const QString& aggrValue)
+void NumericAggregationModel::setAggregation(const AggregationElement& aggr)
 {
-    m_aggrValue = aggrValue;
+    m_aggr = aggr;
     recompute();
 }
 
@@ -108,7 +108,7 @@ void NumericAggregationModel::recompute()
     m_data.clear();
     m_maxValue = 0;
 
-    if (rowCount <= 0 || m_aggrValue.isEmpty()) {
+    if (rowCount <= 0 || !m_aggr.isValid()) {
         endResetModel();
         return;
     }
@@ -122,10 +122,8 @@ void NumericAggregationModel::recompute()
         values.clear();
         values.reserve(samples.size());
 
-        foreach (const auto &sample, samples) {
-            const auto v = sample.value(m_aggrValue).toDouble();
-            values.push_back(v);
-        }
+        foreach (const auto &sample, samples)
+            values += sampleValues(sample);
 
         std::sort(values.begin(), values.end());
 
@@ -142,4 +140,40 @@ void NumericAggregationModel::recompute()
     }
 
     endResetModel();
+}
+
+QVector<double> NumericAggregationModel::sampleValues(const Sample &s) const
+{
+    switch (m_aggr.schemaEntry().dataType()) {
+        case SchemaEntry::Scalar:
+        {
+            if (m_aggr.type() != AggregationElement::Value)
+                return {};
+            return {s.value(m_aggr.schemaEntry().name() + QLatin1String(".") + m_aggr.schemaEntryElement().name()).toDouble()};
+        }
+        case SchemaEntry::List:
+        {
+            const auto l = s.value(m_aggr.schemaEntry().name()).value<QVariantList>();
+            if (m_aggr.type() == AggregationElement::Size)
+                return {(double)l.size()};
+            QVector<double> r;
+            r.reserve(l.size());
+            for (const auto &entry : l)
+                r.push_back(entry.toMap().value(m_aggr.schemaEntryElement().name()).toDouble());
+            return r;
+        }
+        case SchemaEntry::Map:
+        {
+            const auto m = s.value(m_aggr.schemaEntry().name()).toMap();
+            if (m_aggr.type() == AggregationElement::Size)
+                return {(double)m.size()};
+            QVector<double> r;
+            r.reserve(m.size());
+            for (auto it = m.begin(); it != m.end(); ++it)
+                r.push_back(it.value().toMap().value(m_aggr.schemaEntryElement().name()).toDouble());
+            return r;
+        }
+    }
+
+    return {};
 }

@@ -44,8 +44,19 @@ private slots:
     {
         NumericAggregationModel model;
         ModelTest modelTest(&model);
-        model.setAggregationValue(QString());
-        model.setAggregationValue(QLatin1String("usageTime.value"));
+        model.setAggregation(AggregationElement());
+        AggregationElement aggr;
+        {
+            SchemaEntry entry;
+            entry.setDataType(SchemaEntry::Scalar);
+            entry.setName(QLatin1String("usageTime"));
+            aggr.setSchemaEntry(entry);
+            SchemaEntryElement elem;
+            elem.setName(QLatin1String("value"));
+            aggr.setSchemaEntryElement(elem);
+            aggr.setType(AggregationElement::Value);
+        }
+        model.setAggregation(aggr);
 
         TimeAggregationModel timeModel;
         model.setSourceModel(&timeModel);
@@ -69,7 +80,18 @@ private slots:
     {
         NumericAggregationModel model;
         ModelTest modelTest(&model);
-        model.setAggregationValue(QLatin1String("usageTime.value"));
+        AggregationElement aggr;
+        {
+            SchemaEntry entry;
+            entry.setDataType(SchemaEntry::Scalar);
+            entry.setName(QLatin1String("usageTime"));
+            aggr.setSchemaEntry(entry);
+            SchemaEntryElement elem;
+            elem.setName(QLatin1String("value"));
+            aggr.setSchemaEntryElement(elem);
+            aggr.setType(AggregationElement::Value);
+        }
+        model.setAggregation(aggr);
 
         TimeAggregationModel timeModel;
         model.setSourceModel(&timeModel);

@@ -18,10 +18,14 @@
 #ifndef USERFEEDBACK_CONSOLE_NUMERICAGGREGATIONMODEL_H
 #define USERFEEDBACK_CONSOLE_NUMERICAGGREGATIONMODEL_H
 
+#include <core/aggregationelement.h>
+
 #include <QAbstractTableModel>
 
 namespace UserFeedback {
 namespace Console {
+
+class Sample;
 
 class NumericAggregationModel : public QAbstractTableModel
 {
@@ -31,7 +35,7 @@ public:
     ~NumericAggregationModel();
 
     void setSourceModel(QAbstractItemModel *model);
-    void setAggregationValue(const QString &aggrValue);
+    void setAggregation(const AggregationElement &aggr);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -40,9 +44,10 @@ public:
 
 private:
     void recompute();
+    QVector<double> sampleValues(const Sample &s) const;
 
     QAbstractItemModel *m_sourceModel = nullptr;
-    QString m_aggrValue;
+    AggregationElement m_aggr;
     struct Data {
         double lowerExtreme = 0.0;
         double lowerQuartile = 0.0;

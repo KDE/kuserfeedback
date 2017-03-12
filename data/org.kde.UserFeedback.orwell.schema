@@ -68,9 +68,19 @@
                 }
             ],
             "type": "numeric"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "screens",
+                    "schemaEntryElement": "dpi",
+                    "type": "value"
+                }
+            ],
+            "type": "numeric"
         }
     ],
-    "name": "org.kde.UserFeedback.orwell",
+    "name": "org.kde.orwell",
     "schema": [
         {
             "elements": [
@@ -124,6 +134,10 @@
                 },
                 {
                     "name": "height",
+                    "type": "int"
+                },
+                {
+                    "name": "dpi",
                     "type": "int"
                 }
             ],

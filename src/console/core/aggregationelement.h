@@ -44,6 +44,8 @@ public:
     Type type() const;
     void setType(Type t);
 
+    bool isValid() const;
+
     SchemaEntry schemaEntry() const;
     void setSchemaEntry(const SchemaEntry &entry);
 

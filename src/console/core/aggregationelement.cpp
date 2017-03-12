@@ -35,6 +35,11 @@ static const struct {
 AggregationElement::AggregationElement() = default;
 AggregationElement::~AggregationElement() = default;
 
+bool AggregationElement::isValid() const
+{
+    return !m_entry.name().isEmpty();
+}
+
 SchemaEntry AggregationElement::schemaEntry() const
 {
     return m_entry;

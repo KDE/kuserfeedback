@@ -44,8 +44,18 @@ private slots:
     {
         CategoryAggregationModel model;
         ModelTest modelTest(&model);
-        model.setAggregationValue(QString());
-        model.setAggregationValue(QLatin1String("applicationVersion.value"));
+        model.setAggregation(AggregationElement());
+        AggregationElement aggr;
+        {
+            SchemaEntry entry;
+            entry.setName(QLatin1String("applicationVersion"));
+            aggr.setSchemaEntry(entry);
+            SchemaEntryElement elem;
+            elem.setName(QLatin1String("value"));
+            aggr.setSchemaEntryElement(elem);
+            aggr.setType(AggregationElement::Value);
+        }
+        model.setAggregation(aggr);
 
         TimeAggregationModel timeModel;
         model.setSourceModel(&timeModel);
@@ -69,7 +79,17 @@ private slots:
     {
         CategoryAggregationModel model;
         ModelTest modelTest(&model);
-        model.setAggregationValue(QLatin1String("applicationVersion.value"));
+        AggregationElement aggr;
+        {
+            SchemaEntry entry;
+            entry.setName(QLatin1String("applicationVersion"));
+            aggr.setSchemaEntry(entry);
+            SchemaEntryElement elem;
+            elem.setName(QLatin1String("value"));
+            aggr.setSchemaEntryElement(elem);
+            aggr.setType(AggregationElement::Value);
+        }
+        model.setAggregation(aggr);
 
         TimeAggregationModel timeModel;
         model.setSourceModel(&timeModel);

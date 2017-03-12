@@ -45,9 +45,9 @@ void CategoryAggregationModel::setSourceModel(QAbstractItemModel* model)
     recompute();
 }
 
-void CategoryAggregationModel::setAggregationValue(const QString &aggrValue)
+void CategoryAggregationModel::setAggregation(const AggregationElement& aggr)
 {
-    m_aggrValue = aggrValue;
+    m_aggr = aggr;
     recompute();
 }
 
@@ -119,7 +119,7 @@ void CategoryAggregationModel::recompute()
     m_data = nullptr;
     m_maxValue = 0;
 
-    if (rowCount <= 0 || m_aggrValue.isEmpty()) {
+    if (rowCount <= 0 || !m_aggr.isValid()) {
         endResetModel();
         return;
     }
@@ -129,7 +129,7 @@ void CategoryAggregationModel::recompute()
     QSet<QString> categories;
     const auto allSamples = m_sourceModel->index(0, 0).data(TimeAggregationModel::AllSamplesRole).value<QVector<Sample>>();
     foreach (const auto &s, allSamples)
-        categories.insert(s.value(m_aggrValue).toString());
+        categories.insert(sampleValue(s).toString());
     m_categories.reserve(categories.size());
     foreach (const auto &cat, categories)
         m_categories.push_back(cat);
@@ -142,7 +142,7 @@ void CategoryAggregationModel::recompute()
     for (int row = 0; row < rowCount; ++row) {
         const auto samples = m_sourceModel->index(row, 0).data(TimeAggregationModel::SamplesRole).value<QVector<Sample>>();
         foreach (const auto &sample, samples) {
-            const auto catIt = std::lower_bound(m_categories.constBegin(), m_categories.constEnd(), sample.value(m_aggrValue).toString());
+            const auto catIt = std::lower_bound(m_categories.constBegin(), m_categories.constEnd(), sampleValue(sample).toString());
             Q_ASSERT(catIt != m_categories.constEnd());
             const auto idx = colCount * row + std::distance(m_categories.constBegin(), catIt);
             m_data[idx]++;
@@ -155,7 +155,18 @@ void CategoryAggregationModel::recompute()
         m_maxValue = std::max(m_maxValue, m_data[row * colCount + colCount - 1]);
     }
 
-
     endResetModel();
 }
 
+QVariant CategoryAggregationModel::sampleValue(const Sample& s) const
+{
+    switch (m_aggr.type()) {
+        case AggregationElement::Value:
+            return s.value(m_aggr.schemaEntry().name() + QLatin1String(".") + m_aggr.schemaEntryElement().name());
+        case AggregationElement::Size:
+            const auto l = s.value(m_aggr.schemaEntry().name());
+            return l.value<QVariantList>().size();
+            break;
+    }
+    return {};
+}

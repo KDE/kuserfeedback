@@ -60,7 +60,7 @@ QAbstractItemModel* CategoryAggregator::timeAggregationModel()
         m_model.reset(new CategoryAggregationModel);
         m_model->setSourceModel(sourceModel());
         const auto e = aggregation().elements().at(0);
-        m_model->setAggregationValue(e.schemaEntry().name() + QLatin1Char('.') + e.schemaEntryElement().name());
+        m_model->setAggregation(e);
         QObject::connect(m_model.get(), &QAbstractItemModel::modelReset, [this]() {
             updateSingularChart();
             updateTimelineChart();

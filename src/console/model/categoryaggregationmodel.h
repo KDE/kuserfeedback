@@ -18,11 +18,15 @@
 #ifndef USERFEEDBACK_CONSOLE_CATEGORYAGGREGATIONMODEL_H
 #define USERFEEDBACK_CONSOLE_CATEGORYAGGREGATIONMODEL_H
 
+#include <core/aggregationelement.h>
+
 #include <QAbstractTableModel>
 #include <QVector>
 
 namespace UserFeedback {
 namespace Console {
+
+class Sample;
 
 /** Aggregate by time and one string category value (e.g. version. platform, etc). */
 class CategoryAggregationModel : public QAbstractTableModel
@@ -33,7 +37,7 @@ public:
     ~CategoryAggregationModel();
 
     void setSourceModel(QAbstractItemModel *model);
-    void setAggregationValue(const QString &aggrValue);
+    void setAggregation(const AggregationElement &aggr);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -42,9 +46,10 @@ public:
 
 private:
     void recompute();
+    QVariant sampleValue(const Sample &s) const;
 
     QAbstractItemModel *m_sourceModel = nullptr;
-    QString m_aggrValue;
+    AggregationElement m_aggr;
     QVector<QString> m_categories;
     int *m_data = nullptr;
     int m_maxValue;

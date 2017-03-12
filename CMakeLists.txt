@@ -105,6 +105,9 @@ endif()
 
 add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_NO_CAST_TO_ASCII -DQT_NO_URL_CAST_FROM_STRING -DQT_NO_CAST_FROM_ASCII)
 
+find_package(FLEX REQUIRED)
+find_package(BISON REQUIRED)
+
 find_package(Php)
 set_package_properties(Php PROPERTIES URL "http://php.net" TYPE RECOMMENDED PURPOSE "Syntax checking of PHP server code.")
 find_package(PhpUnit)

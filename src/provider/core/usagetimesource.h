@@ -31,7 +31,7 @@ class UsageTimeSourcePrivate;
 class USERFEEDBACKCORE_EXPORT UsageTimeSource :  public AbstractDataSource
 {
 public:
-    Q_DECLARE_TR_FUNCTIONS(UsageTimeSource)
+    Q_DECLARE_TR_FUNCTIONS(UserFeedback::UsageTimeSource)
 public:
     /*! Create a new usage time data source. */
     UsageTimeSource();

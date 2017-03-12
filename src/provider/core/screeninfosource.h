@@ -31,7 +31,7 @@ namespace UserFeedback {
  */
 class USERFEEDBACKCORE_EXPORT ScreenInfoSource :  public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(ScreenInfoSource)
+    Q_DECLARE_TR_FUNCTIONS(UserFeedback::ScreenInfoSource)
 public:
     /*! Create a new screen information source. */
     ScreenInfoSource();

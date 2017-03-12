@@ -30,7 +30,7 @@ class StartCountSourcePrivate;
 /*! Data source reporting the total amount of applications starts. */
 class USERFEEDBACKCORE_EXPORT StartCountSource :  public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(StartCountSource)
+    Q_DECLARE_TR_FUNCTIONS(UserFeedback::StartCountSource)
 public:
     /*! Create a new start count data source. */
     StartCountSource();

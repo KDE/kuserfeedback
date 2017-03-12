@@ -26,7 +26,7 @@ namespace UserFeedback {
 /*! Data source reporting the Qt version used at runtime. */
 class USERFEEDBACKCORE_EXPORT QtVersionSource : public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(QtVersionSource)
+    Q_DECLARE_TR_FUNCTIONS(UserFeedback::QtVersionSource)
 public:
     QtVersionSource();
     QString description() const override;

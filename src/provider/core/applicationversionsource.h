@@ -28,7 +28,7 @@ namespace UserFeedback {
  */
 class USERFEEDBACKCORE_EXPORT ApplicationVersionSource : public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(ApplicationVersionSource)
+    Q_DECLARE_TR_FUNCTIONS(UserFeedback::ApplicationVersionSource)
 public:
     /*! Create a new application version source. */
     ApplicationVersionSource();

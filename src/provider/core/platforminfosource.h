@@ -29,7 +29,7 @@ namespace UserFeedback {
  */
 class USERFEEDBACKCORE_EXPORT PlatformInfoSource : public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(PlatformInfoSource)
+    Q_DECLARE_TR_FUNCTIONS(UserFeedback::PlatformInfoSource)
 public:
     /*! Create a new platform information source. */
     PlatformInfoSource();

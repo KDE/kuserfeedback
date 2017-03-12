@@ -38,8 +38,7 @@ public:
         None,
         Category,
         RatioSet,
-        Numeric,
-        XY
+        Numeric
     };
     Q_ENUM(Type)
 

@@ -232,8 +232,6 @@ Aggregator* AnalyticsView::createAggregator(const Aggregation& aggr) const
         case Aggregation::RatioSet:
             aggregator = new RatioSetAggregator;
             break;
-        case Aggregation::XY:
-            break;
     }
 
     if (!aggregator)

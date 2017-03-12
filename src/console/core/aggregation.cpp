@@ -30,8 +30,7 @@ static const struct {
     { Aggregation::None, "none" },
     { Aggregation::Category, "category" },
     { Aggregation::RatioSet, "ratio_set" },
-    { Aggregation::Numeric, "numeric" },
-    { Aggregation::XY, "xy" }
+    { Aggregation::Numeric, "numeric" }
 };
 
 Aggregation::Aggregation() = default;

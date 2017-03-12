@@ -22,15 +22,16 @@
 
 namespace UserFeedback {
 
-/** Reports information about the platform the application is running on.
+/*! Reports information about the platform the application is running on.
  *  This includes two string data fields:
- *  - platformOS: the operating system name
- *  - platformVersion: the operating system or distribution version.
+ *  - platform.os: the operating system name
+ *  - platform.version: the operating system or distribution version.
  */
 class USERFEEDBACKCORE_EXPORT PlatformInfoSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(PlatformInfoSource)
 public:
+    /*! Create a new platform information source. */
     PlatformInfoSource();
     QString description() const override;
     QVariant data() override;

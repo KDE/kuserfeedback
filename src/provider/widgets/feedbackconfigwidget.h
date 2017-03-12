@@ -31,31 +31,40 @@ namespace UserFeedback {
 class FeedbackConfigWidgetPrivate;
 class Provider;
 
-/**
+/*!
  * Configuration widget for telemetry and survey contributions.
  *
+ * Use this rather than FeedbackConfigDialog if you want to embed the
+ * feedback configuration for example into an existing configuration
+ * dialog.
  * @see FeedbackConfigDialog
  */
 class USERFEEDBACKWIDGETS_EXPORT FeedbackConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
+    /*! Create a new feedback provider configuration widget.
+     *  @param parent The parent widget.
+     */
     explicit FeedbackConfigWidget(QWidget *parent = nullptr);
     ~FeedbackConfigWidget();
 
-    /** Returns the feedback provider configured by this widget. */
+    /*! Returns the feedback provider configured by this widget. */
     Provider* feedbackProvider() const;
 
-    /** Set the feedback provider that should be configured with this widget. */
+    /*! Set the feedback provider that should be configured with this widget. */
     void setFeedbackProvider(Provider *provider);
 
-    /** Returns the telemetry level currently selected in the widget. */
+    /*! Returns the telemetry level currently selected in the widget. */
     Provider::StatisticsCollectionMode statisticsCollectionMode() const;
-    /** Returns the survey interval currently selected in this widget. */
+
+    /*! Returns the survey interval currently selected in this widget. */
     int surveyInterval() const;
 
 protected:
+    ///@cond internal
     bool eventFilter(QObject *receiver, QEvent *event) override;
+    ///@endcond
 
 private:
     Q_PRIVATE_SLOT(d, void telemetrySliderChanged())

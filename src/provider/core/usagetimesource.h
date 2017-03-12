@@ -27,12 +27,13 @@ class Provider;
 class ProviderPrivate;
 class UsageTimeSourcePrivate;
 
-/** Data source reporting the total usage time of the application. */
+/*! Data source reporting the total usage time of the application. */
 class USERFEEDBACKCORE_EXPORT UsageTimeSource :  public AbstractDataSource
 {
 public:
     Q_DECLARE_TR_FUNCTIONS(UsageTimeSource)
 public:
+    /*! Create a new usage time data source. */
     UsageTimeSource();
     QString description() const override;
     QVariant data() override;

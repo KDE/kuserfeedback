@@ -29,30 +29,36 @@ namespace UserFeedback {
 
 class SurveyInfoData;
 
-/** Information about a survey request. */
+/*! Information about a survey request.
+ *  This class is implicitly shared.
+ */
 class USERFEEDBACKCORE_EXPORT SurveyInfo
 {
 public:
+    /*! Create an empty, invalid survey request. */
     SurveyInfo();
+    /*! Copy constructor. */
     SurveyInfo(const SurveyInfo&);
     ~SurveyInfo();
+    /*! Assignment operator. */
     SurveyInfo& operator=(const SurveyInfo&);
 
-    /** Returns @c true if this survey has all necessary information to actually execute it. */
+    /*! Returns @c true if this survey has all necessary information to actually execute it. */
     bool isValid() const;
 
-    /** Internal unique id of the survey.
+    /*! Internal unique id of the survey.
      *  Used to locally check if a user has completed the survey already.
      */
     int id() const;
-    void setId(int id);
 
-    /** The URL to the survey website. */
+    /*! The URL to the survey website. */
     QUrl url() const;
-    void setUrl(const QUrl &url);
 
-    /** @internal */
+    ///@cond internal
+    void setId(int id);
+    void setUrl(const QUrl &url);
     static SurveyInfo fromJson(const QJsonObject &obj);
+    ///@endcond
 private:
     QSharedDataPointer<SurveyInfoData> d;
 };

@@ -29,7 +29,7 @@ namespace UserFeedback {
 class NotificationPopupPrivate;
 class Provider;
 
-/**
+/*!
  * Notification popup that overlays a small part of the application for
  * encouraging contributions or inform about surveys.
  */
@@ -37,7 +37,7 @@ class USERFEEDBACKWIDGETS_EXPORT NotificationPopup : public QWidget
 {
     Q_OBJECT
 public:
-    /**
+    /*!
      * Create a new notification popup.
      * Do not put this widget into a layout.
      * @param parent The parent widget. This must not be @c nullptr.
@@ -45,14 +45,16 @@ public:
     explicit NotificationPopup(QWidget *parent);
     ~NotificationPopup();
 
-    /**
+    /*!
      * Set the feedback provider that is going to drive this notification popup.
      */
     void setFeedbackProvider(Provider *provider);
 
 protected:
+    ///@cond internal
     void keyReleaseEvent(QKeyEvent *event) override;
     bool eventFilter(QObject *receiver, QEvent *event) override;
+    ///@endcond
 
 private:
     Q_PRIVATE_SLOT(d, void showEncouragement())

@@ -28,16 +28,26 @@ namespace UserFeedback {
 class FeedbackConfigDialogPrivate;
 class Provider;
 
-/** Configure which feedback a user wants to provide. */
+/*! Configure which feedback a user wants to provide.
+ *
+ * @see FeedbackConfigWidget
+ */
 class USERFEEDBACKWIDGETS_EXPORT FeedbackConfigDialog : public QDialog
 {
     Q_OBJECT
 public:
+    /*! Create a new feedback configuration dialog.
+     *  @param parent The parent widget.
+     */
     explicit FeedbackConfigDialog(QWidget *parent = nullptr);
     ~FeedbackConfigDialog();
 
+    /*! Set the feedback provider that this dialog configures. */
     void setFeedbackProvider(UserFeedback::Provider *provider);
 
+    /*! Accpets the dialog and write changes made by the user to
+     *  the feedback provider.
+     */
     void accept() override;
 
 private:

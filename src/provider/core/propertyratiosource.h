@@ -25,7 +25,7 @@ namespace UserFeedback {
 
 class PropertyRatioSourcePrivate;
 
-/** Records the time ratio a given QObject property has a specific value.
+/*! Records the time ratio a given QObject property has a specific value.
  *
  *  An example use-case would be the usage ratio of a applications
  *  views/modes selected by a QTabWidget or QRadioButton.
@@ -33,7 +33,7 @@ class PropertyRatioSourcePrivate;
 class USERFEEDBACKCORE_EXPORT PropertyRatioSource :  public AbstractDataSource
 {
 public:
-    /** Create a new property ratio data source.
+    /*! Create a new property ratio data source.
      * @param obj the QObject of which a property should be monitored.
      * @param propertyName The name of the property to monitor.
      * This property must have a change notification signal. The value must have
@@ -43,16 +43,20 @@ public:
      */
     explicit PropertyRatioSource(QObject *obj, const char* propertyName, const QString &sampleName);
 
-    /** Map property value @value to @str for sending to the server.
+    /*! Map property value @p value to @p str for sending to the server.
      *  This is useful to map internal identifiers to portable and persistable values,
      *  such as turning pointers or indexes into meaningful descriptions.
+     *  @param value The property value to map.
+     *  @param str The string the property value @p value should be mapped to.
      */
     void addValueMapping(const QVariant &value, const QString &str);
 
     QString description() const override;
-    /** Set human-readable and translated description of the data provided by this source.
+
+    /*! Set human-readable and translated description of the data provided by this source.
      *  @note This must be set before adding this source, sources without description are
      *  discarded.
+     *  @param desc The description.
      */
     void setDescription(const QString &desc);
 

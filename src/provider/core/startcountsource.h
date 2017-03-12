@@ -27,11 +27,12 @@ class Provider;
 class ProviderPrivate;
 class StartCountSourcePrivate;
 
-/** Data source reporting the total amount of applications starts. */
+/*! Data source reporting the total amount of applications starts. */
 class USERFEEDBACKCORE_EXPORT StartCountSource :  public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(StartCountSource)
 public:
+    /*! Create a new start count data source. */
     StartCountSource();
     QString description() const override;
     QVariant data() override;

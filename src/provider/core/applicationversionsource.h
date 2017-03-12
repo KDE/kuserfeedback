@@ -23,10 +23,14 @@
 
 namespace UserFeedback {
 
+/*! Data source for the application version.
+ *  The application version is retrieved via QCoreApplication::applicationVersion.
+ */
 class USERFEEDBACKCORE_EXPORT ApplicationVersionSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(ApplicationVersionSource)
 public:
+    /*! Create a new application version source. */
     ApplicationVersionSource();
     QString description() const override;
     QVariant data() override;

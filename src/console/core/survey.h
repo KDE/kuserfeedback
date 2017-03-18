@@ -54,6 +54,9 @@ public:
     bool isActive() const;
     void setActive(bool enabled);
 
+    QString target() const;
+    void setTarget(const QString &target);
+
     QByteArray toJson() const;
     static QVector<Survey> fromJson(const QByteArray &data);
 private:

@@ -28,12 +28,14 @@ class SurveyTest extends AbstractDatastoreTest
             "name": "mySurvey",
             "url": "http://survey.example/",
             "active": true,
+            "target": "screen[0].dpi > 100",
             "id": 42
         }');
         $this->assertEquals($s->name, 'mySurvey');
         $this->assertEquals($s->url, 'http://survey.example/');
         $this->assertEquals($s->active, true);
         $this->assertEquals($s->id, 42);
+        $this->assertEquals($s->target, 'screen[0].dpi > 100');
     }
 
     public function testToJson()
@@ -43,12 +45,14 @@ class SurveyTest extends AbstractDatastoreTest
         $s->url = 'http://survey.example/';
         $s->active = true;
         $s->id = 42;
+        $s->target = 'screen[0].dpi > 100';
 
         $this->assertJsonStringEqualsJsonString(json_encode($s), '{
             "name": "mySurvey",
             "url": "http://survey.example/",
             "active": true,
-            "id": 42
+            "id": 42,
+            "target": "screen[0].dpi > 100"
         }');
     }
 
@@ -73,10 +77,12 @@ class SurveyTest extends AbstractDatastoreTest
         $this->assertEquals($survey1->name, 'myActiveSurvey');
         $this->assertEquals($survey1->url, 'http://survey.example/active');
         $this->assertEquals($survey1->active, true);
+        $this->assertEquals($survey1->target, 'usageTime.value >= 3600');
 
         $this->assertEquals($survey2->name, 'myInactiveSurvey');
         $this->assertEquals($survey2->url, 'http://survey.example/inactive');
         $this->assertEquals($survey2->active, false);
+        $this->assertEquals($survey2->target, 'screen[0].dpi < 200');
 
         $p = Product::productByName(self::$db, 'org.kde.UnitTest');
         $this->assertNotNull($p);
@@ -88,6 +94,7 @@ class SurveyTest extends AbstractDatastoreTest
         $this->assertEquals($s->name, 'myActiveSurvey');
         $this->assertEquals($s->url, 'http://survey.example/active');
         $this->assertEquals($s->active, true);
+        $this->assertEquals($s->target, 'usageTime.value >= 3600');
     }
 
     public function testSurveyInsert()
@@ -95,7 +102,8 @@ class SurveyTest extends AbstractDatastoreTest
         $json = '{
             "name": "newSurvey",
             "url": "http://survey.example/new",
-            "active": true
+            "active": true,
+            "target": "startCount.value > 10"
         }';
 
         $p = Product::productByName(self::$db, 'org.kde.UnitTest');
@@ -117,6 +125,7 @@ class SurveyTest extends AbstractDatastoreTest
         $this->assertEquals($s->name, 'newSurvey');
         $this->assertEquals($s->url, 'http://survey.example/new');
         $this->assertEquals($s->active, true);
+        $this->assertEquals($s->target, 'startCount.value > 10');
     }
 
     public function testSurveyUpdate()
@@ -125,7 +134,8 @@ class SurveyTest extends AbstractDatastoreTest
             "name": "myChangedSurvey",
             "url": "http://survey.example/changed",
             "active": false,
-            "id": 101
+            "id": 101,
+            "target": "views[\"editor\"].ratio > 0.5"
         }';
 
         $s = Survey::fromJson($json);
@@ -143,6 +153,7 @@ class SurveyTest extends AbstractDatastoreTest
         $this->assertEquals($s->name, 'myChangedSurvey');
         $this->assertEquals($s->url, 'http://survey.example/changed');
         $this->assertEquals($s->active, false);
+        $this->assertEquals($s->target, 'views["editor"].ratio > 0.5');
     }
 
     public function testSurveyDelete()

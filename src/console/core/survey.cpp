@@ -35,6 +35,7 @@ class SurveyData : public QSharedData
 public:
     QString name;
     QUrl url;
+    QString target;
     int id = -1;
     bool active = false;
 };
@@ -51,6 +52,7 @@ bool Survey::operator==(const Survey& other) const
 {
     return d->name == other.d->name
         && d->url == other.d->url
+        && d->target == other.d->target
         && d->id == other.d->id
         && d->active == other.d->active;
 }
@@ -100,6 +102,16 @@ void Survey::setActive(bool active)
     d->active = active;
 }
 
+QString Survey::target() const
+{
+    return d->target;
+}
+
+void Survey::setTarget(const QString& target)
+{
+    d->target = target;
+}
+
 QByteArray Survey::toJson() const
 {
     QJsonObject obj;
@@ -107,6 +119,7 @@ QByteArray Survey::toJson() const
     obj.insert(QStringLiteral("name"), name());
     obj.insert(QStringLiteral("url"), url().toString());
     obj.insert(QStringLiteral("active"), isActive());
+    obj.insert(QStringLiteral("target"), target());
     return QJsonDocument(obj).toJson();
 }
 
@@ -117,15 +130,16 @@ QVector<Survey> Survey::fromJson(const QByteArray &data)
         const auto obj = v.toObject();
         Survey survey;
 
-        const auto id = obj.value(QStringLiteral("id"));
+        const auto id = obj.value(QLatin1String("id"));
         // TODO move this to a helper function
         if (id.isDouble())
             survey.setId(id.toInt(-1));
         else if (id.isString())
             survey.setId(id.toString().toInt());
-        survey.setName(obj.value(QStringLiteral("name")).toString());
-        survey.setUrl(QUrl(obj.value(QStringLiteral("url")).toString()));
-        survey.setActive(obj.value(QStringLiteral("active")).toBool());
+        survey.setName(obj.value(QLatin1String("name")).toString());
+        survey.setUrl(QUrl(obj.value(QLatin1String("url")).toString()));
+        survey.setActive(obj.value(QLatin1String("active")).toBool());
+        survey.setTarget(obj.value(QLatin1String("target")).toString());
         surveys.push_back(survey);
     }
     return surveys;

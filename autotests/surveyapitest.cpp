@@ -104,6 +104,7 @@ private slots:
         s.setName(QStringLiteral("unitTestSurvey"));
         s.setUrl(QUrl(QStringLiteral("http://www.kde.org")));
         s.setActive(false);
+        s.setTarget(QStringLiteral("screen[0].dpi >= 200"));
         reply = RESTApi::createSurvey(&client, p, s);
         QVERIFY(waitForFinished(reply));
         QCOMPARE(reply->error(), QNetworkReply::NoError);

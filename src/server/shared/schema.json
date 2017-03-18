@@ -38,6 +38,12 @@
             "sqlite": ["CREATE TABLE tbl_aggregation (col_id INTEGER PRIMARY KEY AUTOINCREMENT, col_product_id INTEGER REFERENCES tbl_product (col_id) ON DELETE CASCADE, col_type VARCHAR NOT NULL, col_elements VARCHAR)" ],
             "mysql": ["CREATE TABLE tbl_aggregation (col_id INTEGER PRIMARY KEY AUTO_INCREMENT, col_product_id INTEGER REFERENCES tbl_product (col_id) ON DELETE CASCADE, col_type VARCHAR(255) NOT NULL, col_elements VARCHAR(255))" ],
             "pgsql": ["CREATE TABLE tbl_aggregation (col_id SERIAL PRIMARY KEY, col_product_id INTEGER REFERENCES tbl_product (col_id) ON DELETE CASCADE, col_type VARCHAR NOT NULL, col_elements VARCHAR)" ]
+        },
+
+        {
+            "version": 7,
+            "sql": ["ALTER TABLE tbl_survey ADD COLUMN col_target VARCHAR"],
+            "mysql": ["ALTER TABLE tbl_survey ADD COLUMN col_target VARCHAR(255)"]
         }
     ]
 }

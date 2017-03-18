@@ -18,6 +18,8 @@
 #ifndef USERFEEDBACK_CONSOLE_SURVEYDIALOG_H
 #define USERFEEDBACK_CONSOLE_SURVEYDIALOG_H
 
+#include <core/survey.h>
+
 #include <QDialog>
 
 #include <memory>
@@ -32,8 +34,6 @@ namespace Ui
 class SurveyDialog;
 }
 
-class Survey;
-
 class SurveyDialog : public QDialog
 {
     Q_OBJECT
@@ -45,6 +45,7 @@ public:
     void setSurvey(const Survey &survey);
 
 private:
+    Survey m_survey;
     std::unique_ptr<Ui::SurveyDialog> ui;
 };
 

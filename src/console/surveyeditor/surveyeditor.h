@@ -50,6 +50,7 @@ signals:
 
 private:
     void createSurvey();
+    void editSurvey();
     void deleteSurvey();
     void updateActions();
 

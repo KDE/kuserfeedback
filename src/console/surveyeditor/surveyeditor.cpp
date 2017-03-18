@@ -35,16 +35,16 @@ SurveyEditor::SurveyEditor(QWidget* parent) :
 {
     ui->setupUi(this);
     ui->surveyView->setModel(m_surveyModel);
-    ui->surveyView->addActions({ ui->actionAddSurvey, ui->actionDeleteSurvey });
+    ui->surveyView->addActions({ ui->actionAddSurvey, ui->actionEditSurvey, ui->actionDeleteSurvey });
     connect(ui->surveyView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &SurveyEditor::updateActions);
+    connect(ui->surveyView, &QAbstractItemView::doubleClicked, this, &SurveyEditor::editSurvey);
     connect(m_surveyModel, &QAbstractItemModel::modelReset, this, &SurveyEditor::updateActions);
 
-    ui->actionAddSurvey->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
     connect(ui->actionAddSurvey, &QAction::triggered, this, &SurveyEditor::createSurvey);
-    ui->actionDeleteSurvey->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")));
+    connect(ui->actionEditSurvey, &QAction::triggered, this, &SurveyEditor::editSurvey);
     connect(ui->actionDeleteSurvey, &QAction::triggered, this, &SurveyEditor::deleteSurvey);
 
-    addActions({ ui->actionAddSurvey, ui->actionDeleteSurvey });
+    addActions({ ui->actionAddSurvey, ui->actionEditSurvey, ui->actionDeleteSurvey });
     updateActions();
 }
 
@@ -79,6 +79,29 @@ void SurveyEditor::createSurvey()
     });
 }
 
+void SurveyEditor::editSurvey()
+{
+    if (!m_product.isValid())
+        return;
+    const auto selection = ui->surveyView->selectionModel()->selectedRows();
+    if (selection.isEmpty())
+        return;
+    const auto survey = selection.first().data(SurveyModel::SurveyRole).value<Survey>();
+
+    SurveyDialog dlg;
+    dlg.setSurvey(survey);
+    if (dlg.exec() != QDialog::Accepted)
+        return;
+
+    auto reply = RESTApi::updateSurvey(m_restClient, dlg.survey());
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() != QNetworkReply::NoError)
+            return;
+        emit logMessage(QString::fromUtf8(reply->readAll()));
+        m_surveyModel->reload();
+    });
+}
+
 void SurveyEditor::deleteSurvey()
 {
     if (!m_product.isValid())
@@ -108,5 +131,7 @@ void SurveyEditor::deleteSurvey()
 void SurveyEditor::updateActions()
 {
     ui->actionAddSurvey->setEnabled(m_product.isValid());
-    ui->actionDeleteSurvey->setEnabled(!ui->surveyView->selectionModel()->selectedRows().isEmpty());
+    const auto hasSelection = !ui->surveyView->selectionModel()->selectedRows().isEmpty();
+    ui->actionEditSurvey->setEnabled(hasSelection);
+    ui->actionDeleteSurvey->setEnabled(hasSelection);
 }

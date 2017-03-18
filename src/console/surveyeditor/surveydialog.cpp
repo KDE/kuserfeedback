@@ -40,7 +40,7 @@ SurveyDialog::~SurveyDialog() = default;
 
 Survey SurveyDialog::survey() const
 {
-    Survey s;
+    Survey s = m_survey;
     s.setName(ui->name->text());
     s.setUrl(QUrl(ui->url->text()));
     s.setTarget(ui->targetExpression->toPlainText());
@@ -49,6 +49,7 @@ Survey SurveyDialog::survey() const
 
 void SurveyDialog::setSurvey(const Survey& survey)
 {
+    m_survey = survey;
     ui->name->setText(survey.name());
     ui->url->setText(survey.url().toString());
     ui->targetExpression->setPlainText(survey.target());

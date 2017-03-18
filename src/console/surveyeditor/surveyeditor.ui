@@ -38,19 +38,39 @@
    </item>
   </layout>
   <action name="actionAddSurvey">
+   <property name="icon">
+    <iconset theme="list-add">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>&amp;Add Survey...</string>
    </property>
    <property name="toolTip">
-    <string>Add new survery.</string>
+    <string>Add new survey.</string>
    </property>
   </action>
   <action name="actionDeleteSurvey">
+   <property name="icon">
+    <iconset theme="list-remove">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>&amp;Delete Survey</string>
    </property>
    <property name="toolTip">
     <string>Delete a survey.</string>
+   </property>
+  </action>
+  <action name="actionEditSurvey">
+   <property name="icon">
+    <iconset theme="document-edit">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Edit Survey...</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit the currently selected survey.</string>
    </property>
   </action>
  </widget>

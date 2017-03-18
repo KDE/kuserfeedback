@@ -65,7 +65,7 @@ void SurveyModel::reload()
 int SurveyModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
-    return 3;
+    return 4;
 }
 
 int SurveyModel::rowCount(const QModelIndex& parent) const
@@ -85,6 +85,7 @@ QVariant SurveyModel::data(const QModelIndex& index, int role) const
         switch (index.column()) {
             case 0: return survey.name();
             case 1: return survey.url().toString();
+            case 3: return survey.target();
         }
     } else if (role == Qt::CheckStateRole) {
         if (index.column() == 2)
@@ -118,6 +119,7 @@ QVariant SurveyModel::headerData(int section, Qt::Orientation orientation, int r
             case 0: return tr("Name");
             case 1: return tr("URL");
             case 2: return tr("Active");
+            case 3: return tr("Target");
         }
     }
     return QAbstractTableModel::headerData(section, orientation, role);

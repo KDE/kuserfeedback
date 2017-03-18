@@ -21,6 +21,7 @@
 #include <core/survey.h>
 
 #include <QIcon>
+#include <QPushButton>
 #include <QUrl>
 
 using namespace UserFeedback::Console;
@@ -31,6 +32,8 @@ SurveyDialog::SurveyDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("dialog-question")));
+
+    connect(ui->buttonBox->button(QDialogButtonBox::Discard), &QPushButton::clicked, this, &QDialog::reject);
 }
 
 SurveyDialog::~SurveyDialog() = default;
@@ -40,6 +43,7 @@ Survey SurveyDialog::survey() const
     Survey s;
     s.setName(ui->name->text());
     s.setUrl(QUrl(ui->url->text()));
+    s.setTarget(ui->targetExpression->toPlainText());
     return s;
 }
 
@@ -47,4 +51,5 @@ void SurveyDialog::setSurvey(const Survey& survey)
 {
     ui->name->setText(survey.name());
     ui->url->setText(survey.url().toString());
+    ui->targetExpression->setPlainText(survey.target());
 }

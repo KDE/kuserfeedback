@@ -17,6 +17,7 @@
 
 #include <config-userfeedback-version.h>
 
+#include "logging_p.h"
 #include "provider.h"
 #include "provider_p.h"
 #include "abstractdatasource.h"
@@ -40,6 +41,14 @@
 
 #include <algorithm>
 #include <numeric>
+
+namespace UserFeedback {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
+Q_LOGGING_CATEGORY(Log, "org.kde.UserFeedback", QtInfoMsg)
+#elif QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
+Q_LOGGING_CATEGORY(Log, "org.kde.UserFeedback")
+#endif
+}
 
 using namespace UserFeedback;
 
@@ -134,7 +143,7 @@ void ProviderPrivate::store()
 
 void ProviderPrivate::aboutToQuit()
 {
-    qDebug() << Q_FUNC_INFO;
+    qCDebug(Log) << Q_FUNC_INFO;
     store();
 }
 
@@ -233,7 +242,7 @@ void ProviderPrivate::submitFinished()
     Q_ASSERT(reply);
 
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "failed to submit user feedback:" << reply->errorString() << reply->readAll();
+        qCWarning(Log) << "failed to submit user feedback:" << reply->errorString() << reply->readAll();
         return;
     }
 
@@ -257,7 +266,7 @@ void ProviderPrivate::submitFinished()
 
 bool ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
 {
-    qDebug() << Q_FUNC_INFO << "got survey:" << survey.url();
+    qCDebug(Log) << "got survey:" << survey.url();
     if (!survey.isValid() || completedSurveys.contains(QString::number(survey.id())))
         return false;
 
@@ -320,7 +329,7 @@ Provider::Provider(QObject *parent) :
     QObject(parent),
     d(new ProviderPrivate(this))
 {
-    qDebug() << Q_FUNC_INFO;
+    qCDebug(Log);
 
     connect(QCoreApplication::instance(), SIGNAL(aboutToQuit()), this, SLOT(aboutToQuit()));
 
@@ -452,7 +461,7 @@ void Provider::setSurveyCompleted(const SurveyInfo &info)
 void Provider::submit()
 {
     if (!d->serverUrl.isValid()) {
-        qWarning() << "No feedback server URL specified!";
+        qCWarning(Log) << "No feedback server URL specified!";
         return;
     }
 

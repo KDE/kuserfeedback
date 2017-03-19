@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2016 Volker Krause <vkrause@kde.org>
+    Copyright (C) 2017 Volker Krause <vkrause@kde.org>
 
     This program is free software; you can redistribute it and/or modify it
     under the terms of the GNU Library General Public License as published by
@@ -15,16 +15,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_QT4COMPAT_H
-#define USERFEEDBACK_QT4COMPAT_H
+#ifndef USERFEEDBACK_CORE_LOGGING_H
+#define USERFEEDBACK_CORE_LOGGING_H
 
-/** @file qt4compat.h
- *  Compatibility hacks to allow usage of more modern Qt5/C++11 features in Qt4 builds.
- */
+#include <qglobal.h>
 
-#define QStringLiteral(str) QString::fromUtf8("" str "", sizeof(str) - 1)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
+#include <QLoggingCategory>
 
-#define qCDebug(cat) qDebug()
-#define qCWarning(cat) qWarning()
+namespace UserFeedback {
+Q_DECLARE_LOGGING_CATEGORY(Log)
+}
+#endif
 
 #endif

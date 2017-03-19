@@ -179,6 +179,6 @@ install(FILES
 )
 
 install(EXPORT UserFeedbackTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE UserFeedbackTarget.cmake)
-
+install(FILES org_kde_UserFeedback.categories DESTINATION etc/xdg)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

@@ -17,6 +17,7 @@
 
 #include "propertyratiosource.h"
 #include "abstractdatasource_p.h"
+#include "logging_p.h"
 
 #include <QDebug>
 #include <QHash>
@@ -111,13 +112,13 @@ PropertyRatioSource::PropertyRatioSource(QObject *obj, const char *propertyName,
     auto idx = obj->metaObject()->indexOfProperty(propertyName);
     Q_ASSERT(idx >= 0);
     if (idx < 0) {
-        qWarning() << "Property" << propertyName << "not found in" << obj << "!";
+        qCWarning(Log) << "Property" << propertyName << "not found in" << obj << "!";
         return;
     }
 
     d->property = obj->metaObject()->property(idx);
     if (!d->property.hasNotifySignal()) {
-        qWarning() << "Property" << propertyName << "has no notification signal!";
+        qCWarning(Log) << "Property" << propertyName << "has no notification signal!";
         return;
     }
 

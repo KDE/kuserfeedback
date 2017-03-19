@@ -45,6 +45,8 @@ public:
     void setSurvey(const Survey &survey);
 
 private:
+    void updateState();
+
     Survey m_survey;
     std::unique_ptr<Ui::SurveyDialog> ui;
 };

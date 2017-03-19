@@ -20,6 +20,8 @@
 
 #include <core/survey.h>
 
+#include <common/surveytargetexpressionparser.h>
+
 #include <QIcon>
 #include <QPushButton>
 #include <QUrl>
@@ -34,6 +36,11 @@ SurveyDialog::SurveyDialog(QWidget *parent) :
     setWindowIcon(QIcon::fromTheme(QStringLiteral("dialog-question")));
 
     connect(ui->buttonBox->button(QDialogButtonBox::Discard), &QPushButton::clicked, this, &QDialog::reject);
+
+    connect(ui->name, &QLineEdit::textChanged, this, &SurveyDialog::updateState);
+    connect(ui->url, &QLineEdit::textChanged, this, &SurveyDialog::updateState);
+    connect(ui->targetExpression, &QPlainTextEdit::textChanged, this, &SurveyDialog::updateState);
+    updateState();
 }
 
 SurveyDialog::~SurveyDialog() = default;
@@ -53,4 +60,20 @@ void SurveyDialog::setSurvey(const Survey& survey)
     ui->name->setText(survey.name());
     ui->url->setText(survey.url().toString());
     ui->targetExpression->setPlainText(survey.target());
+    updateState();
+}
+
+void SurveyDialog::updateState()
+{
+    bool valid = true;
+    valid &= !ui->name->text().isEmpty();
+    const auto url = QUrl(ui->url->text());
+    valid &= url.isValid() && !url.scheme().isEmpty() && !url.host().isEmpty();
+
+    if (!ui->targetExpression->toPlainText().isEmpty()) {
+        SurveyTargetExpressionParser p;
+        valid &= p.parse(ui->targetExpression->toPlainText());
+    }
+
+    ui->buttonBox->button(QDialogButtonBox::Save)->setEnabled(valid);
 }

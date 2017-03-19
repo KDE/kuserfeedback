@@ -66,6 +66,6 @@ set(console_srcs
 
 add_executable(UserFeedbackConsoleApplication ${console_srcs})
 set_target_properties(UserFeedbackConsoleApplication PROPERTIES OUTPUT_NAME UserFeedbackConsole)
-target_link_libraries(UserFeedbackConsoleApplication Qt5::Widgets Qt5::Network Qt5::Charts UserFeedbackWidgets UserFeedbackConsole)
+target_link_libraries(UserFeedbackConsoleApplication Qt5::Widgets Qt5::Network Qt5::Charts UserFeedbackWidgets UserFeedbackConsole UserFeedbackCommon)
 
 install(TARGETS UserFeedbackConsoleApplication ${INSTALL_TARGETS_DEFAULT_ARGS})

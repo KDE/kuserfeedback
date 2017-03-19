@@ -25,6 +25,9 @@
 #include "surveyinfo.h"
 #include "usagetimesource.h"
 
+#include <common/surveytargetexpressionparser.h>
+#include <common/surveytargetexpressionevaluator.h>
+
 #include <QCoreApplication>
 #include <QDebug>
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
@@ -264,14 +267,36 @@ void ProviderPrivate::submitFinished()
     scheduleNextSubmission();
 }
 
+QVariant ProviderPrivate::sourceData(const QString& sourceName) const
+{
+    foreach (auto src, dataSources) {
+        if (src->name() == sourceName)
+            return src->data();
+    }
+    return QVariant();
+}
+
 bool ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
 {
-    qCDebug(Log) << "got survey:" << survey.url();
+    qCDebug(Log) << "got survey:" << survey.url() << survey.target();
     if (!survey.isValid() || completedSurveys.contains(QString::number(survey.id())))
         return false;
 
     if (lastSurveyTime.addDays(surveyInterval) > QDateTime::currentDateTime())
         return false;
+
+    if (!survey.target().isEmpty()) {
+        SurveyTargetExpressionParser parser;
+        if (!parser.parse(survey.target())) {
+            qCDebug(Log) << "failed to parse target expression";
+            return false;
+        }
+
+        SurveyTargetExpressionEvaluator eval;
+        eval.setDataProvider(this);
+        if (!eval.evaluate(parser.expression()))
+            return false;
+    }
 
     emit q->surveyAvailable(survey);
     return true;

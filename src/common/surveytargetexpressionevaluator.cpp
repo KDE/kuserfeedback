@@ -20,6 +20,10 @@
 
 using namespace UserFeedback;
 
+SurveyTargetExpressionDataProvider::~SurveyTargetExpressionDataProvider()
+{
+}
+
 SurveyTargetExpressionEvaluator::SurveyTargetExpressionEvaluator()
     : m_provider(nullptr)
 {
@@ -29,7 +33,7 @@ SurveyTargetExpressionEvaluator::~SurveyTargetExpressionEvaluator()
 {
 }
 
-void SurveyTargetExpressionEvaluator::setDataProvider(SurveyTargetExpressionDataProvider* provider)
+void SurveyTargetExpressionEvaluator::setDataProvider(const SurveyTargetExpressionDataProvider* provider)
 {
     m_provider = provider;
 }

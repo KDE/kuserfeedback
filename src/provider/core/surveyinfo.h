@@ -54,9 +54,13 @@ public:
     /*! The URL to the survey website. */
     QUrl url() const;
 
+    /*! The survey targeting expression. */
+    QString target() const;
+
     ///@cond internal
     void setId(int id);
     void setUrl(const QUrl &url);
+    void setTarget(const QString &target);
     static SurveyInfo fromJson(const QJsonObject &obj);
     ///@endcond
 private:

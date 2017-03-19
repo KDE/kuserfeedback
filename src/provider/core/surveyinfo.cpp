@@ -32,6 +32,7 @@ public:
 
     int id;
     QUrl url;
+    QString target;
 };
 
 SurveyInfoData::SurveyInfoData()
@@ -75,12 +76,23 @@ void SurveyInfo::setUrl(const QUrl& url)
     d->url = url;
 }
 
+QString SurveyInfo::target() const
+{
+    return d->target;
+}
+
+void SurveyInfo::setTarget(const QString &target)
+{
+    d->target = target;
+}
+
 SurveyInfo SurveyInfo::fromJson(const QJsonObject& obj)
 {
     SurveyInfo s;
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-    s.setId(obj.value(QStringLiteral("id")).toInt());
-    s.setUrl(QUrl(obj.value(QStringLiteral("url")).toString()));
+    s.setId(obj.value(QLatin1String("id")).toInt());
+    s.setUrl(QUrl(obj.value(QLatin1String("url")).toString()));
+    s.setTarget(obj.value(QLatin1String("target")).toString());
 #endif
     return s;
 }

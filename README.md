@@ -12,7 +12,7 @@ Framework for collecting feedback from application users. This currently consist
 ## Surveys
 
 * Distribute surveys and offer users to participate in them.
-* Survey targeting based on telemetry data [TODO].
+* Survey targeting based on telemetry data.
 * Allow the user to configure how often they want to participate in surveys.
 
 ## Components

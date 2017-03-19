@@ -30,6 +30,7 @@ class SurveyTargetExpression;
 class SurveyTargetExpressionDataProvider
 {
 public:
+    virtual ~SurveyTargetExpressionDataProvider();
     virtual QVariant sourceData(const QString &sourceName) const = 0;
 };
 
@@ -39,7 +40,7 @@ public:
     SurveyTargetExpressionEvaluator();
     ~SurveyTargetExpressionEvaluator();
 
-    void setDataProvider(SurveyTargetExpressionDataProvider *provider);
+    void setDataProvider(const SurveyTargetExpressionDataProvider *provider);
 
     bool evaluate(SurveyTargetExpression *expression);
 
@@ -47,7 +48,7 @@ private:
     QVariant value(SurveyTargetExpression *expression);
     QVariant value(const QString &source);
 
-    SurveyTargetExpressionDataProvider *m_provider;
+    const SurveyTargetExpressionDataProvider *m_provider;
     QHash<QString, QVariant> m_dataCache;
 };
 

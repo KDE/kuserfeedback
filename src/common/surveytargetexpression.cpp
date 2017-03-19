@@ -30,9 +30,9 @@ SurveyTargetExpression::SurveyTargetExpression(const QString& source, const QVar
     , m_source(source)
     , m_sourceElement(elem)
 {
-    if (index.type() == QMetaType::Int)
+    if (index.type() == QVariant::Int)
         m_type = ListElement;
-    else if (index.type() == QMetaType::QString)
+    else if (index.type() == QVariant::String)
         m_type = MapElement;
     else
         m_type = ScalarElement;

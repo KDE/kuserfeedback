@@ -20,6 +20,8 @@
 
 #include "provider.h"
 
+#include <common/surveytargetexpressionevaluator.h>
+
 #include <QDateTime>
 #include <QStringList>
 #include <QTime>
@@ -31,7 +33,7 @@ class QNetworkAccessManager;
 QT_END_NAMESPACE
 
 namespace UserFeedback {
-class ProviderPrivate
+class ProviderPrivate : public SurveyTargetExpressionDataProvider
 {
 public:
     ProviderPrivate(Provider *qq);
@@ -54,6 +56,8 @@ public:
     Provider::StatisticsCollectionMode highestStatisticsCollectionMode() const;
     void scheduleEncouragement();
     void emitShowEncouragementMessage();
+
+    QVariant sourceData(const QString &sourceName) const override;
 
     Provider *q;
 

@@ -166,7 +166,7 @@ public function put_surveys($surveyId)
     $db->beginTransaction();
     $survey->update($db);
     $db->commit();
-    echo("Survery updated.");
+    echo("Survey updated.");
 }
 
 /** Delete survey. */

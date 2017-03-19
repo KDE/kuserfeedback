@@ -60,9 +60,9 @@
     <addaction name="actionAddProduct"/>
     <addaction name="actionDeleteProduct"/>
    </widget>
-   <widget class="QMenu" name="menuSurvery">
+   <widget class="QMenu" name="menuSurvey">
     <property name="title">
-     <string>&amp;Survery</string>
+     <string>&amp;Survey</string>
     </property>
    </widget>
    <widget class="QMenu" name="menuAnalytics">
@@ -98,7 +98,7 @@
    <addaction name="menu_File"/>
    <addaction name="menu_View"/>
    <addaction name="menu_Products"/>
-   <addaction name="menuSurvery"/>
+   <addaction name="menuSurvey"/>
    <addaction name="menuAnalytics"/>
    <addaction name="menuSchema"/>
    <addaction name="menuWindow"/>

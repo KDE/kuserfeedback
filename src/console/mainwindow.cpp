@@ -62,7 +62,7 @@ MainWindow::MainWindow() :
     ui->setupUi(this);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
 
-    addView(ui->surveyEditor, ui->menuSurvery);
+    addView(ui->surveyEditor, ui->menuSurvey);
     addView(ui->schemaEdit, ui->menuSchema);
     addView(ui->analyticsView, ui->menuAnalytics);
 
@@ -310,7 +310,7 @@ void MainWindow::updateActions()
 
     // deactivate empty menus
     ui->menuAnalytics->setEnabled(!ui->menuAnalytics->isEmpty());
-    ui->menuSurvery->setEnabled(!ui->menuSurvery->isEmpty());
+    ui->menuSurvey->setEnabled(!ui->menuSurvey->isEmpty());
     ui->menuSchema->setEnabled(!ui->menuSchema->isEmpty());
 }
 

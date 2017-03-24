@@ -179,20 +179,10 @@ QVariant PropertyRatioSource::data()
 void PropertyRatioSource::load(QSettings *settings)
 {
     Q_D(PropertyRatioSource);
-    settings->beginGroup(QStringLiteral("PropertyRatioSource"));
-    settings->beginGroup(name());
-    const auto count = settings->beginReadArray(QStringLiteral("RatioSet"));
-
-    for (int i = 0; i < count; ++i) {
-        settings->setArrayIndex(i);
-        const auto value = settings->value(QStringLiteral("Value")).toString();
-        const auto amount = settings->value(QStringLiteral("Amount"), 0).toInt();
+    foreach (const auto &value, settings->childKeys()) {
+        const auto amount = settings->value(value, 0).toInt();
         d->ratioSet.insert(value, amount);
     }
-
-    settings->endArray();
-    settings->endGroup();
-    settings->endGroup();
 }
 
 
@@ -201,20 +191,10 @@ void PropertyRatioSource::store(QSettings *settings)
     Q_D(PropertyRatioSource);
     d->propertyChanged();
 
-    settings->beginGroup(QStringLiteral("PropertyRatioSource"));
-    settings->beginGroup(name());
-    settings->beginWriteArray(QStringLiteral("RatioSet"), d->ratioSet.size());
-
-    int i = 0;
+    settings->remove(QString());
     for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it) {
-        settings->setArrayIndex(i++);
-        settings->setValue(QStringLiteral("Value"), it.key());
-        settings->setValue(QStringLiteral("Amount"), it.value());
+        settings->setValue(it.key(), it.value());
     }
-
-    settings->endArray();
-    settings->endGroup();
-    settings->endGroup();
 }
 
 #include "propertyratiosource.moc"

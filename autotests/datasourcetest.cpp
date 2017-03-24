@@ -26,6 +26,7 @@
 #include <QDebug>
 #include <QtTest/qtest.h>
 #include <QObject>
+#include <QSettings>
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QStandardPaths>
 #endif
@@ -127,6 +128,37 @@ private slots:
         QVERIFY(o.contains(QLatin1String("value2")));
         v = o.value(QLatin1String("value2")).toMap().value(QLatin1String("property"));
         QCOMPARE(v.type(), QVariant::Double);
+    }
+
+    void testMultiPropertyRatioSource()
+    {
+        QSettings s;
+        s.remove(QStringLiteral("MultiPropSource"));
+        s.beginGroup(QStringLiteral("MultiPropSource"));
+
+        {
+            setProp(5198);
+
+            PropertyRatioSource src1(this, "prop", QStringLiteral("ratioSample"));
+            src1.addValueMapping(5198, QStringLiteral("value1"));
+            src1.load(&s);
+
+            PropertyRatioSource src2(this, "prop", QStringLiteral("ratioSample"));
+            src2.addValueMapping(5198, QStringLiteral("value2"));
+            src2.load(&s);
+
+            QTest::qWait(1200);
+
+            src1.store(&s);
+            src2.store(&s);
+        }
+
+        PropertyRatioSource src3(this, "prop", QStringLiteral("ratioSample"));
+        src3.load(&s);
+        const auto map = src3.data().toMap();
+        QCOMPARE(map.size(), 2);
+        QVERIFY(map.contains(QStringLiteral("value1")));
+        QVERIFY(map.contains(QStringLiteral("value2")));
     }
 
     void testApplicationVersionSource()

@@ -45,7 +45,8 @@ public:
     QMetaProperty property;
     QString previousValue;
     QTime lastChangeTime;
-    QHash<QString, int> ratioSet;
+    QHash<QString, int> ratioSet; // data we are currently tracking
+    QHash<QString, int> baseRatioSet; // data loaded from storage
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QMap<QVariant, QString> valueMap;
 #else
@@ -166,11 +167,12 @@ QVariant PropertyRatioSource::data()
     QVariantMap m;
     int total = 0;
     for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it)
-        total += it.value();
+        total += it.value() + d->baseRatioSet.value(it.key());
 
     for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it) {
+        double currentValue = it.value() + d->baseRatioSet.value(it.key());
         QVariantMap v;
-        v.insert(QStringLiteral("property"), (double)it.value() / (double)(total));
+        v.insert(QStringLiteral("property"), currentValue / (double)(total));
         m.insert(it.key(), v);
     }
 
@@ -181,8 +183,10 @@ void PropertyRatioSource::load(QSettings *settings)
 {
     Q_D(PropertyRatioSource);
     foreach (const auto &value, settings->childKeys()) {
-        const auto amount = settings->value(value, 0).toInt();
-        d->ratioSet.insert(value, amount);
+        const auto amount = std::max(settings->value(value, 0).toInt(), 0);
+        d->baseRatioSet.insert(value, amount);
+        if (!d->ratioSet.contains(value))
+            d->ratioSet.insert(value, 0);
     }
 }
 
@@ -192,9 +196,15 @@ void PropertyRatioSource::store(QSettings *settings)
     Q_D(PropertyRatioSource);
     d->propertyChanged();
 
-    settings->remove(QString());
-    for (auto it = d->ratioSet.constBegin(); it != d->ratioSet.constEnd(); ++it) {
-        settings->setValue(it.key(), it.value());
+    // note that a second process can have updated the data meanwhile!
+    for (auto it = d->ratioSet.begin(); it != d->ratioSet.end(); ++it) {
+        if (it.value() == 0)
+            continue;
+        const auto oldValue = std::max(settings->value(it.key(), 0).toInt(), 0);
+        const auto newValue = oldValue + it.value();
+        settings->setValue(it.key(), newValue);
+        *it = 0;
+        d->baseRatioSet.insert(it.key(), newValue);
     }
 }
 

@@ -42,7 +42,6 @@ public:
     ProviderPrivate(Provider *qq);
     ~ProviderPrivate();
 
-    void reset();
     int currentApplicationTime() const;
 
     std::unique_ptr<QSettings> makeSettings() const;

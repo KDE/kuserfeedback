@@ -89,13 +89,6 @@ ProviderPrivate::~ProviderPrivate()
     qDeleteAll(dataSources);
 }
 
-void ProviderPrivate::reset()
-{
-    startCount = 0;
-    usageTime = 0;
-    startTime.start();
-}
-
 int ProviderPrivate::currentApplicationTime() const
 {
     return usageTime + (startTime.elapsed() / 1000);

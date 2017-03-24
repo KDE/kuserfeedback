@@ -25,6 +25,7 @@
 #include <QMetaProperty>
 #include <QObject>
 #include <QSettings>
+#include <QStringList>
 #include <QTime>
 
 using namespace UserFeedback;

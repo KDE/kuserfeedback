@@ -127,7 +127,7 @@ void ProviderPrivate::load()
     lastSurveyTime = s->value(QStringLiteral("LastSurvey")).toDateTime();
     completedSurveys = s->value(QStringLiteral("CompletedSurveys"), QStringList()).toStringList();
 
-    startCount = std::max(s->value(QStringLiteral("ApplicationStartCount"), 0).toInt() + 1, 1);
+    startCount = std::max(s->value(QStringLiteral("ApplicationStartCount"), 0).toInt(), 0);
     usageTime = std::max(s->value(QStringLiteral("ApplicationTime"), 0).toInt(), 0);
 
     lastEncouragementTime = s->value(QStringLiteral("LastEncouragement")).toDateTime();
@@ -372,6 +372,8 @@ Provider::Provider(QObject *parent) :
     connect(QCoreApplication::instance(), SIGNAL(aboutToQuit()), this, SLOT(aboutToQuit()));
 
     d->load();
+    d->startCount++;
+    d->store();
 }
 
 Provider::~Provider()

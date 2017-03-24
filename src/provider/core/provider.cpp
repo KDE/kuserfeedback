@@ -148,9 +148,13 @@ void ProviderPrivate::store()
     s->setValue(QStringLiteral("ApplicationTime"), currentApplicationTime());
 
     s->setValue(QStringLiteral("LastEncouragement"), lastEncouragementTime);
+    s->endGroup();
 
-    foreach (auto source, dataSources)
+    foreach (auto source, dataSources) {
+        s->beginGroup(QStringLiteral("Source-") + source->name());
         source->store(s.get());
+        s->endGroup();
+    }
 }
 
 void ProviderPrivate::aboutToQuit()
@@ -436,7 +440,7 @@ void Provider::addDataSource(AbstractDataSource *source, StatisticsCollectionMod
     d->dataSources.push_back(source);
 
     auto s = d->makeSettings();
-    s->beginGroup(QStringLiteral("UserFeedback"));
+    s->beginGroup(QStringLiteral("Source-") + source->name());
     source->load(s.get());
 }
 

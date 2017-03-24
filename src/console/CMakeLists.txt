@@ -1,3 +1,5 @@
+ecm_create_qm_loader(userfeedback_console_QM_LOADER userfeedbackconsole5_qt)
+
 set(console_lib_srcs
     core/aggregation.cpp
     core/aggregationelement.cpp
@@ -62,6 +64,8 @@ set(console_srcs
     surveyeditor/surveyeditor.cpp
 
     widgets/metaenumcombobox.cpp
+
+    ${userfeedback_console_QM_LOADER}
 )
 
 add_executable(UserFeedbackConsoleApplication ${console_srcs})

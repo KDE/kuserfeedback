@@ -1,3 +1,5 @@
+ecm_create_qm_loader(userfeedback_core_QM_LOADER userfeedbackprovider5_qt)
+
 set(userfeedback_core_srcs
     abstractdatasource.cpp
     applicationversionsource.cpp
@@ -10,6 +12,9 @@ set(userfeedback_core_srcs
     surveyinfo.cpp
     usagetimesource.cpp
 )
+if(Qt5Core_FOUND)
+    list(APPEND userfeedback_core_srcs ${userfeedback_core_QM_LOADER})
+endif()
 
 add_library(UserFeedbackCore SHARED ${userfeedback_core_srcs})
 set_target_properties(UserFeedbackCore PROPERTIES

@@ -17,8 +17,10 @@ if(NOT DEFINED CMAKE_MACOSX_RPATH)
     set(CMAKE_MACOSX_RPATH TRUE)
 endif()
 
+set(ECM_MODULE_DIR ${CMAKE_SOURCE_DIR}/cmake)
 include(ECMGeneratePriFile)
 include(ECMEnableSanitizers)
+include(ECMPoQmTools)
 include(FeatureSummary)
 include(GenerateExportHeader)
 

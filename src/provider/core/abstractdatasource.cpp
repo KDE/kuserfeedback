@@ -51,6 +51,11 @@ void AbstractDataSource::store(QSettings *settings)
     Q_UNUSED(settings);
 }
 
+void AbstractDataSource::reset(QSettings *settings)
+{
+    Q_UNUSED(settings);
+}
+
 Provider::StatisticsCollectionMode AbstractDataSource::collectionMode() const
 {
     Q_D(const AbstractDataSource);

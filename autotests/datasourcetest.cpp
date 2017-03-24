@@ -153,12 +153,23 @@ private slots:
             src2.store(&s);
         }
 
-        PropertyRatioSource src3(this, "prop", QStringLiteral("ratioSample"));
-        src3.load(&s);
-        const auto map = src3.data().toMap();
-        QCOMPARE(map.size(), 2);
-        QVERIFY(map.contains(QStringLiteral("value1")));
-        QVERIFY(map.contains(QStringLiteral("value2")));
+        {
+            PropertyRatioSource src3(this, "prop", QStringLiteral("ratioSample"));
+            src3.load(&s);
+            const auto map = src3.data().toMap();
+            QCOMPARE(map.size(), 2);
+            QVERIFY(map.contains(QStringLiteral("value1")));
+            QVERIFY(map.contains(QStringLiteral("value2")));
+            src3.reset(&s);
+            QVERIFY(src3.data().toMap().isEmpty());
+        }
+
+        {
+            PropertyRatioSource src4(this, "prop", QStringLiteral("ratioSample"));
+            src4.load(&s);
+            const auto map = src4.data().toMap();
+            QCOMPARE(map.size(), 0);
+        }
     }
 
     void testApplicationVersionSource()

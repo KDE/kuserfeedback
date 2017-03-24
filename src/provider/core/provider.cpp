@@ -267,7 +267,18 @@ void ProviderPrivate::submitFinished()
     }
 
     lastSubmitTime = QDateTime::currentDateTime();
-    storeOne(QStringLiteral("LastEncouragement"), lastEncouragementTime);
+
+    auto s = makeSettings();
+    s->beginGroup(QStringLiteral("UserFeedback"));
+    s->setValue(QStringLiteral("LastEncouragement"), lastEncouragementTime);
+    s->endGroup();
+
+    // reset source counters
+    foreach (auto source, dataSources) {
+        s->beginGroup(QStringLiteral("Source-") + source->name());
+        source->reset(s.get());
+        s->endGroup();
+    }
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     const auto obj = QJsonDocument::fromJson(reply->readAll()).object();

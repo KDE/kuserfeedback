@@ -63,6 +63,7 @@ public:
     QVariant data() override;
     void load(QSettings *settings) override;
     void store(QSettings *settings) override;
+    void reset(QSettings *settings) override;
 
 private:
     Q_DECLARE_PRIVATE(PropertyRatioSource)

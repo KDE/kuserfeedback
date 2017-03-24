@@ -83,6 +83,15 @@ public:
      */
     virtual void store(QSettings *settings);
 
+    /*! Reset the persistent state of this data source.
+     *  This is called after a successful submission of data, and can be used
+     *  by sources that track differential rather than absolute data to reset
+     *  their counters.
+     *  @param settings A QSettings object opened in the dedicated group of this
+     *  data source.
+     */
+    virtual void reset(QSettings *settings);
+
     /*! Returns which colleciton mode this data source belongs to.
      *  @return The statistics collection category this source belongs to.
      */

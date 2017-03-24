@@ -190,7 +190,6 @@ void PropertyRatioSource::load(QSettings *settings)
     }
 }
 
-
 void PropertyRatioSource::store(QSettings *settings)
 {
     Q_D(PropertyRatioSource);
@@ -206,6 +205,14 @@ void PropertyRatioSource::store(QSettings *settings)
         *it = 0;
         d->baseRatioSet.insert(it.key(), newValue);
     }
+}
+
+void PropertyRatioSource::reset(QSettings* settings)
+{
+    Q_D(PropertyRatioSource);
+    d->baseRatioSet.clear();
+    d->ratioSet.clear();
+    settings->remove(QString());
 }
 
 #include "propertyratiosource.moc"

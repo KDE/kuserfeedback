@@ -130,17 +130,13 @@ void ProviderPrivate::store()
 {
     auto s = makeSettings();
     s->beginGroup(QStringLiteral("UserFeedback"));
-    s->setValue(QStringLiteral("LastSubmission"), lastSubmitTime);
-    s->setValue(QStringLiteral("StatisticsCollectionMode"), QString::fromLatin1(statisticsCollectionModeEnum().valueToKey(statisticsMode)));
 
-    s->setValue(QStringLiteral("SurveyInterval"), surveyInterval);
-    s->setValue(QStringLiteral("LastSurvey"), lastSurveyTime);
-    s->setValue(QStringLiteral("CompletedSurveys"), completedSurveys);
-
-    s->setValue(QStringLiteral("ApplicationStartCount"), startCount);
+    // another process might have changed this, so read the base value first before writing
+    usageTime = std::max(s->value(QStringLiteral("ApplicationTime"), 0).toInt(), usageTime);
     s->setValue(QStringLiteral("ApplicationTime"), currentApplicationTime());
+    usageTime = currentApplicationTime();
+    startTime.restart();
 
-    s->setValue(QStringLiteral("LastEncouragement"), lastEncouragementTime);
     s->endGroup();
 
     foreach (auto source, dataSources) {
@@ -148,6 +144,13 @@ void ProviderPrivate::store()
         source->store(s.get());
         s->endGroup();
     }
+}
+
+void ProviderPrivate::storeOne(const QString &key, const QVariant &value)
+{
+    auto s = makeSettings();
+    s->beginGroup(QStringLiteral("UserFeedback"));
+    s->setValue(key, value);
 }
 
 void ProviderPrivate::aboutToQuit()
@@ -256,7 +259,7 @@ void ProviderPrivate::submitFinished()
     }
 
     lastSubmitTime = QDateTime::currentDateTime();
-    store();
+    storeOne(QStringLiteral("LastEncouragement"), lastEncouragementTime);
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     const auto obj = QJsonDocument::fromJson(reply->readAll()).object();
@@ -352,8 +355,8 @@ void ProviderPrivate::scheduleEncouragement()
 void ProviderPrivate::emitShowEncouragementMessage()
 {
     lastEncouragementTime = QDateTime::currentDateTime(); // TODO make this explicit, in case the host application decides to delay?
+    storeOne(QStringLiteral("LastEncouragement"), lastEncouragementTime);
     emit q->showEncouragementMessage();
-    store();
 }
 
 
@@ -367,7 +370,7 @@ Provider::Provider(QObject *parent) :
 
     d->load();
     d->startCount++;
-    d->store();
+    d->storeOne(QStringLiteral("ApplicationStartCount"), d->startCount);
 }
 
 Provider::~Provider()
@@ -403,9 +406,9 @@ void Provider::setStatisticsCollectionMode(StatisticsCollectionMode mode)
         return;
 
     d->statisticsMode = mode;
+    d->storeOne(QStringLiteral("StatisticsCollectionMode"), QString::fromLatin1(statisticsCollectionModeEnum().valueToKey(d->statisticsMode)));
     d->scheduleNextSubmission();
     d->scheduleEncouragement();
-    d->store();
     emit statisticsCollectionModeChanged();
 }
 
@@ -456,9 +459,10 @@ void Provider::setSurveyInterval(int days)
         return;
 
     d->surveyInterval = days;
+    d->storeOne(QStringLiteral("SurveyInterval"), d->surveyInterval);
+
     d->scheduleNextSubmission();
     d->scheduleEncouragement();
-    d->store();
     emit surveyIntervalChanged();
 }
 
@@ -490,7 +494,11 @@ void Provider::setSurveyCompleted(const SurveyInfo &info)
 {
     d->completedSurveys.push_back(QString::number(info.id()));
     d->lastSurveyTime = QDateTime::currentDateTime();
-    d->store();
+
+    auto s = d->makeSettings();
+    s->beginGroup(QStringLiteral("UserFeedback"));
+    s->setValue(QStringLiteral("LastSurvey"), d->lastSurveyTime);
+    s->setValue(QStringLiteral("CompletedSurveys"), d->completedSurveys);
 }
 
 void Provider::submit()

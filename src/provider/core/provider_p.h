@@ -47,6 +47,7 @@ public:
     std::unique_ptr<QSettings> makeSettings() const;
     void load();
     void store();
+    void storeOne(const QString &key, const QVariant &value);
 
     void aboutToQuit();
 

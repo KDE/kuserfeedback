@@ -108,43 +108,49 @@ static QMetaEnum statisticsCollectionModeEnum()
     return Provider::staticMetaObject.enumerator(idx);
 }
 
+std::unique_ptr<QSettings> ProviderPrivate::makeSettings() const
+{
+    std::unique_ptr<QSettings> s(new QSettings(QStringLiteral("KDE"), QStringLiteral("UserFeedback.") + productId));
+    return s;
+}
+
 void ProviderPrivate::load()
 {
-    QSettings settings;
-    settings.beginGroup(QStringLiteral("UserFeedback"));
-    lastSubmitTime = settings.value(QStringLiteral("LastSubmission")).toDateTime();
+    auto s = makeSettings();
+    s->beginGroup(QStringLiteral("UserFeedback"));
+    lastSubmitTime = s->value(QStringLiteral("LastSubmission")).toDateTime();
 
-    const auto modeStr = settings.value(QStringLiteral("StatisticsCollectionMode")).toByteArray();
+    const auto modeStr = s->value(QStringLiteral("StatisticsCollectionMode")).toByteArray();
     statisticsMode = static_cast<Provider::StatisticsCollectionMode>(std::max(statisticsCollectionModeEnum().keyToValue(modeStr), 0));
 
-    surveyInterval = settings.value(QStringLiteral("SurveyInterval"), -1).toInt();
-    lastSurveyTime = settings.value(QStringLiteral("LastSurvey")).toDateTime();
-    completedSurveys = settings.value(QStringLiteral("CompletedSurveys"), QStringList()).toStringList();
+    surveyInterval = s->value(QStringLiteral("SurveyInterval"), -1).toInt();
+    lastSurveyTime = s->value(QStringLiteral("LastSurvey")).toDateTime();
+    completedSurveys = s->value(QStringLiteral("CompletedSurveys"), QStringList()).toStringList();
 
-    startCount = std::max(settings.value(QStringLiteral("ApplicationStartCount"), 0).toInt() + 1, 1);
-    usageTime = std::max(settings.value(QStringLiteral("ApplicationTime"), 0).toInt(), 0);
+    startCount = std::max(s->value(QStringLiteral("ApplicationStartCount"), 0).toInt() + 1, 1);
+    usageTime = std::max(s->value(QStringLiteral("ApplicationTime"), 0).toInt(), 0);
 
-    lastEncouragementTime = settings.value(QStringLiteral("LastEncouragement")).toDateTime();
+    lastEncouragementTime = s->value(QStringLiteral("LastEncouragement")).toDateTime();
 }
 
 void ProviderPrivate::store()
 {
-    QSettings settings;
-    settings.beginGroup(QStringLiteral("UserFeedback"));
-    settings.setValue(QStringLiteral("LastSubmission"), lastSubmitTime);
-    settings.setValue(QStringLiteral("StatisticsCollectionMode"), QString::fromLatin1(statisticsCollectionModeEnum().valueToKey(statisticsMode)));
+    auto s = makeSettings();
+    s->beginGroup(QStringLiteral("UserFeedback"));
+    s->setValue(QStringLiteral("LastSubmission"), lastSubmitTime);
+    s->setValue(QStringLiteral("StatisticsCollectionMode"), QString::fromLatin1(statisticsCollectionModeEnum().valueToKey(statisticsMode)));
 
-    settings.setValue(QStringLiteral("SurveyInterval"), surveyInterval);
-    settings.setValue(QStringLiteral("LastSurvey"), lastSurveyTime);
-    settings.setValue(QStringLiteral("CompletedSurveys"), completedSurveys);
+    s->setValue(QStringLiteral("SurveyInterval"), surveyInterval);
+    s->setValue(QStringLiteral("LastSurvey"), lastSurveyTime);
+    s->setValue(QStringLiteral("CompletedSurveys"), completedSurveys);
 
-    settings.setValue(QStringLiteral("ApplicationStartCount"), startCount);
-    settings.setValue(QStringLiteral("ApplicationTime"), currentApplicationTime());
+    s->setValue(QStringLiteral("ApplicationStartCount"), startCount);
+    s->setValue(QStringLiteral("ApplicationTime"), currentApplicationTime());
 
-    settings.setValue(QStringLiteral("LastEncouragement"), lastEncouragementTime);
+    s->setValue(QStringLiteral("LastEncouragement"), lastEncouragementTime);
 
     foreach (auto source, dataSources)
-        source->store(&settings);
+        source->store(s.get());
 }
 
 void ProviderPrivate::aboutToQuit()
@@ -429,9 +435,9 @@ void Provider::addDataSource(AbstractDataSource *source, StatisticsCollectionMod
 
     d->dataSources.push_back(source);
 
-    QSettings settings;
-    settings.beginGroup(QStringLiteral("UserFeedback"));
-    source->load(&settings);
+    auto s = d->makeSettings();
+    s->beginGroup(QStringLiteral("UserFeedback"));
+    source->load(s.get());
 }
 
 QVector<AbstractDataSource*> Provider::dataSources() const

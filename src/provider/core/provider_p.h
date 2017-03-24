@@ -28,8 +28,11 @@
 #include <QTimer>
 #include <QVector>
 
+#include <memory>
+
 QT_BEGIN_NAMESPACE
 class QNetworkAccessManager;
+class QSettings;
 QT_END_NAMESPACE
 
 namespace UserFeedback {
@@ -42,6 +45,7 @@ public:
     void reset();
     int currentApplicationTime() const;
 
+    std::unique_ptr<QSettings> makeSettings() const;
     void load();
     void store();
 

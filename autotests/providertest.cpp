@@ -36,6 +36,9 @@ class ProviderTest : public QObject
 private slots:
     void initTestCase()
     {
+        QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
+        QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+        QCoreApplication::setApplicationName(QStringLiteral("providertest"));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QStandardPaths::setTestModeEnabled(true);
 #endif
@@ -81,7 +84,7 @@ private slots:
     {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
-            QSettings s;
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastEncouragement"));
         }
@@ -114,7 +117,7 @@ private slots:
     {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
-            QSettings s;
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastEncouragement"));
         }
@@ -137,7 +140,7 @@ private slots:
     {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
-            QSettings s;
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastEncouragement"));
         }
@@ -162,7 +165,7 @@ private slots:
     {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
-            QSettings s;
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
             s.setValue(QLatin1String("LastEncouragement"), QDateTime::currentDateTime().addSecs(-24 * 60 * 60 + 1));
         }
@@ -181,7 +184,7 @@ private slots:
         }
 
         {
-            QSettings s;
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
             s.setValue(QLatin1String("LastEncouragement"), QDateTime::currentDateTime().addSecs(-24 * 60 * 60 - 1));
         }

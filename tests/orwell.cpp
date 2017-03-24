@@ -81,7 +81,7 @@ void Orwell::loadStats()
 {
     ui->version->setText(QCoreApplication::applicationVersion());
 
-    QSettings settings;
+    QSettings settings(QStringLiteral("KDE"), QStringLiteral("UserFeedback.org.kde.orwell"));
     ui->startCount->setValue(settings.value(QStringLiteral("UserFeedback/ApplicationStartCount")).toInt());
     ui->runtime->setValue(settings.value(QStringLiteral("UserFeedback/ApplicationTime")).toInt());
     ui->surveys->setText(settings.value(QStringLiteral("UserFeedback/CompletedSurveys")).toStringList().join(QStringLiteral(", ")));
@@ -90,7 +90,7 @@ void Orwell::loadStats()
 
 void Orwell::writeStats()
 {
-    QSettings settings;
+    QSettings settings(QStringLiteral("KDE"), QStringLiteral("UserFeedback.org.kde.orwell"));
     settings.setValue(QStringLiteral("UserFeedback/ApplicationStartCount"), ui->startCount->value());
     settings.setValue(QStringLiteral("UserFeedback/ApplicationTime"), ui->runtime->value());
     settings.setValue(QStringLiteral("UserFeedback/CompletedSurveys"), ui->surveys->text().split(QStringLiteral(", ")));

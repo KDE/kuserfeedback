@@ -18,6 +18,7 @@
 #include <provider/core/provider.h>
 #include <provider/core/platforminfosource.h>
 #include <provider/core/screeninfosource.h>
+#include <provider/core/startcountsource.h>
 
 #include <QDebug>
 #include <QtTest/qtest.h>
@@ -201,6 +202,29 @@ private slots:
             QVERIFY(!spy.wait(10));
         }
 #endif
+    }
+
+    void testMultipleProviders()
+    {
+        {
+            Provider p0;
+            p0.setStatisticsCollectionMode(Provider::BasicUsageStatistics); // triggers store, so we want to avoid that below
+        }
+
+        Provider p1;
+        auto s1 = new StartCountSource;
+        p1.addDataSource(s1, Provider:: BasicUsageStatistics);
+        int c1 = s1->data().toMap().value(QLatin1String("value")).toInt();
+        int c2 = -1;
+
+        {
+            Provider p2;
+            auto s2 = new StartCountSource;
+            p2.addDataSource(s2, Provider:: BasicUsageStatistics);
+            c2 = s2->data().toMap().value(QLatin1String("value")).toInt();
+        }
+
+        QVERIFY(c2 == c1 + 1);
     }
 };
 

@@ -211,21 +211,31 @@ private slots:
             p0.setStatisticsCollectionMode(Provider::BasicUsageStatistics); // triggers store, so we want to avoid that below
         }
 
-        Provider p1;
-        auto s1 = new StartCountSource;
-        p1.addDataSource(s1, Provider:: BasicUsageStatistics);
-        int c1 = s1->data().toMap().value(QLatin1String("value")).toInt();
-        int c2 = -1;
-
+        int c1 = -1;
         {
-            Provider p2;
-            auto s2 = new StartCountSource;
-            p2.addDataSource(s2, Provider:: BasicUsageStatistics);
-            c2 = s2->data().toMap().value(QLatin1String("value")).toInt();
+            Provider p1;
+            auto s1 = new StartCountSource;
+            p1.addDataSource(s1, Provider:: BasicUsageStatistics);
+            c1 = s1->data().toMap().value(QLatin1String("value")).toInt();
+            int c2 = -1;
+
+            {
+                Provider p2;
+                auto s2 = new StartCountSource;
+                p2.addDataSource(s2, Provider:: BasicUsageStatistics);
+                c2 = s2->data().toMap().value(QLatin1String("value")).toInt();
+            }
+
+            QVERIFY(c2 == c1 + 1);
         }
 
-        QVERIFY(c2 == c1 + 1);
+        Provider p3;
+        auto s3 = new StartCountSource;
+        p3.addDataSource(s3, Provider:: BasicUsageStatistics);
+        int c3 = s3->data().toMap().value(QLatin1String("value")).toInt();
+        QVERIFY(c3 == c1 + 2);
     }
+
 };
 
 QTEST_MAIN(ProviderTest)

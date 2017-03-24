@@ -70,7 +70,10 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
 {
     auto domain = QCoreApplication::organizationDomain().split(QLatin1Char('.'));
     std::reverse(domain.begin(), domain.end());
-    productId = domain.join(QLatin1String(".")) + QLatin1Char('.') + QCoreApplication::applicationName();
+    productId = domain.join(QLatin1String("."));
+    if (!productId.isEmpty())
+        productId += QLatin1Char('.');
+    productId += QCoreApplication::applicationName();
 
     submissionTimer.setSingleShot(true);
     QObject::connect(&submissionTimer, SIGNAL(timeout()), q, SLOT(submit()));

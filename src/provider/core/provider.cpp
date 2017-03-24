@@ -263,6 +263,7 @@ void ProviderPrivate::submitFinished()
     }
 
     lastSubmitTime = QDateTime::currentDateTime();
+    store();
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     const auto obj = QJsonDocument::fromJson(reply->readAll()).object();

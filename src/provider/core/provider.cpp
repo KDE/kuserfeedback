@@ -368,6 +368,7 @@ Provider::~Provider()
 
 void Provider::setProductIdentifier(const QString &productId)
 {
+    Q_ASSERT(!productId.isEmpty());
     d->productId = productId;
 }
 
@@ -485,6 +486,10 @@ void Provider::setSurveyCompleted(const SurveyInfo &info)
 
 void Provider::submit()
 {
+    if (d->productId.isEmpty()) {
+        qCWarning(Log) << "No productId specified!";
+        return;
+    }
     if (!d->serverUrl.isValid()) {
         qCWarning(Log) << "No feedback server URL specified!";
         return;

@@ -124,6 +124,14 @@ void ProviderPrivate::load()
     usageTime = std::max(s->value(QStringLiteral("ApplicationTime"), 0).toInt(), 0);
 
     lastEncouragementTime = s->value(QStringLiteral("LastEncouragement")).toDateTime();
+
+    s->endGroup();
+
+    foreach (auto source, dataSources) {
+        s->beginGroup(QStringLiteral("Source-") + source->name());
+        source->load(s.get());
+        s->endGroup();
+    }
 }
 
 void ProviderPrivate::store()

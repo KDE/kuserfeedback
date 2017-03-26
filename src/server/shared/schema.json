@@ -44,6 +44,11 @@
             "version": 7,
             "sql": ["ALTER TABLE tbl_survey ADD COLUMN col_target VARCHAR"],
             "mysql": ["ALTER TABLE tbl_survey ADD COLUMN col_target VARCHAR(255)"]
+        },
+
+        {
+            "version": 8,
+            "sql": ["ALTER TABLE tbl_survey ADD COLUMN col_uuid VARCHAR(40)"]
         }
     ]
 }

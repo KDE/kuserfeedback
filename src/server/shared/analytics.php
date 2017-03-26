@@ -154,13 +154,14 @@ public function post_surveys($productName)
 /** Edit an existing survey. */
 public function put_surveys($surveyId)
 {
-    $surveyId = intval($surveyId);
-    if ($surveyId < 0)
-        Utils::httpError(400, "Invalid survey id.");
+    $surveyId = strval($surveyId);
+    if (strlen($surveyId) <= 0)
+        throw new RESTException('Invalid survey id.', 400);
 
     $surveyData = file_get_contents('php://input');
     $survey = Survey::fromJson($surveyData);
-    $survey->id = $surveyId;
+    $survey->uuid = $surveyId;
+    error_log("SURVEY UPDATE UUID:" . $surveyId);
 
     $db = new DataStore();
     $db->beginTransaction();
@@ -173,9 +174,9 @@ public function put_surveys($surveyId)
 public function delete_surveys($surveyId)
 {
     $survey = new Survey;
-    $survey->id = intval($surveyId);
-    if ($survey->id < 0)
-        Utils::httpError(400, "Invalid survey id.");
+    $survey->uuid = strval($surveyId);
+    if (strlen($survey->uuid) <= 0)
+        throw new RESTException('Invalid survey id.', 400);
 
     $db = new DataStore();
     $db->beginTransaction();

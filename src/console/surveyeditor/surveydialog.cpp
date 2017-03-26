@@ -25,6 +25,7 @@
 #include <QIcon>
 #include <QPushButton>
 #include <QUrl>
+#include <QUuid>
 
 using namespace UserFeedback::Console;
 
@@ -51,6 +52,8 @@ Survey SurveyDialog::survey() const
     s.setName(ui->name->text());
     s.setUrl(QUrl(ui->url->text()));
     s.setTarget(ui->targetExpression->toPlainText());
+    if (s.uuid().isNull())
+        s.setUuid(QUuid::createUuid());
     return s;
 }
 

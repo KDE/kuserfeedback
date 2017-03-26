@@ -25,6 +25,7 @@
 
 #include <QMessageBox>
 #include <QNetworkReply>
+#include <QUuid>
 
 using namespace UserFeedback::Console;
 
@@ -117,7 +118,7 @@ void SurveyEditor::deleteSurvey()
         return;
 
     const auto survey = selection.first().data(SurveyModel::SurveyRole).value<Survey>();
-    if (survey.id() < 0)
+    if (survey.uuid().isNull())
         return;
     auto reply = RESTApi::deleteSurvey(m_restClient, survey);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {

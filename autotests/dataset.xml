@@ -59,6 +59,7 @@
     </table>
     <table name="tbl_survey">
         <column>col_id</column>
+        <column>col_uuid</column>
         <column>col_product_id</column>
         <column>col_name</column>
         <column>col_url</column>
@@ -66,6 +67,7 @@
         <column>col_target</column>
         <row>
             <value>101</value>
+            <value>{962bbd80-7120-4f18-a4c0-5800fa323868}</value>
             <value>2</value>
             <value>myActiveSurvey</value>
             <value>http://survey.example/active</value>
@@ -74,6 +76,7 @@
         </row>
         <row>
             <value>102</value>
+            <value>{bdfa82c5-238f-404b-a441-07ca3d3eff7f}</value>
             <value>2</value>
             <value>myInactiveSurvey</value>
             <value>http://survey.example/inactive</value>

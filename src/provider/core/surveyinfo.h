@@ -22,8 +22,11 @@
 
 #include <QSharedDataPointer>
 
+QT_BEGIN_NAMESPACE
 class QJsonObject;
 class QUrl;
+class QUuid;
+QT_END_NAMESPACE
 
 namespace UserFeedback {
 
@@ -46,10 +49,10 @@ public:
     /*! Returns @c true if this survey has all necessary information to actually execute it. */
     bool isValid() const;
 
-    /*! Internal unique id of the survey.
+    /*! Internal global unique id of the survey.
      *  Used to locally check if a user has completed the survey already.
      */
-    int id() const;
+    QUuid uuid() const;
 
     /*! The URL to the survey website. */
     QUrl url() const;
@@ -58,7 +61,7 @@ public:
     QString target() const;
 
     ///@cond internal
-    void setId(int id);
+    void setUuid(const QUuid &id);
     void setUrl(const QUrl &url);
     void setTarget(const QString &target);
     static SurveyInfo fromJson(const QJsonObject &obj);

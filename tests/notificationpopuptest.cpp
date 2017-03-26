@@ -22,6 +22,7 @@
 #include <QApplication>
 #include <QPushButton>
 #include <QStandardPaths>
+#include <QUuid>
 #include <QVBoxLayout>
 
 using namespace UserFeedback;
@@ -48,7 +49,7 @@ int main(int argc, char **argv)
     layout->addWidget(button);
     QObject::connect(button, &QPushButton::clicked, &provider, [&provider]() {
         SurveyInfo info;
-        info.setId(42);
+        info.setUuid(QUuid(QStringLiteral("{9e529dfa-0213-413e-a1a8-8a9cea7d5a97}")));
         info.setUrl(QUrl(QStringLiteral("https://www.kde.org/")));
         emit provider.surveyAvailable(info);
     });

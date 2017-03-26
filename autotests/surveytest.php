@@ -29,12 +29,12 @@ class SurveyTest extends AbstractDatastoreTest
             "url": "http://survey.example/",
             "active": true,
             "target": "screen[0].dpi > 100",
-            "id": 42
+            "uuid": "{9e529dfa-0213-413e-a1a8-8a9cea7d5a97}"
         }');
         $this->assertEquals($s->name, 'mySurvey');
         $this->assertEquals($s->url, 'http://survey.example/');
         $this->assertEquals($s->active, true);
-        $this->assertEquals($s->id, 42);
+        $this->assertEquals($s->uuid, '{9e529dfa-0213-413e-a1a8-8a9cea7d5a97}');
         $this->assertEquals($s->target, 'screen[0].dpi > 100');
     }
 
@@ -44,14 +44,14 @@ class SurveyTest extends AbstractDatastoreTest
         $s->name = 'mySurvey';
         $s->url = 'http://survey.example/';
         $s->active = true;
-        $s->id = 42;
+        $s->uuid = '{9e529dfa-0213-413e-a1a8-8a9cea7d5a97}';
         $s->target = 'screen[0].dpi > 100';
 
         $this->assertJsonStringEqualsJsonString(json_encode($s), '{
+            "uuid": "{9e529dfa-0213-413e-a1a8-8a9cea7d5a97}",
             "name": "mySurvey",
             "url": "http://survey.example/",
             "active": true,
-            "id": 42,
             "target": "screen[0].dpi > 100"
         }');
     }
@@ -101,6 +101,7 @@ class SurveyTest extends AbstractDatastoreTest
     {
         $json = '{
             "name": "newSurvey",
+            "uuid": "{9e529dfa-0213-413e-a1a8-8a9cea7d5a97}",
             "url": "http://survey.example/new",
             "active": true,
             "target": "startCount.value > 10"
@@ -111,7 +112,6 @@ class SurveyTest extends AbstractDatastoreTest
 
         $s = Survey::fromJson($json);
         $s->insert(self::$db, $p);
-        $this->assertGreaterThan(0, $s->id);
 
         $surveys = Survey::activeSurveysForProduct(self::$db, $p);
         $s = null;
@@ -126,6 +126,7 @@ class SurveyTest extends AbstractDatastoreTest
         $this->assertEquals($s->url, 'http://survey.example/new');
         $this->assertEquals($s->active, true);
         $this->assertEquals($s->target, 'startCount.value > 10');
+        $this->assertEquals($s->uuid, '{9e529dfa-0213-413e-a1a8-8a9cea7d5a97}');
     }
 
     public function testSurveyUpdate()
@@ -134,7 +135,7 @@ class SurveyTest extends AbstractDatastoreTest
             "name": "myChangedSurvey",
             "url": "http://survey.example/changed",
             "active": false,
-            "id": 101,
+            "uuid": "{962bbd80-7120-4f18-a4c0-5800fa323868}",
             "target": "views[\"editor\"].ratio > 0.5"
         }';
 
@@ -162,7 +163,7 @@ class SurveyTest extends AbstractDatastoreTest
             "name": "myInactiveSurvey",
             "url": "http://survey.example/inactive",
             "active": false,
-            "id": 102
+            "uuid": "{bdfa82c5-238f-404b-a441-07ca3d3eff7f}"
         }';
 
         $s = Survey::fromJson($json);

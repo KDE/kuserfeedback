@@ -24,6 +24,7 @@
 
 class QString;
 class QUrl;
+class QUuid;
 
 namespace UserFeedback {
 namespace Console {
@@ -42,8 +43,8 @@ public:
     bool operator==(const Survey &other) const;
     bool operator!=(const Survey &other) const;
 
-    int id() const;
-    void setId(int id);
+    QUuid uuid() const;
+    void setUuid(const QUuid &id);
 
     QString name() const;
     void setName(const QString& name);

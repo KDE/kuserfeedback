@@ -24,6 +24,7 @@
 #include <QSharedData>
 #include <QString>
 #include <QUrl>
+#include <QUuid>
 
 using namespace UserFeedback::Console;
 
@@ -33,10 +34,10 @@ namespace Console {
 class SurveyData : public QSharedData
 {
 public:
+    QUuid uuid;
     QString name;
     QUrl url;
     QString target;
-    int id = -1;
     bool active = false;
 };
 
@@ -53,7 +54,7 @@ bool Survey::operator==(const Survey& other) const
     return d->name == other.d->name
         && d->url == other.d->url
         && d->target == other.d->target
-        && d->id == other.d->id
+        && d->uuid == other.d->uuid
         && d->active == other.d->active;
 }
 
@@ -62,14 +63,14 @@ bool Survey::operator!=(const Survey& other) const
     return !(*this == other);
 }
 
-int Survey::id() const
+QUuid Survey::uuid() const
 {
-    return d->id;
+    return d->uuid;
 }
 
-void Survey::setId(int id)
+void Survey::setUuid(const QUuid &id)
 {
-    d->id = id;
+    d->uuid = id;
 }
 
 QString Survey::name() const
@@ -115,7 +116,7 @@ void Survey::setTarget(const QString& target)
 QByteArray Survey::toJson() const
 {
     QJsonObject obj;
-    obj.insert(QStringLiteral("id"), id());
+    obj.insert(QStringLiteral("uuid"), uuid().toString());
     obj.insert(QStringLiteral("name"), name());
     obj.insert(QStringLiteral("url"), url().toString());
     obj.insert(QStringLiteral("active"), isActive());
@@ -129,13 +130,7 @@ QVector<Survey> Survey::fromJson(const QByteArray &data)
     foreach (const auto &v, QJsonDocument::fromJson(data).array()) {
         const auto obj = v.toObject();
         Survey survey;
-
-        const auto id = obj.value(QLatin1String("id"));
-        // TODO move this to a helper function
-        if (id.isDouble())
-            survey.setId(id.toInt(-1));
-        else if (id.isString())
-            survey.setId(id.toString().toInt());
+        survey.setUuid(QUuid(obj.value(QLatin1String("uuid")).toString()));
         survey.setName(obj.value(QLatin1String("name")).toString());
         survey.setUrl(QUrl(obj.value(QLatin1String("url")).toString()));
         survey.setActive(obj.value(QLatin1String("active")).toBool());

@@ -41,6 +41,7 @@
 #include <QNetworkRequest>
 #include <QSettings>
 #include <QUrl>
+#include <QUuid>
 
 #include <algorithm>
 #include <numeric>
@@ -308,7 +309,7 @@ QVariant ProviderPrivate::sourceData(const QString& sourceName) const
 bool ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
 {
     qCDebug(Log) << "got survey:" << survey.url() << survey.target();
-    if (!survey.isValid() || completedSurveys.contains(QString::number(survey.id())))
+    if (!survey.isValid() || completedSurveys.contains(survey.uuid().toString()))
         return false;
 
     if (lastSurveyTime.addDays(surveyInterval) > QDateTime::currentDateTime())
@@ -511,7 +512,7 @@ void Provider::setEncouragementInterval(int days)
 
 void Provider::setSurveyCompleted(const SurveyInfo &info)
 {
-    d->completedSurveys.push_back(QString::number(info.id()));
+    d->completedSurveys.push_back(info.uuid().toString());
     d->lastSurveyTime = QDateTime::currentDateTime();
 
     auto s = d->makeSettings();

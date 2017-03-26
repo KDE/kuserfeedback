@@ -22,23 +22,17 @@
 #endif
 #include <QSharedData>
 #include <QUrl>
+#include <QUuid>
 
 using namespace UserFeedback;
 
 class UserFeedback::SurveyInfoData : public QSharedData
 {
 public:
-    SurveyInfoData();
-
-    int id;
+    QUuid uuid;
     QUrl url;
     QString target;
 };
-
-SurveyInfoData::SurveyInfoData()
-    : id(-1)
-{
-}
 
 
 SurveyInfo::SurveyInfo() : d (new SurveyInfoData)
@@ -53,17 +47,17 @@ SurveyInfo & SurveyInfo::operator=(const SurveyInfo&) = default;
 
 bool SurveyInfo::isValid() const
 {
-    return d->id >= 0 && d->url.isValid();
+    return !d->uuid.isNull() && d->url.isValid();
 }
 
-int SurveyInfo::id() const
+QUuid SurveyInfo::uuid() const
 {
-    return d->id;
+    return d->uuid;
 }
 
-void SurveyInfo::setId(int id)
+void SurveyInfo::setUuid(const QUuid &id)
 {
-    d->id = id;
+    d->uuid = id;
 }
 
 QUrl SurveyInfo::url() const
@@ -90,7 +84,7 @@ SurveyInfo SurveyInfo::fromJson(const QJsonObject& obj)
 {
     SurveyInfo s;
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-    s.setId(obj.value(QLatin1String("id")).toInt());
+    s.setUuid(obj.value(QLatin1String("uuid")).toString());
     s.setUrl(QUrl(obj.value(QLatin1String("url")).toString()));
     s.setTarget(obj.value(QLatin1String("target")).toString());
 #endif

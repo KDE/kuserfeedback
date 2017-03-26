@@ -22,6 +22,8 @@
 #include <core/sample.h>
 #include <core/survey.h>
 
+#include <QUuid>
+
 using namespace UserFeedback::Console;
 
 QNetworkReply* RESTApi::checkSchema(RESTClient *client)
@@ -78,10 +80,10 @@ QNetworkReply* RESTApi::createSurvey(RESTClient *client, const Product &p, const
 
 QNetworkReply* RESTApi::updateSurvey(RESTClient *client, const Survey &s)
 {
-    return client->put(QStringLiteral("surveys/") + QString::number(s.id()), s.toJson());
+    return client->put(QStringLiteral("surveys/") + s.uuid().toString(), s.toJson());
 }
 
 QNetworkReply* RESTApi::deleteSurvey(RESTClient *client, const Survey &s)
 {
-    return client->deleteResource(QStringLiteral("surveys/") + QString::number(s.id()));
+    return client->deleteResource(QStringLiteral("surveys/") + s.uuid().toString());
 }

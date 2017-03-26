@@ -29,6 +29,7 @@
 #include <QObject>
 #include <QSignalSpy>
 #include <QStandardPaths>
+#include <QUuid>
 
 #include <limits>
 
@@ -101,6 +102,7 @@ private slots:
 
         // add new survey
         Survey s;
+        s.setUuid(QUuid::createUuid());
         s.setName(QStringLiteral("unitTestSurvey"));
         s.setUrl(QUrl(QStringLiteral("http://www.kde.org")));
         s.setActive(false);
@@ -115,8 +117,6 @@ private slots:
         QCOMPARE(reply->error(), QNetworkReply::NoError);
         surveys = Survey::fromJson(reply->readAll());
         QCOMPARE(surveys.size(), 1);
-        QVERIFY(surveys.at(0) != s); // id is different
-        s.setId(surveys.at(0).id());
         QCOMPARE(surveys.at(0), s);
 
         // update a survey
@@ -165,7 +165,7 @@ private slots:
         QVERIFY(reply->error() != QNetworkReply::NoError);
 
         // update a non-existing survey
-        s.setId(std::numeric_limits<int>::max());
+        s.setUuid(QUuid::createUuid());
         reply = RESTApi::updateSurvey(&client, s);
         QVERIFY(waitForFinished(reply));
         qDebug() << reply->readAll();

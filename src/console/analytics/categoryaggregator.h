@@ -34,7 +34,6 @@ public:
     ~CategoryAggregator();
 
     ChartModes chartModes() const override;
-    QString displayName() const override;
     QAbstractItemModel* timeAggregationModel() override;
     QtCharts::QChart* timelineChart() override;
     QtCharts::QChart* singlularChart() override;

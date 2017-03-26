@@ -48,6 +48,9 @@ public:
     Type type() const;
     void setType(Type t);
 
+    QString name() const;
+    void setName(const QString &name);
+
     QVector<AggregationElement> elements() const;
     void setElements(const QVector<AggregationElement> &elements);
 
@@ -56,6 +59,7 @@ public:
 
 private:
     Type m_type = None;
+    QString m_name;
     QVector<AggregationElement> m_elements;
 };
 

@@ -22,11 +22,7 @@
         }
     ],
     "aggregation": [
-        { "type": "category", "elements": [ { "type": "size", "schemaEntry": "screens" } ] },
-        { "type": "xy", "elements": [
-            { "type": "value", "schemaEntry": "screens", "schemaEntryElement": "width" },
-            { "type": "value", "schemaEntry": "screens", "schemaEntryElement": "height" }
-        ] },
-        { "type": "numeric", "elements": [ { "type": "value", "schemaEntry": "screens", "schemaEntryElement": "dpi" } ] }
+        { "type": "category", "name": "Amount of Screens", "elements": [ { "type": "size", "schemaEntry": "screens" } ] },
+        { "type": "numeric", "name": "DPI Distribution", "elements": [ { "type": "value", "schemaEntry": "screens", "schemaEntryElement": "dpi" } ] }
     ]
 }

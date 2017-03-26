@@ -48,12 +48,6 @@ Aggregator::ChartModes CategoryAggregator::chartModes() const
     return modes;
 }
 
-QString CategoryAggregator::displayName() const
-{
-    const auto e = aggregation().elements().at(0);
-    return e.schemaEntry().name();
-}
-
 QAbstractItemModel* CategoryAggregator::timeAggregationModel()
 {
     if (!m_model && !aggregation().elements().isEmpty()) {

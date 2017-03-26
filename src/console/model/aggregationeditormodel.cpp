@@ -44,7 +44,7 @@ void AggregationEditorModel::setProduct(const Product& product)
 int AggregationEditorModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
-    return 2;
+    return 3;
 }
 
 int AggregationEditorModel::rowCount(const QModelIndex& parent) const
@@ -63,8 +63,10 @@ QVariant AggregationEditorModel::data(const QModelIndex& index, int role) const
         const auto aggr = m_product.aggregations().at(index.row());
         switch (index.column()) {
             case 0:
-                return Util::enumToString(aggr.type());
+                return aggr.name();
             case 1:
+                return Util::enumToString(aggr.type());
+            case 2:
                 if (aggr.elements().isEmpty())
                     return tr("<none>");
                 return aggr.elements().at(0).displayString();
@@ -73,8 +75,10 @@ QVariant AggregationEditorModel::data(const QModelIndex& index, int role) const
         const auto aggr = m_product.aggregations().at(index.row());
         switch (index.column()) {
             case 0:
-                return QVariant::fromValue(aggr.type());
+                return aggr.name();
             case 1:
+                return QVariant::fromValue(aggr.type());
+            case 2:
                 if (aggr.elements().isEmpty())
                     return QVariant::fromValue(AggregationElement());
                 return QVariant::fromValue(aggr.elements().at(0));
@@ -88,8 +92,9 @@ QVariant AggregationEditorModel::headerData(int section, Qt::Orientation orienta
 {
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
         switch (section) {
-            case 0: return tr("Type");
-            case 1: return tr("Element");
+            case 0: return tr("Name");
+            case 1: return tr("Type");
+            case 2: return tr("Element");
         }
     }
 
@@ -114,9 +119,12 @@ bool AggregationEditorModel::setData(const QModelIndex& index, const QVariant& v
     auto &aggr = aggrs[index.row()];
     switch (index.column()) {
         case 0:
-            aggr.setType(value.value<Aggregation::Type>());
+            aggr.setName(value.toString());
             break;
         case 1:
+            aggr.setType(value.value<Aggregation::Type>());
+            break;
+        case 2:
             aggr.setElements({ value.value<AggregationElement>() });
             break;
     }

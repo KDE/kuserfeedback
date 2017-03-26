@@ -16,6 +16,7 @@
     "aggregation": [
         {
             "type": "numeric",
+            "name": "Usage Time Distribution",
             "elements": [ { "type": "value", "schemaEntry": "usageTime", "schemaEntryElement": "value" } ]
         }
     ]

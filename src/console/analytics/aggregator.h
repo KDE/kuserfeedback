@@ -53,7 +53,7 @@ public:
     QAbstractItemModel *sourceModel() const;
     void setSourceModel(QAbstractItemModel *model);
 
-    virtual QString displayName() const = 0;
+    virtual QString displayName() const;
 
     virtual ChartModes chartModes() const;
 

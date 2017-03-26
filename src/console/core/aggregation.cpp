@@ -46,6 +46,16 @@ void Aggregation::setType(Aggregation::Type t)
     m_type = t;
 }
 
+QString Aggregation::name() const
+{
+    return m_name;
+}
+
+void Aggregation::setName(const QString& name)
+{
+    m_name = name;
+}
+
 QVector<AggregationElement> Aggregation::elements() const
 {
     return m_elements;
@@ -60,6 +70,7 @@ QJsonObject Aggregation::toJsonObject() const
 {
     QJsonObject obj;
     obj.insert(QStringLiteral("type"), QLatin1String(aggregation_types_table[m_type].name));
+    obj.insert(QStringLiteral("name"), m_name);
     QJsonArray elems;
     for (const auto &e : m_elements)
         elems.push_back(e.toJsonObject());
@@ -78,6 +89,7 @@ QVector<Aggregation> Aggregation::fromJson(const Product &product, const QJsonAr
 
         Aggregation aggr;
         aggr.setType(Util::stringToEnum<Aggregation::Type>(obj.value(QLatin1String("type")).toString(), aggregation_types_table));
+        aggr.setName(obj.value(QLatin1String("name")).toString());
         aggr.setElements(AggregationElement::fromJson(product, obj.value(QLatin1String("elements")).toArray()));
         aggrs.push_back(aggr);
     }

@@ -41,12 +41,6 @@ Aggregator::ChartModes NumericAggregator::chartModes() const
     return modes;
 }
 
-QString NumericAggregator::displayName() const
-{
-    const auto e = aggregation().elements().at(0);
-    return e.schemaEntry().name();
-}
-
 QAbstractItemModel* NumericAggregator::timeAggregationModel()
 {
     if (!m_model && !aggregation().elements().isEmpty()) {

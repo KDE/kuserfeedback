@@ -44,6 +44,11 @@ void Aggregator::setSourceModel(QAbstractItemModel* model)
     m_sourceModel = model;
 }
 
+QString Aggregator::displayName() const
+{
+    return m_aggregation.name();
+}
+
 Aggregator::ChartModes Aggregator::chartModes() const
 {
     return None;

@@ -16,6 +16,7 @@
     "aggregation": [
         {
             "type": "ratio_set",
+            "name": "Property Ratio",
             "elements": [ { "type": "value", "schemaEntry": "newPropertyRatio", "schemaEntryElement": "property" } ]
         }
     ]

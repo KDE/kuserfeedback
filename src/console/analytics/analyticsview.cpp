@@ -161,7 +161,7 @@ void AnalyticsView::setProduct(const Product& product)
     auto totalsAggr = new TotalAggregator;
     m_aggregators.push_back(totalsAggr);
     totalsAggr->setSourceModel(m_timeAggregationModel);
-    ui->chartType->addItem(tr("Samples"), QVariant::fromValue<Aggregator*>(totalsAggr));
+    ui->chartType->addItem(totalsAggr->displayName(), QVariant::fromValue<Aggregator*>(totalsAggr));
 
     foreach (const auto &aggr, product.aggregations()) {
         auto aggregator = createAggregator(aggr);

@@ -44,12 +44,6 @@ Aggregator::ChartModes RatioSetAggregator::chartModes() const
     return modes;
 }
 
-QString RatioSetAggregator::displayName() const
-{
-    const auto e = aggregation().elements().at(0);
-    return e.schemaEntry().name();
-}
-
 QAbstractItemModel* RatioSetAggregator::timeAggregationModel()
 {
     if (!m_model && !aggregation().elements().isEmpty()) {

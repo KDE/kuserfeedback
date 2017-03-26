@@ -49,6 +49,12 @@
         {
             "version": 8,
             "sql": ["ALTER TABLE tbl_survey ADD COLUMN col_uuid VARCHAR(40)"]
+        },
+
+        {
+            "version": 9,
+            "sql": ["ALTER TABLE tbl_aggregation ADD COLUMN col_name VARCHAR"],
+            "mysql": ["ALTER TABLE tbl_aggregation ADD COLUMN col_name VARCHAR(255)"]
         }
     ]
 }

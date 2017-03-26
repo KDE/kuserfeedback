@@ -8,6 +8,7 @@
                     "type": "value"
                 }
             ],
+            "name": "Application Version Distribution",
             "type": "category"
         },
         {
@@ -18,6 +19,7 @@
                     "type": "value"
                 }
             ],
+            "name": "View Ratio Distribution",
             "type": "ratio_set"
         },
         {
@@ -28,6 +30,7 @@
                     "type": "value"
                 }
             ],
+            "name": "OS Distribution",
             "type": "category"
         },
         {
@@ -38,6 +41,7 @@
                     "type": "value"
                 }
             ],
+            "name": "Qt Version Distribution",
             "type": "category"
         },
         {
@@ -48,6 +52,7 @@
                     "type": "value"
                 }
             ],
+            "name": "Start Count Distribution",
             "type": "numeric"
         },
         {
@@ -58,6 +63,7 @@
                     "type": "value"
                 }
             ],
+            "name": "Usage Count Distribution",
             "type": "numeric"
         }
     ],

@@ -28,8 +28,8 @@ class AggregationTest extends AbstractDatastoreTest
         $this->assertCount(0, $aggrs);
 
         $json = '[
-            { "type": "category", "elements": [ { "type": "value", "schemaEntry": "entry1", "schemaEntryElement": "elem11" } ] },
-            { "type": "numeric", "elements": [ { "type": "size", "schemaEntry": "entry2" } ] }
+            { "type": "category", "name": "category elem11", "elements": [ { "type": "value", "schemaEntry": "entry1", "schemaEntryElement": "elem11" } ] },
+            { "type": "numeric", "name": "size: entry2", "elements": [ { "type": "size", "schemaEntry": "entry2" } ] }
         ]';
         $aggrs = Aggregation::fromJson(json_decode($json));
         $this->assertCount(2, $aggrs);
@@ -37,10 +37,12 @@ class AggregationTest extends AbstractDatastoreTest
         $a = $aggrs[0];
         $this->assertInstanceOf(Aggregation::class, $a);
         $this->assertEquals('category', $a->type);
+        $this->assertEquals('category elem11', $a->name);
         $this->assertCount(1, $a->elements);
         $a = $aggrs[1];
         $this->assertInstanceOf(Aggregation::class, $a);
         $this->assertEquals('numeric', $a->type);
+        $this->assertEquals('size: entry2', $a->name);
         $this->assertCount(1, $a->elements);
     }
 
@@ -70,6 +72,7 @@ class AggregationTest extends AbstractDatastoreTest
 
         $a = new Aggregation;
         $a->type = 'xy';
+        $a->name = 'n1';
         $a->elements = json_decode('[
             { "type": "value", "schemaEntry": "entry2", "schemaEntryElement": "element21" },
             { "type": "value", "schemaEntry": "entry2", "schemaEntryElement": "element22" }
@@ -82,6 +85,7 @@ class AggregationTest extends AbstractDatastoreTest
         $a = $aggrs[0];
         $this->assertInstanceOf(Aggregation::class, $a);
         $this->assertEquals('xy', $a->type);
+        $this->assertEquals('n1', $a->name);
         $this->assertCount(2, $a->elements);
     }
 
@@ -104,7 +108,8 @@ class AggregationTest extends AbstractDatastoreTest
             'nothing' => [ '' ],
             'object' => [ '{}' ],
             'array of non-objects' => [ '[1, 2, 3]' ],
-            'missing type' => [ '[{ "elements": [] }]' ]
+            'missing type' => [ '[{ "elements": [] }]' ],
+            'missing name' => [ '[{ "type": "category", "elements": [] }]' ]
         ];
     }
 

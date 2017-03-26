@@ -16,6 +16,7 @@
     "aggregation": [
         {
             "type": "category",
+            "name": "Qt Version Distribution",
             "elements": [ { "type": "value", "schemaEntry": "qtVersion", "schemaEntryElement": "value" } ]
         }
     ]

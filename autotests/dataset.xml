@@ -86,17 +86,20 @@
     </table>
     <table name="tbl_aggregation">
         <column>col_id</column>
+        <column>col_name</column>
         <column>col_product_id</column>
         <column>col_type</column>
         <column>col_elements</column>
         <row>
             <value>201</value>
+            <value>Category: entry1.elem11</value>
             <value>2</value>
             <value>category</value>
             <value>[ { "type": "value", "schemaEntry": "entry1", "schemaEntryElement": "element11" } ]</value>
         </row>
         <row>
             <value>202</value>
+            <value>entry2 size distribution</value>
             <value>2</value>
             <value>numeric</value>
             <value>[ { "type": "size", "schemaEntry": "entry2" } ]</value>

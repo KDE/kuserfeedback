@@ -51,7 +51,7 @@ class ProductTest extends AbstractDatastoreTest
                     ]
                 }
             ],
-            "aggregation": [ { "type": "category", "elements": [
+            "aggregation": [ { "type": "category", "name": "n1", "elements": [
                 { "type": "value", "schemaEntry": "entry1", "schemaEntryElement": "element1" }
             ] } ]
         }');
@@ -85,6 +85,7 @@ class ProductTest extends AbstractDatastoreTest
         array_push($p->schema, $entry);
         $a = new Aggregation;
         $a->type = 'numeric';
+        $a->name = 'n1';
         $a->elements = json_decode('[{ "type": "size", "schemaEntry": "entry1" }]');
         array_push($p->aggregation, $a);
 
@@ -99,7 +100,7 @@ class ProductTest extends AbstractDatastoreTest
                     ]
                 }
             ],
-            "aggregation": [ { "type": "numeric", "elements": [
+            "aggregation": [ { "type": "numeric", "name": "n1", "elements": [
                 { "type": "size", "schemaEntry": "entry1" }
             ] } ]
         }');
@@ -192,12 +193,14 @@ class ProductTest extends AbstractDatastoreTest
             "aggregation": [
                 {
                     "type": "category",
+                    "name": "n1",
                     "elements": [
                         { "type": "value", "schemaEntry": "entryA", "schemaEntryElement": "elementA1" }
                     ]
                 },
                 {
                     "type": "ratio_set",
+                    "name": "n2",
                     "elements": [
                         { "type": "value", "schemaEntry": "entryB", "schemaEntryElement": "elementB1" }
                     ]
@@ -238,6 +241,7 @@ class ProductTest extends AbstractDatastoreTest
             "aggregation": [
                 {
                     "type": "ratio_set",
+                    "name": "n2",
                     "elements": [
                         { "type": "value", "schemaEntry": "entryB", "schemaEntryElement": "elementB1" }
                     ]
@@ -274,12 +278,14 @@ class ProductTest extends AbstractDatastoreTest
             "aggregation": [
                 {
                     "type": "category",
+                    "name": "n1",
                     "elements": [
                         { "type": "value", "schemaEntry": "entryA", "schemaEntryElement": "elementA1" }
                     ]
                 },
                 {
                     "type": "xy",
+                    "name": "n3",
                     "elements": [
                         { "type": "value", "schemaEntry": "entryC", "schemaEntryElement": "elementC1" },
                         { "type": "value", "schemaEntry": "entryC", "schemaEntryElement": "elementC2" }
@@ -311,6 +317,7 @@ class ProductTest extends AbstractDatastoreTest
             "aggregation": [
                 {
                     "type": "numeric",
+                    "name": "n4",
                     "elements": [
                         { "type": "size", "schemaEntry": "entry1" }
                     ]

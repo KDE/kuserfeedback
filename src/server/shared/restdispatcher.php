@@ -37,6 +37,11 @@ public static function dispatch($handler)
         if (!method_exists($handler, $method))
             Utils::httpError(400, 'Invalid REST command ' . $method . '.');
 
+        for ($i = 1; $i < count($command); $i++) {
+            if (is_string($command[$i]))
+                $command[$i] = urldecode($command[$i]);
+        }
+
         switch(sizeof($command)) {
             case 1:
                 $handler->$method();

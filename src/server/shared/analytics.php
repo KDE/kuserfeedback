@@ -161,7 +161,6 @@ public function put_surveys($surveyId)
     $surveyData = file_get_contents('php://input');
     $survey = Survey::fromJson($surveyData);
     $survey->uuid = $surveyId;
-    error_log("SURVEY UPDATE UUID:" . $surveyId);
 
     $db = new DataStore();
     $db->beginTransaction();

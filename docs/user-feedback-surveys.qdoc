@@ -32,6 +32,9 @@
         \li A targeting expression. Only surveys where this expression evaluates to \c true
         for a specific user are presented. The targeting expression is optional, if it is
         not set, \c true is implied, ie. the survey is considered for all users.
+        \li An internal globally unique id. This is used to ensure a user is not asked to take
+        the same survey twice. Therefore you should not delete and recreate surveys unless
+        you want to reset the unique id.
     \endlist
 
     \section1 Targeting Expressions

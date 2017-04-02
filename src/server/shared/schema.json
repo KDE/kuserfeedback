@@ -14,9 +14,9 @@
 
         {
             "version": 3,
-            "sqlite": ["CREATE TABLE tbl_survey (col_id INTEGER PRIMARY KEY AUTOINCREMENT, col_product_id INTEGER REFERENCES tbl_product (col_id) ON DELETE CASCADE, col_name VARCHAR, col_url VARCHAR NOT NULL, col_active INTEGER DEFAULT 0)" ],
-            "mysql": ["CREATE TABLE tbl_survey (col_id INTEGER PRIMARY KEY AUTO_INCREMENT, col_product_id INTEGER REFERENCES tbl_product (col_id) ON DELETE CASCADE, col_name VARCHAR(255), col_url VARCHAR(255) NOT NULL, col_active BOOLEAN DEFAULT FALSE)" ],
-            "pgsql": ["CREATE TABLE tbl_survey (col_id SERIAL PRIMARY KEY, col_product_id INTEGER REFERENCES tbl_product (col_id) ON DELETE CASCADE, col_name VARCHAR, col_url VARCHAR NOT NULL, col_active BOOLEAN DEFAULT FALSE)" ]
+            "sqlite": ["CREATE TABLE tbl_survey (col_id INTEGER PRIMARY KEY AUTOINCREMENT, col_product_id INTEGER REFERENCES tbl_product (col_id) ON DELETE CASCADE, col_name VARCHAR, col_url VARCHAR NOT NULL, col_active INTEGER DEFAULT 0, col_uuid VARCHAR(40) UNIQUE NOT NULL)" ],
+            "mysql": ["CREATE TABLE tbl_survey (col_id INTEGER PRIMARY KEY AUTO_INCREMENT, col_product_id INTEGER REFERENCES tbl_product (col_id) ON DELETE CASCADE, col_name VARCHAR(255), col_url VARCHAR(255) NOT NULL, col_active BOOLEAN DEFAULT FALSE, col_uuid VARCHAR(40) UNIQUE NOT NULL)" ],
+            "pgsql": ["CREATE TABLE tbl_survey (col_id SERIAL PRIMARY KEY, col_product_id INTEGER REFERENCES tbl_product (col_id) ON DELETE CASCADE, col_name VARCHAR, col_url VARCHAR NOT NULL, col_active BOOLEAN DEFAULT FALSE, col_uuid VARCHAR(40) UNIQUE NOT NULL)" ]
         },
 
         {
@@ -48,11 +48,6 @@
 
         {
             "version": 8,
-            "sql": ["ALTER TABLE tbl_survey ADD COLUMN col_uuid VARCHAR(40)"]
-        },
-
-        {
-            "version": 9,
             "sql": ["ALTER TABLE tbl_aggregation ADD COLUMN col_name VARCHAR"],
             "mysql": ["ALTER TABLE tbl_aggregation ADD COLUMN col_name VARCHAR(255)"]
         }

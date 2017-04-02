@@ -170,7 +170,9 @@ FeedbackConfigWidget::FeedbackConfigWidget(QWidget* parent)
     d->ui->setupUi(this);
 
     connect(d->ui->telemetrySlider, SIGNAL(valueChanged(int)), this, SLOT(telemetrySliderChanged()));
+    connect(d->ui->telemetrySlider, SIGNAL(valueChanged(int)), this, SIGNAL(configurationChanged()));
     connect(d->ui->surveySlider, SIGNAL(valueChanged(int)), this, SLOT(surveySliderChanged()));
+    connect(d->ui->surveySlider, SIGNAL(valueChanged(int)), this, SIGNAL(configurationChanged()));
 
     d->ui->rawTelemetryButton->setParent(d->ui->telemetryDetails);
     d->ui->rawTelemetryButton->setIcon(style()->standardPixmap(QStyle::SP_DialogHelpButton));

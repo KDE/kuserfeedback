@@ -61,6 +61,12 @@ public:
     /*! Returns the survey interval currently selected in this widget. */
     int surveyInterval() const;
 
+signals:
+    /*! Emitted when any changes are made to the configuration represented
+     *  in this widget.
+     */
+    void configurationChanged();
+
 protected:
     ///@cond internal
     bool eventFilter(QObject *receiver, QEvent *event) override;

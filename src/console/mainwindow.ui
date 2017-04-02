@@ -74,6 +74,7 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
+    <addaction name="actionUserManual"/>
     <addaction name="actionContribute"/>
     <addaction name="actionAbout"/>
    </widget>
@@ -223,6 +224,9 @@
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="help-about"/>
+   </property>
    <property name="text">
     <string>&amp;About...</string>
    </property>
@@ -281,6 +285,17 @@
    </property>
    <property name="toolTip">
     <string>Analyze product telemetry.</string>
+   </property>
+  </action>
+  <action name="actionUserManual">
+   <property name="icon">
+    <iconset theme="help-contents"/>
+   </property>
+   <property name="text">
+    <string>User Manual...</string>
+   </property>
+   <property name="toolTip">
+    <string>Show the user manual</string>
    </property>
   </action>
  </widget>

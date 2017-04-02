@@ -46,6 +46,7 @@ set(console_srcs
     connectdialog.cpp
     main.cpp
     mainwindow.cpp
+    helpcontroller.cpp
 
     analytics/aggregator.cpp
     analytics/analyticsview.cpp

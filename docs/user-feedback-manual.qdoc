@@ -1,14 +1,5 @@
-#!/bin/bash
-
-find "$@" -name '*.h' -o -name '*.cpp' -o -name '*.qml' -o -name '*.c' -o -name "*.qdoc" | grep -v /3rdparty/ | grep -v /build | while read FILE; do
-    if grep -qiE "Copyright \(C\) [0-9, -]{4,} " "$FILE" ; then continue; fi
-    thisfile=`basename $FILE`
-    authorName=`git config user.name`
-    authorEmail=`git config user.email`
-    thisYear=`date +%Y`
-    cat <<EOF > "$FILE".tmp
 /*
-    Copyright (C) $thisYear $authorName <$authorEmail>
+    Copyright (C) 2017 Volker Krause <vkrause@kde.org>
 
     This program is free software; you can redistribute it and/or modify it
     under the terms of the GNU Library General Public License as published by
@@ -24,8 +15,23 @@ find "$@" -name '*.h' -o -name '*.cpp' -o -name '*.qml' -o -name '*.c' -o -name 
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-EOF
-    cat "$FILE" >> "$FILE".tmp
-    mv "$FILE".tmp "$FILE"
-done
+/*!
+    \page index.html
+    \nextpage Telemetry
 
+    \title UserFeedback Manual
+
+    \section1 Overview
+
+    This is a framework for collecting feedback from application users. This consists of two aspects:
+    \list
+        \li Telemetry
+        \li Surveys
+    \endlist
+
+    \section1 Table Of Contents
+    \list
+        \li \l{Telemetry}
+        \li \l{Surveys}
+    \endlist
+*/

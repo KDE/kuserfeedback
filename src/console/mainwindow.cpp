@@ -18,7 +18,7 @@
 #include <config-userfeedback-version.h>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "helpcontroller.h"
 #include "connectdialog.h"
 
 #include <model/productmodel.h>
@@ -123,6 +123,12 @@ MainWindow::MainWindow() :
     connect(ui->actionQuit, &QAction::triggered, this, &QMainWindow::close);
     ui->menuWindow->addAction(ui->productsDock->toggleViewAction());
     ui->menuWindow->addAction(ui->logDock->toggleViewAction());
+
+    ui->actionUserManual->setEnabled(HelpController::isAvailable());
+    ui->actionUserManual->setShortcut(QKeySequence::HelpContents);
+    connect(ui->actionUserManual, &QAction::triggered, this, []() {
+        HelpController::openContents();
+    });
     connect(ui->actionContribute, &QAction::triggered, this, [this]() {
         FeedbackConfigDialog dlg(this);
         dlg.setFeedbackProvider(m_feedbackProvider);

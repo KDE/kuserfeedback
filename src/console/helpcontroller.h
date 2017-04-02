@@ -1,14 +1,5 @@
-#!/bin/bash
-
-find "$@" -name '*.h' -o -name '*.cpp' -o -name '*.qml' -o -name '*.c' -o -name "*.qdoc" | grep -v /3rdparty/ | grep -v /build | while read FILE; do
-    if grep -qiE "Copyright \(C\) [0-9, -]{4,} " "$FILE" ; then continue; fi
-    thisfile=`basename $FILE`
-    authorName=`git config user.name`
-    authorEmail=`git config user.email`
-    thisYear=`date +%Y`
-    cat <<EOF > "$FILE".tmp
 /*
-    Copyright (C) $thisYear $authorName <$authorEmail>
+    Copyright (C) 2017 Volker Krause <vkrause@kde.org>
 
     This program is free software; you can redistribute it and/or modify it
     under the terms of the GNU Library General Public License as published by
@@ -24,8 +15,29 @@ find "$@" -name '*.h' -o -name '*.cpp' -o -name '*.qml' -o -name '*.c' -o -name 
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-EOF
-    cat "$FILE" >> "$FILE".tmp
-    mv "$FILE".tmp "$FILE"
-done
+#ifndef USERFEEDBACK_CONSOLE_HELPCONTROLLER_H
+#define USERFEEDBACK_CONSOLE_HELPCONTROLLER_H
 
+class QString;
+
+namespace UserFeedback {
+namespace Console {
+
+/*! Controls the Assistant-based help browser. */
+namespace HelpController
+{
+
+/*! Returns @c true if Assistant and our help collection are found. */
+bool isAvailable();
+
+/*! Open start page of the help collection. */
+void openContents();
+
+/*! Opens the specified page of the help collection. */
+void openPage(const QString &page);
+
+}
+
+}}
+
+#endif // USERFEEDBACK_CONSOLE_HELPCONTROLLER_H

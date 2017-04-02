@@ -1,0 +1,113 @@
+/*
+    Copyright (C) 2017 Volker Krause <vkrause@kde.org>
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Library General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or (at your
+    option) any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Library General Public
+    License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/*!
+    \page user-feedback-surveys.html
+    \previouspage Telemetry
+    \nextpage UserFeedback Manual
+    \title Surveys
+
+    \section1 Overview
+
+    Surveys have the following properties:
+    \list
+        \li A name. This is purely used for making survey management easier, it's not shown
+        to the user.
+        \li A URL. This link is opened if a user chooses to participate in a survey.
+        \li An active flag. Only active surveys are presented to users.
+        \li A targeting expression. Only surveys where this expression evaluates to \c true
+        for a specific user are presented. The targeting expression is optional, if it is
+        not set, \c true is implied, ie. the survey is considered for all users.
+    \endlist
+
+    \section1 Targeting Expressions
+
+    Survey targeting expressions are boolean expressions with a C++-like syntax.
+
+    \section2 Data Types
+
+    Values and literals of the following types are supported:
+
+    \list
+        \li Integers.
+        \li Floats.
+        \li Boolean. Literals are specified using the keywords \c true and \c false.
+        \li Strings. Literals need to be put in double quotes, special characters in literals
+        need to be escaped with backslashes as in C++.
+    \endlist
+
+    \section2 Values
+
+    The value of a scalar data source is accessed my using the source name and the element name
+    separated by a dot, as follows:
+
+    \code
+    platform.os
+    \endcode
+
+    Accessing the value of a list or map data source is done by adding the corresponding array
+    index or map key in brackets:
+
+    \code
+    screens[0].width
+    \endcode
+
+    Additionally, the amount of entries in a list or map data source is available via \c .size:
+
+    \code
+    screens.size
+    \endcode
+
+    \section2 Comparisons
+
+    The following comparison operators are supported, comparisons can be done in any combination
+    between values and literals.
+
+    \table
+    \header
+        \li Operator
+        \li Semantic
+    \row
+        \li ==
+        \li Equality
+    \row
+        \li !=
+        \li Inequality
+    \row
+        \li >
+        \li Greater than (not supported for boolean values)
+    \row
+        \li >=
+        \li Greator or equal (not supported for boolean values)
+    \row
+        \li <
+        \li Less than (not supported for boolean values)
+    \row
+        \li <=
+        \li Less or equal (not supported for boolean values)
+    \endtable
+
+    \section2 Boolean Expressions
+
+    Comparisons can be combined by logical AND (\c &&) and OR (\c ||) operators. Further, expression
+    evaluation order can be controlled by parenthesis.
+
+    The following examples targets users with multi-screen setups on windows:
+    \code
+    screens.size >= 2 && platform.os == "windows"
+    \endcode
+*/

@@ -24,6 +24,7 @@ set(ECM_MODULE_DIR ${CMAKE_SOURCE_DIR}/cmake)
 include(ECMGeneratePriFile)
 include(ECMEnableSanitizers)
 include(ECMPoQmTools)
+include(ECMQueryQmake)
 include(FeatureSummary)
 include(GenerateExportHeader)
 
@@ -81,7 +82,7 @@ endif()
 if(Qt5Core_FOUND)
     set_package_properties(Qt5Core PROPERTIES TYPE REQUIRED)
     find_package(Qt5 NO_MODULE REQUIRED COMPONENTS Network)
-    find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test)
+    find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Help)
 
     set_package_properties(Qt5 PROPERTIES URL "http://qt-project.org/")
     set_package_properties(Qt5Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for feedback configuration and notification widgets.")
@@ -159,6 +160,7 @@ add_subdirectory(autotests)
 if(Qt5Core_FOUND)
     add_subdirectory(tests)
 endif()
+add_subdirectory(docs)
 
 #
 # CMake package config file generation

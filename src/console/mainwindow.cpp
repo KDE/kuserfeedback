@@ -191,7 +191,7 @@ MainWindow::MainWindow() :
     m_feedbackProvider->setEncouragementDelay(60);
     m_feedbackProvider->setEncouragementInterval(5);
     m_feedbackProvider->setApplicationStartsUntilEncouragement(5);
-    m_feedbackProvider->setApplicationUsageTimeUntilEncouragement(10);
+    m_feedbackProvider->setApplicationUsageTimeUntilEncouragement(600); // 10 mins
 
     auto notifyPopup = new UserFeedback::NotificationPopup(this);
     notifyPopup->setFeedbackProvider(m_feedbackProvider);

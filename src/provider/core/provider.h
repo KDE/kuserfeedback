@@ -113,8 +113,10 @@ public:
     /*! Set the amount of application starts until the encouragement message should be shown. */
     void setApplicationStartsUntilEncouragement(int starts);
 
-    /*! Set the amount of usage time until the encouragement message should be shown. */
-    void setApplicationUsageTimeUntilEncouragement(int minutes);
+    /*! Set the amount of usage time until the encouragement message should be shown.
+     *  @param secs Amount of seconds until the encouragement should be shown.
+     */
+    void setApplicationUsageTimeUntilEncouragement(int secs);
 
     /*! Set the delay after application start for the earliest display of the encouragement message. */
     void setEncouragementDelay(int secs);

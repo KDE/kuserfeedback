@@ -363,7 +363,7 @@ void ProviderPrivate::scheduleEncouragement()
     Q_ASSERT(encouragementDelay >= 0);
     int timeToEncouragement = encouragementDelay;
     if (encouragementTime > 0)
-        timeToEncouragement = std::max(timeToEncouragement, (encouragementTime * 60) - currentApplicationTime());
+        timeToEncouragement = std::max(timeToEncouragement, encouragementTime - currentApplicationTime());
     if (lastEncouragementTime.isValid()) {
         Q_ASSERT(encouragementInterval > 0);
         const auto targetTime = lastEncouragementTime.addDays(encouragementDelay);
@@ -492,9 +492,9 @@ void Provider::setApplicationStartsUntilEncouragement(int starts)
     d->scheduleEncouragement();
 }
 
-void Provider::setApplicationUsageTimeUntilEncouragement(int minutes)
+void Provider::setApplicationUsageTimeUntilEncouragement(int secs)
 {
-    d->encouragementTime = minutes;
+    d->encouragementTime = secs;
     d->scheduleEncouragement();
 }
 

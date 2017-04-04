@@ -74,10 +74,10 @@ endif()
 # try Qt5 first, and prefer that (if found), but only if not disabled via option
 if(NOT ENFORCE_QT4_BUILD)
     find_package(Qt5Core QUIET NO_MODULE)
+    include(ECMQueryQmake) # do not include in the Qt4 path, this calls find_package(Qt5)
 else()
     set(Qt5Core_FOUND FALSE)
 endif()
-    include(ECMQueryQmake) # do not include in the Qt4 path, this calls find_package(Qt5)
 
 if(Qt5Core_FOUND)
     set_package_properties(Qt5Core PROPERTIES TYPE REQUIRED)
@@ -159,8 +159,8 @@ add_subdirectory(src)
 add_subdirectory(autotests)
 if(Qt5Core_FOUND)
     add_subdirectory(tests)
+    add_subdirectory(docs)
 endif()
-add_subdirectory(docs)
 
 #
 # CMake package config file generation

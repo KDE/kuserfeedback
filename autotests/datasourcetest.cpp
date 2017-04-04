@@ -16,6 +16,7 @@
 */
 
 #include <provider/core/applicationversionsource.h>
+#include <provider/core/cpuinfosource.h>
 #include <provider/core/platforminfosource.h>
 #include <provider/core/propertyratiosource.h>
 #include <provider/core/qtversionsource.h>
@@ -213,6 +214,16 @@ private slots:
         const auto m = src->data().toMap();
         QVERIFY(m.contains(QLatin1String("value")));
         QVERIFY(m.value(QLatin1String("value")).toInt() >= 1);
+    }
+
+    void testCpuInfoSource()
+    {
+        CpuInfoSource src;
+        const auto m = src.data().toMap();
+        QVERIFY(m.contains(QLatin1String("architecture")));
+        QVERIFY(!m.value(QLatin1String("architecture")).toString().isEmpty());
+        QVERIFY(m.contains(QLatin1String("count")));
+        QVERIFY(m.value(QLatin1String("count")).toInt() >= 1);
     }
 };
 

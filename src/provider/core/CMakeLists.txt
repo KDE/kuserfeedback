@@ -3,6 +3,7 @@ ecm_create_qm_loader(userfeedback_core_QM_LOADER userfeedbackprovider5_qt)
 set(userfeedback_core_srcs
     abstractdatasource.cpp
     applicationversionsource.cpp
+    cpuinfosource.cpp
     platforminfosource.cpp
     propertyratiosource.cpp
     provider.cpp

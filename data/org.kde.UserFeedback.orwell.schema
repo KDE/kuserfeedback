@@ -86,6 +86,28 @@
             ],
             "name": "DPI Distribution",
             "type": "numeric"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "cpu",
+                    "schemaEntryElement": "architecture",
+                    "type": "value"
+                }
+            ],
+            "name": "CPU Architecture Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "cpu",
+                    "schemaEntryElement": "count",
+                    "type": "value"
+                }
+            ],
+            "name": "CPU Count Distribution",
+            "type": "numeric"
         }
     ],
     "name": "org.kde.orwell",
@@ -170,6 +192,20 @@
                 }
             ],
             "name": "usageTime",
+            "type": "scalar"
+        },
+        {
+            "elements": [
+                {
+                    "name": "architecture",
+                    "type": "string"
+                },
+                {
+                    "name": "count",
+                    "type": "int"
+                }
+            ],
+            "name": "cpu",
             "type": "scalar"
         }
     ]

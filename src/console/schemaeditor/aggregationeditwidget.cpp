@@ -37,6 +37,7 @@ AggregationEditWidget::AggregationEditWidget(QWidget* parent) :
     ui->setupUi(this);
 
     ui->aggregationView->setModel(m_model);
+    ui->aggregationView->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     qobject_cast<QStyledItemDelegate*>(ui->aggregationView->itemDelegate())->setItemEditorFactory(m_editorFactory.get());
     connect(ui->aggregationView, &QWidget::customContextMenuRequested, this, &AggregationEditWidget::contextMenu);
     connect(ui->aggregationView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &AggregationEditWidget::updateState);

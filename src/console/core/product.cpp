@@ -18,6 +18,7 @@
 #include "product.h"
 #include "aggregation.h"
 
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -129,7 +130,8 @@ static Product productFromJsonObject(const QJsonObject &obj)
 QVector<Product> Product::fromJson(const QByteArray &data)
 {
     QVector<Product> products;
-    const auto doc = QJsonDocument::fromJson(data);
+    QJsonParseError error;
+    const auto doc = QJsonDocument::fromJson(data, &error);
     if (doc.isArray()) {
         const auto array = doc.array();
         products.reserve(array.size());
@@ -139,6 +141,8 @@ QVector<Product> Product::fromJson(const QByteArray &data)
         }
     } else if (doc.isObject()) {
         products.push_back(productFromJsonObject(doc.object()));
+    } else {
+        qDebug() << "Failed to parse product JSON:" << error.errorString() << error.offset;
     }
     return products;
 }

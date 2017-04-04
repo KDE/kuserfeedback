@@ -126,6 +126,7 @@ void SchemaEditWidget::updateState()
 {
     const auto selection = ui->schemaView->selectionModel()->selection();
     ui->actionDelete->setEnabled(!selection.isEmpty());
+    ui->actionAddSource->setEnabled(product().isValid());
     ui->actionAddSourceElement->setEnabled(currentSource().isValid());
 }
 

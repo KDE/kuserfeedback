@@ -301,23 +301,14 @@ Product MainWindow::selectedProduct() const
 
 void MainWindow::updateActions()
 {
-    // only show actions from the currently active view
-    for (int i = 0; i < ui->viewStack->count(); ++i) {
-        const auto w = ui->viewStack->widget(i);
-        const auto isActive = ui->viewStack->currentIndex() == i;
-
-        for (auto action : w->actions())
-            action->setVisible(isActive);
-    }
-
     // product action state
     ui->actionAddProduct->setEnabled(m_restClient->isConnected());
     ui->actionDeleteProduct->setEnabled(selectedProduct().isValid());
 
-    // deactivate empty menus
-    ui->menuAnalytics->setEnabled(!ui->menuAnalytics->isEmpty());
-    ui->menuSurvey->setEnabled(!ui->menuSurvey->isEmpty());
-    ui->menuSchema->setEnabled(!ui->menuSchema->isEmpty());
+    // deactivate menus of the inactive views
+    ui->menuAnalytics->setEnabled(ui->viewStack->currentWidget() == ui->analyticsView);
+    ui->menuSurvey->setEnabled(ui->viewStack->currentWidget() == ui->surveyEditor);
+    ui->menuSchema->setEnabled(ui->viewStack->currentWidget() == ui->schemaEdit);
 }
 
 void MainWindow::closeEvent(QCloseEvent* event)

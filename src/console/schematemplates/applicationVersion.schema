@@ -4,7 +4,6 @@
         {
             "name": "applicationVersion",
             "type": "scalar",
-            "aggregation": "category",
             "elements": [
                 {
                     "name": "value",

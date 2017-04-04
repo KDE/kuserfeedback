@@ -4,7 +4,6 @@
         {
             "name": "newPropertyRatio",
             "type": "map",
-            "aggregation": "ratioset",
             "elements": [
                 {
                     "name": "property",

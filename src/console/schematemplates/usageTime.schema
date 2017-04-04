@@ -4,7 +4,6 @@
         {
             "name": "usageTime",
             "type": "scalar",
-            "aggregation": "numeric",
             "elements": [
                 {
                     "name": "value",

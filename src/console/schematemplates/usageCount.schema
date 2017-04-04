@@ -4,7 +4,6 @@
         {
             "name": "startCount",
             "type": "scalar",
-            "aggregation": "numeric",
             "elements": [
                 {
                     "name": "value",

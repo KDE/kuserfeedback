@@ -39,12 +39,14 @@ AggregationEditWidget::AggregationEditWidget(QWidget* parent) :
     ui->aggregationView->setModel(m_model);
     qobject_cast<QStyledItemDelegate*>(ui->aggregationView->itemDelegate())->setItemEditorFactory(m_editorFactory.get());
     connect(ui->aggregationView, &QWidget::customContextMenuRequested, this, &AggregationEditWidget::contextMenu);
+    connect(ui->aggregationView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &AggregationEditWidget::updateState);
     connect(m_model, &QAbstractItemModel::dataChanged, this, &AggregationEditWidget::productChanged);
 
     connect(ui->actionAddAggregation, &QAction::triggered, this, &AggregationEditWidget::addAggregation);
     connect(ui->actionDeleteAggregation, &QAction::triggered, this, &AggregationEditWidget::deleteAggregation);
 
     addActions({ ui->actionAddAggregation, ui->actionDeleteAggregation });
+    updateState();
 }
 
 AggregationEditWidget::~AggregationEditWidget() = default;
@@ -58,6 +60,7 @@ void AggregationEditWidget::setProduct(const Product& product)
 {
     m_model->setProduct(product);
     m_editorFactory->setProduct(product);
+    updateState();
 }
 
 void AggregationEditWidget::addAggregation()

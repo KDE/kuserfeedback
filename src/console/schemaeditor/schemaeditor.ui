@@ -59,7 +59,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>&amp;Import Schema</string>
+    <string>&amp;Import Schema...</string>
    </property>
    <property name="toolTip">
     <string>Import a schema for this product.</string>
@@ -71,7 +71,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>&amp;Export Schema</string>
+    <string>&amp;Export Schema...</string>
    </property>
    <property name="toolTip">
     <string>Export the schema of this product.</string>

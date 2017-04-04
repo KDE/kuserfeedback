@@ -48,7 +48,7 @@ SchemaEditor::SchemaEditor(QWidget* parent) :
 
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &SchemaEditor::updateState);
 
-    auto templateMenu = new QMenu(tr("Schema Entry Templates"), this);
+    auto templateMenu = new QMenu(tr("Source Templates"), this);
     for (const auto &t : SchemaEntryTemplates::availableTemplates()) {
         auto a = templateMenu->addAction(t.name());
         a->setData(QVariant::fromValue(t));

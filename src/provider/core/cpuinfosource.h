@@ -26,7 +26,7 @@ namespace UserFeedback {
 /*! Data source reporting the type and amount of CPUs. */
 class USERFEEDBACKCORE_EXPORT CpuInfoSource : public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(UserFeedback::QtVersionSource)
+    Q_DECLARE_TR_FUNCTIONS(UserFeedback::CpuInfoSource)
 public:
     CpuInfoSource();
     QString description() const override;

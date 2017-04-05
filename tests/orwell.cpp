@@ -22,6 +22,7 @@
 #include <provider/widgets/notificationpopup.h>
 #include <provider/core/applicationversionsource.h>
 #include <provider/core/cpuinfosource.h>
+#include <provider/core/localeinfosource.h>
 #include <provider/core/platforminfosource.h>
 #include <provider/core/propertyratiosource.h>
 #include <provider/core/provider.h>
@@ -114,6 +115,7 @@ int main(int argc, char** argv)
     provider->setEncouragementDelay(10);
     provider->addDataSource(new UserFeedback::ApplicationVersionSource, UserFeedback::Provider::BasicSystemInformation);
     provider->addDataSource(new UserFeedback::CpuInfoSource, UserFeedback::Provider::DetailedSystemInformation);
+    provider->addDataSource(new UserFeedback::LocaleInfoSource, UserFeedback::Provider::DetailedSystemInformation);
     provider->addDataSource(new UserFeedback::PlatformInfoSource, UserFeedback::Provider::BasicSystemInformation);
     provider->addDataSource(new UserFeedback::QtVersionSource, UserFeedback::Provider::BasicSystemInformation);
     provider->addDataSource(new UserFeedback::ScreenInfoSource, UserFeedback::Provider::DetailedSystemInformation);

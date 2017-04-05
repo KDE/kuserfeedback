@@ -17,6 +17,7 @@
 
 #include <provider/core/applicationversionsource.h>
 #include <provider/core/cpuinfosource.h>
+#include <provider/core/localeinfosource.h>
 #include <provider/core/platforminfosource.h>
 #include <provider/core/propertyratiosource.h>
 #include <provider/core/qtversionsource.h>
@@ -225,6 +226,17 @@ private slots:
         QVERIFY(m.contains(QLatin1String("count")));
         QVERIFY(m.value(QLatin1String("count")).toInt() >= 1);
     }
+
+    void testLocaleInfoSource()
+    {
+        LocaleInfoSource src;
+        const auto m = src.data().toMap();
+        QVERIFY(m.contains(QLatin1String("language")));
+        QVERIFY(!m.value(QLatin1String("language")).toString().isEmpty());
+        QVERIFY(m.contains(QLatin1String("region")));
+        QVERIFY(!m.value(QLatin1String("region")).toString().isEmpty());
+    }
+
 };
 
 QTEST_MAIN(DataSourceTest)

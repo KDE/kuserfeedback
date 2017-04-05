@@ -108,6 +108,28 @@
             ],
             "name": "CPU Count Distribution",
             "type": "numeric"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "locale",
+                    "schemaEntryElement": "language",
+                    "type": "value"
+                }
+            ],
+            "name": "Language Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "locale",
+                    "schemaEntryElement": "region",
+                    "type": "value"
+                }
+            ],
+            "name": "Region Distribution",
+            "type": "category"
         }
     ],
     "name": "org.kde.orwell",
@@ -206,6 +228,20 @@
                 }
             ],
             "name": "cpu",
+            "type": "scalar"
+        },
+        {
+            "elements": [
+                {
+                    "name": "language",
+                    "type": "string"
+                },
+                {
+                    "name": "region",
+                    "type": "string"
+                }
+            ],
+            "name": "locale",
             "type": "scalar"
         }
     ]

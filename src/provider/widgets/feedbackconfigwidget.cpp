@@ -51,7 +51,6 @@ public:
 FeedbackConfigWidgetPrivate::FeedbackConfigWidgetPrivate()
     : provider(nullptr)
 {
-    telemetryModeMap.reserve(Provider::CollectionModeCount);
 }
 
 int FeedbackConfigWidgetPrivate::telemetryModeIndex(Provider::StatisticsCollectionMode mode) const
@@ -200,6 +199,7 @@ void FeedbackConfigWidget::setFeedbackProvider(Provider* provider)
     }
 
     d->telemetryModeMap.clear();
+    d->telemetryModeMap.reserve(5);
     d->telemetryModeMap.push_back(Provider::NoStatistics);
     d->telemetryModeMap.push_back(Provider::BasicSystemInformation);
     d->telemetryModeMap.push_back(Provider::BasicUsageStatistics);

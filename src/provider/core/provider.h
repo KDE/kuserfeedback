@@ -50,11 +50,10 @@ public:
      */
     enum StatisticsCollectionMode {
         NoStatistics, ///< Transmit no data at all.
-        BasicSystemInformation, ///< Transmit basic information about the system.
-        BasicUsageStatistics, ///< Transmit basic usage statistics.
-        DetailedSystemInformation, ///< Transmit detailed system information.
-        DetailedUsageStatistics, ///< Transmit detailed usage statistics.
-        CollectionModeCount = DetailedUsageStatistics
+        BasicSystemInformation = 0x10, ///< Transmit basic information about the system.
+        BasicUsageStatistics = 0x20, ///< Transmit basic usage statistics.
+        DetailedSystemInformation = 0x30, ///< Transmit detailed system information.
+        DetailedUsageStatistics = 0x40, ///< Transmit detailed usage statistics.
     };
     Q_ENUMS(StatisticsCollectionMode)
 

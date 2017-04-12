@@ -15,37 +15,37 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_PRODUCTEXPORTJOB_H
-#define USERFEEDBACK_CONSOLE_PRODUCTEXPORTJOB_H
+#ifndef USERFEEDBACK_CONSOLE_PRODUCTIMPORTJOB_H
+#define USERFEEDBACK_CONSOLE_PRODUCTIMPORTJOB_H
 
 #include "job.h"
-#include <rest/restclient.h>
+
 #include <core/product.h>
 
 namespace UserFeedback {
 namespace Console {
 
-class ProductExportJob : public Job
+class RESTClient;
+
+class ProductImportJob : public Job
 {
     Q_OBJECT
 public:
-    explicit ProductExportJob(const QString &productId, const QString &destination, RESTClient *restClient, QObject *parent = nullptr);
-    explicit ProductExportJob(const Product &product, const QString &destination, RESTClient *restClient, QObject *parent = nullptr);
-    ~ProductExportJob();
+    explicit ProductImportJob(const QString &source, RESTClient *restClient, QObject *parent = nullptr);
+    ~ProductImportJob();
 
 private:
-    void doExportSchema();
-    void doExportSurveys();
-    void doExportData();
-
-    QString destination() const;
+    void doImportSchema();
+    void doImportSurveys();
+    void doImportData();
 
     Product m_product;
-    QString m_dest;
+    QString m_source;
     RESTClient *m_restClient;
+    int m_jobCount = 0;
 };
 
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_PRODUCTEXPORTJOB_H
+#endif // USERFEEDBACK_CONSOLE_PRODUCTIMPORTJOB_H

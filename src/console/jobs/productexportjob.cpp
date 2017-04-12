@@ -26,7 +26,7 @@
 using namespace UserFeedback::Console;
 
 ProductExportJob::ProductExportJob(const QString& productId, const QString& destination, RESTClient* restClient, QObject* parent)
-    : QObject(parent)
+    : Job(parent)
     , m_dest(destination)
     , m_restClient(restClient)
 {
@@ -52,7 +52,7 @@ ProductExportJob::ProductExportJob(const QString& productId, const QString& dest
 }
 
 ProductExportJob::ProductExportJob(const Product& product, const QString& destination, RESTClient* restClient, QObject* parent)
-    : QObject(parent)
+    : Job(parent)
     , m_product(product)
     , m_dest(destination)
     , m_restClient(restClient)
@@ -125,16 +125,4 @@ QString ProductExportJob::destination() const
     dest.mkpath(m_product.name());
     dest.cd(m_product.name());
     return dest.absolutePath();
-}
-
-void ProductExportJob::emitFinished()
-{
-    emit finished();
-    deleteLater();
-}
-
-void ProductExportJob::emitError(const QString& msg)
-{
-    emit error(msg);
-    deleteLater();
 }

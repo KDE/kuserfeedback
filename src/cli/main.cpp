@@ -18,6 +18,7 @@
 #include "config-userfeedback-version.h"
 
 #include <jobs/productexportjob.h>
+#include <jobs/productimportjob.h>
 #include <rest/restapi.h>
 #include <rest/restclient.h>
 #include <rest/serverinfo.h>
@@ -113,12 +114,12 @@ int main(int argc, char **argv)
                 for (const auto p : products) {
                     ++jobCount;
                     auto job = new ProductExportJob(p, parser.value(outputOpt), &restClient);
-                    QObject::connect(job, &ProductExportJob::destroyed, []() {
+                    QObject::connect(job, &Job::destroyed, []() {
                         --jobCount;
                         if (jobCount == 0)
                             qApp->quit();
                     });
-                    QObject::connect(job, &ProductExportJob::error, [](const auto &msg) {
+                    QObject::connect(job, &Job::error, [](const auto &msg) {
                         std::cerr << qPrintable(msg) << std::endl;
                     });
                 }
@@ -129,18 +130,20 @@ int main(int argc, char **argv)
             parser.showHelp(1);
         QObject::connect(&restClient, &RESTClient::clientConnected, [&parser, &outputOpt, &restClient]() {
             auto job = new ProductExportJob(parser.positionalArguments().at(1), parser.value(outputOpt), &restClient);
-            QObject::connect(job, &ProductExportJob::finished, qApp, &QCoreApplication::quit);
-            QObject::connect(job, &ProductExportJob::error, [](const auto &msg) {
+            QObject::connect(job, &Job::destroyed, qApp, &QCoreApplication::quit);
+            QObject::connect(job, &Job::error, [](const auto &msg) {
                 std::cerr << qPrintable(msg) << std::endl;
-                qApp->quit();
             });
         });
     } else if (cmd == QLatin1String("import-product")) {
-        if (parser.positionalArguments().size() <= 1)
+        if (parser.positionalArguments().size() != 2)
             parser.showHelp(1);
-        // TODO
-        QObject::connect(&restClient, &RESTClient::clientConnected, [&app]() {
-            app.quit();
+        QObject::connect(&restClient, &RESTClient::clientConnected, [&parser, &outputOpt, &restClient]() {
+            auto job = new ProductImportJob(parser.positionalArguments().at(1), &restClient);
+            QObject::connect(job, &Job::destroyed, qApp, &QCoreApplication::quit);
+            QObject::connect(job, &Job::error, [](const auto &msg) {
+                std::cerr << qPrintable(msg) << std::endl;
+            });
         });
     } else if (cmd == QLatin1String("list-products")) {
         if (parser.positionalArguments().size() != 1)

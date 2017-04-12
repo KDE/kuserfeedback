@@ -14,7 +14,9 @@ set(console_lib_srcs
     rest/restclient.cpp
     rest/serverinfo.cpp
 
+    jobs/job.cpp
     jobs/productexportjob.cpp
+    jobs/productimportjob.cpp
 
     model/aggregateddatamodel.cpp
     model/aggregationeditormodel.cpp

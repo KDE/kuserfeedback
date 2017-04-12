@@ -78,6 +78,7 @@ int main(int argc, char **argv)
     RESTClient restClient;
     QObject::connect(&restClient, &RESTClient::errorMessage, [](const auto &msg) {
         std::cerr << qPrintable(msg) << std::endl;
+        QCoreApplication::exit(1);
     });
     restClient.setServerInfo(server);
 

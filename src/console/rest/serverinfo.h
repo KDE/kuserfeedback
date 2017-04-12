@@ -36,6 +36,8 @@ public:
     ~ServerInfo();
     ServerInfo& operator=(const ServerInfo &other);
 
+    bool isValid() const;
+
     QUrl url() const;
     void setUrl(const QUrl& url);
 

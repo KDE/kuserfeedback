@@ -47,6 +47,11 @@ ServerInfo::ServerInfo(const ServerInfo&) = default;
 ServerInfo::~ServerInfo() = default;
 ServerInfo& ServerInfo::operator=(const ServerInfo&) = default;
 
+bool ServerInfo::isValid() const
+{
+    return d->url.isValid();
+}
+
 QUrl ServerInfo::url() const
 {
     return d->url;

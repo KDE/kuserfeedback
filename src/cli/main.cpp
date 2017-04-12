@@ -50,7 +50,9 @@ int main(int argc, char **argv)
     parser.addOption(serverOpt);
     QCommandLineOption outputOpt( { QStringLiteral("output"), QStringLiteral("o") }, QStringLiteral("Output path"), QStringLiteral("path"));
     parser.addOption(outputOpt);
-    parser.addPositionalArgument(QStringLiteral("command"), QStringLiteral("Command: export-all, export-product, import-product, list-products"));
+    QCommandLineOption forceOpt( { QStringLiteral("force"), QStringLiteral("f") }, QStringLiteral("Force destructive operations"));
+    parser.addOption(forceOpt);
+    parser.addPositionalArgument(QStringLiteral("command"), QStringLiteral("Command: delete-product, export-all, export-product, import-product, list-products"));
 
     parser.process(app);
 
@@ -80,7 +82,25 @@ int main(int argc, char **argv)
     restClient.setServerInfo(server);
 
     const auto cmd = parser.positionalArguments().at(0);
-    if (cmd == QLatin1String("export-all")) {
+    if (cmd == QLatin1String("delete-product")) {
+        jobCount = parser.positionalArguments().size() - 1;
+        if (jobCount <= 0 || !parser.isSet(forceOpt))
+            parser.showHelp(1);
+        QObject::connect(&restClient, &RESTClient::clientConnected, [&parser, &restClient]() {
+            for (int i = 0; i < jobCount; ++i) {
+                Product p;
+                p.setName(parser.positionalArguments().at(i+1));
+                auto reply = RESTApi::deleteProduct(&restClient, p);
+                QObject::connect(reply, &QNetworkReply::finished, [reply]() {
+                    if (reply->error() != QNetworkReply::NoError)
+                        return;
+                    --jobCount;
+                    if (jobCount == 0)
+                        qApp->quit();
+                });
+            }
+        });
+    } else if (cmd == QLatin1String("export-all")) {
         if (parser.positionalArguments().size() != 1)
             parser.showHelp(1);
         QObject::connect(&restClient, &RESTClient::clientConnected, [&]() {

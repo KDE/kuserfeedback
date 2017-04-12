@@ -58,6 +58,8 @@ private:
     void createProduct();
     void deleteProduct();
     void productSelected();
+    void importProduct();
+    void exportProduct();
 
     void logMessage(const QString &msg);
     void logError(const QString &msg);

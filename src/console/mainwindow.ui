@@ -59,6 +59,8 @@
     </property>
     <addaction name="actionAddProduct"/>
     <addaction name="actionDeleteProduct"/>
+    <addaction name="actionImportProduct"/>
+    <addaction name="actionExportProduct"/>
    </widget>
    <widget class="QMenu" name="menuSurvey">
     <property name="title">
@@ -296,6 +298,28 @@
    </property>
    <property name="toolTip">
     <string>Show the user manual</string>
+   </property>
+  </action>
+  <action name="actionImportProduct">
+   <property name="icon">
+    <iconset theme="document-import"/>
+   </property>
+   <property name="text">
+    <string>Import Product...</string>
+   </property>
+   <property name="toolTip">
+    <string>Import product settings and data.</string>
+   </property>
+  </action>
+  <action name="actionExportProduct">
+   <property name="icon">
+    <iconset theme="document-export"/>
+   </property>
+   <property name="text">
+    <string>Export Product...</string>
+   </property>
+   <property name="toolTip">
+    <string>Export all product settings and data.</string>
    </property>
   </action>
  </widget>

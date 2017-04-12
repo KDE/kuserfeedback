@@ -74,6 +74,7 @@ set(console_srcs
 )
 
 add_executable(UserFeedbackConsoleApplication ${console_srcs})
+target_compile_features(UserFeedbackConsoleApplication PRIVATE cxx_generic_lambdas)
 set_target_properties(UserFeedbackConsoleApplication PROPERTIES OUTPUT_NAME UserFeedbackConsole)
 target_link_libraries(UserFeedbackConsoleApplication Qt5::Widgets Qt5::Network Qt5::Charts UserFeedbackWidgets UserFeedbackConsole UserFeedbackCommon)
 

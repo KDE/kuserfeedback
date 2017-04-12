@@ -21,6 +21,8 @@
 #include "helpcontroller.h"
 #include "connectdialog.h"
 
+#include <jobs/productexportjob.h>
+#include <jobs/productimportjob.h>
 #include <model/productmodel.h>
 
 #include <rest/restapi.h>
@@ -39,6 +41,7 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QFileDialog>
 #include <QIcon>
 #include <QInputDialog>
 #include <QKeySequence>
@@ -116,6 +119,8 @@ MainWindow::MainWindow() :
 
     connect(ui->actionAddProduct, &QAction::triggered, this, &MainWindow::createProduct);
     connect(ui->actionDeleteProduct, &QAction::triggered, this, &MainWindow::deleteProduct);
+    connect(ui->actionImportProduct, &QAction::triggered, this, &MainWindow::importProduct);
+    connect(ui->actionExportProduct, &QAction::triggered, this, &MainWindow::exportProduct);
 
     connect(ui->schemaEdit, &SchemaEditor::productChanged, m_productModel, &ProductModel::reload);
 
@@ -271,6 +276,52 @@ void MainWindow::deleteProduct()
     });
 }
 
+void MainWindow::importProduct()
+{
+    const auto fileName = QFileDialog::getExistingDirectory(this, tr("Import Product"));
+    if (fileName.isEmpty())
+        return;
+
+    QFileInfo fi(fileName);
+    if (!fi.exists() || !fi.isDir() || !fi.isReadable()) {
+        QMessageBox::critical(this, tr("Import Failed"), tr("Could not open file."));
+        return;
+    }
+
+    auto job = new ProductImportJob(fileName, m_restClient, this);
+    connect(job, &Job::error, this, [this](const auto &msg) {
+        QMessageBox::critical(this, tr("Import Failed"), tr("Import errror: %1").arg(msg));
+    });
+    connect(job, &Job::finished, this, [this]() {
+        logMessage(tr("Product imported successfully."));
+        m_productModel->reload();
+    });
+}
+
+void MainWindow::exportProduct()
+{
+    if (!selectedProduct().isValid())
+        return;
+
+    const auto fileName = QFileDialog::getExistingDirectory(this, tr("Export Product"));
+    if (fileName.isEmpty())
+        return;
+
+    QFileInfo fi(fileName);
+    if (!fi.exists() || !fi.isDir() || !fi.isWritable()) {
+        QMessageBox::critical(this, tr("Import Failed"), tr("Could not open file."));
+        return;
+    }
+
+    auto job = new ProductExportJob(selectedProduct(), fileName, m_restClient, this);
+    connect(job, &Job::error, this, [this](const auto &msg) {
+        QMessageBox::critical(this, tr("Export Failed"), tr("Export errror: %1").arg(msg));
+    });
+    connect(job, &Job::finished, this, [this]() {
+        logMessage(tr("Product exported successfully."));
+    });
+}
+
 void MainWindow::productSelected()
 {
     const auto product = selectedProduct();
@@ -304,6 +355,8 @@ void MainWindow::updateActions()
     // product action state
     ui->actionAddProduct->setEnabled(m_restClient->isConnected());
     ui->actionDeleteProduct->setEnabled(selectedProduct().isValid());
+    ui->actionImportProduct->setEnabled(m_restClient->isConnected());
+    ui->actionExportProduct->setEnabled(selectedProduct().isValid());
 
     // deactivate menus of the inactive views
     ui->menuAnalytics->setEnabled(ui->viewStack->currentWidget() == ui->analyticsView);

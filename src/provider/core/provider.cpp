@@ -267,6 +267,13 @@ void ProviderPrivate::submitFinished()
         return;
     }
 
+    const auto redirectTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+    if (redirectTarget.isValid()) {
+        // TODO redirection depth limit
+        submit(reply->url().resolved(redirectTarget));
+        return;
+    }
+
     lastSubmitTime = QDateTime::currentDateTime();
 
     auto s = makeSettings();
@@ -534,16 +541,20 @@ void Provider::submit()
 
     if (!d->networkAccessManager)
         d->networkAccessManager = new QNetworkAccessManager(this);
+    d->submit(d->serverUrl);
+}
 
-    auto url = d->serverUrl;
-    url.setPath(url.path() + QStringLiteral("/receiver/submit/") + d->productId);
+void ProviderPrivate::submit(const QUrl &serverUrl)
+{
+    auto url = serverUrl;
+    url.setPath(url.path() + QStringLiteral("/receiver/submit/") + productId);
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("UserFeedback/") + QStringLiteral(USERFEEDBACK_VERSION));
 #endif
-    auto reply = d->networkAccessManager->post(request, d->jsonData(d->statisticsMode));
-    connect(reply, SIGNAL(finished()), this, SLOT(submitFinished()));
+    auto reply = networkAccessManager->post(request, jsonData(statisticsMode));
+    QObject::connect(reply, SIGNAL(finished()), q, SLOT(submitFinished()));
 }
 
 #include "moc_provider.cpp"

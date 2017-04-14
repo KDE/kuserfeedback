@@ -48,13 +48,6 @@ class SubmitTest : public QObject
 private:
     ServerController m_server;
 
-    ServerInfo testServer() const
-    {
-        ServerInfo s;
-        s.setUrl(m_server.url());
-        return s;
-    }
-
     bool waitForFinished(QNetworkReply *reply)
     {
         Q_ASSERT(reply);
@@ -71,11 +64,25 @@ private slots:
         QVERIFY(m_server.start());
     }
 
+    void testProvider_data()
+    {
+        QTest::addColumn<QString>("path");
+        QTest::newRow("direct") << QString();
+        QTest::newRow("absolute redirect") << QStringLiteral("/absRedirect");
+        QTest::newRow("relative redirect") << QStringLiteral("/relRedirect");
+    }
+
     void testProvider()
     {
+        QFETCH(QString, path);
+        ServerInfo serverInfo;
+        auto serverUrl = m_server.url();
+        serverInfo.setUrl(serverUrl);
+        serverUrl.setPath(path);
+
         // delete previous leftovers
         RESTClient client;
-        client.setServerInfo(testServer());
+        client.setServerInfo(serverInfo);
         client.setConnected(true);
         QVERIFY(client.isConnected());
         Product p;
@@ -95,7 +102,7 @@ private slots:
         Provider provider;
         provider.setStatisticsCollectionMode(Provider::DetailedUsageStatistics);
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
-        provider.setFeedbackServer(m_server.url());
+        provider.setFeedbackServer(serverUrl);
         provider.addDataSource(new ScreenInfoSource, Provider::DetailedUsageStatistics);
         provider.addDataSource(new PlatformInfoSource, Provider::DetailedUsageStatistics);
         provider.submit();

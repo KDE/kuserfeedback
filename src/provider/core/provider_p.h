@@ -53,6 +53,7 @@ public:
 
     QByteArray jsonData(Provider::StatisticsCollectionMode mode) const;
     void scheduleNextSubmission();
+    void submit(const QUrl &url);
     void submitFinished();
 
     bool selectSurvey(const SurveyInfo &survey) const;

@@ -33,6 +33,18 @@ switch ($path[1]) {
         $_SERVER['PHP_SELF'] = '/receiver/index.php';
         include '../server/receiver/index.php';
         return;
+
+    // redirection test cases
+    case 'absRedirect':
+        http_response_code(302);
+        $url = str_replace('/absRedirect/', '/', $_SERVER['REQUEST_URI']);
+        header('Location: http://'. $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $url);
+        return;
+    case 'relRedirect':
+        http_response_code(302);
+        $url = str_replace('/relRedirect/', '/../', $_SERVER['REQUEST_URI']);
+        header('Location: ' . $url);
+        return;
 }
 
 http_response_code(404);

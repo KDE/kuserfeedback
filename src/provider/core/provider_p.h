@@ -72,6 +72,7 @@ public:
     QNetworkAccessManager *networkAccessManager;
     QUrl serverUrl;
     QDateTime lastSubmitTime;
+    int redirectCount;
     int submissionInterval;
     Provider::StatisticsCollectionMode statisticsMode;
 

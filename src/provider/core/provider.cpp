@@ -59,6 +59,7 @@ using namespace UserFeedback;
 ProviderPrivate::ProviderPrivate(Provider *qq)
     : q(qq)
     , networkAccessManager(nullptr)
+    , redirectCount(0)
     , submissionInterval(-1)
     , statisticsMode(Provider::NoStatistics)
     , surveyInterval(-1)
@@ -269,7 +270,10 @@ void ProviderPrivate::submitFinished()
 
     const auto redirectTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
     if (redirectTarget.isValid()) {
-        // TODO redirection depth limit
+        if (++redirectCount >= 20) {
+            qCWarning(Log) << "Redirect loop on" << reply->url().resolved(redirectTarget);
+            return;
+        }
         submit(reply->url().resolved(redirectTarget));
         return;
     }

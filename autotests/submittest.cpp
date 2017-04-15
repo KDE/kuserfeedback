@@ -134,6 +134,22 @@ private slots:
         QVERIFY(sub.contains(QLatin1String("height")));
         QVERIFY(sub.contains(QLatin1String("width")));
     }
+
+    void testRedirectLoop()
+    {
+        auto serverUrl = m_server.url();
+        serverUrl.setPath(QLatin1String("/circleRedirect"));
+
+        // this must pass without ending in an infinite loop
+        Provider provider;
+        provider.setStatisticsCollectionMode(Provider::DetailedUsageStatistics);
+        provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
+        provider.setFeedbackServer(serverUrl);
+        provider.addDataSource(new ScreenInfoSource, Provider::DetailedUsageStatistics);
+        provider.addDataSource(new PlatformInfoSource, Provider::DetailedUsageStatistics);
+        provider.submit();
+        QTest::qWait(500); // HACK submit is async, and we have no way of knowning the redirect loop ended...
+    }
 };
 
 QTEST_MAIN(SubmitTest)

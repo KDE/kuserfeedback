@@ -45,6 +45,10 @@ switch ($path[1]) {
         $url = str_replace('/relRedirect/', '/../', $_SERVER['REQUEST_URI']);
         header('Location: ' . $url);
         return;
+    case 'circleRedirect':
+        http_response_code(302);
+        header('Location: http://'. $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI']);
+        return;
 }
 
 http_response_code(404);

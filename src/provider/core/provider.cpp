@@ -545,13 +545,14 @@ void Provider::submit()
 
     if (!d->networkAccessManager)
         d->networkAccessManager = new QNetworkAccessManager(this);
-    d->submit(d->serverUrl);
+
+    auto url = d->serverUrl;
+    url.setPath(url.path() + QStringLiteral("/receiver/submit/") + d->productId);
+    d->submit(url);
 }
 
-void ProviderPrivate::submit(const QUrl &serverUrl)
+void ProviderPrivate::submit(const QUrl &url)
 {
-    auto url = serverUrl;
-    url.setPath(url.path() + QStringLiteral("/receiver/submit/") + productId);
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)

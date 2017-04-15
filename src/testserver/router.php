@@ -36,17 +36,17 @@ switch ($path[1]) {
 
     // redirection test cases
     case 'absRedirect':
-        http_response_code(302);
+        http_response_code(307);
         $url = str_replace('/absRedirect/', '/', $_SERVER['REQUEST_URI']);
         header('Location: http://'. $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $url);
         return;
     case 'relRedirect':
-        http_response_code(302);
+        http_response_code(307);
         $url = str_replace('/relRedirect/', '/../', $_SERVER['REQUEST_URI']);
         header('Location: ' . $url);
         return;
     case 'circleRedirect':
-        http_response_code(302);
+        http_response_code(307);
         header('Location: http://'. $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI']);
         return;
 }

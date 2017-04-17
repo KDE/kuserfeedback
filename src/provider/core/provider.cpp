@@ -282,7 +282,7 @@ void ProviderPrivate::submitFinished()
 
     auto s = makeSettings();
     s->beginGroup(QStringLiteral("UserFeedback"));
-    s->setValue(QStringLiteral("LastEncouragement"), lastEncouragementTime);
+    s->setValue(QStringLiteral("LastSubmission"), lastSubmitTime);
     s->endGroup();
 
     // reset source counters

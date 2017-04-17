@@ -20,6 +20,8 @@
 
 #include "job.h"
 
+class QNetworkReply;
+
 namespace UserFeedback {
 namespace Console {
 
@@ -33,6 +35,7 @@ public:
     ~HandshakeJob();
 
 private:
+    void processResponse(QNetworkReply *reply);
     RESTClient *m_restClient;
 };
 

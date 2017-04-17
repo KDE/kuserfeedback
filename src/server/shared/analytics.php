@@ -35,7 +35,11 @@ public function get_check_schema()
 
     // check database layout
     $db = new DataStore();
-    $db->checkSchema();
+    $res = $db->checkSchema();
+    $res['protocolVersion'] = 1;
+
+    header('Content-Type: text/json');
+    echo(json_encode($res));
 }
 
 /** List all products. */

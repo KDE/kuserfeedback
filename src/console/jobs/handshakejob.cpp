@@ -21,6 +21,8 @@
 #include <rest/restclient.h>
 
 #include <QDebug>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QNetworkReply>
 
 using namespace UserFeedback::Console;
@@ -33,9 +35,7 @@ HandshakeJob::HandshakeJob(RESTClient* restClient, QObject* parent)
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
             emit info(tr("Connected to %1.").arg(m_restClient->serverInfo().url().toString()));
-            emit info(QString::fromUtf8(reply->readAll()));
-            m_restClient->setConnected(true);
-            emitFinished();
+            processResponse(reply);
         } else {
             emitError(reply->errorString());
         }
@@ -53,4 +53,24 @@ HandshakeJob::HandshakeJob(RESTClient* restClient, QObject* parent)
 
 HandshakeJob::~HandshakeJob()
 {
+}
+
+void HandshakeJob::processResponse(QNetworkReply* reply)
+{
+    const auto doc = QJsonDocument::fromJson(reply->readAll());
+    const auto obj = doc.object();
+
+    const auto protoVer = obj.value(QLatin1String("protocolVersion")).toInt();
+    if (protoVer != 1) {
+        emitError(tr("Incompatbile protcol: %1.").arg(protoVer));
+        return;
+    }
+
+    const auto prevSchema = obj.value(QLatin1String("previousSchemaVersion")).toInt();
+    const auto curSchema = obj.value(QLatin1String("currentSchemaVersion")).toInt();
+    if (prevSchema != curSchema)
+        emit info(tr("Updated database schema from version %1 to %2.").arg(prevSchema).arg(curSchema));
+
+    m_restClient->setConnected(true);
+    emitFinished();
 }

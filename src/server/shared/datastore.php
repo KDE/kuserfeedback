@@ -104,21 +104,23 @@ public function checkSchema()
     $schemaDefs = json_decode(file_get_contents($schemaFile), true);
     $targetVersion = count($schemaDefs['schema']);
 
-    if ($currentVersion == $targetVersion) {
-        echo('Schema is up-to-date.');
-        return;
-    }
+    $res = array();
+    $res['previousSchemaVersion'] = $currentVersion;
+    $res['currentSchemaVersion'] = $targetVersion;
 
+    if ($currentVersion == $targetVersion)
+        return $res;
     if ($currentVersion > $targetVersion || $currentVersion < 0)
-        die('Current schema version is invalid: ' . $currentVersion . '.');
+        throw new RESTException('Current schema version is invalid: ' . $currentVersion . '.', 500);
 
     # apply database updates
-    echo('Current schema version: ' . $currentVersion . ' should be: ' . $targetVersion);
+    error_log('Current schema version: ' . $currentVersion . ' should be: ' . $targetVersion);
     for ($i = $currentVersion; $i < $targetVersion; $i++) {
-        echo("Applying update $i...");
+        error_log("Applying update $i...");
         $this->applySchemaChange($schemaDefs['schema'][$i]);
     }
     $this->commit();
+    return $res;
 }
 
 /** Returns the current schema version. */
@@ -132,7 +134,7 @@ private function schemaVersion()
         return 0;
     }
     foreach ($res as $row)
-        return $row['col_version'];
+        return intval($row['col_version']);
     return 0;
 }
 

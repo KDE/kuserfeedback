@@ -15,6 +15,7 @@ set(console_lib_srcs
     rest/serverinfo.cpp
 
     jobs/job.cpp
+    jobs/handshakejob.cpp
     jobs/productexportjob.cpp
     jobs/productimportjob.cpp
 

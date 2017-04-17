@@ -15,32 +15,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_JOB_H
-#define USERFEEDBACK_CONSOLE_JOB_H
+#ifndef USERFEEDBACK_CONSOLE_HANDSHAKEJOB_H
+#define USERFEEDBACK_CONSOLE_HANDSHAKEJOB_H
 
-#include <QObject>
+#include "job.h"
 
 namespace UserFeedback {
 namespace Console {
 
-class Job : public QObject
+class RESTClient;
+
+class HandshakeJob : public Job
 {
     Q_OBJECT
 public:
-    explicit Job(QObject *parent = nullptr);
-    ~Job();
+    explicit HandshakeJob(RESTClient *restClient, QObject *parent = nullptr);
+    ~HandshakeJob();
 
-signals:
-    void info(const QString &msg);
-    void error(const QString &msg);
-    void finished();
-
-protected:
-    void emitError(const QString &msg);
-    void emitFinished();
+private:
+    RESTClient *m_restClient;
 };
 
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_JOB_H
+#endif // USERFEEDBACK_CONSOLE_HANDSHAKEJOB_H

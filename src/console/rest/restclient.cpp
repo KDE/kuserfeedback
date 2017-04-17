@@ -33,6 +33,11 @@ RESTClient::RESTClient(QObject *parent) :
 
 RESTClient::~RESTClient() = default;
 
+ServerInfo RESTClient::serverInfo() const
+{
+    return m_serverInfo;
+}
+
 void RESTClient::setServerInfo(const ServerInfo& info)
 {
     m_isConnected = false;
@@ -99,6 +104,7 @@ QNetworkRequest RESTClient::makeRequest(const QString& command)
     const auto authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
     request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
     request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("UserFeedbackConsole/") + QStringLiteral(USERFEEDBACK_VERSION));
+    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     return request;
 }
 

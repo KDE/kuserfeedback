@@ -37,6 +37,7 @@ public:
     explicit RESTClient(QObject *parent = nullptr);
     ~RESTClient();
 
+    ServerInfo serverInfo() const;
     void setServerInfo(const ServerInfo &info);
     void setConnected(bool connected);
     bool isConnected() const;

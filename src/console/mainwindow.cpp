@@ -21,6 +21,7 @@
 #include "helpcontroller.h"
 #include "connectdialog.h"
 
+#include <jobs/handshakejob.h>
 #include <jobs/productexportjob.h>
 #include <jobs/productimportjob.h>
 #include <model/productmodel.h>
@@ -224,18 +225,13 @@ void MainWindow::addView(T *view, QMenu *menu)
 void MainWindow::connectToServer(const ServerInfo& info)
 {
     m_restClient->setServerInfo(info);
-    auto reply = RESTApi::checkSchema(m_restClient);
-    connect(reply, &QNetworkReply::finished, this, [this, reply, info]() {
-        if (reply->error() == QNetworkReply::NoError) {
-            logMessage(tr("Connected to %1.").arg(info.url().toString()));
-            logMessage(QString::fromUtf8(reply->readAll()));
-            m_restClient->setConnected(true);
-        } else {
-            logError(reply->errorString());
-            QMessageBox::critical(this, tr("Connection Failure"), tr("Failed to connect to server: %1").arg(reply->errorString()));
-        }
-        updateActions();
+    auto job = new HandshakeJob(m_restClient, this);
+    connect(job, &Job::destroyed, this, &MainWindow::updateActions);
+    connect(job, &Job::error, this, [this](const QString &msg) {
+        logError(msg);
+        QMessageBox::critical(this, tr("Connection Failure"), tr("Failed to connect to server: %1").arg(msg));
     });
+    connect(job, &Job::info, this, &MainWindow::logMessage);
 }
 
 void MainWindow::createProduct()

@@ -17,6 +17,7 @@
 
 #include "config-userfeedback-version.h"
 
+#include <jobs/handshakejob.h>
 #include <jobs/productexportjob.h>
 #include <jobs/productimportjob.h>
 #include <rest/restapi.h>
@@ -163,15 +164,10 @@ int main(int argc, char **argv)
         parser.showHelp(1);
     }
 
-    auto reply = RESTApi::checkSchema(&restClient);
-    QObject::connect(reply, &QNetworkReply::finished, [reply, &server, &restClient]() {
-        if (reply->error() == QNetworkReply::NoError) {
-            std::cerr << "Connected to " << qPrintable(server.url().toString()) << std::endl;
-            restClient.setConnected(true);
-        } else {
-            std::cerr << qPrintable(reply->errorString()) << std::endl;
-            QCoreApplication::exit(1);
-        }
+    auto job = new HandshakeJob(&restClient);
+    QObject::connect(job, &Job::error, [](const QString &msg) {
+        std::cerr << qPrintable(msg) << std::endl;
+        QCoreApplication::exit(1);
     });
 
     return app.exec();

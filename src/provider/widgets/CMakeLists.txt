@@ -2,6 +2,7 @@ set(userfeedback_widgets_srcs
     feedbackconfigdialog.cpp
     feedbackconfigwidget.cpp
     notificationpopup.cpp
+    styleinfosource.cpp
 )
 
 add_library(UserFeedbackWidgets SHARED ${userfeedback_widgets_srcs})

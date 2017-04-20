@@ -14,12 +14,12 @@
         {
             "elements": [
                 {
-                    "schemaEntry": "viewRatio",
+                    "schemaEntry": "dialRatio",
                     "schemaEntryElement": "property",
                     "type": "value"
                 }
             ],
-            "name": "View Ratio Distribution",
+            "name": "Dial Ratio Distribution",
             "type": "ratio_set"
         },
         {
@@ -47,6 +47,16 @@
         {
             "elements": [
                 {
+                    "schemaEntry": "screens",
+                    "type": "size"
+                }
+            ],
+            "name": "Amount of Screens",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
                     "schemaEntry": "startCount",
                     "schemaEntryElement": "value",
                     "type": "value"
@@ -63,11 +73,88 @@
                     "type": "value"
                 }
             ],
-            "name": "Usage Count Distribution",
+            "name": "Usage Time Distribution",
             "type": "numeric"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "screens",
+                    "schemaEntryElement": "dpi",
+                    "type": "value"
+                }
+            ],
+            "name": "DPI Distribution",
+            "type": "numeric"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "cpu",
+                    "schemaEntryElement": "architecture",
+                    "type": "value"
+                }
+            ],
+            "name": "CPU Architecture Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "cpu",
+                    "schemaEntryElement": "count",
+                    "type": "value"
+                }
+            ],
+            "name": "CPU Count Distribution",
+            "type": "numeric"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "locale",
+                    "schemaEntryElement": "language",
+                    "type": "value"
+                }
+            ],
+            "name": "Language Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "locale",
+                    "schemaEntryElement": "region",
+                    "type": "value"
+                }
+            ],
+            "name": "Region Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "style",
+                    "schemaEntryElement": "style",
+                    "type": "value"
+                }
+            ],
+            "name": "Widget Style Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "style",
+                    "schemaEntryElement": "dark",
+                    "type": "value"
+                }
+            ],
+            "name": "Palette Color Scheme",
+            "type": "category"
         }
     ],
-    "name": "org.kde.UserFeedbackConsole",
+    "name": "org.kde.orwell",
     "schema": [
         {
             "elements": [
@@ -86,7 +173,7 @@
                     "type": "number"
                 }
             ],
-            "name": "viewRatio",
+            "name": "dialRatio",
             "type": "map"
         },
         {
@@ -116,6 +203,24 @@
         {
             "elements": [
                 {
+                    "name": "width",
+                    "type": "int"
+                },
+                {
+                    "name": "height",
+                    "type": "int"
+                },
+                {
+                    "name": "dpi",
+                    "type": "int"
+                }
+            ],
+            "name": "screens",
+            "type": "list"
+        },
+        {
+            "elements": [
+                {
                     "name": "value",
                     "type": "int"
                 }
@@ -131,6 +236,48 @@
                 }
             ],
             "name": "usageTime",
+            "type": "scalar"
+        },
+        {
+            "elements": [
+                {
+                    "name": "architecture",
+                    "type": "string"
+                },
+                {
+                    "name": "count",
+                    "type": "int"
+                }
+            ],
+            "name": "cpu",
+            "type": "scalar"
+        },
+        {
+            "elements": [
+                {
+                    "name": "language",
+                    "type": "string"
+                },
+                {
+                    "name": "region",
+                    "type": "string"
+                }
+            ],
+            "name": "locale",
+            "type": "scalar"
+        },
+        {
+            "elements": [
+                {
+                    "name": "style",
+                    "type": "string"
+                },
+                {
+                    "name": "dark",
+                    "type": "bool"
+                }
+            ],
+            "name": "style",
             "type": "scalar"
         }
     ]

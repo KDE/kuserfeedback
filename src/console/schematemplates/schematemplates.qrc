@@ -8,6 +8,7 @@
         <file>propertyRatio.schema</file>
         <file>qtVersion.schema</file>
         <file>screens.schema</file>
+        <file>style.schema</file>
         <file>usageCount.schema</file>
         <file>usageTime.schema</file>
     </qresource>

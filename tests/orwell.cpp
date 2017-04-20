@@ -20,6 +20,7 @@
 
 #include <provider/widgets/feedbackconfigdialog.h>
 #include <provider/widgets/notificationpopup.h>
+#include <provider/widgets/styleinfosource.h>
 #include <provider/core/applicationversionsource.h>
 #include <provider/core/cpuinfosource.h>
 #include <provider/core/localeinfosource.h>
@@ -121,6 +122,7 @@ int main(int argc, char** argv)
     provider->addDataSource(new UserFeedback::ScreenInfoSource, UserFeedback::Provider::DetailedSystemInformation);
     provider->addDataSource(new UserFeedback::StartCountSource, UserFeedback::Provider::BasicUsageStatistics);
     provider->addDataSource(new UserFeedback::UsageTimeSource, UserFeedback::Provider::BasicUsageStatistics);
+    provider->addDataSource(new UserFeedback::StyleInfoSource, UserFeedback::Provider::DetailedSystemInformation);
 
     Orwell mainWindow;
     mainWindow.show();

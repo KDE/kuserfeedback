@@ -32,6 +32,8 @@ class ServerInfoTest : public QObject
 private slots:
     void initTestCase()
     {
+        QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+        QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
         QStandardPaths::setTestModeEnabled(true);
     }
 

@@ -60,6 +60,8 @@ private:
 private slots:
     void initTestCase()
     {
+        QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+        QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QStandardPaths::setTestModeEnabled(true);
 #endif

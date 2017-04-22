@@ -24,7 +24,9 @@ uf_add_test(providertest UserFeedbackCore Qt5::Gui)
 
 uf_add_test(feedbackconfigtest UserFeedbackWidgets)
 
-uf_add_test(surveytargetexpressiontest.cpp UserFeedbackCommon)
+if(HAVE_SURVEY_TARGET_EXPRESSIONS)
+    uf_add_test(surveytargetexpressiontest.cpp UserFeedbackCommon)
+endif()
 
 if(TARGET UserFeedbackConsole)
     uf_add_test(producttest UserFeedbackConsole)

@@ -4,6 +4,7 @@ set(common_src
     surveytargetexpressionparser.cpp
 )
 
+if(HAVE_SURVEY_TARGET_EXPRESSIONS)
 flex_target(surveytargetexpressionscanner
     surveytargetexpressionlexer.l
     ${CMAKE_CURRENT_BINARY_DIR}/surveytargetexpressionlexer.cpp
@@ -15,6 +16,7 @@ bison_target(surveytargetexpressionparser
     COMPILE_FLAGS --defines=${CMAKE_CURRENT_BINARY_DIR}/surveytargetexpressionparser_p.h
 )
 add_flex_bison_dependency(surveytargetexpressionscanner surveytargetexpressionparser)
+endif()
 
 add_library(UserFeedbackCommon STATIC
     ${common_src}

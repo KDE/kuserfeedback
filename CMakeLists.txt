@@ -111,8 +111,14 @@ endif()
 
 add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_NO_CAST_TO_ASCII -DQT_NO_URL_CAST_FROM_STRING -DQT_NO_CAST_FROM_ASCII)
 
-find_package(FLEX REQUIRED)
-find_package(BISON REQUIRED)
+find_package(FLEX)
+set_package_properties(FLEX PROPERTIES TYPE RECOMMENDED PURPOSE "Survey target expression parser.")
+find_package(BISON)
+set_package_properties(BISON PROPERTIES TYPE RECOMMENDED PURPOSE "Survey target expression parser.")
+if(FLEX_FOUND AND BISON_FOUND)
+    set(HAVE_SURVEY_TARGET_EXPRESSIONS 1)
+endif()
+add_feature_info("Survey targeting expressions support" HAVE_SURVEY_TARGET_EXPRESSIONS "Requires flex and bison parser generators.")
 
 find_package(Php)
 set_package_properties(Php PROPERTIES URL "http://php.net" TYPE RECOMMENDED PURPOSE "Syntax checking of PHP server code.")
@@ -150,7 +156,8 @@ set(
 )
 
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
-configure_file(config-userfeedback-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback-version.h)
+configure_file(config-userfeedback.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback.h)
+configure_file(config-userfeedback-version.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback-version.h)
 
 #
 # Actually build the stuff

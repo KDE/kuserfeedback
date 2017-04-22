@@ -15,10 +15,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <config-userfeedback.h>
+
 #include "surveytargetexpressionparser.h"
 #include "surveytargetexpression.h"
+
+#ifdef HAVE_SURVEY_TARGET_EXPRESSIONS
 #include "surveytargetexpressionparser_p.h"
 #include "surveytargetexpressionscanner.h"
+#endif
 
 #include <QString>
 
@@ -71,6 +76,7 @@ bool SurveyTargetExpressionParser::parse(const QString &s)
     delete m_expression;
     m_expression = nullptr;
 
+#ifdef HAVE_SURVEY_TARGET_EXPRESSIONS
     yyscan_t scanner;
     YY_BUFFER_STATE state;
     if (yylex_init(&scanner))
@@ -85,6 +91,7 @@ bool SurveyTargetExpressionParser::parse(const QString &s)
 
     yy_delete_buffer(state, scanner);
     yylex_destroy(scanner);
+#endif
     return m_expression;
 }
 

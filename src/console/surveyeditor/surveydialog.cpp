@@ -15,6 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <config-userfeedback.h>
+
 #include "surveydialog.h"
 #include "ui_surveydialog.h"
 
@@ -73,10 +75,12 @@ void SurveyDialog::updateState()
     const auto url = QUrl(ui->url->text());
     valid &= url.isValid() && !url.scheme().isEmpty() && !url.host().isEmpty();
 
+#ifdef HAVE_SURVEY_TARGET_EXPRESSIONS
     if (!ui->targetExpression->toPlainText().isEmpty()) {
         SurveyTargetExpressionParser p;
         valid &= p.parse(ui->targetExpression->toPlainText());
     }
+#endif
 
     ui->buttonBox->button(QDialogButtonBox::Save)->setEnabled(valid);
 }

@@ -99,8 +99,7 @@ void ServerInfo::setPassword(const QString& password)
 
 void ServerInfo::save() const
 {
-    QSettings settings;
-    settings.beginGroup(QStringLiteral("ServerInfo"));
+    QSettings settings(QStringLiteral("KDE"), QStringLiteral("UserFeedbackConsole.servers"));
     settings.beginGroup(ServerInfoData::groupName(name()));
     settings.setValue(QStringLiteral("name"), name());
     settings.setValue(QStringLiteral("url"), url().toString());
@@ -116,8 +115,7 @@ void ServerInfo::save() const
 
 ServerInfo ServerInfo::load(const QString &name)
 {
-    QSettings settings;
-    settings.beginGroup(QStringLiteral("ServerInfo"));
+    QSettings settings(QStringLiteral("KDE"), QStringLiteral("UserFeedbackConsole.servers"));
     settings.beginGroup(ServerInfoData::groupName(name));
 
     ServerInfo info;
@@ -130,8 +128,7 @@ ServerInfo ServerInfo::load(const QString &name)
 
 void ServerInfo::remove(const QString& name)
 {
-    QSettings settings;
-    settings.beginGroup(QStringLiteral("ServerInfo"));
+    QSettings settings(QStringLiteral("KDE"), QStringLiteral("UserFeedbackConsole.servers"));
     settings.remove(ServerInfoData::groupName(name));
 
     auto allServers = settings.value(QStringLiteral("ServerNames")).toStringList();
@@ -141,7 +138,6 @@ void ServerInfo::remove(const QString& name)
 
 QStringList ServerInfo::allServerInfoNames()
 {
-    QSettings settings;
-    settings.beginGroup(QStringLiteral("ServerInfo"));
+    QSettings settings(QStringLiteral("KDE"), QStringLiteral("UserFeedbackConsole.servers"));
     return settings.value(QStringLiteral("ServerNames")).toStringList();
 }

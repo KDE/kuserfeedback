@@ -61,11 +61,7 @@ int main(int argc, char **argv)
     if (parser.positionalArguments().isEmpty() || !parser.isSet(serverOpt))
         parser.showHelp(1);
 
-    // TODO: make the server information independent of UserFeedbackConsole
-    QCoreApplication::setApplicationName(QStringLiteral("UserFeedbackConsole"));
     const auto server = ServerInfo::load(parser.value(serverOpt));
-    QCoreApplication::setApplicationName(QStringLiteral("userfeedbackctl"));
-
     if (!server.isValid()) {
         std::cerr << "Invalid server information." << std::endl;
         return 1;

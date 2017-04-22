@@ -28,7 +28,9 @@ namespace Console {
 class ServerInfoData : public QSharedData
 {
 public:
-    static QString groupName(const QUrl &url);
+    static QString groupName(const QString &name);
+
+    QString name;
     QUrl url;
     QString userName;
     QString password;
@@ -37,9 +39,9 @@ public:
 }
 }
 
-QString ServerInfoData::groupName(const QUrl& url)
+QString ServerInfoData::groupName(const QString &name)
 {
-    return QString::fromLatin1(QUrl::toPercentEncoding(url.toString()));
+    return QString::fromLatin1(QUrl::toPercentEncoding(name));
 }
 
 ServerInfo::ServerInfo() : d(new ServerInfoData) {}
@@ -50,6 +52,19 @@ ServerInfo& ServerInfo::operator=(const ServerInfo&) = default;
 bool ServerInfo::isValid() const
 {
     return d->url.isValid();
+}
+
+QString ServerInfo::name() const
+{
+    // ### temporary
+    if (d->name.isEmpty())
+        return d->url.toString();
+    return d->name;
+}
+
+void ServerInfo::setName(const QString& name)
+{
+    d->name = name;
 }
 
 QUrl ServerInfo::url() const
@@ -86,21 +101,47 @@ void ServerInfo::save() const
 {
     QSettings settings;
     settings.beginGroup(QStringLiteral("ServerInfo"));
-    settings.beginGroup(ServerInfoData::groupName(url()));
+    settings.beginGroup(ServerInfoData::groupName(name()));
+    settings.setValue(QStringLiteral("name"), name());
     settings.setValue(QStringLiteral("url"), url().toString());
     settings.setValue(QStringLiteral("userName"), userName());
     settings.setValue(QStringLiteral("password"), password()); // TODO
+    settings.endGroup();
+
+    auto allServers = settings.value(QStringLiteral("ServerNames")).toStringList();
+    if (!allServers.contains(name()))
+        allServers.push_back(name());
+    settings.setValue(QStringLiteral("ServerNames"), allServers);
 }
 
-ServerInfo ServerInfo::load(const QString& url)
+ServerInfo ServerInfo::load(const QString &name)
 {
     QSettings settings;
     settings.beginGroup(QStringLiteral("ServerInfo"));
-    settings.beginGroup(ServerInfoData::groupName(QUrl(url)));
+    settings.beginGroup(ServerInfoData::groupName(name));
 
     ServerInfo info;
+    info.setName(settings.value(QStringLiteral("name")).toString());
     info.setUrl(QUrl(settings.value(QStringLiteral("url")).toString()));
     info.setUserName(settings.value(QStringLiteral("userName")).toString());
     info.setPassword(settings.value(QStringLiteral("password")).toString());
     return info;
+}
+
+void ServerInfo::remove(const QString& name)
+{
+    QSettings settings;
+    settings.beginGroup(QStringLiteral("ServerInfo"));
+    settings.remove(ServerInfoData::groupName(name));
+
+    auto allServers = settings.value(QStringLiteral("ServerNames")).toStringList();
+    allServers.removeAll(name);
+    settings.setValue(QStringLiteral("ServerNames"), allServers);
+}
+
+QStringList ServerInfo::allServerInfoNames()
+{
+    QSettings settings;
+    settings.beginGroup(QStringLiteral("ServerInfo"));
+    return settings.value(QStringLiteral("ServerNames")).toStringList();
 }

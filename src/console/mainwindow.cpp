@@ -103,17 +103,12 @@ MainWindow::MainWindow() :
         QSettings settings;
         auto info = ServerInfo::load(settings.value(QStringLiteral("LastServerInfo")).toString());
         ConnectDialog dlg(this);
-        auto recents = settings.value(QStringLiteral("RecentServerInfos")).toStringList();
-        dlg.addRecentServerInfos(recents);
+        dlg.addRecentServerInfos(ServerInfo::allServerInfoNames());
         dlg.setServerInfo(info);
         if (dlg.exec()) {
             info = dlg.serverInfo();
             info.save();
             settings.setValue(QStringLiteral("LastServerInfo"), info.url().toString());
-            if (!recents.contains(info.url().toString())) {
-                recents.push_back(info.url().toString());
-                settings.setValue(QStringLiteral("RecentServerInfos"), recents);
-            }
             connectToServer(info);
         }
     });

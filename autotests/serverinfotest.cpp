@@ -39,32 +39,39 @@ private slots:
 
     void testServerInfoLoadStore()
     {
-        {
-            QSettings s;
-            s.remove(QStringLiteral("ServerInfo"));
-        }
+        ServerInfo::remove(QStringLiteral("UnitTestServer"));
 
         {
-            const auto myInfo = ServerInfo::load(QStringLiteral("https://www.kde.org/"));
+            const auto myInfo = ServerInfo::load(QStringLiteral("UnitTestServer"));
+            QVERIFY(!myInfo.isValid());
+            QVERIFY(myInfo.name().isEmpty());
             QVERIFY(myInfo.userName().isEmpty());
             QVERIFY(myInfo.password().isEmpty());
             QVERIFY(myInfo.url().isEmpty());
         }
+        QVERIFY(!ServerInfo::allServerInfoNames().contains(QStringLiteral("UnitTestServer")));
 
         {
             ServerInfo myInfo;
+            myInfo.setName(QStringLiteral("UnitTestServer"));
             myInfo.setUrl(QUrl(QStringLiteral("https://www.kde.org/")));
             myInfo.setUserName(QStringLiteral("me"));
             myInfo.setPassword(QStringLiteral("myPassword"));
+            QVERIFY(myInfo.isValid());
             myInfo.save();
         }
+        QVERIFY(ServerInfo::allServerInfoNames().contains(QStringLiteral("UnitTestServer")));
 
         {
-            const auto myInfo = ServerInfo::load(QStringLiteral("https://www.kde.org/"));
+            const auto myInfo = ServerInfo::load(QStringLiteral("UnitTestServer"));
+            QVERIFY(myInfo.isValid());
+            QCOMPARE(myInfo.name(), QLatin1String("UnitTestServer"));
             QCOMPARE(myInfo.userName(), QLatin1String("me"));
             QCOMPARE(myInfo.password(), QLatin1String("myPassword"));
             QCOMPARE(myInfo.url(), QUrl(QStringLiteral("https://www.kde.org/")));
         }
+
+        ServerInfo::remove(QStringLiteral("UnitTestServer"));
     }
 };
 

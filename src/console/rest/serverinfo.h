@@ -20,6 +20,7 @@
 
 #include <QSharedDataPointer>
 
+class QStringList;
 class QUrl;
 
 namespace UserFeedback {
@@ -38,6 +39,9 @@ public:
 
     bool isValid() const;
 
+    QString name() const;
+    void setName(const QString &name);
+
     QUrl url() const;
     void setUrl(const QUrl& url);
 
@@ -50,7 +54,12 @@ public:
     /** Save to settings. */
     void save() const;
     /** Load from settings. */
-    static ServerInfo load(const QString &url);
+    static ServerInfo load(const QString &name);
+    /** Delete stored information for the server with name @p name. */
+    static void remove(const QString &name);
+
+    /** Returns the names of all configured servers. */
+    static QStringList allServerInfoNames();
 
 private:
     QSharedDataPointer<ServerInfoData> d;

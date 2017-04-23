@@ -108,7 +108,7 @@ MainWindow::MainWindow() :
         if (dlg.exec()) {
             info = dlg.serverInfo();
             info.save();
-            settings.setValue(QStringLiteral("LastServerInfo"), info.url().toString());
+            settings.setValue(QStringLiteral("LastServerInfo"), info.name());
             connectToServer(info);
         }
     });

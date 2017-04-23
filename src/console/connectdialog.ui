@@ -19,10 +19,10 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Se&amp;rver URL:</string>
+        <string>Server &amp;Name:</string>
        </property>
        <property name="buddy">
-        <cstring>serverUrl</cstring>
+        <cstring>serverName</cstring>
        </property>
       </widget>
      </item>
@@ -57,7 +57,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QComboBox" name="serverUrl">
+      <widget class="QComboBox" name="serverName">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>5</horstretch>
@@ -71,6 +71,16 @@
         <enum>QComboBox::InsertAlphabetically</enum>
        </property>
       </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Server &amp;URL:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="serverUrl"/>
      </item>
     </layout>
    </item>
@@ -86,6 +96,12 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>serverName</tabstop>
+  <tabstop>serverUrl</tabstop>
+  <tabstop>userName</tabstop>
+  <tabstop>password</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

@@ -48,18 +48,47 @@ int main(int argc, char **argv)
     parser.setApplicationDescription(QStringLiteral("UserFeedback management tool"));
     parser.addHelpOption();
     parser.addVersionOption();
-    QCommandLineOption serverOpt({ QStringLiteral("server"), QStringLiteral("s") }, QStringLiteral("Server URL"), QStringLiteral("url"));
+    QCommandLineOption serverOpt({ QStringLiteral("server"), QStringLiteral("s") }, QStringLiteral("Server Name"), QStringLiteral("name"));
     parser.addOption(serverOpt);
     QCommandLineOption outputOpt( { QStringLiteral("output"), QStringLiteral("o") }, QStringLiteral("Output path"), QStringLiteral("path"));
     parser.addOption(outputOpt);
     QCommandLineOption forceOpt( { QStringLiteral("force"), QStringLiteral("f") }, QStringLiteral("Force destructive operations"));
     parser.addOption(forceOpt);
-    parser.addPositionalArgument(QStringLiteral("command"), QStringLiteral("Command: delete-product, export-all, export-product, import-product, list-products"));
+    QCommandLineOption urlOpt( { QStringLiteral("url"), QStringLiteral("u") }, QStringLiteral("Server URL"), QStringLiteral("url"));
+    parser.addOption(urlOpt);
+    QCommandLineOption userOpt( { QStringLiteral("user") }, QStringLiteral("User name"), QStringLiteral("name"));
+    parser.addOption(userOpt);
+    QCommandLineOption passOpt ( { QStringLiteral("password") }, QStringLiteral("Password"), QStringLiteral("pass"));
+    parser.addOption(passOpt);
+    parser.addPositionalArgument(QStringLiteral("command"), QStringLiteral("Command: add-server, delete-product, delete-server, export-all, export-product, import-product, list-products, list-servers"));
 
     parser.process(app);
 
-    if (parser.positionalArguments().isEmpty() || !parser.isSet(serverOpt))
+    if (parser.positionalArguments().isEmpty())
         parser.showHelp(1);
+    const auto cmd = parser.positionalArguments().at(0);
+    if (cmd == QLatin1String("list-servers")) {
+        for (const auto &n : ServerInfo::allServerInfoNames())
+            std::cout << qPrintable(n) << std::endl;
+        return 0;
+    }
+    if (!parser.isSet(serverOpt))
+        parser.showHelp(1);
+
+    if (cmd == QLatin1String("add-server")) {
+        if (!parser.isSet(urlOpt))
+            parser.showHelp(1);
+        ServerInfo s;
+        s.setName(parser.value(serverOpt));
+        s.setUrl(QUrl::fromUserInput(parser.value(urlOpt)));
+        s.setUserName(parser.value(userOpt));
+        s.setPassword(parser.value(passOpt));
+        s.save();
+        return 0;
+    } else if (cmd == QLatin1String("delete-server")) {
+        ServerInfo::remove(parser.value(serverOpt));
+        return 0;
+    }
 
     const auto server = ServerInfo::load(parser.value(serverOpt));
     if (!server.isValid()) {
@@ -80,7 +109,6 @@ int main(int argc, char **argv)
     });
     restClient.setServerInfo(server);
 
-    const auto cmd = parser.positionalArguments().at(0);
     if (cmd == QLatin1String("delete-product")) {
         jobCount = parser.positionalArguments().size() - 1;
         if (jobCount <= 0 || !parser.isSet(forceOpt))

@@ -1,3 +1,4 @@
+include(KDEFrameworkCompilerSettings)
 add_subdirectory(core)
 if(TARGET Qt5::Widgets OR QT_QTGUI_LIBRARIES)
   add_subdirectory(widgets)

@@ -112,7 +112,7 @@ void FeedbackConfigWidgetPrivate::telemetrySliderChanged()
     } else {
         QByteArray jsonData;
         QMetaObject::invokeMethod(provider, "jsonData", Q_RETURN_ARG(QByteArray, jsonData), Q_ARG(UserFeedback::Provider::StatisticsCollectionMode, telemetryModeMap[ui->telemetrySlider->value()]));
-        ui->telemetryDetails->setPlainText(QString::fromUtf8(jsonData));
+        ui->telemetryDetails->setPlainText(QString::fromUtf8(jsonData.constData()));
     }
 }
 

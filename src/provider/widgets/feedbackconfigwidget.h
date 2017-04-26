@@ -61,7 +61,7 @@ public:
     /*! Returns the survey interval currently selected in this widget. */
     int surveyInterval() const;
 
-signals:
+Q_SIGNALS:
     /*! Emitted when any changes are made to the configuration represented
      *  in this widget.
      */

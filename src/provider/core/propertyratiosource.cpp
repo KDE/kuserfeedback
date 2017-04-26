@@ -61,7 +61,7 @@ class SignalMonitor : public QObject
     Q_OBJECT
 public:
     explicit SignalMonitor(PropertyRatioSourcePrivate *r) : m_receiver(r) {}
-public slots:
+public Q_SLOTS:
     void propertyChanged()
     {
         m_receiver->propertyChanged();

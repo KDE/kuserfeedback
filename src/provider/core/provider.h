@@ -126,11 +126,11 @@ public:
      */
     void setEncouragementInterval(int days);
 
-public slots:
+public Q_SLOTS:
     /*! Manually submit currently recorded data. */
     void submit();
 
-signals:
+Q_SIGNALS:
     /*! Emitted whenever there is a new survey available that can be presented
      *  to the user.
      */

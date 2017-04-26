@@ -85,7 +85,7 @@ QVariant AggregatedDataModel::headerData(int section, Qt::Orientation orientatio
         const auto v = m_models.at(m_columnMapping.at(section))->headerData(m_columnOffset.at(section), orientation, role);
         if (role != Qt::DisplayRole || m_prefixes.at(m_columnMapping.at(section)).isEmpty())
             return v;
-        return m_prefixes.at(m_columnMapping.at(section)) + QStringLiteral(": ") + v.toString();
+        return QString(m_prefixes.at(m_columnMapping.at(section)) + QStringLiteral(": ") + v.toString());
     }
     return QAbstractTableModel::headerData(section, orientation, role);
 }

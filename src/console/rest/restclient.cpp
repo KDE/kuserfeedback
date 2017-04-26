@@ -101,9 +101,9 @@ QNetworkRequest RESTClient::makeRequest(const QString& command)
     path +=  QStringLiteral("analytics/") + command;
     url.setPath(path);
     QNetworkRequest request(url);
-    const auto authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
-    request.setRawHeader("Authorization", "Basic " + authToken.toBase64());
-    request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("UserFeedbackConsole/") + QStringLiteral(USERFEEDBACK_VERSION));
+    const QByteArray authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
+    request.setRawHeader("Authorization", QByteArray("Basic " + authToken.toBase64()));
+    request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("UserFeedbackConsole/") + QStringLiteral(USERFEEDBACK_VERSION)));
     request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     return request;
 }

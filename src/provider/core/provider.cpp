@@ -116,7 +116,7 @@ void ProviderPrivate::load()
     lastSubmitTime = s->value(QStringLiteral("LastSubmission")).toDateTime();
 
     const auto modeStr = s->value(QStringLiteral("StatisticsCollectionMode")).toByteArray();
-    statisticsMode = static_cast<Provider::StatisticsCollectionMode>(std::max(statisticsCollectionModeEnum().keyToValue(modeStr), 0));
+    statisticsMode = static_cast<Provider::StatisticsCollectionMode>(std::max(statisticsCollectionModeEnum().keyToValue(modeStr.constData()), 0));
 
     surveyInterval = s->value(QStringLiteral("SurveyInterval"), -1).toInt();
     lastSurveyTime = s->value(QStringLiteral("LastSurvey")).toDateTime();
@@ -556,7 +556,7 @@ void ProviderPrivate::submit(const QUrl &url)
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-    request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("UserFeedback/") + QStringLiteral(USERFEEDBACK_VERSION));
+    request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("UserFeedback/") + QStringLiteral(USERFEEDBACK_VERSION)));
 #endif
     auto reply = networkAccessManager->post(request, jsonData(statisticsMode));
     QObject::connect(reply, SIGNAL(finished()), q, SLOT(submitFinished()));

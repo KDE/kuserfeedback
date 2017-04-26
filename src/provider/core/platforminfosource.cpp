@@ -42,9 +42,9 @@ QVariant PlatformInfoSource::data()
 
     // openSUSE Tumbleweed has the current date as version number, that is a bit too precise for us
     if (QSysInfo::productType() == QLatin1String("opensuse") && QSysInfo::productVersion().startsWith(QLatin1String("20")))
-        m.insert(QStringLiteral("version"), QSysInfo::productType() + QLatin1String("-tumbleweed"));
+        m.insert(QStringLiteral("version"), QString(QSysInfo::productType() + QLatin1String("-tumbleweed")));
     else
-        m.insert(QStringLiteral("version"), QSysInfo::productType() + QLatin1Char('-') + QSysInfo::productVersion());
+        m.insert(QStringLiteral("version"), QString(QSysInfo::productType() + QLatin1Char('-') + QSysInfo::productVersion()));
 #else
     m.insert(QStringLiteral("os"), QSysInfo::productType());
     m.insert(QStringLiteral("version"), QSysInfo::productVersion());

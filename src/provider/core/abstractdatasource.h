@@ -23,7 +23,9 @@
 
 #include <QCoreApplication>
 
+QT_BEGIN_NAMESPACE
 class QSettings;
+QT_END_NAMESPACE
 
 namespace UserFeedback {
 

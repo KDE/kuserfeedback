@@ -20,8 +20,10 @@
 
 #include <QHash>
 
+QT_BEGIN_NAMESPACE
 class QString;
 class QVariant;
+QT_END_NAMESPACE
 
 namespace UserFeedback {
 

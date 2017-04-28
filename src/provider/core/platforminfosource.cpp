@@ -35,7 +35,7 @@ QString PlatformInfoSource::description() const
 QVariant PlatformInfoSource::data()
 {
     QVariantMap m;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
 #if (defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID))
     // on Linux productType() is the distro name
     m.insert(QStringLiteral("os"), QStringLiteral("linux"));
@@ -55,7 +55,7 @@ QVariant PlatformInfoSource::data()
 #ifdef Q_OS_LINUX
     m.insert(QStringLiteral("os"), QStringLiteral("linux"));
     m.insert(QStringLiteral("version"), QStringLiteral("unknown")); // TODO could be done by reading /etc/os-release
-#elif Q_OS_WIN32
+#elif defined(Q_OS_WIN32)
     m.insert(QStringLiteral("os"), QStringLiteral("windows"));
     switch (QSysInfo::windowsVersion()) {
         case QSysInfo::WV_NT: m.insert(QStringLiteral("version"), QStringLiteral("4.0")); break;
@@ -69,7 +69,7 @@ QVariant PlatformInfoSource::data()
         case QSysInfo::WV_WINDOWS10: m.insert(QStringLiteral("version"), QStringLiteral("10.0")); break;
         default: m.insert(QStringLiteral("version"), QStringLiteral("unknown"));
     }
-#elif Q_OS_MAC
+#elif defined(Q_OS_MAC)
     m.insert(QStringLiteral("os"), QStringLiteral("mac"));
     switch (QSysInfo::MacintoshVersion) {
         case QSysInfo::MV_10_3: m.insert(QStringLiteral("version"), QStringLiteral("10.3")); break;

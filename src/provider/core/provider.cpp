@@ -165,7 +165,6 @@ void ProviderPrivate::storeOne(const QString &key, const QVariant &value)
 
 void ProviderPrivate::aboutToQuit()
 {
-    qCDebug(Log) << Q_FUNC_INFO;
     store();
 }
 

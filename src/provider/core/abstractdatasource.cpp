@@ -20,9 +20,14 @@
 
 using namespace UserFeedback;
 
-AbstractDataSourcePrivate::AbstractDataSourcePrivate() = default;
+AbstractDataSourcePrivate::AbstractDataSourcePrivate()
+    : mode(Provider::DetailedUsageStatistics)
+{
+}
 
-AbstractDataSourcePrivate::~AbstractDataSourcePrivate() = default;
+AbstractDataSourcePrivate::~AbstractDataSourcePrivate()
+{
+}
 
 AbstractDataSource::AbstractDataSource(const QString &name, AbstractDataSourcePrivate* dd) :
     d_ptr(dd ? dd : new AbstractDataSourcePrivate)

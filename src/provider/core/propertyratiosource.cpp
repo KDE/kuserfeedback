@@ -34,14 +34,15 @@ namespace UserFeedback {
 class PropertyRatioSourcePrivate : public AbstractDataSourcePrivate
 {
 public:
+    PropertyRatioSourcePrivate();
     ~PropertyRatioSourcePrivate();
 
     void propertyChanged();
     QString valueToString(const QVariant &value) const;
 
     QString description;
-    QObject *obj = nullptr; // TODO make this a QPointer?
-    QObject *signalMonitor = nullptr;
+    QObject *obj; // TODO make this a QPointer?
+    QObject *signalMonitor;
     QMetaProperty property;
     QString previousValue;
     QTime lastChangeTime;
@@ -70,6 +71,12 @@ private:
     PropertyRatioSourcePrivate *m_receiver;
 };
 
+}
+
+PropertyRatioSourcePrivate::PropertyRatioSourcePrivate()
+    : obj(nullptr)
+    , signalMonitor(nullptr)
+{
 }
 
 PropertyRatioSourcePrivate::~PropertyRatioSourcePrivate()

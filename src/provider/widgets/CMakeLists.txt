@@ -16,16 +16,23 @@ if(TARGET Qt5::Widgets)
 else()
     target_link_libraries(UserFeedbackWidgets PUBLIC ${QT_QTGUI_LIBRARIES} UserFeedbackCore)
 endif()
-target_include_directories(UserFeedbackWidgets PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR};>")
+target_include_directories(UserFeedbackWidgets PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
+target_include_directories(UserFeedbackWidgets INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/UserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
+
+ecm_generate_headers(UserFeedbackWidgets_HEADERS
+    HEADER_NAMES
+        FeedbackConfigDialog
+        FeedbackConfigWidget
+        NotificationPopup
+        StyleInfoSource
+    REQUIRED_HEADERS UserFeedbackWidgets_HEADERS
+)
 
 install(TARGETS UserFeedbackWidgets EXPORT UserFeedbackTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
-
 install(FILES
-    feedbackconfigdialog.h
-    feedbackconfigwidget.h
-    notificationpopup.h
+    ${UserFeedbackWidgets_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/userfeedbackwidgets_export.h
-    DESTINATION include/UserFeedbackWidgets
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/UserFeedback
 )
 
 ecm_generate_pri_file(BASE_NAME UserFeedbackWidgets

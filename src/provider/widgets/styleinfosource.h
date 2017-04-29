@@ -20,7 +20,7 @@
 
 #include "userfeedbackwidgets_export.h"
 
-#include <provider/core/abstractdatasource.h>
+#include <abstractdatasource.h>
 
 namespace UserFeedback {
 

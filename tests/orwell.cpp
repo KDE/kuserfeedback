@@ -18,20 +18,19 @@
 #include "orwell.h"
 #include "ui_orwell.h"
 
-#include <provider/widgets/feedbackconfigdialog.h>
-#include <provider/widgets/notificationpopup.h>
-#include <provider/widgets/styleinfosource.h>
-#include <provider/core/applicationversionsource.h>
-#include <provider/core/cpuinfosource.h>
-#include <provider/core/localeinfosource.h>
-#include <provider/core/platforminfosource.h>
-#include <provider/core/propertyratiosource.h>
-#include <provider/core/provider.h>
-#include <provider/core/qtversionsource.h>
-#include <provider/core/screeninfosource.h>
-#include <provider/core/startcountsource.h>
-#include <provider/core/surveyinfo.h>
-#include <provider/core/usagetimesource.h>
+#include <FeedbackConfigDialog>
+#include <NotificationPopup>
+#include <StyleInfoSource>
+#include <ApplicationVersionSource>
+#include <CpuInfoSource>
+#include <LocaleInfoSource>
+#include <PlatformInfoSource>
+#include <PropertyRatioSource>
+#include <QtVersionSource>
+#include <ScreenInfoSource>
+#include <StartCountSource>
+#include <SurveyInfo>
+#include <UsageTimeSource>
 
 #include <QApplication>
 #include <QDesktopServices>

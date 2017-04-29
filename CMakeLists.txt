@@ -21,6 +21,7 @@ if(NOT DEFINED CMAKE_MACOSX_RPATH)
     set(CMAKE_MACOSX_RPATH TRUE)
 endif()
 
+include(ECMGenerateHeaders)
 include(ECMPoQmTools)
 include(FeatureSummary)
 include(GenerateExportHeader)
@@ -66,8 +67,10 @@ if(NOT ENFORCE_QT4_BUILD)
      # do not include in the Qt4 path, these calls find_package(Qt5)
     include(ECMQueryQmake)
     include(ECMGeneratePriFile)
+    include(KDEInstallDirs)
 else()
     set(Qt5Core_FOUND FALSE)
+    set(KDE_INSTALL_INCLUDEDIR "include")
 endif()
 
 if(Qt5Core_FOUND)
@@ -123,7 +126,6 @@ set_package_properties(PhpUnit PROPERTIES URL "http://phpunit.de" TYPE RECOMMEND
 set(BIN_INSTALL_DIR "bin")
 set(LIB_SUFFIX "" CACHE STRING "Define suffix of directory name (32/64)")
 set(LIB_INSTALL_DIR "lib${LIB_SUFFIX}")
-set(INCLUDE_INSTALL_DIR "include/userfeedback")
 set(CMAKECONFIG_INSTALL_DIR ${LIB_INSTALL_DIR}/cmake/UserFeedback)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${BIN_INSTALL_DIR})
@@ -169,7 +171,7 @@ configure_package_config_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/UserFeedbackConfig.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/UserFeedbackConfig.cmake
     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
-    PATH_VARS INCLUDE_INSTALL_DIR
+    PATH_VARS KDE_INSTALL_INCLUDEDIR
 )
 
 write_basic_package_version_file(

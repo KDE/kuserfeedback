@@ -20,7 +20,7 @@
 
 #include "userfeedbackwidgets_export.h"
 
-#include "../core/provider.h"
+#include <provider.h>
 
 #include <QWidget>
 

@@ -232,6 +232,7 @@ void FeedbackConfigWidget::setFeedbackProvider(Provider* provider)
         d->ui->surveySlider->setValue(1);
     else
         d->ui->surveySlider->setValue(2);
+    d->surveySliderChanged(); // update the description even if nothing changed initially
 
     setEnabled(provider);
 }

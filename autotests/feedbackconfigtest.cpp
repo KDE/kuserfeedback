@@ -21,6 +21,7 @@
 #include <provider/core/screeninfosource.h>
 
 #include <QDebug>
+#include <QLabel>
 #include <QtTest/qtest.h>
 #include <QObject>
 #include <QSlider>
@@ -83,15 +84,21 @@ private slots:
         QCOMPARE(slider->maximum(), 2);
         QCOMPARE(slider->value(), 0);
 
+        auto label = w.findChild<QLabel*>(QLatin1String("surveyLabel"));
+        QVERIFY(label);
+        QVERIFY(!label->text().isEmpty());
+
         slider->setValue(1);
         QCOMPARE(w.surveyInterval(), 90);
         QTest::qWait(1);
         QCOMPARE(p.surveyInterval(), -1);
+        QVERIFY(!label->text().isEmpty());
 
         slider->setValue(2);
         QCOMPARE(w.surveyInterval(), 0);
         QTest::qWait(1);
         QCOMPARE(p.surveyInterval(), -1);
+        QVERIFY(!label->text().isEmpty());
     }
 };
 

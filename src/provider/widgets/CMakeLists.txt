@@ -28,7 +28,7 @@ ecm_generate_headers(UserFeedbackWidgets_HEADERS
     REQUIRED_HEADERS UserFeedbackWidgets_HEADERS
 )
 
-install(TARGETS UserFeedbackWidgets EXPORT UserFeedbackTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS UserFeedbackWidgets EXPORT UserFeedbackTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES
     ${UserFeedbackWidgets_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/userfeedbackwidgets_export.h

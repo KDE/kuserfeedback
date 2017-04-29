@@ -70,7 +70,6 @@ if(NOT ENFORCE_QT4_BUILD)
     include(KDEInstallDirs)
 else()
     set(Qt5Core_FOUND FALSE)
-    set(KDE_INSTALL_INCLUDEDIR "include")
 endif()
 
 if(Qt5Core_FOUND)
@@ -123,11 +122,6 @@ set_package_properties(PhpUnit PROPERTIES URL "http://phpunit.de" TYPE RECOMMEND
 #
 # Installation settings
 #
-set(BIN_INSTALL_DIR "bin")
-set(LIB_SUFFIX "" CACHE STRING "Define suffix of directory name (32/64)")
-set(LIB_INSTALL_DIR "lib${LIB_SUFFIX}")
-set(CMAKECONFIG_INSTALL_DIR ${LIB_INSTALL_DIR}/cmake/UserFeedback)
-
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${BIN_INSTALL_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${LIB_INSTALL_DIR})
 
@@ -140,14 +134,6 @@ if(NOT CMAKE_INSTALL_RPATH)
         set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}")
     endif()
 endif()
-
-set(
-    INSTALL_TARGETS_DEFAULT_ARGS
-    RUNTIME DESTINATION ${BIN_INSTALL_DIR}
-    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
-    ARCHIVE DESTINATION ${LIB_INSTALL_DIR} COMPONENT Devel
-    BUNDLE DESTINATION ${BUNDLE_INSTALL_DIR}
-)
 
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 configure_file(config-userfeedback.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback.h)
@@ -170,7 +156,7 @@ include(CMakePackageConfigHelpers)
 configure_package_config_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/UserFeedbackConfig.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/UserFeedbackConfig.cmake
-    INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+    INSTALL_DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/UserFeedback
     PATH_VARS KDE_INSTALL_INCLUDEDIR
 )
 
@@ -183,10 +169,10 @@ write_basic_package_version_file(
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/UserFeedbackConfig.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/UserFeedbackConfigVersion.cmake
-    DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+    DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/UserFeedback
 )
 
-install(EXPORT UserFeedbackTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE UserFeedbackTarget.cmake)
+install(EXPORT UserFeedbackTargets DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/UserFeedback FILE UserFeedbackTarget.cmake)
 install(FILES org_kde_UserFeedback.categories DESTINATION etc/xdg)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

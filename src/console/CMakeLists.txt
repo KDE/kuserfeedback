@@ -79,7 +79,7 @@ target_compile_features(UserFeedbackConsoleApplication PRIVATE cxx_generic_lambd
 set_target_properties(UserFeedbackConsoleApplication PROPERTIES OUTPUT_NAME UserFeedbackConsole)
 target_link_libraries(UserFeedbackConsoleApplication Qt5::Widgets Qt5::Network Qt5::Charts UserFeedbackWidgets UserFeedbackConsole UserFeedbackCommon)
 
-install(TARGETS UserFeedbackConsoleApplication ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS UserFeedbackConsoleApplication ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 if(UNIX AND NOT APPLE)
-    install(FILES UserFeedbackConsole.desktop DESTINATION share/applications)
+    install(FILES UserFeedbackConsole.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 endif()

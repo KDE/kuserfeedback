@@ -46,7 +46,7 @@ add_custom_command(
     DEPENDS ${_qdoc_output_dir}/user-feedback-manual.qhp
 )
 add_custom_target(user_feedback_manual_qch ALL DEPENDS ${_qdoc_output_dir}/user-feedback-manual.qch)
-install(FILES ${_qdoc_output_dir}/user-feedback-manual.qch DESTINATION share/KDE/UserFeedbackConsole)
+install(FILES ${_qdoc_output_dir}/user-feedback-manual.qch DESTINATION ${KDE_INSTALL_DATAROOTDIR}/KDE/UserFeedbackConsole)
 
 # build .qhc
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/user-feedback.qhcp.in ${CMAKE_CURRENT_BINARY_DIR}/user-feedback.qhcp)
@@ -60,4 +60,4 @@ add_custom_command(
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
 add_custom_target(user_feedback_qhc ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/user-feedback.qhc)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/user-feedback.qhc DESTINATION share/KDE/UserFeedbackConsole)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/user-feedback.qhc DESTINATION ${KDE_INSTALL_DATAROOTDIR}/KDE/UserFeedbackConsole)

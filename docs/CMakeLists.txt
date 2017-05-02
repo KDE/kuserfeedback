@@ -1,7 +1,8 @@
-find_program(QDOC_EXECUTABLE qdoc)
-
 query_qmake(QT_INSTALL_DOCS "QT_INSTALL_DOCS")
 query_qmake(QT_INSTALL_DATA "QT_INSTALL_DATA")
+query_qmake(QT_INSTALL_BINS "QT_INSTALL_BINS")
+
+find_program(QDOC_EXECUTABLE qdoc HINTS ${QT_INSTALL_BINS})
 
 find_file(QDOC_TEMPLATE global/qt-html-templates-offline.qdocconf
   HINTS ${QT_INSTALL_DOCS}

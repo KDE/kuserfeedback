@@ -30,7 +30,15 @@ class AbstractDataSource;
 class ProviderPrivate;
 class SurveyInfo;
 
-/*! The central object managing data sources and transmitting feedback to the server. */
+/*! The central object managing data sources and transmitting feedback to the server.
+ *
+ *  The defaults for this class are very defensive, so in order to make it actually
+ *  operational and submit data, there is a number of settings you need to set in
+ *  code, namely submission intervals, encouragement settings and adding data sources.
+ *  The settings about what data to submit (statisticsCollectionMode) and how often
+ *  to bother the user with surveys (surveyInterval) should not be set to hardcoded
+ *  values in code, but left as choices to the user.
+ */
 class USERFEEDBACKCORE_EXPORT Provider : public QObject
 {
     Q_OBJECT
@@ -65,19 +73,27 @@ public:
 
     /*! Set the product identifier.
      *  This is used to distinguish independent products on the same server.
+     *  If this is not specified, the product identifier is dervied from the application name
+     *  organisation domain specified in QCoreApplication.
      *  @param productId Unique product identifier, as configured on the feedback server.
      */
     void setProductIdentifier(const QString &productId);
 
     /*! Set the feedback server URL.
+     *  This must be called with an appropriate URL for this class to be operational.
      *  @param url The URL of the feedback server.
      */
     void setFeedbackServer(const QUrl &url);
 
-    /*! Set the automatic submission interval. */
+    /*! Set the automatic submission interval.
+     *  This must be called with a positive number for this class to be operational,
+     *  as the default is -1 (no submission ever).
+     */
     void setSubmissionInterval(int days);
 
-    /*! Returns the current statistics collection mode. */
+    /*! Returns the current statistics collection mode.
+     *  The default is NoStatistics.
+     */
     StatisticsCollectionMode statisticsCollectionMode() const;
 
     /*! Set which statistics should be submitted. */
@@ -96,7 +112,9 @@ public:
      */
     QVector<AbstractDataSource*> dataSources() const;
 
-    /*! Returns the minimum time between two surveys in days. */
+    /*! Returns the minimum time between two surveys in days.
+     *  The default is -1 (no surveys enabled).
+     */
     int surveyInterval() const;
 
     /*! Sets the minimum time in days between two surveys.
@@ -109,19 +127,34 @@ public:
      */
     void setSurveyCompleted(const SurveyInfo &info);
 
-    /*! Set the amount of application starts until the encouragement message should be shown. */
+    /*! Set the amount of application starts until the encouragement message should be shown.
+     *  The default is -1, ie. no encouragement based on application starts.
+     *  @param starts The amount of application starts after which an encouragement
+     *  message should be displayed.
+     */
     void setApplicationStartsUntilEncouragement(int starts);
 
     /*! Set the amount of usage time until the encouragement message should be shown.
+     *  The default is -1, ie. no encouragement based on application usage time.
      *  @param secs Amount of seconds until the encouragement should be shown.
      */
     void setApplicationUsageTimeUntilEncouragement(int secs);
 
-    /*! Set the delay after application start for the earliest display of the encouragement message. */
+    /*! Set the delay after application start for the earliest display of the encouragement message.
+     *  The default is 300, ie. 5 minutes after the application start.
+     *  @note This only adds an additional contraint on usage time and startup count based
+     *  encouragement messages, it does not actually trigger encouragement messages itself.
+     *
+     *  @param secs Amount of seconds after the application start for the earliest display
+     *  of an encouragement message.
+     *
+     *  @see setApplicationStartsUntilEncouragement, setApplicationUsageTimeUntilEncouragement
+     */
     void setEncouragementDelay(int secs);
 
     /*! Sets the interval after the encouragement should be repeated.
      *  Encouragement messages are only repeated if no feedback options have been enabled.
+     *  The default is -1, that is no repeated encouragement at all.
      *  @param days Days between encouragement messages, 0 disables repeated encouragements.
      */
     void setEncouragementInterval(int days);

@@ -94,6 +94,7 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     chartMode->addAction(ui->actionSingularChart);
     chartMode->addAction(ui->actionTimelineChart);
 
+    ui->actionReload->setShortcut(QKeySequence::Refresh);
     connect(ui->actionReload, &QAction::triggered, m_dataModel, &DataModel::reload);
     connect(ui->actionExportData, &QAction::triggered, this, &AnalyticsView::exportData);
     connect(ui->actionImportData, &QAction::triggered, this, &AnalyticsView::importData);

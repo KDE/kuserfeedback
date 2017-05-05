@@ -51,7 +51,7 @@ QVariant PlatformInfoSource::data()
 #endif
 #else
 
-    // Qt4
+    // Qt4 and Qt5 < 5.4
 #ifdef Q_OS_LINUX
     m.insert(QStringLiteral("os"), QStringLiteral("linux"));
     m.insert(QStringLiteral("version"), QStringLiteral("unknown")); // TODO could be done by reading /etc/os-release
@@ -66,7 +66,6 @@ QVariant PlatformInfoSource::data()
         case QSysInfo::WV_WINDOWS7: m.insert(QStringLiteral("version"), QStringLiteral("6.1")); break;
         case QSysInfo::WV_WINDOWS8: m.insert(QStringLiteral("version"), QStringLiteral("6.2")); break;
         case QSysInfo::WV_WINDOWS8_1: m.insert(QStringLiteral("version"), QStringLiteral("6.3")); break;
-        case QSysInfo::WV_WINDOWS10: m.insert(QStringLiteral("version"), QStringLiteral("10.0")); break;
         default: m.insert(QStringLiteral("version"), QStringLiteral("unknown"));
     }
 #elif defined(Q_OS_MAC)
@@ -79,7 +78,6 @@ QVariant PlatformInfoSource::data()
         case QSysInfo::MV_10_7: m.insert(QStringLiteral("version"), QStringLiteral("10.7")); break;
         case QSysInfo::MV_10_8: m.insert(QStringLiteral("version"), QStringLiteral("10.8")); break;
         case QSysInfo::MV_10_9: m.insert(QStringLiteral("version"), QStringLiteral("10.9")); break;
-        case QSysInfo::MV_10_10: m.insert(QStringLiteral("version"), QStringLiteral("10.10")); break;
         default: m.insert(QStringLiteral("version"), QStringLiteral("unknown"));
     }
 #else

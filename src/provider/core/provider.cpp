@@ -105,7 +105,18 @@ static QMetaEnum statisticsCollectionModeEnum()
 
 std::unique_ptr<QSettings> ProviderPrivate::makeSettings() const
 {
-    std::unique_ptr<QSettings> s(new QSettings(QStringLiteral("KDE"), QStringLiteral("UserFeedback.") + productId));
+    // attempt to put our settings next to the application ones,
+    // so replicate how QSettings handles this
+    auto org =
+#ifdef Q_OS_MAC
+        QCoreApplication::organizationDomain().isEmpty() ? QCoreApplication::organizationName() : QCoreApplication::organizationDomain();
+#else
+        QCoreApplication::organizationName().isEmpty() ? QCoreApplication::organizationDomain() : QCoreApplication::organizationName();
+#endif
+    if (org.isEmpty())
+        org = QLatin1String("Unknown Organization");
+
+    std::unique_ptr<QSettings> s(new QSettings(org, QStringLiteral("UserFeedback.") + productId));
     return s;
 }
 

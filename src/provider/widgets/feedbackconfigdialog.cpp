@@ -44,7 +44,9 @@ FeedbackConfigDialog::FeedbackConfigDialog(QWidget *parent) :
     d->ui->buttonBox->button(QDialogButtonBox::Close)->setText(tr("No, I do not want to contribute."));
 }
 
-FeedbackConfigDialog::~FeedbackConfigDialog() = default;
+FeedbackConfigDialog::~FeedbackConfigDialog()
+{
+}
 
 void FeedbackConfigDialog::setFeedbackProvider(UserFeedback::Provider* provider)
 {

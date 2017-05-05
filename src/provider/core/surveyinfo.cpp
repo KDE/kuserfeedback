@@ -39,11 +39,20 @@ SurveyInfo::SurveyInfo() : d (new SurveyInfoData)
 {
 }
 
-SurveyInfo::SurveyInfo(const SurveyInfo&) = default;
+SurveyInfo::SurveyInfo(const SurveyInfo &other) :
+    d(other.d)
+{
+}
 
-SurveyInfo::~SurveyInfo() = default;
+SurveyInfo::~SurveyInfo()
+{
+}
 
-SurveyInfo & SurveyInfo::operator=(const SurveyInfo&) = default;
+SurveyInfo& SurveyInfo::operator=(const SurveyInfo &other)
+{
+    d = other.d;
+    return *this;
+}
 
 bool SurveyInfo::isValid() const
 {

@@ -10,6 +10,7 @@ set(userfeedback_core_srcs
     provider.cpp
     qtversionsource.cpp
     screeninfosource.cpp
+    selectionratiosource.cpp
     startcountsource.cpp
     surveyinfo.cpp
     usagetimesource.cpp

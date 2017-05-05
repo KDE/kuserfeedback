@@ -21,6 +21,7 @@ endfunction()
 
 uf_add_test(datasourcetest UserFeedbackCore Qt5::Gui) # needs Gui for ScreenInfoSource to work
 uf_add_test(providertest UserFeedbackCore Qt5::Gui)
+uf_add_test(selectionratiosourcetest.cpp UserFeedbackCore Qt5::Gui)
 
 uf_add_test(feedbackconfigtest UserFeedbackWidgets)
 

@@ -26,7 +26,7 @@ namespace UserFeedback {
 class USERFEEDBACKCORE_EXPORT OpenGLInfoSource : public AbstractDataSource
 {
 public:
-    Q_DECLARE_TR_FUNCTIONS(UserFeedback::LocaleInfoSource)
+    Q_DECLARE_TR_FUNCTIONS(UserFeedback::OpenGLInfoSource)
 public:
     OpenGLInfoSource();
     QString description() const override;

@@ -5,6 +5,7 @@ set(userfeedback_core_srcs
     applicationversionsource.cpp
     cpuinfosource.cpp
     localeinfosource.cpp
+    openglinfosource.cpp
     platforminfosource.cpp
     propertyratiosource.cpp
     provider.cpp
@@ -42,6 +43,7 @@ ecm_generate_headers(UserFeedbackCore_HEADERS
         ApplicationVersionSource
         CpuInfoSource
         LocaleInfoSource
+        OpenGLInfoSource
         PlatformInfoSource
         PropertyRatioSource
         Provider

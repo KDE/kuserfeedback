@@ -4,6 +4,7 @@
         <file>applicationVersion.schema</file>
         <file>cpu.schema</file>
         <file>locale.schema</file>
+        <file>opengl.schema</file>
         <file>platform.schema</file>
         <file>propertyRatio.schema</file>
         <file>qtVersion.schema</file>

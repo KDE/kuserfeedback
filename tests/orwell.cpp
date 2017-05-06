@@ -24,6 +24,7 @@
 #include <ApplicationVersionSource>
 #include <CpuInfoSource>
 #include <LocaleInfoSource>
+#include <OpenGLInfoSource>
 #include <PlatformInfoSource>
 #include <PropertyRatioSource>
 #include <QtVersionSource>
@@ -116,6 +117,7 @@ int main(int argc, char** argv)
     provider->addDataSource(new UserFeedback::ApplicationVersionSource, UserFeedback::Provider::BasicSystemInformation);
     provider->addDataSource(new UserFeedback::CpuInfoSource, UserFeedback::Provider::DetailedSystemInformation);
     provider->addDataSource(new UserFeedback::LocaleInfoSource, UserFeedback::Provider::DetailedSystemInformation);
+    provider->addDataSource(new UserFeedback::OpenGLInfoSource, UserFeedback::Provider::DetailedSystemInformation);
     provider->addDataSource(new UserFeedback::PlatformInfoSource, UserFeedback::Provider::BasicSystemInformation);
     provider->addDataSource(new UserFeedback::QtVersionSource, UserFeedback::Provider::BasicSystemInformation);
     provider->addDataSource(new UserFeedback::ScreenInfoSource, UserFeedback::Provider::DetailedSystemInformation);

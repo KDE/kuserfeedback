@@ -1,0 +1,24 @@
+{
+    "name": "Compiler",
+    "schema": [
+        {
+            "name": "compiler",
+            "type": "scalar",
+            "elements": [
+                {
+                    "name": "type",
+                    "type": "string"
+                },
+                {
+                    "name": "version",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "aggregation": [ {
+        "type": "category",
+        "name": "Compiler Distribution",
+        "elements": [ { "type": "value", "schemaEntry": "compiler", "schemaEntryElement": "type" } ]
+    } ]
+}

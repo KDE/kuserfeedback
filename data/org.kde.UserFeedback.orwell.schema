@@ -218,6 +218,17 @@
             ],
             "name": "OpenGL Profile Distribution",
             "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "compiler",
+                    "schemaEntryElement": "type",
+                    "type": "value"
+                }
+            ],
+            "name": "Compiler Distribution",
+            "type": "category"
         }
     ],
     "name": "org.kde.orwell",
@@ -374,6 +385,20 @@
                 }
             ],
             "name": "opengl",
+            "type": "scalar"
+        },
+        {
+            "elements": [
+                {
+                    "name": "type",
+                    "type": "string"
+                },
+                {
+                    "name": "version",
+                    "type": "string"
+                }
+            ],
+            "name": "compiler",
             "type": "scalar"
         }
     ]

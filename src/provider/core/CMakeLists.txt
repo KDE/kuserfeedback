@@ -3,6 +3,7 @@ ecm_create_qm_loader(userfeedback_core_QM_LOADER userfeedbackprovider5_qt)
 set(userfeedback_core_srcs
     abstractdatasource.cpp
     applicationversionsource.cpp
+    compilerinfosource.cpp
     cpuinfosource.cpp
     localeinfosource.cpp
     openglinfosource.cpp
@@ -41,6 +42,7 @@ ecm_generate_headers(UserFeedbackCore_HEADERS
     HEADER_NAMES
         AbstractDataSource
         ApplicationVersionSource
+        CompilerInfoSource
         CpuInfoSource
         LocaleInfoSource
         OpenGLInfoSource

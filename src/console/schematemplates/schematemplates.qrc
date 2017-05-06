@@ -2,6 +2,7 @@
 <RCC version="1.0">
     <qresource prefix="/org.kde.user-feedback/schematemplates">
         <file>applicationVersion.schema</file>
+        <file>compiler.schema</file>
         <file>cpu.schema</file>
         <file>locale.schema</file>
         <file>opengl.schema</file>

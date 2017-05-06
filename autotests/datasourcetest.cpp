@@ -16,6 +16,7 @@
 */
 
 #include <provider/core/applicationversionsource.h>
+#include <provider/core/compilerinfosource.h>
 #include <provider/core/cpuinfosource.h>
 #include <provider/core/localeinfosource.h>
 #include <provider/core/platforminfosource.h>
@@ -259,6 +260,17 @@ private slots:
         QVERIFY(m.contains(QLatin1String("glslVersion")));
         QVERIFY(!m.value(QLatin1String("glslVersion")).toString().isEmpty());
 #endif
+    }
+
+    void testCompilerInfoSource()
+    {
+        CompilerInfoSource src;
+        const auto m = src.data().toMap();
+        qDebug() << m;
+        QVERIFY(m.contains(QLatin1String("type")));
+        QVERIFY(!m.value(QLatin1String("type")).toString().isEmpty());
+        QVERIFY(m.contains(QLatin1String("version")));
+        QVERIFY(!m.value(QLatin1String("version")).toString().isEmpty());
     }
 };
 

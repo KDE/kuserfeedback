@@ -22,6 +22,7 @@
 #include <NotificationPopup>
 #include <StyleInfoSource>
 #include <ApplicationVersionSource>
+#include <CompilerInfoSource>
 #include <CpuInfoSource>
 #include <LocaleInfoSource>
 #include <OpenGLInfoSource>
@@ -115,6 +116,7 @@ int main(int argc, char** argv)
     provider->setApplicationStartsUntilEncouragement(5);
     provider->setEncouragementDelay(10);
     provider->addDataSource(new UserFeedback::ApplicationVersionSource, UserFeedback::Provider::BasicSystemInformation);
+    provider->addDataSource(new UserFeedback::CompilerInfoSource, UserFeedback::Provider::BasicSystemInformation);
     provider->addDataSource(new UserFeedback::CpuInfoSource, UserFeedback::Provider::DetailedSystemInformation);
     provider->addDataSource(new UserFeedback::LocaleInfoSource, UserFeedback::Provider::DetailedSystemInformation);
     provider->addDataSource(new UserFeedback::OpenGLInfoSource, UserFeedback::Provider::DetailedSystemInformation);

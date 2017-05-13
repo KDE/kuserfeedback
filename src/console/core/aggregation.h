@@ -45,6 +45,8 @@ public:
     Aggregation();
     ~Aggregation();
 
+    bool isValid() const;
+
     Type type() const;
     void setType(Type t);
 

@@ -36,6 +36,11 @@ static const struct {
 Aggregation::Aggregation() = default;
 Aggregation::~Aggregation() = default;
 
+bool Aggregation::isValid() const
+{
+    return m_type != None && m_elements.size() > 0;
+}
+
 Aggregation::Type Aggregation::type() const
 {
     return m_type;

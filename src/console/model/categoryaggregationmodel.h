@@ -18,7 +18,7 @@
 #ifndef USERFEEDBACK_CONSOLE_CATEGORYAGGREGATIONMODEL_H
 #define USERFEEDBACK_CONSOLE_CATEGORYAGGREGATIONMODEL_H
 
-#include <core/aggregationelement.h>
+#include <core/aggregation.h>
 
 #include <QAbstractTableModel>
 #include <QVector>
@@ -37,7 +37,7 @@ public:
     ~CategoryAggregationModel();
 
     void setSourceModel(QAbstractItemModel *model);
-    void setAggregation(const AggregationElement &aggr);
+    void setAggregation(const Aggregation &aggr);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -46,10 +46,10 @@ public:
 
 private:
     void recompute();
-    QVariant sampleValue(const Sample &s) const;
+    QVariant sampleValue(const Sample &s, int depth) const;
 
     QAbstractItemModel *m_sourceModel = nullptr;
-    AggregationElement m_aggr;
+    Aggregation m_aggr;
     QVector<QString> m_categories;
     int *m_data = nullptr;
     int m_maxValue;

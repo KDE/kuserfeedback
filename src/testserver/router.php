@@ -25,6 +25,10 @@ $USERFEEDBACK_DB_NAME =  __DIR__ . '/../server/data/db.sqlite';
 $path = explode('/', $_SERVER['REQUEST_URI']);
 
 switch ($path[1]) {
+    case 'admin':
+        $_SERVER['PHP_SELF'] = '/admin/index.php';
+        include '../server/admin/index.php';
+        return;
     case 'analytics':
         $_SERVER['PHP_SELF'] = '/analytics/index.php';
         include '../server/analytics/index.php';

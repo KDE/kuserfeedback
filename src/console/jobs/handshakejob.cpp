@@ -61,7 +61,7 @@ void HandshakeJob::processResponse(QNetworkReply* reply)
     const auto obj = doc.object();
 
     const auto protoVer = obj.value(QLatin1String("protocolVersion")).toInt();
-    if (protoVer != 1) {
+    if (protoVer != 2) {
         emitError(tr("Incompatbile protcol: %1.").arg(protoVer));
         return;
     }

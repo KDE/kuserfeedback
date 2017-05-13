@@ -98,7 +98,7 @@ QNetworkRequest RESTClient::makeRequest(const QString& command)
     auto path = url.path();
     if (!path.endsWith(QLatin1Char('/')))
         path += QLatin1Char('/');
-    path +=  QStringLiteral("analytics/") + command;
+    path += command;
     url.setPath(path);
     QNetworkRequest request(url);
     const QByteArray authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();

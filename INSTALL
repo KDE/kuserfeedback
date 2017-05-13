@@ -7,7 +7,11 @@ The usual cmake/make/make install.
 Requires PHP >= 5.5 and Sqlite, MySQL or PostgreSQL, Apache with SSL set up.
 
 - copy src/server to your webserver (alternatively, use "make deploy")
-- set up authentication for the analytics sub-folder
+- make sure .htaccess files are enabled by your Apache settings
+- set up authentication:
+    - users with access to the analytics sub-folder have read-only access to all product settings
+      and telemetry data
+    - users with additional access to the admin sub-folder have write access to all products
 - rename config/localconfig.php.example to config/localconfig.php and adjust
   settings in there based on your database setup
 - start UserFeedbackConsole, connect to the server, that will trigger the database

@@ -18,7 +18,7 @@
 #include "feedbackconfigdialog.h"
 #include "ui_feedbackconfigdialog.h"
 
-#include <provider/core/provider.h>
+#include <provider.h>
 
 #include <QDebug>
 #include <QPushButton>

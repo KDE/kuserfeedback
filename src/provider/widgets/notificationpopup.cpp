@@ -19,8 +19,8 @@
 #include "ui_notificationpopup.h"
 #include "feedbackconfigdialog.h"
 
-#include <provider/core/provider.h>
-#include <provider/core/surveyinfo.h>
+#include <provider.h>
+#include <surveyinfo.h>
 
 #include <QApplication>
 #include <QDebug>

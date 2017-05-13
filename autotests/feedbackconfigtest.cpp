@@ -15,10 +15,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <provider/widgets/feedbackconfigwidget.h>
-#include <provider/core/platforminfosource.h>
-#include <provider/core/provider.h>
-#include <provider/core/screeninfosource.h>
+#include <feedbackconfigwidget.h>
+#include <platforminfosource.h>
+#include <provider.h>
+#include <screeninfosource.h>
 
 #include <QDebug>
 #include <QLabel>

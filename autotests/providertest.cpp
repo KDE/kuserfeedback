@@ -15,10 +15,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <provider/core/provider.h>
-#include <provider/core/platforminfosource.h>
-#include <provider/core/screeninfosource.h>
-#include <provider/core/startcountsource.h>
+#include <provider.h>
+#include <platforminfosource.h>
+#include <screeninfosource.h>
+#include <startcountsource.h>
 
 #include <QDebug>
 #include <QtTest/qtest.h>

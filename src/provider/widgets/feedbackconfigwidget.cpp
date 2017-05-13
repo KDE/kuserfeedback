@@ -18,8 +18,8 @@
 #include "feedbackconfigwidget.h"
 #include "ui_feedbackconfigwidget.h"
 
-#include <provider/core/abstractdatasource.h>
-#include <provider/core/provider.h>
+#include <abstractdatasource.h>
+#include <provider.h>
 
 #include <QApplication>
 #include <QDebug>

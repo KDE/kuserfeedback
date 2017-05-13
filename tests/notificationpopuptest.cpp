@@ -15,9 +15,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <provider/widgets/notificationpopup.h>
-#include <provider/core/provider.h>
-#include <provider/core/surveyinfo.h>
+#include <notificationpopup.h>
+#include <provider.h>
+#include <surveyinfo.h>
 
 #include <QApplication>
 #include <QPushButton>

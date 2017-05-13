@@ -15,13 +15,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <provider/widgets/feedbackconfigdialog.h>
+#include <feedbackconfigdialog.h>
 
-#include <provider/core/applicationversionsource.h>
-#include <provider/core/platforminfosource.h>
-#include <provider/core/provider.h>
-#include <provider/core/qtversionsource.h>
-#include <provider/core/screeninfosource.h>
+#include <applicationversionsource.h>
+#include <platforminfosource.h>
+#include <provider.h>
+#include <qtversionsource.h>
+#include <screeninfosource.h>
 
 #include <QApplication>
 #include <QStandardPaths>

@@ -15,17 +15,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <provider/core/applicationversionsource.h>
-#include <provider/core/compilerinfosource.h>
-#include <provider/core/cpuinfosource.h>
-#include <provider/core/localeinfosource.h>
-#include <provider/core/platforminfosource.h>
-#include <provider/core/propertyratiosource.h>
-#include <provider/core/qtversionsource.h>
-#include <provider/core/screeninfosource.h>
-#include <provider/core/startcountsource.h>
-#include <provider/core/usagetimesource.h>
-#include <provider/core/openglinfosource.h>
+#include <applicationversionsource.h>
+#include <compilerinfosource.h>
+#include <cpuinfosource.h>
+#include <localeinfosource.h>
+#include <platforminfosource.h>
+#include <propertyratiosource.h>
+#include <qtversionsource.h>
+#include <screeninfosource.h>
+#include <startcountsource.h>
+#include <usagetimesource.h>
+#include <openglinfosource.h>
 
 #include <QDebug>
 #include <QtTest/qtest.h>

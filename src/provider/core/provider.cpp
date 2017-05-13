@@ -419,20 +419,44 @@ Provider::~Provider()
     delete d;
 }
 
+QString Provider::productIdentifier() const
+{
+    return d->productId;
+}
+
 void Provider::setProductIdentifier(const QString &productId)
 {
     Q_ASSERT(!productId.isEmpty());
+    if (productId == d->productId)
+        return;
     d->productId = productId;
+    emit providerSettingsChanged();
+}
+
+QUrl Provider::feedbackServer() const
+{
+    return d->serverUrl;
 }
 
 void Provider::setFeedbackServer(const QUrl &url)
 {
+    if (d->serverUrl == url)
+        return;
     d->serverUrl = url;
+    emit providerSettingsChanged();
+}
+
+int Provider::submissionInterval() const
+{
+    return d->submissionInterval;
 }
 
 void Provider::setSubmissionInterval(int days)
 {
+    if (d->submissionInterval == days)
+        return;
     d->submissionInterval = days;
+    emit providerSettingsChanged();
     d->scheduleNextSubmission();
 }
 
@@ -507,27 +531,59 @@ void Provider::setSurveyInterval(int days)
     emit surveyIntervalChanged();
 }
 
+int Provider::applicationStartsUntilEncouragement() const
+{
+    return d->encouragementStarts;
+}
+
 void Provider::setApplicationStartsUntilEncouragement(int starts)
 {
+    if (d->encouragementStarts == starts)
+        return;
     d->encouragementStarts = starts;
+    emit providerSettingsChanged();
     d->scheduleEncouragement();
+}
+
+int Provider::applicationUsageTimeUntilEncouragement() const
+{
+    return d->encouragementTime;
 }
 
 void Provider::setApplicationUsageTimeUntilEncouragement(int secs)
 {
+    if (d->encouragementTime == secs)
+        return;
     d->encouragementTime = secs;
+    emit providerSettingsChanged();
     d->scheduleEncouragement();
+}
+
+int Provider::encouragementDelay() const
+{
+    return d->encouragementDelay;
 }
 
 void Provider::setEncouragementDelay(int secs)
 {
+    if (d->encouragementDelay == secs)
+        return;
     d->encouragementDelay = std::max(0, secs);
+    emit providerSettingsChanged();
     d->scheduleEncouragement();
+}
+
+int Provider::encouragementInterval() const
+{
+    return d->encouragementInterval;
 }
 
 void Provider::setEncouragementInterval(int days)
 {
+    if (d->encouragementInterval == days)
+        return;
     d->encouragementInterval = days;
+    emit providerSettingsChanged();
     d->scheduleEncouragement();
 }
 

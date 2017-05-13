@@ -43,14 +43,59 @@ class USERFEEDBACKCORE_EXPORT Provider : public QObject
 {
     Q_OBJECT
     /*! The interval in which the user accepts surveys.
+     *  This should be configurable for the user.
      *  @c -1 indicates surveys are disabled.
      *  @see surveyInterval(), setSurveyInterval()
      */
     Q_PROPERTY(int surveyInterval READ surveyInterval WRITE setSurveyInterval NOTIFY surveyIntervalChanged)
+
     /*! The telemetry mode the user has configured.
+     * This should be configurable for the user.
      * @see statisticsCollectionMode(), setStatisticsCollectionMode()
      */
     Q_PROPERTY(StatisticsCollectionMode statisticsCollectionMode READ statisticsCollectionMode WRITE setStatisticsCollectionMode NOTIFY statisticsCollectionModeChanged)
+
+    /*! Unique product id as set on the feedback server.
+     *  @see setProductIdentifier
+     */
+    Q_PROPERTY(QString productIdentifier READ productIdentifier WRITE setProductIdentifier NOTIFY providerSettingsChanged)
+
+    /*! URL of the feedback server.
+     *  @see setFeedbackServer
+     */
+    Q_PROPERTY(QUrl feedbackServer READ feedbackServer WRITE setFeedbackServer NOTIFY providerSettingsChanged)
+
+    /*! Submission interval in days.
+     *  @see setSubmissionInterval
+     */
+    Q_PROPERTY(int submissionInterval READ submissionInterval WRITE setSubmissionInterval NOTIFY providerSettingsChanged)
+
+    /*! Application starts before an encouragement message is shown.
+     *  @see setApplicationStartsUntilEncouragement
+     */
+    Q_PROPERTY(int applicationStartsUntilEncouragement
+                READ applicationStartsUntilEncouragement
+                WRITE setApplicationStartsUntilEncouragement
+                NOTIFY providerSettingsChanged)
+
+    /*! Application usage time in seconds before an encouragement message is shown.
+     *  @see setApplicationUsageTimeUntilEncouragement
+     */
+    Q_PROPERTY(int applicationUsageTimeUntilEncouragement
+                READ applicationUsageTimeUntilEncouragement
+                WRITE setApplicationUsageTimeUntilEncouragement
+                NOTIFY providerSettingsChanged)
+
+    /*! Encouragement delay after application start in seconds.
+     *  @see setEncouragementDelay
+     */
+    Q_PROPERTY(int encouragementDelay READ encouragementDelay WRITE setEncouragementDelay NOTIFY providerSettingsChanged)
+
+    /*! Encouragement interval.
+     *  @see setEncouragementInterval
+     */
+    Q_PROPERTY(int encouragementInterval READ encouragementInterval WRITE setEncouragementInterval NOTIFY providerSettingsChanged)
+
 public:
     /*! Telemetry collection modes.
      *  Colleciton modes are inclusive, ie. higher modes always imply data from
@@ -71,6 +116,8 @@ public:
     explicit Provider(QObject *parent = nullptr);
     ~Provider();
 
+    /*! Returns the current product identifier. */
+    QString productIdentifier() const;
     /*! Set the product identifier.
      *  This is used to distinguish independent products on the same server.
      *  If this is not specified, the product identifier is dervied from the application name
@@ -79,13 +126,19 @@ public:
      */
     void setProductIdentifier(const QString &productId);
 
+    /*! Returns the current feedback server URL. */
+    QUrl feedbackServer() const;
     /*! Set the feedback server URL.
      *  This must be called with an appropriate URL for this class to be operational.
      *  @param url The URL of the feedback server.
      */
     void setFeedbackServer(const QUrl &url);
 
-    /*! Set the automatic submission interval.
+    /*! Returns the current submission interval.
+     *  @return Days between telemetry submissions, or -1 if submission is off.
+     */
+    int submissionInterval() const;
+    /*! Set the automatic submission interval in days.
      *  This must be called with a positive number for this class to be operational,
      *  as the default is -1 (no submission ever).
      */
@@ -127,6 +180,8 @@ public:
      */
     void setSurveyCompleted(const SurveyInfo &info);
 
+    /*! Returns the amount of application starts before an encouragement message is shown. */
+    int applicationStartsUntilEncouragement() const;
     /*! Set the amount of application starts until the encouragement message should be shown.
      *  The default is -1, ie. no encouragement based on application starts.
      *  @param starts The amount of application starts after which an encouragement
@@ -134,12 +189,16 @@ public:
      */
     void setApplicationStartsUntilEncouragement(int starts);
 
+    /*! Returns the amount of application usage time before an encouragement message is shown. */
+    int applicationUsageTimeUntilEncouragement() const;
     /*! Set the amount of usage time until the encouragement message should be shown.
      *  The default is -1, ie. no encouragement based on application usage time.
      *  @param secs Amount of seconds until the encouragement should be shown.
      */
     void setApplicationUsageTimeUntilEncouragement(int secs);
 
+    /*! Returns the current encouragement delay in seconds. */
+    int encouragementDelay() const;
     /*! Set the delay after application start for the earliest display of the encouragement message.
      *  The default is 300, ie. 5 minutes after the application start.
      *  @note This only adds an additional contraint on usage time and startup count based
@@ -152,6 +211,8 @@ public:
      */
     void setEncouragementDelay(int secs);
 
+    /*! Returns the current encouragement interval. */
+    int encouragementInterval() const;
     /*! Sets the interval after the encouragement should be repeated.
      *  Encouragement messages are only repeated if no feedback options have been enabled.
      *  The default is -1, that is no repeated encouragement at all.
@@ -177,6 +238,9 @@ Q_SIGNALS:
 
     /*! Emitted when the statistics collection mode has changed. */
     void statisticsCollectionModeChanged();
+
+    /*! Emitted when any provider setting changed. */
+    void providerSettingsChanged();
 
 private:
     friend class ProviderPrivate;

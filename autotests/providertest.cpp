@@ -45,6 +45,12 @@ private slots:
 #endif
     }
 
+    void testProductId()
+    {
+        Provider p;
+        QCOMPARE(p.productIdentifier(), QLatin1String("org.kde.providertest"));
+    }
+
     void testNoTelemetry()
     {
         Provider provider;

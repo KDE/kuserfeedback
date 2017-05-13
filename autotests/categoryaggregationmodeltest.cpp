@@ -78,7 +78,7 @@ private slots:
         QCOMPARE(model.rowCount(), 0);
     }
 
-    void testModelContent()
+    void testModelContentDepth1()
     {
         CategoryAggregationModel model;
         ModelTest modelTest(&model);
@@ -140,6 +140,76 @@ private slots:
 
         QCOMPARE(model.index(0, 0).data(TimeAggregationModel::MaximumValueRole).toInt(), 3);
     }
+
+    void testModelContentDepth2()
+    {
+        const auto p = Product::fromJson(R"({
+            "name": "depth2test",
+            "schema": [{
+                "name": "platform",
+                "type": "scalar",
+                "elements": [
+                    { "name": "os", "type": "string" },
+                    { "name": "version", "type": "string" }
+                ]
+            }],
+            "aggregation": [{
+                "type": "category",
+                "name": "OS Details",
+                "elements": [
+                    { "type": "value", "schemaEntry": "platform", "schemaEntryElement": "os" },
+                    { "type": "value", "schemaEntry": "platform", "schemaEntryElement": "version" }
+                ]
+            }]
+        })").at(0);
+        QVERIFY(p.isValid());
+        QCOMPARE(p.aggregations().size(), 1);
+
+        CategoryAggregationModel model;
+        ModelTest modelTest(&model);
+        model.setAggregation(p.aggregations().at(0));
+
+        TimeAggregationModel timeModel;
+        model.setSourceModel(&timeModel);
+
+        DataModel srcModel;
+        timeModel.setSourceModel(&srcModel);
+        timeModel.setAggregationMode(TimeAggregationModel::AggregateDay);
+        srcModel.setProduct(p);
+
+        auto samples = Sample::fromJson(R"([
+            { "timestamp": "2016-11-27 12:00:00", "platform": { "os": "windows", "version": "10" } },
+            { "timestamp": "2016-11-27 12:00:00", "platform": { "os": "linux", "version": "10" } },
+            { "timestamp": "2016-11-27 12:00:00", "platform": { "os": "linux", "version": "10" } },
+            { "timestamp": "2016-11-28 12:00:00", "platform": { "os": "windows", "version": "10" } },
+            { "timestamp": "2016-11-28 12:00:00", "platform": { "os": "linux", "version": "42" } },
+            { "timestamp": "2016-11-28 12:00:00" }
+        ])", p);
+        QCOMPARE(samples.size(), 6);
+        srcModel.setSamples(samples);
+
+        QCOMPARE(model.columnCount(), 5);
+        QCOMPARE(model.headerData(1, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("[empty]"));
+        QCOMPARE(model.headerData(2, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("10")); // linux
+        QCOMPARE(model.headerData(3, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("42"));
+        QCOMPARE(model.headerData(4, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("10")); // windows
+
+        QCOMPARE(model.rowCount(), 2);
+        QCOMPARE(model.index(0, 0).data(TimeAggregationModel::TimeDisplayRole).toString(), QLatin1String("2016-11-27"));
+        QCOMPARE(model.index(0, 1).data(Qt::DisplayRole).toInt(), 0);
+        QCOMPARE(model.index(0, 2).data(Qt::DisplayRole).toInt(), 2);
+        QCOMPARE(model.index(0, 3).data(Qt::DisplayRole).toInt(), 0);
+        QCOMPARE(model.index(0, 4).data(Qt::DisplayRole).toInt(), 1);
+
+        QCOMPARE(model.index(1, 0).data(TimeAggregationModel::TimeDisplayRole).toString(), QLatin1String("2016-11-28"));
+        QCOMPARE(model.index(1, 1).data(Qt::DisplayRole).toInt(), 1);
+        QCOMPARE(model.index(1, 2).data(Qt::DisplayRole).toInt(), 0);
+        QCOMPARE(model.index(1, 3).data(Qt::DisplayRole).toInt(), 1);
+        QCOMPARE(model.index(1, 4).data(Qt::DisplayRole).toInt(), 1);
+
+        QCOMPARE(model.index(0, 0).data(TimeAggregationModel::MaximumValueRole).toInt(), 3);
+    }
+
 };
 
 QTEST_MAIN(CategoryAggregationModelTest)

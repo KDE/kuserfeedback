@@ -60,7 +60,19 @@ QVariant OpenGLInfoSource::data()
         QOpenGLFunctions functions(&context);
         m.insert(QStringLiteral("vendor"), QString::fromLocal8Bit(reinterpret_cast<const char*>(functions.glGetString(GL_VENDOR))));
         m.insert(QStringLiteral("renderer"), QString::fromLocal8Bit(reinterpret_cast<const char*>(functions.glGetString(GL_RENDERER))));
-        m.insert(QStringLiteral("version"), QString::fromLocal8Bit(reinterpret_cast<const char*>(functions.glGetString(GL_VERSION))));
+
+        int major = 0, minor = 0;
+        functions.glGetIntegerv(GL_MAJOR_VERSION, &major);
+        functions.glGetIntegerv(GL_MINOR_VERSION, &minor);
+        m.insert(QStringLiteral("version"), QString(QString::number(major) + QLatin1Char('.') + QString::number(minor)));
+
+        auto vendorVersion = QString::fromLocal8Bit(reinterpret_cast<const char*>(functions.glGetString(GL_VERSION)));
+        const auto idx = vendorVersion.indexOf(QLatin1Char(' '));
+        if (idx > 0) {
+            vendorVersion = vendorVersion.mid(idx + 1);
+            if (!vendorVersion.isEmpty())
+                m.insert(QStringLiteral("vendorVersion"), vendorVersion);
+        }
         m.insert(QStringLiteral("glslVersion"), QString::fromLocal8Bit(reinterpret_cast<const char*>(functions.glGetString(GL_SHADING_LANGUAGE_VERSION))));
 
         switch (context.format().profile()) {

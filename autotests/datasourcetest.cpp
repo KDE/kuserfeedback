@@ -257,6 +257,8 @@ private slots:
         QVERIFY(!m.value(QLatin1String("renderer")).toString().isEmpty());
         QVERIFY(m.contains(QLatin1String("version")));
         QVERIFY(!m.value(QLatin1String("version")).toString().isEmpty());
+        QVERIFY(m.contains(QLatin1String("vendorVersion")));
+        QVERIFY(!m.value(QLatin1String("vendorVersion")).toString().isEmpty());
         QVERIFY(m.contains(QLatin1String("glslVersion")));
         QVERIFY(!m.value(QLatin1String("glslVersion")).toString().isEmpty());
 #endif

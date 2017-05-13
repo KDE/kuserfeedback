@@ -376,6 +376,10 @@
                     "type": "string"
                 },
                 {
+                    "name": "vendorVersion",
+                    "type": "string"
+                },
+                {
                     "name": "glslVersion",
                     "type": "string"
                 },

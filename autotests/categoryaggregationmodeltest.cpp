@@ -208,6 +208,17 @@ private slots:
         QCOMPARE(model.index(1, 4).data(Qt::DisplayRole).toInt(), 1);
 
         QCOMPARE(model.index(0, 0).data(TimeAggregationModel::MaximumValueRole).toInt(), 3);
+
+        model.setDepth(1);
+        QCOMPARE(model.columnCount(), 4);
+        QCOMPARE(model.headerData(1, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("[empty]"));
+        QCOMPARE(model.headerData(2, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("linux"));
+        QCOMPARE(model.headerData(3, Qt::Horizontal, Qt::DisplayRole).toString(), QLatin1String("windows"));
+
+        QCOMPARE(model.rowCount(), 2);
+        QCOMPARE(model.index(0, 1).data(Qt::DisplayRole).toInt(), 0);
+        QCOMPARE(model.index(0, 2).data(Qt::DisplayRole).toInt(), 2);
+        QCOMPARE(model.index(0, 3).data(Qt::DisplayRole).toInt(), 1);
     }
 
 };

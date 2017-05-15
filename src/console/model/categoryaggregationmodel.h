@@ -38,6 +38,8 @@ public:
 
     void setSourceModel(QAbstractItemModel *model);
     void setAggregation(const Aggregation &aggr);
+    /*! Limits depth to @p depth, even if the aggregation has a higher one. */
+    void setDepth(int depth);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -53,6 +55,7 @@ private:
     QVector<QString> m_categories;
     int *m_data = nullptr;
     int m_maxValue;
+    int m_depth;
 };
 
 }

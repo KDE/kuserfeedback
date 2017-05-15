@@ -48,6 +48,15 @@ void CategoryAggregationModel::setSourceModel(QAbstractItemModel* model)
 void CategoryAggregationModel::setAggregation(const Aggregation& aggr)
 {
     m_aggr = aggr;
+    m_depth = m_aggr.elements().size();
+    recompute();
+}
+
+void CategoryAggregationModel::setDepth(int depth)
+{
+    if (depth == m_depth)
+        return;
+    m_depth = std::min(depth, m_aggr.elements().size());
     recompute();
 }
 
@@ -119,21 +128,20 @@ void CategoryAggregationModel::recompute()
     m_data = nullptr;
     m_maxValue = 0;
 
-    if (rowCount <= 0 || !m_aggr.isValid()) {
+    if (rowCount <= 0 || !m_aggr.isValid() || m_depth <= 0) {
         endResetModel();
         return;
     }
 
     // scan all samples to find all categories
-    const auto depth = m_aggr.elements().size();
     const auto allSamples = m_sourceModel->index(0, 0).data(TimeAggregationModel::AllSamplesRole).value<QVector<Sample>>();
     QVector<QVector<QVector<Sample>>> depthSamples{{allSamples}}; // depth -> parent category index -> samples
-    depthSamples.resize(depth + 1);
+    depthSamples.resize(m_depth + 1);
     QVector<QVector<QVector<QString>>> depthCategories{{{{}}}}; // depth -> parent category index -> category values
-    depthCategories.resize(depth + 1);
+    depthCategories.resize(m_depth + 1);
     QVector<QVector<int>> depthOffsets{{0}}; // depth -> parent category index -> column offset
-    depthOffsets.resize(depth + 1);
-    for (int i = 0; i < depth; ++i) { // for each depth layer...
+    depthOffsets.resize(m_depth + 1);
+    for (int i = 0; i < m_depth; ++i) { // for each depth layer...
         depthOffsets[i + 1] = { 0 };
         for (int j = 0; j < depthCategories.at(i).size(); ++j) { // ... and for each parent category ...
             int prevSize = 0;
@@ -157,7 +165,7 @@ void CategoryAggregationModel::recompute()
         }
     }
 
-    for (const auto &cats : depthCategories.at(depth))
+    for (const auto &cats : depthCategories.at(m_depth))
         m_categories += cats;
     const auto colCount = m_categories.size();
 
@@ -168,7 +176,7 @@ void CategoryAggregationModel::recompute()
         const auto samples = m_sourceModel->index(row, 0).data(TimeAggregationModel::SamplesRole).value<QVector<Sample>>();
         for (const auto &sample : samples) {
             int parentIdx = 0;
-            for (int i = 1; i <= depth; ++i) {
+            for (int i = 1; i <= m_depth; ++i) {
                 const auto cats = depthCategories.at(i).at(parentIdx);
                 const auto catIt = std::lower_bound(cats.constBegin(), cats.constEnd(), sampleValue(sample, i - 1).toString());
                 Q_ASSERT(catIt != cats.constEnd());

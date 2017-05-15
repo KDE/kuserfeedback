@@ -125,15 +125,40 @@ void CategoryAggregationModel::recompute()
     }
 
     // scan all samples to find all categories
-    // TODO do this in the database
-    QSet<QString> categories;
+    const auto depth = m_aggr.elements().size();
     const auto allSamples = m_sourceModel->index(0, 0).data(TimeAggregationModel::AllSamplesRole).value<QVector<Sample>>();
-    foreach (const auto &s, allSamples)
-        categories.insert(sampleValue(s, 0).toString());
-    m_categories.reserve(categories.size());
-    foreach (const auto &cat, categories)
-        m_categories.push_back(cat);
-    std::sort(m_categories.begin(), m_categories.end());
+    QVector<QVector<QVector<Sample>>> depthSamples{{allSamples}}; // depth -> parent category index -> samples
+    depthSamples.resize(depth + 1);
+    QVector<QVector<QVector<QString>>> depthCategories{{{{}}}}; // depth -> parent category index -> category values
+    depthCategories.resize(depth + 1);
+    QVector<QVector<int>> depthOffsets{{0}}; // depth -> parent category index -> column offset
+    depthOffsets.resize(depth + 1);
+    for (int i = 0; i < depth; ++i) { // for each depth layer...
+        depthOffsets[i + 1] = { 0 };
+        for (int j = 0; j < depthCategories.at(i).size(); ++j) { // ... and for each parent category ...
+            int prevSize = 0;
+            for (int k = 0; k < depthCategories.at(i).at(j).size(); ++k) { // ... and for each category value...
+                const auto sampleSubSet = depthSamples.at(i).at(j + k);
+                QHash<QString, QVector<Sample>> catHash;
+                for (const auto &s : sampleSubSet) // ... and for each sample
+                    catHash[sampleValue(s, i).toString()].push_back(s);
+                QVector<QString> cats;
+                cats.reserve(catHash.size());
+                for (auto it = catHash.cbegin(); it != catHash.cend(); ++it)
+                    cats.push_back(it.key());
+                std::sort(cats.begin(), cats.end());
+                depthCategories[i + 1].push_back(cats);
+                for (const auto &cat : cats)
+                    depthSamples[i + 1].push_back(catHash.value(cat));
+                if (k > 0)
+                    depthOffsets[i + 1].push_back(depthOffsets.at(i + 1).constLast() + prevSize);
+                prevSize = cats.size();
+            }
+        }
+    }
+
+    for (const auto &cats : depthCategories.at(depth))
+        m_categories += cats;
     const auto colCount = m_categories.size();
 
     // compute the counts per cell, we could do that on demand, but we need the maximum for QtCharts...
@@ -141,11 +166,15 @@ void CategoryAggregationModel::recompute()
     memset(m_data, 0, sizeof(int) * colCount * rowCount);
     for (int row = 0; row < rowCount; ++row) {
         const auto samples = m_sourceModel->index(row, 0).data(TimeAggregationModel::SamplesRole).value<QVector<Sample>>();
-        foreach (const auto &sample, samples) {
-            const auto catIt = std::lower_bound(m_categories.constBegin(), m_categories.constEnd(), sampleValue(sample, 0).toString());
-            Q_ASSERT(catIt != m_categories.constEnd());
-            const auto idx = colCount * row + std::distance(m_categories.constBegin(), catIt);
-            m_data[idx]++;
+        for (const auto &sample : samples) {
+            int parentIdx = 0;
+            for (int i = 1; i <= depth; ++i) {
+                const auto cats = depthCategories.at(i).at(parentIdx);
+                const auto catIt = std::lower_bound(cats.constBegin(), cats.constEnd(), sampleValue(sample, i - 1).toString());
+                Q_ASSERT(catIt != cats.constEnd());
+                parentIdx = std::distance(cats.constBegin(), catIt) + depthOffsets.at(i).at(parentIdx);
+            }
+            m_data[colCount * row + parentIdx]++;
         }
         // accumulate per row for stacked plots
         for (int col = 1; col < colCount; ++col) {

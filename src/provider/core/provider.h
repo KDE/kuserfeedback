@@ -108,7 +108,11 @@ public:
         DetailedSystemInformation = 0x30, ///< Transmit detailed system information.
         DetailedUsageStatistics = 0x40, ///< Transmit detailed usage statistics.
     };
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
+    Q_ENUM(StatisticsCollectionMode)
+#else
     Q_ENUMS(StatisticsCollectionMode)
+#endif
 
     /*! Create a new feedback provider.
      *  @param parent The parent object.

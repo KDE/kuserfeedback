@@ -6,7 +6,7 @@ if(TARGET UserFeedbackWidgets AND NOT (CMAKE_SOURCE_DIR EQUAL CMAKE_CURRENT_SOUR
     target_link_libraries(notificationpopuptest UserFeedbackWidgets)
 
     add_executable(orwell orwell.cpp)
-    target_link_libraries(orwell UserFeedbackWidgets ${QT_QTGUI_LIBRARIES})
+    target_link_libraries(orwell UserFeedbackWidgets)
 else()
     # stand-alone build for testing includes and cmake config
     message(STATUS "building test application stand-alone")

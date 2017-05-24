@@ -21,6 +21,12 @@
 #include "userfeedbackcore_export.h"
 
 #include <QSharedDataPointer>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#include <qobjectdefs.h>
+#include <QUrl>
+#include <QUuid>
+#endif
+
 
 QT_BEGIN_NAMESPACE
 class QJsonObject;
@@ -37,6 +43,13 @@ class SurveyInfoData;
  */
 class USERFEEDBACKCORE_EXPORT SurveyInfo
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    Q_GADGET
+    Q_PROPERTY(bool isValid READ isValid)
+    Q_PROPERTY(QUrl url READ url)
+    Q_PROPERTY(QString target READ target)
+    Q_PROPERTY(QUuid uuid READ uuid)
+#endif
 public:
     /*! Create an empty, invalid survey request. */
     SurveyInfo();

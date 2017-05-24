@@ -45,7 +45,7 @@ public:
     /*! Set the feedback provider that this dialog configures. */
     void setFeedbackProvider(UserFeedback::Provider *provider);
 
-    /*! Accpets the dialog and write changes made by the user to
+    /*! Accepts the dialog and write changes made by the user to
      *  the feedback provider.
      */
     void accept() override;

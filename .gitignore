@@ -4,6 +4,7 @@
 *.orig
 *.out
 CMakeLists.txt.user
+*.qmlc
 
 src/server/config/localconfig.php
 src/server/data/*.sqlite

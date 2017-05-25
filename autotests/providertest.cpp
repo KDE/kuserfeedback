@@ -242,6 +242,38 @@ private slots:
         QVERIFY(c3 == c1 + 2);
     }
 
+    void testProductIdChange()
+    {
+        {
+            Provider p0;
+        }
+
+        int c1 = -1;
+        {
+            Provider p1;
+            auto s1 = new StartCountSource;
+            p1.addDataSource(s1, Provider::BasicUsageStatistics);
+            p1.setSurveyInterval(90);
+            const auto c0 = s1->data().toMap().value(QLatin1String("value")).toInt();
+
+            p1.setProductIdentifier(QStringLiteral("org.kde.some.other.test"));
+            p1.setSurveyInterval(-1);
+            p1.setSurveyInterval(1);
+            c1 = s1->data().toMap().value(QLatin1String("value")).toInt();
+            QVERIFY(c0 != c1);
+        }
+
+        {
+            Provider p2;
+            auto s2 = new StartCountSource;
+            p2.addDataSource(s2, Provider::BasicUsageStatistics);
+            p2.setProductIdentifier(QStringLiteral("org.kde.some.other.test"));
+            QCOMPARE(p2.surveyInterval(), 1);
+            const auto c2 = s2->data().toMap().value(QLatin1String("value")).toInt();
+            QCOMPARE(c1 + 1, c2);
+        }
+    }
+
 };
 
 QTEST_MAIN(ProviderTest)

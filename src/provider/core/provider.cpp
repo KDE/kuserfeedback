@@ -70,13 +70,6 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
     , encouragementDelay(300)
     , encouragementInterval(-1)
 {
-    auto domain = QCoreApplication::organizationDomain().split(QLatin1Char('.'));
-    std::reverse(domain.begin(), domain.end());
-    productId = domain.join(QLatin1String("."));
-    if (!productId.isEmpty())
-        productId += QLatin1Char('.');
-    productId += QCoreApplication::applicationName();
-
     submissionTimer.setSingleShot(true);
     QObject::connect(&submissionTimer, SIGNAL(timeout()), q, SLOT(submit()));
 
@@ -409,9 +402,13 @@ Provider::Provider(QObject *parent) :
 
     connect(QCoreApplication::instance(), SIGNAL(aboutToQuit()), this, SLOT(aboutToQuit()));
 
-    d->load();
-    d->startCount++;
-    d->storeOne(QStringLiteral("ApplicationStartCount"), d->startCount);
+    auto domain = QCoreApplication::organizationDomain().split(QLatin1Char('.'));
+    std::reverse(domain.begin(), domain.end());
+    auto id = domain.join(QLatin1String("."));
+    if (!id.isEmpty())
+        id += QLatin1Char('.');
+    id += QCoreApplication::applicationName();
+    setProductIdentifier(id);
 }
 
 Provider::~Provider()
@@ -430,6 +427,11 @@ void Provider::setProductIdentifier(const QString &productId)
     if (productId == d->productId)
         return;
     d->productId = productId;
+
+    d->load();
+    d->startCount++;
+    d->storeOne(QStringLiteral("ApplicationStartCount"), d->startCount);
+
     emit providerSettingsChanged();
 }
 

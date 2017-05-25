@@ -100,8 +100,8 @@ private slots:
 
         // submit data
         Provider provider;
-        provider.setStatisticsCollectionMode(Provider::DetailedUsageStatistics);
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
+        provider.setStatisticsCollectionMode(Provider::DetailedUsageStatistics);
         provider.setFeedbackServer(serverUrl);
         provider.addDataSource(new ScreenInfoSource, Provider::DetailedUsageStatistics);
         provider.addDataSource(new PlatformInfoSource, Provider::DetailedUsageStatistics);
@@ -142,8 +142,8 @@ private slots:
 
         // this must pass without ending in an infinite loop
         Provider provider;
-        provider.setStatisticsCollectionMode(Provider::DetailedUsageStatistics);
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
+        provider.setStatisticsCollectionMode(Provider::DetailedUsageStatistics);
         provider.setFeedbackServer(serverUrl);
         provider.addDataSource(new ScreenInfoSource, Provider::DetailedUsageStatistics);
         provider.addDataSource(new PlatformInfoSource, Provider::DetailedUsageStatistics);

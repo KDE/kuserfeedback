@@ -31,7 +31,7 @@ function __construct()
         $conf = new Config;
         $this->db = new PDO($conf->dsn(), $conf->username(), $conf->password());
     } catch (PDOException $e) {
-        die('Database connection failed: ' . $e->getMessage());
+        throw new RESTException($e->getMessage(), 500);
     }
 }
 

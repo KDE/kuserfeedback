@@ -16,6 +16,8 @@
 */
 
 #include "qmlplugin.h"
+#include "qmldatasources.h"
+#include "qmlproviderextension.h"
 
 #include <Provider>
 
@@ -25,5 +27,17 @@ using namespace UserFeedback;
 
 void QmlPlugin::registerTypes(const char* uri)
 {
-    qmlRegisterType<Provider>(uri, 1, 0, "Provider");
+    qmlRegisterExtendedType<Provider, QmlProviderExtension>(uri, 1, 0, "Provider");
+
+    qmlRegisterUncreatableType<QmlAbstractDataSource>(uri, 1, 0, "AbstractDataSource", QStringLiteral("abstract base class"));
+    qmlRegisterType<QmlApplicationVersionSource>(uri, 1, 0, "ApplicationVersionSource");
+    qmlRegisterType<QmlCompilerInfoSource>(uri, 1, 0, "CompilerInfoSource");
+    qmlRegisterType<QmlCpuInfoSource>(uri, 1, 0, "CpuInfoSource");
+    qmlRegisterType<QmlLocaleInfoSource>(uri, 1, 0, "LocaleInfoSource");
+    qmlRegisterType<QmlOpenGLInfoSource>(uri, 1, 0, "OpenGLInfoSource");
+    qmlRegisterType<QmlPlatformInfoSource>(uri, 1, 0, "PlatformInfoSource");
+    qmlRegisterType<QmlQtVersionSource>(uri, 1, 0, "QtVersionSource");
+    qmlRegisterType<QmlScreenInfoSource>(uri, 1, 0, "ScreenInfoSource");
+    qmlRegisterType<QmlStartCountSource>(uri, 1, 0, "StartCountSource");
+    qmlRegisterType<QmlUsageTimeSource>(uri, 1, 0, "UsageTimeSource");
 }

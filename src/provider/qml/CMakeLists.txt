@@ -1,5 +1,8 @@
 set(provider_qml_srcs
+    qmlabstractdatasource.cpp
+    qmldatasources.cpp
     qmlplugin.cpp
+    qmlproviderextension.cpp
 )
 
 add_library(UserFeedbackQml SHARED ${provider_qml_srcs})

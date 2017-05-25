@@ -21,6 +21,8 @@ import org.kde.userfeedback 1.0 as UserFeedback
 
 ApplicationWindow {
     id: root
+    width: 480
+    height: 640
 
     UserFeedback.Provider {
         id: provider
@@ -28,6 +30,17 @@ ApplicationWindow {
         productIdentifier: "org.kde.orwell"
         feedbackServer: "https://feedback.volkerkrause.eu/"
         statisticsCollectionMode: UserFeedback.Provider.DetailedUsageStatistics
+
+        UserFeedback.ApplicationVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
+        UserFeedback.CompilerInfoSource { mode: UserFeedback.Provider.BasicSystemInformation }
+        UserFeedback.CpuInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
+        UserFeedback.LocaleInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
+        UserFeedback.OpenGLInfoSource{ mode: UserFeedback.Provider.DetailedSystemInformation }
+        UserFeedback.PlatformInfoSource { mode: UserFeedback.Provider.BasicSystemInformation }
+        UserFeedback.QtVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
+        UserFeedback.ScreenInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
+        UserFeedback.StartCountSource { mode: UserFeedback.Provider.BasicUsageStatistics }
+        UserFeedback.UsageTimeSource { mode: UserFeedback.Provider.BasicUsageStatistics }
     }
 
     Button {

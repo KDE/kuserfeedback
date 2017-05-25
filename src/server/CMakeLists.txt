@@ -46,13 +46,20 @@ php_lint(${server_config_srcs})
 php_lint(${server_shared_srcs})
 php_lint(${server_receiver_srcs})
 
-if (SERVER_DEPLOY_DESTINATION)
+if (SERVER_DEPLOY_HOST AND SERVER_DEPLOY_PATH)
+    set(SERVER_DEPLOY_DESTINATION ${SERVER_DEPLOY_HOST}:${SERVER_DEPLOY_PATH})
     add_custom_target(deploy
+        COMMAND ssh ${SERVER_DEPLOY_HOST} "mkdir -p ${SERVER_DEPLOY_PATH}"
         COMMAND scp ${server_top_srcs} ${SERVER_DEPLOY_DESTINATION}/
+        COMMAND ssh ${SERVER_DEPLOY_HOST} "mkdir -p ${SERVER_DEPLOY_PATH}/admin"
         COMMAND scp ${server_admin_srcs} ${SERVER_DEPLOY_DESTINATION}/admin
+        COMMAND ssh ${SERVER_DEPLOY_HOST} "mkdir -p ${SERVER_DEPLOY_PATH}/analytics"
         COMMAND scp ${server_analytics_srcs} ${SERVER_DEPLOY_DESTINATION}/analytics
+        COMMAND ssh ${SERVER_DEPLOY_HOST} "mkdir -p ${SERVER_DEPLOY_PATH}/config"
         COMMAND scp ${server_config_srcs} ${SERVER_DEPLOY_DESTINATION}/config
+        COMMAND ssh ${SERVER_DEPLOY_HOST} "mkdir -p ${SERVER_DEPLOY_PATH}/receiver"
         COMMAND scp ${server_receiver_srcs} ${SERVER_DEPLOY_DESTINATION}/receiver
+        COMMAND ssh ${SERVER_DEPLOY_HOST} "mkdir -p ${SERVER_DEPLOY_PATH}/shared"
         COMMAND scp ${server_shared_srcs} ${SERVER_DEPLOY_DESTINATION}/shared
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )

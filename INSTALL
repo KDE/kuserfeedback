@@ -6,7 +6,9 @@ The usual cmake/make/make install.
 
 Requires PHP >= 5.5 and Sqlite, MySQL or PostgreSQL, Apache with SSL set up.
 
-- copy src/server to your webserver (alternatively, use "make deploy")
+- copy src/server to your webserver
+- (alternatively) use "make deploy", after setting the SERVER_DEPLOY_HOST and SERVER_DEPLOY_PATH
+  cmake options accordingly
 - make sure .htaccess files are enabled by your Apache settings
 - set up authentication:
     - users with access to the analytics sub-folder have read-only access to all product settings

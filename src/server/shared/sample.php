@@ -45,6 +45,7 @@ class Sample
         $scalarStmt = $db->prepare($scalarSql);
         $db->execute($scalarStmt);
         foreach ($scalarStmt as $scalarRow) {
+            $rowData = array();
             $rowData['id'] = intval($scalarRow['col_id']);
             $rowData['timestamp'] = $scalarRow['col_timestamp'];
             foreach ($product->schema as $entry) {

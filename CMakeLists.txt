@@ -14,12 +14,6 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-if(NOT DEFINED CMAKE_INSTALL_RPATH_USE_LINK_PATH)
-    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-endif()
-if(NOT DEFINED CMAKE_MACOSX_RPATH)
-    set(CMAKE_MACOSX_RPATH TRUE)
-endif()
 
 include(ECMGenerateHeaders)
 include(ECMPoQmTools)
@@ -68,6 +62,7 @@ if(NOT ENFORCE_QT4_BUILD)
     include(ECMQueryQmake)
     include(ECMGeneratePriFile)
     include(KDEInstallDirs)
+    include(KDECMakeSettings)
 else()
     set(Qt5Core_FOUND FALSE)
 endif()
@@ -123,28 +118,12 @@ find_package(PhpUnit)
 set_package_properties(PhpUnit PROPERTIES URL "http://phpunit.de" TYPE RECOMMENDED PURPOSE "Unit tests for PHP server code.")
 
 #
-# Installation settings
+# Actually build the stuff
 #
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${BIN_INSTALL_DIR})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${LIB_INSTALL_DIR})
-
-# set RPATH only when installing to a non-default location and not set in cache
-if(NOT CMAKE_INSTALL_RPATH)
-    list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}" _isSystemPlatformLibDir)
-    list(FIND CMAKE_C_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}" _isSystemCLibDir)
-    list(FIND CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}" _isSystemCxxLibDir)
-    if(${_isSystemPlatformLibDir} EQUAL -1 AND ${_isSystemCLibDir} EQUAL -1 AND ${_isSystemCxxLibDir} EQUAL -1)
-        set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}")
-    endif()
-endif()
-
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 configure_file(config-userfeedback.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback.h)
 configure_file(config-userfeedback-version.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback-version.h)
 
-#
-# Actually build the stuff
-#
 add_subdirectory(src)
 add_subdirectory(autotests)
 if(Qt5Core_FOUND)

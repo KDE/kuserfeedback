@@ -43,7 +43,7 @@ class SurveyInfoData;
  */
 class USERFEEDBACKCORE_EXPORT SurveyInfo
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#ifndef QT4_MOC_WORKAROUND
     Q_GADGET
     Q_PROPERTY(bool isValid READ isValid)
     Q_PROPERTY(QUrl url READ url)

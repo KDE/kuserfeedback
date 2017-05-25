@@ -94,6 +94,9 @@ else()
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -include \"${CMAKE_SOURCE_DIR}/src/compat/qt4compat.h\"")
     endif()
     include(Qt4ECMStub)
+
+    # Qt4 moc limitation workaround (Qt4 moc cannot evaluate QT_VERSION preprocessor conditionals
+    add_definitions(-DQT4_MOC_WORKAROUND)
 endif()
 
 # debug suffixes for qmake compatibility

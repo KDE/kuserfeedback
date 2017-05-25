@@ -20,6 +20,7 @@
 #include <jobs/handshakejob.h>
 #include <jobs/productexportjob.h>
 #include <jobs/productimportjob.h>
+#include <jobs/securityscanjob.h>
 #include <rest/restapi.h>
 #include <rest/restclient.h>
 #include <rest/serverinfo.h>
@@ -50,17 +51,17 @@ int main(int argc, char **argv)
     parser.addVersionOption();
     QCommandLineOption serverOpt({ QStringLiteral("server"), QStringLiteral("s") }, QStringLiteral("Server Name"), QStringLiteral("name"));
     parser.addOption(serverOpt);
-    QCommandLineOption outputOpt( { QStringLiteral("output"), QStringLiteral("o") }, QStringLiteral("Output path"), QStringLiteral("path"));
+    QCommandLineOption outputOpt({ QStringLiteral("output"), QStringLiteral("o") }, QStringLiteral("Output path"), QStringLiteral("path"));
     parser.addOption(outputOpt);
-    QCommandLineOption forceOpt( { QStringLiteral("force"), QStringLiteral("f") }, QStringLiteral("Force destructive operations"));
+    QCommandLineOption forceOpt({ QStringLiteral("force"), QStringLiteral("f") }, QStringLiteral("Force destructive operations"));
     parser.addOption(forceOpt);
-    QCommandLineOption urlOpt( { QStringLiteral("url"), QStringLiteral("u") }, QStringLiteral("Server URL"), QStringLiteral("url"));
+    QCommandLineOption urlOpt({ QStringLiteral("url"), QStringLiteral("u") }, QStringLiteral("Server URL"), QStringLiteral("url"));
     parser.addOption(urlOpt);
-    QCommandLineOption userOpt( { QStringLiteral("user") }, QStringLiteral("User name"), QStringLiteral("name"));
+    QCommandLineOption userOpt({ QStringLiteral("user") }, QStringLiteral("User name"), QStringLiteral("name"));
     parser.addOption(userOpt);
-    QCommandLineOption passOpt ( { QStringLiteral("password") }, QStringLiteral("Password"), QStringLiteral("pass"));
+    QCommandLineOption passOpt({ QStringLiteral("password") }, QStringLiteral("Password"), QStringLiteral("pass"));
     parser.addOption(passOpt);
-    parser.addPositionalArgument(QStringLiteral("command"), QStringLiteral("Command: add-server, delete-product, delete-server, export-all, export-product, import-product, list-products, list-servers"));
+    parser.addPositionalArgument(QStringLiteral("command"), QStringLiteral("Command: add-server, delete-product, delete-server, export-all, export-product, import-product, list-products, list-servers, scan-server"));
 
     parser.process(app);
 
@@ -182,6 +183,17 @@ int main(int argc, char **argv)
                 for (const auto p : products)
                     std::cout << qPrintable(p.name()) << std::endl;
                 qApp->quit();
+            });
+        });
+    } else if (cmd == QLatin1String("scan-server")) {
+        QObject::connect(&restClient, &RESTClient::clientConnected, [&restClient]() {
+            auto job = new SecurityScanJob(&restClient);
+            QObject::connect(job, &Job::destroyed, qApp, &QCoreApplication::quit);
+            QObject::connect(job, &Job::error, [](const auto &msg) {
+                std::cerr << qPrintable(msg) << std::endl;
+            });
+            QObject::connect(job, &Job::info, [](const auto &msg) {
+                std::cout << qPrintable(msg) << std::endl;
             });
         });
     } else {

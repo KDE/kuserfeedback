@@ -47,6 +47,7 @@ public:
     QNetworkReply* put(const QString &command, const QByteArray &data);
     QNetworkReply* deleteResource(const QString &command);
 
+    QNetworkAccessManager* networkAccessManager() const;
 signals:
     void clientConnected();
     void errorMessage(const QString &msg);

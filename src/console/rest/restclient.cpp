@@ -91,6 +91,11 @@ QNetworkReply* RESTClient::deleteResource(const QString& command)
     return reply;
 }
 
+QNetworkAccessManager* RESTClient::networkAccessManager() const
+{
+    return m_networkAccessManager;
+}
+
 QNetworkRequest RESTClient::makeRequest(const QString& command)
 {
     Q_ASSERT(m_serverInfo.url().isValid());

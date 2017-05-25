@@ -14,8 +14,11 @@ Requires PHP >= 5.5 and Sqlite, MySQL or PostgreSQL, Apache with SSL set up.
     - users with additional access to the admin sub-folder have write access to all products
 - rename config/localconfig.php.example to config/localconfig.php and adjust
   settings in there based on your database setup
-- start UserFeedbackConsole, connect to the server, that will trigger the database
-  creation
+- connect to the server using either UserFeedbackConsole or the userfeedbackctl command line tool,
+  that will trigger the database
+- (optional) verify that access controls a set up correctly using the 'userfeedbackctl scan-server'
+  command
+
 
 ## Local Development
 

@@ -18,6 +18,7 @@ set(console_lib_srcs
     jobs/handshakejob.cpp
     jobs/productexportjob.cpp
     jobs/productimportjob.cpp
+    jobs/securityscanjob.cpp
 
     model/aggregateddatamodel.cpp
     model/aggregationeditormodel.cpp

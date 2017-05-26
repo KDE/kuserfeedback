@@ -17,6 +17,7 @@
 
 #include "qmlplugin.h"
 #include "qmldatasources.h"
+#include "qmlpropertyratiosource.h"
 #include "qmlproviderextension.h"
 
 #include <Provider>
@@ -41,6 +42,7 @@ void QmlPlugin::registerTypes(const char* uri)
     qmlRegisterType<QmlScreenInfoSource>(uri, 1, 0, "ScreenInfoSource");
     qmlRegisterType<QmlStartCountSource>(uri, 1, 0, "StartCountSource");
     qmlRegisterType<QmlUsageTimeSource>(uri, 1, 0, "UsageTimeSource");
+    qmlRegisterType<QmlPropertyRatioSource>(uri, 1, 0, "PropertyRatioSource");
 
     qRegisterMetaType<SurveyInfo>();
 }

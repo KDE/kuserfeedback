@@ -18,12 +18,23 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.1
+import Qt.labs.settings 1.0
 import org.kde.userfeedback 1.0 as UserFeedback
 
 ApplicationWindow {
     id: root
     width: 480
     height: 640
+
+    Component.onCompleted: {
+        Qt.application.name = "qmlorwell";
+        Qt.application.version = "1984.qml"
+        Qt.application.organization = "KDE";
+        Qt.application.domain = "kde.org";
+
+        // for Settings to work, we need to have the above setup first
+        stackView.push(mainView);
+    }
 
     UserFeedback.Provider {
         id: provider
@@ -50,13 +61,94 @@ ApplicationWindow {
         UserFeedback.ScreenInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
         UserFeedback.StartCountSource { mode: UserFeedback.Provider.BasicUsageStatistics }
         UserFeedback.UsageTimeSource { mode: UserFeedback.Provider.BasicUsageStatistics }
+
+        UserFeedback.PropertyRatioSource {
+            id: dialRatioSource
+            mode: UserFeedback.Provider.DetailedUsageStatistics
+            name: "dialRatio"
+            propertyName: "intValue"
+            description: qsTr("The dial position.")
+        }
     }
 
-    Button {
-        id: submitButton
-        text: "Submit!"
-        anchors.centerIn: parent
-        onClicked: provider.submit()
+    StackView {
+        id: stackView
+        anchors.fill: parent
+    }
+
+    Component {
+        id: mainView
+        Page {
+            header: ToolBar {
+                RowLayout {
+                    anchors.fill: parent
+                    Label {
+                        text: "Feedback Demo"
+                        horizontalAlignment: Qt.AlignHCenter
+                        verticalAlignment: Qt.AlignVCenter
+                        Layout.fillWidth: true
+                    }
+                    ToolButton {
+                        id: menuButton
+                        text: "⋮"
+                        onClicked: menu.open()
+                        Menu {
+                            id: menu
+                            y: menuButton.height
+                            MenuItem {
+                                text: "Contribute..."
+                                onTriggered: stackView.push(contributePage)
+                            }
+                        }
+                    }
+                }
+            }
+
+            ColumnLayout {
+                anchors.fill: parent
+                Dial {
+                    property int intValue: Math.round(dial.value)
+                    id: dial
+                    Layout.fillWidth: true
+                    from: 0
+                    to: 10
+                    stepSize: 1
+                    Component.onCompleted: dialRatioSource.object = dial
+                }
+                Settings {
+                    property alias sliderValue: dial.value
+                }
+                Button {
+                    id: submitButton
+                    Layout.alignment: Qt.AlignHCenter
+                    text: "Submit!"
+                    onClicked: provider.submit()
+                }
+            }
+        }
+    }
+
+    Component {
+        id: contributePage
+        Page {
+            header: ToolBar {
+                RowLayout {
+                    anchors.fill: parent
+                    ToolButton {
+                        id: menuButton
+                        text: "<"
+                        onClicked: stackView.pop()
+                    }
+                    Label {
+                        text: "Contribution Settings"
+                        horizontalAlignment: Qt.AlignHCenter
+                        verticalAlignment: Qt.AlignVCenter
+                        Layout.fillWidth: true
+                    }
+                }
+            }
+
+        }
     }
 
     Popup {

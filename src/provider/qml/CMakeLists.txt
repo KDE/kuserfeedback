@@ -2,6 +2,7 @@ set(provider_qml_srcs
     qmlabstractdatasource.cpp
     qmldatasources.cpp
     qmlplugin.cpp
+    qmlpropertyratiosource.cpp
     qmlproviderextension.cpp
 )
 

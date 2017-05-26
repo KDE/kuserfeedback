@@ -172,6 +172,27 @@ void ProviderPrivate::aboutToQuit()
     store();
 }
 
+bool ProviderPrivate::isValidSource(AbstractDataSource *source) const
+{
+    if (source->name().isEmpty()) {
+        qCWarning(Log) << "Skipping data source with empty name!";
+        return false;
+    }
+    if (source->collectionMode() == Provider::NoStatistics) {
+        qCWarning(Log) << "Source" << source->name() << "attempts to report data unconditionally, ignoring!";
+        return false;
+    }
+    if (source->description().isEmpty()) {
+        qCWarning(Log) << "Source" << source->name() << "has no description, ignoring!";
+        return false;
+    }
+
+    Q_ASSERT(!source->name().isEmpty());
+    Q_ASSERT(source->collectionMode() != Provider::NoStatistics);
+    Q_ASSERT(!source->description().isEmpty());
+    return true;
+}
+
 #if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 QByteArray variantMapToJson(const QVariantMap &m)
 {
@@ -208,6 +229,8 @@ QByteArray ProviderPrivate::jsonData(Provider::StatisticsCollectionMode mode) co
     QJsonObject obj;
     if (mode != Provider::NoStatistics) {
         foreach (auto source, dataSources) {
+            if (!isValidSource(source))
+                continue;
             if (mode < source->collectionMode())
                 continue;
             const auto data = source->data();
@@ -224,6 +247,8 @@ QByteArray ProviderPrivate::jsonData(Provider::StatisticsCollectionMode mode) co
     QByteArray b = "{";
     if (mode != Provider::NoStatistics) {
         for (auto it = dataSources.begin(); it != dataSources.end(); ++it) {
+            if (!isValidSource(*it))
+                continue;
             if (mode < (*it)->collectionMode())
                 continue;
             const auto data = (*it)->data();
@@ -483,20 +508,6 @@ void Provider::setStatisticsCollectionMode(StatisticsCollectionMode mode)
 
 void Provider::addDataSource(AbstractDataSource *source, StatisticsCollectionMode mode)
 {
-    // sanity-check sources
-    if (mode == NoStatistics) {
-        qCritical() << "Source" << source->name() << "attempts to report data unconditionally, ignoring!";
-        delete source;
-        return;
-    }
-    if (source->description().isEmpty()) {
-        qCritical() << "Source" << source->name() << "has no description, ignoring!";
-        delete source;
-        return;
-    }
-
-    Q_ASSERT(mode != NoStatistics);
-    Q_ASSERT(!source->description().isEmpty());
     source->setCollectionMode(mode);
 
     // special cases for sources where we track the data here, as it's needed even if we don't report it

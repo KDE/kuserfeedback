@@ -51,6 +51,7 @@ public:
 
     void aboutToQuit();
 
+    bool isValidSource(AbstractDataSource *source) const;
     QByteArray jsonData(Provider::StatisticsCollectionMode mode) const;
     void scheduleNextSubmission();
     void submit(const QUrl &url);

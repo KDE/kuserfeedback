@@ -300,6 +300,7 @@ void ProviderPrivate::submitFinished()
     const auto it = obj.find(QLatin1String("surveys"));
     if (it != obj.end() && surveyInterval >= 0) {
         const auto a = it.value().toArray();
+        qCDebug(Log) << "received" << a.size() << "surveys";
         foreach(const auto &s, a) {
             const auto survey = SurveyInfo::fromJson(s.toObject());
             if (selectSurvey(survey))
@@ -342,6 +343,7 @@ bool ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
             return false;
     }
 
+    qCDebug(Log) << "picked survey:" << survey.url();
     emit q->surveyAvailable(survey);
     return true;
 }
@@ -589,7 +591,7 @@ void Provider::setEncouragementInterval(int days)
     d->scheduleEncouragement();
 }
 
-void Provider::setSurveyCompleted(const SurveyInfo &info)
+void Provider::surveyCompleted(const SurveyInfo &info)
 {
     d->completedSurveys.push_back(info.uuid().toString());
     d->lastSurveyTime = QDateTime::currentDateTime();

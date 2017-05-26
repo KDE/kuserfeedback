@@ -183,11 +183,6 @@ public:
      */
     void setSurveyInterval(int days);
 
-    /*! Marks the given survey as completed. This avoids getting further notification
-     *  about the same survey.
-     */
-    void setSurveyCompleted(const SurveyInfo &info);
-
     /*! Returns the amount of application starts before an encouragement message is shown. */
     int applicationStartsUntilEncouragement() const;
     /*! Set the amount of application starts until the encouragement message should be shown.
@@ -231,6 +226,11 @@ public:
 public Q_SLOTS:
     /*! Manually submit currently recorded data. */
     void submit();
+
+    /*! Marks the given survey as completed. This avoids getting further notification
+     *  about the same survey.
+     */
+    void surveyCompleted(const UserFeedback::SurveyInfo &info);
 
 Q_SIGNALS:
     /*! Emitted whenever there is a new survey available that can be presented

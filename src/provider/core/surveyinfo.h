@@ -20,6 +20,7 @@
 
 #include "userfeedbackcore_export.h"
 
+#include <QMetaType>
 #include <QSharedDataPointer>
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <qobjectdefs.h>
@@ -84,5 +85,7 @@ private:
 };
 
 }
+
+Q_DECLARE_METATYPE(UserFeedback::SurveyInfo)
 
 #endif // USERFEEDBACK_SURVEYINFO_H

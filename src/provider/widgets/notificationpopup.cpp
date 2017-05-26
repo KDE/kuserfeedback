@@ -118,7 +118,7 @@ void NotificationPopupPrivate::action()
 {
     if (survey.isValid()) {
         QDesktopServices::openUrl(survey.url());
-        provider->setSurveyCompleted(survey);
+        provider->surveyCompleted(survey);
     } else {
         FeedbackConfigDialog dlg(q);
         dlg.setFeedbackProvider(provider);

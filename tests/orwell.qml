@@ -16,6 +16,7 @@
 */
 
 import QtQuick 2.0
+import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.1
 import org.kde.userfeedback 1.0 as UserFeedback
 
@@ -29,7 +30,15 @@ ApplicationWindow {
         submissionInterval: 1
         productIdentifier: "org.kde.orwell"
         feedbackServer: "https://feedback.volkerkrause.eu/"
+        // TODO make configurable
         statisticsCollectionMode: UserFeedback.Provider.DetailedUsageStatistics
+        surveyInterval: 0
+
+        onSurveyAvailable: {
+            console.log(survey);
+            surveyPopup.surveyInfo = survey;
+            surveyPopup.open();
+        }
 
         UserFeedback.ApplicationVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
         UserFeedback.CompilerInfoSource { mode: UserFeedback.Provider.BasicSystemInformation }
@@ -48,5 +57,38 @@ ApplicationWindow {
         text: "Submit!"
         anchors.centerIn: parent
         onClicked: provider.submit()
+    }
+
+    Popup {
+        id: surveyPopup
+        property var surveyInfo;
+        x: 0
+        y: 0
+        width: parent.width
+        height: parent.height
+
+        ColumnLayout {
+            anchors.fill: parent
+            Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Qt.AlignHCenter;
+                text: qsTr("We are looking for your feedback!")
+                font.bold: true
+            }
+            Label {
+                Layout.fillWidth: true
+                text: qsTr("We would like a few minutes of your time to provide feedback about this application in a survey.")
+                wrapMode: Text.WordWrap
+            }
+            Button {
+                Layout.alignment: Qt.AlignHCenter;
+                text: qsTr("Participate!")
+                onClicked: {
+                    if (Qt.openUrlExternally(surveyPopup.surveyInfo.url))
+                        provider.surveyCompleted(surveyPopup.surveyInfo);
+                    surveyPopup.close()
+                }
+            }
+        }
     }
 }

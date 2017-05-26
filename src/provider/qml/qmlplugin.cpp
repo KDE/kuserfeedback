@@ -20,6 +20,7 @@
 #include "qmlproviderextension.h"
 
 #include <Provider>
+#include <SurveyInfo>
 
 #include <QQmlEngine>
 
@@ -40,4 +41,6 @@ void QmlPlugin::registerTypes(const char* uri)
     qmlRegisterType<QmlScreenInfoSource>(uri, 1, 0, "ScreenInfoSource");
     qmlRegisterType<QmlStartCountSource>(uri, 1, 0, "StartCountSource");
     qmlRegisterType<QmlUsageTimeSource>(uri, 1, 0, "UsageTimeSource");
+
+    qRegisterMetaType<SurveyInfo>();
 }

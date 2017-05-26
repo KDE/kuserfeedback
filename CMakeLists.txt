@@ -58,6 +58,7 @@ endif()
 # try Qt5 first, and prefer that (if found), but only if not disabled via option
 if(NOT ENFORCE_QT4_BUILD)
     find_package(Qt5Core QUIET NO_MODULE)
+    find_package(QmlLint)
      # do not include in the Qt4 path, these calls find_package(Qt5)
     include(ECMQueryQmake)
     include(ECMGeneratePriFile)

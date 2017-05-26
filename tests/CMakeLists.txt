@@ -17,3 +17,5 @@ else()
     add_executable(orwell orwell.cpp)
     target_link_libraries(orwell UserFeedbackWidgets)
 endif()
+
+qml_lint(orwell.qml)

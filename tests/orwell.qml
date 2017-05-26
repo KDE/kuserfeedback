@@ -41,6 +41,9 @@ ApplicationWindow {
         submissionInterval: 1
         productIdentifier: "org.kde.orwell"
         feedbackServer: "https://feedback.volkerkrause.eu/"
+        applicationStartsUntilEncouragement: 5
+        encouragementDelay: 10
+        encouragementInterval: 1
         // TODO make configurable
         statisticsCollectionMode: UserFeedback.Provider.DetailedUsageStatistics
         surveyInterval: 0
@@ -49,6 +52,10 @@ ApplicationWindow {
             console.log(survey);
             surveyPopup.surveyInfo = survey;
             surveyPopup.open();
+        }
+        onShowEncouragementMessage: {
+            console.log("showing encouragement");
+            encouragementPopup.open();
         }
 
         UserFeedback.ApplicationVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
@@ -184,6 +191,38 @@ ApplicationWindow {
                     if (Qt.openUrlExternally(surveyPopup.surveyInfo.url))
                         provider.surveyCompleted(surveyPopup.surveyInfo);
                     surveyPopup.close()
+                }
+            }
+        }
+    }
+
+    Popup {
+        id: encouragementPopup
+        x: 0
+        y: 0
+        width: parent.width
+        height: parent.height
+
+        ColumnLayout {
+            anchors.fill: parent
+            Label {
+                text: qsTr("Help us make this application better!");
+                Layout.fillWidth: true
+                horizontalAlignment: Qt.AlignHCenter;
+                font.bold: true
+            }
+            Label {
+                Layout.fillWidth: true
+                text: qsTr("You can help us improving this application by sharing statistics and participate in surveys.")
+                wrapMode: Text.WordWrap
+            }
+            Button {
+                Layout.alignment: Qt.AlignHCenter;
+                text: qsTr("Contribute...")
+                onClicked: {
+                    encouragementPopup.close();
+                    if (!contributePage.visible)
+                        stackView.push(contributePage);
                 }
             }
         }

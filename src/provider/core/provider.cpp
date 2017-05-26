@@ -460,6 +460,9 @@ void Provider::setProductIdentifier(const QString &productId)
     d->storeOne(QStringLiteral("ApplicationStartCount"), d->startCount);
 
     emit providerSettingsChanged();
+
+    d->scheduleEncouragement();
+    d->scheduleNextSubmission();
 }
 
 QUrl Provider::feedbackServer() const

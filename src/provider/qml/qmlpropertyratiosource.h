@@ -47,6 +47,8 @@ public:
     QString propertyName() const;
     void setPropertyName(const QString &name);
 
+    Q_INVOKABLE void addValueMapping(const QVariant &value, const QString &name);
+
 Q_SIGNALS:
     void changed();
 

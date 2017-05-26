@@ -86,3 +86,8 @@ void QmlPropertyRatioSource::setPropertyName(const QString& name)
     prSrc()->setPropertyName(name);
     emit changed();
 }
+
+void QmlPropertyRatioSource::addValueMapping(const QVariant& value, const QString& name)
+{
+    prSrc()->addValueMapping(value, name);
+}

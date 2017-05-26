@@ -68,6 +68,11 @@ ApplicationWindow {
             name: "dialRatio"
             propertyName: "intValue"
             description: qsTr("The dial position.")
+
+            Component.onCompleted: {
+                dialRatioSource.addValueMapping(0, "off");
+                dialRatioSource.addValueMapping(11, "max");
+            }
         }
     }
 
@@ -111,12 +116,12 @@ ApplicationWindow {
                     id: dial
                     Layout.fillWidth: true
                     from: 0
-                    to: 10
+                    to: 11
                     stepSize: 1
                     Component.onCompleted: dialRatioSource.object = dial
                 }
                 Settings {
-                    property alias sliderValue: dial.value
+                    property alias dialValue: dial.value
                 }
                 Button {
                     id: submitButton

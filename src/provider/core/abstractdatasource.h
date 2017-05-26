@@ -112,6 +112,13 @@ protected:
      */
     explicit AbstractDataSource(const QString &name, AbstractDataSourcePrivate *dd = nullptr);
 
+    /*! Set the name of this data source.
+     *  The name should not change at runtime, this is only provided
+     *  for enabling QML API for generic sources.
+     *  @see name()
+     */
+    void setName(const QString &name);
+
     ///@cond internal
     class AbstractDataSourcePrivate* const d_ptr;
     ///@endcond

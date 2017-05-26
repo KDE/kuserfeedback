@@ -43,6 +43,16 @@ public:
      */
     explicit PropertyRatioSource(QObject *obj, const char* propertyName, const QString &sampleName);
 
+    /*! Returns the monitored object. */
+    QObject* object() const;
+    /*! Sets the monitoried object. */
+    void setObject(QObject *object);
+
+    /*! Returns the property name. */
+    QString propertyName() const;
+    /*! Sets the property name that should be monitored. */
+    void setPropertyName(const QString &name);
+
     /*! Map property value @p value to @p str for sending to the server.
      *  This is useful to map internal identifiers to portable and persistable values,
      *  such as turning pointers or indexes into meaningful descriptions.

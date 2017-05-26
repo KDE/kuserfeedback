@@ -24,6 +24,7 @@
 #include <QMap>
 #include <QMetaProperty>
 #include <QObject>
+#include <QPointer>
 #include <QSettings>
 #include <QStringList>
 #include <QTime>
@@ -39,9 +40,11 @@ public:
 
     void propertyChanged();
     QString valueToString(const QVariant &value) const;
+    void trySetup();
 
     QString description;
-    QObject *obj; // TODO make this a QPointer?
+    QPointer<QObject> obj;
+    QByteArray propertyName;
     QObject *signalMonitor;
     QMetaProperty property;
     QString previousValue;
@@ -110,35 +113,73 @@ QString PropertyRatioSourcePrivate::valueToString(const QVariant &value) const
     return value.toString();
 }
 
-PropertyRatioSource::PropertyRatioSource(QObject *obj, const char *propertyName, const QString &sampleName) :
-    AbstractDataSource(sampleName, new PropertyRatioSourcePrivate)
+void PropertyRatioSourcePrivate::trySetup()
 {
-    Q_D(PropertyRatioSource);
+    if (!obj || propertyName.isEmpty())
+        return;
 
-    d->obj = obj;
-    Q_ASSERT(obj);
-
-    auto idx = obj->metaObject()->indexOfProperty(propertyName);
+    auto idx = obj->metaObject()->indexOfProperty(propertyName.constData());
     Q_ASSERT(idx >= 0);
     if (idx < 0) {
         qCWarning(Log) << "Property" << propertyName << "not found in" << obj << "!";
         return;
     }
 
-    d->property = obj->metaObject()->property(idx);
-    if (!d->property.hasNotifySignal()) {
+    property = obj->metaObject()->property(idx);
+    if (!property.hasNotifySignal()) {
         qCWarning(Log) << "Property" << propertyName << "has no notification signal!";
         return;
     }
 
-    d->signalMonitor = new SignalMonitor(d);
-    idx = d->signalMonitor->metaObject()->indexOfMethod("propertyChanged()");
+    idx = signalMonitor->metaObject()->indexOfMethod("propertyChanged()");
     Q_ASSERT(idx >= 0);
-    const auto propertyChangedMethod = d->signalMonitor->metaObject()->method(idx);
-    QObject::connect(obj, d->property.notifySignal(), d->signalMonitor, propertyChangedMethod);
+    const auto propertyChangedMethod = signalMonitor->metaObject()->method(idx);
+    QObject::connect(obj, property.notifySignal(), signalMonitor, propertyChangedMethod);
 
-    d->lastChangeTime.start();
-    propertyChangedMethod.invoke(d->signalMonitor, Qt::QueuedConnection);
+    lastChangeTime.start();
+    propertyChangedMethod.invoke(signalMonitor, Qt::QueuedConnection);
+}
+
+PropertyRatioSource::PropertyRatioSource(QObject *obj, const char *propertyName, const QString &sampleName) :
+    AbstractDataSource(sampleName, new PropertyRatioSourcePrivate)
+{
+    Q_D(PropertyRatioSource);
+
+    d->obj = obj;
+    d->propertyName = propertyName;
+    d->signalMonitor = new SignalMonitor(d);
+    d->trySetup();
+}
+
+QObject* PropertyRatioSource::object() const
+{
+    Q_D(const PropertyRatioSource);
+    return d->obj;
+}
+
+void PropertyRatioSource::setObject(QObject* object)
+{
+    Q_D(PropertyRatioSource);
+    if (d->obj == object)
+        return;
+    d->obj = object;
+    d->trySetup();
+}
+
+QString PropertyRatioSource::propertyName() const
+{
+    Q_D(const PropertyRatioSource);
+    return QString::fromUtf8(d->propertyName.constData());
+}
+
+void PropertyRatioSource::setPropertyName(const QString& name)
+{
+    Q_D(PropertyRatioSource);
+    const auto n = name.toUtf8();
+    if (d->propertyName == n)
+        return;
+    d->propertyName = n;
+    d->trySetup();
 }
 
 void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &str)

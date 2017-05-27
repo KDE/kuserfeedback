@@ -19,6 +19,7 @@
 #include "ui_feedbackconfigwidget.h"
 
 #include <abstractdatasource.h>
+#include <feedbackconfiguicontroller.h>
 #include <provider.h>
 
 #include <QApplication>
@@ -33,32 +34,14 @@ using namespace UserFeedback;
 namespace UserFeedback {
 class FeedbackConfigWidgetPrivate {
 public:
-    FeedbackConfigWidgetPrivate();
-
-    int telemetryModeIndex(Provider::StatisticsCollectionMode mode) const;
-
     void telemetrySliderChanged();
     void surveySliderChanged();
     void applyPalette(QSlider *slider);
 
-    Provider *provider;
+    FeedbackConfigUiController *controller;
     std::unique_ptr<Ui::FeedbackConfigWidget> ui;
-    std::vector<Provider::StatisticsCollectionMode> telemetryModeMap;
 };
 
-}
-
-FeedbackConfigWidgetPrivate::FeedbackConfigWidgetPrivate()
-    : provider(nullptr)
-{
-}
-
-int FeedbackConfigWidgetPrivate::telemetryModeIndex(Provider::StatisticsCollectionMode mode) const
-{
-    const auto it = std::lower_bound(telemetryModeMap.begin(), telemetryModeMap.end(), mode);
-    if (it == telemetryModeMap.end())
-        return 0;
-    return std::distance(telemetryModeMap.begin(), it);
 }
 
 void FeedbackConfigWidgetPrivate::telemetrySliderChanged()
@@ -67,58 +50,26 @@ void FeedbackConfigWidgetPrivate::telemetrySliderChanged()
         ui->telemetryStack->setCurrentWidget(ui->noTelemetryPage);
     } else {
         ui->telemetryStack->setCurrentWidget(ui->telemetryPage);
-    }
-
-    switch (telemetryModeMap[ui->telemetrySlider->value()]) {
-        case Provider::NoStatistics:
-            break;
-        case Provider::BasicSystemInformation:
-            ui->telemetryLabel->setText(FeedbackConfigWidget::tr(
-                "Share basic system information. "
-                "No unique identification is included, nor data processed with the application."
-            ));
-            break;
-        case Provider::BasicUsageStatistics:
-            ui->telemetryLabel->setText(FeedbackConfigWidget::tr(
-                "Share basic system information and basic statistics on how often you use the application. "
-                "No unique identification is included, nor data processed with the application."
-            ));
-            break;
-        case Provider::DetailedSystemInformation:
-            ui->telemetryLabel->setText(FeedbackConfigWidget::tr(
-                "Share basic statistics on how often you use the application, as well as detailed information about your system. "
-                "No unique identification is included, nor data processed with the application."
-            ));
-        case Provider::DetailedUsageStatistics:
-            ui->telemetryLabel->setText(FeedbackConfigWidget::tr(
-                "Share detailed system information and statistics on how often individual features of the application are used. "
-                "No unique identification is included, nor data processed with the application."
-            ));
-            break;
+        ui->telemetryLabel->setText(controller->telemetryModeDescription(ui->telemetrySlider->value()));
     }
 
     applyPalette(ui->telemetrySlider);
 
-    if (!provider)
+    if (!controller->feedbackProvider())
         return;
 
     if (!ui->rawTelemetryButton->isChecked()) {
-        auto detailsStr = QStringLiteral("<ul>");
-        foreach (const auto *src, provider->dataSources()) {
-            if (ui->telemetrySlider->value() >= telemetryModeIndex(src->collectionMode()))
-                detailsStr += QStringLiteral("<li>") + src->description() + QStringLiteral("</li>");
-        }
-        ui->telemetryDetails->setHtml(detailsStr + QStringLiteral("</ul>"));
+        ui->telemetryDetails->setHtml(controller->telemetryModeDetails(ui->telemetrySlider->value()));
     } else {
         QByteArray jsonData;
-        QMetaObject::invokeMethod(provider, "jsonData", Q_RETURN_ARG(QByteArray, jsonData), Q_ARG(UserFeedback::Provider::StatisticsCollectionMode, telemetryModeMap[ui->telemetrySlider->value()]));
+        QMetaObject::invokeMethod(controller->feedbackProvider(), "jsonData", Q_RETURN_ARG(QByteArray, jsonData), Q_ARG(UserFeedback::Provider::StatisticsCollectionMode, controller->telemetryIndexToMode(ui->telemetrySlider->value())));
         ui->telemetryDetails->setPlainText(QString::fromUtf8(jsonData.constData()));
     }
 }
 
 void FeedbackConfigWidgetPrivate::surveySliderChanged()
 {
-    if (!provider)
+    if (!controller->feedbackProvider())
         return;
 
     switch (ui->surveySlider->value()) {
@@ -165,8 +116,10 @@ FeedbackConfigWidget::FeedbackConfigWidget(QWidget* parent)
     : QWidget(parent)
     , d(new FeedbackConfigWidgetPrivate)
 {
+    d->controller = new FeedbackConfigUiController(this);
     d->ui.reset(new Ui::FeedbackConfigWidget);
     d->ui->setupUi(this);
+    d->ui->noTelemetryLabel->setText(d->controller->telemetryModeDescription(Provider::NoStatistics));
 
     connect(d->ui->telemetrySlider, SIGNAL(valueChanged(int)), this, SLOT(telemetrySliderChanged()));
     connect(d->ui->telemetrySlider, SIGNAL(valueChanged(int)), this, SIGNAL(configurationChanged()));
@@ -187,44 +140,24 @@ FeedbackConfigWidget::~FeedbackConfigWidget()
 
 Provider* FeedbackConfigWidget::feedbackProvider() const
 {
-    return d->provider;
+    return d->controller->feedbackProvider();
 }
 
 void FeedbackConfigWidget::setFeedbackProvider(Provider* provider)
 {
-    d->provider = provider;
+    d->controller->setFeedbackProvider(provider);
     if (!provider) {
         setEnabled(false);
         return;
     }
 
-    d->telemetryModeMap.clear();
-    d->telemetryModeMap.reserve(5);
-    d->telemetryModeMap.push_back(Provider::NoStatistics);
-    d->telemetryModeMap.push_back(Provider::BasicSystemInformation);
-    d->telemetryModeMap.push_back(Provider::BasicUsageStatistics);
-    d->telemetryModeMap.push_back(Provider::DetailedSystemInformation);
-    d->telemetryModeMap.push_back(Provider::DetailedUsageStatistics);
-
-    QSet<Provider::StatisticsCollectionMode> supportedModes;
-    supportedModes.reserve(d->telemetryModeMap.size());
-    supportedModes.insert(Provider::NoStatistics);
-    foreach (const auto &src, provider->dataSources())
-        supportedModes.insert(src->collectionMode());
-    for (auto it = d->telemetryModeMap.begin(); it != d->telemetryModeMap.end();) {
-        if (!supportedModes.contains(*it))
-            it = d->telemetryModeMap.erase(it);
-        else
-            ++it;
-    }
-
-    const auto hasTelemetry = d->telemetryModeMap.size() > 1;
+    const auto hasTelemetry = d->controller->telemetryModeCount() > 1;
     d->ui->telemetrySlider->setEnabled(hasTelemetry);
     d->ui->telemetryStack->setEnabled(hasTelemetry);
     if (hasTelemetry)
-        d->ui->telemetrySlider->setMaximum(d->telemetryModeMap.size() - 1);
+        d->ui->telemetrySlider->setMaximum(d->controller->telemetryModeCount() - 1);
 
-    d->ui->telemetrySlider->setValue(d->telemetryModeIndex(provider->statisticsCollectionMode()));
+    d->ui->telemetrySlider->setValue(d->controller->telemetryModeToIndex(provider->statisticsCollectionMode()));
 
     if (provider->surveyInterval() < 0)
         d->ui->surveySlider->setValue(0);
@@ -255,7 +188,7 @@ bool FeedbackConfigWidget::eventFilter(QObject* receiver, QEvent* event)
 
 Provider::StatisticsCollectionMode FeedbackConfigWidget::statisticsCollectionMode() const
 {
-    return d->telemetryModeMap[d->ui->telemetrySlider->value()];
+    return d->controller->telemetryIndexToMode(d->ui->telemetrySlider->value());
 }
 
 int FeedbackConfigWidget::surveyInterval() const

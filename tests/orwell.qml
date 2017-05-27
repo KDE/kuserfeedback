@@ -160,6 +160,73 @@ ApplicationWindow {
                 }
             }
 
+            UserFeedback.FeedbackConfigUiController {
+                id: controller
+                feedbackProvider: provider
+            }
+
+            ColumnLayout {
+                anchors.fill: parent
+                anchors.topMargin: header.height
+
+                Label {
+                    text: qsTr("Contribute Statistics")
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    font.bold: true
+                }
+                Slider {
+                    id: telemetrySlider
+                    to: controller.telemetryModeCount - 1
+                    stepSize: 1
+                    value: controller.telemetryModeToIndex(provider.statisticsCollectionMode)
+                    Layout.fillWidth: true
+                    snapMode: Slider.SnapAlways
+                }
+                Label {
+                    id: telemetryLabel
+                    text: controller.telemetryModeDescription(telemetrySlider.value)
+                    Layout.fillWidth: true
+                    wrapMode: Text.WordWrap
+                }
+                TextArea {
+                    id: telemetryDetails
+                    visible: telemetrySlider.value > 0
+                    text: controller.telemetryModeDetails(telemetrySlider.value)
+                    Layout.fillWidth: true
+                    textFormat: Text.RichText
+                    readOnly: true
+                }
+                Label {
+                    text: qsTr("Participate in Surveys")
+                    font.bold: true
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                }
+
+                Slider {
+                    id: surveySlider
+                    stepSize: 1
+                    to: 2
+                    Layout.fillWidth: true
+                    snapMode: Slider.SnapAlways
+                }
+                Label {
+                    id: surveyLabel
+                    text: "TODO"
+                    Layout.fillWidth: true
+                    wrapMode: Text.WordWrap
+                }
+
+                Button {
+                    Layout.alignment: Qt.AlignHCenter
+                    text: telemetrySlider.value + surveySlider.value === 0 ?
+                        qsTr("I don't contriute.") :
+                        qsTr("Contribute!");
+                    onClicked: {
+                        // TODO
+                        stackView.pop();
+                    }
+                }
+            }
         }
     }
 
@@ -221,7 +288,7 @@ ApplicationWindow {
                 text: qsTr("Contribute...")
                 onClicked: {
                     encouragementPopup.close();
-                    if (!contributePage.visible)
+                    if (stackView.depth == 1)
                         stackView.push(contributePage);
                 }
             }

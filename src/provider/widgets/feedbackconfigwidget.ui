@@ -66,11 +66,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>We make this application for you. You can help us improve it by contributing information on how you use it. This allows us to make sure we focus on things that matter to you.
-Contributing statistics is of course entirely anonymous, will not use any kind of unique identifier and will not cover any data you process with this application.</string>
-         </property>
+        <widget class="QLabel" name="noTelemetryLabel">
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
          </property>

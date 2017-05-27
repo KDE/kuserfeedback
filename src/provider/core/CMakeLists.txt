@@ -5,6 +5,7 @@ set(userfeedback_core_srcs
     applicationversionsource.cpp
     compilerinfosource.cpp
     cpuinfosource.cpp
+    feedbackconfiguicontroller.cpp
     localeinfosource.cpp
     openglinfosource.cpp
     platforminfosource.cpp

@@ -20,6 +20,7 @@
 #include "qmlpropertyratiosource.h"
 #include "qmlproviderextension.h"
 
+#include <feedbackconfiguicontroller.h>
 #include <Provider>
 #include <SurveyInfo>
 
@@ -43,6 +44,8 @@ void QmlPlugin::registerTypes(const char* uri)
     qmlRegisterType<QmlStartCountSource>(uri, 1, 0, "StartCountSource");
     qmlRegisterType<QmlUsageTimeSource>(uri, 1, 0, "UsageTimeSource");
     qmlRegisterType<QmlPropertyRatioSource>(uri, 1, 0, "PropertyRatioSource");
+
+    qmlRegisterType<FeedbackConfigUiController>(uri, 1, 0, "FeedbackConfigUiController");
 
     qRegisterMetaType<SurveyInfo>();
 }

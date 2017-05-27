@@ -147,5 +147,18 @@ void CategoryAggregator::updateSingularChart()
     mapper->setLabelsRow(1);
     mapper->setSeries(series);
 
+    decorateSeries(series);
+    QObject::connect(series, &QPieSeries::added, [this, series]() {
+        decorateSeries(series);
+    });
+
     m_singularChart->addSeries(series);
+}
+
+void CategoryAggregator::decorateSeries(QtCharts::QPieSeries* series) const
+{
+    for (auto slice : series->slices()) {
+        if (slice->value() > 0.0)
+            slice->setLabelVisible(true);
+    }
 }

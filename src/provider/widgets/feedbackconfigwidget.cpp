@@ -72,25 +72,7 @@ void FeedbackConfigWidgetPrivate::surveySliderChanged()
     if (!controller->feedbackProvider())
         return;
 
-    switch (ui->surveySlider->value()) {
-        case 0:
-            ui->surveyLabel->setText(FeedbackConfigWidget::tr(
-                "We make this application for you. In order to ensure it actually does what you need it to do we "
-                "would like to ask you about your use cases and your feedback, in the form of a web survey."
-            ));
-            break;
-        case 1:
-            ui->surveyLabel->setText(FeedbackConfigWidget::tr(
-                "I will occasionally participate in web surveys about the application, not more than four times a year though."
-            ));
-            break;
-        case 2:
-            ui->surveyLabel->setText(FeedbackConfigWidget::tr(
-                "I will participate in web surveys whenever one is available. Surveys can of course be defered or skipped."
-            ));
-            break;
-    }
-
+    ui->surveyLabel->setText(controller->surveyModeDescription(ui->surveySlider->value()));
     applyPalette(ui->surveySlider);
 }
 
@@ -158,13 +140,7 @@ void FeedbackConfigWidget::setFeedbackProvider(Provider* provider)
         d->ui->telemetrySlider->setMaximum(d->controller->telemetryModeCount() - 1);
 
     d->ui->telemetrySlider->setValue(d->controller->telemetryModeToIndex(provider->statisticsCollectionMode()));
-
-    if (provider->surveyInterval() < 0)
-        d->ui->surveySlider->setValue(0);
-    else if (provider->surveyInterval() >= 90)
-        d->ui->surveySlider->setValue(1);
-    else
-        d->ui->surveySlider->setValue(2);
+    d->ui->surveySlider->setValue(d->controller->surveyIntervalToIndex(provider->surveyInterval()));
     d->surveySliderChanged(); // update the description even if nothing changed initially
 
     setEnabled(provider);
@@ -193,12 +169,7 @@ Provider::StatisticsCollectionMode FeedbackConfigWidget::statisticsCollectionMod
 
 int FeedbackConfigWidget::surveyInterval() const
 {
-    switch (d->ui->surveySlider->value()) {
-        case 0: return -1;
-        case 1: return 90;
-        case 2: return 0;
-    }
-    return -1;
+    return d->controller->surveyIndexToInterval(d->ui->surveySlider->value());
 }
 
 #include "moc_feedbackconfigwidget.cpp"

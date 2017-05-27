@@ -91,6 +91,11 @@ int FeedbackConfigUiController::telemetryModeCount() const
     return d->telemetryModeMap.size();
 }
 
+int FeedbackConfigUiController::surveyModeCount() const
+{
+    return 3;
+}
+
 Provider::StatisticsCollectionMode FeedbackConfigUiController::telemetryIndexToMode(int index) const
 {
     if (index < 0 || index >= telemetryModeCount())
@@ -152,4 +157,45 @@ QString FeedbackConfigUiController::telemetryModeDetails(int telemetryIndex) con
             detailsStr += QStringLiteral("<li>") + src->description() + QStringLiteral("</li>");
     }
     return detailsStr + QStringLiteral("</ul>");
+}
+
+int FeedbackConfigUiController::surveyIndexToInterval(int index) const
+{
+    switch (index) {
+        case 0: return -1;
+        case 1: return 90;
+        case 2: return 0;
+    }
+    return -1;
+}
+
+int FeedbackConfigUiController::surveyIntervalToIndex(int interval) const
+{
+    if (interval < 0)
+        return 0;
+    else if (interval >= 90)
+        return 1;
+    else
+        return 2;
+}
+
+QString FeedbackConfigUiController::surveyModeDescription(int surveyIndex) const
+{
+    switch (surveyIndex) {
+        case 0:
+            return tr(
+                "We make this application for you. In order to ensure it actually does what you need it to do we "
+                "would like to ask you about your use cases and your feedback, in the form of a web survey."
+            );
+        case 1:
+            return tr(
+                "I will occasionally participate in web surveys about the application, not more than four times a year though."
+            );
+        case 2:
+            return tr(
+                "I will participate in web surveys whenever one is available. Surveys can of course be defered or skipped."
+            );
+    }
+
+    return QString();
 }

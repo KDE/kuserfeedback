@@ -41,6 +41,8 @@ class USERFEEDBACKCORE_EXPORT FeedbackConfigUiController : public QObject
     Q_PROPERTY(UserFeedback::Provider* feedbackProvider READ feedbackProvider WRITE setFeedbackProvider NOTIFY providerChanged)
     /*! Amount of telemetry modes supported by the provider. */
     Q_PROPERTY(int telemetryModeCount READ telemetryModeCount NOTIFY providerChanged)
+    /*! Amount of supported survey modes. */
+    Q_PROPERTY(int surveyModeCount READ surveyModeCount CONSTANT)
 public:
     FeedbackConfigUiController(QObject *parent = nullptr);
     ~FeedbackConfigUiController();
@@ -54,6 +56,8 @@ public:
      *  This depends on what type of sources the provider actually has.
      */
     int telemetryModeCount() const;
+    /*! Amount of supported survey modes. */
+    int surveyModeCount() const;
 
     /*! Convert slider index to telemetry mode. */
     Q_INVOKABLE UserFeedback::Provider::StatisticsCollectionMode telemetryIndexToMode(int index) const;
@@ -64,6 +68,14 @@ public:
     Q_INVOKABLE QString telemetryModeDescription(int telemetryIndex) const;
     /*! Detailed information about the data sources of the given telemetry mode index. */
     Q_INVOKABLE QString telemetryModeDetails(int telemetryIndex) const;
+
+    /*! Convert slider index to survey interval. */
+    Q_INVOKABLE int surveyIndexToInterval(int index) const;
+    /*! Convert survey interval to slider index. */
+    Q_INVOKABLE int surveyIntervalToIndex(int interval) const;
+
+    /*! Survey mode explanation text. */
+    Q_INVOKABLE QString surveyModeDescription(int surveyIndex) const;
 
 Q_SIGNALS:
     /*! A provider-related setting has changed. */

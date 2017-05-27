@@ -44,9 +44,6 @@ ApplicationWindow {
         applicationStartsUntilEncouragement: 5
         encouragementDelay: 10
         encouragementInterval: 1
-        // TODO make configurable
-        statisticsCollectionMode: UserFeedback.Provider.DetailedUsageStatistics
-        surveyInterval: 0
 
         onSurveyAvailable: {
             console.log(survey);
@@ -55,7 +52,8 @@ ApplicationWindow {
         }
         onShowEncouragementMessage: {
             console.log("showing encouragement");
-            encouragementPopup.open();
+            if (stackView.depth == 1)
+                encouragementPopup.open();
         }
 
         UserFeedback.ApplicationVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
@@ -204,14 +202,15 @@ ApplicationWindow {
 
                 Slider {
                     id: surveySlider
+                    value: controller.surveyIntervalToIndex(provider.surveyInterval)
                     stepSize: 1
-                    to: 2
+                    to: controller.surveyModeCount - 1
                     Layout.fillWidth: true
                     snapMode: Slider.SnapAlways
                 }
                 Label {
                     id: surveyLabel
-                    text: "TODO"
+                    text: controller.surveyModeDescription(surveySlider.value)
                     Layout.fillWidth: true
                     wrapMode: Text.WordWrap
                 }
@@ -219,10 +218,11 @@ ApplicationWindow {
                 Button {
                     Layout.alignment: Qt.AlignHCenter
                     text: telemetrySlider.value + surveySlider.value === 0 ?
-                        qsTr("I don't contriute.") :
+                        qsTr("I don't contribute.") :
                         qsTr("Contribute!");
                     onClicked: {
-                        // TODO
+                        provider.statisticsCollectionMode = controller.telemetryIndexToMode(telemetrySlider.value);
+                        provider.surveyInterval = controller.surveyIndexToInterval(surveySlider.value);
                         stackView.pop();
                     }
                 }
@@ -288,8 +288,7 @@ ApplicationWindow {
                 text: qsTr("Contribute...")
                 onClicked: {
                     encouragementPopup.close();
-                    if (stackView.depth == 1)
-                        stackView.push(contributePage);
+                    stackView.push(contributePage);
                 }
             }
         }

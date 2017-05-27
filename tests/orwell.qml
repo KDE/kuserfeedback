@@ -32,53 +32,8 @@ ApplicationWindow {
         Qt.application.organization = "KDE";
         Qt.application.domain = "kde.org";
 
-        // for Settings to work, we need to have the above setup first
+        // for Settings and thus Provider to work, we need to have the above setup first
         stackView.push(mainView);
-    }
-
-    UserFeedback.Provider {
-        id: provider
-        submissionInterval: 1
-        productIdentifier: "org.kde.orwell"
-        feedbackServer: "https://feedback.volkerkrause.eu/"
-        applicationStartsUntilEncouragement: 5
-        encouragementDelay: 10
-        encouragementInterval: 1
-
-        onSurveyAvailable: {
-            console.log(survey);
-            surveyPopup.surveyInfo = survey;
-            surveyPopup.open();
-        }
-        onShowEncouragementMessage: {
-            console.log("showing encouragement");
-            if (stackView.depth == 1)
-                encouragementPopup.open();
-        }
-
-        UserFeedback.ApplicationVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
-        UserFeedback.CompilerInfoSource { mode: UserFeedback.Provider.BasicSystemInformation }
-        UserFeedback.CpuInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
-        UserFeedback.LocaleInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
-        UserFeedback.OpenGLInfoSource{ mode: UserFeedback.Provider.DetailedSystemInformation }
-        UserFeedback.PlatformInfoSource { mode: UserFeedback.Provider.BasicSystemInformation }
-        UserFeedback.QtVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
-        UserFeedback.ScreenInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
-        UserFeedback.StartCountSource { mode: UserFeedback.Provider.BasicUsageStatistics }
-        UserFeedback.UsageTimeSource { mode: UserFeedback.Provider.BasicUsageStatistics }
-
-        UserFeedback.PropertyRatioSource {
-            id: dialRatioSource
-            mode: UserFeedback.Provider.DetailedUsageStatistics
-            name: "dialRatio"
-            propertyName: "intValue"
-            description: qsTr("The dial position.")
-
-            Component.onCompleted: {
-                dialRatioSource.addValueMapping(0, "off");
-                dialRatioSource.addValueMapping(11, "max");
-            }
-        }
     }
 
     StackView {
@@ -107,9 +62,61 @@ ApplicationWindow {
                             y: menuButton.height
                             MenuItem {
                                 text: "Contribute..."
-                                onTriggered: stackView.push(contributePage)
+                                onTriggered: {
+                                    stackView.push(contributePage);
+                                    stackView.currentItem.provider = provider;
+                                }
                             }
                         }
+                    }
+                }
+            }
+
+            UserFeedback.Provider {
+                id: provider
+                submissionInterval: 1
+                productIdentifier: "org.kde.orwell"
+                feedbackServer: "https://feedback.volkerkrause.eu/"
+                applicationStartsUntilEncouragement: 5
+                encouragementDelay: 10
+                encouragementInterval: 1
+
+                onSurveyAvailable: {
+                    console.log(survey);
+                    surveyPopup.surveyInfo = survey;
+                    surveyPopup.provider = provider;
+                    surveyPopup.open();
+                }
+                onShowEncouragementMessage: {
+                    console.log("showing encouragement");
+                    if (stackView.depth == 1) {
+                        encouragementPopup.provider = provider
+                        encouragementPopup.open();
+                    }
+                }
+
+                UserFeedback.ApplicationVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
+                UserFeedback.CompilerInfoSource { mode: UserFeedback.Provider.BasicSystemInformation }
+                UserFeedback.CpuInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
+                UserFeedback.LocaleInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
+                UserFeedback.OpenGLInfoSource{ mode: UserFeedback.Provider.DetailedSystemInformation }
+                UserFeedback.PlatformInfoSource { mode: UserFeedback.Provider.BasicSystemInformation }
+                UserFeedback.QtVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
+                UserFeedback.ScreenInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
+                UserFeedback.StartCountSource { mode: UserFeedback.Provider.BasicUsageStatistics }
+                UserFeedback.UsageTimeSource { mode: UserFeedback.Provider.BasicUsageStatistics }
+
+                UserFeedback.PropertyRatioSource {
+                    id: dialRatioSource
+                    mode: UserFeedback.Provider.DetailedUsageStatistics
+                    name: "dialRatio"
+                    object: dial
+                    propertyName: "intValue"
+                    description: qsTr("The dial position.")
+
+                    Component.onCompleted: {
+                        dialRatioSource.addValueMapping(0, "off");
+                        dialRatioSource.addValueMapping(11, "max");
                     }
                 }
             }
@@ -123,7 +130,6 @@ ApplicationWindow {
                     from: 0
                     to: 11
                     stepSize: 1
-                    Component.onCompleted: dialRatioSource.object = dial
                 }
                 Settings {
                     property alias dialValue: dial.value
@@ -141,6 +147,7 @@ ApplicationWindow {
     Component {
         id: contributePage
         Page {
+            property var provider: null
             header: ToolBar {
                 RowLayout {
                     anchors.fill: parent
@@ -161,6 +168,11 @@ ApplicationWindow {
             UserFeedback.FeedbackConfigUiController {
                 id: controller
                 feedbackProvider: provider
+                onProviderChanged: {
+                    telemetrySlider.to = controller.telemetryModeCount - 1;
+                    telemetrySlider.value = controller.telemetryModeToIndex(provider.statisticsCollectionMode);
+                    surveySlider.value = controller.surveyIntervalToIndex(provider.surveyInterval);
+                }
             }
 
             ColumnLayout {
@@ -174,9 +186,7 @@ ApplicationWindow {
                 }
                 Slider {
                     id: telemetrySlider
-                    to: controller.telemetryModeCount - 1
                     stepSize: 1
-                    value: controller.telemetryModeToIndex(provider.statisticsCollectionMode)
                     Layout.fillWidth: true
                     snapMode: Slider.SnapAlways
                 }
@@ -202,7 +212,6 @@ ApplicationWindow {
 
                 Slider {
                     id: surveySlider
-                    value: controller.surveyIntervalToIndex(provider.surveyInterval)
                     stepSize: 1
                     to: controller.surveyModeCount - 1
                     Layout.fillWidth: true
@@ -233,6 +242,7 @@ ApplicationWindow {
     Popup {
         id: surveyPopup
         property var surveyInfo;
+        property var provider;
         x: 0
         y: 0
         width: parent.width
@@ -265,6 +275,7 @@ ApplicationWindow {
 
     Popup {
         id: encouragementPopup
+        property var provider;
         x: 0
         y: 0
         width: parent.width
@@ -289,6 +300,7 @@ ApplicationWindow {
                 onClicked: {
                     encouragementPopup.close();
                     stackView.push(contributePage);
+                    stackView.currentItem.provider = provider;
                 }
             }
         }

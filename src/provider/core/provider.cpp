@@ -631,7 +631,11 @@ void Provider::submit()
         d->networkAccessManager = new QNetworkAccessManager(this);
 
     auto url = d->serverUrl;
-    url.setPath(url.path() + QStringLiteral("/receiver/submit/") + d->productId);
+    auto path = d->serverUrl.path();
+    if (!path.endsWith(QLatin1Char('/')))
+        path += QLatin1Char('/');
+    path += QStringLiteral("receiver/submit/") + d->productId;
+    url.setPath(path);
     d->submit(url);
 }
 

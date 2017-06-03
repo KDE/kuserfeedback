@@ -20,6 +20,8 @@
 
 #include <model/extrarowsproxymodel.h>
 #include <model/ratiosetaggregationmodel.h>
+#include <model/rolemappingproxymodel.h>
+#include <model/timeaggregationmodel.h>
 
 #include <QtCharts/QAreaSeries>
 #include <QtCharts/QChart>
@@ -82,12 +84,16 @@ void RatioSetAggregator::updateTimelineChart()
         return;
     m_timelineChart->removeAllSeries();
 
+    auto model = new RoleMappingProxyModel(m_timelineChart.get());
+    model->setSourceModel(timeAggregationModel());
+    model->addRoleMapping(Qt::DisplayRole, TimeAggregationModel::AccumulatedDisplayRole);
+
     QLineSeries *prevSeries = nullptr;
     for (int i = 1; i < timeAggregationModel()->columnCount(); ++i) {
         auto series = new QLineSeries;
 
         auto mapper = new QVXYModelMapper(series);
-        mapper->setModel(timeAggregationModel());
+        mapper->setModel(model);
         mapper->setXColumn(0);
         mapper->setYColumn(i);
         mapper->setFirstRow(0);
@@ -95,7 +101,7 @@ void RatioSetAggregator::updateTimelineChart()
 
         auto areaSeries = new QAreaSeries(series, prevSeries);
         series->setParent(areaSeries); // otherwise series isn't deleted by removeAllSeries!
-        areaSeries->setName(timeAggregationModel()->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
+        areaSeries->setName(model->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
         m_timelineChart->addSeries(areaSeries);
 
         areaSeries->attachAxis(m_timelineChart->axisX());
@@ -104,7 +110,7 @@ void RatioSetAggregator::updateTimelineChart()
         prevSeries = series;
     }
 
-    qobject_cast<QDateTimeAxis*>(m_timelineChart->axisX())->setTickCount(std::min(timeAggregationModel()->rowCount(), 12));
+    qobject_cast<QDateTimeAxis*>(m_timelineChart->axisX())->setTickCount(std::min(model->rowCount(), 12));
     m_timelineChart->axisY()->setRange(0, 1); // TODO can we turn this into *100% for display?
 }
 

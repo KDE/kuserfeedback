@@ -101,11 +101,13 @@ private slots:
         QCOMPARE(model.rowCount(), 3);
         QCOMPARE(model.index(0, 0).data(TimeAggregationModel::TimeDisplayRole).toString(), QLatin1String("2016-11-27"));
         QCOMPARE(model.index(0, 1).data(Qt::DisplayRole).toDouble(), 0.3);
-        QCOMPARE(model.index(0, 2).data(Qt::DisplayRole).toDouble(), 1.0); // cumulative
+        QCOMPARE(model.index(0, 2).data(Qt::DisplayRole).toDouble(), 0.7);
+        QCOMPARE(model.index(0, 2).data(TimeAggregationModel::AccumulatedDisplayRole).toDouble(), 1.0);
 
         QCOMPARE(model.index(1, 0).data(TimeAggregationModel::TimeDisplayRole).toString(), QLatin1String("2016-11-28"));
         QCOMPARE(model.index(1, 1).data(Qt::DisplayRole).toDouble(), 1.0);
-        QCOMPARE(model.index(1, 2).data(Qt::DisplayRole).toDouble(), 1.0);
+        QCOMPARE(model.index(1, 2).data(Qt::DisplayRole).toDouble(), 0.0);
+        QCOMPARE(model.index(1, 2).data(TimeAggregationModel::AccumulatedDisplayRole).toDouble(), 1.0);
 
         QCOMPARE(model.index(2, 0).data(TimeAggregationModel::TimeDisplayRole).toString(), QLatin1String("2016-11-29"));
         QCOMPARE(model.index(2, 1).data(Qt::DisplayRole).toDouble(), 0.0);

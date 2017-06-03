@@ -120,8 +120,6 @@ QJsonObject SchemaEntry::toJsonObject() const
     if (d->internalId >= 0)
         obj.insert(QStringLiteral("id"), d->internalId);
     obj.insert(QStringLiteral("name"), d->name);
-
-    QString t;
     obj.insert(QStringLiteral("type"), QLatin1String(data_types_table[d->dataType].name));
 
     QJsonArray array;

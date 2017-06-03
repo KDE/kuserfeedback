@@ -68,6 +68,7 @@ public:
     }
 
 private:
+    Q_DISABLE_COPY(AggregationElementEditorCreator)
     AggregationElementModel *m_model;
 };
 

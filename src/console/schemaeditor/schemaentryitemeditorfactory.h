@@ -37,6 +37,7 @@ public:
     void setProduct(const Product &product);
 
 private:
+    Q_DISABLE_COPY(SchemaEntryItemEditorFactory)
     std::unique_ptr<AggregationElementModel> m_elementModel;
 };
 

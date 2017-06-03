@@ -281,7 +281,7 @@ void MainWindow::importProduct()
 
     auto job = new ProductImportJob(fileName, m_restClient, this);
     connect(job, &Job::error, this, [this](const auto &msg) {
-        QMessageBox::critical(this, tr("Import Failed"), tr("Import errror: %1").arg(msg));
+        QMessageBox::critical(this, tr("Import Failed"), tr("Import error: %1").arg(msg));
     });
     connect(job, &Job::finished, this, [this]() {
         logMessage(tr("Product imported successfully."));

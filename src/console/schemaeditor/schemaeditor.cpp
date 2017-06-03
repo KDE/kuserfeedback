@@ -136,7 +136,7 @@ void SchemaEditor::exportSchema()
         return;
     }
     f.write(product().toJson());
-    logMessage(tr("Schema of %1 exported to %2.").arg(product().name(), f.fileName()));
+    emit logMessage(tr("Schema of %1 exported to %2.").arg(product().name(), f.fileName()));
 }
 
 void SchemaEditor::importSchema()
@@ -160,7 +160,7 @@ void SchemaEditor::importSchema()
     p.setName(product().name());
     setProduct(p);
     setDirty();
-    logMessage(tr("Schema of %1 imported from %2.").arg(product().name(), f.fileName()));
+    emit logMessage(tr("Schema of %1 imported from %2.").arg(product().name(), f.fileName()));
 }
 
 void SchemaEditor::updateState()

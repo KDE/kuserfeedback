@@ -366,5 +366,5 @@ void MainWindow::closeEvent(QCloseEvent* event)
             return;
         }
     }
-    return QMainWindow::closeEvent(event);
+    QMainWindow::closeEvent(event);
 }

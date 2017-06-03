@@ -144,5 +144,18 @@ void RatioSetAggregator::updateSingularChart()
     mapper->setLabelsRow(1);
     mapper->setSeries(series);
 
+    decoratePieSeries(series);
+    QObject::connect(series, &QPieSeries::added, [this, series]() {
+        decoratePieSeries(series);
+    });
+
     m_singularChart->addSeries(series);
+}
+
+void RatioSetAggregator::decoratePieSeries(QtCharts::QPieSeries *series) const
+{
+    for (auto slice : series->slices()) {
+        if (slice->value() > 0.0)
+            slice->setLabelVisible(true);
+    }
 }

@@ -22,6 +22,10 @@
 
 #include <memory>
 
+namespace QtCharts {
+class QPieSeries;
+}
+
 namespace UserFeedback {
 namespace Console {
 
@@ -41,6 +45,8 @@ public:
 private:
     void updateTimelineChart();
     void updateSingularChart();
+
+    void decoratePieSeries(QtCharts::QPieSeries *series) const;
 
     std::unique_ptr<RatioSetAggregationModel> m_model;
     std::unique_ptr<QtCharts::QChart> m_timelineChart;

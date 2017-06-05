@@ -306,7 +306,7 @@ void MainWindow::exportProduct()
 
     auto job = new ProductExportJob(selectedProduct(), fileName, m_restClient, this);
     connect(job, &Job::error, this, [this](const auto &msg) {
-        QMessageBox::critical(this, tr("Export Failed"), tr("Export errror: %1").arg(msg));
+        QMessageBox::critical(this, tr("Export Failed"), tr("Export error: %1").arg(msg));
     });
     connect(job, &Job::finished, this, [this]() {
         logMessage(tr("Product exported successfully."));

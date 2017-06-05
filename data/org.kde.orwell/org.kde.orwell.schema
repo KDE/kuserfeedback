@@ -190,28 +190,6 @@
             "elements": [
                 {
                     "schemaEntry": "opengl",
-                    "schemaEntryElement": "version",
-                    "type": "value"
-                }
-            ],
-            "name": "OpenGL Version Distribution",
-            "type": "category"
-        },
-        {
-            "elements": [
-                {
-                    "schemaEntry": "opengl",
-                    "schemaEntryElement": "glslVersion",
-                    "type": "value"
-                }
-            ],
-            "name": "OpenGL GLSL Version Distribution",
-            "type": "category"
-        },
-        {
-            "elements": [
-                {
-                    "schemaEntry": "opengl",
                     "schemaEntryElement": "profile",
                     "type": "value"
                 }
@@ -260,6 +238,49 @@
                 }
             ],
             "name": "Compiler Details",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "type",
+                    "type": "value"
+                }
+            ],
+            "name": "OpenGL Stack Type",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "type",
+                    "type": "value"
+                },
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "version",
+                    "type": "value"
+                }
+            ],
+            "name": "OpenGL Version Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "type",
+                    "type": "value"
+                },
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "glslVersion",
+                    "type": "value"
+                }
+            ],
+            "name": "OpenGL GLSL Version Distribution",
             "type": "category"
         }
     ],

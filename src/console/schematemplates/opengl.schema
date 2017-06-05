@@ -55,12 +55,18 @@
         {
             "type": "category",
             "name": "OpenGL Version Distribution",
-            "elements": [ { "type": "value", "schemaEntry": "opengl", "schemaEntryElement": "version" } ]
+            "elements": [
+                { "type": "value", "schemaEntry": "opengl", "schemaEntryElement": "type" },
+                { "type": "value", "schemaEntry": "opengl", "schemaEntryElement": "version" }
+            ]
         },
         {
             "type": "category",
             "name": "OpenGL GLSL Version Distribution",
-            "elements": [ { "type": "value", "schemaEntry": "opengl", "schemaEntryElement": "glslVersion" } ]
+            "elements": [
+                { "type": "value", "schemaEntry": "opengl", "schemaEntryElement": "type" },
+                { "type": "value", "schemaEntry": "opengl", "schemaEntryElement": "glslVersion" }
+            ]
         },
         {
             "type": "category",

@@ -152,6 +152,115 @@
             ],
             "name": "Palette Color Scheme",
             "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "type",
+                    "type": "value"
+                }
+            ],
+            "name": "OpenGL Stack Type",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "vendor",
+                    "type": "value"
+                }
+            ],
+            "name": "OpenGL Vendor Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "renderer",
+                    "type": "value"
+                }
+            ],
+            "name": "OpenGL Renderer Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "version",
+                    "type": "value"
+                }
+            ],
+            "name": "OpenGL Version Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "glslVersion",
+                    "type": "value"
+                }
+            ],
+            "name": "OpenGL GLSL Version Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "profile",
+                    "type": "value"
+                }
+            ],
+            "name": "OpenGL Profile Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "compiler",
+                    "schemaEntryElement": "type",
+                    "type": "value"
+                }
+            ],
+            "name": "Compiler Distribution",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "platform",
+                    "schemaEntryElement": "os",
+                    "type": "value"
+                },
+                {
+                    "schemaEntry": "platform",
+                    "schemaEntryElement": "version",
+                    "type": "value"
+                }
+            ],
+            "name": "Platform Details",
+            "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "compiler",
+                    "schemaEntryElement": "type",
+                    "type": "value"
+                },
+                {
+                    "schemaEntry": "compiler",
+                    "schemaEntryElement": "version",
+                    "type": "value"
+                }
+            ],
+            "name": "Compiler Details",
+            "type": "category"
         }
     ],
     "name": "org.kde.orwell",
@@ -278,6 +387,54 @@
                 }
             ],
             "name": "style",
+            "type": "scalar"
+        },
+        {
+            "elements": [
+                {
+                    "name": "type",
+                    "type": "string"
+                },
+                {
+                    "name": "vendor",
+                    "type": "string"
+                },
+                {
+                    "name": "renderer",
+                    "type": "string"
+                },
+                {
+                    "name": "version",
+                    "type": "string"
+                },
+                {
+                    "name": "glslVersion",
+                    "type": "string"
+                },
+                {
+                    "name": "profile",
+                    "type": "string"
+                },
+                {
+                    "name": "vendorVersion",
+                    "type": "string"
+                }
+            ],
+            "name": "opengl",
+            "type": "scalar"
+        },
+        {
+            "elements": [
+                {
+                    "name": "type",
+                    "type": "string"
+                },
+                {
+                    "name": "version",
+                    "type": "string"
+                }
+            ],
+            "name": "compiler",
             "type": "scalar"
         }
     ]

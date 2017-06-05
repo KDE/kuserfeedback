@@ -21,6 +21,7 @@
 #include <model/categoryaggregationmodel.h>
 #include <model/extrarowsproxymodel.h>
 #include <model/rolemappingproxymodel.h>
+#include <model/singlerowfilterproxymodel.h>
 #include <model/timeaggregationmodel.h>
 
 #include <QtCharts/QAreaSeries>
@@ -44,7 +45,9 @@ Aggregator::ChartModes CategoryAggregator::chartModes() const
 {
     Aggregator::ChartModes modes = None;
     if (aggregation().elements().size() == 1)
-        modes |= Timeline | Singular;
+        modes |= Timeline;
+    if (aggregation().elements().size() >= 1)
+        modes |= Singular;
     return modes;
 }
 
@@ -128,35 +131,63 @@ QtCharts::QChart* CategoryAggregator::singlularChart()
     return m_singularChart.get();
 }
 
+void CategoryAggregator::setSingularTime(int row)
+{
+    Aggregator::setSingularTime(row);
+    for (auto model : m_hierachicalCategories)
+        model->setRow(row);
+}
+
 void CategoryAggregator::updateSingularChart()
 {
     if (!m_singularChart)
         return;
     m_singularChart->removeAllSeries();
+    m_hierachicalCategories.clear();
 
     if (sourceModel()->rowCount() <= 0)
         return;
 
-    auto series = new QPieSeries(m_singularChart.get());
-    auto mapper = new QHPieModelMapper(m_singularChart.get());
-    auto modelWithLabels = new ExtraRowsProxyModel(mapper);
-    modelWithLabels->setSourceModel(singularAggregationModel());
-    mapper->setModel(modelWithLabels);
-    mapper->setFirstColumn(1);
-    mapper->setValuesRow(0);
-    mapper->setLabelsRow(1);
-    mapper->setSeries(series);
+    const auto depth = aggregation().elements().size();
+    for (int i = 0; i < depth; ++i) {
+        auto series = new QPieSeries(m_singularChart.get());
+        auto mapper = new QHPieModelMapper(m_singularChart.get());
+        auto modelWithLabels = new ExtraRowsProxyModel(mapper);
+        if (i + 1 == depth) {
+            modelWithLabels->setSourceModel(singularAggregationModel());
+        } else {
+            auto model = new SingleRowFilterProxyModel(mapper);
+            auto catModel = new CategoryAggregationModel(mapper);
+            catModel->setSourceModel(sourceModel());
+            catModel->setAggregation(aggregation());
+            catModel->setDepth(i + 1);
+            model->setSourceModel(catModel);
+            m_hierachicalCategories.push_back(model);
+            modelWithLabels->setSourceModel(model);
+        }
+        mapper->setModel(modelWithLabels);
+        mapper->setFirstColumn(1);
+        mapper->setValuesRow(0);
+        mapper->setLabelsRow(1);
+        mapper->setSeries(series);
 
-    decorateSeries(series);
-    QObject::connect(series, &QPieSeries::added, [this, series]() {
-        decorateSeries(series);
-    });
+        decorateSeries(series, i);
+        QObject::connect(series, &QPieSeries::added, [this, series, i]() {
+            decorateSeries(series, i);
+        });
 
-    m_singularChart->addSeries(series);
+        m_singularChart->addSeries(series);
+    }
 }
 
-void CategoryAggregator::decorateSeries(QtCharts::QPieSeries* series) const
+void CategoryAggregator::decorateSeries(QtCharts::QPieSeries* series, int ring) const
 {
+    const auto ringCount = aggregation().elements().size();
+    const auto ringWidth = 0.7 / (ringCount + 1);
+    const auto holeSize = ringWidth * (ringCount - ring);
+    series->setPieSize(holeSize + ringWidth);
+    series->setHoleSize(holeSize);
+
     for (auto slice : series->slices()) {
         if (slice->value() > 0.0)
             slice->setLabelVisible(true);

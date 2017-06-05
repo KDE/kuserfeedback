@@ -59,7 +59,7 @@ public:
 
     virtual QAbstractItemModel *timeAggregationModel();
     QAbstractItemModel* singularAggregationModel();
-    void setSingularTime(int row);
+    virtual void setSingularTime(int row);
 
     virtual QtCharts::QChart *singlularChart();
     virtual QtCharts::QChart *timelineChart();

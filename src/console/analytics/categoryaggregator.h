@@ -21,6 +21,7 @@
 #include "aggregator.h"
 
 #include <memory>
+#include <vector>
 
 namespace QtCharts {
 class QPieSeries;
@@ -30,6 +31,7 @@ namespace UserFeedback {
 namespace Console {
 
 class CategoryAggregationModel;
+class SingleRowFilterProxyModel;
 
 class CategoryAggregator : public Aggregator
 {
@@ -41,15 +43,17 @@ public:
     QAbstractItemModel* timeAggregationModel() override;
     QtCharts::QChart* timelineChart() override;
     QtCharts::QChart* singlularChart() override;
+    void setSingularTime(int row) override;
 
 private:
     void updateTimelineChart();
     void updateSingularChart();
-    void decorateSeries(QtCharts::QPieSeries *series) const;
+    void decorateSeries(QtCharts::QPieSeries *series, int ring) const;
 
     std::unique_ptr<CategoryAggregationModel> m_model;
     std::unique_ptr<QtCharts::QChart> m_timelineChart;
     std::unique_ptr<QtCharts::QChart> m_singularChart;
+    std::vector<SingleRowFilterProxyModel*> m_hierachicalCategories;
 };
 
 }}

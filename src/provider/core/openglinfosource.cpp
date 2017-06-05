@@ -16,6 +16,7 @@
 */
 
 #include "openglinfosource.h"
+#include "openglinfosource_p.h"
 
 #include <QVariant>
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
@@ -62,37 +63,13 @@ QVariant OpenGLInfoSource::data()
                 functions.glGetIntegerv(GL_MINOR_VERSION, &minor);
                 m.insert(QStringLiteral("version"), QString(QString::number(major) + QLatin1Char('.') + QString::number(minor)));
 
-                auto vendorVersion = QString::fromLocal8Bit(reinterpret_cast<const char*>(functions.glGetString(GL_VERSION)));
-                const auto idx = vendorVersion.indexOf(QLatin1Char(' '));
-                if (idx > 0) {
-                    vendorVersion = vendorVersion.mid(idx + 1);
-                    if (!vendorVersion.isEmpty())
-                        m.insert(QStringLiteral("vendorVersion"), vendorVersion);
-                }
-
+                OpenGLInfoSourcePrivate::parseGLVersion(reinterpret_cast<const char*>(functions.glGetString(GL_VERSION)), m);
                 break;
             }
             case QOpenGLContext::LibGLES:
             {
                 m.insert(QStringLiteral("type"), QStringLiteral("GLES"));
-
-                auto rawVersion = QString::fromLocal8Bit(reinterpret_cast<const char*>(functions.glGetString(GL_VERSION)));
-                if (!rawVersion.startsWith(QLatin1String("OpenGL ES "))) {
-                    m.insert(QStringLiteral("version"), QStringLiteral("unknown"));
-                    m.insert(QStringLiteral("vendorVersion"), rawVersion);
-                } else {
-                    rawVersion = rawVersion.mid(10);
-                    const auto idx = rawVersion.indexOf(QLatin1Char(' '));
-                    if (idx > 0) {
-                        const auto vendorVersion = rawVersion.mid(idx + 1);
-                        if (!vendorVersion.isEmpty())
-                            m.insert(QStringLiteral("vendorVersion"), vendorVersion);
-                        m.insert(QStringLiteral("version"), rawVersion.left(idx));
-                    } else {
-                        m.insert(QStringLiteral("version"), rawVersion);
-                    }
-                }
-
+                OpenGLInfoSourcePrivate::parseGLESVersion(reinterpret_cast<const char*>(functions.glGetString(GL_VERSION)), m);
                 break;
             }
         }

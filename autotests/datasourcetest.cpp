@@ -25,7 +25,6 @@
 #include <screeninfosource.h>
 #include <startcountsource.h>
 #include <usagetimesource.h>
-#include <openglinfosource.h>
 
 #include <QDebug>
 #include <QtTest/qtest.h>
@@ -239,29 +238,6 @@ private slots:
         QVERIFY(!m.value(QLatin1String("language")).toString().isEmpty());
         QVERIFY(m.contains(QLatin1String("region")));
         QVERIFY(!m.value(QLatin1String("region")).toString().isEmpty());
-    }
-
-    void testOpenGLInfoSource()
-    {
-        OpenGLInfoSource src;
-        const auto m = src.data().toMap();
-        QVERIFY(m.contains(QLatin1String("type")));
-        const auto type = m.value(QLatin1String("type")).toString();
-        QVERIFY(!type.isEmpty());
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-        QVERIFY(type == QLatin1String("GL") || type == QLatin1String("GLES"));
-
-        QVERIFY(m.contains(QLatin1String("vendor")));
-        QVERIFY(!m.value(QLatin1String("vendor")).toString().isEmpty());
-        QVERIFY(m.contains(QLatin1String("renderer")));
-        QVERIFY(!m.value(QLatin1String("renderer")).toString().isEmpty());
-        QVERIFY(m.contains(QLatin1String("version")));
-        QVERIFY(!m.value(QLatin1String("version")).toString().isEmpty());
-        QVERIFY(m.contains(QLatin1String("vendorVersion")));
-        QVERIFY(!m.value(QLatin1String("vendorVersion")).toString().isEmpty());
-        QVERIFY(m.contains(QLatin1String("glslVersion")));
-        QVERIFY(!m.value(QLatin1String("glslVersion")).toString().isEmpty());
-#endif
     }
 
     void testCompilerInfoSource()

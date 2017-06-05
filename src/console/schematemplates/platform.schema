@@ -16,9 +16,19 @@
             ]
         }
     ],
-    "aggregation": [ {
-        "type": "category",
-        "name": "OS Distribution",
-        "elements": [ { "type": "value", "schemaEntry": "platform", "schemaEntryElement": "os" } ]
-    } ]
+    "aggregation": [
+        {
+            "type": "category",
+            "name": "OS Distribution",
+            "elements": [ { "type": "value", "schemaEntry": "platform", "schemaEntryElement": "os" } ]
+        },
+        {
+            "type": "category",
+            "name": "Platform Details",
+            "elements": [
+                { "type": "value", "schemaEntry": "platform", "schemaEntryElement": "os" },
+                { "type": "value", "schemaEntry": "platform", "schemaEntryElement": "version" }
+            ]
+        }
+    ]
 }

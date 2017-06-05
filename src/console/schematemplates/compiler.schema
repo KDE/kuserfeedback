@@ -16,9 +16,19 @@
             ]
         }
     ],
-    "aggregation": [ {
-        "type": "category",
-        "name": "Compiler Distribution",
-        "elements": [ { "type": "value", "schemaEntry": "compiler", "schemaEntryElement": "type" } ]
-    } ]
+    "aggregation": [
+        {
+            "type": "category",
+            "name": "Compiler Distribution",
+            "elements": [ { "type": "value", "schemaEntry": "compiler", "schemaEntryElement": "type" } ]
+        },
+        {
+            "type": "category",
+            "name": "Compiler Details",
+            "elements": [
+                { "type": "value", "schemaEntry": "compiler", "schemaEntryElement": "type" },
+                { "type": "value", "schemaEntry": "compiler", "schemaEntryElement": "version" }
+            ]
+        }
+    ]
 }

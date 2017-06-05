@@ -64,17 +64,17 @@ QVariant OpenGLInfoSource::data()
                 m.insert(QStringLiteral("version"), QString(QString::number(major) + QLatin1Char('.') + QString::number(minor)));
 
                 OpenGLInfoSourcePrivate::parseGLVersion(reinterpret_cast<const char*>(functions.glGetString(GL_VERSION)), m);
+                OpenGLInfoSourcePrivate::parseGLSLVersion(reinterpret_cast<const char*>(functions.glGetString(GL_SHADING_LANGUAGE_VERSION)), m);
                 break;
             }
             case QOpenGLContext::LibGLES:
             {
                 m.insert(QStringLiteral("type"), QStringLiteral("GLES"));
                 OpenGLInfoSourcePrivate::parseGLESVersion(reinterpret_cast<const char*>(functions.glGetString(GL_VERSION)), m);
+                OpenGLInfoSourcePrivate::parseESGLSLVersion(reinterpret_cast<const char*>(functions.glGetString(GL_SHADING_LANGUAGE_VERSION)), m);
                 break;
             }
         }
-
-        m.insert(QStringLiteral("glslVersion"), QString::fromLocal8Bit(reinterpret_cast<const char*>(functions.glGetString(GL_SHADING_LANGUAGE_VERSION))));
 
         switch (context.format().profile()) {
             case QSurfaceFormat::NoProfile:

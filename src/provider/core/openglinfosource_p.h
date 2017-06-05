@@ -57,6 +57,41 @@ public:
         }
     }
 
+    static inline void parseGLSLVersion(const char *version, QVariantMap &m)
+    {
+        auto v = QString::fromLocal8Bit(version);
+        const auto idx = v.indexOf(QLatin1Char(' '));
+        if (idx > 0) {
+            const auto glslVersion = v.left(idx);
+            if (!glslVersion.isEmpty())
+                m.insert(QStringLiteral("glslVersion"), glslVersion);
+            else
+                m.insert(QStringLiteral("glslVersion"), v);
+        } else {
+            m.insert(QStringLiteral("glslVersion"), v);
+        }
+    }
+
+    static inline void parseESGLSLVersion(const char *version, QVariantMap &m)
+    {
+        auto v = QString::fromLocal8Bit(version);
+        if (!v.startsWith(QLatin1String("OpenGL ES GLSL ES "))) {
+            m.insert(QStringLiteral("glslVersion"), v);
+        } else {
+            v = v.mid(18);
+            const auto idx = v.indexOf(QLatin1Char(' '));
+            if (idx > 0) {
+                const auto glslVersion = v.left(idx);
+                if (!glslVersion.isEmpty())
+                    m.insert(QStringLiteral("glslVersion"), glslVersion);
+                else
+                    m.insert(QStringLiteral("glslVersion"), v);
+            } else {
+                m.insert(QStringLiteral("glslVersion"), v);
+            }
+        }
+    }
+
 private:
     static inline QString normalizeVendorString(const QString &s)
     {

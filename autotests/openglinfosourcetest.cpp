@@ -80,7 +80,7 @@ private slots:
         QVariantMap m;
         OpenGLInfoSourcePrivate::parseGLVersion(glVersion.toUtf8(), m);
         QCOMPARE(m.value(QLatin1String("vendorVersion")).toString(), vendorVersion);
-   }
+    }
 
     void testParseGLESVersion_data()
     {
@@ -105,6 +105,48 @@ private slots:
         QCOMPARE(m.value(QLatin1String("version")).toString(), version);
         QCOMPARE(m.value(QLatin1String("vendorVersion")).toString(), vendorVersion);
    }
+
+    void testParseGLSLVersion_data()
+    {
+        QTest::addColumn<QString>("input");
+        QTest::addColumn<QString>("glslVersion");
+
+        QTest::newRow("empty") << QString() << QString();
+        QTest::newRow("default") << QStringLiteral("1.30") << QStringLiteral("1.30");
+        QTest::newRow("nvidia") << QStringLiteral("4.50 NVIDIA") << QStringLiteral("4.50");
+    }
+
+    void testParseGLSLVersion()
+    {
+        QFETCH(QString, input);
+        QFETCH(QString, glslVersion);
+
+        QVariantMap m;
+        OpenGLInfoSourcePrivate::parseGLSLVersion(input.toUtf8(), m);
+        QCOMPARE(m.value(QLatin1String("glslVersion")).toString(), glslVersion);
+   }
+
+    void testParseESGLSLVersion_data()
+    {
+        QTest::addColumn<QString>("input");
+        QTest::addColumn<QString>("glslVersion");
+
+        QTest::newRow("empty") << QString() << QString();
+        QTest::newRow("invalid") << QStringLiteral("GLSL 1.00") << QStringLiteral("GLSL 1.00");
+        QTest::newRow("default") << QStringLiteral("OpenGL ES GLSL ES 1.00") << QStringLiteral("1.00");
+        QTest::newRow("angle") << QStringLiteral("OpenGL ES GLSL ES 1.00 (ANGLE 2.1.0.8613f4946861)") << QStringLiteral("1.00");
+    }
+
+    void testParseESGLSLVersion()
+    {
+        QFETCH(QString, input);
+        QFETCH(QString, glslVersion);
+
+        QVariantMap m;
+        OpenGLInfoSourcePrivate::parseESGLSLVersion(input.toUtf8(), m);
+        QCOMPARE(m.value(QLatin1String("glslVersion")).toString(), glslVersion);
+   }
+
 };
 
 QTEST_MAIN(OpenGLInfoSourceTest)

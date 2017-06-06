@@ -99,7 +99,3 @@ SurveyInfo SurveyInfo::fromJson(const QJsonObject& obj)
 #endif
     return s;
 }
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#include "surveyinfo.moc"
-#endif

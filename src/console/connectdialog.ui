@@ -19,7 +19,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Server &amp;Name:</string>
+        <string>Server &amp;name:</string>
        </property>
        <property name="buddy">
         <cstring>serverName</cstring>

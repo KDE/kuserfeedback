@@ -22,6 +22,7 @@
 
 #include <QDebug>
 #include <QIcon>
+#include <QPushButton>
 #include <QUrl>
 
 using namespace UserFeedback::Console;
@@ -31,6 +32,8 @@ ConnectDialog::ConnectDialog(QWidget *parent) :
     ui(new Ui::ConnectDialog)
 {
     ui->setupUi(this);
+
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Connect"));
     connect(ui->serverName, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConnectDialog::serverSelected);
 
     setWindowIcon(QIcon::fromTheme(QStringLiteral("network-connect")));

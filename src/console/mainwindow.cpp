@@ -139,7 +139,7 @@ MainWindow::MainWindow() :
         QMessageBox::about(this, tr("About User Feedback Console"), tr(
             "Version: %1\n"
             "License: LGPLv2+\n"
-            "Copyright ⓒ 2016 Volker Krause <vkrause@kde.org>"
+            "Copyright ⓒ 2017 Volker Krause <vkrause@kde.org>"
         ).arg(QStringLiteral(USERFEEDBACK_VERSION_STRING)));
     });
 

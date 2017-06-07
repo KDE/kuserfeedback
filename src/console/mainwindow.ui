@@ -183,7 +183,7 @@
     <iconset theme="network-connect"/>
    </property>
    <property name="text">
-    <string>&amp;Connect to server...</string>
+    <string>&amp;Connect to Server...</string>
    </property>
    <property name="toolTip">
     <string>Connect to analytics server.</string>

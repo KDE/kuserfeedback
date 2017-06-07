@@ -79,7 +79,7 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
         m_timeAggregationModel->setAggregationMode(static_cast<TimeAggregationModel::AggregationMode>(aggrGroup->checkedAction()->data().toInt()));
     });
 
-    auto timeAggrMenu = new QMenu(tr("&Time interval"), this);
+    auto timeAggrMenu = new QMenu(tr("&Time Interval"), this);
     timeAggrMenu->addAction(ui->actionAggregateDay);
     timeAggrMenu->addAction(ui->actionAggregateWeek);
     timeAggrMenu->addAction(ui->actionAggregateMonth);
@@ -90,7 +90,7 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     chartModeGroup->addAction(ui->actionTimelineChart);
     connect(chartModeGroup, &QActionGroup::triggered, this, &AnalyticsView::updateChart);
 
-    auto chartMode = new QMenu(tr("&Chart mode"), this);
+    auto chartMode = new QMenu(tr("&Chart Mode"), this);
     chartMode->addAction(ui->actionSingularChart);
     chartMode->addAction(ui->actionTimelineChart);
 

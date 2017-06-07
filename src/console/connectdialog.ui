@@ -75,7 +75,10 @@
      <item row="1" column="0">
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Server &amp;URL:</string>
+        <string>Server UR&amp;L:</string>
+       </property>
+       <property name="buddy">
+        <cstring>serverUrl</cstring>
        </property>
       </widget>
      </item>

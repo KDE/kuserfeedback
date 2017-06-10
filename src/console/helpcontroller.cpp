@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-userfeedback-version.h>
+#include <kuserfeedback_version.h>
 
 #include "helpcontroller.h"
 
@@ -98,12 +98,15 @@ bool HelpController::isAvailable()
     return false;
 }
 
+#define STRINGIFY(x) #x
+#define INT2STR(x) STRINGIFY(x)
+
 void HelpController::openContents()
 {
     Q_ASSERT(isAvailable());
     auto d = s_helpController();
     d->startProcess();
-    d->sendCommand("setSource qthelp://org.kde.UserFeedback." USERFEEDBACK_VERSION_MAJOR_MINOR "/userfeedback/index.html;syncContents\n");
+    d->sendCommand("setSource qthelp://org.kde.UserFeedback." INT2STR(KUSERFEEDBACK_VERSION_MAJOR) "." INT2STR(KUSERFEEDBACK_VERSION_MINOR) "/userfeedback/index.html;syncContents\n");
 }
 
 void HelpController::openPage(const QString &page)
@@ -111,5 +114,8 @@ void HelpController::openPage(const QString &page)
     Q_ASSERT(isAvailable());
     auto d = s_helpController();
     d->startProcess();
-    d->sendCommand(QByteArray("setSource qthelp://org.kde.UserFeedback." USERFEEDBACK_VERSION_MAJOR_MINOR "/") + page.toUtf8() + ";syncContents\n");
+    d->sendCommand(QByteArray("setSource qthelp://org.kde.UserFeedback." INT2STR(KUSERFEEDBACK_VERSION_MAJOR) "." INT2STR(KUSERFEEDBACK_VERSION_MINOR) "/") + page.toUtf8() + ";syncContents\n");
 }
+
+#undef STRINGIFY
+#undef INT2STR

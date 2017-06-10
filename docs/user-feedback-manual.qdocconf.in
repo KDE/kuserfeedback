@@ -7,12 +7,12 @@ sources.fileextensions = "*.qdoc"
 
 qhp.projects = UserFeedback
 qhp.UserFeedback.file = user-feedback-manual.qhp
-qhp.UserFeedback.namespace = org.kde.UserFeedback.@USERFEEDBACK_VERSION_MAJOR@.@USERFEEDBACK_VERSION_MINOR@
+qhp.UserFeedback.namespace = org.kde.UserFeedback.@KUSERFEEDBACK_VERSION_MAJOR@.@KUSERFEEDBACK_VERSION_MINOR@
 qhp.UserFeedback.virtualFolder = userfeedback
 qhp.UserFeedback.indexTitle = UserFeedback Manual
-qhp.UserFeedback.filterAttributes = userfeedback @USERFEEDBACK_VERSION@
-qhp.UserFeedback.customFilters.UserFeedback.name = UserFeedback @USERFEEDBACK_VERSION@
-qhp.UserFeedback.customFilters.UserFeedback.filterAttributes = userfeedback @USERFEEDBACK_VERSION@
+qhp.UserFeedback.filterAttributes = userfeedback @KUSERFEEDBACK_VERSION@
+qhp.UserFeedback.customFilters.UserFeedback.name = UserFeedback @KUSERFEEDBACK_VERSION@
+qhp.UserFeedback.customFilters.UserFeedback.filterAttributes = userfeedback @KUSERFEEDBACK_VERSION@
 qhp.UserFeedback.indexRoot =
 
 qhp.UserFeedback.subprojects = manual
@@ -22,7 +22,7 @@ qhp.UserFeedback.subprojects.manual.type = manual
 
 navigation.homepage    = "UserFeedback Manual"
 navigation.landingpage = "UserFeedback Manual"
-buildversion = "UserFeedback Manual @USERFEEDBACK_VERSION_STRING@"
+buildversion = "UserFeedback Manual @KUSERFEEDBACK_VERSION_STRING@"
 
 # offline specific
 include(@QDOC_TEMPLATE_DIR@/qt-html-templates-offline.qdocconf)

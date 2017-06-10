@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-userfeedback-version.h>
+#include <kuserfeedback_version.h>
 #include "restclient.h"
 
 #include <QDebug>
@@ -108,7 +108,7 @@ QNetworkRequest RESTClient::makeRequest(const QString& command)
     QNetworkRequest request(url);
     const QByteArray authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
     request.setRawHeader("Authorization", QByteArray("Basic " + authToken.toBase64()));
-    request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("UserFeedbackConsole/") + QStringLiteral(USERFEEDBACK_VERSION)));
+    request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("UserFeedbackConsole/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
     request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     return request;
 }

@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-userfeedback-version.h>
+#include <kuserfeedback_version.h>
 #include "mainwindow.h"
 
 #include <QApplication>
@@ -23,7 +23,7 @@
 int main(int argc, char** argv)
 {
     QCoreApplication::setApplicationName(QStringLiteral("UserFeedbackConsole"));
-    QCoreApplication::setApplicationVersion(QStringLiteral(USERFEEDBACK_VERSION));
+    QCoreApplication::setApplicationVersion(QStringLiteral(KUSERFEEDBACK_VERSION_STRING));
     QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
     QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
 

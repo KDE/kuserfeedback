@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-userfeedback-version.h>
+#include <kuserfeedback_version.h>
 
 #include "securityscanjob.h"
 
@@ -75,7 +75,7 @@ void SecurityScanJob::processPending()
     path += command;
     url.setPath(path);
     QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("UserFeedbackConsole/") + QStringLiteral(USERFEEDBACK_VERSION)));
+    request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("UserFeedbackConsole/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
     request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
 
     auto reply = m_restClient->networkAccessManager()->get(request);

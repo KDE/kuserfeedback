@@ -1,6 +1,7 @@
-project(UserFeedback)
-
 cmake_minimum_required(VERSION 3.0)
+project(KUserFeedback VERSION 0.9.84)
+
+set(POLICY CMP0048 NEW)
 if(POLICY CMP0053)
     cmake_policy(SET CMP0053 NEW)
 endif()
@@ -17,31 +18,18 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 include(ECMGenerateHeaders)
 include(ECMPoQmTools)
+include(ECMSetupVersion)
 include(FeatureSummary)
 include(GenerateExportHeader)
 include(KDECompilerSettings)
 
 enable_testing()
 
-set(USERFEEDBACK_VERSION_MAJOR "0")
-set(USERFEEDBACK_VERSION_MINOR "9")
-set(USERFEEDBACK_VERSION_PATCH "84")
-set(USERFEEDBACK_VERSION "${USERFEEDBACK_VERSION_MAJOR}.${USERFEEDBACK_VERSION_MINOR}.${USERFEEDBACK_VERSION_PATCH}")
-set(USERFEEDBACK_VERSION_STRING "${USERFEEDBACK_VERSION}")
-set(PROJECT_VERSION_STRING ${USERFEEDBACK_VERSION}) # for the ECM pri generator
-if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
-  find_package(Git)
-  set_package_properties(Git PROPERTIES TYPE OPTIONAL PURPOSE "Determine exact build version.")
-  if(GIT_FOUND)
-    execute_process(
-      COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
-      WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-      OUTPUT_VARIABLE _git_revision
-    )
-    string(REGEX REPLACE "\n" "" _git_revision "${_git_revision}")
-    set(USERFEEDBACK_VERSION_STRING "${USERFEEDBACK_VERSION_STRING} (revision: ${_git_revision})")
-  endif()
-endif()
+ecm_setup_version(PROJECT
+    VARIABLE_PREFIX KUSERFEEDBACK
+    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h"
+    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake"
+)
 
 #
 # Compiler & linker settings
@@ -123,7 +111,6 @@ set_package_properties(PhpUnit PROPERTIES URL "http://phpunit.de" TYPE RECOMMEND
 #
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 configure_file(config-userfeedback.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback.h)
-configure_file(config-userfeedback-version.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback-version.h)
 
 add_subdirectory(src)
 add_subdirectory(autotests)
@@ -141,12 +128,6 @@ configure_package_config_file(
     ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfig.cmake
     INSTALL_DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback
     PATH_VARS KDE_INSTALL_INCLUDEDIR
-)
-
-write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake
-    VERSION ${USERFEEDBACK_VERSION}
-    COMPATIBILITY SameMajorVersion
 )
 
 install(FILES

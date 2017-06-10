@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-userfeedback-version.h>
+#include <kuserfeedback_version.h>
 
 #include "logging_p.h"
 #include "provider.h"
@@ -644,7 +644,7 @@ void ProviderPrivate::submit(const QUrl &url)
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-    request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("UserFeedback/") + QStringLiteral(USERFEEDBACK_VERSION)));
+    request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("KUserFeedback/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
 #endif
     auto reply = networkAccessManager->post(request, jsonData(statisticsMode));
     QObject::connect(reply, SIGNAL(finished()), q, SLOT(submitFinished()));

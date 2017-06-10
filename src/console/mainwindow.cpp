@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-userfeedback-version.h>
+#include <kuserfeedback_version.h>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "helpcontroller.h"
@@ -140,7 +140,7 @@ MainWindow::MainWindow() :
             "Version: %1\n"
             "License: LGPLv2+\n"
             "Copyright ⓒ 2017 Volker Krause <vkrause@kde.org>"
-        ).arg(QStringLiteral(USERFEEDBACK_VERSION_STRING)));
+        ).arg(QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
     });
 
     connect(ui->productListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, [this](const QItemSelection&, const QItemSelection &deselected) {

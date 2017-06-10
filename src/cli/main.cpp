@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "config-userfeedback-version.h"
+#include <kuserfeedback_version.h>
 
 #include <jobs/handshakejob.h>
 #include <jobs/productexportjob.h>
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     QCoreApplication::setApplicationName(QStringLiteral("userfeedbackctl"));
     QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
     QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
-    QCoreApplication::setApplicationVersion(QStringLiteral(USERFEEDBACK_VERSION_STRING));
+    QCoreApplication::setApplicationVersion(QStringLiteral(KUSERFEEDBACK_VERSION_STRING));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QStringLiteral("UserFeedback management tool"));

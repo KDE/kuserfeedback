@@ -7,8 +7,8 @@ set(userfeedback_widgets_srcs
 
 add_library(KUserFeedbackWidgets SHARED ${userfeedback_widgets_srcs})
 set_target_properties(KUserFeedbackWidgets PROPERTIES
-    SOVERSION ${USERFEEDBACK_VERSION}
-    VERSION ${USERFEEDBACK_VERSION}
+    SOVERSION ${KUSERFEEDBACK_SOVERSION}
+    VERSION ${KUSERFEEDBACK_VERSION_STRING}
 )
 generate_export_header(KUserFeedbackWidgets)
 if(TARGET Qt5::Widgets)

@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_METAENUMCOMBOBOX_H
-#define USERFEEDBACK_CONSOLE_METAENUMCOMBOBOX_H
+#ifndef KUSERFEEDBACK_CONSOLE_METAENUMCOMBOBOX_H
+#define KUSERFEEDBACK_CONSOLE_METAENUMCOMBOBOX_H
 
 #include <QComboBox>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class MetaEnumComboBox : public QComboBox
@@ -41,4 +41,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_METAENUMCOMBOBOX_H
+#endif // KUSERFEEDBACK_CONSOLE_METAENUMCOMBOBOX_H

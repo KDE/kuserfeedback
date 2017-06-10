@@ -20,7 +20,7 @@
 
 #include "provider.h"
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class AbstractDataSourcePrivate
 {

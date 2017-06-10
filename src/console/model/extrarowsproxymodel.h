@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_EXTRAROWSPROXYMODEL_H
-#define USERFEEDBACK_CONSOLE_EXTRAROWSPROXYMODEL_H
+#ifndef KUSERFEEDBACK_CONSOLE_EXTRAROWSPROXYMODEL_H
+#define KUSERFEEDBACK_CONSOLE_EXTRAROWSPROXYMODEL_H
 
 #include <QIdentityProxyModel>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class ExtraRowsProxyModel : public QIdentityProxyModel
@@ -44,4 +44,4 @@ private:
 
 }}
 
-#endif // USERFEEDBACK_CONSOLE_EXTRAROWSPROXYMODEL_H
+#endif // KUSERFEEDBACK_CONSOLE_EXTRAROWSPROXYMODEL_H

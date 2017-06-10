@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_HELPCONTROLLER_H
-#define USERFEEDBACK_CONSOLE_HELPCONTROLLER_H
+#ifndef KUSERFEEDBACK_CONSOLE_HELPCONTROLLER_H
+#define KUSERFEEDBACK_CONSOLE_HELPCONTROLLER_H
 
 class QString;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 /*! Controls the Assistant-based help browser. */
@@ -40,4 +40,4 @@ void openPage(const QString &page);
 
 }}
 
-#endif // USERFEEDBACK_CONSOLE_HELPCONTROLLER_H
+#endif // KUSERFEEDBACK_CONSOLE_HELPCONTROLLER_H

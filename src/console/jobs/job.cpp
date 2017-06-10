@@ -17,7 +17,7 @@
 
 #include "job.h"
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 Job::Job(QObject* parent)
     : QObject(parent)

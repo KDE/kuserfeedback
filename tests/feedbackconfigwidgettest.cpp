@@ -26,7 +26,7 @@
 #include <QApplication>
 #include <QStandardPaths>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 int main(int argc, char **argv)
 {

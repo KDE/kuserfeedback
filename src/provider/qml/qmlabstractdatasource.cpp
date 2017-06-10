@@ -19,7 +19,7 @@
 
 #include <AbstractDataSource>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 QmlAbstractDataSource::QmlAbstractDataSource(AbstractDataSource *source, QObject* parent)
     : QObject(parent)

@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_QMLPLUGIN_H
-#define USERFEEDBACK_QMLPLUGIN_H
+#ifndef KUSERFEEDBACK_QMLPLUGIN_H
+#define KUSERFEEDBACK_QMLPLUGIN_H
 
 #include <QQmlExtensionPlugin>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class QmlPlugin : public QQmlExtensionPlugin
 {
@@ -32,4 +32,4 @@ class QmlPlugin : public QQmlExtensionPlugin
 
 }
 
-#endif // USERFEEDBACK_QMLPLUGIN_H
+#endif // KUSERFEEDBACK_QMLPLUGIN_H

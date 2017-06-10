@@ -15,14 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SCHEMAENTRYITEMEDITORFACTORY_H
-#define USERFEEDBACK_CONSOLE_SCHEMAENTRYITEMEDITORFACTORY_H
+#ifndef KUSERFEEDBACK_CONSOLE_SCHEMAENTRYITEMEDITORFACTORY_H
+#define KUSERFEEDBACK_CONSOLE_SCHEMAENTRYITEMEDITORFACTORY_H
 
 #include <QItemEditorFactory>
 
 #include <memory>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class AggregationElementModel;
@@ -45,4 +45,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_SCHEMAENTRYITEMEDITORFACTORY_H
+#endif // KUSERFEEDBACK_CONSOLE_SCHEMAENTRYITEMEDITORFACTORY_H

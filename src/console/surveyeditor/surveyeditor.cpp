@@ -27,7 +27,7 @@
 #include <QNetworkReply>
 #include <QUuid>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 SurveyEditor::SurveyEditor(QWidget* parent) :
     QWidget(parent),

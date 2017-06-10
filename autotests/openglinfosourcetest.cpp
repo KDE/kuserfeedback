@@ -25,7 +25,7 @@
 #include <QStandardPaths>
 #endif
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 class OpenGLInfoSourceTest : public QObject
 {

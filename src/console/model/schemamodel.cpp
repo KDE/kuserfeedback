@@ -22,7 +22,7 @@
 
 #include <limits>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 static const auto TOPLEVEL = std::numeric_limits<quintptr>::max();
 

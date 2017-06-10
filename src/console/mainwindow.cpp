@@ -55,13 +55,13 @@
 #include <QTimer>
 #include <QUrl>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 MainWindow::MainWindow() :
     ui(new Ui::MainWindow),
     m_restClient(new RESTClient(this)),
     m_productModel(new ProductModel(this)),
-    m_feedbackProvider(new UserFeedback::Provider(this))
+    m_feedbackProvider(new KUserFeedback::Provider(this))
 {
     ui->setupUi(this);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
@@ -177,7 +177,7 @@ MainWindow::MainWindow() :
 
     m_feedbackProvider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
     m_feedbackProvider->setSubmissionInterval(1);
-    auto viewModeSource = new UserFeedback::PropertyRatioSource(ui->viewStack, "currentIndex", QStringLiteral("viewRatio"));
+    auto viewModeSource = new KUserFeedback::PropertyRatioSource(ui->viewStack, "currentIndex", QStringLiteral("viewRatio"));
     viewModeSource->setDescription(tr("Usage ratio of the analytics view, survey editor and schema editor."));
     viewModeSource->addValueMapping(0, QStringLiteral("analytics"));
     viewModeSource->addValueMapping(1, QStringLiteral("surveyEditor"));
@@ -194,7 +194,7 @@ MainWindow::MainWindow() :
     m_feedbackProvider->setApplicationStartsUntilEncouragement(5);
     m_feedbackProvider->setApplicationUsageTimeUntilEncouragement(600); // 10 mins
 
-    auto notifyPopup = new UserFeedback::NotificationPopup(this);
+    auto notifyPopup = new KUserFeedback::NotificationPopup(this);
     notifyPopup->setFeedbackProvider(m_feedbackProvider);
 }
 

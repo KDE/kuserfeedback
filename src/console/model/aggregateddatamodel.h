@@ -15,13 +15,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_AGGREGATEDDATAMODEL_H
-#define USERFEEDBACK_CONSOLE_AGGREGATEDDATAMODEL_H
+#ifndef KUSERFEEDBACK_CONSOLE_AGGREGATEDDATAMODEL_H
+#define KUSERFEEDBACK_CONSOLE_AGGREGATEDDATAMODEL_H
 
 #include <QAbstractTableModel>
 #include <QVector>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 /** Joint model for all time-aggregated data, for user display and export. */
@@ -52,4 +52,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_AGGREGATEDDATAMODEL_H
+#endif // KUSERFEEDBACK_CONSOLE_AGGREGATEDDATAMODEL_H

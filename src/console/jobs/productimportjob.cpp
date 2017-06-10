@@ -26,7 +26,7 @@
 #include <QDir>
 #include <QNetworkReply>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 ProductImportJob::ProductImportJob(const QString& source, RESTClient* restClient, QObject* parent)
     : Job(parent)

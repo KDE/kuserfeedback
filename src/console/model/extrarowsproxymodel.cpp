@@ -17,7 +17,7 @@
 
 #include "extrarowsproxymodel.h"
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 ExtraRowsProxyModel::ExtraRowsProxyModel(QObject* parent) :
     QIdentityProxyModel(parent)

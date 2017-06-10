@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SINGLEROWFILTERPROXYMODEL_H
-#define USERFEEDBACK_CONSOLE_SINGLEROWFILTERPROXYMODEL_H
+#ifndef KUSERFEEDBACK_CONSOLE_SINGLEROWFILTERPROXYMODEL_H
+#define KUSERFEEDBACK_CONSOLE_SINGLEROWFILTERPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 /** Keep a single row from the source model. */
@@ -40,4 +40,4 @@ private:
 
 }}
 
-#endif // USERFEEDBACK_CONSOLE_SINGLEROWFILTERPROXYMODEL_H
+#endif // KUSERFEEDBACK_CONSOLE_SINGLEROWFILTERPROXYMODEL_H

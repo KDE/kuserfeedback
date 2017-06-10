@@ -20,7 +20,7 @@
 #include <QLocale>
 #include <QVariant>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 LocaleInfoSource::LocaleInfoSource()
     : AbstractDataSource(QStringLiteral("locale"))

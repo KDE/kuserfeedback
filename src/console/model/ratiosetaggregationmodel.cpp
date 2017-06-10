@@ -21,7 +21,7 @@
 
 #include <QSet>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 RatioSetAggregationModel::RatioSetAggregationModel(QObject *parent) :
     QAbstractTableModel(parent)

@@ -25,7 +25,7 @@
 #include <QUuid>
 #include <QVBoxLayout>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 int main(int argc, char **argv)
 {

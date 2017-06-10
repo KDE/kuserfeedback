@@ -28,7 +28,7 @@
 #include <QMessageBox>
 #include <QNetworkReply>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 
 SchemaEditor::SchemaEditor(QWidget* parent) :

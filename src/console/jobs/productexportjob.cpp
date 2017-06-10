@@ -23,7 +23,7 @@
 #include <QDir>
 #include <QNetworkReply>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 ProductExportJob::ProductExportJob(const QString& productId, const QString& destination, RESTClient* restClient, QObject* parent)
     : Job(parent)

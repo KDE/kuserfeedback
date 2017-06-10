@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_FEEDBACKCONFIGUICONTROLLER_H
-#define USERFEEDBACK_FEEDBACKCONFIGUICONTROLLER_H
+#ifndef KUSERFEEDBACK_FEEDBACKCONFIGUICONTROLLER_H
+#define KUSERFEEDBACK_FEEDBACKCONFIGUICONTROLLER_H
 
 #include "userfeedbackcore_export.h"
 #include "provider.h"
@@ -25,7 +25,7 @@
 
 #include <memory>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class FeedbackConfigUiControllerPrivate;
 class Provider;
@@ -38,7 +38,7 @@ class USERFEEDBACKCORE_EXPORT FeedbackConfigUiController : public QObject
 {
     Q_OBJECT
     /*! The Provider instance we are configuring. */
-    Q_PROPERTY(UserFeedback::Provider* feedbackProvider READ feedbackProvider WRITE setFeedbackProvider NOTIFY providerChanged)
+    Q_PROPERTY(KUserFeedback::Provider* feedbackProvider READ feedbackProvider WRITE setFeedbackProvider NOTIFY providerChanged)
     /*! Amount of telemetry modes supported by the provider. */
     Q_PROPERTY(int telemetryModeCount READ telemetryModeCount NOTIFY providerChanged)
     /*! Amount of supported survey modes. */
@@ -60,9 +60,9 @@ public:
     int surveyModeCount() const;
 
     /*! Convert slider index to telemetry mode. */
-    Q_INVOKABLE UserFeedback::Provider::StatisticsCollectionMode telemetryIndexToMode(int index) const;
+    Q_INVOKABLE KUserFeedback::Provider::StatisticsCollectionMode telemetryIndexToMode(int index) const;
     /*! Convert telemetry mode to slider index. */
-    Q_INVOKABLE int telemetryModeToIndex(UserFeedback::Provider::StatisticsCollectionMode mode) const;
+    Q_INVOKABLE int telemetryModeToIndex(KUserFeedback::Provider::StatisticsCollectionMode mode) const;
 
     /*! Telemetry mode explanation text. */
     Q_INVOKABLE QString telemetryModeDescription(int telemetryIndex) const;
@@ -87,4 +87,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_FEEDBACKCONFIGUICONTROLLER_H
+#endif // KUSERFEEDBACK_FEEDBACKCONFIGUICONTROLLER_H

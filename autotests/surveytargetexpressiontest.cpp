@@ -23,7 +23,7 @@
 #include <QtTest/qtest.h>
 #include <QObject>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 class SurveyTargetExpressionTest: public QObject, public SurveyTargetExpressionDataProvider
 {

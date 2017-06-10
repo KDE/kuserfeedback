@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_QMLDATASOURCES_H
-#define USERFEEDBACK_QMLDATASOURCES_H
+#ifndef KUSERFEEDBACK_QMLDATASOURCES_H
+#define KUSERFEEDBACK_QMLDATASOURCES_H
 
 #include "qmlabstractdatasource.h"
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 #define MAKE_BASIC_QML_WRAPPER(x) \
     class Qml ## x : public QmlAbstractDataSource { \
@@ -43,4 +43,4 @@ MAKE_BASIC_QML_WRAPPER(UsageTimeSource)
 #undef MAKE_BASIC_QML_WRAPPER
 }
 
-#endif // USERFEEDBACK_QMLDATASOURCES_H
+#endif // KUSERFEEDBACK_QMLDATASOURCES_H

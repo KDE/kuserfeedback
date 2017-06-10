@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_AGGREGATIONELEMENT_H
-#define USERFEEDBACK_CONSOLE_AGGREGATIONELEMENT_H
+#ifndef KUSERFEEDBACK_CONSOLE_AGGREGATIONELEMENT_H
+#define KUSERFEEDBACK_CONSOLE_AGGREGATIONELEMENT_H
 
 #include "schemaentry.h"
 #include "schemaentryelement.h"
@@ -24,7 +24,7 @@
 class QJsonArray;
 class QJsonObject;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class Product;
@@ -66,7 +66,7 @@ private:
 }
 }
 
-Q_DECLARE_TYPEINFO(UserFeedback::Console::AggregationElement, Q_MOVABLE_TYPE);
-Q_DECLARE_METATYPE(UserFeedback::Console::AggregationElement)
+Q_DECLARE_TYPEINFO(KUserFeedback::Console::AggregationElement, Q_MOVABLE_TYPE);
+Q_DECLARE_METATYPE(KUserFeedback::Console::AggregationElement)
 
-#endif // USERFEEDBACK_CONSOLE_AGGREGATIONELEMENT_H
+#endif // KUSERFEEDBACK_CONSOLE_AGGREGATIONELEMENT_H

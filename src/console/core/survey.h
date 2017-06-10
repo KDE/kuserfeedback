@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SURVEY_H
-#define USERFEEDBACK_CONSOLE_SURVEY_H
+#ifndef KUSERFEEDBACK_CONSOLE_SURVEY_H
+#define KUSERFEEDBACK_CONSOLE_SURVEY_H
 
 #include <QMetaType>
 #include <QSharedDataPointer>
@@ -26,7 +26,7 @@ class QString;
 class QUrl;
 class QUuid;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class SurveyData;
@@ -67,7 +67,7 @@ private:
 }
 }
 
-Q_DECLARE_TYPEINFO(UserFeedback::Console::Survey, Q_MOVABLE_TYPE);
-Q_DECLARE_METATYPE(UserFeedback::Console::Survey)
+Q_DECLARE_TYPEINFO(KUserFeedback::Console::Survey, Q_MOVABLE_TYPE);
+Q_DECLARE_METATYPE(KUserFeedback::Console::Survey)
 
-#endif // USERFEEDBACK_CONSOLE_SURVEY_H
+#endif // KUSERFEEDBACK_CONSOLE_SURVEY_H

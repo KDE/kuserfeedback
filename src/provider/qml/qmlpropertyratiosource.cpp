@@ -19,7 +19,7 @@
 
 #include <PropertyRatioSource>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 QmlPropertyRatioSource::QmlPropertyRatioSource(QObject* parent)
     : QmlAbstractDataSource(new PropertyRatioSource(nullptr, nullptr, QString()), parent)

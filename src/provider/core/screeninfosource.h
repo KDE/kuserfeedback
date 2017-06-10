@@ -15,13 +15,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_SCREENINFOSOURCE_H
-#define USERFEEDBACK_SCREENINFOSOURCE_H
+#ifndef KUSERFEEDBACK_SCREENINFOSOURCE_H
+#define KUSERFEEDBACK_SCREENINFOSOURCE_H
 
 #include "userfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 /*! Data source for information about connected displays.
  *  This provides as array of maps containing the following properties:
@@ -31,7 +31,7 @@ namespace UserFeedback {
  */
 class USERFEEDBACKCORE_EXPORT ScreenInfoSource :  public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(UserFeedback::ScreenInfoSource)
+    Q_DECLARE_TR_FUNCTIONS(KUserFeedback::ScreenInfoSource)
 public:
     /*! Create a new screen information source. */
     ScreenInfoSource();
@@ -41,4 +41,4 @@ public:
 
 }
 
-#endif // USERFEEDBACK_SCREENINFOSOURCE_H
+#endif // KUSERFEEDBACK_SCREENINFOSOURCE_H

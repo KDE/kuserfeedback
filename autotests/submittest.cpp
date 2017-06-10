@@ -39,8 +39,8 @@
 #include <QSignalSpy>
 #include <QStandardPaths>
 
-using namespace UserFeedback;
-using namespace UserFeedback::Console;
+using namespace KUserFeedback;
+using namespace KUserFeedback::Console;
 
 class SubmitTest : public QObject
 {

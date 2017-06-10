@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_DATAMODEL_H
-#define USERFEEDBACK_CONSOLE_DATAMODEL_H
+#ifndef KUSERFEEDBACK_CONSOLE_DATAMODEL_H
+#define KUSERFEEDBACK_CONSOLE_DATAMODEL_H
 
 #include <core/product.h>
 #include <core/schemaentry.h>
@@ -24,7 +24,7 @@
 
 #include <QAbstractTableModel>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class RESTClient;
@@ -72,4 +72,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_DATAMODEL_H
+#endif // KUSERFEEDBACK_CONSOLE_DATAMODEL_H

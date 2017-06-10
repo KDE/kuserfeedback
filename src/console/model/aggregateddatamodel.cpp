@@ -20,7 +20,7 @@
 
 #include <QDebug>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 AggregatedDataModel::AggregatedDataModel(QObject *parent) :
     QAbstractTableModel(parent)

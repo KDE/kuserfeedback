@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UserFeedback::Console::SchemaEditor</class>
- <widget class="QWidget" name="UserFeedback::Console::SchemaEditor">
+ <class>KUserFeedback::Console::SchemaEditor</class>
+ <widget class="QWidget" name="KUserFeedback::Console::SchemaEditor">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -28,12 +28,12 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="UserFeedback::Console::SchemaEditWidget" name="schema">
+     <widget class="KUserFeedback::Console::SchemaEditWidget" name="schema">
       <attribute name="title">
        <string>Schema</string>
       </attribute>
      </widget>
-     <widget class="UserFeedback::Console::AggregationEditWidget" name="aggregation">
+     <widget class="KUserFeedback::Console::AggregationEditWidget" name="aggregation">
       <attribute name="title">
        <string>Aggregation</string>
       </attribute>
@@ -80,13 +80,13 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>UserFeedback::Console::SchemaEditWidget</class>
+   <class>KUserFeedback::Console::SchemaEditWidget</class>
    <extends>QWidget</extends>
    <header>schemaeditor/schemaeditwidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>UserFeedback::Console::AggregationEditWidget</class>
+   <class>KUserFeedback::Console::AggregationEditWidget</class>
    <extends>QWidget</extends>
    <header>schemaeditor/aggregationeditwidget.h</header>
    <container>1</container>

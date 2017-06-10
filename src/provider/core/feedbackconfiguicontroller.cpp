@@ -24,9 +24,9 @@
 #include <algorithm>
 #include <vector>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 class FeedbackConfigUiControllerPrivate {
 public:
     FeedbackConfigUiControllerPrivate();

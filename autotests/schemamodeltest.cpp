@@ -26,7 +26,7 @@
 #include <QSignalSpy>
 #include <QStandardPaths>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 class SchemaModelTest : public QObject
 {

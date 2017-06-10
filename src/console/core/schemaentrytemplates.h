@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SCHEMAENTRYTEMPLATES_H
-#define USERFEEDBACK_CONSOLE_SCHEMAENTRYTEMPLATES_H
+#ifndef KUSERFEEDBACK_CONSOLE_SCHEMAENTRYTEMPLATES_H
+#define KUSERFEEDBACK_CONSOLE_SCHEMAENTRYTEMPLATES_H
 
 template <typename T> class QVector;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class Product;
@@ -33,4 +33,4 @@ namespace SchemaEntryTemplates
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_SCHEMAENTRYTEMPLATES_H
+#endif // KUSERFEEDBACK_CONSOLE_SCHEMAENTRYTEMPLATES_H

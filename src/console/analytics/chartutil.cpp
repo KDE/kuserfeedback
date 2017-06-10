@@ -21,7 +21,7 @@
 
 #include <QApplication>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 using namespace QtCharts;
 
 void ChartUtil::applyTheme(QtCharts::QChart *chart)

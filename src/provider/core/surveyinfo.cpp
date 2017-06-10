@@ -24,9 +24,9 @@
 #include <QUrl>
 #include <QUuid>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
-class UserFeedback::SurveyInfoData : public QSharedData
+class KUserFeedback::SurveyInfoData : public QSharedData
 {
 public:
     QUuid uuid;

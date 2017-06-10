@@ -31,7 +31,7 @@
 #include <QNetworkReply>
 #include <QStyledItemDelegate>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 SchemaEditWidget::SchemaEditWidget(QWidget *parent) :
     QWidget(parent),

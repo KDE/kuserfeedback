@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_PROVIDER_H
-#define USERFEEDBACK_PROVIDER_H
+#ifndef KUSERFEEDBACK_PROVIDER_H
+#define KUSERFEEDBACK_PROVIDER_H
 
 #include "userfeedbackcore_export.h"
 
@@ -24,7 +24,7 @@
 #include <QObject>
 #include <QUrl>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class AbstractDataSource;
 class ProviderPrivate;
@@ -230,13 +230,13 @@ public Q_SLOTS:
     /*! Marks the given survey as completed. This avoids getting further notification
      *  about the same survey.
      */
-    void surveyCompleted(const UserFeedback::SurveyInfo &info);
+    void surveyCompleted(const KUserFeedback::SurveyInfo &info);
 
 Q_SIGNALS:
     /*! Emitted whenever there is a new survey available that can be presented
      *  to the user.
      */
-    void surveyAvailable(const UserFeedback::SurveyInfo &survey);
+    void surveyAvailable(const KUserFeedback::SurveyInfo &survey);
 
     /*! Indicate that the encouragement notice should be shown. */
     void showEncouragementMessage();
@@ -257,7 +257,7 @@ private:
     Q_PRIVATE_SLOT(d, void submitFinished())
     Q_PRIVATE_SLOT(d, void emitShowEncouragementMessage())
     // for UI
-    Q_PRIVATE_SLOT(d, QByteArray jsonData(UserFeedback::Provider::StatisticsCollectionMode))
+    Q_PRIVATE_SLOT(d, QByteArray jsonData(KUserFeedback::Provider::StatisticsCollectionMode))
     // for testing
     Q_PRIVATE_SLOT(d, void load())
     Q_PRIVATE_SLOT(d, void store())
@@ -265,6 +265,6 @@ private:
 
 }
 
-Q_DECLARE_METATYPE(UserFeedback::Provider::StatisticsCollectionMode)
+Q_DECLARE_METATYPE(KUserFeedback::Provider::StatisticsCollectionMode)
 
-#endif // USERFEEDBACK_PROVIDER_H
+#endif // KUSERFEEDBACK_PROVIDER_H

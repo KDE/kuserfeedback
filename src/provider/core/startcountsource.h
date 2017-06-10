@@ -15,13 +15,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_STARTCOUNTSOURCE_H
-#define USERFEEDBACK_STARTCOUNTSOURCE_H
+#ifndef KUSERFEEDBACK_STARTCOUNTSOURCE_H
+#define KUSERFEEDBACK_STARTCOUNTSOURCE_H
 
 #include "userfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class Provider;
 class ProviderPrivate;
@@ -30,7 +30,7 @@ class StartCountSourcePrivate;
 /*! Data source reporting the total amount of applications starts. */
 class USERFEEDBACKCORE_EXPORT StartCountSource :  public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(UserFeedback::StartCountSource)
+    Q_DECLARE_TR_FUNCTIONS(KUserFeedback::StartCountSource)
 public:
     /*! Create a new start count data source. */
     StartCountSource();
@@ -45,4 +45,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_STARTCOUNTSOURCE_H
+#endif // KUSERFEEDBACK_STARTCOUNTSOURCE_H

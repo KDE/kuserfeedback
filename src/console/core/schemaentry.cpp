@@ -25,9 +25,9 @@
 #include <QObject>
 #include <QSharedData>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class SchemaEntryData : public QSharedData

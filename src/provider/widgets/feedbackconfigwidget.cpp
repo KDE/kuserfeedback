@@ -29,9 +29,9 @@
 #include <algorithm>
 #include <vector>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 class FeedbackConfigWidgetPrivate {
 public:
     void telemetrySliderChanged();
@@ -62,7 +62,7 @@ void FeedbackConfigWidgetPrivate::telemetrySliderChanged()
         ui->telemetryDetails->setHtml(controller->telemetryModeDetails(ui->telemetrySlider->value()));
     } else {
         QByteArray jsonData;
-        QMetaObject::invokeMethod(controller->feedbackProvider(), "jsonData", Q_RETURN_ARG(QByteArray, jsonData), Q_ARG(UserFeedback::Provider::StatisticsCollectionMode, controller->telemetryIndexToMode(ui->telemetrySlider->value())));
+        QMetaObject::invokeMethod(controller->feedbackProvider(), "jsonData", Q_RETURN_ARG(QByteArray, jsonData), Q_ARG(KUserFeedback::Provider::StatisticsCollectionMode, controller->telemetryIndexToMode(ui->telemetrySlider->value())));
         ui->telemetryDetails->setPlainText(QString::fromUtf8(jsonData.constData()));
     }
 }

@@ -17,7 +17,7 @@
 
 #include "rolemappingproxymodel.h"
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 RoleMappingProxyModel::RoleMappingProxyModel(QObject* parent) :
     QIdentityProxyModel(parent)

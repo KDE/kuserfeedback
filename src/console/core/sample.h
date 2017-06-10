@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SAMPLE_H
-#define USERFEEDBACK_CONSOLE_SAMPLE_H
+#ifndef KUSERFEEDBACK_CONSOLE_SAMPLE_H
+#define KUSERFEEDBACK_CONSOLE_SAMPLE_H
 
 #include <QMetaType>
 #include <QSharedDataPointer>
@@ -25,7 +25,7 @@
 class QDateTime;
 class QString;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class Product;
@@ -53,7 +53,7 @@ private:
 }
 }
 
-Q_DECLARE_TYPEINFO(UserFeedback::Console::Sample, Q_MOVABLE_TYPE);
-Q_DECLARE_METATYPE(UserFeedback::Console::Sample)
+Q_DECLARE_TYPEINFO(KUserFeedback::Console::Sample, Q_MOVABLE_TYPE);
+Q_DECLARE_METATYPE(KUserFeedback::Console::Sample)
 
-#endif // USERFEEDBACK_CONSOLE_SAMPLE_H
+#endif // KUSERFEEDBACK_CONSOLE_SAMPLE_H

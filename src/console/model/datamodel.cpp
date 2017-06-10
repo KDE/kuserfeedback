@@ -26,7 +26,7 @@
 
 #include <algorithm>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 static QString mapToString(const QVariantMap &map)
 {
@@ -106,7 +106,7 @@ void DataModel::setSamples(const QVector<Sample> &samples)
     endResetModel();
 }
 
-void UserFeedback::Console::DataModel::reload()
+void DataModel::reload()
 {
     if (!m_restClient || !m_restClient->isConnected() || !m_product.isValid())
         return;

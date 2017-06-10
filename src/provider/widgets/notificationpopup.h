@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_NOTIFICATIONPOPUP_H
-#define USERFEEDBACK_NOTIFICATIONPOPUP_H
+#ifndef KUSERFEEDBACK_NOTIFICATIONPOPUP_H
+#define KUSERFEEDBACK_NOTIFICATIONPOPUP_H
 
 #include "userfeedbackwidgets_export.h"
 
@@ -24,7 +24,7 @@
 
 #include <memory>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class NotificationPopupPrivate;
 class Provider;
@@ -58,7 +58,7 @@ protected:
 
 private:
     Q_PRIVATE_SLOT(d, void showEncouragement())
-    Q_PRIVATE_SLOT(d, void surveyAvailable(const UserFeedback::SurveyInfo &info))
+    Q_PRIVATE_SLOT(d, void surveyAvailable(const KUserFeedback::SurveyInfo &info))
     Q_PRIVATE_SLOT(d, void hidePopup())
     Q_PRIVATE_SLOT(d, void action())
     std::unique_ptr<NotificationPopupPrivate> d;
@@ -66,4 +66,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_NOTIFICATIONPOPUP_H
+#endif // KUSERFEEDBACK_NOTIFICATIONPOPUP_H

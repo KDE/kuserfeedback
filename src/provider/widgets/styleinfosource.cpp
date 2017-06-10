@@ -22,7 +22,7 @@
 #include <QStyle>
 #include <QVariant>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 StyleInfoSource::StyleInfoSource()
     : AbstractDataSource(QStringLiteral("style"))

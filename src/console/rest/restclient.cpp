@@ -23,7 +23,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 RESTClient::RESTClient(QObject *parent) :
     QObject(parent),

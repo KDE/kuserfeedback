@@ -26,7 +26,7 @@
 #include <QMessageBox>
 #include <QStyledItemDelegate>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 AggregationEditWidget::AggregationEditWidget(QWidget* parent) :
     QWidget(parent),

@@ -25,7 +25,7 @@
 #include <QPushButton>
 #include <QUrl>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 ConnectDialog::ConnectDialog(QWidget *parent) :
     QDialog(parent),

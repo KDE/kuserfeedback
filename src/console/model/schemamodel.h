@@ -15,14 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SCHEMAMODEL_H
-#define USERFEEDBACK_CONSOLE_SCHEMAMODEL_H
+#ifndef KUSERFEEDBACK_CONSOLE_SCHEMAMODEL_H
+#define KUSERFEEDBACK_CONSOLE_SCHEMAMODEL_H
 
 #include <core/product.h>
 
 #include <QAbstractTableModel>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class Product;
@@ -59,4 +59,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_SCHEMAMODEL_H
+#endif // KUSERFEEDBACK_CONSOLE_SCHEMAMODEL_H

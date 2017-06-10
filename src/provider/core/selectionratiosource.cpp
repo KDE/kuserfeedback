@@ -28,9 +28,9 @@
 
 #include <memory>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 class SelectionRatioSourcePrivate : public AbstractDataSourcePrivate
 {
 public:

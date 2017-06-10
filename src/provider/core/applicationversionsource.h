@@ -15,20 +15,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_APPLICATIONVERSIONSOURCE_H
-#define USERFEEDBACK_APPLICATIONVERSIONSOURCE_H
+#ifndef KUSERFEEDBACK_APPLICATIONVERSIONSOURCE_H
+#define KUSERFEEDBACK_APPLICATIONVERSIONSOURCE_H
 
 #include "userfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 /*! Data source for the application version.
  *  The application version is retrieved via QCoreApplication::applicationVersion.
  */
 class USERFEEDBACKCORE_EXPORT ApplicationVersionSource : public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(UserFeedback::ApplicationVersionSource)
+    Q_DECLARE_TR_FUNCTIONS(KUserFeedback::ApplicationVersionSource)
 public:
     /*! Create a new application version source. */
     ApplicationVersionSource();
@@ -38,4 +38,4 @@ public:
 
 }
 
-#endif // USERFEEDBACK_APPLICATIONVERSIONSOURCE_H
+#endif // KUSERFEEDBACK_APPLICATIONVERSIONSOURCE_H

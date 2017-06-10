@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_QMLPROVIDEREXTENSION_H
-#define USERFEEDBACK_QMLPROVIDEREXTENSION_H
+#ifndef KUSERFEEDBACK_QMLPROVIDEREXTENSION_H
+#define KUSERFEEDBACK_QMLPROVIDEREXTENSION_H
 
 #include "qmlabstractdatasource.h"
 
@@ -24,12 +24,12 @@
 #include <QQmlListProperty>
 #include <QVector>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class QmlProviderExtension : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QQmlListProperty<UserFeedback::QmlAbstractDataSource> sources READ sources)
+    Q_PROPERTY(QQmlListProperty<KUserFeedback::QmlAbstractDataSource> sources READ sources)
     Q_CLASSINFO("DefaultProperty", "sources")
 
 public:
@@ -49,4 +49,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_QMLPROVIDEREXTENSION_H
+#endif // KUSERFEEDBACK_QMLPROVIDEREXTENSION_H

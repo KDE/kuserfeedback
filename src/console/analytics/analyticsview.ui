@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UserFeedback::Console::AnalyticsView</class>
- <widget class="QWidget" name="UserFeedback::Console::AnalyticsView">
+ <class>KUserFeedback::Console::AnalyticsView</class>
+ <widget class="QWidget" name="KUserFeedback::Console::AnalyticsView">
   <property name="geometry">
    <rect>
     <x>0</x>

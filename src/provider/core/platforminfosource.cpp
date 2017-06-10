@@ -20,7 +20,7 @@
 #include <QSysInfo>
 #include <QVariant>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 PlatformInfoSource::PlatformInfoSource() :
     AbstractDataSource(QStringLiteral("platform"))

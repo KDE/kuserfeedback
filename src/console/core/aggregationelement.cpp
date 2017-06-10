@@ -22,7 +22,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 static const struct {
     AggregationElement::Type type;

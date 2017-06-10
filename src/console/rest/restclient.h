@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_RESTCLIENT_H
-#define USERFEEDBACK_CONSOLE_RESTCLIENT_H
+#ifndef KUSERFEEDBACK_CONSOLE_RESTCLIENT_H
+#define KUSERFEEDBACK_CONSOLE_RESTCLIENT_H
 
 #include "serverinfo.h"
 
@@ -26,7 +26,7 @@ class QNetworkAccessManager;
 class QNetworkReply;
 class QNetworkRequest;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 /** REST communication handling. */
@@ -64,4 +64,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_RESTCLIENT_H
+#endif // KUSERFEEDBACK_CONSOLE_RESTCLIENT_H

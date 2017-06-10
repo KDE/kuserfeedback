@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_PROVIDER_P_H
-#define USERFEEDBACK_PROVIDER_P_H
+#ifndef KUSERFEEDBACK_PROVIDER_P_H
+#define KUSERFEEDBACK_PROVIDER_P_H
 
 #include "provider.h"
 
@@ -35,7 +35,7 @@ class QNetworkAccessManager;
 class QSettings;
 QT_END_NAMESPACE
 
-namespace UserFeedback {
+namespace KUserFeedback {
 class ProviderPrivate : public SurveyTargetExpressionDataProvider
 {
 public:

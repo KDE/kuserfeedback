@@ -19,7 +19,7 @@
 #include <model/timeaggregationmodel.h>
 #include <core/sample.h>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 NumericAggregationModel::NumericAggregationModel(QObject *parent) :
     QAbstractTableModel(parent)

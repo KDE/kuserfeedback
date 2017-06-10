@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_SURVEYINFO_H
-#define USERFEEDBACK_SURVEYINFO_H
+#ifndef KUSERFEEDBACK_SURVEYINFO_H
+#define KUSERFEEDBACK_SURVEYINFO_H
 
 #include "userfeedbackcore_export.h"
 
@@ -35,7 +35,7 @@ class QUrl;
 class QUuid;
 QT_END_NAMESPACE
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class SurveyInfoData;
 
@@ -86,6 +86,6 @@ private:
 
 }
 
-Q_DECLARE_METATYPE(UserFeedback::SurveyInfo)
+Q_DECLARE_METATYPE(KUserFeedback::SurveyInfo)
 
-#endif // USERFEEDBACK_SURVEYINFO_H
+#endif // KUSERFEEDBACK_SURVEYINFO_H

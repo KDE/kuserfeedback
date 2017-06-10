@@ -21,7 +21,7 @@
 #include <QMetaEnum>
 #include <QMetaType>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 MetaEnumComboBox::MetaEnumComboBox(QWidget* parent) :
     QComboBox(parent)

@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_ABSTRACTDATASOURCE_H
-#define USERFEEDBACK_ABSTRACTDATASOURCE_H
+#ifndef KUSERFEEDBACK_ABSTRACTDATASOURCE_H
+#define KUSERFEEDBACK_ABSTRACTDATASOURCE_H
 
 #include "userfeedbackcore_export.h"
 #include "provider.h"
@@ -27,7 +27,7 @@ QT_BEGIN_NAMESPACE
 class QSettings;
 QT_END_NAMESPACE
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class AbstractDataSourcePrivate;
 
@@ -129,4 +129,4 @@ private:
 };
 }
 
-#endif // USERFEEDBACK_ABSTRACTDATASOURCE_H
+#endif // KUSERFEEDBACK_ABSTRACTDATASOURCE_H

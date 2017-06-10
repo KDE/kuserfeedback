@@ -28,7 +28,7 @@
 #include <QObject>
 #include <QStandardPaths>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 class RatioSetAggregationModelTest : public QObject
 {

@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_SELECTIONRATIOSOURCE_H
-#define USERFEEDBACK_SELECTIONRATIOSOURCE_H
+#ifndef KUSERFEEDBACK_SELECTIONRATIOSOURCE_H
+#define KUSERFEEDBACK_SELECTIONRATIOSOURCE_H
 
 #include "userfeedbackcore_export.h"
 #include "abstractdatasource.h"
@@ -25,7 +25,7 @@ QT_BEGIN_NAMESPACE
 class QItemSelectionModel;
 QT_END_NAMESPACE
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class SelectionRatioSourcePrivate;
 
@@ -69,4 +69,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_SELECTIONRATIOSOURCE_H
+#endif // KUSERFEEDBACK_SELECTIONRATIOSOURCE_H

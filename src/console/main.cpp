@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 
     QApplication app(argc, argv);
 
-    UserFeedback::Console::MainWindow mainWindow;
+    KUserFeedback::Console::MainWindow mainWindow;
     mainWindow.show();
 
     return app.exec();

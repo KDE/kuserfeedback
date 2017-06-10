@@ -15,18 +15,18 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_LOCALEINFOSOURCE_H
-#define USERFEEDBACK_LOCALEINFOSOURCE_H
+#ifndef KUSERFEEDBACK_LOCALEINFOSOURCE_H
+#define KUSERFEEDBACK_LOCALEINFOSOURCE_H
 
 #include "userfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 /*! Data source reporting the region and language settings. */
 class USERFEEDBACKCORE_EXPORT LocaleInfoSource : public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(UserFeedback::LocaleInfoSource)
+    Q_DECLARE_TR_FUNCTIONS(KUserFeedback::LocaleInfoSource)
 public:
     LocaleInfoSource();
     QString description() const override;
@@ -35,4 +35,4 @@ public:
 
 }
 
-#endif // USERFEEDBACK_LOCALEINFOSOURCE_H
+#endif // KUSERFEEDBACK_LOCALEINFOSOURCE_H

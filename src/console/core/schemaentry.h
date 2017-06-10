@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SCHEMAENTRY_H
-#define USERFEEDBACK_CONSOLE_SCHEMAENTRY_H
+#ifndef KUSERFEEDBACK_CONSOLE_SCHEMAENTRY_H
+#define KUSERFEEDBACK_CONSOLE_SCHEMAENTRY_H
 
 #include <QObject>
 #include <QSharedDataPointer>
@@ -25,7 +25,7 @@
 class QJsonArray;
 class QJsonObject;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class SchemaEntryData;
@@ -96,7 +96,7 @@ private:
 }
 }
 
-Q_DECLARE_METATYPE(UserFeedback::Console::SchemaEntry)
-Q_DECLARE_TYPEINFO(UserFeedback::Console::SchemaEntry, Q_MOVABLE_TYPE);
+Q_DECLARE_METATYPE(KUserFeedback::Console::SchemaEntry)
+Q_DECLARE_TYPEINFO(KUserFeedback::Console::SchemaEntry, Q_MOVABLE_TYPE);
 
-#endif // USERFEEDBACK_CONSOLE_PRODUCTSCHEMAENTRY_H
+#endif // KUSERFEEDBACK_CONSOLE_PRODUCTSCHEMAENTRY_H

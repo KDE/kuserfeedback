@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UserFeedback::Console::SurveyDialog</class>
- <widget class="QDialog" name="UserFeedback::Console::SurveyDialog">
+ <class>KUserFeedback::Console::SurveyDialog</class>
+ <widget class="QDialog" name="KUserFeedback::Console::SurveyDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -74,7 +74,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>UserFeedback::Console::SurveyDialog</receiver>
+   <receiver>KUserFeedback::Console::SurveyDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -90,7 +90,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>UserFeedback::Console::SurveyDialog</receiver>
+   <receiver>KUserFeedback::Console::SurveyDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

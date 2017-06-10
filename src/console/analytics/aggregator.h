@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_AGGREGATOR_H
-#define USERFEEDBACK_CONSOLE_AGGREGATOR_H
+#ifndef KUSERFEEDBACK_CONSOLE_AGGREGATOR_H
+#define KUSERFEEDBACK_CONSOLE_AGGREGATOR_H
 
 #include <core/aggregation.h>
 
@@ -28,7 +28,7 @@ namespace QtCharts {
 class QChart;
 }
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class Aggregation;
@@ -72,7 +72,7 @@ private:
 
 }}
 
-Q_DECLARE_METATYPE(UserFeedback::Console::Aggregator*)
-Q_DECLARE_OPERATORS_FOR_FLAGS(UserFeedback::Console::Aggregator::ChartModes)
+Q_DECLARE_METATYPE(KUserFeedback::Console::Aggregator*)
+Q_DECLARE_OPERATORS_FOR_FLAGS(KUserFeedback::Console::Aggregator::ChartModes)
 
-#endif // USERFEEDBACK_CONSOLE_AGGREGATOR_H
+#endif // KUSERFEEDBACK_CONSOLE_AGGREGATOR_H

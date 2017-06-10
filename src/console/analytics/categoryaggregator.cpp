@@ -35,7 +35,7 @@
 
 #include <QDebug>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 using namespace QtCharts;
 
 CategoryAggregator::CategoryAggregator() = default;

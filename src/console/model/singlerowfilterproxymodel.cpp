@@ -17,7 +17,7 @@
 
 #include "singlerowfilterproxymodel.h"
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 SingleRowFilterProxyModel::SingleRowFilterProxyModel(QObject* parent) :
     QSortFilterProxyModel(parent)

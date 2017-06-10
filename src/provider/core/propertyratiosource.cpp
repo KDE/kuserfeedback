@@ -29,9 +29,9 @@
 #include <QStringList>
 #include <QTime>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 class PropertyRatioSourcePrivate : public AbstractDataSourcePrivate
 {
 public:

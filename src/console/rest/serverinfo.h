@@ -15,15 +15,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SERVERINFO_H
-#define USERFEEDBACK_CONSOLE_SERVERINFO_H
+#ifndef KUSERFEEDBACK_CONSOLE_SERVERINFO_H
+#define KUSERFEEDBACK_CONSOLE_SERVERINFO_H
 
 #include <QSharedDataPointer>
 
 class QStringList;
 class QUrl;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class ServerInfoData;
@@ -68,4 +68,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_SERVERINFO_H
+#endif // KUSERFEEDBACK_CONSOLE_SERVERINFO_H

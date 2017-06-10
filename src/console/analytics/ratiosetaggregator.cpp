@@ -32,7 +32,7 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QVXYModelMapper>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 using namespace QtCharts;
 
 RatioSetAggregator::RatioSetAggregator() = default;

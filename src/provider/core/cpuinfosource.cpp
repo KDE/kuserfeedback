@@ -21,7 +21,7 @@
 #include <QThread>
 #include <QVariant>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 CpuInfoSource::CpuInfoSource()
     : AbstractDataSource(QStringLiteral("cpu"))

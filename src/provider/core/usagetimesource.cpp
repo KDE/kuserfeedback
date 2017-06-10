@@ -21,9 +21,9 @@
 
 #include <QVariant>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 class UsageTimeSourcePrivate : public AbstractDataSourcePrivate
 {
 public:

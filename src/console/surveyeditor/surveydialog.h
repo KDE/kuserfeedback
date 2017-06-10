@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SURVEYDIALOG_H
-#define USERFEEDBACK_CONSOLE_SURVEYDIALOG_H
+#ifndef KUSERFEEDBACK_CONSOLE_SURVEYDIALOG_H
+#define KUSERFEEDBACK_CONSOLE_SURVEYDIALOG_H
 
 #include <core/survey.h>
 
@@ -26,7 +26,7 @@
 
 class QUrl;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 namespace Ui
@@ -54,4 +54,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_SURVEYDIALOG_H
+#endif // KUSERFEEDBACK_CONSOLE_SURVEYDIALOG_H

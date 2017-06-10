@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_QMLPROPERTYRATIOSOURCE_H
-#define USERFEEDBACK_QMLPROPERTYRATIOSOURCE_H
+#ifndef KUSERFEEDBACK_QMLPROPERTYRATIOSOURCE_H
+#define KUSERFEEDBACK_QMLPROPERTYRATIOSOURCE_H
 
 #include "qmlabstractdatasource.h"
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class PropertyRatioSource;
 
@@ -58,4 +58,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_QMLPROPERTYRATIOSOURCE_H
+#endif // KUSERFEEDBACK_QMLPROPERTYRATIOSOURCE_H

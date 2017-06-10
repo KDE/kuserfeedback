@@ -19,7 +19,7 @@
 
 #include <model/singlerowfilterproxymodel.h>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 Aggregator::Aggregator() = default;
 Aggregator::~Aggregator() = default;

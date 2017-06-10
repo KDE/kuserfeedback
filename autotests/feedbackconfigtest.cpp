@@ -29,7 +29,7 @@
 #include <QStandardPaths>
 #endif
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 class FeedbackConfigTest : public QObject
 {

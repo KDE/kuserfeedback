@@ -28,7 +28,7 @@
 #include <QProcess>
 #include <QStandardPaths>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 struct HelpControllerPrivate
 {
@@ -44,7 +44,7 @@ struct HelpControllerPrivate
 };
 }}
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 void HelpControllerPrivate::startProcess()
 {

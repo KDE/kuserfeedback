@@ -24,7 +24,7 @@
 #include <algorithm>
 #include <numeric>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 TimeAggregationModel::TimeAggregationModel(QObject *parent) :
     QAbstractTableModel(parent)

@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_PRODUCT_H
-#define USERFEEDBACK_CONSOLE_PRODUCT_H
+#ifndef KUSERFEEDBACK_CONSOLE_PRODUCT_H
+#define KUSERFEEDBACK_CONSOLE_PRODUCT_H
 
 #include "schemaentry.h"
 
@@ -26,7 +26,7 @@
 
 class QString;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class Aggregation;
@@ -66,7 +66,7 @@ private:
 }
 }
 
-Q_DECLARE_TYPEINFO(UserFeedback::Console::Product, Q_MOVABLE_TYPE);
-Q_DECLARE_METATYPE(UserFeedback::Console::Product)
+Q_DECLARE_TYPEINFO(KUserFeedback::Console::Product, Q_MOVABLE_TYPE);
+Q_DECLARE_METATYPE(KUserFeedback::Console::Product)
 
-#endif // USERFEEDBACK_CONSOLE_PRODUCT_H
+#endif // KUSERFEEDBACK_CONSOLE_PRODUCT_H

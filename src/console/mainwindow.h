@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_MAINWINDOW_H
-#define USERFEEDBACK_CONSOLE_MAINWINDOW_H
+#ifndef KUSERFEEDBACK_CONSOLE_MAINWINDOW_H
+#define KUSERFEEDBACK_CONSOLE_MAINWINDOW_H
 
 #include <QMainWindow>
 #include <QVector>
@@ -26,7 +26,7 @@
 class QAbstractItemModel;
 class QNetworkAccessManager;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class Provider;
 
@@ -74,9 +74,9 @@ private:
     RESTClient *m_restClient;
     ProductModel *m_productModel;
 
-    UserFeedback::Provider *m_feedbackProvider;
+    Provider *m_feedbackProvider;
 };
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_MAINWINDOW_H
+#endif // KUSERFEEDBACK_CONSOLE_MAINWINDOW_H

@@ -15,19 +15,19 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_QMLABSTRACTDATASOURCE_H
-#define USERFEEDBACK_QMLABSTRACTDATASOURCE_H
+#ifndef KUSERFEEDBACK_QMLABSTRACTDATASOURCE_H
+#define KUSERFEEDBACK_QMLABSTRACTDATASOURCE_H
 
 #include <Provider>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class AbstractDataSource;
 
 class QmlAbstractDataSource : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(UserFeedback::Provider::StatisticsCollectionMode mode READ collectionMode
+    Q_PROPERTY(KUserFeedback::Provider::StatisticsCollectionMode mode READ collectionMode
                WRITE setCollectionMode NOTIFY collectionModeChanged)
 public:
     explicit QmlAbstractDataSource(AbstractDataSource *source, QObject *parent);
@@ -47,4 +47,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_QMLABSTRACTDATASOURCE_H
+#endif // KUSERFEEDBACK_QMLABSTRACTDATASOURCE_H

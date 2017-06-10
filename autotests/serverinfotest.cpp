@@ -23,8 +23,8 @@
 #include <QSettings>
 #include <QStandardPaths>
 
-using namespace UserFeedback;
-using namespace UserFeedback::Console;
+using namespace KUserFeedback;
+using namespace KUserFeedback::Console;
 
 class ServerInfoTest : public QObject
 {

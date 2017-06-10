@@ -23,9 +23,9 @@
 #include <QDebug>
 #include <QPushButton>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 class FeedbackConfigDialogPrivate {
 public:
     void updateButtonState();
@@ -48,7 +48,7 @@ FeedbackConfigDialog::~FeedbackConfigDialog()
 {
 }
 
-void FeedbackConfigDialog::setFeedbackProvider(UserFeedback::Provider* provider)
+void FeedbackConfigDialog::setFeedbackProvider(Provider* provider)
 {
     d->ui->configWidget->setFeedbackProvider(provider);
     connect(d->ui->configWidget, SIGNAL(configurationChanged()), this, SLOT(updateButtonState()));

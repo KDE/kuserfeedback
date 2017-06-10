@@ -15,14 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_PRODUCTEXPORTJOB_H
-#define USERFEEDBACK_CONSOLE_PRODUCTEXPORTJOB_H
+#ifndef KUSERFEEDBACK_CONSOLE_PRODUCTEXPORTJOB_H
+#define KUSERFEEDBACK_CONSOLE_PRODUCTEXPORTJOB_H
 
 #include "job.h"
 #include <rest/restclient.h>
 #include <core/product.h>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class ProductExportJob : public Job
@@ -48,4 +48,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_PRODUCTEXPORTJOB_H
+#endif // KUSERFEEDBACK_CONSOLE_PRODUCTEXPORTJOB_H

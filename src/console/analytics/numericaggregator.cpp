@@ -27,7 +27,7 @@
 #include <QtCharts/QHBoxPlotModelMapper>
 #include <QtCharts/QValueAxis>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 using namespace QtCharts;
 
 NumericAggregator::NumericAggregator() = default;

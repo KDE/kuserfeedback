@@ -20,7 +20,7 @@
 #include <core/aggregation.h>
 #include <core/util.h>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 AggregationEditorModel::AggregationEditorModel(QObject* parent) :
     QAbstractTableModel(parent)

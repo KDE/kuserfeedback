@@ -29,9 +29,9 @@
 #include <QSharedData>
 #include <QVariant>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
-class UserFeedback::Console::SampleData : public QSharedData
+class KUserFeedback::Console::SampleData : public QSharedData
 {
 public:
     QDateTime timestamp;

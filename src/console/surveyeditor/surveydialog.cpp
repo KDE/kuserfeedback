@@ -29,7 +29,7 @@
 #include <QUrl>
 #include <QUuid>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 SurveyDialog::SurveyDialog(QWidget *parent) :
     QDialog(parent),

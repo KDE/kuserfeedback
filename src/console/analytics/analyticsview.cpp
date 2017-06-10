@@ -41,7 +41,7 @@
 #include <QNetworkReply>
 #include <QSettings>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 AnalyticsView::AnalyticsView(QWidget* parent) :
     QWidget(parent),

@@ -28,7 +28,7 @@
 #include <StartCountSource>
 #include <UsageTimeSource>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 #define MAKE_BASIC_QML_WRAPPER(x) Qml ## x::Qml ## x(QObject *parent) : QmlAbstractDataSource(new x, parent) {}
 

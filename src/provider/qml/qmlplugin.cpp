@@ -26,7 +26,7 @@
 
 #include <QQmlEngine>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 void QmlPlugin::registerTypes(const char* uri)
 {

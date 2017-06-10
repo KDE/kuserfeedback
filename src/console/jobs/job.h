@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_JOB_H
-#define USERFEEDBACK_CONSOLE_JOB_H
+#ifndef KUSERFEEDBACK_CONSOLE_JOB_H
+#define KUSERFEEDBACK_CONSOLE_JOB_H
 
 #include <QObject>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class Job : public QObject
@@ -43,4 +43,4 @@ protected:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_JOB_H
+#endif // KUSERFEEDBACK_CONSOLE_JOB_H

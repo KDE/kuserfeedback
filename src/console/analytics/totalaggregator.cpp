@@ -30,7 +30,7 @@
 
 #include <numeric>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 using namespace QtCharts;
 
 TotalAggregator::TotalAggregator() = default;

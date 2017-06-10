@@ -34,7 +34,7 @@
 #include <QStandardPaths>
 #endif
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 class DataSourceTest : public QObject
 {

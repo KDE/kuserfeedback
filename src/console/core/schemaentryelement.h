@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SCHEMAENTRYELEMENT_H
-#define USERFEEDBACK_CONSOLE_SCHEMAENTRYELEMENT_H
+#ifndef KUSERFEEDBACK_CONSOLE_SCHEMAENTRYELEMENT_H
+#define KUSERFEEDBACK_CONSOLE_SCHEMAENTRYELEMENT_H
 
 #include <qobjectdefs.h>
 #include <QMetaType>
@@ -28,7 +28,7 @@ class QJsonObject;
 template <typename T> class QVector;
 QT_END_NAMESPACE
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class SchemaEntryElementData;
@@ -68,8 +68,8 @@ private:
 }
 }
 
-Q_DECLARE_METATYPE(UserFeedback::Console::SchemaEntryElement)
-Q_DECLARE_METATYPE(UserFeedback::Console::SchemaEntryElement::Type)
-Q_DECLARE_TYPEINFO(UserFeedback::Console::SchemaEntryElement, Q_MOVABLE_TYPE);
+Q_DECLARE_METATYPE(KUserFeedback::Console::SchemaEntryElement)
+Q_DECLARE_METATYPE(KUserFeedback::Console::SchemaEntryElement::Type)
+Q_DECLARE_TYPEINFO(KUserFeedback::Console::SchemaEntryElement, Q_MOVABLE_TYPE);
 
-#endif // USERFEEDBACK_CONSOLE_SCHEMAENTRYELEMENT_H
+#endif // KUSERFEEDBACK_CONSOLE_SCHEMAENTRYELEMENT_H

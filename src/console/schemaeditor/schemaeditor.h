@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SCHEMAEDITOR_H
-#define USERFEEDBACK_CONSOLE_SCHEMAEDITOR_H
+#ifndef KUSERFEEDBACK_CONSOLE_SCHEMAEDITOR_H
+#define KUSERFEEDBACK_CONSOLE_SCHEMAEDITOR_H
 
 #include <QWidget>
 
@@ -24,7 +24,7 @@
 
 class QAction;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class Product;
@@ -69,4 +69,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_SCHEMAEDITOR_H
+#endif // KUSERFEEDBACK_CONSOLE_SCHEMAEDITOR_H

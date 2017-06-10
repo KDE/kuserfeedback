@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_TOTALAGGREGATOR_H
-#define USERFEEDBACK_CONSOLE_TOTALAGGREGATOR_H
+#ifndef KUSERFEEDBACK_CONSOLE_TOTALAGGREGATOR_H
+#define KUSERFEEDBACK_CONSOLE_TOTALAGGREGATOR_H
 
 #include "aggregator.h"
 
@@ -24,12 +24,12 @@
 
 #include <memory>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class TotalAggregator : public Aggregator
 {
-    Q_DECLARE_TR_FUNCTIONS(UserFeedback::Console::TotalAggregator)
+    Q_DECLARE_TR_FUNCTIONS(KUserFeedback::Console::TotalAggregator)
 public:
     TotalAggregator();
     ~TotalAggregator();
@@ -47,4 +47,4 @@ private:
 
 }}
 
-#endif // USERFEEDBACK_CONSOLE_TOTALAGGREGATOR_H
+#endif // KUSERFEEDBACK_CONSOLE_TOTALAGGREGATOR_H

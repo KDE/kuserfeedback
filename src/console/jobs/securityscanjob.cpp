@@ -25,7 +25,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 SecurityScanJob::SecurityScanJob(RESTClient* restClient, QObject* parent)
     : Job(parent)

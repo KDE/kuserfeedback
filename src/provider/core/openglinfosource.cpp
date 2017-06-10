@@ -26,7 +26,7 @@
 #include <QWindow>
 #endif
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 OpenGLInfoSource::OpenGLInfoSource()
     : AbstractDataSource(QStringLiteral("opengl"))

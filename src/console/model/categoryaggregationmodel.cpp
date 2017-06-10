@@ -25,7 +25,7 @@
 #include <algorithm>
 #include <string.h>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 CategoryAggregationModel::CategoryAggregationModel(QObject *parent) :
     QAbstractTableModel(parent)

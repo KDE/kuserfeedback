@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_PLATFORMINFOSOURCE_H
-#define USERFEEDBACK_PLATFORMINFOSOURCE_H
+#ifndef KUSERFEEDBACK_PLATFORMINFOSOURCE_H
+#define KUSERFEEDBACK_PLATFORMINFOSOURCE_H
 
 #include "abstractdatasource.h"
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 /*! Reports information about the platform the application is running on.
  *  This includes two string data fields:
@@ -29,7 +29,7 @@ namespace UserFeedback {
  */
 class USERFEEDBACKCORE_EXPORT PlatformInfoSource : public AbstractDataSource
 {
-    Q_DECLARE_TR_FUNCTIONS(UserFeedback::PlatformInfoSource)
+    Q_DECLARE_TR_FUNCTIONS(KUserFeedback::PlatformInfoSource)
 public:
     /*! Create a new platform information source. */
     PlatformInfoSource();
@@ -39,4 +39,4 @@ public:
 
 }
 
-#endif // USERFEEDBACK_PLATFORMINFOSOURCE_H
+#endif // KUSERFEEDBACK_PLATFORMINFOSOURCE_H

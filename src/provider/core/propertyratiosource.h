@@ -15,13 +15,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_PROPERTYRATIOSOURCE_H
-#define USERFEEDBACK_PROPERTYRATIOSOURCE_H
+#ifndef KUSERFEEDBACK_PROPERTYRATIOSOURCE_H
+#define KUSERFEEDBACK_PROPERTYRATIOSOURCE_H
 
 #include "userfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class PropertyRatioSourcePrivate;
 
@@ -82,4 +82,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_PROPERTYRATIOSOURCE_H
+#endif // KUSERFEEDBACK_PROPERTYRATIOSOURCE_H

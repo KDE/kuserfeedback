@@ -15,14 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_AGGREGATIONEDITWIDGET_H
-#define USERFEEDBACK_CONSOLE_AGGREGATIONEDITWIDGET_H
+#ifndef KUSERFEEDBACK_CONSOLE_AGGREGATIONEDITWIDGET_H
+#define KUSERFEEDBACK_CONSOLE_AGGREGATIONEDITWIDGET_H
 
 #include <QWidget>
 
 #include <memory>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class AggregationEditorModel;
@@ -61,4 +61,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_AGGREGATIONEDITWIDGET_H
+#endif // KUSERFEEDBACK_CONSOLE_AGGREGATIONEDITWIDGET_H

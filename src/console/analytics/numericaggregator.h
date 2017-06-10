@@ -15,14 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_NUMERICAGGREGATOR_H
-#define USERFEEDBACK_CONSOLE_NUMERICAGGREGATOR_H
+#ifndef KUSERFEEDBACK_CONSOLE_NUMERICAGGREGATOR_H
+#define KUSERFEEDBACK_CONSOLE_NUMERICAGGREGATOR_H
 
 #include "aggregator.h"
 
 #include <memory>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class NumericAggregationModel;
@@ -46,4 +46,4 @@ private:
 
 }}
 
-#endif // USERFEEDBACK_CONSOLE_NUMERICAGGREGATOR_H
+#endif // KUSERFEEDBACK_CONSOLE_NUMERICAGGREGATOR_H

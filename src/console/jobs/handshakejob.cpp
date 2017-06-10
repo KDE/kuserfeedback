@@ -25,7 +25,7 @@
 #include <QJsonObject>
 #include <QNetworkReply>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 HandshakeJob::HandshakeJob(RESTClient* restClient, QObject* parent)
     : Job(parent)

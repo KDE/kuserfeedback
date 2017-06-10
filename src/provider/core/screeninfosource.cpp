@@ -26,7 +26,7 @@
 #include <QScreen>
 #include <QVariant>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 ScreenInfoSource::ScreenInfoSource() :
     AbstractDataSource(QStringLiteral("screens"))

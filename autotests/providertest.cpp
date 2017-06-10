@@ -29,7 +29,7 @@
 #include <QStandardPaths>
 #endif
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 class ProviderTest : public QObject
 {
@@ -59,7 +59,7 @@ private slots:
         provider.addDataSource(new PlatformInfoSource, Provider::BasicSystemInformation);
         provider.setStatisticsCollectionMode(Provider::NoStatistics);
         QByteArray b;
-        QMetaObject::invokeMethod(&provider, "jsonData", Q_RETURN_ARG(QByteArray, b), Q_ARG(UserFeedback::Provider::StatisticsCollectionMode, provider.statisticsCollectionMode()));
+        QMetaObject::invokeMethod(&provider, "jsonData", Q_RETURN_ARG(QByteArray, b), Q_ARG(KUserFeedback::Provider::StatisticsCollectionMode, provider.statisticsCollectionMode()));
         b.replace('\n', "");
         QCOMPARE(b.constData(), "{}");
     }

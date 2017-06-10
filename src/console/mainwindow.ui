@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UserFeedback::Console::MainWindow</class>
- <widget class="QMainWindow" name="UserFeedback::Console::MainWindow">
+ <class>KUserFeedback::Console::MainWindow</class>
+ <widget class="QMainWindow" name="KUserFeedback::Console::MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -29,9 +29,9 @@
     </property>
     <item>
      <widget class="QStackedWidget" name="viewStack">
-      <widget class="UserFeedback::Console::AnalyticsView" name="analyticsView"/>
-      <widget class="UserFeedback::Console::SurveyEditor" name="surveyEditor"/>
-      <widget class="UserFeedback::Console::SchemaEditor" name="schemaEdit"/>
+      <widget class="KUserFeedback::Console::AnalyticsView" name="analyticsView"/>
+      <widget class="KUserFeedback::Console::SurveyEditor" name="surveyEditor"/>
+      <widget class="KUserFeedback::Console::SchemaEditor" name="schemaEdit"/>
      </widget>
     </item>
    </layout>
@@ -325,19 +325,19 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>UserFeedback::Console::SchemaEditor</class>
+   <class>KUserFeedback::Console::SchemaEditor</class>
    <extends>QWidget</extends>
    <header>schemaeditor/schemaeditor.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>UserFeedback::Console::SurveyEditor</class>
+   <class>KUserFeedback::Console::SurveyEditor</class>
    <extends>QWidget</extends>
    <header location="global">surveyeditor/surveyeditor.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>UserFeedback::Console::AnalyticsView</class>
+   <class>KUserFeedback::Console::AnalyticsView</class>
    <extends>QWidget</extends>
    <header location="global">analytics/analyticsview.h</header>
    <container>1</container>

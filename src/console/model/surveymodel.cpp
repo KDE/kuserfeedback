@@ -24,7 +24,7 @@
 #include <QNetworkReply>
 #include <QUrl>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 SurveyModel::SurveyModel(QObject *parent) : QAbstractTableModel(parent)
 {

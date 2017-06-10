@@ -28,7 +28,7 @@
 
 #include <algorithm>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 QVector<Product> SchemaEntryTemplates::availableTemplates()
 {

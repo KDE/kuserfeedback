@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_RATIOSETAGGREGATOR_H
-#define USERFEEDBACK_CONSOLE_RATIOSETAGGREGATOR_H
+#ifndef KUSERFEEDBACK_CONSOLE_RATIOSETAGGREGATOR_H
+#define KUSERFEEDBACK_CONSOLE_RATIOSETAGGREGATOR_H
 
 #include "aggregator.h"
 
@@ -26,7 +26,7 @@ namespace QtCharts {
 class QPieSeries;
 }
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class RatioSetAggregationModel;
@@ -55,4 +55,4 @@ private:
 
 }}
 
-#endif // USERFEEDBACK_CONSOLE_RATIOSETAGGREGATOR_H
+#endif // KUSERFEEDBACK_CONSOLE_RATIOSETAGGREGATOR_H

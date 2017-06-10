@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_OPENGLINFOSOURCE_P_H
-#define USERFEEDBACK_OPENGLINFOSOURCE_P_H
+#ifndef KUSERFEEDBACK_OPENGLINFOSOURCE_P_H
+#define KUSERFEEDBACK_OPENGLINFOSOURCE_P_H
 
 #include <QVariantMap>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 // Internal functions made accessible for unit tests
 class OpenGLInfoSourcePrivate
@@ -103,4 +103,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_OPENGLINFOSOURCE_P_H
+#endif // KUSERFEEDBACK_OPENGLINFOSOURCE_P_H

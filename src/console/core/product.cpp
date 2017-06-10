@@ -25,9 +25,9 @@
 #include <QSharedData>
 #include <QString>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 class ProductData : public QSharedData
 {

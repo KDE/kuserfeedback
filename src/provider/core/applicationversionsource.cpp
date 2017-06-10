@@ -20,7 +20,7 @@
 #include <QCoreApplication>
 #include <QVariant>
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 ApplicationVersionSource::ApplicationVersionSource() :
     AbstractDataSource(QStringLiteral("applicationVersion"))

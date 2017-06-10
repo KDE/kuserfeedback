@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_FEEDBACKCONFIGWIDGET_H
-#define USERFEEDBACK_FEEDBACKCONFIGWIDGET_H
+#ifndef KUSERFEEDBACK_FEEDBACKCONFIGWIDGET_H
+#define KUSERFEEDBACK_FEEDBACKCONFIGWIDGET_H
 
 #include "userfeedbackwidgets_export.h"
 
@@ -26,7 +26,7 @@
 
 #include <memory>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 class FeedbackConfigWidgetPrivate;
 class Provider;
@@ -80,4 +80,4 @@ private:
 
 }
 
-#endif // USERFEEDBACK_FEEDBACKCONFIGWIDGET_H
+#endif // KUSERFEEDBACK_FEEDBACKCONFIGWIDGET_H

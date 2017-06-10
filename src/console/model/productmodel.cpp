@@ -22,7 +22,7 @@
 
 #include <QNetworkReply>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 ProductModel::ProductModel(QObject *parent) :
     QAbstractListModel(parent)

@@ -15,14 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SCHEMAEDITWIDGET_H
-#define USERFEEDBACK_CONSOLE_SCHEMAEDITWIDGET_H
+#ifndef KUSERFEEDBACK_CONSOLE_SCHEMAEDITWIDGET_H
+#define KUSERFEEDBACK_CONSOLE_SCHEMAEDITWIDGET_H
 
 #include <QWidget>
 
 #include <memory>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 namespace Ui
@@ -67,4 +67,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_SCHEMAEDITWIDGET_H
+#endif // KUSERFEEDBACK_CONSOLE_SCHEMAEDITWIDGET_H

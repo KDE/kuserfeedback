@@ -33,7 +33,7 @@
 
 #include <iostream>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 static int jobCount = 0;
 

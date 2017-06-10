@@ -15,14 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_CHARTUTIL_H
-#define USERFEEDBACK_CONSOLE_CHARTUTIL_H
+#ifndef KUSERFEEDBACK_CONSOLE_CHARTUTIL_H
+#define KUSERFEEDBACK_CONSOLE_CHARTUTIL_H
 
 namespace QtCharts {
 class QChart;
 }
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 namespace ChartUtil
@@ -32,4 +32,4 @@ void applyTheme(QtCharts::QChart *chart);
 
 }}
 
-#endif // USERFEEDBACK_CONSOLE_CHARTUTIL_H
+#endif // KUSERFEEDBACK_CONSOLE_CHARTUTIL_H

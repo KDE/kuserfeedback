@@ -15,14 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_HANDSHAKEJOB_H
-#define USERFEEDBACK_CONSOLE_HANDSHAKEJOB_H
+#ifndef KUSERFEEDBACK_CONSOLE_HANDSHAKEJOB_H
+#define KUSERFEEDBACK_CONSOLE_HANDSHAKEJOB_H
 
 #include "job.h"
 
 class QNetworkReply;
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class RESTClient;
@@ -42,4 +42,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_HANDSHAKEJOB_H
+#endif // KUSERFEEDBACK_CONSOLE_HANDSHAKEJOB_H

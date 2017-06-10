@@ -15,20 +15,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_STYLEINFOSOURCE_H
-#define USERFEEDBACK_STYLEINFOSOURCE_H
+#ifndef KUSERFEEDBACK_STYLEINFOSOURCE_H
+#define KUSERFEEDBACK_STYLEINFOSOURCE_H
 
 #include "userfeedbackwidgets_export.h"
 
 #include <abstractdatasource.h>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 
 /*! Data source the widget style and color scheme used by the application. */
 class USERFEEDBACKWIDGETS_EXPORT StyleInfoSource : public AbstractDataSource
 {
 public:
-    Q_DECLARE_TR_FUNCTIONS(UserFeedback::StyleInfoSource)
+    Q_DECLARE_TR_FUNCTIONS(KUserFeedback::StyleInfoSource)
 public:
     StyleInfoSource();
     QString description() const override;
@@ -37,4 +37,4 @@ public:
 
 }
 
-#endif // USERFEEDBACK_STYLEINFOSOURCE_H
+#endif // KUSERFEEDBACK_STYLEINFOSOURCE_H

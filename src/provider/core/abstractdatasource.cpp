@@ -18,7 +18,7 @@
 #include "abstractdatasource.h"
 #include "abstractdatasource_p.h"
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 AbstractDataSourcePrivate::AbstractDataSourcePrivate()
     : mode(Provider::DetailedUsageStatistics)

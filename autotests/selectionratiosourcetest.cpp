@@ -27,7 +27,7 @@
 #include <QStandardPaths>
 #endif
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 class SelectionRatioSourceTest : public QObject
 {

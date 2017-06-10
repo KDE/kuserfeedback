@@ -17,7 +17,7 @@
 
 #include "qmlproviderextension.h"
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 QmlProviderExtension::QmlProviderExtension(QObject* parent) :
     QObject(parent)

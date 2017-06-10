@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_QT4COMPAT_H
-#define USERFEEDBACK_QT4COMPAT_H
+#ifndef KUSERFEEDBACK_QT4COMPAT_H
+#define KUSERFEEDBACK_QT4COMPAT_H
 
 /** @file qt4compat.h
  *  Compatibility hacks to allow usage of more modern Qt5/C++11 features in Qt4 builds.

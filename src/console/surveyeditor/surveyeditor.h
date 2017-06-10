@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_SURVEYEDITOR_H
-#define USERFEEDBACK_CONSOLE_SURVEYEDITOR_H
+#ifndef KUSERFEEDBACK_CONSOLE_SURVEYEDITOR_H
+#define KUSERFEEDBACK_CONSOLE_SURVEYEDITOR_H
 
 #include <core/product.h>
 
@@ -24,7 +24,7 @@
 
 #include <memory>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class RESTClient;
@@ -64,4 +64,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_SURVEYEDITOR_H
+#endif // KUSERFEEDBACK_CONSOLE_SURVEYEDITOR_H

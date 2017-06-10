@@ -15,15 +15,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_CATEGORYAGGREGATIONMODEL_H
-#define USERFEEDBACK_CONSOLE_CATEGORYAGGREGATIONMODEL_H
+#ifndef KUSERFEEDBACK_CONSOLE_CATEGORYAGGREGATIONMODEL_H
+#define KUSERFEEDBACK_CONSOLE_CATEGORYAGGREGATIONMODEL_H
 
 #include <core/aggregation.h>
 
 #include <QAbstractTableModel>
 #include <QVector>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class Sample;
@@ -61,4 +61,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_CATEGORYAGGREGATIONMODEL_H
+#endif // KUSERFEEDBACK_CONSOLE_CATEGORYAGGREGATIONMODEL_H

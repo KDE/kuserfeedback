@@ -15,8 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERFEEDBACK_CONSOLE_PRODUCTMODEL_H
-#define USERFEEDBACK_CONSOLE_PRODUCTMODEL_H
+#ifndef KUSERFEEDBACK_CONSOLE_PRODUCTMODEL_H
+#define KUSERFEEDBACK_CONSOLE_PRODUCTMODEL_H
 
 #include <core/product.h>
 #include <rest/serverinfo.h>
@@ -24,7 +24,7 @@
 #include <QAbstractListModel>
 #include <QVector>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 namespace Console {
 
 class RESTClient;
@@ -58,4 +58,4 @@ private:
 }
 }
 
-#endif // USERFEEDBACK_CONSOLE_PRODUCTMODEL_H
+#endif // KUSERFEEDBACK_CONSOLE_PRODUCTMODEL_H

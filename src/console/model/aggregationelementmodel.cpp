@@ -19,7 +19,7 @@
 
 #include <core/product.h>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 AggregationElementModel::AggregationElementModel(QObject* parent) :
     QAbstractListModel(parent)

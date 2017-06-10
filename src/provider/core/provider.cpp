@@ -46,7 +46,7 @@
 #include <algorithm>
 #include <numeric>
 
-namespace UserFeedback {
+namespace KUserFeedback {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
 Q_LOGGING_CATEGORY(Log, "org.kde.UserFeedback", QtInfoMsg)
 #elif QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
@@ -54,7 +54,7 @@ Q_LOGGING_CATEGORY(Log, "org.kde.UserFeedback")
 #endif
 }
 
-using namespace UserFeedback;
+using namespace KUserFeedback;
 
 ProviderPrivate::ProviderPrivate(Provider *qq)
     : q(qq)

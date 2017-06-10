@@ -24,7 +24,7 @@
 
 #include <QUuid>
 
-using namespace UserFeedback::Console;
+using namespace KUserFeedback::Console;
 
 QNetworkReply* RESTApi::checkSchema(RESTClient *client)
 {

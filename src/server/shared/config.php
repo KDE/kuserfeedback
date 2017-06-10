@@ -51,6 +51,12 @@ public function __construct()
         $this->username = strval($USERFEEDBACK_DB_USERNAME);
     if (isset($USERFEEDBACK_DB_PASSWORD))
         $this->password = strval($USERFEEDBACK_DB_PASSWORD);
+
+    if ($this->type == 'sqlite') {
+        $dirName = dirname($this->name);
+        if (!file_exists($dirName))
+            mkdir(dirname($this->name), $mode = 0700, $recursive = true);
+    }
 }
 
 /** PDO DSN */

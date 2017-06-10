@@ -176,7 +176,10 @@ class Sample
             $sql .= ' (' . implode(', ', $columns) . ') VALUES (';
             $sql .= implode(', ', $binds) . ')';
         } else {
-            $sql .= ' DEFAULT VALUES';
+            if ($db->driver() == 'sqlite')
+                $sql .= ' DEFAULT VALUES';
+            else
+                $sql .= ' VALUES ()';
         }
         $stmt = $db->prepare($sql);
         foreach ($values as $key => $data) {

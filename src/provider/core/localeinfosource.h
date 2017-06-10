@@ -18,13 +18,13 @@
 #ifndef KUSERFEEDBACK_LOCALEINFOSOURCE_H
 #define KUSERFEEDBACK_LOCALEINFOSOURCE_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
 namespace KUserFeedback {
 
 /*! Data source reporting the region and language settings. */
-class USERFEEDBACKCORE_EXPORT LocaleInfoSource : public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT LocaleInfoSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::LocaleInfoSource)
 public:

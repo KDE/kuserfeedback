@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_SCREENINFOSOURCE_H
 #define KUSERFEEDBACK_SCREENINFOSOURCE_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
 namespace KUserFeedback {
@@ -29,7 +29,7 @@ namespace KUserFeedback {
  *  - width: Width of the corresponding screen in pixel.
  *  - dpi: Dots per inch of the corresponding screen.
  */
-class USERFEEDBACKCORE_EXPORT ScreenInfoSource :  public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT ScreenInfoSource :  public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::ScreenInfoSource)
 public:

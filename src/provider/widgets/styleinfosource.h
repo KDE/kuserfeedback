@@ -18,14 +18,14 @@
 #ifndef KUSERFEEDBACK_STYLEINFOSOURCE_H
 #define KUSERFEEDBACK_STYLEINFOSOURCE_H
 
-#include "userfeedbackwidgets_export.h"
+#include "kuserfeedbackwidgets_export.h"
 
 #include <abstractdatasource.h>
 
 namespace KUserFeedback {
 
 /*! Data source the widget style and color scheme used by the application. */
-class USERFEEDBACKWIDGETS_EXPORT StyleInfoSource : public AbstractDataSource
+class KUSERFEEDBACKWIDGETS_EXPORT StyleInfoSource : public AbstractDataSource
 {
 public:
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::StyleInfoSource)

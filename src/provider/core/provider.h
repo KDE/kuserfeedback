@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_PROVIDER_H
 #define KUSERFEEDBACK_PROVIDER_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 
 #include <QMetaType>
 #include <QObject>
@@ -39,7 +39,7 @@ class SurveyInfo;
  *  to bother the user with surveys (surveyInterval) should not be set to hardcoded
  *  values in code, but left as choices to the user.
  */
-class USERFEEDBACKCORE_EXPORT Provider : public QObject
+class KUSERFEEDBACKCORE_EXPORT Provider : public QObject
 {
     Q_OBJECT
     /*! The interval in which the user accepts surveys.

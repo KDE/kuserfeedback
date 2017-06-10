@@ -7,4 +7,4 @@ else()
   find_package(Qt4 @QT_VERSION_MAJOR@.@QT_VERSION_MINOR@)
 endif()
 
-include("${CMAKE_CURRENT_LIST_DIR}/UserFeedbackTarget.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/KUserFeedbackTarget.cmake")

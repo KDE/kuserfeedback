@@ -29,7 +29,7 @@ namespace KUserFeedback {
  *  don't break ABI regularly (such as Clang and GCC), so this information
  *  is most reliable when this is not the case, e.g. with MSVC.
  */
-class USERFEEDBACKCORE_EXPORT CompilerInfoSource : public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT CompilerInfoSource : public AbstractDataSource
 {
 public:
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::CompilerInfoSource)

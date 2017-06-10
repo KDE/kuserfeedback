@@ -18,13 +18,13 @@
 #ifndef KUSERFEEDBACK_CPUINFOSOURCE_H
 #define KUSERFEEDBACK_CPUINFOSOURCE_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
 namespace KUserFeedback {
 
 /*! Data source reporting the type and amount of CPUs. */
-class USERFEEDBACKCORE_EXPORT CpuInfoSource : public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT CpuInfoSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::CpuInfoSource)
 public:

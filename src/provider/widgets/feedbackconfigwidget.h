@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_FEEDBACKCONFIGWIDGET_H
 #define KUSERFEEDBACK_FEEDBACKCONFIGWIDGET_H
 
-#include "userfeedbackwidgets_export.h"
+#include "kuserfeedbackwidgets_export.h"
 
 #include <provider.h>
 
@@ -39,7 +39,7 @@ class Provider;
  * dialog.
  * @see FeedbackConfigDialog
  */
-class USERFEEDBACKWIDGETS_EXPORT FeedbackConfigWidget : public QWidget
+class KUSERFEEDBACKWIDGETS_EXPORT FeedbackConfigWidget : public QWidget
 {
     Q_OBJECT
 public:

@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_USAGETIMESOURCE_H
 #define KUSERFEEDBACK_USAGETIMESOURCE_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
 namespace KUserFeedback {
@@ -28,7 +28,7 @@ class ProviderPrivate;
 class UsageTimeSourcePrivate;
 
 /*! Data source reporting the total usage time of the application. */
-class USERFEEDBACKCORE_EXPORT UsageTimeSource :  public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT UsageTimeSource :  public AbstractDataSource
 {
 public:
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::UsageTimeSource)

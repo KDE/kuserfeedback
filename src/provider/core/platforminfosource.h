@@ -27,7 +27,7 @@ namespace KUserFeedback {
  *  - platform.os: the operating system name
  *  - platform.version: the operating system or distribution version.
  */
-class USERFEEDBACKCORE_EXPORT PlatformInfoSource : public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT PlatformInfoSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::PlatformInfoSource)
 public:

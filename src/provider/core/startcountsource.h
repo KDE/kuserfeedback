@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_STARTCOUNTSOURCE_H
 #define KUSERFEEDBACK_STARTCOUNTSOURCE_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
 namespace KUserFeedback {
@@ -28,7 +28,7 @@ class ProviderPrivate;
 class StartCountSourcePrivate;
 
 /*! Data source reporting the total amount of applications starts. */
-class USERFEEDBACKCORE_EXPORT StartCountSource :  public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT StartCountSource :  public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::StartCountSource)
 public:

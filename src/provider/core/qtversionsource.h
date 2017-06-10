@@ -18,13 +18,13 @@
 #ifndef KUSERFEEDBACK_QTVERSIONSOURCE_H
 #define KUSERFEEDBACK_QTVERSIONSOURCE_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
 namespace KUserFeedback {
 
 /*! Data source reporting the Qt version used at runtime. */
-class USERFEEDBACKCORE_EXPORT QtVersionSource : public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT QtVersionSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::QtVersionSource)
 public:

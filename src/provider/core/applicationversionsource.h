@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_APPLICATIONVERSIONSOURCE_H
 #define KUSERFEEDBACK_APPLICATIONVERSIONSOURCE_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
 namespace KUserFeedback {
@@ -26,7 +26,7 @@ namespace KUserFeedback {
 /*! Data source for the application version.
  *  The application version is retrieved via QCoreApplication::applicationVersion.
  */
-class USERFEEDBACKCORE_EXPORT ApplicationVersionSource : public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT ApplicationVersionSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::ApplicationVersionSource)
 public:

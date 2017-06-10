@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_NOTIFICATIONPOPUP_H
 #define KUSERFEEDBACK_NOTIFICATIONPOPUP_H
 
-#include "userfeedbackwidgets_export.h"
+#include "kuserfeedbackwidgets_export.h"
 
 #include <QWidget>
 
@@ -33,7 +33,7 @@ class Provider;
  * Notification popup that overlays a small part of the application for
  * encouraging contributions or inform about surveys.
  */
-class USERFEEDBACKWIDGETS_EXPORT NotificationPopup : public QWidget
+class KUSERFEEDBACKWIDGETS_EXPORT NotificationPopup : public QWidget
 {
     Q_OBJECT
 public:

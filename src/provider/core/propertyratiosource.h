@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_PROPERTYRATIOSOURCE_H
 #define KUSERFEEDBACK_PROPERTYRATIOSOURCE_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
 namespace KUserFeedback {
@@ -30,7 +30,7 @@ class PropertyRatioSourcePrivate;
  *  An example use-case would be the usage ratio of a applications
  *  views/modes selected by a QTabWidget or QRadioButton.
  */
-class USERFEEDBACKCORE_EXPORT PropertyRatioSource :  public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT PropertyRatioSource :  public AbstractDataSource
 {
 public:
     /*! Create a new property ratio data source.

@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_FEEDBACKCONFIGUICONTROLLER_H
 #define KUSERFEEDBACK_FEEDBACKCONFIGUICONTROLLER_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "provider.h"
 
 #include <QObject>
@@ -34,7 +34,7 @@ class Provider;
  *  This is available for use in e.g. QtQuick-based UIs.
  *  @see FeedbackConfigWidget
  */
-class USERFEEDBACKCORE_EXPORT FeedbackConfigUiController : public QObject
+class KUSERFEEDBACKCORE_EXPORT FeedbackConfigUiController : public QObject
 {
     Q_OBJECT
     /*! The Provider instance we are configuring. */

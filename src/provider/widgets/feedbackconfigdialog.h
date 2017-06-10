@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_CONSOLE_FEEDBACKCONFIGDIALOG_H
 #define KUSERFEEDBACK_CONSOLE_FEEDBACKCONFIGDIALOG_H
 
-#include "userfeedbackwidgets_export.h"
+#include "kuserfeedbackwidgets_export.h"
 #include <QDialog>
 
 #include <memory>
@@ -32,7 +32,7 @@ class Provider;
  *
  * @see FeedbackConfigWidget
  */
-class USERFEEDBACKWIDGETS_EXPORT FeedbackConfigDialog : public QDialog
+class KUSERFEEDBACKWIDGETS_EXPORT FeedbackConfigDialog : public QDialog
 {
     Q_OBJECT
 public:

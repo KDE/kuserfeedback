@@ -23,16 +23,16 @@ bison_target(surveytargetexpressionparser
 add_flex_bison_dependency(surveytargetexpressionscanner surveytargetexpressionparser)
 endif()
 
-add_library(UserFeedbackCommon STATIC
+add_library(KUserFeedbackCommon STATIC
     ${common_src}
     ${BISON_surveytargetexpressionparser_OUTPUTS}
     ${FLEX_surveytargetexpressionscanner_OUTPUTS}
 )
 
-target_include_directories(UserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
+target_include_directories(KUserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
 if(Qt5Core_FOUND)
-    target_link_libraries(UserFeedbackCommon LINK_PRIVATE Qt5::Core)
+    target_link_libraries(KUserFeedbackCommon LINK_PRIVATE Qt5::Core)
 else()
-    target_link_libraries(UserFeedbackCommon LINK_PRIVATE ${QT_QTCORE_LIBS})
-    set_target_properties(UserFeedbackCommon PROPERTIES POSITION_INDEPENDENT_CODE ON)
+    target_link_libraries(KUserFeedbackCommon LINK_PRIVATE ${QT_QTCORE_LIBS})
+    set_target_properties(KUserFeedbackCommon PROPERTIES POSITION_INDEPENDENT_CODE ON)
 endif()

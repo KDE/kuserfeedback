@@ -5,39 +5,39 @@ set(userfeedback_widgets_srcs
     styleinfosource.cpp
 )
 
-add_library(UserFeedbackWidgets SHARED ${userfeedback_widgets_srcs})
-set_target_properties(UserFeedbackWidgets PROPERTIES
+add_library(KUserFeedbackWidgets SHARED ${userfeedback_widgets_srcs})
+set_target_properties(KUserFeedbackWidgets PROPERTIES
     SOVERSION ${USERFEEDBACK_VERSION}
     VERSION ${USERFEEDBACK_VERSION}
 )
-generate_export_header(UserFeedbackWidgets)
+generate_export_header(KUserFeedbackWidgets)
 if(TARGET Qt5::Widgets)
-    target_link_libraries(UserFeedbackWidgets PUBLIC Qt5::Widgets UserFeedbackCore)
+    target_link_libraries(KUserFeedbackWidgets PUBLIC Qt5::Widgets KUserFeedbackCore)
 else()
-    target_link_libraries(UserFeedbackWidgets PUBLIC ${QT_QTGUI_LIBRARIES} UserFeedbackCore)
+    target_link_libraries(KUserFeedbackWidgets PUBLIC ${QT_QTGUI_LIBRARIES} KUserFeedbackCore)
 endif()
-target_include_directories(UserFeedbackWidgets PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
-target_include_directories(UserFeedbackWidgets INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
+target_include_directories(KUserFeedbackWidgets PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
+target_include_directories(KUserFeedbackWidgets INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
 
-ecm_generate_headers(UserFeedbackWidgets_HEADERS
+ecm_generate_headers(KUserFeedbackWidgets_HEADERS
     HEADER_NAMES
         FeedbackConfigDialog
         FeedbackConfigWidget
         NotificationPopup
         StyleInfoSource
-    REQUIRED_HEADERS UserFeedbackWidgets_HEADERS
+    REQUIRED_HEADERS KUserFeedbackWidgets_HEADERS
 )
 
-install(TARGETS UserFeedbackWidgets EXPORT UserFeedbackTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KUserFeedbackWidgets EXPORT KUserFeedbackTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES
-    ${UserFeedbackWidgets_HEADERS}
-    ${CMAKE_CURRENT_BINARY_DIR}/userfeedbackwidgets_export.h
+    ${KUserFeedbackWidgets_HEADERS}
+    ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedbackwidgets_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback
 )
 
-ecm_generate_pri_file(BASE_NAME UserFeedbackWidgets
-                      LIB_NAME UserFeedbackWidgets
-                      DEPS "UserFeedbackCore widgets"
+ecm_generate_pri_file(BASE_NAME KUserFeedbackWidgets
+                      LIB_NAME KUserFeedbackWidgets
+                      DEPS "KUserFeedbackCore widgets"
                       FILENAME_VAR PRI_FILENAME
 )
 

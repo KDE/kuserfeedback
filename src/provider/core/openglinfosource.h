@@ -23,7 +23,7 @@
 namespace KUserFeedback {
 
 /*! Data source reporting type, version and vendor of the OpenGL stack. */
-class USERFEEDBACKCORE_EXPORT OpenGLInfoSource : public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT OpenGLInfoSource : public AbstractDataSource
 {
 public:
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::OpenGLInfoSource)

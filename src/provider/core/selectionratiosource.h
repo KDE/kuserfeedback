@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_SELECTIONRATIOSOURCE_H
 #define KUSERFEEDBACK_SELECTIONRATIOSOURCE_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "abstractdatasource.h"
 
 QT_BEGIN_NAMESPACE
@@ -35,7 +35,7 @@ class SelectionRatioSourcePrivate;
  *  views/modes selected using a model-based view sidebar (such as
  *  used in e.g. Kontact).
  */
-class USERFEEDBACKCORE_EXPORT SelectionRatioSource : public AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT SelectionRatioSource : public AbstractDataSource
 {
 public:
     /*! Create a new selection ratio data source.

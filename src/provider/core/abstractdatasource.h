@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_ABSTRACTDATASOURCE_H
 #define KUSERFEEDBACK_ABSTRACTDATASOURCE_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 #include "provider.h"
 
 #include <QCoreApplication>
@@ -32,7 +32,7 @@ namespace KUserFeedback {
 class AbstractDataSourcePrivate;
 
 /*! Base class for data sources for statistical data. */
-class USERFEEDBACKCORE_EXPORT AbstractDataSource
+class KUSERFEEDBACKCORE_EXPORT AbstractDataSource
 {
 public:
     virtual ~AbstractDataSource();

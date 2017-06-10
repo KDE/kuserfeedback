@@ -18,7 +18,7 @@
 #ifndef KUSERFEEDBACK_SURVEYINFO_H
 #define KUSERFEEDBACK_SURVEYINFO_H
 
-#include "userfeedbackcore_export.h"
+#include "kuserfeedbackcore_export.h"
 
 #include <QMetaType>
 #include <QSharedDataPointer>
@@ -42,7 +42,7 @@ class SurveyInfoData;
 /*! Information about a survey request.
  *  This class is implicitly shared.
  */
-class USERFEEDBACKCORE_EXPORT SurveyInfo
+class KUSERFEEDBACKCORE_EXPORT SurveyInfo
 {
 #ifndef QT4_MOC_WORKAROUND
     Q_GADGET

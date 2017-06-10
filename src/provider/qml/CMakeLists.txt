@@ -6,12 +6,12 @@ set(provider_qml_srcs
     qmlproviderextension.cpp
 )
 
-add_library(UserFeedbackQml SHARED ${provider_qml_srcs})
+add_library(KUserFeedbackQml SHARED ${provider_qml_srcs})
 
-target_link_libraries(UserFeedbackQml
-    UserFeedbackCore
+target_link_libraries(KUserFeedbackQml
+    KUserFeedbackCore
     Qt5::Qml
 )
 
-install(TARGETS UserFeedbackQml DESTINATION ${QML_INSTALL_DIR}/org/kde/userfeedback)
+install(TARGETS KUserFeedbackQml DESTINATION ${QML_INSTALL_DIR}/org/kde/userfeedback)
 install(FILES qmldir DESTINATION ${QML_INSTALL_DIR}/org/kde/userfeedback)

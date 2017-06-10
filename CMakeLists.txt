@@ -137,25 +137,25 @@ endif()
 #
 include(CMakePackageConfigHelpers)
 configure_package_config_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/UserFeedbackConfig.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/UserFeedbackConfig.cmake
-    INSTALL_DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/UserFeedback
+    ${CMAKE_CURRENT_SOURCE_DIR}/KUserFeedbackConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfig.cmake
+    INSTALL_DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback
     PATH_VARS KDE_INSTALL_INCLUDEDIR
 )
 
 write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/UserFeedbackConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake
     VERSION ${USERFEEDBACK_VERSION}
     COMPATIBILITY SameMajorVersion
 )
 
 install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/UserFeedbackConfig.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/UserFeedbackConfigVersion.cmake
-    DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/UserFeedback
+    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake
+    DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback
 )
 
-install(EXPORT UserFeedbackTargets DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/UserFeedback FILE UserFeedbackTarget.cmake)
+install(EXPORT KUserFeedbackTargets DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback FILE KUserFeedbackTarget.cmake)
 install(FILES org_kde_UserFeedback.categories DESTINATION etc/xdg)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

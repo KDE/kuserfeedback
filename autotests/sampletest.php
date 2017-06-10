@@ -44,7 +44,6 @@ class SurveyTest extends AbstractDatastoreTest
         Sample::insert(self::$db, $sample, $p);
 
         $dataJson = Sample::dataAsJson(self::$db, $p);
-        echo ("\n $dataJson \n");
         $data = json_decode($dataJson);
         $this->assertTrue(is_array($data));
         $this->assertCount(2, $data);
@@ -77,7 +76,6 @@ class SurveyTest extends AbstractDatastoreTest
 
         Sample::insert(self::$db, $sample, $p);
         $dataJson = Sample::dataAsJson(self::$db, $p);
-        echo ("\n $dataJson \n");
         $data = json_decode($dataJson);
         $this->assertTrue(is_array($data));
         $this->assertCount(1, $data);
@@ -88,6 +86,29 @@ class SurveyTest extends AbstractDatastoreTest
         $d01 = $d0->{'entry2'};
         $this->assertObjectHasAttribute('key1', $d01);
         $this->assertObjectHasAttribute('key2', $d01);
+    }
+
+    public function testEmptyInsert()
+    {
+        $p = Product::productByName(self::$db, 'org.kde.UnitTest');
+        $this->assertNotNull($p);
+        $p->name = 'org.kde.MyEmptyProduct';
+        $p->insert(self::$db);
+
+        $sample = '{
+            "someRandomStuff": "not part of the schema",
+            "someOtherStuff": 42
+        }';
+
+        Sample::insert(self::$db, $sample, $p);
+        $dataJson = Sample::dataAsJson(self::$db, $p);
+        $data = json_decode($dataJson);
+        $this->assertTrue(is_array($data));
+        $this->assertCount(1, $data);
+        $d0 = $data[0];
+        $this->assertObjectHasAttribute('timestamp', $d0);
+        $this->assertObjectNotHasAttribute('entry1', $d0);
+        $this->assertObjectNotHasAttribute('someRandomStuff', $d0);
     }
 
     public function testInvalidInsert_data()

@@ -37,7 +37,7 @@ else()
 endif()
 target_link_libraries(UserFeedbackCore PRIVATE UserFeedbackCommon)
 target_include_directories(UserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
-target_include_directories(UserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/UserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
+target_include_directories(UserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
 
 ecm_generate_headers(UserFeedbackCore_HEADERS
     HEADER_NAMES
@@ -62,7 +62,7 @@ install(TARGETS UserFeedbackCore EXPORT UserFeedbackTargets ${KDE_INSTALL_TARGET
 install(FILES
     ${UserFeedbackCore_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/userfeedbackcore_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/UserFeedback
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback
 )
 
 ecm_generate_pri_file(BASE_NAME UserFeedbackCore

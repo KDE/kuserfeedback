@@ -17,7 +17,7 @@ else()
     target_link_libraries(UserFeedbackWidgets PUBLIC ${QT_QTGUI_LIBRARIES} UserFeedbackCore)
 endif()
 target_include_directories(UserFeedbackWidgets PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
-target_include_directories(UserFeedbackWidgets INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/UserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
+target_include_directories(UserFeedbackWidgets INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
 
 ecm_generate_headers(UserFeedbackWidgets_HEADERS
     HEADER_NAMES
@@ -32,7 +32,7 @@ install(TARGETS UserFeedbackWidgets EXPORT UserFeedbackTargets ${KDE_INSTALL_TAR
 install(FILES
     ${UserFeedbackWidgets_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/userfeedbackwidgets_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/UserFeedback
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback
 )
 
 ecm_generate_pri_file(BASE_NAME UserFeedbackWidgets

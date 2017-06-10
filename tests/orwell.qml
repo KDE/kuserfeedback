@@ -19,7 +19,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.1
 import Qt.labs.settings 1.0
-import org.kde.userfeedback 1.0 as UserFeedback
+import org.kde.userfeedback 1.0 as KUserFeedback
 
 ApplicationWindow {
     id: root
@@ -72,7 +72,7 @@ ApplicationWindow {
                 }
             }
 
-            UserFeedback.Provider {
+            KUserFeedback.Provider {
                 id: provider
                 submissionInterval: 1
                 productIdentifier: "org.kde.orwell"
@@ -95,20 +95,20 @@ ApplicationWindow {
                     }
                 }
 
-                UserFeedback.ApplicationVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
-                UserFeedback.CompilerInfoSource { mode: UserFeedback.Provider.BasicSystemInformation }
-                UserFeedback.CpuInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
-                UserFeedback.LocaleInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
-                UserFeedback.OpenGLInfoSource{ mode: UserFeedback.Provider.DetailedSystemInformation }
-                UserFeedback.PlatformInfoSource { mode: UserFeedback.Provider.BasicSystemInformation }
-                UserFeedback.QtVersionSource { mode: UserFeedback.Provider.BasicSystemInformation }
-                UserFeedback.ScreenInfoSource { mode: UserFeedback.Provider.DetailedSystemInformation }
-                UserFeedback.StartCountSource { mode: UserFeedback.Provider.BasicUsageStatistics }
-                UserFeedback.UsageTimeSource { mode: UserFeedback.Provider.BasicUsageStatistics }
+                KUserFeedback.ApplicationVersionSource { mode: KUserFeedback.Provider.BasicSystemInformation }
+                KUserFeedback.CompilerInfoSource { mode: KUserFeedback.Provider.BasicSystemInformation }
+                KUserFeedback.CpuInfoSource { mode: KUserFeedback.Provider.DetailedSystemInformation }
+                KUserFeedback.LocaleInfoSource { mode: KUserFeedback.Provider.DetailedSystemInformation }
+                KUserFeedback.OpenGLInfoSource{ mode: KUserFeedback.Provider.DetailedSystemInformation }
+                KUserFeedback.PlatformInfoSource { mode: KUserFeedback.Provider.BasicSystemInformation }
+                KUserFeedback.QtVersionSource { mode: KUserFeedback.Provider.BasicSystemInformation }
+                KUserFeedback.ScreenInfoSource { mode: KUserFeedback.Provider.DetailedSystemInformation }
+                KUserFeedback.StartCountSource { mode: KUserFeedback.Provider.BasicUsageStatistics }
+                KUserFeedback.UsageTimeSource { mode: KUserFeedback.Provider.BasicUsageStatistics }
 
-                UserFeedback.PropertyRatioSource {
+                KUserFeedback.PropertyRatioSource {
                     id: dialRatioSource
-                    mode: UserFeedback.Provider.DetailedUsageStatistics
+                    mode: KUserFeedback.Provider.DetailedUsageStatistics
                     name: "dialRatio"
                     object: dial
                     propertyName: "intValue"
@@ -165,7 +165,7 @@ ApplicationWindow {
                 }
             }
 
-            UserFeedback.FeedbackConfigUiController {
+            KUserFeedback.FeedbackConfigUiController {
                 id: controller
                 feedbackProvider: provider
                 onProviderChanged: {

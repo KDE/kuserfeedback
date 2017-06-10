@@ -7,6 +7,8 @@ if(TARGET UserFeedbackWidgets AND NOT (CMAKE_SOURCE_DIR EQUAL CMAKE_CURRENT_SOUR
 
     add_executable(orwell orwell.cpp)
     target_link_libraries(orwell UserFeedbackWidgets)
+
+    qml_lint(orwell.qml)
 else()
     # stand-alone build for testing includes and cmake config
     message(STATUS "building test application stand-alone")
@@ -17,5 +19,3 @@ else()
     add_executable(orwell orwell.cpp)
     target_link_libraries(orwell UserFeedbackWidgets)
 endif()
-
-qml_lint(orwell.qml)

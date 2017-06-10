@@ -1,8 +1,6 @@
-# User Feedback
+# KUserFeedback
 
-Framework for collecting feedback from application users. This currently consists of two aspects:
-* Telemetry
-* Surveys
+Framework for collecting feedback from application users via telemetry and targeted surveys.
 
 ## Telemetry
 
@@ -19,6 +17,6 @@ Framework for collecting feedback from application users. This currently consist
 
 This framework consists of the following components:
 * Libraries for use in applications.
+* QML bindings for the above.
 * A server application.
 * A management and analytics application.
-

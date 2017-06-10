@@ -1,0 +1,20 @@
+description: User feedback framework
+maintainer: vkrause
+public_lib: true
+platforms:
+ - name: all
+tier: 1
+type: solution
+portingAid: false
+deprecated: false
+release: false
+libraries:
+ - qmake: KUserFeedbackCore
+   cmake: "KUserFeedbackCore"
+ - qmake: KUserFeedbackWidgets
+   cmake: "KUserFeedbackWidgets"
+cmakename: UserFeedback
+
+public_lib: true
+group: Frameworks
+subgroup: Tier 1

@@ -102,6 +102,9 @@ QVariant CategoryAggregationModel::data(const QModelIndex& index, int role) cons
 
 QVariant CategoryAggregationModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
+    if (section < 0 || section >= columnCount())
+        return {};
+
     if (orientation == Qt::Horizontal && m_sourceModel) {
         if (section == 0)
             return m_sourceModel->headerData(section, orientation, role);

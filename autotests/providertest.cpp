@@ -57,9 +57,9 @@ private slots:
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
         provider.addDataSource(new ScreenInfoSource, Provider::BasicSystemInformation);
         provider.addDataSource(new PlatformInfoSource, Provider::BasicSystemInformation);
-        provider.setStatisticsCollectionMode(Provider::NoStatistics);
+        provider.setTelemetryMode(Provider::NoTelemetry);
         QByteArray b;
-        QMetaObject::invokeMethod(&provider, "jsonData", Q_RETURN_ARG(QByteArray, b), Q_ARG(KUserFeedback::Provider::StatisticsCollectionMode, provider.statisticsCollectionMode()));
+        QMetaObject::invokeMethod(&provider, "jsonData", Q_RETURN_ARG(QByteArray, b), Q_ARG(KUserFeedback::Provider::TelemetryMode, provider.telemetryMode()));
         b.replace('\n', "");
         QCOMPARE(b.constData(), "{}");
     }
@@ -68,21 +68,21 @@ private slots:
     {
         {
             Provider p;
-            p.setStatisticsCollectionMode(Provider::NoStatistics);
+            p.setTelemetryMode(Provider::NoTelemetry);
             p.setSurveyInterval(-1);
         }
 
         {
             Provider p;
-            QCOMPARE(p.statisticsCollectionMode(), Provider::NoStatistics);
+            QCOMPARE(p.telemetryMode(), Provider::NoTelemetry);
             QCOMPARE(p.surveyInterval(), -1);
-            p.setStatisticsCollectionMode(Provider::DetailedSystemInformation);
+            p.setTelemetryMode(Provider::DetailedSystemInformation);
             p.setSurveyInterval(90);
         }
 
         {
             Provider p;
-            QCOMPARE(p.statisticsCollectionMode(), Provider::DetailedSystemInformation);
+            QCOMPARE(p.telemetryMode(), Provider::DetailedSystemInformation);
             QCOMPARE(p.surveyInterval(), 90);
         }
     }
@@ -156,7 +156,7 @@ private slots:
             Provider p;
             p.addDataSource(new PlatformInfoSource, Provider::BasicSystemInformation);
             p.setSurveyInterval(0);
-            p.setStatisticsCollectionMode(Provider::BasicSystemInformation);
+            p.setTelemetryMode(Provider::BasicSystemInformation);
             QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
             QVERIFY(spy.isValid());
             p.setEncouragementDelay(0);
@@ -180,7 +180,7 @@ private slots:
         {
             Provider p;
             p.setSurveyInterval(-1);
-            p.setStatisticsCollectionMode(Provider::NoStatistics);
+            p.setTelemetryMode(Provider::NoTelemetry);
             QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
             QVERIFY(spy.isValid());
             p.setEncouragementDelay(0);
@@ -199,7 +199,7 @@ private slots:
         {
             Provider p;
             p.setSurveyInterval(90);
-            p.setStatisticsCollectionMode(Provider::BasicSystemInformation);
+            p.setTelemetryMode(Provider::BasicSystemInformation);
             QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
             QVERIFY(spy.isValid());
             p.setEncouragementDelay(0);
@@ -214,7 +214,7 @@ private slots:
     {
         {
             Provider p0;
-            p0.setStatisticsCollectionMode(Provider::BasicUsageStatistics); // triggers store, so we want to avoid that below
+            p0.setTelemetryMode(Provider::BasicUsageStatistics); // triggers store, so we want to avoid that below
         }
 
         int c1 = -1;

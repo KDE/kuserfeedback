@@ -48,7 +48,7 @@ private slots:
         p.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
         p.addDataSource(new ScreenInfoSource, Provider::BasicSystemInformation);
         p.addDataSource(new PlatformInfoSource, Provider::DetailedSystemInformation);
-        p.setStatisticsCollectionMode(Provider::NoStatistics);
+        p.setTelemetryMode(Provider::NoTelemetry);
 
         FeedbackConfigWidget w;
         w.setFeedbackProvider(&p);
@@ -62,9 +62,9 @@ private slots:
         QCOMPARE(telemetrySlider->value(), 0);
 
         telemetrySlider->setValue(1);
-        QCOMPARE(w.statisticsCollectionMode(), Provider::BasicSystemInformation);
+        QCOMPARE(w.telemetryMode(), Provider::BasicSystemInformation);
         QTest::qWait(1);
-        QCOMPARE(p.statisticsCollectionMode(), Provider::NoStatistics);
+        QCOMPARE(p.telemetryMode(), Provider::NoTelemetry);
     }
 
     void testSurveySettings()

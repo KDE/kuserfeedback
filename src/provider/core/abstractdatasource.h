@@ -31,7 +31,7 @@ namespace KUserFeedback {
 
 class AbstractDataSourcePrivate;
 
-/*! Base class for data sources for statistical data. */
+/*! Base class for data sources for telemetry data. */
 class KUSERFEEDBACKCORE_EXPORT AbstractDataSource
 {
 public:
@@ -94,15 +94,15 @@ public:
      */
     virtual void reset(QSettings *settings);
 
-    /*! Returns which colleciton mode this data source belongs to.
-     *  @return The statistics collection category this source belongs to.
+    /*! Returns which telemetry colleciton mode this data source belongs to.
+     *  @return The telemetry collection category this source belongs to.
      */
-    Provider::StatisticsCollectionMode collectionMode() const;
+    Provider::TelemetryMode telemetryMode() const;
 
-    /*! Sets which colleciton mode this data source belongs to.
+    /*! Sets which telemetry colleciton mode this data source belongs to.
      * @param mode The data collection mode of this source.
      */
-    void setCollectionMode(Provider::StatisticsCollectionMode mode);
+    void setTelemetryMode(Provider::TelemetryMode mode);
 
 protected:
     /*! Create a new data source named @p name.

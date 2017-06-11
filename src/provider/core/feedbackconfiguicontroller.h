@@ -60,9 +60,9 @@ public:
     int surveyModeCount() const;
 
     /*! Convert slider index to telemetry mode. */
-    Q_INVOKABLE KUserFeedback::Provider::StatisticsCollectionMode telemetryIndexToMode(int index) const;
+    Q_INVOKABLE KUserFeedback::Provider::TelemetryMode telemetryIndexToMode(int index) const;
     /*! Convert telemetry mode to slider index. */
-    Q_INVOKABLE int telemetryModeToIndex(KUserFeedback::Provider::StatisticsCollectionMode mode) const;
+    Q_INVOKABLE int telemetryModeToIndex(KUserFeedback::Provider::TelemetryMode mode) const;
 
     /*! Telemetry mode explanation text. */
     Q_INVOKABLE QString telemetryModeDescription(int telemetryIndex) const;

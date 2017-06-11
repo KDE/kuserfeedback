@@ -29,7 +29,7 @@ public:
     virtual ~AbstractDataSourcePrivate();
 
     QString name;
-    Provider::StatisticsCollectionMode mode;
+    Provider::TelemetryMode mode;
 
 private:
     Q_DISABLE_COPY(AbstractDataSourcePrivate)

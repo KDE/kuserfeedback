@@ -31,17 +31,17 @@ QmlAbstractDataSource::~QmlAbstractDataSource()
 {
 }
 
-Provider::StatisticsCollectionMode QmlAbstractDataSource::collectionMode() const
+Provider::TelemetryMode QmlAbstractDataSource::telemetryMode() const
 {
-    return m_source->collectionMode();
+    return m_source->telemetryMode();
 }
 
-void QmlAbstractDataSource::setCollectionMode(Provider::StatisticsCollectionMode mode)
+void QmlAbstractDataSource::setTelemetryMode(Provider::TelemetryMode mode)
 {
-    if (m_source->collectionMode() == mode)
+    if (m_source->telemetryMode() == mode)
         return;
-    m_source->setCollectionMode(mode);
-    emit collectionModeChanged();
+    m_source->setTelemetryMode(mode);
+    emit telemetryModeChanged();
 }
 
 AbstractDataSource* QmlAbstractDataSource::source() const

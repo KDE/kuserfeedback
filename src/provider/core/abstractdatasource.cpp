@@ -65,19 +65,19 @@ void AbstractDataSource::reset(QSettings *settings)
     Q_UNUSED(settings);
 }
 
-Provider::StatisticsCollectionMode AbstractDataSource::collectionMode() const
+Provider::TelemetryMode AbstractDataSource::telemetryMode() const
 {
     Q_D(const AbstractDataSource);
 
-    Q_ASSERT(d->mode != Provider::NoStatistics);
-    if (d->mode == Provider::NoStatistics)
+    Q_ASSERT(d->mode != Provider::NoTelemetry);
+    if (d->mode == Provider::NoTelemetry)
         return Provider::DetailedUsageStatistics;
     return d->mode;
 }
 
-void AbstractDataSource::setCollectionMode(Provider::StatisticsCollectionMode mode)
+void AbstractDataSource::setTelemetryMode(Provider::TelemetryMode mode)
 {
     Q_D(AbstractDataSource);
-    Q_ASSERT(mode != Provider::NoStatistics);
+    Q_ASSERT(mode != Provider::NoTelemetry);
     d->mode = mode;
 }

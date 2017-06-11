@@ -170,7 +170,7 @@ ApplicationWindow {
                 feedbackProvider: provider
                 onProviderChanged: {
                     telemetrySlider.to = controller.telemetryModeCount - 1;
-                    telemetrySlider.value = controller.telemetryModeToIndex(provider.statisticsCollectionMode);
+                    telemetrySlider.value = controller.telemetryModeToIndex(provider.telemetryMode);
                     surveySlider.value = controller.surveyIntervalToIndex(provider.surveyInterval);
                 }
             }
@@ -230,7 +230,7 @@ ApplicationWindow {
                         qsTr("I don't contribute.") :
                         qsTr("Contribute!");
                     onClicked: {
-                        provider.statisticsCollectionMode = controller.telemetryIndexToMode(telemetrySlider.value);
+                        provider.telemetryMode = controller.telemetryIndexToMode(telemetrySlider.value);
                         provider.surveyInterval = controller.surveyIndexToInterval(surveySlider.value);
                         stackView.pop();
                     }

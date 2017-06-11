@@ -56,7 +56,7 @@ public:
     void setFeedbackProvider(Provider *provider);
 
     /*! Returns the telemetry level currently selected in the widget. */
-    Provider::StatisticsCollectionMode statisticsCollectionMode() const;
+    Provider::TelemetryMode telemetryMode() const;
 
     /*! Returns the survey interval currently selected in this widget. */
     int surveyInterval() const;

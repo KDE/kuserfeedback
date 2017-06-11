@@ -35,7 +35,7 @@ class SurveyInfo;
  *  The defaults for this class are very defensive, so in order to make it actually
  *  operational and submit data, there is a number of settings you need to set in
  *  code, namely submission intervals, encouragement settings and adding data sources.
- *  The settings about what data to submit (statisticsCollectionMode) and how often
+ *  The settings about what data to submit (telemetryMode) and how often
  *  to bother the user with surveys (surveyInterval) should not be set to hardcoded
  *  values in code, but left as choices to the user.
  */
@@ -51,9 +51,9 @@ class KUSERFEEDBACKCORE_EXPORT Provider : public QObject
 
     /*! The telemetry mode the user has configured.
      * This should be configurable for the user.
-     * @see statisticsCollectionMode(), setStatisticsCollectionMode()
+     * @see telemetryMode(), setTelemetryMode()
      */
-    Q_PROPERTY(StatisticsCollectionMode statisticsCollectionMode READ statisticsCollectionMode WRITE setStatisticsCollectionMode NOTIFY statisticsCollectionModeChanged)
+    Q_PROPERTY(TelemetryMode telemetryMode READ telemetryMode WRITE setTelemetryMode NOTIFY telemetryModeChanged)
 
     /*! Unique product id as set on the feedback server.
      *  @see setProductIdentifier
@@ -101,8 +101,8 @@ public:
      *  Colleciton modes are inclusive, ie. higher modes always imply data from
      *  lower modes too.
      */
-    enum StatisticsCollectionMode {
-        NoStatistics, ///< Transmit no data at all.
+    enum TelemetryMode {
+        NoTelemetry, ///< Transmit no data at all.
         BasicSystemInformation = 0x10, ///< Transmit basic information about the system.
         BasicUsageStatistics = 0x20, ///< Transmit basic usage statistics.
         DetailedSystemInformation = 0x30, ///< Transmit detailed system information.
@@ -110,12 +110,12 @@ public:
     };
 #ifndef QT4_MOC_WORKAROUND
 #if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
-    Q_ENUM(StatisticsCollectionMode)
+    Q_ENUM(TelemetryMode)
 #else
-    Q_ENUMS(StatisticsCollectionMode)
+    Q_ENUMS(TelemetryMode)
 #endif
 #else
-    Q_ENUMS(StatisticsCollectionMode)
+    Q_ENUMS(TelemetryMode)
 #endif
 
     /*! Create a new feedback provider.
@@ -152,21 +152,21 @@ public:
      */
     void setSubmissionInterval(int days);
 
-    /*! Returns the current statistics collection mode.
-     *  The default is NoStatistics.
+    /*! Returns the current telemetry collection mode.
+     *  The default is NoTelemetry.
      */
-    StatisticsCollectionMode statisticsCollectionMode() const;
+    TelemetryMode telemetryMode() const;
 
-    /*! Set which statistics should be submitted. */
-    void setStatisticsCollectionMode(StatisticsCollectionMode mode);
+    /*! Set which telemetry data should be submitted. */
+    void setTelemetryMode(TelemetryMode mode);
 
-    /*! Adds a data source for statistical data collection.
+    /*! Adds a data source for telemetry data collection.
      *  @param source The data source to add. The Provider takes ownership of @p source.
-     *  @param mode The statistics collection mode this source belongs to. Data is only
+     *  @param mode The telemetry collection mode this source belongs to. Data is only
      *  send to the server for this source is a sufficiently high collection mode is configured
-     *  by the user. @c NoStatistics is not allowed.
+     *  by the user. @c NoTelemetry is not allowed.
      */
-    void addDataSource(AbstractDataSource *source, StatisticsCollectionMode mode);
+    void addDataSource(AbstractDataSource *source, TelemetryMode mode);
 
     /*! Returns all data sources that have been added to this provider.
      *  @see addDataSource
@@ -244,8 +244,8 @@ Q_SIGNALS:
     /*! Emitted when the survey interval changed. */
     void surveyIntervalChanged();
 
-    /*! Emitted when the statistics collection mode has changed. */
-    void statisticsCollectionModeChanged();
+    /*! Emitted when the telemetry collection mode has changed. */
+    void telemetryModeChanged();
 
     /*! Emitted when any provider setting changed. */
     void providerSettingsChanged();
@@ -257,7 +257,7 @@ private:
     Q_PRIVATE_SLOT(d, void submitFinished())
     Q_PRIVATE_SLOT(d, void emitShowEncouragementMessage())
     // for UI
-    Q_PRIVATE_SLOT(d, QByteArray jsonData(KUserFeedback::Provider::StatisticsCollectionMode))
+    Q_PRIVATE_SLOT(d, QByteArray jsonData(KUserFeedback::Provider::TelemetryMode))
     // for testing
     Q_PRIVATE_SLOT(d, void load())
     Q_PRIVATE_SLOT(d, void store())
@@ -265,6 +265,6 @@ private:
 
 }
 
-Q_DECLARE_METATYPE(KUserFeedback::Provider::StatisticsCollectionMode)
+Q_DECLARE_METATYPE(KUserFeedback::Provider::TelemetryMode)
 
 #endif // KUSERFEEDBACK_PROVIDER_H

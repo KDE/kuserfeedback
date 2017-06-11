@@ -27,19 +27,19 @@ class AbstractDataSource;
 class QmlAbstractDataSource : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(KUserFeedback::Provider::StatisticsCollectionMode mode READ collectionMode
-               WRITE setCollectionMode NOTIFY collectionModeChanged)
+    Q_PROPERTY(KUserFeedback::Provider::TelemetryMode mode READ telemetryMode
+               WRITE setTelemetryMode NOTIFY telemetryModeChanged)
 public:
     explicit QmlAbstractDataSource(AbstractDataSource *source, QObject *parent);
     ~QmlAbstractDataSource();
 
-    Provider::StatisticsCollectionMode collectionMode() const;
-    void setCollectionMode(Provider::StatisticsCollectionMode mode);
+    Provider::TelemetryMode telemetryMode() const;
+    void setTelemetryMode(Provider::TelemetryMode mode);
 
     AbstractDataSource* source() const;
 
 Q_SIGNALS:
-    void collectionModeChanged();
+    void telemetryModeChanged();
 
 private:
     AbstractDataSource *m_source;

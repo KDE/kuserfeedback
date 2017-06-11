@@ -92,7 +92,7 @@ QString SelectionRatioSourcePrivate::selectedValue() const
 }
 
 SelectionRatioSource::SelectionRatioSource(QItemSelectionModel* selectionModel, const QString& sampleName)
-    : AbstractDataSource(sampleName, new SelectionRatioSourcePrivate)
+    : AbstractDataSource(sampleName, Provider::DetailedUsageStatistics, new SelectionRatioSourcePrivate)
 {
     Q_D(SelectionRatioSource);
 

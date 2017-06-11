@@ -28,6 +28,8 @@ namespace KUserFeedback {
  *  the application code. This is particularly true for compilers that
  *  don't break ABI regularly (such as Clang and GCC), so this information
  *  is most reliable when this is not the case, e.g. with MSVC.
+ *
+ *  The default telemetry mode for this source is Provider::BasicSystemInformation.
  */
 class KUSERFEEDBACKCORE_EXPORT CompilerInfoSource : public AbstractDataSource
 {

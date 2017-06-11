@@ -26,6 +26,8 @@ namespace KUserFeedback {
  *  This includes two string data fields:
  *  - platform.os: the operating system name
  *  - platform.version: the operating system or distribution version.
+ *
+ *  The default telemetry mode for this source is Provider::BasicSystemInformation.
  */
 class KUSERFEEDBACKCORE_EXPORT PlatformInfoSource : public AbstractDataSource
 {

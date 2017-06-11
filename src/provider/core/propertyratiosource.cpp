@@ -141,7 +141,7 @@ void PropertyRatioSourcePrivate::trySetup()
 }
 
 PropertyRatioSource::PropertyRatioSource(QObject *obj, const char *propertyName, const QString &sampleName) :
-    AbstractDataSource(sampleName, new PropertyRatioSourcePrivate)
+    AbstractDataSource(sampleName, Provider::DetailedUsageStatistics, new PropertyRatioSourcePrivate)
 {
     Q_D(PropertyRatioSource);
 

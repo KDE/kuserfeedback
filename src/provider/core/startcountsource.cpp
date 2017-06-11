@@ -33,7 +33,7 @@ public:
 }
 
 StartCountSource::StartCountSource() :
-    AbstractDataSource(QStringLiteral("startCount"), new StartCountSourcePrivate)
+    AbstractDataSource(QStringLiteral("startCount"), Provider::BasicUsageStatistics, new StartCountSourcePrivate)
 {
 }
 

@@ -27,7 +27,10 @@ class Provider;
 class ProviderPrivate;
 class UsageTimeSourcePrivate;
 
-/*! Data source reporting the total usage time of the application. */
+/*! Data source reporting the total usage time of the application.
+ *
+ *  The default telemetry mode for this source is Provider::BasicUsageStatistics.
+ */
 class KUSERFEEDBACKCORE_EXPORT UsageTimeSource :  public AbstractDataSource
 {
 public:

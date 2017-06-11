@@ -27,7 +27,10 @@ class Provider;
 class ProviderPrivate;
 class StartCountSourcePrivate;
 
-/*! Data source reporting the total amount of applications starts. */
+/*! Data source reporting the total amount of applications starts.
+ *
+ *  The default telemetry mode for this source is Provider::BasicUsageStatistics.
+ */
 class KUSERFEEDBACKCORE_EXPORT StartCountSource :  public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::StartCountSource)

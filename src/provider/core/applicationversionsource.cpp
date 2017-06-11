@@ -23,7 +23,7 @@
 using namespace KUserFeedback;
 
 ApplicationVersionSource::ApplicationVersionSource() :
-    AbstractDataSource(QStringLiteral("applicationVersion"))
+    AbstractDataSource(QStringLiteral("applicationVersion"), Provider::BasicSystemInformation)
 {
 }
 

@@ -29,10 +29,11 @@ AbstractDataSourcePrivate::~AbstractDataSourcePrivate()
 {
 }
 
-AbstractDataSource::AbstractDataSource(const QString &name, AbstractDataSourcePrivate* dd) :
+AbstractDataSource::AbstractDataSource(const QString &name, Provider::TelemetryMode mode, AbstractDataSourcePrivate* dd) :
     d_ptr(dd ? dd : new AbstractDataSourcePrivate)
 {
     d_ptr->name = name;
+    d_ptr->mode = mode;
 }
 
 AbstractDataSource::~AbstractDataSource()

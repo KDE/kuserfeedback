@@ -101,6 +101,7 @@ public:
 
     /*! Sets which telemetry colleciton mode this data source belongs to.
      * @param mode The data collection mode of this source.
+     * Provider::NoTelemetry is not allowed here.
      */
     void setTelemetryMode(Provider::TelemetryMode mode);
 
@@ -109,8 +110,9 @@ protected:
      *  The name of the data source must match the corresponding
      *  product schema entry.
      *  @param name Must not be empty.
+     *  @param mode The default telemetry mode.
      */
-    explicit AbstractDataSource(const QString &name, AbstractDataSourcePrivate *dd = nullptr);
+    explicit AbstractDataSource(const QString &name, Provider::TelemetryMode mode = Provider::DetailedUsageStatistics, AbstractDataSourcePrivate *dd = nullptr);
 
     /*! Set the name of this data source.
      *  The name should not change at runtime, this is only provided

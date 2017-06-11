@@ -28,6 +28,8 @@ namespace KUserFeedback {
  *  - height: Height of the corresponding screen in pixel.
  *  - width: Width of the corresponding screen in pixel.
  *  - dpi: Dots per inch of the corresponding screen.
+ *
+ *  The default telemetry mode for this source is Provider::DetailedSystemInformation.
  */
 class KUSERFEEDBACKCORE_EXPORT ScreenInfoSource :  public AbstractDataSource
 {

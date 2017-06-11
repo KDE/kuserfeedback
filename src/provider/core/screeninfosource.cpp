@@ -29,7 +29,7 @@
 using namespace KUserFeedback;
 
 ScreenInfoSource::ScreenInfoSource() :
-    AbstractDataSource(QStringLiteral("screens"))
+    AbstractDataSource(QStringLiteral("screens"), Provider::DetailedSystemInformation)
 {
 }
 

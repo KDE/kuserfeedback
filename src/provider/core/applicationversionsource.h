@@ -25,6 +25,8 @@ namespace KUserFeedback {
 
 /*! Data source for the application version.
  *  The application version is retrieved via QCoreApplication::applicationVersion.
+ *
+ *  The default telemetry mode for this source is Provider::BasicSystemInformation.
  */
 class KUSERFEEDBACKCORE_EXPORT ApplicationVersionSource : public AbstractDataSource
 {

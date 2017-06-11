@@ -29,6 +29,8 @@ class PropertyRatioSourcePrivate;
  *
  *  An example use-case would be the usage ratio of a applications
  *  views/modes selected by a QTabWidget or QRadioButton.
+ *
+ *  The default telemetry mode for this source is Provider::DetailedUsageStatistics.
  */
 class KUSERFEEDBACKCORE_EXPORT PropertyRatioSource :  public AbstractDataSource
 {

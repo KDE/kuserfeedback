@@ -23,7 +23,10 @@
 
 namespace KUserFeedback {
 
-/*! Data source reporting the type and amount of CPUs. */
+/*! Data source reporting the type and amount of CPUs.
+ *
+ *  The default telemetry mode for this source is Provider::DetailedSystemInformation.
+ */
 class KUSERFEEDBACKCORE_EXPORT CpuInfoSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::CpuInfoSource)

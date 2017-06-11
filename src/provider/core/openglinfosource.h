@@ -22,7 +22,10 @@
 
 namespace KUserFeedback {
 
-/*! Data source reporting type, version and vendor of the OpenGL stack. */
+/*! Data source reporting type, version and vendor of the OpenGL stack.
+ *
+ *  The default telemetry mode for this source is Provider::DetailedSystemInformation.
+ */
 class KUSERFEEDBACKCORE_EXPORT OpenGLInfoSource : public AbstractDataSource
 {
 public:

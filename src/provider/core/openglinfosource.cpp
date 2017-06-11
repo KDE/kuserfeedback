@@ -29,7 +29,7 @@
 using namespace KUserFeedback;
 
 OpenGLInfoSource::OpenGLInfoSource()
-    : AbstractDataSource(QStringLiteral("opengl"))
+    : AbstractDataSource(QStringLiteral("opengl"), Provider::DetailedSystemInformation)
 {
 }
 

@@ -34,6 +34,8 @@ class SelectionRatioSourcePrivate;
  *  An example use-case would be the usage ratio of a applications
  *  views/modes selected using a model-based view sidebar (such as
  *  used in e.g. Kontact).
+ *
+ *  The default telemetry mode for this source is Provider::DetailedUsageStatistics.
  */
 class KUSERFEEDBACKCORE_EXPORT SelectionRatioSource : public AbstractDataSource
 {

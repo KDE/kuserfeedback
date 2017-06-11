@@ -24,7 +24,7 @@
 using namespace KUserFeedback;
 
 CpuInfoSource::CpuInfoSource()
-    : AbstractDataSource(QStringLiteral("cpu"))
+    : AbstractDataSource(QStringLiteral("cpu"), Provider::DetailedSystemInformation)
 {
 }
 

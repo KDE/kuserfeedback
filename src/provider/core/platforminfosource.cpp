@@ -23,7 +23,7 @@
 using namespace KUserFeedback;
 
 PlatformInfoSource::PlatformInfoSource() :
-    AbstractDataSource(QStringLiteral("platform"))
+    AbstractDataSource(QStringLiteral("platform"), Provider::BasicSystemInformation)
 {
 }
 

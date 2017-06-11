@@ -33,7 +33,7 @@ public:
 }
 
 UsageTimeSource::UsageTimeSource() :
-    AbstractDataSource(QStringLiteral("usageTime"), new UsageTimeSourcePrivate)
+    AbstractDataSource(QStringLiteral("usageTime"), Provider::BasicUsageStatistics, new UsageTimeSourcePrivate)
 {
 }
 

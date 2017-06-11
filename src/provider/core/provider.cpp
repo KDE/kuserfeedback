@@ -509,10 +509,8 @@ void Provider::setTelemetryMode(TelemetryMode mode)
     emit telemetryModeChanged();
 }
 
-void Provider::addDataSource(AbstractDataSource *source, TelemetryMode mode)
+void Provider::addDataSource(AbstractDataSource *source)
 {
-    source->setTelemetryMode(mode);
-
     // special cases for sources where we track the data here, as it's needed even if we don't report it
     if (auto countSrc = dynamic_cast<StartCountSource*>(source))
         countSrc->setProvider(d);

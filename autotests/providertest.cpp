@@ -55,8 +55,8 @@ private slots:
     {
         Provider provider;
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
-        provider.addDataSource(new ScreenInfoSource, Provider::BasicSystemInformation);
-        provider.addDataSource(new PlatformInfoSource, Provider::BasicSystemInformation);
+        provider.addDataSource(new ScreenInfoSource);
+        provider.addDataSource(new PlatformInfoSource);
         provider.setTelemetryMode(Provider::NoTelemetry);
         QByteArray b;
         QMetaObject::invokeMethod(&provider, "jsonData", Q_RETURN_ARG(QByteArray, b), Q_ARG(KUserFeedback::Provider::TelemetryMode, provider.telemetryMode()));
@@ -154,7 +154,7 @@ private slots:
 
         {
             Provider p;
-            p.addDataSource(new PlatformInfoSource, Provider::BasicSystemInformation);
+            p.addDataSource(new PlatformInfoSource);
             p.setSurveyInterval(0);
             p.setTelemetryMode(Provider::BasicSystemInformation);
             QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
@@ -221,14 +221,16 @@ private slots:
         {
             Provider p1;
             auto s1 = new StartCountSource;
-            p1.addDataSource(s1, Provider:: BasicUsageStatistics);
+            s1->setTelemetryMode(Provider:: BasicUsageStatistics);
+            p1.addDataSource(s1);
             c1 = s1->data().toMap().value(QLatin1String("value")).toInt();
             int c2 = -1;
 
             {
                 Provider p2;
                 auto s2 = new StartCountSource;
-                p2.addDataSource(s2, Provider:: BasicUsageStatistics);
+                s2->setTelemetryMode(Provider::BasicUsageStatistics);
+                p2.addDataSource(s2);
                 c2 = s2->data().toMap().value(QLatin1String("value")).toInt();
             }
 
@@ -237,7 +239,8 @@ private slots:
 
         Provider p3;
         auto s3 = new StartCountSource;
-        p3.addDataSource(s3, Provider:: BasicUsageStatistics);
+        s3->setTelemetryMode(Provider::BasicUsageStatistics);
+        p3.addDataSource(s3);
         int c3 = s3->data().toMap().value(QLatin1String("value")).toInt();
         QVERIFY(c3 == c1 + 2);
     }
@@ -252,7 +255,8 @@ private slots:
         {
             Provider p1;
             auto s1 = new StartCountSource;
-            p1.addDataSource(s1, Provider::BasicUsageStatistics);
+            s1->setTelemetryMode(Provider::BasicUsageStatistics);
+            p1.addDataSource(s1);
             p1.setSurveyInterval(90);
             const auto c0 = s1->data().toMap().value(QLatin1String("value")).toInt();
 
@@ -266,7 +270,8 @@ private slots:
         {
             Provider p2;
             auto s2 = new StartCountSource;
-            p2.addDataSource(s2, Provider::BasicUsageStatistics);
+            s2->setTelemetryMode(Provider::BasicUsageStatistics);
+            p2.addDataSource(s2);
             p2.setProductIdentifier(QStringLiteral("org.kde.some.other.test"));
             QCOMPARE(p2.surveyInterval(), 1);
             const auto c2 = s2->data().toMap().value(QLatin1String("value")).toInt();

@@ -103,8 +103,8 @@ private slots:
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
         provider.setTelemetryMode(Provider::DetailedUsageStatistics);
         provider.setFeedbackServer(serverUrl);
-        provider.addDataSource(new ScreenInfoSource, Provider::DetailedUsageStatistics);
-        provider.addDataSource(new PlatformInfoSource, Provider::DetailedUsageStatistics);
+        provider.addDataSource(new ScreenInfoSource);
+        provider.addDataSource(new PlatformInfoSource);
         provider.submit();
         QTest::qWait(100); // HACK submit is async
 
@@ -145,8 +145,8 @@ private slots:
         provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
         provider.setTelemetryMode(Provider::DetailedUsageStatistics);
         provider.setFeedbackServer(serverUrl);
-        provider.addDataSource(new ScreenInfoSource, Provider::DetailedUsageStatistics);
-        provider.addDataSource(new PlatformInfoSource, Provider::DetailedUsageStatistics);
+        provider.addDataSource(new ScreenInfoSource);
+        provider.addDataSource(new PlatformInfoSource);
         provider.submit();
         QTest::qWait(500); // HACK submit is async, and we have no way of knowning the redirect loop ended...
     }

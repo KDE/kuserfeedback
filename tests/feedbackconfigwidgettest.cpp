@@ -40,10 +40,10 @@ int main(int argc, char **argv)
     QApplication app(argc, argv);
 
     Provider provider;
-    provider.addDataSource(new ApplicationVersionSource, Provider::BasicSystemInformation);
-    provider.addDataSource(new PlatformInfoSource, Provider::BasicSystemInformation);
-    provider.addDataSource(new ScreenInfoSource, Provider::DetailedSystemInformation);
-    provider.addDataSource(new QtVersionSource, Provider::DetailedSystemInformation);
+    provider.addDataSource(new ApplicationVersionSource);
+    provider.addDataSource(new PlatformInfoSource);
+    provider.addDataSource(new ScreenInfoSource);
+    provider.addDataSource(new QtVersionSource);
 
     FeedbackConfigDialog w;
     w.setFeedbackProvider(&provider);

@@ -46,8 +46,8 @@ private slots:
     {
         Provider p;
         p.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
-        p.addDataSource(new ScreenInfoSource, Provider::BasicSystemInformation);
-        p.addDataSource(new PlatformInfoSource, Provider::DetailedSystemInformation);
+        p.addDataSource(new ScreenInfoSource);
+        p.addDataSource(new PlatformInfoSource);
         p.setTelemetryMode(Provider::NoTelemetry);
 
         FeedbackConfigWidget w;

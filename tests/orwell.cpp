@@ -74,7 +74,8 @@ Orwell::Orwell(QWidget* parent) :
     propertyMonitorSource->setDescription(QStringLiteral("The dial position."));
     propertyMonitorSource->addValueMapping(0, QStringLiteral("off"));
     propertyMonitorSource->addValueMapping(11, QStringLiteral("max"));
-    provider->addDataSource(propertyMonitorSource, KUserFeedback::Provider::DetailedUsageStatistics);
+    propertyMonitorSource->setTelemetryMode(KUserFeedback::Provider::DetailedUsageStatistics);
+    provider->addDataSource(propertyMonitorSource);
     auto notifyPopup = new KUserFeedback::NotificationPopup(this);
     notifyPopup->setFeedbackProvider(provider.get());
 }
@@ -115,17 +116,17 @@ int main(int argc, char** argv)
     provider->setSubmissionInterval(1);
     provider->setApplicationStartsUntilEncouragement(5);
     provider->setEncouragementDelay(10);
-    provider->addDataSource(new KUserFeedback::ApplicationVersionSource, KUserFeedback::Provider::BasicSystemInformation);
-    provider->addDataSource(new KUserFeedback::CompilerInfoSource, KUserFeedback::Provider::BasicSystemInformation);
-    provider->addDataSource(new KUserFeedback::CpuInfoSource, KUserFeedback::Provider::DetailedSystemInformation);
-    provider->addDataSource(new KUserFeedback::LocaleInfoSource, KUserFeedback::Provider::DetailedSystemInformation);
-    provider->addDataSource(new KUserFeedback::OpenGLInfoSource, KUserFeedback::Provider::DetailedSystemInformation);
-    provider->addDataSource(new KUserFeedback::PlatformInfoSource, KUserFeedback::Provider::BasicSystemInformation);
-    provider->addDataSource(new KUserFeedback::QtVersionSource, KUserFeedback::Provider::BasicSystemInformation);
-    provider->addDataSource(new KUserFeedback::ScreenInfoSource, KUserFeedback::Provider::DetailedSystemInformation);
-    provider->addDataSource(new KUserFeedback::StartCountSource, KUserFeedback::Provider::BasicUsageStatistics);
-    provider->addDataSource(new KUserFeedback::UsageTimeSource, KUserFeedback::Provider::BasicUsageStatistics);
-    provider->addDataSource(new KUserFeedback::StyleInfoSource, KUserFeedback::Provider::DetailedSystemInformation);
+    provider->addDataSource(new KUserFeedback::ApplicationVersionSource);
+    provider->addDataSource(new KUserFeedback::CompilerInfoSource);
+    provider->addDataSource(new KUserFeedback::CpuInfoSource);
+    provider->addDataSource(new KUserFeedback::LocaleInfoSource);
+    provider->addDataSource(new KUserFeedback::OpenGLInfoSource);
+    provider->addDataSource(new KUserFeedback::PlatformInfoSource);
+    provider->addDataSource(new KUserFeedback::QtVersionSource);
+    provider->addDataSource(new KUserFeedback::ScreenInfoSource);
+    provider->addDataSource(new KUserFeedback::StartCountSource);
+    provider->addDataSource(new KUserFeedback::UsageTimeSource);
+    provider->addDataSource(new KUserFeedback::StyleInfoSource);
 
     Orwell mainWindow;
     mainWindow.show();

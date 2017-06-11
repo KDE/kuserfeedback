@@ -95,16 +95,16 @@ ApplicationWindow {
                     }
                 }
 
-                KUserFeedback.ApplicationVersionSource { mode: KUserFeedback.Provider.BasicSystemInformation }
-                KUserFeedback.CompilerInfoSource { mode: KUserFeedback.Provider.BasicSystemInformation }
-                KUserFeedback.CpuInfoSource { mode: KUserFeedback.Provider.DetailedSystemInformation }
-                KUserFeedback.LocaleInfoSource { mode: KUserFeedback.Provider.DetailedSystemInformation }
-                KUserFeedback.OpenGLInfoSource{ mode: KUserFeedback.Provider.DetailedSystemInformation }
-                KUserFeedback.PlatformInfoSource { mode: KUserFeedback.Provider.BasicSystemInformation }
-                KUserFeedback.QtVersionSource { mode: KUserFeedback.Provider.BasicSystemInformation }
-                KUserFeedback.ScreenInfoSource { mode: KUserFeedback.Provider.DetailedSystemInformation }
-                KUserFeedback.StartCountSource { mode: KUserFeedback.Provider.BasicUsageStatistics }
-                KUserFeedback.UsageTimeSource { mode: KUserFeedback.Provider.BasicUsageStatistics }
+                KUserFeedback.ApplicationVersionSource {}
+                KUserFeedback.CompilerInfoSource {}
+                KUserFeedback.CpuInfoSource {}
+                KUserFeedback.LocaleInfoSource {}
+                KUserFeedback.OpenGLInfoSource{}
+                KUserFeedback.PlatformInfoSource {}
+                KUserFeedback.QtVersionSource {}
+                KUserFeedback.ScreenInfoSource {}
+                KUserFeedback.StartCountSource {}
+                KUserFeedback.UsageTimeSource {}
 
                 KUserFeedback.PropertyRatioSource {
                     id: dialRatioSource

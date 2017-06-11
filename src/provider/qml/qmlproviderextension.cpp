@@ -31,7 +31,7 @@ QmlProviderExtension::~QmlProviderExtension()
 void QmlProviderExtension::sourceAppend(QQmlListProperty<QmlAbstractDataSource> *prop, QmlAbstractDataSource *value)
 {
     static_cast<QmlProviderExtension*>(prop->object)->m_sourceWrappers.push_back(value);
-    static_cast<Provider*>(prop->object->parent())->addDataSource(value->source(), value->telemetryMode());
+    static_cast<Provider*>(prop->object->parent())->addDataSource(value->source());
 }
 
 int QmlProviderExtension::sourceCount(QQmlListProperty<QmlAbstractDataSource> *prop)

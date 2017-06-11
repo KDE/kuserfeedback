@@ -162,11 +162,8 @@ public:
 
     /*! Adds a data source for telemetry data collection.
      *  @param source The data source to add. The Provider takes ownership of @p source.
-     *  @param mode The telemetry collection mode this source belongs to. Data is only
-     *  send to the server for this source is a sufficiently high collection mode is configured
-     *  by the user. @c NoTelemetry is not allowed.
      */
-    void addDataSource(AbstractDataSource *source, TelemetryMode mode);
+    void addDataSource(AbstractDataSource *source);
 
     /*! Returns all data sources that have been added to this provider.
      *  @see addDataSource

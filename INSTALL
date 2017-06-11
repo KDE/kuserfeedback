@@ -21,6 +21,8 @@ Requires PHP >= 5.5 and Sqlite, MySQL or PostgreSQL, Apache with SSL set up.
 - (optional) verify that access controls a set up correctly using the 'userfeedbackctl scan-server'
   command
 
+Docker users might find https://github.com/KDAB/kuserfeedbackdocker useful.
+
 
 ## Local Development
 

@@ -17,6 +17,7 @@
 
 #include "qmlplugin.h"
 #include "qmldatasources.h"
+#include "qmlpropertysource.h"
 #include "qmlpropertyratiosource.h"
 #include "qmlproviderextension.h"
 
@@ -43,6 +44,7 @@ void QmlPlugin::registerTypes(const char* uri)
     qmlRegisterType<QmlScreenInfoSource>(uri, 1, 0, "ScreenInfoSource");
     qmlRegisterType<QmlStartCountSource>(uri, 1, 0, "StartCountSource");
     qmlRegisterType<QmlUsageTimeSource>(uri, 1, 0, "UsageTimeSource");
+    qmlRegisterType<QmlPropertySource>(uri, 1, 0, "PropertySource");
     qmlRegisterType<QmlPropertyRatioSource>(uri, 1, 0, "PropertyRatioSource");
 
     qmlRegisterType<FeedbackConfigUiController>(uri, 1, 0, "FeedbackConfigUiController");

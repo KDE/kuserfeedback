@@ -238,6 +238,8 @@ QByteArray ProviderPrivate::jsonData(Provider::TelemetryMode mode) const
                 obj.insert(source->name(), QJsonObject::fromVariantMap(data.toMap()));
             else if (data.canConvert<QVariantList>())
                 obj.insert(source->name(), QJsonArray::fromVariantList(data.value<QVariantList>()));
+            else
+                qCWarning(Log) << "wrong type for" << source->name() << data;
         }
     }
 

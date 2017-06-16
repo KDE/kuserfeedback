@@ -4,6 +4,7 @@ set(provider_qml_srcs
     qmlplugin.cpp
     qmlpropertyratiosource.cpp
     qmlproviderextension.cpp
+    qmlpropertysource.cpp
 )
 
 add_library(KUserFeedbackQml SHARED ${provider_qml_srcs})

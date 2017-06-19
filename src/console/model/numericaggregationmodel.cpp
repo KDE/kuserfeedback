@@ -57,7 +57,7 @@ int NumericAggregationModel::rowCount(const QModelIndex& parent) const
 
 QVariant NumericAggregationModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || !m_sourceModel)
+    if (!index.isValid() || !m_sourceModel || index.row()>=m_data.count())
         return {};
 
     if (role == TimeAggregationModel::MaximumValueRole)

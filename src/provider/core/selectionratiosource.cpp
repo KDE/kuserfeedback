@@ -83,9 +83,9 @@ void SelectionRatioSourcePrivate::selectionChanged()
 
 QString SelectionRatioSourcePrivate::selectedValue() const
 {
-    if (!model->hasSelection())
-        return QString();
     const auto idxs = model->selectedIndexes();
+    if (!model->hasSelection() || idxs.isEmpty())
+        return QString();
     Q_ASSERT(!idxs.isEmpty());
     const auto idx = idxs.at(0);
     return idx.data(role).toString();

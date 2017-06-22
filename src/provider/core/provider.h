@@ -70,7 +70,7 @@ class KUSERFEEDBACKCORE_EXPORT Provider : public QObject
      */
     Q_PROPERTY(int submissionInterval READ submissionInterval WRITE setSubmissionInterval NOTIFY providerSettingsChanged)
 
-    /*! Application starts before an encouragement message is shown.
+    /*! Times the application has to be started before an encouragement message is shown.
      *  @see setApplicationStartsUntilEncouragement
      */
     Q_PROPERTY(int applicationStartsUntilEncouragement

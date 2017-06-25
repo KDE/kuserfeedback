@@ -33,7 +33,7 @@
     <string>Add &amp;Aggregation</string>
    </property>
    <property name="toolTip">
-    <string>Add a new aggreagation.</string>
+    <string>Add a new aggregation.</string>
    </property>
   </action>
   <action name="actionDeleteAggregation">

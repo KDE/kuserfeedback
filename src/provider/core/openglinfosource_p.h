@@ -30,11 +30,19 @@ public:
     {
         auto vendorVersion = QString::fromLocal8Bit(version);
         const auto idx = vendorVersion.indexOf(QLatin1Char(' '));
+
+        QString glVersion;
         if (idx > 0) {
+            glVersion = vendorVersion.left(idx);
             vendorVersion = vendorVersion.mid(idx + 1);
             if (!vendorVersion.isEmpty())
                 m.insert(QStringLiteral("vendorVersion"), vendorVersion);
+        } else {
+            glVersion = vendorVersion;
         }
+        // in case glGetIntegerv(GL_MAJOR_VERSION) failed...
+        if (!m.contains(QLatin1String("version")) && !glVersion.isEmpty())
+            m.insert(QStringLiteral("version"), glVersion);
     }
 
     static inline void parseGLESVersion(const char *version, QVariantMap &m)

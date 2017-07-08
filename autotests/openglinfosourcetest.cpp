@@ -65,21 +65,32 @@ private slots:
     {
         QTest::addColumn<QString>("glVersion");
         QTest::addColumn<QString>("vendorVersion");
+        QTest::addColumn<QString>("version");
 
-        QTest::newRow("empty") << QString() << QString();
-        QTest::newRow("default") << QStringLiteral("3.0") << QString();
-        QTest::newRow("mesa") << QStringLiteral("3.0 Mesa 17.1.1") << QStringLiteral("Mesa 17.1.1");
-        QTest::newRow("nvidia") << QStringLiteral("4.5 NVIDIA 375.26") << QStringLiteral("NVIDIA 375.26");
+        QTest::newRow("empty") << QString() << QString() << QString();
+        QTest::newRow("default") << QStringLiteral("3.0") << QString() << QStringLiteral("3.0");
+        QTest::newRow("mesa") << QStringLiteral("3.0 Mesa 17.1.1") << QStringLiteral("Mesa 17.1.1") << QStringLiteral("3.0");
+        QTest::newRow("nvidia") << QStringLiteral("4.5 NVIDIA 375.26") << QStringLiteral("NVIDIA 375.26") << QStringLiteral("4.5");;
+        QTest::newRow("intel osx") << QStringLiteral("2.1 INTEL-10.25.13") << QStringLiteral("INTEL-10.25.13") << QStringLiteral("2.1");;
     }
 
     void testParseGLVersion()
     {
         QFETCH(QString, glVersion);
         QFETCH(QString, vendorVersion);
+        QFETCH(QString, version);
 
         QVariantMap m;
         OpenGLInfoSourcePrivate::parseGLVersion(glVersion.toUtf8(), m);
         QCOMPARE(m.value(QLatin1String("vendorVersion")).toString(), vendorVersion);
+        QCOMPARE(m.value(QLatin1String("version")).toString(), version);
+
+        // don't overwrite version if we could correctly determine this by other means already
+        m.clear();
+        m.insert(QStringLiteral("version"), QStringLiteral("12345.6789"));
+        OpenGLInfoSourcePrivate::parseGLVersion(glVersion.toUtf8(), m);
+        QCOMPARE(m.value(QLatin1String("vendorVersion")).toString(), vendorVersion);
+        QCOMPARE(m.value(QLatin1String("version")).toString(), QLatin1String("12345.6789"));
     }
 
     void testParseGLESVersion_data()

@@ -36,7 +36,7 @@ public:
             glVersion = vendorVersion.left(idx);
             vendorVersion = vendorVersion.mid(idx + 1);
             if (!vendorVersion.isEmpty())
-                m.insert(QStringLiteral("vendorVersion"), vendorVersion);
+                m.insert(QStringLiteral("vendorVersion"), normalizeVendorVersionString(vendorVersion));
         } else {
             glVersion = vendorVersion;
         }
@@ -129,9 +129,11 @@ public:
 private:
     static inline QString normalizeVendorVersionString(const QString &s)
     {
-        if (!s.startsWith(QLatin1Char('(')) || !s.endsWith(QLatin1Char(')')))
-            return s;
-        return s.mid(1, s.size() - 2);
+        if (s.startsWith(QLatin1Char('(')) && s.endsWith(QLatin1Char(')')))
+            return s.mid(1, s.size() - 2);
+        if (s.startsWith(QLatin1String("- ")))
+            return s.mid(2);
+        return s;
     }
 
     static inline QString stripDetails(const QString &s)

@@ -72,6 +72,7 @@ private slots:
         QTest::newRow("mesa") << QStringLiteral("3.0 Mesa 17.1.1") << QStringLiteral("Mesa 17.1.1") << QStringLiteral("3.0");
         QTest::newRow("nvidia") << QStringLiteral("4.5 NVIDIA 375.26") << QStringLiteral("NVIDIA 375.26") << QStringLiteral("4.5");;
         QTest::newRow("intel osx") << QStringLiteral("2.1 INTEL-10.25.13") << QStringLiteral("INTEL-10.25.13") << QStringLiteral("2.1");;
+        QTest::newRow("intel win") << QStringLiteral("4.3 - Build 20.19.15.4568") << QStringLiteral("Build 20.19.15.4568") << QStringLiteral("4.3");
     }
 
     void testParseGLVersion()

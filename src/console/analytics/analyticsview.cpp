@@ -206,6 +206,7 @@ void AnalyticsView::updateChart()
     } else if (ui->actionSingularChart->isChecked()) {
         ui->singularChartView->setChart(aggr->singlularChart());
         ui->chartStack->setCurrentWidget(ui->singularPage);
+        aggr->setSingularTime(ui->timeSlider->value());
     }
 }
 
@@ -214,6 +215,9 @@ void AnalyticsView::updateTimeSliderRange()
     if (m_timeAggregationModel->rowCount() > 0) {
         ui->timeSlider->setRange(0, m_timeAggregationModel->rowCount() - 1);
         ui->timeLabel->setText(m_timeAggregationModel->index(ui->timeSlider->value(), 0).data(TimeAggregationModel::TimeDisplayRole).toString());
+        auto aggr = ui->chartType->currentData().value<Aggregator*>();
+        if (aggr)
+            aggr->setSingularTime(ui->timeSlider->value());
     }
 }
 

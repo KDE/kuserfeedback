@@ -102,10 +102,28 @@ public:
 
     static inline QString normalizeVendor(const char *vendor)
     {
-        auto v = QString::fromLocal8Bit(vendor);
+        const auto v = QString::fromLocal8Bit(vendor);
         if (v.startsWith(QLatin1String("Intel ")))
             return QStringLiteral("Intel");
         return v;
+    }
+
+    static inline QString normalizeRenderer(const char *renderer)
+    {
+        auto r = QString::fromLocal8Bit(renderer);
+        // remove vendor prefixes, we already have that in the vendor field
+        if (r.startsWith(QLatin1String("Mesa DRI ")))
+            r = r.mid(9);
+        if (r.startsWith(QLatin1String("Intel(R) ")))
+            r = r.mid(9);
+        if (r.startsWith(QLatin1String("Intel ")))
+            r = r.mid(6);
+
+        // remove excessive details that could enable fingerprinting
+        if (r.startsWith(QLatin1String("ANGLE ")) || r.startsWith(QLatin1String("Gallium ")))
+            r = stripDetails(r);
+
+        return r;
     }
 
 private:
@@ -114,6 +132,14 @@ private:
         if (!s.startsWith(QLatin1Char('(')) || !s.endsWith(QLatin1Char(')')))
             return s;
         return s.mid(1, s.size() - 2);
+    }
+
+    static inline QString stripDetails(const QString &s)
+    {
+        auto idx = s.indexOf(QLatin1String(" ("));
+        if (idx < 1 || !s.endsWith(QLatin1Char(')')))
+            return s;
+        return s.left(idx);
     }
 };
 

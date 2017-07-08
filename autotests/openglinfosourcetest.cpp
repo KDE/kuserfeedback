@@ -178,6 +178,28 @@ private slots:
        QCOMPARE(OpenGLInfoSourcePrivate::normalizeVendor(input.toLocal8Bit().constData()), vendor);
    }
 
+   void testNormalizeRenderer_data()
+   {
+       QTest::addColumn<QString>("input");
+       QTest::addColumn<QString>("renderer");
+
+       QTest::newRow("empty") << QString() << QString();
+       QTest::newRow("intel mesa") << QStringLiteral("Mesa DRI Intel(R) HD Graphics 520 (Skylake GT2)") << QStringLiteral("HD Graphics 520 (Skylake GT2)");
+       QTest::newRow("intel macOS") << QStringLiteral("Intel Iris Pro OpenGL Engine") << QStringLiteral("Iris Pro OpenGL Engine");
+       QTest::newRow("intel windows") << QStringLiteral("Intel(R) HD Graphics 4600") << QStringLiteral("HD Graphics 4600");
+       QTest::newRow("nvidia") << QStringLiteral("GeForce GTX 1060 6GB/PCIe/SSE2") << QStringLiteral("GeForce GTX 1060 6GB/PCIe/SSE2");
+       QTest::newRow("angle") << QStringLiteral("ANGLE (VirtualBox Graphics Adapter for Windows 8+ Direct3D9Ex vs_3_0 ps_3_0)") << QStringLiteral("ANGLE");
+       QTest::newRow("gallium") << QStringLiteral("Gallium 0.4 on AMD BARTS (DRM 2.49.0 / 4.11.1-1-default, LLVM 4.0.0)") << QStringLiteral("Gallium 0.4 on AMD BARTS");
+   }
+
+   void testNormalizeRenderer()
+   {
+       QFETCH(QString, input);
+       QFETCH(QString, renderer);
+
+       QCOMPARE(OpenGLInfoSourcePrivate::normalizeRenderer(input.toLocal8Bit().constData()), renderer);
+   }
+
 };
 
 QTEST_MAIN(OpenGLInfoSourceTest)

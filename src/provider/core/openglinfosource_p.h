@@ -57,7 +57,7 @@ public:
             if (idx > 0) {
                 const auto vendorVersion = rawVersion.mid(idx + 1);
                 if (!vendorVersion.isEmpty())
-                    m.insert(QStringLiteral("vendorVersion"), normalizeVendorString(vendorVersion));
+                    m.insert(QStringLiteral("vendorVersion"), normalizeVendorVersionString(vendorVersion));
                 m.insert(QStringLiteral("version"), rawVersion.left(idx));
             } else {
                 m.insert(QStringLiteral("version"), rawVersion);
@@ -100,8 +100,16 @@ public:
         }
     }
 
+    static inline QString normalizeVendor(const char *vendor)
+    {
+        auto v = QString::fromLocal8Bit(vendor);
+        if (v.startsWith(QLatin1String("Intel ")))
+            return QStringLiteral("Intel");
+        return v;
+    }
+
 private:
-    static inline QString normalizeVendorString(const QString &s)
+    static inline QString normalizeVendorVersionString(const QString &s)
     {
         if (!s.startsWith(QLatin1Char('(')) || !s.endsWith(QLatin1Char(')')))
             return s;

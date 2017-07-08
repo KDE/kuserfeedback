@@ -158,6 +158,26 @@ private slots:
         QCOMPARE(m.value(QLatin1String("glslVersion")).toString(), glslVersion);
    }
 
+   void testNormalizeVendor_data()
+   {
+       QTest::addColumn<QString>("input");
+       QTest::addColumn<QString>("vendor");
+
+       QTest::newRow("empty") << QString() << QString();
+       QTest::newRow("intel window") << QStringLiteral("Intel") << QStringLiteral("Intel");
+       QTest::newRow("intel linux") << QStringLiteral("Intel Open Source Technology Center") << QStringLiteral("Intel");
+       QTest::newRow("intel macOS") << QStringLiteral("Intel Inc.") << QStringLiteral("Intel");
+       QTest::newRow("nvidia") << QStringLiteral("NVIDIA Corporation") << QStringLiteral("NVIDIA Corporation");
+   }
+
+   void testNormalizeVendor()
+   {
+       QFETCH(QString, input);
+       QFETCH(QString, vendor);
+
+       QCOMPARE(OpenGLInfoSourcePrivate::normalizeVendor(input.toLocal8Bit().constData()), vendor);
+   }
+
 };
 
 QTEST_MAIN(OpenGLInfoSourceTest)

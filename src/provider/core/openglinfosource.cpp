@@ -50,7 +50,7 @@ QVariant OpenGLInfoSource::data()
         window.create();
         context.makeCurrent(&window);
         QOpenGLFunctions functions(&context);
-        m.insert(QStringLiteral("vendor"), QString::fromLocal8Bit(reinterpret_cast<const char*>(functions.glGetString(GL_VENDOR))));
+        m.insert(QStringLiteral("vendor"), OpenGLInfoSourcePrivate::normalizeVendor(reinterpret_cast<const char*>(functions.glGetString(GL_VENDOR))));
         m.insert(QStringLiteral("renderer"), QString::fromLocal8Bit(reinterpret_cast<const char*>(functions.glGetString(GL_RENDERER))));
 
         switch (context.openGLModuleType()) {

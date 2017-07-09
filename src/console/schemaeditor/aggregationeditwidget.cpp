@@ -21,6 +21,7 @@
 
 #include <core/aggregation.h>
 #include <model/aggregationeditormodel.h>
+#include <model/aggregationelementeditmodel.h>
 
 #include <QMenu>
 #include <QMessageBox>
@@ -32,7 +33,8 @@ AggregationEditWidget::AggregationEditWidget(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::AggregationEditWidget),
     m_model(new AggregationEditorModel(this)),
-    m_editorFactory(new SchemaEntryItemEditorFactory)
+    m_editorFactory(new SchemaEntryItemEditorFactory),
+    m_elementModel(new AggregationElementEditModel(this))
 {
     ui->setupUi(this);
 
@@ -40,11 +42,27 @@ AggregationEditWidget::AggregationEditWidget(QWidget* parent) :
     ui->aggregationView->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     qobject_cast<QStyledItemDelegate*>(ui->aggregationView->itemDelegate())->setItemEditorFactory(m_editorFactory.get());
     connect(ui->aggregationView, &QWidget::customContextMenuRequested, this, &AggregationEditWidget::contextMenu);
-    connect(ui->aggregationView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &AggregationEditWidget::updateState);
+    connect(ui->aggregationView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &AggregationEditWidget::selectionChanged);
     connect(m_model, &QAbstractItemModel::dataChanged, this, &AggregationEditWidget::productChanged);
+    connect(m_model, &QAbstractItemModel::dataChanged, this, &AggregationEditWidget::updateState);
 
     connect(ui->actionAddAggregation, &QAction::triggered, this, &AggregationEditWidget::addAggregation);
     connect(ui->actionDeleteAggregation, &QAction::triggered, this, &AggregationEditWidget::deleteAggregation);
+
+    ui->elementView->setModel(m_elementModel);
+    ui->elementView->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+    qobject_cast<QStyledItemDelegate*>(ui->elementView->itemDelegate())->setItemEditorFactory(m_editorFactory.get());
+    connect(ui->elementView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &AggregationEditWidget::updateState);
+    connect(m_elementModel, &QAbstractItemModel::dataChanged, this, [this]() {
+        auto p = product();
+        auto aggrs = p.aggregations();
+        aggrs[ui->aggregationView->selectionModel()->selectedRows().at(0).row()] = m_elementModel->aggregation();
+        p.setAggregations(aggrs);
+        m_model->setProduct(p);
+        emit productChanged();
+    });
+    connect(ui->addButton, &QPushButton::clicked, this, &AggregationEditWidget::addElement);
+    connect(ui->deleteButton, &QPushButton::clicked, this, &AggregationEditWidget::deleteElement);
 
     addActions({ ui->actionAddAggregation, ui->actionDeleteAggregation });
     updateState();
@@ -62,6 +80,15 @@ void AggregationEditWidget::setProduct(const Product& product)
     m_model->setProduct(product);
     m_editorFactory->setProduct(product);
     updateState();
+}
+
+Aggregation AggregationEditWidget::currentAggregation() const
+{
+    const auto rows = ui->aggregationView->selectionModel()->selectedRows();
+    if (rows.isEmpty())
+        return {};
+
+    return product().aggregations().at(rows.at(0).row());
 }
 
 void AggregationEditWidget::addAggregation()
@@ -95,10 +122,41 @@ void AggregationEditWidget::deleteAggregation()
     emit productChanged();
 }
 
+void AggregationEditWidget::addElement()
+{
+    auto aggr = m_elementModel->aggregation();
+    auto elems = aggr.elements();
+    elems.push_back({});
+    aggr.setElements(elems);
+    m_elementModel->setAggregation(aggr);
+}
+
+void AggregationEditWidget::deleteElement()
+{
+    auto aggr = m_elementModel->aggregation();
+    auto elems = aggr.elements();
+    elems.removeAt(ui->elementView->selectionModel()->selectedRows().at(0).row());
+    aggr.setElements(elems);
+    m_elementModel->setAggregation(aggr);
+
+    auto p = product();
+    auto aggrs = p.aggregations();
+    aggrs[ui->aggregationView->selectionModel()->selectedRows().at(0).row()] = aggr;
+    p.setAggregations(aggrs);
+    m_model->setProduct(p);
+    emit productChanged();
+}
+
 void AggregationEditWidget::updateState()
 {
     ui->actionAddAggregation->setEnabled(product().isValid());
     ui->actionDeleteAggregation->setEnabled(ui->aggregationView->selectionModel()->hasSelection());
+
+    const auto aggr = currentAggregation();
+    const auto isMultiElement = aggr.type() == Aggregation::Category;
+    ui->elementView->setEnabled(isMultiElement);
+    ui->addButton->setEnabled(isMultiElement);
+    ui->deleteButton->setEnabled(isMultiElement && ui->elementView->selectionModel()->hasSelection());
 }
 
 void AggregationEditWidget::contextMenu(QPoint pos)
@@ -106,4 +164,10 @@ void AggregationEditWidget::contextMenu(QPoint pos)
     QMenu menu;
     menu.addActions({ ui->actionAddAggregation, ui->actionDeleteAggregation });
     menu.exec(ui->aggregationView->viewport()->mapToGlobal(pos));
+}
+
+void AggregationEditWidget::selectionChanged()
+{
+    m_elementModel->setAggregation(currentAggregation());
+    updateState();
 }

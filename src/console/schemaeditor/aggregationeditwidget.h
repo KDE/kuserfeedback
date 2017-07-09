@@ -25,7 +25,9 @@
 namespace KUserFeedback {
 namespace Console {
 
+class Aggregation;
 class AggregationEditorModel;
+class AggregationElementEditModel;
 class Product;
 class SchemaEntryItemEditorFactory;
 
@@ -48,15 +50,20 @@ signals:
     void productChanged();
 
 private:
+    Aggregation currentAggregation() const;
     void addAggregation();
     void deleteAggregation();
+    void addElement();
+    void deleteElement();
 
     void updateState();
     void contextMenu(QPoint pos);
+    void selectionChanged();
 
     std::unique_ptr<Ui::AggregationEditWidget> ui;
     AggregationEditorModel *m_model;
     std::unique_ptr<SchemaEntryItemEditorFactory> m_editorFactory;
+    AggregationElementEditModel *m_elementModel;
 };
 }
 }

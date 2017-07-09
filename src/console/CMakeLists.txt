@@ -23,6 +23,7 @@ set(console_lib_srcs
     model/aggregateddatamodel.cpp
     model/aggregationeditormodel.cpp
     model/aggregationelementmodel.cpp
+    model/aggregationelementeditmodel.cpp
     model/categoryaggregationmodel.cpp
     model/datamodel.cpp
     model/extrarowsproxymodel.cpp

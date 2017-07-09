@@ -67,9 +67,15 @@ QVariant AggregationEditorModel::data(const QModelIndex& index, int role) const
             case 1:
                 return Util::enumToString(aggr.type());
             case 2:
+            {
                 if (aggr.elements().isEmpty())
                     return tr("<none>");
-                return aggr.elements().at(0).displayString();
+                QStringList l;
+                l.reserve(aggr.elements().size());
+                foreach (const auto &elem, aggr.elements())
+                    l.push_back(elem.displayString());
+                return l.join(QStringLiteral(", "));
+            }
         }
     } else if (role == Qt::EditRole) {
         const auto aggr = m_product.aggregations().at(index.row());
@@ -104,10 +110,14 @@ QVariant AggregationEditorModel::headerData(int section, Qt::Orientation orienta
 Qt::ItemFlags AggregationEditorModel::flags(const QModelIndex& index) const
 {
     const auto baseFlags = QAbstractTableModel::flags(index);
-    if (index.isValid())
-        return baseFlags | Qt::ItemIsEditable;
+    if (!index.isValid())
+        return baseFlags;
 
-    return baseFlags;
+    const auto aggr = m_product.aggregations().at(index.row());
+    if (aggr.type() == Aggregation::Category && index.column() == 2)
+        return baseFlags;
+
+    return baseFlags | Qt::ItemIsEditable;
 }
 
 bool AggregationEditorModel::setData(const QModelIndex& index, const QVariant& value, int role)

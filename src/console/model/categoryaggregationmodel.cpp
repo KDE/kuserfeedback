@@ -121,7 +121,7 @@ QVariant CategoryAggregationModel::headerData(int section, Qt::Orientation orien
 
 void CategoryAggregationModel::recompute()
 {
-    if (!m_sourceModel)
+    if (!m_sourceModel || m_depth > 2)
         return;
 
     const auto rowCount = m_sourceModel->rowCount();

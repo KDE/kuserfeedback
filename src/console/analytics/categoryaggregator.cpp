@@ -189,7 +189,7 @@ void CategoryAggregator::decorateSeries(QtCharts::QPieSeries* series, int ring) 
     series->setHoleSize(holeSize);
 
     for (auto slice : series->slices()) {
-        if (slice->value() > 0.0)
+        if (slice->value() > 0.01)
             slice->setLabelVisible(true);
     }
 }

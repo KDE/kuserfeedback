@@ -155,7 +155,7 @@ void RatioSetAggregator::updateSingularChart()
 void RatioSetAggregator::decoratePieSeries(QtCharts::QPieSeries *series) const
 {
     for (auto slice : series->slices()) {
-        if (slice->value() > 0.0)
+        if (slice->value() > 0.01)
             slice->setLabelVisible(true);
     }
 }

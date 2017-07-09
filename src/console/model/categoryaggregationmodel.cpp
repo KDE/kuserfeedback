@@ -121,7 +121,7 @@ QVariant CategoryAggregationModel::headerData(int section, Qt::Orientation orien
 
 void CategoryAggregationModel::recompute()
 {
-    if (!m_sourceModel || m_depth > 2)
+    if (!m_sourceModel)
         return;
 
     const auto rowCount = m_sourceModel->rowCount();
@@ -146,10 +146,10 @@ void CategoryAggregationModel::recompute()
     depthOffsets.resize(m_depth + 1);
     for (int i = 0; i < m_depth; ++i) { // for each depth layer...
         depthOffsets[i + 1] = { 0 };
+        int prevSize = 0;
         for (int j = 0; j < depthCategories.at(i).size(); ++j) { // ... and for each parent category ...
-            int prevSize = 0;
             for (int k = 0; k < depthCategories.at(i).at(j).size(); ++k) { // ... and for each category value...
-                const auto sampleSubSet = depthSamples.at(i).at(j + k);
+                const auto sampleSubSet = depthSamples.at(i).at(depthOffsets.at(i).at(j) + k);
                 QHash<QString, QVector<Sample>> catHash;
                 for (const auto &s : sampleSubSet) // ... and for each sample
                     catHash[sampleValue(s, i).toString()].push_back(s);
@@ -161,7 +161,7 @@ void CategoryAggregationModel::recompute()
                 depthCategories[i + 1].push_back(cats);
                 for (const auto &cat : cats)
                     depthSamples[i + 1].push_back(catHash.value(cat));
-                if (k > 0)
+                if (k > 0 || j > 0)
                     depthOffsets[i + 1].push_back(depthOffsets.at(i + 1).constLast() + prevSize);
                 prevSize = cats.size();
             }

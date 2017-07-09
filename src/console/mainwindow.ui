@@ -188,6 +188,9 @@
    <property name="toolTip">
     <string>Connect to analytics server.</string>
    </property>
+   <property name="shortcut">
+    <string>F2</string>
+   </property>
   </action>
   <action name="actionQuit">
    <property name="icon">

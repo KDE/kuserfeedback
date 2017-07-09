@@ -189,17 +189,6 @@
         {
             "elements": [
                 {
-                    "schemaEntry": "opengl",
-                    "schemaEntryElement": "profile",
-                    "type": "value"
-                }
-            ],
-            "name": "OpenGL Profile Distribution",
-            "type": "category"
-        },
-        {
-            "elements": [
-                {
                     "schemaEntry": "compiler",
                     "schemaEntryElement": "type",
                     "type": "value"
@@ -261,6 +250,11 @@
                 {
                     "schemaEntry": "opengl",
                     "schemaEntryElement": "version",
+                    "type": "value"
+                },
+                {
+                    "schemaEntry": "opengl",
+                    "schemaEntryElement": "profile",
                     "type": "value"
                 }
             ],

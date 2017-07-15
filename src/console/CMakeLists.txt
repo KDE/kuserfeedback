@@ -58,6 +58,7 @@ set(console_srcs
     analytics/aggregator.cpp
     analytics/analyticsview.cpp
     analytics/categoryaggregator.cpp
+    analytics/chartexportdialog.cpp
     analytics/chartutil.cpp
     analytics/numericaggregator.cpp
     analytics/ratiosetaggregator.cpp
@@ -79,7 +80,16 @@ set(console_srcs
 add_executable(KUserFeedbackConsoleApplication ${console_srcs})
 target_compile_features(KUserFeedbackConsoleApplication PRIVATE cxx_generic_lambdas)
 set_target_properties(KUserFeedbackConsoleApplication PROPERTIES OUTPUT_NAME UserFeedbackConsole)
-target_link_libraries(KUserFeedbackConsoleApplication Qt5::Widgets Qt5::Network Qt5::Charts KUserFeedbackWidgets KUserFeedbackConsole KUserFeedbackCommon)
+target_link_libraries(KUserFeedbackConsoleApplication
+    Qt5::Widgets
+    Qt5::Network
+    Qt5::Charts
+    Qt5::PrintSupport
+    Qt5::Svg
+    KUserFeedbackWidgets
+    KUserFeedbackConsole
+    KUserFeedbackCommon
+)
 
 install(TARGETS KUserFeedbackConsoleApplication ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 if(UNIX AND NOT APPLE)

@@ -15,17 +15,41 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "chartutil.h"
+#ifndef KUSERFEEDBACK_CONSOLE_CHARTEXPORTDIALOG_H
+#define KUSERFEEDBACK_CONSOLE_CHARTEXPORTDIALOG_H
 
-#include <QtCharts/QChart>
+#include <QDialog>
 
-#include <QApplication>
+#include <memory>
 
-using namespace KUserFeedback::Console;
-using namespace QtCharts;
+namespace KUserFeedback {
+namespace Console {
 
-void ChartUtil::applyTheme(QtCharts::QChart *chart)
+namespace Ui
 {
-    chart->setTheme(qApp->palette().color(QPalette::Window).lightnessF() < 0.25 ? QChart::ChartThemeDark : QChart::ChartThemeLight);
-    chart->setBackgroundVisible(false);
+class ChartExportDialog;
 }
+
+class ChartExportDialog : public QDialog
+{
+    Q_OBJECT
+public:
+    enum Type { Image, SVG, PDF };
+
+    explicit ChartExportDialog(QWidget *parent);
+    ~ChartExportDialog();
+
+    Type type() const;
+    QString filename() const;
+    QSize size() const;
+
+private:
+    void fileButtonClicked();
+    void validate();
+
+    std::unique_ptr<Ui::ChartExportDialog> ui;
+};
+
+}}
+
+#endif // KUSERFEEDBACK_CONSOLE_CHARTEXPORTDIALOG_H

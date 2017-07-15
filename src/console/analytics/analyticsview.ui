@@ -207,6 +207,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset theme="office-chart-line-stacked"/>
+   </property>
    <property name="text">
     <string>&amp;Timeline Chart</string>
    </property>
@@ -218,11 +221,25 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset theme="office-chart-pie"/>
+   </property>
    <property name="text">
     <string>&amp;Singular Chart</string>
    </property>
    <property name="toolTip">
     <string>Show chart for a single time interval.</string>
+   </property>
+  </action>
+  <action name="actionExportChart">
+   <property name="icon">
+    <iconset theme="document-save-as"/>
+   </property>
+   <property name="text">
+    <string>Export &amp;Chart...</string>
+   </property>
+   <property name="toolTip">
+    <string>Export the current chart as image, SVG or PDF.</string>
    </property>
   </action>
  </widget>

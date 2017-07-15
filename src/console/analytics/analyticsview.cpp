@@ -20,6 +20,7 @@
 
 #include "aggregator.h"
 #include "categoryaggregator.h"
+#include "chartexportdialog.h"
 #include "chartutil.h"
 #include "numericaggregator.h"
 #include "ratiosetaggregator.h"
@@ -36,10 +37,13 @@
 
 #include <QFile>
 #include <QFileDialog>
+#include <QImage>
 #include <QMenu>
 #include <QMessageBox>
 #include <QNetworkReply>
+#include <QPdfWriter>
 #include <QSettings>
+#include <QSvgGenerator>
 
 using namespace KUserFeedback::Console;
 
@@ -96,6 +100,7 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
 
     ui->actionReload->setShortcut(QKeySequence::Refresh);
     connect(ui->actionReload, &QAction::triggered, m_dataModel, &DataModel::reload);
+    connect(ui->actionExportChart, &QAction::triggered, this, &AnalyticsView::exportChart);
     connect(ui->actionExportData, &QAction::triggered, this, &AnalyticsView::exportData);
     connect(ui->actionImportData, &QAction::triggered, this, &AnalyticsView::importData);
 
@@ -103,6 +108,7 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
         timeAggrMenu->menuAction(),
         chartMode->menuAction(),
         ui->actionReload,
+        ui->actionExportChart,
         ui->actionExportData,
         ui->actionImportData
     });
@@ -288,4 +294,66 @@ void AnalyticsView::importData()
             m_dataModel->reload();
         }
     });
+}
+
+void AnalyticsView::exportChart()
+{
+    ChartExportDialog dlg(this);
+    if (dlg.exec() != QDialog::Accepted)
+        return;
+
+    QtCharts::QChart *chart = nullptr;
+    QGraphicsScene *scene = nullptr;
+    if (ui->actionTimelineChart->isChecked()) {
+        chart = ui->timelineChartView->chart();
+        scene = ui->timelineChartView->scene();
+    } else if (ui->actionSingularChart->isChecked()) {
+        chart = ui->singularChartView->chart();
+        scene = ui->singularChartView->scene();
+    }
+    Q_ASSERT(chart);
+    Q_ASSERT(scene);
+
+    chart->setTheme(QtCharts::QChart::ChartThemeLight);
+
+    switch (dlg.type()) {
+        case ChartExportDialog::Image:
+        {
+            QImage img(dlg.size(), QImage::Format_ARGB32_Premultiplied);
+            img.fill(Qt::transparent);
+            QPainter p(&img);
+            p.setRenderHint(QPainter::HighQualityAntialiasing);
+            scene->render(&p, QRectF(QPoint(), dlg.size()), scene->sceneRect());
+            img.save(dlg.filename());
+            break;
+        }
+        case ChartExportDialog::SVG:
+        {
+            QSvgGenerator svg;
+            svg.setFileName(dlg.filename());
+            svg.setSize(scene->sceneRect().size().toSize());
+            svg.setViewBox(scene->sceneRect());
+            svg.setTitle(ui->chartType->currentText());
+
+            QPainter p(&svg);
+            p.setRenderHint(QPainter::HighQualityAntialiasing);
+            scene->render(&p);
+            break;
+        }
+        case ChartExportDialog::PDF:
+        {
+            QPdfWriter pdf(dlg.filename());
+            pdf.setCreator(QStringLiteral("UserFeedbackConsole"));
+            pdf.setTitle(ui->chartType->currentText());
+            if (scene->sceneRect().width() > scene->sceneRect().height())
+                pdf.setPageOrientation(QPageLayout::Landscape);
+
+            QPainter p(&pdf);
+            p.setRenderHint(QPainter::HighQualityAntialiasing);
+            scene->render(&p);
+            break;
+        }
+    }
+
+    ChartUtil::applyTheme(chart);
 }

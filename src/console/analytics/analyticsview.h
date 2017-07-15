@@ -67,6 +67,7 @@ private:
 
     void exportData();
     void importData();
+    void exportChart();
 
     std::unique_ptr<Ui::AnalyticsView> ui;
 

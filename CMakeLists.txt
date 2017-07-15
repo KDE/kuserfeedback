@@ -59,7 +59,7 @@ endif()
 if(Qt5Core_FOUND)
     set_package_properties(Qt5Core PROPERTIES TYPE REQUIRED)
     find_package(Qt5 NO_MODULE REQUIRED COMPONENTS Network)
-    find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Help Qml)
+    find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Help Qml Svg PrintSupport)
 
     set_package_properties(Qt5 PROPERTIES URL "http://qt-project.org/")
     set_package_properties(Qt5Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for feedback configuration and notification widgets.")

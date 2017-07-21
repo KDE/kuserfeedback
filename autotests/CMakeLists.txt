@@ -23,6 +23,7 @@ uf_add_test(datasourcetest KUserFeedbackCore Qt5::Gui) # needs Gui for ScreenInf
 uf_add_test(openglinfosourcetest.cpp KUserFeedbackCore Qt5::Gui)
 uf_add_test(providertest KUserFeedbackCore Qt5::Gui)
 uf_add_test(selectionratiosourcetest.cpp KUserFeedbackCore Qt5::Gui)
+uf_add_test(surveyprovidertest.cpp KUserFeedbackCore)
 
 uf_add_test(feedbackconfigtest KUserFeedbackWidgets)
 

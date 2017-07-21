@@ -186,9 +186,10 @@ private slots:
 
        QTest::newRow("empty") << QString() << QString();
        QTest::newRow("intel mesa") << QStringLiteral("Mesa DRI Intel(R) HD Graphics 520 (Skylake GT2)") << QStringLiteral("HD Graphics 520 (Skylake GT2)");
-       QTest::newRow("intel macOS") << QStringLiteral("Intel Iris Pro OpenGL Engine") << QStringLiteral("Iris Pro OpenGL Engine");
+       QTest::newRow("intel macOS") << QStringLiteral("Intel Iris Pro OpenGL Engine") << QStringLiteral("Iris Pro");
        QTest::newRow("intel windows") << QStringLiteral("Intel(R) HD Graphics 4600") << QStringLiteral("HD Graphics 4600");
        QTest::newRow("nvidia") << QStringLiteral("GeForce GTX 1060 6GB/PCIe/SSE2") << QStringLiteral("GeForce GTX 1060 6GB/PCIe/SSE2");
+       QTest::newRow("nvidia macos") << QStringLiteral("NVIDIA GeForce GT 750M OpenGL Engine") << QStringLiteral("GeForce GT 750M");
        QTest::newRow("angle") << QStringLiteral("ANGLE (VirtualBox Graphics Adapter for Windows 8+ Direct3D9Ex vs_3_0 ps_3_0)") << QStringLiteral("ANGLE");
        QTest::newRow("gallium") << QStringLiteral("Gallium 0.4 on AMD BARTS (DRM 2.49.0 / 4.11.1-1-default, LLVM 4.0.0)") << QStringLiteral("Gallium 0.4 on AMD BARTS");
    }

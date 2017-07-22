@@ -1,6 +1,13 @@
 find_program(PHP_EXECUTABLE php)
 if (PHP_EXECUTABLE)
   set(Php_FOUND TRUE)
+
+  # list extensions
+  execute_process(COMMAND ${PHP_EXECUTABLE} -m OUTPUT_VARIABLE _module_list)
+  string(REGEX REPLACE "\\[[A-Za-z ]+\\]" "" _module_list ${_module_list})
+  string(REPLACE "\n" ";" PHP_MODULES ${_module_list})
+  list(REMOVE_ITEM PHP_MODULES "")
+  message(STATUS "Found PHP modules: ${PHP_MODULES}")
 endif()
 
 # validate a list of PHP files

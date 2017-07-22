@@ -43,13 +43,14 @@ if(TARGET KUserFeedbackConsole)
     uf_add_test(categoryaggregationmodeltest KUserFeedbackTestUtils)
     uf_add_test(numericaggregationmodeltest KUserFeedbackTestUtils)
     uf_add_test(ratiosetaggregationmodeltest KUserFeedbackTestUtils)
+endif()
 
-if(Php_FOUND)
+list(FIND PHP_MODULES "PDO" _has_pdo)
+if(TARGET KUserFeedbackConsole AND _has_pdo GREATER -1)
     uf_add_test(productapitest KUserFeedbackTestUtils)
     uf_add_test(productmodeltest KUserFeedbackTestUtils)
     uf_add_test(surveyapitest KUserFeedbackTestUtils)
     uf_add_test(submittest KUserFeedbackTestUtils KUserFeedbackCore Qt5::Gui)
-endif()
 endif()
 
 set(php_test_srcs

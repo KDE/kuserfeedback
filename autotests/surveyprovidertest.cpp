@@ -60,6 +60,7 @@ private slots:
         QVERIFY(s1.isValid());
 
         Provider p;
+        p.setSurveyInterval(0);
         QSignalSpy spy(&p, SIGNAL(surveyAvailable(KUserFeedback::SurveyInfo)));
         QVERIFY(spy.isValid());
 
@@ -79,6 +80,22 @@ private slots:
         QMetaObject::invokeMethod(&p, "selectSurvey", Q_RETURN_ARG(bool, rv), Q_ARG(KUserFeedback::SurveyInfo, s1));
         QVERIFY(!rv);
         QVERIFY(spy.isEmpty());
+
+        SurveyInfo s2;
+        s2.setUuid(QUuid::createUuid());
+        s2.setUrl(QUrl(QStringLiteral("https://www.kde.org/survey2")));
+        QVERIFY(s2.isValid());
+
+        // next survey, but interval hasn't passed yet
+        p.setSurveyInterval(90);
+        QMetaObject::invokeMethod(&p, "selectSurvey", Q_RETURN_ARG(bool, rv), Q_ARG(KUserFeedback::SurveyInfo, s2));
+        QVERIFY(!rv);
+        QVERIFY(spy.isEmpty());
+
+        // survey interval passed
+        p.setSurveyInterval(0);
+        QMetaObject::invokeMethod(&p, "selectSurvey", Q_RETURN_ARG(bool, rv), Q_ARG(KUserFeedback::SurveyInfo, s2));
+        QVERIFY(rv);
     }
 };
 

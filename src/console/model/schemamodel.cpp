@@ -136,11 +136,13 @@ QVariant SchemaModel::data(const QModelIndex& index, int role) const
             case 0:
                 if (role == Qt::DisplayRole || role == Qt::EditRole)
                     return elem.name();
+                break;
             case 1:
                 if (role == Qt::DisplayRole)
                     return Util::enumToString(elem.type());
                 else if (role == Qt::EditRole)
                     return QVariant::fromValue(elem.type());
+                break;
         }
     }
 

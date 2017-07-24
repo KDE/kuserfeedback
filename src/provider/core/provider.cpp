@@ -113,6 +113,18 @@ std::unique_ptr<QSettings> ProviderPrivate::makeSettings() const
     return s;
 }
 
+std::unique_ptr<QSettings> ProviderPrivate::makeGlobalSettings() const
+{
+    const auto org =
+#ifdef Q_OS_MAC
+        QStringLiteral("kde.org");
+#else
+        QStringLiteral("KDE");
+#endif
+    std::unique_ptr<QSettings> s(new QSettings(org, QStringLiteral("UserFeedback")));
+    return s;
+}
+
 void ProviderPrivate::load()
 {
     auto s = makeSettings();
@@ -138,6 +150,10 @@ void ProviderPrivate::load()
         source->load(s.get());
         s->endGroup();
     }
+
+    auto g = makeGlobalSettings();
+    g->beginGroup(QStringLiteral("UserFeedback"));
+    lastSurveyTime = std::max(g->value(QStringLiteral("LastSurvey")).toDateTime(), lastSurveyTime);
 }
 
 void ProviderPrivate::store()
@@ -163,6 +179,13 @@ void ProviderPrivate::store()
 void ProviderPrivate::storeOne(const QString &key, const QVariant &value)
 {
     auto s = makeSettings();
+    s->beginGroup(QStringLiteral("UserFeedback"));
+    s->setValue(key, value);
+}
+
+void ProviderPrivate::storeOneGlobal(const QString &key, const QVariant &value)
+{
+    auto s = makeGlobalSettings();
     s->beginGroup(QStringLiteral("UserFeedback"));
     s->setValue(key, value);
 }
@@ -614,6 +637,8 @@ void Provider::surveyCompleted(const SurveyInfo &info)
     s->beginGroup(QStringLiteral("UserFeedback"));
     s->setValue(QStringLiteral("LastSurvey"), d->lastSurveyTime);
     s->setValue(QStringLiteral("CompletedSurveys"), d->completedSurveys);
+
+    d->storeOneGlobal(QStringLiteral("LastSurvey"), d->lastSurveyTime);
 }
 
 void Provider::submit()

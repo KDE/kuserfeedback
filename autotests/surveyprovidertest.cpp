@@ -48,10 +48,15 @@ private slots:
     void testSurveySelect()
     {
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.surveyprovidertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastSurvey"));
             s.remove(QLatin1String("CompletedSurveys"));
+        }
+        {
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback"));;
+            s.beginGroup(QLatin1String("UserFeedback"));
+            s.remove(QLatin1String("LastSurvey"));
         }
 
         SurveyInfo s1;
@@ -60,7 +65,7 @@ private slots:
         QVERIFY(s1.isValid());
 
         Provider p;
-        p.setSurveyInterval(0);
+        p.setSurveyInterval(90);
         QSignalSpy spy(&p, SIGNAL(surveyAvailable(KUserFeedback::SurveyInfo)));
         QVERIFY(spy.isValid());
 
@@ -96,6 +101,17 @@ private slots:
         p.setSurveyInterval(0);
         QMetaObject::invokeMethod(&p, "selectSurvey", Q_RETURN_ARG(bool, rv), Q_ARG(KUserFeedback::SurveyInfo, s2));
         QVERIFY(rv);
+
+        // global survey coordination prevents next survey
+        p.setSurveyInterval(90);
+        {
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.surveyprovidertest"));;
+            s.beginGroup(QLatin1String("UserFeedback"));
+            s.remove(QLatin1String("LastSurvey"));
+            s.remove(QLatin1String("CompletedSurveys"));
+        }
+        QMetaObject::invokeMethod(&p, "selectSurvey", Q_RETURN_ARG(bool, rv), Q_ARG(KUserFeedback::SurveyInfo, s1));
+        QVERIFY(!rv);
     }
 };
 

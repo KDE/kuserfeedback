@@ -26,6 +26,7 @@
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QStandardPaths>
 #endif
+#include <QUuid>
 
 using namespace KUserFeedback;
 

@@ -154,6 +154,7 @@ void ProviderPrivate::load()
     auto g = makeGlobalSettings();
     g->beginGroup(QStringLiteral("UserFeedback"));
     lastSurveyTime = std::max(g->value(QStringLiteral("LastSurvey")).toDateTime(), lastSurveyTime);
+    lastEncouragementTime = std::max(g->value(QStringLiteral("LastEncouragement")).toDateTime(), lastEncouragementTime);
 }
 
 void ProviderPrivate::store()
@@ -432,7 +433,7 @@ void ProviderPrivate::scheduleEncouragement()
         timeToEncouragement = std::max(timeToEncouragement, encouragementTime - currentApplicationTime());
     if (lastEncouragementTime.isValid()) {
         Q_ASSERT(encouragementInterval > 0);
-        const auto targetTime = lastEncouragementTime.addDays(encouragementDelay);
+        const auto targetTime = lastEncouragementTime.addDays(encouragementInterval);
         timeToEncouragement = std::max(timeToEncouragement, (int)QDateTime::currentDateTime().secsTo(targetTime));
     }
     encouragementTimer.start(timeToEncouragement * 1000);
@@ -442,6 +443,7 @@ void ProviderPrivate::emitShowEncouragementMessage()
 {
     lastEncouragementTime = QDateTime::currentDateTime(); // TODO make this explicit, in case the host application decides to delay?
     storeOne(QStringLiteral("LastEncouragement"), lastEncouragementTime);
+    storeOneGlobal(QStringLiteral("LastEncouragement"), lastEncouragementTime);
     emit q->showEncouragementMessage();
 }
 

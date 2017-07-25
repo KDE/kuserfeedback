@@ -45,6 +45,13 @@ private slots:
 #endif
     }
 
+    void init()
+    {
+        QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback"));;
+        s.beginGroup(QLatin1String("UserFeedback"));
+        s.remove(QLatin1String("LastEncouragement"));
+    }
+
     void testProductId()
     {
         Provider p;
@@ -206,6 +213,49 @@ private slots:
             p.setApplicationStartsUntilEncouragement(0);
             p.setEncouragementInterval(1);
             QVERIFY(!spy.wait(10));
+        }
+#endif
+    }
+
+    void testGlobalEncouragementCoordination()
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+        {
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            s.beginGroup(QLatin1String("UserFeedback"));
+            s.remove(QLatin1String("LastEncouragement"));
+        }
+
+        {
+            Provider p;
+            p.setSurveyInterval(-1);
+            p.setTelemetryMode(Provider::NoTelemetry);
+            QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
+            QVERIFY(spy.isValid());
+            p.setEncouragementDelay(0);
+            p.setApplicationStartsUntilEncouragement(0);
+            p.setEncouragementInterval(1);
+            QVERIFY(spy.wait(1000));
+            QCOMPARE(spy.count(), 1);
+        }
+
+        // would qualify for encouragement, but global coordination should prevent it
+        {
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            s.beginGroup(QLatin1String("UserFeedback"));
+            s.remove(QLatin1String("LastEncouragement"));
+        }
+
+        {
+            Provider p;
+            p.setSurveyInterval(-1);
+            p.setTelemetryMode(Provider::NoTelemetry);
+            QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
+            QVERIFY(spy.isValid());
+            p.setEncouragementDelay(0);
+            p.setApplicationStartsUntilEncouragement(0);
+            p.setEncouragementInterval(1);
+            QVERIFY(!spy.wait(100));
         }
 #endif
     }

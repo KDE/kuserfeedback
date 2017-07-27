@@ -70,7 +70,14 @@ private slots:
         QSignalSpy spy(&p, SIGNAL(surveyAvailable(KUserFeedback::SurveyInfo)));
         QVERIFY(spy.isValid());
 
+        // global kill switch prevents survey
         bool rv = false;
+        p.setEnabled(false);
+        QMetaObject::invokeMethod(&p, "selectSurvey", Q_RETURN_ARG(bool, rv), Q_ARG(KUserFeedback::SurveyInfo, s1));
+        QVERIFY(!rv);
+        QVERIFY(spy.isEmpty());
+
+        p.setEnabled(true);
         QMetaObject::invokeMethod(&p, "selectSurvey", Q_RETURN_ARG(bool, rv), Q_ARG(KUserFeedback::SurveyInfo, s1));
         QVERIFY(rv);
         QCOMPARE(spy.size(), 1);

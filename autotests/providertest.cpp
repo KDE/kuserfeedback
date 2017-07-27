@@ -50,6 +50,7 @@ private slots:
         QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback"));;
         s.beginGroup(QLatin1String("UserFeedback"));
         s.remove(QLatin1String("LastEncouragement"));
+        s.remove(QLatin1String("Enabled"));
     }
 
     void testProductId()
@@ -329,6 +330,38 @@ private slots:
         }
     }
 
+    void testGlobalKillSwitch()
+    {
+        {
+            Provider p1;
+            QVERIFY(p1.isEnabled());
+
+            p1.setEnabled(false);
+            QVERIFY(!p1.isEnabled());
+        }
+
+        Provider p2;
+        QVERIFY(!p2.isEnabled());
+
+        // check encouragements are disabled
+        {
+            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            s.beginGroup(QLatin1String("UserFeedback"));
+            s.remove(QLatin1String("LastEncouragement"));
+        }
+
+        {
+            Provider p;
+            p.setSurveyInterval(-1);
+            p.setTelemetryMode(Provider::NoTelemetry);
+            QSignalSpy spy(&p, SIGNAL(showEncouragementMessage()));
+            QVERIFY(spy.isValid());
+            p.setEncouragementDelay(0);
+            p.setApplicationStartsUntilEncouragement(0);
+            p.setEncouragementInterval(1);
+            QVERIFY(!spy.wait(100));
+        }
+    }
 };
 
 QTEST_MAIN(ProviderTest)

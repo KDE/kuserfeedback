@@ -302,6 +302,8 @@ QByteArray ProviderPrivate::jsonData(Provider::TelemetryMode mode) const
 void ProviderPrivate::scheduleNextSubmission()
 {
     submissionTimer.stop();
+    if (!q->isEnabled())
+        return;
     if (submissionInterval <= 0 || (telemetryMode == Provider::NoTelemetry && surveyInterval < 0))
         return;
 
@@ -375,7 +377,7 @@ QVariant ProviderPrivate::sourceData(const QString& sourceName) const
 bool ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
 {
     qCDebug(Log) << "got survey:" << survey.url() << survey.target();
-    if (!survey.isValid() || completedSurveys.contains(survey.uuid().toString()))
+    if (!q->isEnabled() || !survey.isValid() || completedSurveys.contains(survey.uuid().toString()))
         return false;
 
     if (lastSurveyTime.addDays(surveyInterval) > QDateTime::currentDateTime())
@@ -410,6 +412,8 @@ Provider::TelemetryMode ProviderPrivate::highestTelemetryMode() const
 void ProviderPrivate::scheduleEncouragement()
 {
     encouragementTimer.stop();
+    if (!q->isEnabled())
+        return;
 
     // already done, not repetition
     if (lastEncouragementTime.isValid() && encouragementInterval <= 0)
@@ -468,6 +472,21 @@ Provider::Provider(QObject *parent) :
 Provider::~Provider()
 {
     delete d;
+}
+
+bool Provider::isEnabled() const
+{
+    auto s = d->makeGlobalSettings();
+    s->beginGroup(QStringLiteral("UserFeedback"));
+    return s->value(QStringLiteral("Enabled"), true).toBool();
+}
+
+void Provider::setEnabled(bool enabled)
+{
+    if (enabled == isEnabled())
+        return;
+    d->storeOneGlobal(QStringLiteral("Enabled"), enabled);
+    emit enabledChanged();
 }
 
 QString Provider::productIdentifier() const
@@ -645,6 +664,10 @@ void Provider::surveyCompleted(const SurveyInfo &info)
 
 void Provider::submit()
 {
+    if (!isEnabled()) {
+        qCWarning(Log) << "Global kill switch is enabled";
+        return;
+    }
     if (d->productId.isEmpty()) {
         qCWarning(Log) << "No productId specified!";
         return;

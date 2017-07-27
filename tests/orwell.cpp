@@ -62,6 +62,7 @@ Orwell::Orwell(QWidget* parent) :
         provider->setSurveyInterval(value);
     });
 
+    ui->actionContribute->setVisible(provider->isEnabled());
     connect(ui->actionContribute, &QAction::triggered, this, [this]() {
         KUserFeedback::FeedbackConfigDialog dlg(this);
         dlg.setFeedbackProvider(provider.get());

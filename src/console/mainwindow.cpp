@@ -130,6 +130,7 @@ MainWindow::MainWindow() :
     connect(ui->actionUserManual, &QAction::triggered, this, []() {
         HelpController::openContents();
     });
+    ui->actionContribute->setVisible(m_feedbackProvider->isEnabled());
     connect(ui->actionContribute, &QAction::triggered, this, [this]() {
         FeedbackConfigDialog dlg(this);
         dlg.setFeedbackProvider(m_feedbackProvider);

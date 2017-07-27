@@ -62,6 +62,7 @@ ApplicationWindow {
                             y: menuButton.height
                             MenuItem {
                                 text: "Contribute..."
+                                visible: provider.enabled
                                 onTriggered: {
                                     stackView.push(contributePage);
                                     stackView.currentItem.provider = provider;

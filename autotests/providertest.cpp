@@ -343,6 +343,7 @@ private slots:
         Provider p2;
         QVERIFY(!p2.isEnabled());
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         // check encouragements are disabled
         {
             QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
@@ -361,6 +362,7 @@ private slots:
             p.setEncouragementInterval(1);
             QVERIFY(!spy.wait(100));
         }
+#endif
     }
 };
 

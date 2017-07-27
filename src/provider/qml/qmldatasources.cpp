@@ -23,6 +23,7 @@
 #include <LocaleInfoSource>
 #include <OpenGLInfoSource>
 #include <PlatformInfoSource>
+#include <QPAInfoSource>
 #include <QtVersionSource>
 #include <ScreenInfoSource>
 #include <StartCountSource>
@@ -38,6 +39,7 @@ MAKE_BASIC_QML_WRAPPER(CpuInfoSource)
 MAKE_BASIC_QML_WRAPPER(LocaleInfoSource)
 MAKE_BASIC_QML_WRAPPER(OpenGLInfoSource)
 MAKE_BASIC_QML_WRAPPER(PlatformInfoSource)
+MAKE_BASIC_QML_WRAPPER(QPAInfoSource)
 MAKE_BASIC_QML_WRAPPER(QtVersionSource)
 MAKE_BASIC_QML_WRAPPER(ScreenInfoSource)
 MAKE_BASIC_QML_WRAPPER(StartCountSource)

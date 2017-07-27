@@ -28,6 +28,7 @@
 #include <OpenGLInfoSource>
 #include <PlatformInfoSource>
 #include <PropertyRatioSource>
+#include <QPAInfoSource>
 #include <QtVersionSource>
 #include <ScreenInfoSource>
 #include <StartCountSource>
@@ -123,6 +124,7 @@ int main(int argc, char** argv)
     provider->addDataSource(new KUserFeedback::LocaleInfoSource);
     provider->addDataSource(new KUserFeedback::OpenGLInfoSource);
     provider->addDataSource(new KUserFeedback::PlatformInfoSource);
+    provider->addDataSource(new KUserFeedback::QPAInfoSource);
     provider->addDataSource(new KUserFeedback::QtVersionSource);
     provider->addDataSource(new KUserFeedback::ScreenInfoSource);
     provider->addDataSource(new KUserFeedback::StartCountSource);

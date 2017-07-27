@@ -8,6 +8,7 @@
         <file>opengl.schema</file>
         <file>platform.schema</file>
         <file>propertyRatio.schema</file>
+        <file>qpa.schema</file>
         <file>qtVersion.schema</file>
         <file>screens.schema</file>
         <file>style.schema</file>

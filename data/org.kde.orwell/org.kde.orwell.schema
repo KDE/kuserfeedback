@@ -276,6 +276,17 @@
             ],
             "name": "OpenGL GLSL Version Distribution",
             "type": "category"
+        },
+        {
+            "elements": [
+                {
+                    "schemaEntry": "qpa",
+                    "schemaEntryElement": "name",
+                    "type": "value"
+                }
+            ],
+            "name": "Qt Platform Plugin Distribution",
+            "type": "category"
         }
     ],
     "name": "org.kde.orwell",
@@ -450,6 +461,16 @@
                 }
             ],
             "name": "compiler",
+            "type": "scalar"
+        },
+        {
+            "elements": [
+                {
+                    "name": "name",
+                    "type": "string"
+                }
+            ],
+            "name": "qpa",
             "type": "scalar"
         }
     ]

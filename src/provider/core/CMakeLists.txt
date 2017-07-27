@@ -11,6 +11,7 @@ set(userfeedback_core_srcs
     platforminfosource.cpp
     propertyratiosource.cpp
     provider.cpp
+    qpainfosource.cpp
     qtversionsource.cpp
     screeninfosource.cpp
     selectionratiosource.cpp
@@ -50,6 +51,7 @@ ecm_generate_headers(KUserFeedbackCore_HEADERS
         PlatformInfoSource
         PropertyRatioSource
         Provider
+        QPAInfoSource
         QtVersionSource
         ScreenInfoSource
         StartCountSource

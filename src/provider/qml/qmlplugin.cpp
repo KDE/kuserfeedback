@@ -40,6 +40,7 @@ void QmlPlugin::registerTypes(const char* uri)
     qmlRegisterType<QmlLocaleInfoSource>(uri, 1, 0, "LocaleInfoSource");
     qmlRegisterType<QmlOpenGLInfoSource>(uri, 1, 0, "OpenGLInfoSource");
     qmlRegisterType<QmlPlatformInfoSource>(uri, 1, 0, "PlatformInfoSource");
+    qmlRegisterType<QmlQPAInfoSource>(uri, 1, 0, "QPAInfoSource");
     qmlRegisterType<QmlQtVersionSource>(uri, 1, 0, "QtVersionSource");
     qmlRegisterType<QmlScreenInfoSource>(uri, 1, 0, "ScreenInfoSource");
     qmlRegisterType<QmlStartCountSource>(uri, 1, 0, "StartCountSource");

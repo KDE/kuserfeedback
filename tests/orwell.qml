@@ -102,6 +102,7 @@ ApplicationWindow {
                 KUserFeedback.LocaleInfoSource {}
                 KUserFeedback.OpenGLInfoSource{}
                 KUserFeedback.PlatformInfoSource {}
+                KUserFeedback.QPAInfoSource {}
                 KUserFeedback.QtVersionSource {}
                 KUserFeedback.ScreenInfoSource {}
                 KUserFeedback.StartCountSource {}

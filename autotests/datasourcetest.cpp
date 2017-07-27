@@ -21,6 +21,7 @@
 #include <localeinfosource.h>
 #include <platforminfosource.h>
 #include <propertyratiosource.h>
+#include <qpainfosource.h>
 #include <qtversionsource.h>
 #include <screeninfosource.h>
 #include <startcountsource.h>
@@ -245,11 +246,21 @@ private slots:
     {
         CompilerInfoSource src;
         const auto m = src.data().toMap();
-        qDebug() << m;
         QVERIFY(m.contains(QLatin1String("type")));
         QVERIFY(!m.value(QLatin1String("type")).toString().isEmpty());
         QVERIFY(m.contains(QLatin1String("version")));
         QVERIFY(!m.value(QLatin1String("version")).toString().isEmpty());
+    }
+
+    void testQPAInfoSource()
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+        QPAInfoSource src;
+        QVERIFY(!src.description().isEmpty());
+        const auto m = src.data().toMap();
+        QVERIFY(m.contains(QLatin1String("name")));
+        QVERIFY(!m.value(QLatin1String("name")).toString().isEmpty());
+#endif
     }
 };
 

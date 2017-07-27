@@ -185,7 +185,7 @@ QString FeedbackConfigUiController::telemetryModeDescription(int telemetryIndex)
                 return tr(
                     "Share detailed system information and statistics on how often individual features of %1 are used. "
                     "No unique identification is included, nor data processed with %1."
-                );
+                ).arg(name);
         }
     }
 
@@ -197,8 +197,13 @@ QString FeedbackConfigUiController::telemetryModeDetails(int telemetryIndex) con
     if (telemetryIndex <= 0 || telemetryIndex >= telemetryModeCount())
         return QString();
 
+    auto srcs = d->provider->dataSources();
+    std::stable_sort(srcs.begin(), srcs.end(), [](AbstractDataSource *lhs, AbstractDataSource *rhs) {
+        return lhs->telemetryMode() < rhs->telemetryMode();
+    });
+
     auto detailsStr = QStringLiteral("<ul>");
-    foreach (const auto *src, d->provider->dataSources()) {
+    foreach (const auto *src, srcs) {
         if (telemetryIndex >= telemetryModeToIndex(src->telemetryMode()) && !src->description().isEmpty())
             detailsStr += QStringLiteral("<li>") + src->description() + QStringLiteral("</li>");
     }

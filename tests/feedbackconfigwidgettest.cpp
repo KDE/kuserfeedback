@@ -36,6 +36,7 @@ int main(int argc, char **argv)
     QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
     QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
     QCoreApplication::setApplicationVersion(QStringLiteral("1984"));
+    QGuiApplication::setApplicationDisplayName(QStringLiteral("FeedbackConfigWidgetTest"));
 
     QApplication app(argc, argv);
 

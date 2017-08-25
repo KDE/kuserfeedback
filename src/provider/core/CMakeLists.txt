@@ -20,7 +20,10 @@ set(userfeedback_core_srcs
     usagetimesource.cpp
 )
 if(Qt5Core_FOUND)
-    list(APPEND userfeedback_core_srcs ${userfeedback_core_QM_LOADER})
+    list(APPEND userfeedback_core_srcs
+        ${userfeedback_core_QM_LOADER}
+        auditloguicontroller.cpp
+    )
 endif()
 
 add_library(KUserFeedbackCore SHARED ${userfeedback_core_srcs})

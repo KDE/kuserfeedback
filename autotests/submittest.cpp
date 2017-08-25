@@ -20,6 +20,7 @@
 #include <rest/restapi.h>
 #include <rest/restclient.h>
 
+#include <provider/core/auditloguicontroller.h>
 #include <provider/core/provider.h>
 #include <provider/core/platforminfosource.h>
 #include <provider/core/screeninfosource.h>
@@ -28,6 +29,7 @@
 #include <core/schemaentryelement.h>
 #include <core/schemaentrytemplates.h>
 
+#include <QAbstractItemModel>
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -62,6 +64,15 @@ private slots:
         Q_INIT_RESOURCE(schematemplates);
         QStandardPaths::setTestModeEnabled(true);
         QVERIFY(m_server.start());
+    }
+
+    void init()
+    {
+        // clear past audit logs
+        AuditLogUiController alc;
+        alc.clear();
+        QVERIFY(alc.logEntryModel());
+        QCOMPARE(alc.logEntryModel()->rowCount(), 0);
     }
 
     void testProvider_data()
@@ -133,6 +144,11 @@ private slots:
         sub = a.at(0).toObject();
         QVERIFY(sub.contains(QLatin1String("height")));
         QVERIFY(sub.contains(QLatin1String("width")));
+
+        // check we wrote an audit log
+        AuditLogUiController alc;
+        QVERIFY(alc.logEntryModel());
+        QCOMPARE(alc.logEntryModel()->rowCount(), 1);
     }
 
     void testRedirectLoop()

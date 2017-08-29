@@ -17,7 +17,7 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.1
+import QtQuick.Controls 2.2
 import Qt.labs.settings 1.0
 import org.kde.userfeedback 1.0 as KUserFeedback
 
@@ -177,6 +177,10 @@ ApplicationWindow {
                 }
             }
 
+            KUserFeedback.AuditLogUiController {
+                id: auditLogController
+            }
+
             ColumnLayout {
                 anchors.fill: parent
                 anchors.topMargin: header.height
@@ -205,6 +209,14 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     textFormat: Text.RichText
                     readOnly: true
+                }
+                Label {
+                    text: qsTr("<a href=\"auditLog\">View previously submitted data...</a>")
+                    visible: auditLogController.hasLogEntries
+                    onLinkActivated: {
+                        stackView.push(auditLogPage);
+                        stackView.currentItem.auditLogController = auditLogController
+                    }
                 }
                 Label {
                     text: qsTr("Participate in Surveys")
@@ -237,6 +249,71 @@ ApplicationWindow {
                         stackView.pop();
                     }
                 }
+            }
+        }
+    }
+
+    Component {
+        id: auditLogPage
+        Page {
+            property var auditLogController: null
+            header: ToolBar {
+                RowLayout {
+                    anchors.fill: parent
+                    ToolButton {
+                        id: menuButton
+                        text: "<"
+                        onClicked: stackView.pop()
+                    }
+                    Label {
+                        text: "Telemetry Audit Log"
+                        horizontalAlignment: Qt.AlignHCenter
+                        verticalAlignment: Qt.AlignVCenter
+                        Layout.fillWidth: true
+                    }
+                }
+            }
+
+            ColumnLayout {
+                anchors.fill: parent
+                anchors.topMargin: header.height
+
+                ComboBox {
+                    id: logEntryBox
+                    Layout.fillWidth: true
+                    model: auditLogController.logEntryModel
+                    textRole: "display"
+                    onActivated: {
+                        var index = model.index(currentIndex, 0);
+                        logEntryView.text = auditLogController.logEntry(model.data(index, 256));
+                    }
+                }
+
+                ScrollView {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    TextArea {
+                        id: logEntryView
+                        textFormat: Text.RichText
+                        readOnly: true
+                    }
+                }
+
+                Button {
+                    Layout.alignment: Qt.AlignHCenter
+                    text: qsTr("Delete Log")
+                    onClicked: {
+                        auditLogController.clear();
+                        stackView.pop();
+                    }
+                }
+            }
+
+            onAuditLogControllerChanged: {
+                if (auditLogController == null)
+                    return;
+                var index = auditLogController.logEntryModel.index(0, 0);
+                logEntryView.text = auditLogController.logEntry(auditLogController.logEntryModel.data(index, 256));
             }
         }
     }

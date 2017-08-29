@@ -20,12 +20,12 @@
 
 #include "kuserfeedbackcore_export.h"
 
+#include <QAbstractItemModel>
 #include <QObject>
 
 #include <memory>
 
 QT_BEGIN_NAMESPACE
-class QAbstractItemModel;
 class QDateTime;
 QT_END_NAMESPACE
 

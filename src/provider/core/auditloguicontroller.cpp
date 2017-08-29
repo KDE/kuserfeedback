@@ -66,6 +66,11 @@ AuditLogEntryModel::AuditLogEntryModel(const QString &path, QObject *parent)
     : QAbstractListModel(parent)
     , m_path(path)
 {
+    QHash<int, QByteArray> roles;
+    roles.insert(Qt::DisplayRole, "display");
+    roles.insert(Qt::UserRole, "data");
+    setRoleNames(roles);
+
     reload();
 }
 

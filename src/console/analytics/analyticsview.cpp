@@ -267,7 +267,7 @@ void AnalyticsView::exportData()
 
     const auto samples = m_dataModel->index(0, 0).data(DataModel::AllSamplesRole).value<QVector<Sample>>();
     f.write(Sample::toJson(samples, m_dataModel->product()));
-    emit logMessage(tr("Sample data of %1 exported to %2.").arg(m_dataModel->product().name(), f.fileName()));
+    emit logMessage(tr("Data samples of %1 exported to %2.").arg(m_dataModel->product().name(), f.fileName()));
 }
 
 void AnalyticsView::importData()
@@ -290,7 +290,7 @@ void AnalyticsView::importData()
     auto reply = RESTApi::addSamples(m_client, m_dataModel->product(), samples);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
-            emit logMessage(tr("Samples imported."));
+            emit logMessage(tr("Data samples imported."));
             m_dataModel->reload();
         }
     });

@@ -189,7 +189,7 @@
     <string>&amp;Import Data...</string>
    </property>
    <property name="toolTip">
-    <string>Import sample data.</string>
+    <string>Import data samples.</string>
    </property>
   </action>
   <action name="actionReload">

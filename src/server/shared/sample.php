@@ -101,9 +101,9 @@ class Sample
     {
         $jsonObj = json_decode($jsonData);
         if (!is_object($jsonObj))
-            throw new RESTException('Invalid sample data format.', 400);
+            throw new RESTException('Invalid data sample format.', 400);
         if (property_exists($jsonObj, 'id') || property_exists($jsonObj, 'timestamp'))
-            throw new RESTException('Invalid sample data.', 400);
+            throw new RESTException('Invalid data sample.', 400);
 
         $sampleId = self::insertScalar($db, $jsonObj, $product);
 
@@ -121,11 +121,11 @@ class Sample
     {
         $jsonArray = json_decode($jsonData);
         if (!is_array($jsonArray))
-            throw new RESTException('Invalid sample data format.', 400);
+            throw new RESTException('Invalid data sample format.', 400);
 
         foreach ($jsonArray as $sampleObj) {
             if (property_exists($sampleObj, 'id') || !property_exists($sampleObj, 'timestamp'))
-                throw new RESTException('Invalid sample data.', 400);
+                throw new RESTException('Invalid data sample.', 400);
 
             $sampleId = self::insertScalar($db, $sampleObj, $product);
             foreach ($product->schema as $entry) {

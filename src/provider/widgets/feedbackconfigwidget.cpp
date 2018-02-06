@@ -29,6 +29,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QScrollBar>
+#include <QStyle>
 
 #include <algorithm>
 #include <vector>

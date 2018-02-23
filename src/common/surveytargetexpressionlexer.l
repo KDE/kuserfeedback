@@ -53,7 +53,7 @@ IDENTIFIER  {INITIAL}{SUBSEQUENT}*
 "]"  { return T_RBRACKET; }
 
 {DOUBLE} {
-    yylval->doubleVal = atof(yytext);
+    yylval->doubleVal = strtod(yytext, nullptr);
     return T_DOUBLE;
 }
 {INTEGER} {

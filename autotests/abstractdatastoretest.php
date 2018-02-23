@@ -22,8 +22,10 @@ require_once('../src/server/shared/datastore.php');
 $USERFEEDBACK_DB_DRIVER = 'sqlite';
 $USERFEEDBACK_DB_NAME =  ':memory:';
 
-class AbstractDatastoreTest extends PHPUnit_Extensions_Database_TestCase
+class AbstractDatastoreTest extends PHPUnit\Framework\TestCase
 {
+    use PHPUnit\DbUnit\TestCaseTrait;
+
     static protected $db = null;
     protected $conn = null;
 

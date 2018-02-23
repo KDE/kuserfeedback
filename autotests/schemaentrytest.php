@@ -19,7 +19,7 @@
 require_once('../src/server/shared/product.php');
 require_once('../src/server/shared/schemaentry.php');
 
-class SchemaEntryTest extends PHPUnit_Framework_TestCase
+class SchemaEntryTest extends PHPUnit\Framework\TestCase
 {
     public function testDataTableName_data()
     {

@@ -20,7 +20,7 @@ require_once('../src/server/shared/product.php');
 require_once('../src/server/shared/schemaentry.php');
 require_once('../src/server/shared/schemaentryelement.php');
 
-class SchemaEntryElementTest extends PHPUnit_Framework_TestCase
+class SchemaEntryElementTest extends PHPUnit\Framework\TestCase
 {
     public function testDataColumnName_data()
     {

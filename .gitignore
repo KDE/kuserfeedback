@@ -8,3 +8,6 @@ CMakeLists.txt.user
 
 src/server/config/localconfig.php
 src/server/data/*.sqlite
+
+vendor
+composer.lock

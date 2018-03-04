@@ -47,6 +47,10 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    QHash<int, QByteArray> roleNames() const override;
+#endif
+
 private:
     QString m_path;
     std::vector<QDateTime> m_entries;
@@ -66,11 +70,6 @@ AuditLogEntryModel::AuditLogEntryModel(const QString &path, QObject *parent)
     : QAbstractListModel(parent)
     , m_path(path)
 {
-    QHash<int, QByteArray> roles;
-    roles.insert(Qt::DisplayRole, "display");
-    roles.insert(Qt::UserRole, "data");
-    setRoleNames(roles);
-
     reload();
 }
 
@@ -110,6 +109,16 @@ QVariant AuditLogEntryModel::data(const QModelIndex &index, int role) const
     }
     return QVariant();
 }
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+QHash<int, QByteArray> AuditLogEntryModel::roleNames() const
+{
+    QHash<int, QByteArray> roles;
+    roles.insert(Qt::DisplayRole, "display");
+    roles.insert(Qt::UserRole, "data");
+    return roles;
+}
+#endif
 
 
 AuditLogUiController::AuditLogUiController(QObject* parent)

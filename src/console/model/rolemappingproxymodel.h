@@ -24,9 +24,7 @@
 namespace KUserFeedback {
 namespace Console {
 
-/**
- * @todo write docs
- */
+/** Proxy model to change roles. */
 class RoleMappingProxyModel : public QIdentityProxyModel
 {
     Q_OBJECT

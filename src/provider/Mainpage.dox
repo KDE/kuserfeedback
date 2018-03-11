@@ -27,6 +27,37 @@
  *   - Add a way for your users to configure what data to contribute, and how often
  *     to be bothered by surveys. KUserFeedback::FeedbackConfigDialog provides a
  *     reference implementation of a configuration dialog for this.
+ *
+ * @section faq Frequently Asked Questions
+ *
+ * <b>Why does the telemetry data contain no unique user/installation/machine id?</b>
+ *
+ * KUserFeedback is designed to be compliant with <a href="https://community.kde.org/Policies/Telemetry_Policy">KDE Telemetry Policy</a>,
+ * which forbids the usage of unique identification.
+ * If you are using KUserFeedback outside of the scope of that policy, it's of course
+ * possible to add a custom data source generating and transmitting a unique id.
+ *
+ * <b>How can duplicated submissions be detected without unique identification?</b>
+ *
+ * KUserFeedback addresses this by using a fixed time interval for telemetry data submission.
+ * If for example Provider::submissionInterval is set to one week, aggregating data in one
+ * week intervals ensures that there's only at most one sample included from each installation.
+ * The other way around, setting Provider::submissionInterval at least as high as the average
+ * usage interval of your application ensures a substantial amount of installations have
+ * submitted a sample in this interval. A frequently used application such e.g. an email
+ * program can therefore get good results with a smaller value than e.g. a special purpose
+ * application.
+ *
+ * <b>How can developments of a user be tracked without unique identification?</b>
+ *
+ * If you want to observe how usage patterns change as your users gain more experience
+ * with the application, there are multiple ways to do that:
+ * - include a UsageTimeSource, and correlate the relevant usage data with how long
+ *   the application has been used.
+ * - it is possible to track arbitrary historic development using custom data sources
+ *   via AbstractDataSource::reset. This method is called after each successful submission,
+ *   allowing you to implement a "memory" for your data source, and e.g. submit differential
+ *   rather than absolute values.
  */
 
 /*!

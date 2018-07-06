@@ -45,8 +45,13 @@ ServerController::~ServerController()
 bool ServerController::start()
 {
     m_process.start();
-    if (!m_process.waitForStarted(1000))
+    if (!m_process.waitForStarted(1000)) {
+        qWarning() << "Failed to launch:" << m_process.program() << m_process.arguments() << m_process.errorString();
         return false;
+    }
+
+    // wait for the server to become available, otherwise the HTTP access below fails
+    m_process.waitForReadyRead(100);
 
     ServerInfo s;
     s.setUrl(url());
@@ -58,6 +63,8 @@ bool ServerController::start()
     if (!spy.wait())
         return false;
 
+    if (reply->error() != QNetworkReply::NoError)
+        qWarning() << "Schema check failed:" << reply->errorString();
     return reply->error() == QNetworkReply::NoError;
 }
 

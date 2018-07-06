@@ -35,6 +35,7 @@
 
 #include <QtCharts/QChart>
 
+#include <QClipboard>
 #include <QFile>
 #include <QFileDialog>
 #include <QImage>
@@ -128,6 +129,15 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
             return;
         aggr->setSingularTime(value);
         ui->timeLabel->setText(aggr->singularAggregationModel()->index(0, 0).data(TimeAggregationModel::TimeDisplayRole).toString());
+    });
+
+    connect(ui->dataView, &QWidget::customContextMenuRequested, this, [this](QPoint pos) {
+        QMenu menu;
+        menu.addAction(QIcon::fromTheme(QStringLiteral("edit-copy")), tr("Copy"), [this, pos]() {
+            const auto idx = ui->dataView->indexAt(pos);
+            QGuiApplication::clipboard()->setText(idx.data().toString());
+        });
+        menu.exec(ui->dataView->viewport()->mapToGlobal(pos));
     });
 }
 

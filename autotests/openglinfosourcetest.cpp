@@ -192,6 +192,8 @@ private slots:
        QTest::newRow("nvidia macos") << QStringLiteral("NVIDIA GeForce GT 750M OpenGL Engine") << QStringLiteral("GeForce GT 750M");
        QTest::newRow("angle") << QStringLiteral("ANGLE (VirtualBox Graphics Adapter for Windows 8+ Direct3D9Ex vs_3_0 ps_3_0)") << QStringLiteral("ANGLE");
        QTest::newRow("gallium") << QStringLiteral("Gallium 0.4 on AMD BARTS (DRM 2.49.0 / 4.11.1-1-default, LLVM 4.0.0)") << QStringLiteral("Gallium 0.4 on AMD BARTS");
+       QTest::newRow("AMD 1") << QStringLiteral("AMD BARTS (DRM 2.50.0 / 4.17.2-1-default, LLVM 6.0.0)") << QStringLiteral("AMD BARTS");
+       QTest::newRow("AMD 2") << QStringLiteral("AMD Radeon (TM) RX 480 Graphics (POLARIS10 / DRM 3.19.0 / 4.14.50-gentoo, LLVM 6.0.0)") << QStringLiteral("AMD Radeon RX 480 Graphics");
    }
 
    void testNormalizeRenderer()

@@ -27,6 +27,11 @@ require_once('survey.php');
 class Receiver
 {
 
+/** Dummy command for probing for redirects. */
+function get_submit($productName)
+{
+}
+
 /** Data submission command. */
 function post_submit($productName)
 {

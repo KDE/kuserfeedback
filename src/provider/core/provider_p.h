@@ -56,6 +56,8 @@ public:
     bool isValidSource(AbstractDataSource *source) const;
     QByteArray jsonData(Provider::TelemetryMode mode) const;
     void scheduleNextSubmission();
+    void submitProbe(const QUrl &url);
+    void submitProbeFinished();
     void submit(const QUrl &url);
     void submitFinished();
 

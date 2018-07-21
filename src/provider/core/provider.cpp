@@ -690,7 +690,7 @@ void Provider::submit()
         path += QLatin1Char('/');
     path += QStringLiteral("receiver/submit/") + d->productId;
     url.setPath(path);
-    d->submit(url);
+    d->submitProbe(url);
 }
 
 void ProviderPrivate::submit(const QUrl &url)
@@ -702,6 +702,39 @@ void ProviderPrivate::submit(const QUrl &url)
 #endif
     auto reply = networkAccessManager->post(request, jsonData(telemetryMode));
     QObject::connect(reply, SIGNAL(finished()), q, SLOT(submitFinished()));
+}
+
+void ProviderPrivate::submitProbe(const QUrl &url)
+{
+    QNetworkRequest request(url);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("KUserFeedback/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
+#endif
+    auto reply = networkAccessManager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), q, SLOT(submitProbeFinished()));
+}
+
+void ProviderPrivate::submitProbeFinished()
+{
+    auto reply = qobject_cast<QNetworkReply*>(q->sender());
+    Q_ASSERT(reply);
+
+    if (reply->error() != QNetworkReply::NoError) {
+        qCWarning(Log) << "failed to probe user feedback submission interface:" << reply->errorString() << reply->readAll();
+        return;
+    }
+
+    const auto redirectTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+    if (redirectTarget.isValid()) {
+        if (++redirectCount >= 20) {
+            qCWarning(Log) << "Redirect loop on" << reply->url().resolved(redirectTarget).toString();
+            return;
+        }
+        submitProbe(reply->url().resolved(redirectTarget));
+        return;
+    }
+
+    return submit(reply->url());
 }
 
 void ProviderPrivate::writeAuditLog(const QDateTime &dt)

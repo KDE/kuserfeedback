@@ -119,7 +119,9 @@ include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 configure_file(config-userfeedback.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback.h)
 
 add_subdirectory(src)
-add_subdirectory(autotests)
+if (BUILD_TESTING)
+    add_subdirectory(autotests)
+endif()
 if(Qt5Core_FOUND)
     add_subdirectory(tests)
     add_subdirectory(docs)
@@ -143,6 +145,6 @@ install(FILES
 )
 
 install(EXPORT KUserFeedbackTargets DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback FILE KUserFeedbackTarget.cmake)
-install(FILES org_kde_UserFeedback.categories DESTINATION etc/xdg)
+install(FILES org_kde_UserFeedback.categories DESTINATION ${KDE_INSTALL_CONFDIR})
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

@@ -2,7 +2,7 @@ description: User feedback framework
 maintainer: vkrause
 public_lib: true
 platforms:
- - name: all
+ - name: All
 tier: 1
 type: solution
 portingAid: false

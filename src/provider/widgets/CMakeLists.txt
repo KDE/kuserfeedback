@@ -3,12 +3,8 @@ set(userfeedback_widgets_srcs
     feedbackconfigwidget.cpp
     notificationpopup.cpp
     styleinfosource.cpp
+    auditlogbrowserdialog.cpp
 )
-if (Qt5Core_FOUND)
-    list(APPEND userfeedback_widgets_srcs
-        auditlogbrowserdialog.cpp
-    )
-endif()
 
 add_library(KUserFeedbackWidgets SHARED ${userfeedback_widgets_srcs})
 set_target_properties(KUserFeedbackWidgets PROPERTIES

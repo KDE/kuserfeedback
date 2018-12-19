@@ -20,12 +20,10 @@
 
 #include <qglobal.h>
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
 #include <QLoggingCategory>
 
 namespace KUserFeedback {
 Q_DECLARE_LOGGING_CATEGORY(Log)
 }
-#endif
 
 #endif

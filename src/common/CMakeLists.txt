@@ -34,9 +34,4 @@ add_library(KUserFeedbackCommon STATIC
 )
 
 target_include_directories(KUserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
-if(Qt5Core_FOUND)
-    target_link_libraries(KUserFeedbackCommon LINK_PRIVATE Qt5::Core)
-else()
-    target_link_libraries(KUserFeedbackCommon LINK_PRIVATE ${QT_QTCORE_LIBS})
-    set_target_properties(KUserFeedbackCommon PROPERTIES POSITION_INDEPENDENT_CODE ON)
-endif()
+target_link_libraries(KUserFeedbackCommon LINK_PRIVATE Qt5::Core)

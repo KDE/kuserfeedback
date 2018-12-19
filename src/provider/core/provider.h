@@ -113,12 +113,8 @@ public:
         DetailedSystemInformation = 0x30, ///< Transmit detailed system information.
         DetailedUsageStatistics = 0x40, ///< Transmit detailed usage statistics.
     };
-#ifndef QT4_MOC_WORKAROUND
 #if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
     Q_ENUM(TelemetryMode)
-#else
-    Q_ENUMS(TelemetryMode)
-#endif
 #else
     Q_ENUMS(TelemetryMode)
 #endif

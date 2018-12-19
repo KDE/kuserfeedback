@@ -18,9 +18,7 @@
 #include "feedbackconfiguicontroller.h"
 #include "abstractdatasource.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QGuiApplication>
-#endif
 #include <QSet>
 #include <QVector>
 
@@ -48,11 +46,7 @@ FeedbackConfigUiControllerPrivate::FeedbackConfigUiControllerPrivate() :
 
 QString FeedbackConfigUiControllerPrivate::appName()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     return QGuiApplication::applicationDisplayName();
-#else
-    return QString();
-#endif
 }
 
 FeedbackConfigUiController::FeedbackConfigUiController(QObject* parent)

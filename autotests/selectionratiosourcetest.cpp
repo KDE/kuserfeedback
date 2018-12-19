@@ -23,9 +23,7 @@
 #include <QObject>
 #include <QSettings>
 #include <QStandardItemModel>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QStandardPaths>
-#endif
 
 using namespace KUserFeedback;
 
@@ -37,9 +35,7 @@ private slots:
     {
         QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
         QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QStandardPaths::setTestModeEnabled(true);
-#endif
     }
 
     void testPropertyRatioSource()

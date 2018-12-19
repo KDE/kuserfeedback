@@ -18,12 +18,17 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_CXX_STANDARD 11)
 
 include(ECMGenerateHeaders)
 include(ECMPoQmTools)
 include(ECMSetupVersion)
+include(ECMQueryQmake)
+include(ECMGeneratePriFile)
 include(FeatureSummary)
 include(GenerateExportHeader)
+include(KDEInstallDirs)
+include(KDECMakeSettings)
 include(KDECompilerSettings)
 
 enable_testing()
@@ -33,61 +38,20 @@ ecm_setup_version(PROJECT
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h"
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake"
 )
-
-#
-# Compiler & linker settings
-#
-if(CMAKE_COMPILER_IS_GNUCXX OR ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wextra -Wall -std=c++0x -pedantic")
-endif()
-
-
 #
 # Dependencies
 #
 
-# try Qt5 first, and prefer that (if found), but only if not disabled via option
-if(NOT ENFORCE_QT4_BUILD)
-    find_package(Qt5Core QUIET NO_MODULE)
-    find_package(QmlLint)
-     # do not include in the Qt4 path, these calls find_package(Qt5)
-    include(ECMQueryQmake)
-    include(ECMGeneratePriFile)
-    include(KDEInstallDirs)
-    include(KDECMakeSettings)
-else()
-    set(Qt5Core_FOUND FALSE)
+find_package(Qt5 5.4 NO_MODULE REQUIRED COMPONENTS Core Network)
+find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Qml Svg PrintSupport)
+find_package(QmlLint)
+if (NOT CMAKE_CROSSCOMPILING)
+    find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Help)
 endif()
 
-if(Qt5Core_FOUND)
-    set_package_properties(Qt5Core PROPERTIES TYPE REQUIRED)
-    find_package(Qt5 NO_MODULE REQUIRED COMPONENTS Network)
-    find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Qml Svg PrintSupport)
-    if (NOT CMAKE_CROSSCOMPILING)
-        find_package(Qt5 NO_MODULE QUIET OPTIONAL_COMPONENTS Help)
-    endif()
-
-    set_package_properties(Qt5 PROPERTIES URL "http://qt-project.org/")
-    set_package_properties(Qt5Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for feedback configuration and notification widgets.")
-    set_package_properties(Qt5Charts PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
-# Qt4
-else()
-    set(QT_USE_IMPORTED_TARGETS true)
-    find_package(Qt4 4.8.0 REQUIRED QtCore QtNetwork QtGui QtTest)
-    include(${QT_USE_FILE})
-    set_package_properties(Qt4 PROPERTIES URL "http://qt-project.org/")
-
-    # C++11/Qt5 compatibility
-    if(MSVC)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /FI\"${CMAKE_SOURCE_DIR}\\src\\compat\\qt4compat.h\"")
-    else()
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -include \"${CMAKE_SOURCE_DIR}/src/compat/qt4compat.h\"")
-    endif()
-    include(Qt4ECMStub)
-
-    # Qt4 moc limitation workaround (Qt4 moc cannot evaluate QT_VERSION preprocessor conditionals
-    add_definitions(-DQT4_MOC_WORKAROUND)
-endif()
+set_package_properties(Qt5 PROPERTIES URL "http://qt-project.org/")
+set_package_properties(Qt5Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for feedback configuration and notification widgets.")
+set_package_properties(Qt5Charts PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
 
 # debug suffixes for qmake compatibility
 if(WIN32)
@@ -122,10 +86,8 @@ add_subdirectory(src)
 if (BUILD_TESTING)
     add_subdirectory(autotests)
 endif()
-if(Qt5Core_FOUND)
-    add_subdirectory(tests)
-    add_subdirectory(docs)
-endif()
+add_subdirectory(tests)
+add_subdirectory(docs)
 
 #
 # CMake package config file generation

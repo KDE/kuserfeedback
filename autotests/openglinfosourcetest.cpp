@@ -21,9 +21,7 @@
 #include <QDebug>
 #include <QtTest/qtest.h>
 #include <QObject>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QStandardPaths>
-#endif
 
 using namespace KUserFeedback;
 
@@ -33,9 +31,7 @@ class OpenGLInfoSourceTest : public QObject
 private slots:
     void initTestCase()
     {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QStandardPaths::setTestModeEnabled(true);
-#endif
     }
 
     void testOpenGLInfoSource()
@@ -45,7 +41,6 @@ private slots:
         QVERIFY(m.contains(QLatin1String("type")));
         const auto type = m.value(QLatin1String("type")).toString();
         QVERIFY(!type.isEmpty());
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QVERIFY(type == QLatin1String("GL") || type == QLatin1String("GLES"));
 
         QVERIFY(m.contains(QLatin1String("vendor")));
@@ -58,7 +53,6 @@ private slots:
         QVERIFY(!m.value(QLatin1String("vendorVersion")).toString().isEmpty());
         QVERIFY(m.contains(QLatin1String("glslVersion")));
         QVERIFY(!m.value(QLatin1String("glslVersion")).toString().isEmpty());
-#endif
     }
 
     void testParseGLVersion_data()

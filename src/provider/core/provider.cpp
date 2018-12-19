@@ -31,12 +31,10 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QStandardPaths>
-#endif
 #include <QMetaEnum>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -51,7 +49,7 @@
 namespace KUserFeedback {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
 Q_LOGGING_CATEGORY(Log, "org.kde.UserFeedback", QtInfoMsg)
-#elif QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
+#else
 Q_LOGGING_CATEGORY(Log, "org.kde.UserFeedback")
 #endif
 }
@@ -219,39 +217,8 @@ bool ProviderPrivate::isValidSource(AbstractDataSource *source) const
     return true;
 }
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
-QByteArray variantMapToJson(const QVariantMap &m)
-{
-    QByteArray b = "{";
-    for (auto it = m.begin(); it != m.end(); ++it) {
-        b += " \"" + it.key().toUtf8() + "\": ";
-        switch (it.value().type()) {
-            case QVariant::String:
-                b += '"' + it.value().toString().toUtf8() + '"';
-                break;
-            case QVariant::Int:
-                b += QByteArray::number(it.value().toInt());
-                break;
-            case QVariant::Double:
-                b += QByteArray::number(it.value().toDouble());
-                break;
-            case QVariant::Map:
-                b += variantMapToJson(it.value().toMap());
-                break;
-            default:
-                break;
-        }
-        if (std::distance(it, m.end()) != 1)
-            b += ",\n";
-    }
-    b += " }";
-    return b;
-}
-#endif
-
 QByteArray ProviderPrivate::jsonData(Provider::TelemetryMode mode) const
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QJsonObject obj;
     if (mode != Provider::NoTelemetry) {
         foreach (auto source, dataSources) {
@@ -271,34 +238,6 @@ QByteArray ProviderPrivate::jsonData(Provider::TelemetryMode mode) const
 
     QJsonDocument doc(obj);
     return doc.toJson();
-#else
-    QByteArray b = "{";
-    if (mode != Provider::NoTelemetry) {
-        for (auto it = dataSources.begin(); it != dataSources.end(); ++it) {
-            if (!isValidSource(*it))
-                continue;
-            if (mode < (*it)->telemetryMode())
-                continue;
-            const auto data = (*it)->data();
-            if (data.canConvert<QVariantList>()) {
-                const auto l = data.value<QVariantList>();
-                b += " \"" + (*it)->name().toUtf8() + "\": [ ";
-                for (auto it2 = l.begin(); it2 != l.end(); ++it2) {
-                    b += variantMapToJson((*it2).toMap());
-                    if (std::distance(it2, l.end()) != 1)
-                        b += ", ";
-                }
-                b += " ]";
-            } else {
-                b += " \"" + (*it)->name().toUtf8() + "\": " + variantMapToJson(data.toMap());
-            }
-            if (std::distance(it, dataSources.end()) != 1)
-                b += ",\n";
-        }
-    }
-    b += '}';
-    return b;
-#endif
 }
 
 void ProviderPrivate::scheduleNextSubmission()
@@ -352,7 +291,6 @@ void ProviderPrivate::submitFinished()
         s->endGroup();
     }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     const auto obj = QJsonDocument::fromJson(reply->readAll()).object();
     const auto it = obj.find(QLatin1String("surveys"));
     if (it != obj.end() && surveyInterval >= 0) {
@@ -364,7 +302,6 @@ void ProviderPrivate::submitFinished()
                 break;
         }
     }
-#endif
 
     scheduleNextSubmission();
 }
@@ -697,9 +634,7 @@ void ProviderPrivate::submit(const QUrl &url)
 {
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("KUserFeedback/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
-#endif
     auto reply = networkAccessManager->post(request, jsonData(telemetryMode));
     QObject::connect(reply, SIGNAL(finished()), q, SLOT(submitFinished()));
 }
@@ -707,9 +642,7 @@ void ProviderPrivate::submit(const QUrl &url)
 void ProviderPrivate::submitProbe(const QUrl &url)
 {
     QNetworkRequest request(url);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("KUserFeedback/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
-#endif
     auto reply = networkAccessManager->get(request);
     QObject::connect(reply, SIGNAL(finished()), q, SLOT(submitProbeFinished()));
 }
@@ -739,7 +672,6 @@ void ProviderPrivate::submitProbeFinished()
 
 void ProviderPrivate::writeAuditLog(const QDateTime &dt)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     const QString path = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QStringLiteral("/kuserfeedback/audit");
     QDir().mkpath(path);
 
@@ -770,9 +702,6 @@ void ProviderPrivate::writeAuditLog(const QDateTime &dt)
     file.write(doc.toJson());
 
     qCDebug(Log) << "Audit log written:" << file.fileName();
-#else
-    Q_UNUSED(dt);
-#endif
 }
 
 #include "moc_provider.cpp"

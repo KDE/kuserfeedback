@@ -68,7 +68,6 @@ bool SurveyTargetExpressionEvaluator::evaluate(SurveyTargetExpression* expressio
             return lhs == rhs;
         case SurveyTargetExpression::OpNotEqual:
             return lhs != rhs;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         case SurveyTargetExpression::OpGreater:
             return lhs > rhs;
         case SurveyTargetExpression::OpGreaterEqual:
@@ -77,16 +76,6 @@ bool SurveyTargetExpressionEvaluator::evaluate(SurveyTargetExpression* expressio
             return lhs < rhs;
         case SurveyTargetExpression::OpLessEqual:
             return lhs <= rhs;
-#else
-        case SurveyTargetExpression::OpGreater:
-            return lhs.toDouble() > rhs.toDouble();
-        case SurveyTargetExpression::OpGreaterEqual:
-            return lhs.toDouble() >= rhs.toDouble();
-        case SurveyTargetExpression::OpLess:
-            return lhs.toDouble() < rhs.toDouble();
-        case SurveyTargetExpression::OpLessEqual:
-            return lhs.toDouble() <= rhs.toDouble();
-#endif
         default:
             break;
     }

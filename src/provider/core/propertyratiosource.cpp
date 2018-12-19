@@ -51,12 +51,7 @@ public:
     QTime lastChangeTime;
     QHash<QString, int> ratioSet; // data we are currently tracking
     QHash<QString, int> baseRatioSet; // data loaded from storage
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QMap<QVariant, QString> valueMap;
-#else
-    struct ValueMapEntry { QVariant v; QString n; };
-    QVector<ValueMapEntry> valueMap;
-#endif
 };
 
 // inefficient workaround for not being able to connect QMetaMethod to a function directly
@@ -99,17 +94,10 @@ void PropertyRatioSourcePrivate::propertyChanged()
 
 QString PropertyRatioSourcePrivate::valueToString(const QVariant &value) const
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     const auto it = valueMap.constFind(value);
     if (it != valueMap.constEnd() && it.key() == value) {
         return it.value();
     }
-#else
-    foreach (const auto &e, valueMap) {
-        if (e.v == value)
-            return e.n;
-    }
-#endif
     return value.toString();
 }
 
@@ -185,14 +173,7 @@ void PropertyRatioSource::setPropertyName(const QString& name)
 void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &str)
 {
     Q_D(PropertyRatioSource);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     d->valueMap.insert(value, str);
-#else
-    PropertyRatioSourcePrivate::ValueMapEntry e;
-    e.v = value;
-    e.n = str;
-    d->valueMap.push_back(e);
-#endif
 }
 
 QString PropertyRatioSource::description() const

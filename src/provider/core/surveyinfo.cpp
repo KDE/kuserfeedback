@@ -17,9 +17,7 @@
 
 #include "surveyinfo.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QJsonObject>
-#endif
 #include <QSharedData>
 #include <QUrl>
 #include <QUuid>
@@ -89,7 +87,6 @@ void SurveyInfo::setTarget(const QString &target)
     d->target = target;
 }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 SurveyInfo SurveyInfo::fromJson(const QJsonObject& obj)
 {
     SurveyInfo s;
@@ -98,4 +95,3 @@ SurveyInfo SurveyInfo::fromJson(const QJsonObject& obj)
     s.setTarget(obj.value(QLatin1String("target")).toString());
     return s;
 }
-#endif

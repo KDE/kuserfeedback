@@ -31,9 +31,7 @@
 #include <QtTest/qtest.h>
 #include <QObject>
 #include <QSettings>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QStandardPaths>
-#endif
 
 using namespace KUserFeedback;
 
@@ -64,9 +62,7 @@ private slots:
     {
         QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
         QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QStandardPaths::setTestModeEnabled(true);
-#endif
     }
 
     void testPlatformInfoSource()
@@ -100,9 +96,7 @@ private slots:
             const auto scr = v.toMap();
             QVERIFY(scr.contains(QLatin1String("height")));
             QVERIFY(scr.contains(QLatin1String("width")));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
             QVERIFY(scr.contains(QLatin1String("dpi")));
-#endif
         }
     }
 
@@ -254,13 +248,11 @@ private slots:
 
     void testQPAInfoSource()
     {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QPAInfoSource src;
         QVERIFY(!src.description().isEmpty());
         const auto m = src.data().toMap();
         QVERIFY(m.contains(QLatin1String("name")));
         QVERIFY(!m.value(QLatin1String("name")).toString().isEmpty());
-#endif
     }
 };
 

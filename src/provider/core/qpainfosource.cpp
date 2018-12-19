@@ -17,9 +17,7 @@
 
 #include "qpainfosource.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QGuiApplication>
-#endif
 #include <QVariant>
 
 using namespace KUserFeedback;
@@ -37,8 +35,6 @@ QString QPAInfoSource::description() const
 QVariant QPAInfoSource::data()
 {
     QVariantMap m;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     m.insert(QStringLiteral("name"), QGuiApplication::platformName());
-#endif
     return m;
 }

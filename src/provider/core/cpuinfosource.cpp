@@ -36,11 +36,7 @@ QString CpuInfoSource::description() const
 QVariant CpuInfoSource::data()
 {
     QVariantMap m;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
     m.insert(QStringLiteral("architecture"), QSysInfo::currentCpuArchitecture());
-#else
-    m.insert(QStringLiteral("architecture"), QStringLiteral("unknown"));
-#endif
     m.insert(QStringLiteral("count"), QThread::idealThreadCount());
     return m;
 }

@@ -160,11 +160,7 @@ int NotificationPopupPrivate::xPosition() const
 
 QString NotificationPopupPrivate::appName()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     return QGuiApplication::applicationDisplayName();
-#else
-    return QString();
-#endif
 }
 
 

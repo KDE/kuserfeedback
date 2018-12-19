@@ -23,9 +23,7 @@
 #include <QObject>
 #include <QSettings>
 #include <QSignalSpy>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QStandardPaths>
-#endif
 #include <QUuid>
 
 using namespace KUserFeedback;
@@ -41,9 +39,7 @@ private slots:
         QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
         QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
         QCoreApplication::setApplicationName(QStringLiteral("surveyprovidertest"));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QStandardPaths::setTestModeEnabled(true);
-#endif
     }
 
     void testSurveySelect()

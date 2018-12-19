@@ -20,9 +20,7 @@
 #include "auditlogbrowserdialog.h"
 
 #include <abstractdatasource.h>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <auditloguicontroller.h>
-#endif
 #include <feedbackconfiguicontroller.h>
 #include <provider.h>
 
@@ -45,9 +43,7 @@ public:
 
     FeedbackConfigUiController *controller;
     std::unique_ptr<Ui::FeedbackConfigWidget> ui;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     AuditLogUiController *auditLogController;
-#endif
 };
 
 }
@@ -121,7 +117,6 @@ FeedbackConfigWidget::FeedbackConfigWidget(QWidget* parent)
     d->ui->telemetryDetails->installEventFilter(this);
     connect(d->ui->rawTelemetryButton, SIGNAL(toggled(bool)), this, SLOT(telemetrySliderChanged()));
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     d->auditLogController = new AuditLogUiController(this);
     d->ui->auditLogLabel->setVisible(d->auditLogController->hasLogEntries());
     connect(d->auditLogController, &AuditLogUiController::logEntryCountChanged, this, [this]() {
@@ -132,9 +127,6 @@ FeedbackConfigWidget::FeedbackConfigWidget(QWidget* parent)
         dlg.setUiController(d->auditLogController);
         dlg.exec();
     });
-#else
-    d->ui->auditLogLabel->hide();
-#endif
 
     setEnabled(false); // see setFeedbackProvider
 }

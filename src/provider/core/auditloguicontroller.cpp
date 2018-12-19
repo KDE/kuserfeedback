@@ -47,9 +47,7 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QHash<int, QByteArray> roleNames() const override;
-#endif
 
 private:
     QString m_path;
@@ -110,7 +108,6 @@ QVariant AuditLogEntryModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 QHash<int, QByteArray> AuditLogEntryModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
@@ -118,7 +115,6 @@ QHash<int, QByteArray> AuditLogEntryModel::roleNames() const
     roles.insert(Qt::UserRole, "data");
     return roles;
 }
-#endif
 
 
 AuditLogUiController::AuditLogUiController(QObject* parent)

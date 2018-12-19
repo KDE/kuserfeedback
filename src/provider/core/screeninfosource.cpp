@@ -17,12 +17,7 @@
 
 #include "screeninfosource.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QGuiApplication>
-#else
-#include <QApplication>
-#include <QDesktopWidget>
-#endif
 #include <QScreen>
 #include <QVariant>
 
@@ -41,7 +36,6 @@ QString ScreenInfoSource::description() const
 QVariant ScreenInfoSource::data()
 {
     QVariantList l;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     foreach (auto screen, QGuiApplication::screens()) {
         QVariantMap m;
         m.insert(QStringLiteral("width"), screen->size().width());
@@ -49,14 +43,5 @@ QVariant ScreenInfoSource::data()
         m.insert(QStringLiteral("dpi"), qRound(screen->physicalDotsPerInch()));
         l.push_back(m);
     }
-#else
-    auto desktop = QApplication::desktop();
-    for (int i = 0; i < desktop->screenCount(); ++i) {
-        QVariantMap m;
-        m.insert(QStringLiteral("width"), desktop->screenGeometry(i).width());
-        m.insert(QStringLiteral("height"), desktop->screenGeometry(i).height());
-        l.push_back(m);
-    }
-#endif
     return l;
 }

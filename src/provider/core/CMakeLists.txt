@@ -18,13 +18,9 @@ set(userfeedback_core_srcs
     startcountsource.cpp
     surveyinfo.cpp
     usagetimesource.cpp
+    auditloguicontroller.cpp
+    ${userfeedback_core_QM_LOADER}
 )
-if(Qt5Core_FOUND)
-    list(APPEND userfeedback_core_srcs
-        ${userfeedback_core_QM_LOADER}
-        auditloguicontroller.cpp
-    )
-endif()
 
 add_library(KUserFeedbackCore SHARED ${userfeedback_core_srcs})
 set_target_properties(KUserFeedbackCore PROPERTIES
@@ -33,15 +29,11 @@ set_target_properties(KUserFeedbackCore PROPERTIES
 )
 generate_export_header(KUserFeedbackCore)
 
-if(Qt5Core_FOUND)
-    target_link_libraries(KUserFeedbackCore PUBLIC Qt5::Core PRIVATE Qt5::Gui Qt5::Network)
-    if(ANDROID)
-        target_link_libraries(KUserFeedbackCore PRIVATE GLESv2)
-    endif()
-    target_compile_definitions(KUserFeedbackCore PRIVATE QT_DISABLE_DEPRECATED_BEFORE=0x050300)
-else()
-    target_link_libraries(KUserFeedbackCore PUBLIC ${QT_QTCORE_LIBRARIES} PRIVATE ${QT_QTGUI_LIBRARIES} ${QT_QTNETWORK_LIBRARIES})
+target_link_libraries(KUserFeedbackCore PUBLIC Qt5::Core PRIVATE Qt5::Gui Qt5::Network)
+if(ANDROID)
+    target_link_libraries(KUserFeedbackCore PRIVATE GLESv2)
 endif()
+target_compile_definitions(KUserFeedbackCore PRIVATE QT_DISABLE_DEPRECATED_BEFORE=0x050300)
 target_link_libraries(KUserFeedbackCore PRIVATE KUserFeedbackCommon)
 target_include_directories(KUserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
 target_include_directories(KUserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>")

@@ -22,11 +22,9 @@
 
 #include <QMetaType>
 #include <QSharedDataPointer>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <qobjectdefs.h>
 #include <QUrl>
 #include <QUuid>
-#endif
 
 
 QT_BEGIN_NAMESPACE
@@ -44,13 +42,11 @@ class SurveyInfoData;
  */
 class KUSERFEEDBACKCORE_EXPORT SurveyInfo
 {
-#ifndef QT4_MOC_WORKAROUND
     Q_GADGET
     Q_PROPERTY(bool isValid READ isValid)
     Q_PROPERTY(QUrl url READ url)
     Q_PROPERTY(QString target READ target)
     Q_PROPERTY(QUuid uuid READ uuid)
-#endif
 public:
     /*! Create an empty, invalid survey request. */
     SurveyInfo();
@@ -78,9 +74,7 @@ public:
     void setUuid(const QUuid &id);
     void setUrl(const QUrl &url);
     void setTarget(const QString &target);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     static SurveyInfo fromJson(const QJsonObject &obj);
-#endif
     ///@endcond
 private:
     QSharedDataPointer<SurveyInfoData> d;

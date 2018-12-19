@@ -25,9 +25,7 @@
 #include <QObject>
 #include <QSettings>
 #include <QSignalSpy>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QStandardPaths>
-#endif
 
 using namespace KUserFeedback;
 
@@ -40,9 +38,7 @@ private slots:
         QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
         QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
         QCoreApplication::setApplicationName(QStringLiteral("providertest"));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QStandardPaths::setTestModeEnabled(true);
-#endif
     }
 
     void init()
@@ -97,7 +93,6 @@ private slots:
 
     void testEncouragement()
     {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
             QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
@@ -125,12 +120,10 @@ private slots:
             p.setApplicationUsageTimeUntilEncouragement(0);
             QVERIFY(!spy.wait(10));
         }
-#endif
     }
 
     void testEncouragementDelay()
     {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
             QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
@@ -148,12 +141,10 @@ private slots:
             QVERIFY(spy.wait(1200));
             QCOMPARE(spy.count(), 1);
         }
-#endif
     }
 
     void testNoEncouragementWithAllFeedbackEnabled()
     {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
             QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
@@ -173,12 +164,10 @@ private slots:
             QVERIFY(!spy.wait(10));
             QCOMPARE(spy.count(), 0);
         }
-#endif
     }
 
     void testEncouragementRepetition()
     {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
             QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
@@ -215,12 +204,10 @@ private slots:
             p.setEncouragementInterval(1);
             QVERIFY(!spy.wait(10));
         }
-#endif
     }
 
     void testGlobalEncouragementCoordination()
     {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         {
             QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
             s.beginGroup(QLatin1String("UserFeedback"));
@@ -258,7 +245,6 @@ private slots:
             p.setEncouragementInterval(1);
             QVERIFY(!spy.wait(100));
         }
-#endif
     }
 
     void testMultipleProviders()
@@ -343,7 +329,6 @@ private slots:
         Provider p2;
         QVERIFY(!p2.isEnabled());
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         // check encouragements are disabled
         {
             QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
@@ -362,7 +347,6 @@ private slots:
             p.setEncouragementInterval(1);
             QVERIFY(!spy.wait(100));
         }
-#endif
     }
 };
 

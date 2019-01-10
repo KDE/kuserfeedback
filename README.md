@@ -36,6 +36,15 @@ the following steps inside your program:
   to be bothered by surveys. KUserFeedback::FeedbackConfigDialog provides a
   reference implementation of a configuration dialog for this.
 
+## Deployment
+For information on how to deploy the server parts, please see the
+[INSTALL](https://cgit.kde.org/kuserfeedback.git/tree/INSTALL) file.
+
+## Usage Documentation
+Information on how to use KUserFeedback from a product manager point of view can
+be found in the user manual of UserFeedbackConsole. Start UserFeedbackConsole and
+press `F1` to get to the user manual.
+
 ## Frequently Asked Questions
 
 _Why does the telemetry data contain no unique user/installation/machine id?_

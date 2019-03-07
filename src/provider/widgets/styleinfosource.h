@@ -20,7 +20,7 @@
 
 #include "kuserfeedbackwidgets_export.h"
 
-#include <abstractdatasource.h>
+#include "abstractdatasource.h"
 
 namespace KUserFeedback {
 

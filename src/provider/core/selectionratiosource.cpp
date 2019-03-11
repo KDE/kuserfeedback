@@ -35,12 +35,13 @@ class SelectionRatioSourcePrivate : public AbstractDataSourcePrivate
 {
 public:
     SelectionRatioSourcePrivate();
+    ~SelectionRatioSourcePrivate();
 
     void selectionChanged();
     QString selectedValue() const;
 
     QItemSelectionModel *model;
-    std::unique_ptr<QObject> monitor;
+    QMetaObject::Connection monitorConnection;
     QString description;
     QString previousValue;
     QTime lastChangeTime;
@@ -49,26 +50,17 @@ public:
     int role;
 };
 
-class SelectionMonitor : public QObject
-{
-    Q_OBJECT
-public:
-    explicit SelectionMonitor(SelectionRatioSourcePrivate *d) : m_receiver(d) {}
-public Q_SLOTS:
-    void selectionChanged()
-    {
-        m_receiver->selectionChanged();
-    }
-private:
-    SelectionRatioSourcePrivate *m_receiver;
-};
-
 }
 
 SelectionRatioSourcePrivate::SelectionRatioSourcePrivate()
     : model(nullptr)
     , role(Qt::DisplayRole)
 {
+}
+
+SelectionRatioSourcePrivate::~SelectionRatioSourcePrivate()
+{
+    QObject::disconnect(monitorConnection);
 }
 
 void SelectionRatioSourcePrivate::selectionChanged()
@@ -99,8 +91,10 @@ SelectionRatioSource::SelectionRatioSource(QItemSelectionModel* selectionModel, 
     d->model = selectionModel;
     Q_ASSERT(selectionModel);
 
-    d->monitor.reset(new SelectionMonitor(d));
-    QObject::connect(selectionModel, SIGNAL(selectionChanged(QItemSelection,QItemSelection)), d->monitor.get(), SLOT(selectionChanged()));
+    d->monitorConnection = QObject::connect(selectionModel, &QItemSelectionModel::selectionChanged, [this]() {
+        Q_D(SelectionRatioSource);
+        d->selectionChanged();
+    });
     d->lastChangeTime.start();
     d->selectionChanged();
 }
@@ -179,5 +173,3 @@ void SelectionRatioSource::reset(QSettings* settings)
     d->ratioSet.clear();
     settings->remove(QString());
 }
-
-#include "selectionratiosource.moc"

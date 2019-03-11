@@ -71,12 +71,12 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
     , encouragementInterval(-1)
 {
     submissionTimer.setSingleShot(true);
-    QObject::connect(&submissionTimer, SIGNAL(timeout()), q, SLOT(submit()));
+    QObject::connect(&submissionTimer, &QTimer::timeout, q, &Provider::submit);
 
     startTime.start();
 
     encouragementTimer.setSingleShot(true);
-    QObject::connect(&encouragementTimer, SIGNAL(timeout()), q, SLOT(emitShowEncouragementMessage()));
+    QObject::connect(&encouragementTimer, &QTimer::timeout, q, [this]() { emitShowEncouragementMessage(); });
 }
 
 ProviderPrivate::~ProviderPrivate()
@@ -399,7 +399,7 @@ Provider::Provider(QObject *parent) :
 {
     qCDebug(Log);
 
-    connect(QCoreApplication::instance(), SIGNAL(aboutToQuit()), this, SLOT(aboutToQuit()));
+    connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, this, [this]() { d->aboutToQuit(); });
 
     auto domain = QCoreApplication::organizationDomain().split(QLatin1Char('.'));
     std::reverse(domain.begin(), domain.end());
@@ -636,7 +636,7 @@ void ProviderPrivate::submit(const QUrl &url)
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
     request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("KUserFeedback/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
     auto reply = networkAccessManager->post(request, jsonData(telemetryMode));
-    QObject::connect(reply, SIGNAL(finished()), q, SLOT(submitFinished()));
+    QObject::connect(reply, &QNetworkReply::finished, q, [this]() { submitFinished(); });
 }
 
 void ProviderPrivate::submitProbe(const QUrl &url)
@@ -644,7 +644,7 @@ void ProviderPrivate::submitProbe(const QUrl &url)
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("KUserFeedback/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
     auto reply = networkAccessManager->get(request);
-    QObject::connect(reply, SIGNAL(finished()), q, SLOT(submitProbeFinished()));
+    QObject::connect(reply, &QNetworkReply::finished, q, [this]() { submitProbeFinished(); });
 }
 
 void ProviderPrivate::submitProbeFinished()

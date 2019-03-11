@@ -51,7 +51,7 @@ FeedbackConfigDialog::~FeedbackConfigDialog()
 void FeedbackConfigDialog::setFeedbackProvider(Provider* provider)
 {
     d->ui->configWidget->setFeedbackProvider(provider);
-    connect(d->ui->configWidget, SIGNAL(configurationChanged()), this, SLOT(updateButtonState()));
+    connect(d->ui->configWidget, &FeedbackConfigWidget::configurationChanged, this, [this]() { d->updateButtonState(); });
     d->updateButtonState();
 }
 

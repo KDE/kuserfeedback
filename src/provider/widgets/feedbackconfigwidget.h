@@ -73,8 +73,6 @@ protected:
     ///@endcond
 
 private:
-    Q_PRIVATE_SLOT(d, void telemetrySliderChanged())
-    Q_PRIVATE_SLOT(d, void surveySliderChanged())
     std::unique_ptr<FeedbackConfigWidgetPrivate> d;
 };
 

@@ -265,10 +265,6 @@ Q_SIGNALS:
 private:
     friend class ProviderPrivate;
     ProviderPrivate * const d;
-    Q_PRIVATE_SLOT(d, void aboutToQuit())
-    Q_PRIVATE_SLOT(d, void submitFinished())
-    Q_PRIVATE_SLOT(d, void submitProbeFinished())
-    Q_PRIVATE_SLOT(d, void emitShowEncouragementMessage())
     // for UI
     Q_PRIVATE_SLOT(d, QByteArray jsonData(KUserFeedback::Provider::TelemetryMode))
     // for testing

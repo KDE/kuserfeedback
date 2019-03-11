@@ -107,15 +107,15 @@ FeedbackConfigWidget::FeedbackConfigWidget(QWidget* parent)
     d->ui->setupUi(this);
     d->ui->noTelemetryLabel->setText(d->controller->telemetryModeDescription(Provider::NoTelemetry));
 
-    connect(d->ui->telemetrySlider, SIGNAL(valueChanged(int)), this, SLOT(telemetrySliderChanged()));
-    connect(d->ui->telemetrySlider, SIGNAL(valueChanged(int)), this, SIGNAL(configurationChanged()));
-    connect(d->ui->surveySlider, SIGNAL(valueChanged(int)), this, SLOT(surveySliderChanged()));
-    connect(d->ui->surveySlider, SIGNAL(valueChanged(int)), this, SIGNAL(configurationChanged()));
+    connect(d->ui->telemetrySlider, &QSlider::valueChanged, this, [this]() { d->telemetrySliderChanged(); });
+    connect(d->ui->telemetrySlider, &QSlider::valueChanged, this, &FeedbackConfigWidget::configurationChanged);
+    connect(d->ui->surveySlider, &QSlider::valueChanged, this, [this]() { d->surveySliderChanged(); });
+    connect(d->ui->surveySlider, &QSlider::valueChanged, this, &FeedbackConfigWidget::configurationChanged);
 
     d->ui->rawTelemetryButton->setParent(d->ui->telemetryDetails);
     d->ui->rawTelemetryButton->setIcon(style()->standardPixmap(QStyle::SP_DialogHelpButton));
     d->ui->telemetryDetails->installEventFilter(this);
-    connect(d->ui->rawTelemetryButton, SIGNAL(toggled(bool)), this, SLOT(telemetrySliderChanged()));
+    connect(d->ui->rawTelemetryButton, &QAbstractButton::toggled, this, [this]() { d->telemetrySliderChanged(); });
 
     d->auditLogController = new AuditLogUiController(this);
     d->ui->auditLogLabel->setVisible(d->auditLogController->hasLogEntries());

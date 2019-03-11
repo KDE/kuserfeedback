@@ -175,8 +175,8 @@ NotificationPopup::NotificationPopup(QWidget* parent)
 
     d->ui->frame->setAutoFillBackground(true);
     d->ui->closeButton->setIcon(style()->standardIcon(QStyle::SP_DialogCloseButton));
-    connect(d->ui->actionButton, SIGNAL(clicked()), this, SLOT(action()));
-    connect(d->ui->closeButton, SIGNAL(clicked()), this, SLOT(hidePopup()));
+    connect(d->ui->actionButton, &QPushButton::clicked, this, [this]() { d->action(); });
+    connect(d->ui->closeButton, &QPushButton::clicked, this, [this]() { d->hidePopup(); });
 
     parent->installEventFilter(this);
     setVisible(false);
@@ -190,8 +190,8 @@ void NotificationPopup::setFeedbackProvider(Provider* provider)
 {
     Q_ASSERT(provider);
     d->provider = provider;
-    connect(provider, SIGNAL(showEncouragementMessage()), this, SLOT(showEncouragement()));
-    connect(provider, SIGNAL(surveyAvailable(KUserFeedback::SurveyInfo)), this, SLOT(surveyAvailable(KUserFeedback::SurveyInfo)));
+    connect(provider, &Provider::showEncouragementMessage, this, [this]() { d->showEncouragement(); });
+    connect(provider, &Provider::surveyAvailable, this, [this](const SurveyInfo &info) { d->surveyAvailable(info); });
 }
 
 void NotificationPopup::keyReleaseEvent(QKeyEvent* event)

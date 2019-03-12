@@ -32,6 +32,7 @@
 
 QT_BEGIN_NAMESPACE
 class QNetworkAccessManager;
+class QNetworkReply;
 class QSettings;
 QT_END_NAMESPACE
 
@@ -57,9 +58,9 @@ public:
     QByteArray jsonData(Provider::TelemetryMode mode) const;
     void scheduleNextSubmission();
     void submitProbe(const QUrl &url);
-    void submitProbeFinished();
+    void submitProbeFinished(QNetworkReply *reply);
     void submit(const QUrl &url);
-    void submitFinished();
+    void submitFinished(QNetworkReply *reply);
 
     bool selectSurvey(const SurveyInfo &survey) const;
 

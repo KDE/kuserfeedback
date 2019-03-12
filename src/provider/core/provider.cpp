@@ -255,10 +255,9 @@ void ProviderPrivate::scheduleNextSubmission()
     submissionTimer.start(std::max(0ll, now.msecsTo(nextSubmission)));
 }
 
-void ProviderPrivate::submitFinished()
+void ProviderPrivate::submitFinished(QNetworkReply *reply)
 {
-    auto reply = qobject_cast<QNetworkReply*>(q->sender());
-    Q_ASSERT(reply);
+    reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
         qCWarning(Log) << "failed to submit user feedback:" << reply->errorString() << reply->readAll();
@@ -636,7 +635,7 @@ void ProviderPrivate::submit(const QUrl &url)
     request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/json"));
     request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("KUserFeedback/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
     auto reply = networkAccessManager->post(request, jsonData(telemetryMode));
-    QObject::connect(reply, &QNetworkReply::finished, q, [this]() { submitFinished(); });
+    QObject::connect(reply, &QNetworkReply::finished, q, [this, reply]() { submitFinished(reply); });
 }
 
 void ProviderPrivate::submitProbe(const QUrl &url)
@@ -644,13 +643,12 @@ void ProviderPrivate::submitProbe(const QUrl &url)
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("KUserFeedback/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
     auto reply = networkAccessManager->get(request);
-    QObject::connect(reply, &QNetworkReply::finished, q, [this]() { submitProbeFinished(); });
+    QObject::connect(reply, &QNetworkReply::finished, q, [this, reply]() { submitProbeFinished(reply); });
 }
 
-void ProviderPrivate::submitProbeFinished()
+void ProviderPrivate::submitProbeFinished(QNetworkReply *reply)
 {
-    auto reply = qobject_cast<QNetworkReply*>(q->sender());
-    Q_ASSERT(reply);
+    reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
         qCWarning(Log) << "failed to probe user feedback submission interface:" << reply->errorString() << reply->readAll();

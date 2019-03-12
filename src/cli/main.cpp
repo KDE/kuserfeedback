@@ -69,7 +69,8 @@ int main(int argc, char **argv)
         parser.showHelp(1);
     const auto cmd = parser.positionalArguments().at(0);
     if (cmd == QLatin1String("list-servers")) {
-        for (const auto &n : ServerInfo::allServerInfoNames())
+        const auto servers = ServerInfo::allServerInfoNames();
+        for (const auto &n : servers)
             std::cout << qPrintable(n) << std::endl;
         return 0;
     }
@@ -137,7 +138,7 @@ int main(int argc, char **argv)
                 if (reply->error() != QNetworkReply::NoError)
                     return;
                 const auto products = Product::fromJson(reply->readAll());
-                for (const auto p : products) {
+                for (const auto &p : products) {
                     ++jobCount;
                     auto job = new ProductExportJob(p, parser.value(outputOpt), &restClient);
                     QObject::connect(job, &Job::destroyed, []() {
@@ -164,7 +165,7 @@ int main(int argc, char **argv)
     } else if (cmd == QLatin1String("import-product")) {
         if (parser.positionalArguments().size() != 2)
             parser.showHelp(1);
-        QObject::connect(&restClient, &RESTClient::clientConnected, [&parser, &outputOpt, &restClient]() {
+        QObject::connect(&restClient, &RESTClient::clientConnected, [&parser, &restClient]() {
             auto job = new ProductImportJob(parser.positionalArguments().at(1), &restClient);
             QObject::connect(job, &Job::destroyed, qApp, &QCoreApplication::quit);
             QObject::connect(job, &Job::error, [](const auto &msg) {
@@ -180,7 +181,7 @@ int main(int argc, char **argv)
                 if (reply->error() != QNetworkReply::NoError)
                     return;
                 const auto products = Product::fromJson(reply->readAll());
-                for (const auto p : products)
+                for (const auto &p : products)
                     std::cout << qPrintable(p.name()) << std::endl;
                 qApp->quit();
             });

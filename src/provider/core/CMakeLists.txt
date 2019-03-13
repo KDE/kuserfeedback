@@ -55,6 +55,7 @@ ecm_generate_headers(KUserFeedbackCore_HEADERS
         StartCountSource
         SurveyInfo
         UsageTimeSource
+        FeedbackConfigUiController
     REQUIRED_HEADERS KUserFeedbackCore_HEADERS
 )
 

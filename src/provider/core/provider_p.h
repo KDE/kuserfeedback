@@ -70,7 +70,7 @@ public:
 
     void writeAuditLog(const QDateTime &dt);
 
-    QVariant sourceData(const QString &sourceName) const override;
+    QVariant sourceData(const QString &sourceId) const override;
 
     Provider *q;
 

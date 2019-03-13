@@ -27,7 +27,7 @@ class PropertyRatioSource;
 class QmlPropertyRatioSource : public QmlAbstractDataSource
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName NOTIFY changed)
+    Q_PROPERTY(QString id READ id WRITE setId NOTIFY changed)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY changed)
     Q_PROPERTY(QObject* object READ object WRITE setObject NOTIFY changed)
     Q_PROPERTY(QString propertyName READ propertyName WRITE setPropertyName NOTIFY changed)
@@ -35,8 +35,8 @@ public:
     explicit QmlPropertyRatioSource(QObject *parent = nullptr);
     ~QmlPropertyRatioSource();
 
-    QString name() const;
-    void setName(const QString &name);
+    QString id() const;
+    void setId(const QString &id);
 
     QString description() const;
     void setDescription(const QString &desc);

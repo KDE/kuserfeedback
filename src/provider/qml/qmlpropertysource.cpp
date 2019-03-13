@@ -28,7 +28,7 @@ public:
     QVariant data() override { return m_data; }
     QString description() const override { return m_description; }
 
-    void setSourceName(const QString &name) { setName(name); }
+    void setSourceId(const QString &id) { setId(id); }
 
     QVariant m_data;
     QString m_description;
@@ -49,9 +49,9 @@ QString QmlPropertySource::description() const
     return source()->description();
 }
 
-QString QmlPropertySource::name() const
+QString QmlPropertySource::id() const
 {
-    return source()->name();
+    return source()->id();
 }
 
 void KUserFeedback::QmlPropertySource::setData(const QVariant& data)
@@ -70,11 +70,11 @@ void KUserFeedback::QmlPropertySource::setDescription(const QString& description
     }
 }
 
-void KUserFeedback::QmlPropertySource::setName(const QString& name)
+void KUserFeedback::QmlPropertySource::setId(const QString& id)
 {
-    if (name != source()->name()) {
-        customSource()->setSourceName(name);
-        Q_EMIT nameChanged(name);
+    if (id != source()->id()) {
+        customSource()->setSourceId(id);
+        Q_EMIT idChanged(id);
     }
 }
 

@@ -37,17 +37,17 @@ class KUSERFEEDBACKCORE_EXPORT AbstractDataSource
 public:
     virtual ~AbstractDataSource();
 
-    /*! Returns the name of this data source.
+    /*! Returns the ID of this data source.
      *  This is used as identifier towards the server and should
      *  not be shown to the user.
      *  @see description()
      *  @returns The data source identifier configured on the feedback server.
      */
-    QString name() const;
+    QString id() const;
 
     /*! Returns a human-readable, translated description of what
      *  this source provides.
-     *  @see name()
+     *  @see id()
      *  @returns A translated, human-readable string.
      */
     virtual QString description() const = 0;
@@ -112,14 +112,16 @@ protected:
      *  @param name Must not be empty.
      *  @param mode The default telemetry mode.
      */
-    explicit AbstractDataSource(const QString &name, Provider::TelemetryMode mode = Provider::DetailedUsageStatistics, AbstractDataSourcePrivate *dd = nullptr);
+    explicit AbstractDataSource(const QString &id,
+                                Provider::TelemetryMode mode = Provider::DetailedUsageStatistics,
+                                AbstractDataSourcePrivate *dd = nullptr);
 
-    /*! Set the name of this data source.
-     *  The name should not change at runtime, this is only provided
+    /*! Set the ID of this data source.
+     *  The ID should not change at runtime, this is only provided
      *  for enabling QML API for generic sources.
-     *  @see name()
+     *  @see id()
      */
-    void setName(const QString &name);
+    void setId(const QString &id);
 
     ///@cond internal
     class AbstractDataSourcePrivate* const d_ptr;

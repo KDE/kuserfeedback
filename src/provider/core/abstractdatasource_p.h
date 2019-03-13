@@ -28,7 +28,7 @@ public:
     AbstractDataSourcePrivate();
     virtual ~AbstractDataSourcePrivate();
 
-    QString name;
+    QString id;
     Provider::TelemetryMode mode;
 
 private:

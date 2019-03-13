@@ -30,22 +30,22 @@ namespace KUserFeedback {
 class QmlPropertySource : public QmlAbstractDataSource
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(QString id READ id WRITE setId NOTIFY idChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
     Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)
 public:
     QmlPropertySource(QObject* parent = nullptr);
 
-    QString name() const;
+    QString id() const;
     QString description() const;
     QVariant data() const;
 
-    void setName(const QString &name);
+    void setId(const QString &id);
     void setDescription(const QString &description);
     void setData(const QVariant &data);
 
 Q_SIGNALS:
-    void nameChanged(const QString &name);
+    void idChanged(const QString &id);
     void descriptionChanged(const QString &description);
     void dataChanged(const QVariant &data);
 

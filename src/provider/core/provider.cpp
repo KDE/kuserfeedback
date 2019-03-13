@@ -146,7 +146,7 @@ void ProviderPrivate::load()
     s->endGroup();
 
     foreach (auto source, dataSources) {
-        s->beginGroup(QStringLiteral("Source-") + source->name());
+        s->beginGroup(QStringLiteral("Source-") + source->id());
         source->load(s.get());
         s->endGroup();
     }
@@ -171,7 +171,7 @@ void ProviderPrivate::store()
     s->endGroup();
 
     foreach (auto source, dataSources) {
-        s->beginGroup(QStringLiteral("Source-") + source->name());
+        s->beginGroup(QStringLiteral("Source-") + source->id());
         source->store(s.get());
         s->endGroup();
     }
@@ -198,20 +198,20 @@ void ProviderPrivate::aboutToQuit()
 
 bool ProviderPrivate::isValidSource(AbstractDataSource *source) const
 {
-    if (source->name().isEmpty()) {
+    if (source->id().isEmpty()) {
         qCWarning(Log) << "Skipping data source with empty name!";
         return false;
     }
     if (source->telemetryMode() == Provider::NoTelemetry) {
-        qCWarning(Log) << "Source" << source->name() << "attempts to report data unconditionally, ignoring!";
+        qCWarning(Log) << "Source" << source->id() << "attempts to report data unconditionally, ignoring!";
         return false;
     }
     if (source->description().isEmpty()) {
-        qCWarning(Log) << "Source" << source->name() << "has no description, ignoring!";
+        qCWarning(Log) << "Source" << source->id() << "has no description, ignoring!";
         return false;
     }
 
-    Q_ASSERT(!source->name().isEmpty());
+    Q_ASSERT(!source->id().isEmpty());
     Q_ASSERT(source->telemetryMode() != Provider::NoTelemetry);
     Q_ASSERT(!source->description().isEmpty());
     return true;
@@ -228,11 +228,11 @@ QByteArray ProviderPrivate::jsonData(Provider::TelemetryMode mode) const
                 continue;
             const auto data = source->data();
             if (data.canConvert<QVariantMap>())
-                obj.insert(source->name(), QJsonObject::fromVariantMap(data.toMap()));
+                obj.insert(source->id(), QJsonObject::fromVariantMap(data.toMap()));
             else if (data.canConvert<QVariantList>())
-                obj.insert(source->name(), QJsonArray::fromVariantList(data.value<QVariantList>()));
+                obj.insert(source->id(), QJsonArray::fromVariantList(data.value<QVariantList>()));
             else
-                qCWarning(Log) << "wrong type for" << source->name() << data;
+                qCWarning(Log) << "wrong type for" << source->id() << data;
         }
     }
 
@@ -285,7 +285,7 @@ void ProviderPrivate::submitFinished(QNetworkReply *reply)
 
     // reset source counters
     foreach (auto source, dataSources) {
-        s->beginGroup(QStringLiteral("Source-") + source->name());
+        s->beginGroup(QStringLiteral("Source-") + source->id());
         source->reset(s.get());
         s->endGroup();
     }
@@ -305,10 +305,10 @@ void ProviderPrivate::submitFinished(QNetworkReply *reply)
     scheduleNextSubmission();
 }
 
-QVariant ProviderPrivate::sourceData(const QString& sourceName) const
+QVariant ProviderPrivate::sourceData(const QString& sourceId) const
 {
     foreach (auto src, dataSources) {
-        if (src->name() == sourceName)
+        if (src->id() == sourceId)
             return src->data();
     }
     return QVariant();
@@ -506,7 +506,7 @@ void Provider::addDataSource(AbstractDataSource *source)
     d->dataSources.push_back(source);
 
     auto s = d->makeSettings();
-    s->beginGroup(QStringLiteral("Source-") + source->name());
+    s->beginGroup(QStringLiteral("Source-") + source->id());
     source->load(s.get());
 }
 
@@ -687,7 +687,7 @@ void ProviderPrivate::writeAuditLog(const QDateTime &dt)
             continue;
         obj.insert(QLatin1String("telemetryMode"), QString::fromLatin1(telemetryModeEnum().valueToKey(source->telemetryMode())));
         obj.insert(QLatin1String("description"), source->description());
-        docObj.insert(source->name(), obj);
+        docObj.insert(source->id(), obj);
     }
 
     QFile file(path + QLatin1Char('/') + dt.toString(QStringLiteral("yyyyMMdd-hhmmss")) + QStringLiteral(".log"));

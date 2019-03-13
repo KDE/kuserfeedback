@@ -29,10 +29,11 @@ AbstractDataSourcePrivate::~AbstractDataSourcePrivate()
 {
 }
 
-AbstractDataSource::AbstractDataSource(const QString &name, Provider::TelemetryMode mode, AbstractDataSourcePrivate* dd) :
-    d_ptr(dd ? dd : new AbstractDataSourcePrivate)
+AbstractDataSource::AbstractDataSource(const QString &id, Provider::TelemetryMode mode,
+                                       AbstractDataSourcePrivate* dd)
+    : d_ptr(dd ? dd : new AbstractDataSourcePrivate)
 {
-    d_ptr->name = name;
+    d_ptr->id = id;
     d_ptr->mode = mode;
 }
 
@@ -41,14 +42,14 @@ AbstractDataSource::~AbstractDataSource()
     delete d_ptr;
 }
 
-QString AbstractDataSource::name() const
+QString AbstractDataSource::id() const
 {
-    return d_ptr->name;
+    return d_ptr->id;
 }
 
-void AbstractDataSource::setName(const QString& name)
+void AbstractDataSource::setId(const QString& id)
 {
-    d_ptr->name = name;
+    d_ptr->id = id;
 }
 
 void AbstractDataSource::load(QSettings *settings)

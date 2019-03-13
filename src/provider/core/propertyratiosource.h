@@ -77,7 +77,7 @@ public:
     void store(QSettings *settings) override;
     void reset(QSettings *settings) override;
 
-    using AbstractDataSource::setName;
+    using AbstractDataSource::setId;
 private:
     Q_DECLARE_PRIVATE(PropertyRatioSource)
 };

@@ -35,16 +35,16 @@ PropertyRatioSource* QmlPropertyRatioSource::prSrc() const
     return static_cast<PropertyRatioSource*>(source());
 }
 
-QString QmlPropertyRatioSource::name() const
+QString QmlPropertyRatioSource::id() const
 {
-    return source()->name();
+    return source()->id();
 }
 
-void QmlPropertyRatioSource::setName(const QString& name)
+void QmlPropertyRatioSource::setId(const QString& id)
 {
-    if (source()->name() == name)
+    if (source()->id() == id)
         return;
-    prSrc()->setName(name);
+    prSrc()->setId(id);
     emit changed();
 }
 

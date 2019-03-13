@@ -118,6 +118,24 @@ int FeedbackConfigUiController::telemetryModeToIndex(Provider::TelemetryMode mod
     return std::distance(d->telemetryModeMap.begin(), it);
 }
 
+QString FeedbackConfigUiController::telemetryModeName(int telemetryIndex) const
+{
+    switch (telemetryIndexToMode(telemetryIndex)) {
+        case Provider::NoTelemetry:
+            return tr("No telemetry");
+        case Provider::BasicSystemInformation:
+            return tr("Basic system information");
+        case Provider::BasicUsageStatistics:
+            return tr("Basic usage statistics");
+        case Provider::DetailedSystemInformation:
+            return tr("Detailed system information");
+        case Provider::DetailedUsageStatistics:
+            return tr("Detailed usage statistics");
+    }
+
+    return {};
+}
+
 QString FeedbackConfigUiController::telemetryModeDescription(int telemetryIndex) const
 {
     const auto name = d->appName();

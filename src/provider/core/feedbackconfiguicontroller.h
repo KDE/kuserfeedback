@@ -64,6 +64,8 @@ public:
     /*! Convert telemetry mode to slider index. */
     Q_INVOKABLE int telemetryModeToIndex(KUserFeedback::Provider::TelemetryMode mode) const;
 
+    /*! Telemetry mode short name. */
+    Q_INVOKABLE QString telemetryModeName(int telemetryIndex) const;
     /*! Telemetry mode explanation text. */
     Q_INVOKABLE QString telemetryModeDescription(int telemetryIndex) const;
     /*! Detailed information about the data sources of the given telemetry mode index. */

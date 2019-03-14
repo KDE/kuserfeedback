@@ -37,7 +37,10 @@ class KUSERFEEDBACKCORE_EXPORT StartCountSource :  public AbstractDataSource
 public:
     /*! Create a new start count data source. */
     StartCountSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 
 private:

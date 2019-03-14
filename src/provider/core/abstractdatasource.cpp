@@ -47,6 +47,11 @@ QString AbstractDataSource::id() const
     return d_ptr->id;
 }
 
+QString AbstractDataSource::name() const
+{
+    return {};
+}
+
 void AbstractDataSource::setId(const QString& id)
 {
     d_ptr->id = id;

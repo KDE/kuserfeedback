@@ -63,3 +63,8 @@ QVariant PlatformInfoSource::data()
 #endif
     return m;
 }
+
+QString PlatformInfoSource::name() const
+{
+    return tr("Platform information");
+}

@@ -32,7 +32,10 @@ class KUSERFEEDBACKCORE_EXPORT LocaleInfoSource : public AbstractDataSource
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::LocaleInfoSource)
 public:
     LocaleInfoSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 };
 

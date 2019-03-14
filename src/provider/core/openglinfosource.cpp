@@ -94,3 +94,8 @@ QVariant OpenGLInfoSource::data()
     m.insert(QStringLiteral("type"), QStringLiteral("none"));
     return m;
 }
+
+QString OpenGLInfoSource::name() const
+{
+    return tr("OpenGL information");
+}

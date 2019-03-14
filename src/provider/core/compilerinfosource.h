@@ -37,7 +37,10 @@ public:
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::CompilerInfoSource)
 public:
     CompilerInfoSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 };
 

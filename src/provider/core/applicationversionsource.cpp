@@ -41,3 +41,8 @@ QVariant ApplicationVersionSource::data()
     m.insert(QStringLiteral("value"), QCoreApplication::applicationVersion());
     return m;
 }
+
+QString ApplicationVersionSource::name() const
+{
+    return tr("Application version");
+}

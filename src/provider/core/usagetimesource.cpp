@@ -52,6 +52,11 @@ QVariant UsageTimeSource::data()
     return m;
 }
 
+QString UsageTimeSource::name() const
+{
+    return tr("Usage time");
+}
+
 void UsageTimeSource::setProvider(ProviderPrivate* p)
 {
     Q_D(UsageTimeSource);

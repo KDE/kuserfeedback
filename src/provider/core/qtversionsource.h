@@ -32,7 +32,10 @@ class KUSERFEEDBACKCORE_EXPORT QtVersionSource : public AbstractDataSource
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::QtVersionSource)
 public:
     QtVersionSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 };
 }

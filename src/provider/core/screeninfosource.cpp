@@ -45,3 +45,8 @@ QVariant ScreenInfoSource::data()
     }
     return l;
 }
+
+QString ScreenInfoSource::name() const
+{
+    return tr("Screen parameters");
+}

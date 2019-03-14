@@ -32,7 +32,10 @@ public:
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::OpenGLInfoSource)
 public:
     OpenGLInfoSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 };
 

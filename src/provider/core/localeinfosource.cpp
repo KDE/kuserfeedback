@@ -40,3 +40,8 @@ QVariant LocaleInfoSource::data()
     m.insert(QStringLiteral("language"), QLocale::languageToString(l.language()));
     return m;
 }
+
+QString LocaleInfoSource::name() const
+{
+    return tr("Locale information");
+}

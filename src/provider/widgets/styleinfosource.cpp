@@ -42,3 +42,8 @@ QVariant StyleInfoSource::data()
     m.insert(QStringLiteral("dark"), qApp->palette().color(QPalette::Background).lightness() < 128);
     return m;
 }
+
+QString StyleInfoSource::name() const
+{
+    return tr("Application style");
+}

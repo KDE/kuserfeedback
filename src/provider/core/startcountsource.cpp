@@ -52,6 +52,11 @@ QVariant StartCountSource::data()
     return m;
 }
 
+QString StartCountSource::name() const
+{
+    return tr("Launches count");
+}
+
 void StartCountSource::setProvider(ProviderPrivate *p)
 {
     Q_D(StartCountSource);

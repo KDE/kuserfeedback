@@ -38,3 +38,8 @@ QVariant QPAInfoSource::data()
     m.insert(QStringLiteral("name"), QGuiApplication::platformName());
     return m;
 }
+
+QString QPAInfoSource::name() const
+{
+    return tr("QPA information");
+}

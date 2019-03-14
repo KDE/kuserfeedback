@@ -33,7 +33,10 @@ class KUSERFEEDBACKCORE_EXPORT QPAInfoSource : public AbstractDataSource
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::QPAInfoSource)
 public:
     QPAInfoSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 };
 

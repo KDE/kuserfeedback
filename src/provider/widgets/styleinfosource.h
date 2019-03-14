@@ -31,7 +31,10 @@ public:
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::StyleInfoSource)
 public:
     StyleInfoSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 };
 

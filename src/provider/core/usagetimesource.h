@@ -38,7 +38,10 @@ public:
 public:
     /*! Create a new usage time data source. */
     UsageTimeSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 
 private:

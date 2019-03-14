@@ -40,3 +40,8 @@ QVariant CpuInfoSource::data()
     m.insert(QStringLiteral("count"), QThread::idealThreadCount());
     return m;
 }
+
+QString CpuInfoSource::name() const
+{
+    return tr("CPU information");
+}

@@ -35,7 +35,10 @@ class KUSERFEEDBACKCORE_EXPORT PlatformInfoSource : public AbstractDataSource
 public:
     /*! Create a new platform information source. */
     PlatformInfoSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 };
 

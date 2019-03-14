@@ -32,7 +32,10 @@ class KUSERFEEDBACKCORE_EXPORT CpuInfoSource : public AbstractDataSource
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::CpuInfoSource)
 public:
     CpuInfoSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 };
 

@@ -45,6 +45,12 @@ public:
      */
     QString id() const;
 
+    /*! Returns a short name of this data source.
+     *  Can be empty if short name is meaningless for this data source.
+     *  @returns A translated, human-readable string.
+     */
+    virtual QString name() const;
+
     /*! Returns a human-readable, translated description of what
      *  this source provides.
      *  @see id()

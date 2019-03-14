@@ -37,7 +37,10 @@ class KUSERFEEDBACKCORE_EXPORT ScreenInfoSource :  public AbstractDataSource
 public:
     /*! Create a new screen information source. */
     ScreenInfoSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 };
 

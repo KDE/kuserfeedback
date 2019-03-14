@@ -59,5 +59,10 @@ QVariant CompilerInfoSource::data()
     return m;
 }
 
+QString CompilerInfoSource::name() const
+{
+    return tr("Compiler information");
+}
+
 #undef STRINGIFY
 #undef INT2STR

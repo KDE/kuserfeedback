@@ -37,3 +37,8 @@ QVariant QtVersionSource::data()
     m.insert(QStringLiteral("value"), QString::fromLatin1(qVersion()));
     return m;
 }
+
+QString QtVersionSource::name() const
+{
+    return tr("Qt version information");
+}

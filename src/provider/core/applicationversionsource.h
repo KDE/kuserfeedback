@@ -34,7 +34,10 @@ class KUSERFEEDBACKCORE_EXPORT ApplicationVersionSource : public AbstractDataSou
 public:
     /*! Create a new application version source. */
     ApplicationVersionSource();
+
+    QString name() const override;
     QString description() const override;
+
     QVariant data() override;
 };
 

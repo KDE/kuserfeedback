@@ -11,3 +11,6 @@ src/server/data/*.sqlite
 
 vendor
 composer.lock
+
+*build*/
+

@@ -504,6 +504,7 @@ void Provider::addDataSource(AbstractDataSource *source)
         timeSrc->setProvider(d);
 
     d->dataSources.push_back(source);
+    d->dataSourcesById[source->id()] = source;
 
     auto s = d->makeSettings();
     s->beginGroup(QStringLiteral("Source-") + source->id());
@@ -513,6 +514,12 @@ void Provider::addDataSource(AbstractDataSource *source)
 QVector<AbstractDataSource*> Provider::dataSources() const
 {
     return d->dataSources;
+}
+
+AbstractDataSource *Provider::dataSource(const QString &id) const
+{
+    auto it = d->dataSourcesById.find(id);
+    return it != std::end(d->dataSourcesById) ? *it : nullptr;
 }
 
 int Provider::surveyInterval() const

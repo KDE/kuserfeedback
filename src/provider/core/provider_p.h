@@ -100,6 +100,7 @@ public:
     int encouragementInterval;
 
     QVector<AbstractDataSource*> dataSources;
+    QHash<QString, AbstractDataSource*> dataSourcesById;
 };
 }
 

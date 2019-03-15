@@ -348,6 +348,25 @@ private slots:
             QVERIFY(!spy.wait(100));
         }
     }
+
+    void testDataSourceLookup()
+    {
+        Provider p;
+
+        auto screenInfoDataSource = new ScreenInfoSource;
+        auto screenInfoDataSourceId = screenInfoDataSource->id();
+
+        auto platformInfoDataSource = new PlatformInfoSource;
+        auto platformInfoDataSourceId = platformInfoDataSource->id();
+
+        p.addDataSource(screenInfoDataSource);
+        p.addDataSource(platformInfoDataSource);
+
+        QCOMPARE(screenInfoDataSource, p.dataSource(screenInfoDataSourceId));
+        QCOMPARE(platformInfoDataSource, p.dataSource(platformInfoDataSourceId));
+
+        QVERIFY(!p.dataSource(QStringLiteral("SomeInvalidId")));
+    }
 };
 
 QTEST_MAIN(ProviderTest)

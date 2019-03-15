@@ -182,6 +182,12 @@ public:
      */
     QVector<AbstractDataSource*> dataSources() const;
 
+    /*! Returns a data source with matched @p id
+     * @param id data source unique identifier
+     * @return pointer to found data source or nullptr if data source is not found
+     */
+    AbstractDataSource *dataSource(const QString &id) const;
+
     /*! Returns the minimum time between two surveys in days.
      *  The default is -1 (no surveys enabled).
      */

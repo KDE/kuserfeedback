@@ -241,6 +241,7 @@ void MainWindow::createProduct()
 
     auto reply = RESTApi::createProduct(m_restClient, product);
     connect(reply, &QNetworkReply::finished, this, [this, reply, name]() {
+        reply->deleteLater();
         if (reply->error() == QNetworkReply::NoError) {
             logMessage(QString::fromUtf8(reply->readAll()));
             m_productModel->reload();
@@ -262,6 +263,7 @@ void MainWindow::deleteProduct()
 
     auto reply = RESTApi::deleteProduct(m_restClient, product);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        reply->deleteLater();
         if (reply->error() == QNetworkReply::NoError) {
             logMessage(QString::fromUtf8(reply->readAll()));
         }

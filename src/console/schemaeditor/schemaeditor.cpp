@@ -121,6 +121,7 @@ void SchemaEditor::save()
         setDirty(false);
         emit logMessage(QString::fromUtf8((reply->readAll())));
         emit productChanged(product());
+        reply->deleteLater();
     });
 }
 

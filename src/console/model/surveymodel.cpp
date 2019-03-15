@@ -59,6 +59,7 @@ void SurveyModel::reload()
             m_surveys = Survey::fromJson(data);
             endResetModel();
         }
+        reply->deleteLater();
     });
 }
 
@@ -107,6 +108,7 @@ bool SurveyModel::setData(const QModelIndex &index, const QVariant &value, int r
             reload();
         });
         emit dataChanged(index, index);
+        reply->deleteLater();
         return true;
     }
     return false;

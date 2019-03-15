@@ -34,6 +34,7 @@ ProductExportJob::ProductExportJob(const QString& productId, const QString& dest
     Q_ASSERT(m_restClient->isConnected());
     auto reply = RESTApi::listProducts(restClient);
     connect(reply, &QNetworkReply::finished, this, [this, productId, reply]() {
+        reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
             deleteLater();
             return;
@@ -82,6 +83,7 @@ void ProductExportJob::doExportSurveys()
 {
     auto reply = RESTApi::listSurveys(m_restClient, m_product);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
             deleteLater();
             return;
@@ -101,6 +103,7 @@ void ProductExportJob::doExportData()
 {
     auto reply = RESTApi::listSamples(m_restClient, m_product);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
             deleteLater();
             return;

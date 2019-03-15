@@ -77,6 +77,7 @@ void SurveyEditor::createSurvey()
             emit logMessage(QString::fromUtf8(reply->readAll()));
         }
         m_surveyModel->reload();
+        reply->deleteLater();
     });
 }
 
@@ -100,6 +101,7 @@ void SurveyEditor::editSurvey()
             return;
         emit logMessage(QString::fromUtf8(reply->readAll()));
         m_surveyModel->reload();
+        reply->deleteLater();
     });
 }
 
@@ -126,6 +128,7 @@ void SurveyEditor::deleteSurvey()
             return;
         emit logMessage(QString::fromUtf8(reply->readAll()));
         m_surveyModel->reload();
+        reply->deleteLater();
     });
 }
 

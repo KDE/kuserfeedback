@@ -61,6 +61,7 @@ void ProductModel::reload()
             auto json = reply->readAll();
             mergeProducts(Product::fromJson(json));
         }
+	reply->deleteLater();
     });
 }
 

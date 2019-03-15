@@ -59,6 +59,7 @@ void ProductImportJob::doImportSchema()
 
     auto reply = RESTApi::createProduct(m_restClient, m_product);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
             deleteLater();
             return;
@@ -86,6 +87,7 @@ void ProductImportJob::doImportSurveys()
         ++m_jobCount;
         auto reply = RESTApi::createSurvey(m_restClient, m_product, s);
         connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+            reply->deleteLater();
             --m_jobCount;
             if (reply->error() != QNetworkReply::NoError) {
                 deleteLater();
@@ -114,6 +116,7 @@ void ProductImportJob::doImportData()
 
     auto reply = RESTApi::addSamples(m_restClient, m_product, samples);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        reply->deleteLater();
         if (reply->error() == QNetworkReply::NoError)
             emitFinished();
     });

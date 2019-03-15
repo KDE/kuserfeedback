@@ -117,6 +117,7 @@ void DataModel::reload()
             const auto samples = Sample::fromJson(reply->readAll(), m_product);
             setSamples(samples);
         }
+        reply->deleteLater();
     });
 }
 

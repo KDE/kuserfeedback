@@ -39,6 +39,7 @@ HandshakeJob::HandshakeJob(RESTClient* restClient, QObject* parent)
         } else {
             emitError(reply->errorString());
         }
+        reply->deleteLater();
     });
     connect(reply, &QNetworkReply::redirected, this, [this, reply](const auto &url) {
         auto s = m_restClient->serverInfo();

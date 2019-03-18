@@ -222,7 +222,7 @@ QByteArray ProviderPrivate::jsonData(Provider::TelemetryMode mode) const
     QJsonObject obj;
     if (mode != Provider::NoTelemetry) {
         foreach (auto source, dataSources) {
-            if (!isValidSource(source))
+            if (!isValidSource(source) || !source->isActive())
                 continue;
             if (mode < source->telemetryMode())
                 continue;
@@ -682,7 +682,7 @@ void ProviderPrivate::writeAuditLog(const QDateTime &dt)
 
     QJsonObject docObj;
     foreach (auto source, dataSources) {
-        if (!isValidSource(source) || telemetryMode < source->telemetryMode())
+        if (!isValidSource(source) || !source->isActive() || telemetryMode < source->telemetryMode())
             continue;
         QJsonObject obj;
         const auto data = source->data();

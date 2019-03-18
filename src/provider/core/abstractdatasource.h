@@ -83,13 +83,13 @@ public:
      *  @param settings A QSettings object opened in a dedicated group for loading
      *  persistent data.
      */
-    virtual void load(QSettings *settings);
+    void load(QSettings *settings);
 
     /*! Store persistent state for this data source.
      *  @param settings A QSettings object opened in a dedicated group for storing
      *  persistent data.
      */
-    virtual void store(QSettings *settings);
+    void store(QSettings *settings);
 
     /*! Reset the persistent state of this data source.
      *  This is called after a successful submission of data, and can be used
@@ -98,7 +98,7 @@ public:
      *  @param settings A QSettings object opened in the dedicated group of this
      *  data source.
      */
-    virtual void reset(QSettings *settings);
+    void reset(QSettings *settings);
 
     /*! Returns which telemetry colleciton mode this data source belongs to.
      *  @return The telemetry collection category this source belongs to.
@@ -110,6 +110,20 @@ public:
      * Provider::NoTelemetry is not allowed here.
      */
     void setTelemetryMode(Provider::TelemetryMode mode);
+
+    /*! Checks whether this data source is active or not
+     *  If the data source is not active, then collected
+     *  data neither will be sent to a server nor appeared
+     *  in the audit log.
+     *  Data source is active by default.
+     *  @return true if active, false otherwise
+     */
+    bool isActive() const;
+
+    /*! Changes active state of the data source
+     *  @param active The new active state for this data source
+     */
+    void setActive(bool active);
 
 protected:
     /*! Create a new data source named @p name.
@@ -128,6 +142,27 @@ protected:
      *  @see id()
      */
     void setId(const QString &id);
+
+    /*! Invoked by @p load() in order to load individual settings of this data source.
+     *  @see load() description for further details.
+     *  @param settings A QSettings object opened in a dedicated group for loading
+     *  persistent data.
+     */
+    virtual void loadImpl(QSettings *settings);
+
+    /*! Invoked by @p store() in order to store individual settings of this data source.
+     *  @see store() description for further details.
+     *  @param settings A QSettings object opened in a dedicated group for loading
+     *  persistent data.
+     */
+    virtual void storeImpl(QSettings *settings);
+
+    /*! Invoked by @p reset() in order to reset individual settings of this data source.
+     *  @see reset() description for further details.
+     *  @param settings A QSettings object opened in a dedicated group for loading
+     *  persistent data.
+     */
+    virtual void resetImpl(QSettings *settings);
 
     ///@cond internal
     class AbstractDataSourcePrivate* const d_ptr;

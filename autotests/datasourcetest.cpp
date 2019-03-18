@@ -254,6 +254,38 @@ private slots:
         QVERIFY(m.contains(QLatin1String("name")));
         QVERIFY(!m.value(QLatin1String("name")).toString().isEmpty());
     }
+
+    void testActiveState()
+    {
+        CpuInfoSource src;
+
+        QVERIFY(src.isActive());
+
+        src.setActive(false);
+
+        QVERIFY(!src.isActive());
+    }
+
+    void testCommonActiveStateSetting()
+    {
+        CpuInfoSource src;
+        src.setActive(false);
+
+        QSettings s;
+
+        src.store(&s);
+
+        src.setActive(true);
+
+        src.load(&s);
+
+        QVERIFY(!src.isActive());
+
+        // NOTE: reset shouldn't change global settings that might be changed by a user via UI
+        src.reset(&s);
+
+        QVERIFY(!src.isActive());
+    }
 };
 
 QTEST_MAIN(DataSourceTest)

@@ -61,9 +61,9 @@ public:
     void setDescription(const QString &desc);
 
     QVariant data() override;
-    void load(QSettings *settings) override;
-    void store(QSettings *settings) override;
-    void reset(QSettings *settings) override;
+    void loadImpl(QSettings *settings) override;
+    void storeImpl(QSettings *settings) override;
+    void resetImpl(QSettings *settings) override;
 
 private:
     Q_DECLARE_PRIVATE(SelectionRatioSource)

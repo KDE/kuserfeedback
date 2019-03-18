@@ -138,7 +138,7 @@ QVariant SelectionRatioSource::data()
     return m;
 }
 
-void SelectionRatioSource::load(QSettings *settings)
+void SelectionRatioSource::loadImpl(QSettings *settings)
 {
     Q_D(SelectionRatioSource);
     foreach (const auto &value, settings->childKeys()) {
@@ -149,7 +149,7 @@ void SelectionRatioSource::load(QSettings *settings)
     }
 }
 
-void SelectionRatioSource::store(QSettings *settings)
+void SelectionRatioSource::storeImpl(QSettings *settings)
 {
     Q_D(SelectionRatioSource);
     d->selectionChanged();
@@ -166,7 +166,7 @@ void SelectionRatioSource::store(QSettings *settings)
     }
 }
 
-void SelectionRatioSource::reset(QSettings* settings)
+void SelectionRatioSource::resetImpl(QSettings* settings)
 {
     Q_D(SelectionRatioSource);
     d->baseRatioSet.clear();

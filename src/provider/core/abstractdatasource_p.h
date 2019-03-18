@@ -20,6 +20,10 @@
 
 #include "provider.h"
 
+QT_BEGIN_NAMESPACE
+class QSettings;
+QT_END_NAMESPACE
+
 namespace KUserFeedback {
 
 class AbstractDataSourcePrivate
@@ -30,6 +34,11 @@ public:
 
     QString id;
     Provider::TelemetryMode mode;
+    bool active;
+
+    void storeCommonSettings(QSettings *settings);
+    void loadCommonSettings(QSettings *settings);
+    void resetCommonSettings(QSettings *settings);
 
 private:
     Q_DISABLE_COPY(AbstractDataSourcePrivate)

@@ -210,7 +210,7 @@ QVariant PropertyRatioSource::data()
     return m;
 }
 
-void PropertyRatioSource::load(QSettings *settings)
+void PropertyRatioSource::loadImpl(QSettings *settings)
 {
     Q_D(PropertyRatioSource);
     foreach (const auto &value, settings->childKeys()) {
@@ -221,7 +221,7 @@ void PropertyRatioSource::load(QSettings *settings)
     }
 }
 
-void PropertyRatioSource::store(QSettings *settings)
+void PropertyRatioSource::storeImpl(QSettings *settings)
 {
     Q_D(PropertyRatioSource);
     d->propertyChanged();
@@ -238,7 +238,7 @@ void PropertyRatioSource::store(QSettings *settings)
     }
 }
 
-void PropertyRatioSource::reset(QSettings* settings)
+void PropertyRatioSource::resetImpl(QSettings* settings)
 {
     Q_D(PropertyRatioSource);
     d->baseRatioSet.clear();

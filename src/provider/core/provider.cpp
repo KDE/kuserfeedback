@@ -609,6 +609,16 @@ void Provider::surveyCompleted(const SurveyInfo &info)
     d->storeOneGlobal(QStringLiteral("LastSurvey"), d->lastSurveyTime);
 }
 
+void Provider::load()
+{
+    d->load();
+}
+
+void Provider::store()
+{
+    d->store();
+}
+
 void Provider::submit()
 {
     if (!isEnabled()) {

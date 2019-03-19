@@ -247,6 +247,18 @@ public Q_SLOTS:
      */
     void surveyCompleted(const KUserFeedback::SurveyInfo &info);
 
+    /*! Manually load settings of the provider and all added data sources.
+     *  Automatically invoked after object construction and changing product ID.
+     *  @note Potentially long operation.
+     */
+    void load();
+
+    /*! Manually store settings of the provider and all added data sources.
+     *  Will be autromatically invoked upon @p QCoreApplication::aboutToQuit signal.
+     *  @note Potentially long operation.
+     */
+    void store();
+
 Q_SIGNALS:
     /*! Emitted whenever there is a new survey available that can be presented
      *  to the user.
@@ -274,8 +286,6 @@ private:
     // for UI
     Q_PRIVATE_SLOT(d, QByteArray jsonData(KUserFeedback::Provider::TelemetryMode))
     // for testing
-    Q_PRIVATE_SLOT(d, void load())
-    Q_PRIVATE_SLOT(d, void store())
     Q_PRIVATE_SLOT(d, bool selectSurvey(const KUserFeedback::SurveyInfo&))
 };
 

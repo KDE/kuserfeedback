@@ -37,6 +37,6 @@ HTML.footer = \
     "<div class=\"footer\">\n" \
     "   <p>\n" \
     "   <acronym title=\"Copyright\">&copy;</acronym> 2017 Volker Krause.\n" \
-    "   This work is licensed under LGPLv2+." \
+    "   This work is licensed under the MIT license." \
     "</p>" \
     "</div>\n" \

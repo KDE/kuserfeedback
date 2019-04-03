@@ -2,7 +2,6 @@ configure_file(test-config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/test-config.h)
 if(TARGET KUserFeedbackConsole)
 add_library(KUserFeedbackTestUtils STATIC
     servercontroller.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/qt/modeltest.cpp
 )
 target_link_libraries(KUserFeedbackTestUtils LINK_PUBLIC Qt5::Test KUserFeedbackConsole)
 endif()

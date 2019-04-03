@@ -18,13 +18,14 @@
 #include <model/schemamodel.h>
 #include <core/schemaentrytemplates.h>
 
-#include <3rdparty/qt/modeltest.h>
-
 #include <QDebug>
 #include <QtTest/qtest.h>
 #include <QObject>
 #include <QSignalSpy>
 #include <QStandardPaths>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#include <QAbstractItemModelTester>
+#endif
 
 using namespace KUserFeedback::Console;
 
@@ -41,7 +42,9 @@ private slots:
     void testSchemaModel()
     {
         SchemaModel model;
-        ModelTest modelTest(&model);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+        QAbstractItemModelTester modelTest(&model);
+#endif
 
         model.setProduct(Product());
         QCOMPARE(model.rowCount(), 0);

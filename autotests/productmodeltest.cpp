@@ -21,13 +21,14 @@
 #include <rest/restclient.h>
 #include <model/productmodel.h>
 
-#include <3rdparty/qt/modeltest.h>
-
 #include <QDebug>
 #include <QtTest/qtest.h>
 #include <QObject>
 #include <QSignalSpy>
 #include <QStandardPaths>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#include <QAbstractItemModelTester>
+#endif
 
 using namespace KUserFeedback::Console;
 
@@ -76,7 +77,9 @@ private slots:
         waitForFinished(reply);
 
         ProductModel model;
-        ModelTest modelTest(&model);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+        QAbstractItemModelTester modelTest(&model);
+#endif
         QSignalSpy resetSpy(&model, &ProductModel::modelReset);
         QSignalSpy insertSpy(&model, &ProductModel::rowsInserted);
         QSignalSpy removeSpy(&model, &ProductModel::rowsRemoved);

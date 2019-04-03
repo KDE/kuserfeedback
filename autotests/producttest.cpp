@@ -18,8 +18,6 @@
 #include <console/core/aggregation.h>
 #include <console/core/product.h>
 
-#include <3rdparty/qt/modeltest.h>
-
 #include <QDebug>
 #include <QtTest/qtest.h>
 #include <QObject>

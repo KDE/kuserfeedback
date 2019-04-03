@@ -20,12 +20,13 @@
 #include <console/model/datamodel.h>
 #include <console/model/timeaggregationmodel.h>
 
-#include <3rdparty/qt/modeltest.h>
-
 #include <QDebug>
 #include <QtTest/qtest.h>
 #include <QObject>
 #include <QStandardPaths>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#include <QAbstractItemModelTester>
+#endif
 
 using namespace KUserFeedback::Console;
 
@@ -42,7 +43,9 @@ private slots:
     void testEmptyModel()
     {
         TimeAggregationModel model;
-        ModelTest modelTest(&model);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+        QAbstractItemModelTester modelTest(&model);
+#endif
 
         DataModel srcModel;
         model.setSourceModel(&srcModel);
@@ -62,7 +65,9 @@ private slots:
     void testModelContent()
     {
         TimeAggregationModel model;
-        ModelTest modelTest(&model);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+        QAbstractItemModelTester modelTest(&model);
+#endif
 
         DataModel srcModel;
         model.setSourceModel(&srcModel);
@@ -127,4 +132,3 @@ private slots:
 QTEST_MAIN(TimeAggregationModelTest)
 
 #include "timeaggregationmodeltest.moc"
-

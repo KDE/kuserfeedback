@@ -21,12 +21,13 @@
 #include <console/core/sample.h>
 #include <console/core/schemaentrytemplates.h>
 
-#include <3rdparty/qt/modeltest.h>
-
 #include <QDebug>
 #include <QtTest/qtest.h>
 #include <QObject>
 #include <QStandardPaths>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#include <QAbstractItemModelTester>
+#endif
 
 using namespace KUserFeedback::Console;
 
@@ -43,7 +44,9 @@ private slots:
     void testEmptyModel()
     {
         CategoryAggregationModel model;
-        ModelTest modelTest(&model);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+        QAbstractItemModelTester modelTest(&model);
+#endif
         model.setAggregation(Aggregation());
         AggregationElement aggrElem;
         {
@@ -81,7 +84,9 @@ private slots:
     void testModelContentDepth1()
     {
         CategoryAggregationModel model;
-        ModelTest modelTest(&model);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+        QAbstractItemModelTester modelTest(&model);
+#endif
         AggregationElement aggrElem;
         {
             SchemaEntry entry;
@@ -166,7 +171,9 @@ private slots:
         QCOMPARE(p.aggregations().size(), 1);
 
         CategoryAggregationModel model;
-        ModelTest modelTest(&model);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+        QAbstractItemModelTester modelTest(&model);
+#endif
         model.setAggregation(p.aggregations().at(0));
 
         TimeAggregationModel timeModel;
@@ -248,7 +255,9 @@ private slots:
         QCOMPARE(p.aggregations().size(), 1);
 
         CategoryAggregationModel model;
-        ModelTest modelTest(&model);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+        QAbstractItemModelTester modelTest(&model);
+#endif
         model.setAggregation(p.aggregations().at(0));
 
         TimeAggregationModel timeModel;

@@ -47,7 +47,7 @@ HandshakeJob::HandshakeJob(RESTClient* restClient, QObject* parent)
         }
         reply->deleteLater();
     });
-    connect(reply, &QNetworkReply::redirected, this, [this, reply](const auto &url) {
+    connect(reply, &QNetworkReply::redirected, this, [this](const auto &url) {
         auto s = m_restClient->serverInfo();
         auto u = url;
         auto p = u.path();

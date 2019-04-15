@@ -688,7 +688,7 @@ void ProviderPrivate::submitProbeFinished(QNetworkReply *reply)
         return;
     }
 
-    return submit(reply->url());
+    submit(reply->url());
 }
 
 void ProviderPrivate::writeAuditLog(const QDateTime &dt)

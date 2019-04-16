@@ -69,11 +69,11 @@ public:
      *
      * Implement this to return the data provided by this source.
      * One of the three following formats are expected:
-     *  - scalar entries: QAssiciativeIterable
+     *  - scalar entries: QAssociativeIterable
      *  - list entries: QSequentialIterable containing QAssociativeIterable
-     *  - map entries: QAssiciativeIterable containing QAssociativeIterable
+     *  - map entries: QAssociativeIterable containing QAssociativeIterable
      *
-     * The innermost QAssiciativeIterable must only contain one of the following
+     * The innermost QAssociativeIterable must only contain one of the following
      * base types (which has to match the corresponding schema entry element):
      *  - QString
      *  - int

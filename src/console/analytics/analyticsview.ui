@@ -38,7 +38,7 @@
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>&amp;Chart type:</string>
+            <string>&amp;Aggregation:</string>
            </property>
            <property name="buddy">
             <cstring>chartType</cstring>

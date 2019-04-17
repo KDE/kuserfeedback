@@ -22,7 +22,7 @@ set(userfeedback_core_srcs
     ${userfeedback_core_QM_LOADER}
 )
 
-add_library(KUserFeedbackCore SHARED ${userfeedback_core_srcs})
+add_library(KUserFeedbackCore ${userfeedback_core_srcs})
 set_target_properties(KUserFeedbackCore PROPERTIES
     SOVERSION ${KUSERFEEDBACK_SOVERSION}
     VERSION ${KUSERFEEDBACK_VERSION_STRING}

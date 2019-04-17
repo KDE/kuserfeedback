@@ -6,7 +6,7 @@ set(userfeedback_widgets_srcs
     auditlogbrowserdialog.cpp
 )
 
-add_library(KUserFeedbackWidgets SHARED ${userfeedback_widgets_srcs})
+add_library(KUserFeedbackWidgets ${userfeedback_widgets_srcs})
 set_target_properties(KUserFeedbackWidgets PROPERTIES
     SOVERSION ${KUSERFEEDBACK_SOVERSION}
     VERSION ${KUSERFEEDBACK_VERSION_STRING}

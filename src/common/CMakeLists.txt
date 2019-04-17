@@ -33,5 +33,10 @@ add_library(KUserFeedbackCommon STATIC
     ${FLEX_surveytargetexpressionscanner_OUTPUTS}
 )
 
+if (NOT BUILD_SHARED_LIBS)
+    install(TARGETS KUserFeedbackCommon
+            EXPORT KUserFeedbackTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+endif()
+
 target_include_directories(KUserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
 target_link_libraries(KUserFeedbackCommon LINK_PRIVATE Qt5::Core)

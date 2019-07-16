@@ -24,7 +24,7 @@
 #ifndef KUSERFEEDBACK_QMLABSTRACTDATASOURCE_H
 #define KUSERFEEDBACK_QMLABSTRACTDATASOURCE_H
 
-#include <Provider>
+#include <provider.h>
 
 namespace KUserFeedback {
 

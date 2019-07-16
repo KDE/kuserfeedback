@@ -29,8 +29,8 @@
 
 #include <auditloguicontroller.h>
 #include <feedbackconfiguicontroller.h>
-#include <Provider>
-#include <SurveyInfo>
+#include <provider.h>
+#include <surveyinfo.h>
 
 #include <QQmlEngine>
 

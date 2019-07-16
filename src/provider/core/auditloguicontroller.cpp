@@ -23,7 +23,7 @@
 
 #include "auditloguicontroller.h"
 
-#include <Provider>
+#include <provider.h>
 
 #include <QAbstractListModel>
 #include <QDateTime>

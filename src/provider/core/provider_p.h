@@ -62,7 +62,7 @@ public:
 
     bool isValidSource(AbstractDataSource *source) const;
     QByteArray jsonData(Provider::TelemetryMode mode) const;
-    void scheduleNextSubmission();
+    void scheduleNextSubmission(qint64 minTime = 0);
     void submitProbe(const QUrl &url);
     void submitProbeFinished(QNetworkReply *reply);
     void submit(const QUrl &url);
@@ -104,6 +104,8 @@ public:
     int encouragementTime;
     int encouragementDelay;
     int encouragementInterval;
+
+    int backoffIntervalMinutes;
 
     QVector<AbstractDataSource*> dataSources;
     QHash<QString, AbstractDataSource*> dataSourcesById;

@@ -75,6 +75,7 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
     , encouragementTime(-1)
     , encouragementDelay(300)
     , encouragementInterval(-1)
+    , backoffIntervalMinutes(-1)
 {
     submissionTimer.setSingleShot(true);
     QObject::connect(&submissionTimer, &QTimer::timeout, q, &Provider::submit);
@@ -246,7 +247,7 @@ QByteArray ProviderPrivate::jsonData(Provider::TelemetryMode mode) const
     return doc.toJson();
 }
 
-void ProviderPrivate::scheduleNextSubmission()
+void ProviderPrivate::scheduleNextSubmission(qint64 minTime)
 {
     submissionTimer.stop();
     if (!q->isEnabled())
@@ -254,11 +255,16 @@ void ProviderPrivate::scheduleNextSubmission()
     if (submissionInterval <= 0 || (telemetryMode == Provider::NoTelemetry && surveyInterval < 0))
         return;
 
+    if (minTime == 0) {
+        // If this is a regularly scheduled submission reset the backoff
+        backoffIntervalMinutes = -1;
+    }
+
     Q_ASSERT(submissionInterval > 0);
 
     const auto nextSubmission = lastSubmitTime.addDays(submissionInterval);
     const auto now = QDateTime::currentDateTime();
-    submissionTimer.start(std::max(0ll, now.msecsTo(nextSubmission)));
+    submissionTimer.start(std::max(minTime, now.msecsTo(nextSubmission)));
 }
 
 void ProviderPrivate::submitFinished(QNetworkReply *reply)
@@ -266,7 +272,13 @@ void ProviderPrivate::submitFinished(QNetworkReply *reply)
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        qCWarning(Log) << "failed to submit user feedback:" << reply->errorString() << reply->readAll();
+        if (backoffIntervalMinutes == -1) {
+            backoffIntervalMinutes = 2;
+        } else {
+            backoffIntervalMinutes = backoffIntervalMinutes * 2;
+        }
+        qCWarning(Log) << "failed to submit user feedback:" << reply->errorString() << reply->readAll() << ". Calling scheduleNextSubmission with minTime" << backoffIntervalMinutes << "minutes";
+        scheduleNextSubmission(backoffIntervalMinutes * 60000ll);
         return;
     }
 

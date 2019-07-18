@@ -69,6 +69,11 @@ void AbstractDataSourcePrivate::resetCommonSettings(QSettings *settings)
     Q_UNUSED(settings);
 }
 
+AbstractDataSource::AbstractDataSource(const QString &id, Provider::TelemetryMode mode)
+    : AbstractDataSource(id, mode, nullptr)
+{
+}
+
 AbstractDataSource::AbstractDataSource(const QString &id, Provider::TelemetryMode mode,
                                        AbstractDataSourcePrivate* dd)
     : d_ptr(dd ? dd : new AbstractDataSourcePrivate)

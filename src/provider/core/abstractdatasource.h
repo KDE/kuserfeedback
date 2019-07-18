@@ -140,8 +140,13 @@ protected:
      *  @param mode The default telemetry mode.
      */
     explicit AbstractDataSource(const QString &id,
-                                Provider::TelemetryMode mode = Provider::DetailedUsageStatistics,
-                                AbstractDataSourcePrivate *dd = nullptr);
+                                Provider::TelemetryMode mode = Provider::DetailedUsageStatistics);
+
+    ///@cond internal
+    explicit AbstractDataSource(const QString &id,
+                                Provider::TelemetryMode mode,
+                                AbstractDataSourcePrivate *dd);
+    ///@endcond
 
     /*! Set the ID of this data source.
      *  The ID should not change at runtime, this is only provided

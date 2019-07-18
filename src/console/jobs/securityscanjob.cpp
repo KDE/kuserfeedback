@@ -37,7 +37,7 @@ SecurityScanJob::SecurityScanJob(RESTClient* restClient, QObject* parent)
     : Job(parent)
     , m_restClient(restClient)
     , m_pendingPaths({
-        QStringLiteral(""),
+        QString(),
         QStringLiteral(".htaccess"),
         QStringLiteral("admin"),
         QStringLiteral("admin/index.php"),

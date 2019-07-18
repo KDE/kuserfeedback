@@ -79,6 +79,7 @@ public:
      *  - int
      *  - double
      *  - bool
+     *
      * All keys must be strings.
      *
      * @returns A variant complying with the above requirements.

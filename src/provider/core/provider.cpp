@@ -338,7 +338,7 @@ bool ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
     if (!q->isEnabled() || !survey.isValid() || completedSurveys.contains(survey.uuid().toString()))
         return false;
 
-    if (lastSurveyTime.addDays(surveyInterval) > QDateTime::currentDateTime())
+    if (surveyInterval != 0 && lastSurveyTime.addDays(surveyInterval) > QDateTime::currentDateTime())
         return false;
 
     if (!survey.target().isEmpty()) {

@@ -201,6 +201,7 @@ public:
 
     /*! Sets the minimum time in days between two surveys.
      *  @c -1 indicates no surveys should be requested.
+     *  @c 0 indicates no minimum time between surveys at all (i.e. bother the user as often as you want).
      */
     void setSurveyInterval(int days);
 

@@ -25,10 +25,12 @@
 #include "openglinfosource_p.h"
 
 #include <QVariant>
+#ifndef QT_NO_OPENGL
 #include <QOpenGLContext>
 #include <QOpenGLFunctions>
 #include <QSurfaceFormat>
 #include <QWindow>
+#endif
 
 using namespace KUserFeedback;
 
@@ -46,6 +48,7 @@ QVariant OpenGLInfoSource::data()
 {
     QVariantMap m;
 
+#ifndef QT_NO_OPENGL
     QOpenGLContext context;
     if (context.create()) {
         QWindow window;
@@ -96,6 +99,7 @@ QVariant OpenGLInfoSource::data()
 
         return m;
     }
+#endif
 
     m.insert(QStringLiteral("type"), QStringLiteral("none"));
     return m;

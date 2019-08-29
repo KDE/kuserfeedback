@@ -14,6 +14,14 @@ endif()
 find_package(ECM 5.26 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_MODULE_PATH})
 
+set(ENABLE_SURVEY_TARGET_EXPRESSIONS ON CACHE BOOL "Survey targeting expressions support is enabled by default.")
+set(ENABLE_PHP                       ON CACHE BOOL "Syntax checking of PHP server code.")
+set(ENABLE_PHP_UNIT                  ON CACHE BOOL "Unit tests for PHP server code.")
+set(ENABLE_TESTING                   ON CACHE BOOL "Build tests.")
+set(ENABLE_DOCS                      ON CACHE BOOL "Generate documentation.")
+set(ENABLE_CONSOLE                   ON CACHE BOOL "Application console.")
+set(ENABLE_CLI                       ON CACHE BOOL "Command line interface support.")
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -31,7 +39,9 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings)
 
-enable_testing()
+if (ENABLE_TESTING)
+    enable_testing()
+endif()
 
 ecm_setup_version(PROJECT
     VARIABLE_PREFIX KUSERFEEDBACK
@@ -62,19 +72,28 @@ endif()
 
 add_definitions(-DQT_USE_QSTRINGBUILDER -DQT_USE_FAST_OPERATOR_PLUS -DQT_NO_CAST_TO_ASCII -DQT_NO_URL_CAST_FROM_STRING -DQT_NO_CAST_FROM_ASCII)
 
-find_package(FLEX)
-set_package_properties(FLEX PROPERTIES TYPE RECOMMENDED PURPOSE "Survey target expression parser.")
-find_package(BISON)
-set_package_properties(BISON PROPERTIES TYPE RECOMMENDED PURPOSE "Survey target expression parser.")
-if(FLEX_FOUND AND BISON_FOUND)
-    set(HAVE_SURVEY_TARGET_EXPRESSIONS 1)
+if (ENABLE_SURVEY_TARGET_EXPRESSIONS)
+    find_package(FLEX)
+    set_package_properties(FLEX PROPERTIES TYPE RECOMMENDED PURPOSE "Survey target expression parser.")
+
+    find_package(BISON)
+    set_package_properties(BISON PROPERTIES TYPE RECOMMENDED PURPOSE "Survey target expression parser.")
+
+    if(FLEX_FOUND AND BISON_FOUND)
+        set(HAVE_SURVEY_TARGET_EXPRESSIONS 1)
+    endif()
 endif()
 add_feature_info("Survey targeting expressions support" HAVE_SURVEY_TARGET_EXPRESSIONS "Requires flex and bison parser generators.")
 
-find_package(Php)
-set_package_properties(Php PROPERTIES URL "http://php.net" TYPE RECOMMENDED PURPOSE "Syntax checking of PHP server code.")
-find_package(PhpUnit)
-set_package_properties(PhpUnit PROPERTIES URL "http://phpunit.de" TYPE RECOMMENDED PURPOSE "Unit tests for PHP server code.")
+if (ENABLE_PHP)
+    find_package(Php)
+    set_package_properties(Php PROPERTIES URL "http://php.net" TYPE RECOMMENDED PURPOSE "Syntax checking of PHP server code.")
+endif()
+
+if (ENABLE_PHP_UNIT)
+    find_package(PhpUnit)
+    set_package_properties(PhpUnit PROPERTIES URL "http://phpunit.de" TYPE RECOMMENDED PURPOSE "Unit tests for PHP server code.")
+endif()
 
 #
 # Actually build the stuff
@@ -83,11 +102,18 @@ include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 configure_file(config-userfeedback.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback.h)
 
 add_subdirectory(src)
-if (BUILD_TESTING)
-    add_subdirectory(autotests)
+
+if (ENABLE_TESTING)
+    if (BUILD_TESTING)
+        add_subdirectory(autotests)
+    endif()
+
+    add_subdirectory(tests)
 endif()
-add_subdirectory(tests)
-add_subdirectory(docs)
+
+if (ENABLE_DOCS)
+    add_subdirectory(docs)
+endif()
 
 #
 # CMake package config file generation

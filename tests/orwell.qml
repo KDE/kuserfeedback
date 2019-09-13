@@ -117,10 +117,11 @@ ApplicationWindow {
                 KUserFeedback.PropertyRatioSource {
                     id: dialRatioSource
                     mode: KUserFeedback.Provider.DetailedUsageStatistics
-                    name: "dialRatio"
+                    sourceId: "dialRatio"
                     object: dial
                     propertyName: "intValue"
-                    description: qsTr("The dial position.")
+                    name: qsTr("Dial position")
+                    description: qsTr("The position of the dial.")
 
                     Component.onCompleted: {
                         dialRatioSource.addValueMapping(0, "off");

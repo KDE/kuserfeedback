@@ -69,6 +69,12 @@ public:
      */
     void addValueMapping(const QVariant &value, const QString &str);
 
+    QString name() const override;
+    /*! Set human readable name.
+     *  @see AbstractDataSource::name()
+     */
+    void setName(const QString &name);
+
     QString description() const override;
 
     /*! Set human-readable and translated description of the data provided by this source.

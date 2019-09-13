@@ -48,6 +48,7 @@ public:
     QString valueToString(const QVariant &value) const;
     void trySetup();
 
+    QString name;
     QString description;
     QPointer<QObject> obj;
     QByteArray propertyName;
@@ -180,6 +181,18 @@ void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &
 {
     Q_D(PropertyRatioSource);
     d->valueMap.insert(value, str);
+}
+
+QString PropertyRatioSource::name() const
+{
+    Q_D(const PropertyRatioSource);
+    return d->name;
+}
+
+void PropertyRatioSource::setName(const QString &name)
+{
+    Q_D(PropertyRatioSource);
+    d->name = name;
 }
 
 QString PropertyRatioSource::description() const

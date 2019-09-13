@@ -53,11 +53,7 @@
 #include <numeric>
 
 namespace KUserFeedback {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
 Q_LOGGING_CATEGORY(Log, "org.kde.UserFeedback", QtInfoMsg)
-#else
-Q_LOGGING_CATEGORY(Log, "org.kde.UserFeedback")
-#endif
 }
 
 using namespace KUserFeedback;

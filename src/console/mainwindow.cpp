@@ -182,7 +182,7 @@ MainWindow::MainWindow() :
 
     QTimer::singleShot(0, ui->actionConnectToServer, &QAction::trigger);
 
-    m_feedbackProvider->setFeedbackServer(QUrl(QStringLiteral("https://feedback.volkerkrause.eu")));
+    m_feedbackProvider->setFeedbackServer(QUrl(QStringLiteral("https://telemetry.kde.org")));
     m_feedbackProvider->setSubmissionInterval(1);
     auto viewModeSource = new KUserFeedback::PropertyRatioSource(ui->viewStack, "currentIndex", QStringLiteral("viewRatio"));
     viewModeSource->setDescription(tr("Usage ratio of the analytics view, survey editor and schema editor."));

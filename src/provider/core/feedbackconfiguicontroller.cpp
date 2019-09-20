@@ -126,7 +126,17 @@ int FeedbackConfigUiController::telemetryModeToIndex(Provider::TelemetryMode mod
 
 QString FeedbackConfigUiController::telemetryModeName(int telemetryIndex) const
 {
-    switch (telemetryIndexToMode(telemetryIndex)) {
+    return telemetryName(telemetryIndexToMode(telemetryIndex));
+}
+
+QString FeedbackConfigUiController::telemetryModeDescription(int telemetryIndex) const
+{
+    return telemetryDescription(telemetryIndexToMode(telemetryIndex));
+}
+
+QString FeedbackConfigUiController::telemetryName(KUserFeedback::Provider::TelemetryMode mode) const
+{
+    switch (mode) {
         case Provider::NoTelemetry:
             return tr("No telemetry");
         case Provider::BasicSystemInformation:
@@ -142,11 +152,11 @@ QString FeedbackConfigUiController::telemetryModeName(int telemetryIndex) const
     return {};
 }
 
-QString FeedbackConfigUiController::telemetryModeDescription(int telemetryIndex) const
+QString FeedbackConfigUiController::telemetryDescription(KUserFeedback::Provider::TelemetryMode mode) const
 {
     const auto name = d->appName();
     if (name.isEmpty()) {
-        switch (telemetryIndexToMode(telemetryIndex)) {
+        switch (mode) {
             case Provider::NoTelemetry:
                 return tr(
                     "We make this application for you. You can help us improve it by contributing information on how you use it. "
@@ -176,7 +186,7 @@ QString FeedbackConfigUiController::telemetryModeDescription(int telemetryIndex)
                 );
         }
     } else {
-        switch (telemetryIndexToMode(telemetryIndex)) {
+        switch (mode) {
             case Provider::NoTelemetry:
                 return tr(
                     "We make %1 for you. You can help us improve it by contributing information on how you use it. "

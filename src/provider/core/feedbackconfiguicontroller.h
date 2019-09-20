@@ -77,6 +77,11 @@ public:
     /*! Detailed information about the data sources of the given telemetry mode index. */
     Q_INVOKABLE QString telemetryModeDetails(int telemetryIndex) const;
 
+    /*! Telemetry mode short name. */
+    Q_INVOKABLE QString telemetryName(KUserFeedback::Provider::TelemetryMode mode) const;
+    /*! Telemetry mode explanation text. */
+    Q_INVOKABLE QString telemetryDescription(KUserFeedback::Provider::TelemetryMode mode) const;
+
     /*! Convert slider index to survey interval. */
     Q_INVOKABLE int surveyIndexToInterval(int index) const;
     /*! Convert survey interval to slider index. */

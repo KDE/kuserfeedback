@@ -138,7 +138,7 @@ QString FeedbackConfigUiController::telemetryName(KUserFeedback::Provider::Telem
 {
     switch (mode) {
         case Provider::NoTelemetry:
-            return tr("No telemetry");
+            return tr("Disabled");
         case Provider::BasicSystemInformation:
             return tr("Basic system information");
         case Provider::BasicUsageStatistics:

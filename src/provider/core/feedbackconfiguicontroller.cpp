@@ -38,21 +38,16 @@ class FeedbackConfigUiControllerPrivate {
 public:
     FeedbackConfigUiControllerPrivate();
 
-    static QString appName();
-
     Provider *provider;
     std::vector<Provider::TelemetryMode> telemetryModeMap;
+    QString m_appName;
 };
 }
 
 FeedbackConfigUiControllerPrivate::FeedbackConfigUiControllerPrivate() :
-    provider(nullptr)
+    provider(nullptr),
+    m_appName(QGuiApplication::applicationDisplayName())
 {
-}
-
-QString FeedbackConfigUiControllerPrivate::appName()
-{
-    return QGuiApplication::applicationDisplayName();
 }
 
 FeedbackConfigUiController::FeedbackConfigUiController(QObject* parent)
@@ -154,7 +149,7 @@ QString FeedbackConfigUiController::telemetryName(KUserFeedback::Provider::Telem
 
 QString FeedbackConfigUiController::telemetryDescription(KUserFeedback::Provider::TelemetryMode mode) const
 {
-    const auto name = d->appName();
+    const auto name = applicationName();
     if (name.isEmpty()) {
         switch (mode) {
             case Provider::NoTelemetry:
@@ -260,7 +255,7 @@ int FeedbackConfigUiController::surveyIntervalToIndex(int interval) const
 
 QString FeedbackConfigUiController::surveyModeDescription(int surveyIndex) const
 {
-    const auto name = d->appName();
+    const auto name = applicationName();
     if (name.isEmpty()) {
         switch (surveyIndex) {
             case 0:

@@ -49,6 +49,8 @@ class KUSERFEEDBACKCORE_EXPORT FeedbackConfigUiController : public QObject
     Q_PROPERTY(int telemetryModeCount READ telemetryModeCount NOTIFY providerChanged)
     /*! Amount of supported survey modes. */
     Q_PROPERTY(int surveyModeCount READ surveyModeCount CONSTANT)
+    /*! Name of the application that will appear on descriptions. By default it will use QGuiApplication::applicationDisplayName() */
+    Q_PROPERTY(QString applicationName READ applicationName WRITE setApplicationName NOTIFY applicationNameChanged)
 public:
     explicit FeedbackConfigUiController(QObject *parent = nullptr);
     ~FeedbackConfigUiController();
@@ -64,6 +66,9 @@ public:
     int telemetryModeCount() const;
     /*! Amount of supported survey modes. */
     int surveyModeCount() const;
+
+    QString applicationName() const;
+    void setApplicationName(const QString& appName);
 
     /*! Convert slider index to telemetry mode. */
     Q_INVOKABLE KUserFeedback::Provider::TelemetryMode telemetryIndexToMode(int index) const;
@@ -93,6 +98,7 @@ public:
 Q_SIGNALS:
     /*! A provider-related setting has changed. */
     void providerChanged();
+    void applicationNameChanged(const QString &applicationName);
 
 private:
     std::unique_ptr<FeedbackConfigUiControllerPrivate> d;

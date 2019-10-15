@@ -292,3 +292,17 @@ QString FeedbackConfigUiController::surveyModeDescription(int surveyIndex) const
 
     return QString();
 }
+
+QString FeedbackConfigUiController::applicationName() const
+{
+    return d->m_appName;
+}
+
+void FeedbackConfigUiController::setApplicationName(const QString& appName)
+{
+    if (appName == d->m_appName)
+        return;
+
+    d->m_appName = appName;
+    Q_EMIT applicationNameChanged(appName);
+}

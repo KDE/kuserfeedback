@@ -39,28 +39,30 @@ if(TARGET KUserFeedbackConsole)
     uf_add_test(ratiosetaggregationmodeltest KUserFeedbackTestUtils)
 endif()
 
-list(FIND PHP_MODULES "PDO" _has_pdo)
-if(TARGET KUserFeedbackConsole AND _has_pdo GREATER -1)
-    uf_add_test(productapitest KUserFeedbackTestUtils)
-    uf_add_test(productmodeltest KUserFeedbackTestUtils)
-    uf_add_test(surveyapitest KUserFeedbackTestUtils)
-    uf_add_test(submittest KUserFeedbackTestUtils KUserFeedbackCore Qt5::Gui)
-endif()
+if(ENABLE_PHP)
+    list(FIND PHP_MODULES "PDO" _has_pdo)
+    if(TARGET KUserFeedbackConsole AND _has_pdo GREATER -1)
+        uf_add_test(productapitest KUserFeedbackTestUtils)
+        uf_add_test(productmodeltest KUserFeedbackTestUtils)
+        uf_add_test(surveyapitest KUserFeedbackTestUtils)
+        uf_add_test(submittest KUserFeedbackTestUtils KUserFeedbackCore Qt5::Gui)
+    endif()
 
-set(php_test_srcs
-    utilstest.php
-    schemaentrytest.php
-    schemaentryelementtest.php
-    producttest.php
-    sampletest.php
-    surveytest.php
-    aggregationtest.php
-)
+    set(php_test_srcs
+        utilstest.php
+        schemaentrytest.php
+        schemaentryelementtest.php
+        producttest.php
+        sampletest.php
+        surveytest.php
+        aggregationtest.php
+    )
 
-php_lint(abstractdatastoretest.php)
-php_lint(${php_test_srcs})
-if(PhpUnit_FOUND)
-    foreach(_php_test ${php_test_srcs})
-        add_test(NAME ${_php_test} COMMAND ${PHPUNIT_EXECUTABLE} ${_php_test} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-    endforeach()
+    php_lint(abstractdatastoretest.php)
+    php_lint(${php_test_srcs})
+    if(PhpUnit_FOUND)
+        foreach(_php_test ${php_test_srcs})
+            add_test(NAME ${_php_test} COMMAND ${PHPUNIT_EXECUTABLE} ${_php_test} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+        endforeach()
+    endif()
 endif()

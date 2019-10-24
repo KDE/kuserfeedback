@@ -166,6 +166,6 @@ private slots:
     }
 };
 
-QTEST_MAIN(SurveyTargetExpressionTest)
+QTEST_GUILESS_MAIN(SurveyTargetExpressionTest)
 
 #include "surveytargetexpressiontest.moc"

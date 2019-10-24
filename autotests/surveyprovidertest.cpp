@@ -125,6 +125,6 @@ private slots:
     }
 };
 
-QTEST_MAIN(SurveyProviderTest)
+QTEST_GUILESS_MAIN(SurveyProviderTest)
 
 #include "surveyprovidertest.moc"

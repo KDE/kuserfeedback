@@ -375,6 +375,6 @@ private slots:
     }
 };
 
-QTEST_MAIN(ProviderTest)
+QTEST_GUILESS_MAIN(ProviderTest)
 
 #include "providertest.moc"

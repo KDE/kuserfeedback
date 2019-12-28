@@ -12,7 +12,7 @@ if(POLICY CMP0071)
     cmake_policy(SET CMP0071 NEW)
 endif()
 find_package(ECM 5.26 REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
 set(ENABLE_SURVEY_TARGET_EXPRESSIONS ON CACHE BOOL "Survey targeting expressions support is enabled by default.")
 set(ENABLE_PHP                       ON CACHE BOOL "Syntax checking of PHP server code.")

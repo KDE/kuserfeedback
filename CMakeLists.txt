@@ -17,7 +17,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${ECM_MODULE_PATH} ${CM
 set(ENABLE_SURVEY_TARGET_EXPRESSIONS ON CACHE BOOL "Survey targeting expressions support is enabled by default.")
 set(ENABLE_PHP                       ON CACHE BOOL "Syntax checking of PHP server code.")
 set(ENABLE_PHP_UNIT                  ON CACHE BOOL "Unit tests for PHP server code.")
-set(ENABLE_TESTING                   ON CACHE BOOL "Build tests.")
 set(ENABLE_DOCS                      ON CACHE BOOL "Generate documentation.")
 set(ENABLE_CONSOLE                   ON CACHE BOOL "Application console.")
 set(ENABLE_CLI                       ON CACHE BOOL "Command line interface support.")
@@ -39,10 +38,6 @@ include(ECMQueryQmake)
 include(ECMGeneratePriFile)
 include(FeatureSummary)
 include(GenerateExportHeader)
-
-if (ENABLE_TESTING)
-    enable_testing()
-endif()
 
 ecm_setup_version(PROJECT
     VARIABLE_PREFIX KUSERFEEDBACK
@@ -104,10 +99,8 @@ configure_file(config-userfeedback.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userf
 
 add_subdirectory(src)
 
-if (ENABLE_TESTING)
-    if (BUILD_TESTING)
-        add_subdirectory(autotests)
-    endif()
+if (BUILD_TESTING)
+    add_subdirectory(autotests)
 
     add_subdirectory(tests)
 endif()

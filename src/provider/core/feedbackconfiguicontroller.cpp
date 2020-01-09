@@ -137,11 +137,11 @@ QString FeedbackConfigUiController::telemetryName(KUserFeedback::Provider::Telem
         case Provider::BasicSystemInformation:
             return tr("Basic system information");
         case Provider::BasicUsageStatistics:
-            return tr("Basic usage statistics");
+            return tr("Basic system information and usage statistics");
         case Provider::DetailedSystemInformation:
-            return tr("Detailed system information");
+            return tr("Detailed system information and basic usage statistics");
         case Provider::DetailedUsageStatistics:
-            return tr("Detailed usage statistics");
+            return tr("Detailed system information and usage statistics");
     }
 
     return {};
@@ -154,60 +154,46 @@ QString FeedbackConfigUiController::telemetryDescription(KUserFeedback::Provider
         switch (mode) {
             case Provider::NoTelemetry:
                 return tr(
-                    "We make this application for you. You can help us improve it by contributing information on how you use it. "
-                    "This allows us to make sure we focus on things that matter to you.\n"
-                    "Contributing statistics is of course entirely anonymous, will not use any kind of unique identifier and "
-                    "will not cover any data you process with this application."
+                    "Don't share anything"
                 );
             case Provider::BasicSystemInformation:
                 return tr(
-                    "Share basic system information. "
-                    "No unique identification is included, nor data processed with the application."
+                    "Share basic system information such as the version of the application and the operating system"
                 );
             case Provider::BasicUsageStatistics:
                 return tr(
-                    "Share basic system information and basic statistics on how often you use the application. "
-                    "No unique identification is included, nor data processed with the application."
+                    "Share basic system information and basic statistics on how often you use the application"
                 );
             case Provider::DetailedSystemInformation:
                 return tr(
-                    "Share basic statistics on how often you use the application, as well as detailed information about your system. "
-                    "No unique identification is included, nor data processed with the application."
+                    "Share basic statistics on how often you use the application, as well as more detailed information about your system"
                 );
             case Provider::DetailedUsageStatistics:
                 return tr(
-                    "Share detailed system information and statistics on how often individual features of the application are used. "
-                    "No unique identification is included, nor data processed with the application."
+                    "Share detailed system information and statistics on how often individual features of the application are used."
                 );
         }
     } else {
         switch (mode) {
             case Provider::NoTelemetry:
                 return tr(
-                    "We make %1 for you. You can help us improve it by contributing information on how you use it. "
-                    "This allows us to make sure we focus on things that matter to you.\n"
-                    "Contributing statistics is of course entirely anonymous, will not use any kind of unique identifier and "
-                    "will not cover any data you process with %1."
-                ).arg(name);
+                    "Don't share anything"
+                );
             case Provider::BasicSystemInformation:
                 return tr(
-                    "Share basic system information. "
-                    "No unique identification is included, nor data processed with %1."
+                    "Share basic system information such as the version of %1 and and the operating system"
                 ).arg(name);
             case Provider::BasicUsageStatistics:
                 return tr(
-                    "Share basic system information and basic statistics on how often you use %1. "
-                    "No unique identification is included, nor data processed with %1."
+                    "Share basic system information and basic statistics on how often you use %1"
                 ).arg(name);
             case Provider::DetailedSystemInformation:
                 return tr(
-                    "Share basic statistics on how often you use %1, as well as detailed information about your system. "
-                    "No unique identification is included, nor data processed with %1."
+                    "Share basic statistics on how often you use %1, as well as more detailed information about your system"
                 ).arg(name);
             case Provider::DetailedUsageStatistics:
                 return tr(
-                    "Share detailed system information and statistics on how often individual features of %1 are used. "
-                    "No unique identification is included, nor data processed with %1."
+                    "Share detailed system information and statistics on how often individual features of %1 are used."
                 ).arg(name);
         }
     }
@@ -260,32 +246,30 @@ QString FeedbackConfigUiController::surveyModeDescription(int surveyIndex) const
         switch (surveyIndex) {
             case 0:
                 return tr(
-                    "We make this application for you. In order to ensure it actually does what you need it to do we "
-                    "would like to ask you about your use cases and your feedback, in the form of a web survey."
+                    "Don't participate in usability surveys"
                 );
             case 1:
                 return tr(
-                    "I will occasionally participate in web surveys about the application, not more than four times a year though."
+                    "Participate in surveys about the application not more than four times a year"
                 );
             case 2:
                 return tr(
-                    "I will participate in web surveys whenever one is available. Surveys can of course be deferred or skipped."
+                    "Participate in surveys about the application whenever one is available (they can be deferred or skipped)"
                 );
         }
     } else {
         switch (surveyIndex) {
             case 0:
                 return tr(
-                    "We make %1 for you. In order to ensure it actually does what you need it to do we "
-                    "would like to ask you about your use cases and your feedback, in the form of a web survey."
+                    "Don't participate in usability surveys"
                 ).arg(name);
             case 1:
                 return tr(
-                    "I will occasionally participate in web surveys about %1, not more than four times a year though."
+                    "Participate in surveys about %1 not more than four times a year"
                 ).arg(name);
             case 2:
                 return tr(
-                    "I will participate in web surveys about %1 whenever one is available. Surveys can of course be deferred or skipped."
+                    "Participate in surveys about %1 whenever one is available (they can be deferred or skipped)"
                 ).arg(name);
         }
     }

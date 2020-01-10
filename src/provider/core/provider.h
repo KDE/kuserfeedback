@@ -107,6 +107,10 @@ class KUSERFEEDBACKCORE_EXPORT Provider : public QObject
      */
     Q_PROPERTY(int encouragementInterval READ encouragementInterval WRITE setEncouragementInterval NOTIFY providerSettingsChanged)
 
+    /*!
+     */
+    Q_PROPERTY(QString describeDataSources READ describeDataSources NOTIFY dataSourcesChanged)
+
 public:
     /*! Telemetry collection modes.
      *  Colleciton modes are inclusive, ie. higher modes always imply data from
@@ -241,6 +245,9 @@ public:
      */
     void setEncouragementInterval(int days);
 
+    /*! Returns a string with each source and its enable mode. */
+    QString describeDataSources() const;
+
 public Q_SLOTS:
     /*! Manually submit currently recorded data. */
     void submit();
@@ -282,6 +289,9 @@ Q_SIGNALS:
 
     /*! Emitted when the global enabled state changed. */
     void enabledChanged();
+
+    /*! Emitted when a data source is added or removed. */
+    void dataSourcesChanged();
 
 private:
     friend class ProviderPrivate;

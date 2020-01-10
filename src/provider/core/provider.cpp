@@ -523,6 +523,8 @@ void Provider::addDataSource(AbstractDataSource *source)
     auto s = d->makeSettings();
     s->beginGroup(QStringLiteral("Source-") + source->id());
     source->load(s.get());
+
+    Q_EMIT dataSourcesChanged();
 }
 
 QVector<AbstractDataSource*> Provider::dataSources() const
@@ -731,6 +733,21 @@ void ProviderPrivate::writeAuditLog(const QDateTime &dt)
     file.write(doc.toJson());
 
     qCDebug(Log) << "Audit log written:" << file.fileName();
+}
+
+QString Provider::describeDataSources() const
+{
+    QString ret;
+
+    const auto& mo = staticMetaObject;
+    const int modeEnumIdx = mo.indexOfEnumerator("TelemetryMode");
+    Q_ASSERT(modeEnumIdx >= 0);
+
+    const auto modeEnum = mo.enumerator(modeEnumIdx);
+    for (auto source : d->dataSources) {
+        ret += QString::fromUtf8(modeEnum.valueToKey(source->telemetryMode())) + QStringLiteral(": ") + source->name() + QLatin1Char('\n');
+    }
+    return ret;
 }
 
 #include "moc_provider.cpp"

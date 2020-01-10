@@ -148,7 +148,7 @@ class Product
             $entry->delete($db, $this->productId);
 
         // delete data tables
-        $stmt = $db->prepare('DROP TABLE ' . $this->dataTableName());
+        $stmt = $db->prepare('DROP TABLE ' . $this->dataTableName() . ($db->driver() == 'sqlite' ? '' : ' CASCADE'));
         $db->execute($stmt);
 
         // delete product

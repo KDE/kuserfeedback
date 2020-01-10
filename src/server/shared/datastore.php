@@ -101,6 +101,12 @@ public function commit()
     $this->db->commit();
 }
 
+/** Abort an ongoing transaction. */
+public function rollback()
+{
+    $this->db->rollback();
+}
+
 /** Verify the database schema, and fix if needed. */
 public function checkSchema()
 {
@@ -135,7 +141,7 @@ private function schemaVersion()
     $res = $this->db->query('SELECT col_version FROM tbl_version');
     if ($res === FALSE) {
         // restart transaction, so this fail doesn't block the following commands
-        $this->db->rollback();
+        $this->rollback();
         $this->beginTransaction();
         return 0;
     }

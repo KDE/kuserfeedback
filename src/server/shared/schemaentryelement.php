@@ -98,14 +98,23 @@ class SchemaEntryElement
             return;
         }
 
-        if ($this->schemaEntry->isScalar()) {
-            $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->product()->dataTableName()
-                . ' DROP COLUMN ' . $this->dataColumnName());
-            $db->execute($stmt);
-        } else {
-            $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->dataTableName()
-                . ' DROP COLUMN ' . $this->dataColumnName());
-            $db->execute($stmt);
+        try {
+            if ($this->schemaEntry->isScalar()) {
+                $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->product()->dataTableName()
+                    . ' DROP COLUMN ' . $this->dataColumnName());
+                $db->execute($stmt);
+            } else {
+                $stmt = $db->prepare('ALTER TABLE ' . $this->schemaEntry->dataTableName()
+                    . ' DROP COLUMN ' . $this->dataColumnName());
+                $db->execute($stmt);
+            }
+        } catch (RESTException $e) {
+            // don't fail hard on column removal, this can leave the db and our schema description in an inconsistent state
+            // or block product deletion entirely
+            error_log($e->getMessage());
+            // restart transaction so this doesn't block subsequent queries
+            $db->rollBack();
+            $db->beginTransaction();
         }
     }
 

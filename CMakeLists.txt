@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(KUserFeedback VERSION 0.9.84)
+project(KUserFeedback VERSION 0.9.90)
 
 set(POLICY CMP0048 NEW)
 if(POLICY CMP0053)

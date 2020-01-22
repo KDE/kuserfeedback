@@ -185,7 +185,9 @@ private slots:
        QTest::addColumn<QString>("renderer");
 
        QTest::newRow("empty") << QString() << QString();
-       QTest::newRow("intel mesa") << QStringLiteral("Mesa DRI Intel(R) HD Graphics 520 (Skylake GT2)") << QStringLiteral("HD Graphics 520 (Skylake GT2)");
+       QTest::newRow("intel mesa") << QStringLiteral("Mesa DRI Intel(R) HD Graphics 520 (Skylake GT2)") << QStringLiteral("HD Graphics 520");
+       QTest::newRow("intel mesa 2") << QStringLiteral("Mesa Intel HD Graphics 530 (Skylake GT2)") << QStringLiteral("HD Graphics 530");
+       QTest::newRow("intel mesa 3") << QStringLiteral("Mesa Intel Iris Plus Graphics 640 (Kaby Lake GT3e) (KBL GT3)") << QStringLiteral("Iris Plus Graphics 640");
        QTest::newRow("intel macOS") << QStringLiteral("Intel Iris Pro OpenGL Engine") << QStringLiteral("Iris Pro");
        QTest::newRow("intel windows") << QStringLiteral("Intel(R) HD Graphics 4600") << QStringLiteral("HD Graphics 4600");
        QTest::newRow("nvidia") << QStringLiteral("GeForce GTX 1060 6GB/PCIe/SSE2") << QStringLiteral("GeForce GTX 1060 6GB/PCIe/SSE2");
@@ -194,6 +196,8 @@ private slots:
        QTest::newRow("gallium") << QStringLiteral("Gallium 0.4 on AMD BARTS (DRM 2.49.0 / 4.11.1-1-default, LLVM 4.0.0)") << QStringLiteral("Gallium 0.4 on AMD BARTS");
        QTest::newRow("AMD 1") << QStringLiteral("AMD BARTS (DRM 2.50.0 / 4.17.2-1-default, LLVM 6.0.0)") << QStringLiteral("AMD BARTS");
        QTest::newRow("AMD 2") << QStringLiteral("AMD Radeon (TM) RX 480 Graphics (POLARIS10 / DRM 3.19.0 / 4.14.50-gentoo, LLVM 6.0.0)") << QStringLiteral("AMD Radeon RX 480 Graphics");
+       QTest::newRow("Radeon") << QStringLiteral("Radeon RX 590 Series (POLARIS10, DRM 3.35.0, 5.4.13-zen1-1-zen, LLVM 9.0.1)") << QStringLiteral("Radeon RX 590 Series");
+       QTest::newRow("llvmpipe") << QStringLiteral("llvmpipe (LLVM 9.0, 128 bits)") << QStringLiteral("llvmpipe");
    }
 
    void testNormalizeRenderer()

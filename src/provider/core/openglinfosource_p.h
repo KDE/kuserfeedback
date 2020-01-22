@@ -124,14 +124,20 @@ public:
         // remove vendor prefixes, we already have that in the vendor field
         if (r.startsWith(QLatin1String("Mesa DRI ")))
             r = r.mid(9);
+        if (r.startsWith(QLatin1String("Mesa ")))
+            r = r.mid(5);
         if (r.startsWith(QLatin1String("Intel ")))
             r = r.mid(6);
         if (r.startsWith(QLatin1String("NVIDIA ")))
             r = r.mid(7);
 
         // remove excessive details that could enable fingerprinting
-        if (r.startsWith(QLatin1String("ANGLE ")) || r.startsWith(QLatin1String("Gallium ")) || r.startsWith(QLatin1String("AMD ")))
-            r = stripDetails(r);
+        if (r.endsWith(QLatin1Char(')'))) {
+            const auto idx = r.indexOf(QLatin1String(" ("));
+            if (idx > 0) {
+                r = r.left(idx);
+            }
+        }
 
         // strip macOS adding " OpenGL Engine" at the end
         if (r.endsWith(QLatin1String(" OpenGL Engine")))
@@ -148,14 +154,6 @@ private:
         if (s.startsWith(QLatin1String("- ")))
             return s.mid(2);
         return s;
-    }
-
-    static inline QString stripDetails(const QString &s)
-    {
-        auto idx = s.indexOf(QLatin1String(" ("));
-        if (idx < 1 || !s.endsWith(QLatin1Char(')')))
-            return s;
-        return s.left(idx);
     }
 };
 

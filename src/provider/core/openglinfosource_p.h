@@ -153,6 +153,11 @@ private:
             return s.mid(1, s.size() - 2);
         if (s.startsWith(QLatin1String("- ")))
             return s.mid(2);
+        if (s.startsWith(QLatin1Char('('))) {
+            const auto idx = s.indexOf(QLatin1String(") "));
+            if (idx > 0)
+                return s.mid(idx + 2);
+        }
         return s;
     }
 };

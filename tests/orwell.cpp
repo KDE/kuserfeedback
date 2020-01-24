@@ -65,7 +65,7 @@ Orwell::Orwell(QWidget* parent) :
         loadStats();
     });
 
-    connect(ui->surveyInterval, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, [this](int value) {
+    connect(ui->surveyInterval, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, [](int value) {
         provider->setSurveyInterval(value);
     });
 

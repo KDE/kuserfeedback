@@ -136,7 +136,7 @@ protected:
     /*! Create a new data source named @p name.
      *  The name of the data source must match the corresponding
      *  product schema entry.
-     *  @param name Must not be empty.
+     *  @param id Must not be empty.
      *  @param mode The default telemetry mode.
      */
     explicit AbstractDataSource(const QString &id,

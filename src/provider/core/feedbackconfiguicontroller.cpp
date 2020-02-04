@@ -261,7 +261,7 @@ QString FeedbackConfigUiController::surveyModeDescription(int surveyIndex) const
         switch (surveyIndex) {
             case 0:
                 return tr(
-                    "Don't participate in usability surveys"
+                    "Don't participate in usability surveys about %1"
                 ).arg(name);
             case 1:
                 return tr(

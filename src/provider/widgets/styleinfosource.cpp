@@ -45,7 +45,7 @@ QVariant StyleInfoSource::data()
     QVariantMap m;
     if (qApp && qApp->style())
         m.insert(QStringLiteral("style"), qApp->style()->objectName()); // QStyleFactory sets the object name to the style name
-    m.insert(QStringLiteral("dark"), qApp->palette().color(QPalette::Background).lightness() < 128);
+    m.insert(QStringLiteral("dark"), qApp->palette().color(QPalette::Window).lightness() < 128);
     return m;
 }
 

@@ -338,7 +338,7 @@ void AnalyticsView::exportChart()
             QImage img(dlg.size(), QImage::Format_ARGB32_Premultiplied);
             img.fill(Qt::transparent);
             QPainter p(&img);
-            p.setRenderHint(QPainter::HighQualityAntialiasing);
+            p.setRenderHint(QPainter::Antialiasing);
             scene->render(&p, QRectF(QPoint(), dlg.size()), scene->sceneRect());
             img.save(dlg.filename());
             break;
@@ -352,7 +352,7 @@ void AnalyticsView::exportChart()
             svg.setTitle(ui->chartType->currentText());
 
             QPainter p(&svg);
-            p.setRenderHint(QPainter::HighQualityAntialiasing);
+            p.setRenderHint(QPainter::Antialiasing);
             scene->render(&p);
             break;
         }
@@ -365,7 +365,7 @@ void AnalyticsView::exportChart()
                 pdf.setPageOrientation(QPageLayout::Landscape);
 
             QPainter p(&pdf);
-            p.setRenderHint(QPainter::HighQualityAntialiasing);
+            p.setRenderHint(QPainter::Antialiasing);
             scene->render(&p);
             break;
         }

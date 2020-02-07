@@ -33,6 +33,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QVector>
+#include <QElapsedTimer>
 
 #include <memory>
 
@@ -94,7 +95,7 @@ public:
     QDateTime lastSurveyTime;
     QStringList completedSurveys;
 
-    QTime startTime;
+    QElapsedTimer startTime;
     int startCount;
     int usageTime;
 

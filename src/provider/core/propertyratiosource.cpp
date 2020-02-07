@@ -34,6 +34,7 @@
 #include <QSettings>
 #include <QStringList>
 #include <QTime>
+#include <QElapsedTimer>
 
 using namespace KUserFeedback;
 
@@ -55,7 +56,7 @@ public:
     QObject *signalMonitor;
     QMetaProperty property;
     QString previousValue;
-    QTime lastChangeTime;
+    QElapsedTimer lastChangeTime;
     QHash<QString, int> ratioSet; // data we are currently tracking
     QHash<QString, int> baseRatioSet; // data loaded from storage
     QMap<QVariant, QString> valueMap;

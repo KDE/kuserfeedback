@@ -31,6 +31,7 @@
 #include <QSettings>
 #include <QStringList>
 #include <QTime>
+#include <QElapsedTimer>
 
 #include <memory>
 
@@ -50,7 +51,7 @@ public:
     QMetaObject::Connection monitorConnection;
     QString description;
     QString previousValue;
-    QTime lastChangeTime;
+    QElapsedTimer lastChangeTime;
     QHash<QString, int> ratioSet; // data we are currently tracking
     QHash<QString, int> baseRatioSet; // data loaded from storage
     int role;

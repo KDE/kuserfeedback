@@ -105,8 +105,10 @@ void RatioSetAggregator::updateTimelineChart()
         mapper->setFirstRow(0);
         mapper->setSeries(series);
 
-        auto areaSeries = new QAreaSeries(series, prevSeries);
+        auto areaSeries = new QAreaSeries;
         series->setParent(areaSeries); // otherwise series isn't deleted by removeAllSeries!
+        areaSeries->setLowerSeries(prevSeries);
+        areaSeries->setUpperSeries(series);
         areaSeries->setName(model->headerData(i, Qt::Horizontal).toString().toHtmlEscaped());
         m_timelineChart->addSeries(areaSeries);
 

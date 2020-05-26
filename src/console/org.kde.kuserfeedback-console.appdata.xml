@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop">
+  <id>org.kde.kuserfeedback-console</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LGPL-2.0-or-later</project_license>
+  <name>KUserFeedback Console</name>
+  <summary>Analytics and administration tool for KUserFeedback servers</summary>
+  <description>
+    <p>Features:</p>
+    <ul>
+      <li>Create, edit and remove products and product data schemas.</li>
+      <li>Manage user surveys.</li>
+      <li>Basic review and analytics of telemetry data.</li>
+      <li>Product schema and telemetry data import/export.</li>
+    </ul>
+  </description>
+  <categories>
+    <category>Development</category>
+  </categories>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=frameworks-kuserfeedback</url>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>UserFeedbackConsole</binary>
+  </provides>
+  <launchable type="desktop-id">org.kde.kuserfeedback-console.desktop</launchable>
+</component>

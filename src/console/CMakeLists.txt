@@ -93,5 +93,6 @@ target_link_libraries(KUserFeedbackConsoleApplication
 
 install(TARGETS KUserFeedbackConsoleApplication ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 if(UNIX AND NOT APPLE)
-    install(FILES UserFeedbackConsole.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+    install(FILES org.kde.kuserfeedback-console.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+    install(FILES org.kde.kuserfeedback-console.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 endif()

@@ -4,20 +4,28 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LGPL-2.0-or-later</project_license>
   <name>KUserFeedback Console</name>
+  <name xml:lang="uk">Консоль KUserFeedback</name>
   <name xml:lang="x-test">xxKUserFeedback Consolexx</name>
   <summary>Analytics and administration tool for KUserFeedback servers</summary>
+  <summary xml:lang="uk">Аналітичний і адміністративний інструмент для серверів KUserFeedback</summary>
   <summary xml:lang="x-test">xxAnalytics and administration tool for KUserFeedback serversxx</summary>
   <description>
     <p>Features:</p>
+    <p xml:lang="cs">Vlastnosti:</p>
+    <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
     <ul>
       <li>Create, edit and remove products and product data schemas.</li>
+      <li xml:lang="uk">Створення, редагування та вилучення продуктів та схем даних продуктів.</li>
       <li xml:lang="x-test">xxCreate, edit and remove products and product data schemas.xx</li>
       <li>Manage user surveys.</li>
+      <li xml:lang="uk">Керування створеними користувачами оглядами.</li>
       <li xml:lang="x-test">xxManage user surveys.xx</li>
       <li>Basic review and analytics of telemetry data.</li>
+      <li xml:lang="uk">Базові можливості огляду та аналізу даних телеметрії.</li>
       <li xml:lang="x-test">xxBasic review and analytics of telemetry data.xx</li>
       <li>Product schema and telemetry data import/export.</li>
+      <li xml:lang="uk">Імпортування та експортування даних схеми продуктів та телеметрії.</li>
       <li xml:lang="x-test">xxProduct schema and telemetry data import/export.xx</li>
     </ul>
   </description>

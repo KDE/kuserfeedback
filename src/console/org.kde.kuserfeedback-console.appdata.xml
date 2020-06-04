@@ -4,40 +4,56 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LGPL-2.0-or-later</project_license>
   <name>KUserFeedback Console</name>
+  <name xml:lang="ca">Consola del KUserFeedback</name>
+  <name xml:lang="fr">Console « KUserFeedback »</name>
   <name xml:lang="nl">Console van KUserFeedback</name>
   <name xml:lang="pt">Consola do KUserFeedback</name>
+  <name xml:lang="sk">Konzola KUserFeedback</name>
   <name xml:lang="uk">Консоль KUserFeedback</name>
   <name xml:lang="x-test">xxKUserFeedback Consolexx</name>
   <summary>Analytics and administration tool for KUserFeedback servers</summary>
+  <summary xml:lang="ca">Eina d'anàlisi i d'administració per als servidors KUserFeedback</summary>
+  <summary xml:lang="fr">Statistiques et outil d'administration pour les serveurs « KUserFeedback »</summary>
   <summary xml:lang="nl">Hulpmiddel voor analyse en beheer voor KUserFeedback-servers</summary>
   <summary xml:lang="pt">Ferramenta analítica e de administração dos servidores do KUserFeedback</summary>
   <summary xml:lang="uk">Аналітичний і адміністративний інструмент для серверів KUserFeedback</summary>
   <summary xml:lang="x-test">xxAnalytics and administration tool for KUserFeedback serversxx</summary>
   <description>
     <p>Features:</p>
+    <p xml:lang="ca">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="es">Funcionalidades:</p>
+    <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="pt">Funcionalidades:</p>
+    <p xml:lang="sk">Funkcie:</p>
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
     <ul>
       <li>Create, edit and remove products and product data schemas.</li>
+      <li xml:lang="ca">Crea, edita i elimina productes i esquemes de dades de productes.</li>
+      <li xml:lang="fr">Créer, modifier et supprimer des produits et des schémas de données de produit.</li>
       <li xml:lang="nl">Schema's van producten en productgegevens aanmaken, bewerken en verwijderen.</li>
       <li xml:lang="pt">Criar, editar e remover produtos e esquemas de dados dos produtos.</li>
       <li xml:lang="uk">Створення, редагування та вилучення продуктів та схем даних продуктів.</li>
       <li xml:lang="x-test">xxCreate, edit and remove products and product data schemas.xx</li>
       <li>Manage user surveys.</li>
+      <li xml:lang="ca">Gestiona enquestes d'usuaris.</li>
+      <li xml:lang="fr">Gérer les surveillances des utilisateurs.</li>
       <li xml:lang="nl">Enquêtes bij gebruikers beheren.</li>
       <li xml:lang="pt">Gerir os inquéritos do utilizador.</li>
       <li xml:lang="uk">Керування створеними користувачами оглядами.</li>
       <li xml:lang="x-test">xxManage user surveys.xx</li>
       <li>Basic review and analytics of telemetry data.</li>
+      <li xml:lang="ca">Revisió bàsica i anàlisi de dades de telemetria.</li>
+      <li xml:lang="fr">Examen basique et statistiques de données de télémétrie.</li>
       <li xml:lang="nl">Basis overzicht en analyse van gegevens uit telemetrie.</li>
       <li xml:lang="pt">Revisão e análise básica dos dados de telemetria.</li>
       <li xml:lang="uk">Базові можливості огляду та аналізу даних телеметрії.</li>
       <li xml:lang="x-test">xxBasic review and analytics of telemetry data.xx</li>
       <li>Product schema and telemetry data import/export.</li>
+      <li xml:lang="ca">Importació i exportació de dades d'esquema de producte i telemetria.</li>
+      <li xml:lang="fr">Schéma de produits et importation / exportation des données de télémétrie.</li>
       <li xml:lang="nl">Importeren/exporteren van productschema en telemetriegegevens.</li>
       <li xml:lang="pt">Importação/exportação dos esquemas de produtos e dados de telemetria.</li>
       <li xml:lang="uk">Імпортування та експортування даних схеми продуктів та телеметрії.</li>

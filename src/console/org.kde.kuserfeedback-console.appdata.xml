@@ -8,6 +8,7 @@
   <name xml:lang="en-GB">KUserFeedback Console</name>
   <name xml:lang="et">KUserFeedbacki konsool</name>
   <name xml:lang="fr">Console « KUserFeedback »</name>
+  <name xml:lang="it">Console di KUserFeedback</name>
   <name xml:lang="nl">Console van KUserFeedback</name>
   <name xml:lang="pt">Consola do KUserFeedback</name>
   <name xml:lang="pt-BR">Console do KUserFeedback</name>
@@ -20,6 +21,7 @@
   <summary xml:lang="en-GB">Analytics and administration tool for KUserFeedback servers</summary>
   <summary xml:lang="et">KUserFeedbacki serverite analüüsi- ja haldustööriist</summary>
   <summary xml:lang="fr">Statistiques et outil d'administration pour les serveurs « KUserFeedback »</summary>
+  <summary xml:lang="it">Strumento di analisi e di amministrazione per server di KUserFeedback</summary>
   <summary xml:lang="nl">Hulpmiddel voor analyse en beheer voor KUserFeedback-servers</summary>
   <summary xml:lang="pt">Ferramenta analítica e de administração dos servidores do KUserFeedback</summary>
   <summary xml:lang="pt-BR">Ferramenta de administração e análise para os servidores KUserFeedback</summary>
@@ -34,6 +36,7 @@
     <p xml:lang="es">Funcionalidades:</p>
     <p xml:lang="et">Omadused:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
+    <p xml:lang="it">Funzionalità:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="pt">Funcionalidades:</p>
     <p xml:lang="pt-BR">Recursos:</p>
@@ -47,6 +50,7 @@
       <li xml:lang="en-GB">Create, edit and remove products and product data schemas.</li>
       <li xml:lang="et">Toodete ja nende andmeskeemide loomine, muutmine ja nime muutmine</li>
       <li xml:lang="fr">Créer, modifier et supprimer des produits et des schémas de données de produit.</li>
+      <li xml:lang="it">Crea, modifica e rimuove i prodotti e i loro schemi di dati.</li>
       <li xml:lang="nl">Schema's van producten en productgegevens aanmaken, bewerken en verwijderen.</li>
       <li xml:lang="pt">Criar, editar e remover produtos e esquemas de dados dos produtos.</li>
       <li xml:lang="pt-BR">Crie, edite e remova produtos e esquemas de dados de produtos.</li>
@@ -58,6 +62,7 @@
       <li xml:lang="en-GB">Manage user surveys.</li>
       <li xml:lang="et">Kasutajauuringute haldamine.</li>
       <li xml:lang="fr">Gérer les surveillances des utilisateurs.</li>
+      <li xml:lang="it">Gestisce i sondaggi degli utenti.</li>
       <li xml:lang="nl">Enquêtes bij gebruikers beheren.</li>
       <li xml:lang="pt">Gerir os inquéritos do utilizador.</li>
       <li xml:lang="pt-BR">Gerenciar pesquisas de usuários.</li>
@@ -69,6 +74,7 @@
       <li xml:lang="en-GB">Basic review and analytics of telemetry data.</li>
       <li xml:lang="et">Telemeetriliste andmete põhiline ülevaade ja analüüs.</li>
       <li xml:lang="fr">Examen basique et statistiques de données de télémétrie.</li>
+      <li xml:lang="it">Revisione e analisi di base dei dati di telemetria.</li>
       <li xml:lang="nl">Basis overzicht en analyse van gegevens uit telemetrie.</li>
       <li xml:lang="pt">Revisão e análise básica dos dados de telemetria.</li>
       <li xml:lang="pt-BR">Revisão básica e análise de dados de telemetria.</li>
@@ -80,6 +86,7 @@
       <li xml:lang="en-GB">Product schema and telemetry data import/export.</li>
       <li xml:lang="et">Toodete skeemi- ja telemeetriaandmete import/eksport.</li>
       <li xml:lang="fr">Schéma de produits et importation / exportation des données de télémétrie.</li>
+      <li xml:lang="it">Importazione ed esportazione dei dati di telemetria e dello schema del prodotto.</li>
       <li xml:lang="nl">Importeren/exporteren van productschema en telemetriegegevens.</li>
       <li xml:lang="pt">Importação/exportação dos esquemas de produtos e dados de telemetria.</li>
       <li xml:lang="pt-BR">Importação/exportação de dados de esquema e telemetria do produto.</li>

@@ -26,6 +26,7 @@
   <summary xml:lang="nl">Hulpmiddel voor analyse en beheer voor KUserFeedback-servers</summary>
   <summary xml:lang="pt">Ferramenta analítica e de administração dos servidores do KUserFeedback</summary>
   <summary xml:lang="pt-BR">Ferramenta de administração e análise para os servidores KUserFeedback</summary>
+  <summary xml:lang="sl">Analitika in orodje administracijo strežnikov za uporabniške povratne informacije.</summary>
   <summary xml:lang="sv">Analys- och administrationsverktyg för användaråterkopplingsservrar</summary>
   <summary xml:lang="uk">Аналітичний і адміністративний інструмент для серверів KUserFeedback</summary>
   <summary xml:lang="x-test">xxAnalytics and administration tool for KUserFeedback serversxx</summary>
@@ -43,6 +44,7 @@
     <p xml:lang="pt">Funcionalidades:</p>
     <p xml:lang="pt-BR">Recursos:</p>
     <p xml:lang="sk">Funkcie:</p>
+    <p xml:lang="sl">Zmožnosti:</p>
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
@@ -56,6 +58,7 @@
       <li xml:lang="nl">Schema's van producten en productgegevens aanmaken, bewerken en verwijderen.</li>
       <li xml:lang="pt">Criar, editar e remover produtos e esquemas de dados dos produtos.</li>
       <li xml:lang="pt-BR">Crie, edite e remova produtos e esquemas de dados de produtos.</li>
+      <li xml:lang="sl">Ustvarja, ureja in odstranjuje izdelke in podatkovne sheme izdelkov.</li>
       <li xml:lang="sv">Skapa, redigera och ta bort produkter och produktdatascheman.</li>
       <li xml:lang="uk">Створення, редагування та вилучення продуктів та схем даних продуктів.</li>
       <li xml:lang="x-test">xxCreate, edit and remove products and product data schemas.xx</li>
@@ -68,6 +71,7 @@
       <li xml:lang="nl">Enquêtes bij gebruikers beheren.</li>
       <li xml:lang="pt">Gerir os inquéritos do utilizador.</li>
       <li xml:lang="pt-BR">Gerenciar pesquisas de usuários.</li>
+      <li xml:lang="sl">Upravlja ankete uporabnikov.</li>
       <li xml:lang="sv">Hantera användarenkäter.</li>
       <li xml:lang="uk">Керування створеними користувачами оглядами.</li>
       <li xml:lang="x-test">xxManage user surveys.xx</li>
@@ -80,6 +84,7 @@
       <li xml:lang="nl">Basis overzicht en analyse van gegevens uit telemetrie.</li>
       <li xml:lang="pt">Revisão e análise básica dos dados de telemetria.</li>
       <li xml:lang="pt-BR">Revisão básica e análise de dados de telemetria.</li>
+      <li xml:lang="sl">Osnovni pregled in analitika telemetrijskih podatkov.</li>
       <li xml:lang="sv">Grundläggande granskning och analys av telemetridata.</li>
       <li xml:lang="uk">Базові можливості огляду та аналізу даних телеметрії.</li>
       <li xml:lang="x-test">xxBasic review and analytics of telemetry data.xx</li>
@@ -92,6 +97,7 @@
       <li xml:lang="nl">Importeren/exporteren van productschema en telemetriegegevens.</li>
       <li xml:lang="pt">Importação/exportação dos esquemas de produtos e dados de telemetria.</li>
       <li xml:lang="pt-BR">Importação/exportação de dados de esquema e telemetria do produto.</li>
+      <li xml:lang="sl">Shema izdelkov in uvoz/izvoz podatkov iz telemetrije.</li>
       <li xml:lang="sv">Import och export av produktscheman och telemetridata.</li>
       <li xml:lang="uk">Імпортування та експортування даних схеми продуктів та телеметрії.</li>
       <li xml:lang="x-test">xxProduct schema and telemetry data import/export.xx</li>

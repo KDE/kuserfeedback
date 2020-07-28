@@ -21,7 +21,7 @@
   <name xml:lang="x-test">xxKUserFeedback Consolexx</name>
   <summary>Analytics and administration tool for KUserFeedback servers</summary>
   <summary xml:lang="ca">Eina d'anàlisi i d'administració per als servidors del KUserFeedback</summary>
-  <summary xml:lang="ca-valencia">Eina d'anàlisi i d'administració per als servidors KUserFeedback</summary>
+  <summary xml:lang="ca-valencia">Eina d'anàlisi i d'administració per als servidors del KUserFeedback</summary>
   <summary xml:lang="en-GB">Analytics and administration tool for KUserFeedback servers</summary>
   <summary xml:lang="et">KUserFeedbacki serverite analüüsi- ja haldustööriist</summary>
   <summary xml:lang="fi">Analyysi- ja hallintatyökalu käyttäjäpalautepalvelimiin</summary>
@@ -72,7 +72,7 @@
       <li xml:lang="x-test">xxCreate, edit and remove products and product data schemas.xx</li>
       <li>Manage user surveys.</li>
       <li xml:lang="ca">Gestiona les enquestes dels usuaris.</li>
-      <li xml:lang="ca-valencia">Gestiona enquestes d'usuaris.</li>
+      <li xml:lang="ca-valencia">Gestiona les enquestes dels usuaris.</li>
       <li xml:lang="en-GB">Manage user surveys.</li>
       <li xml:lang="et">Kasutajauuringute haldamine.</li>
       <li xml:lang="fi">Hallitse käyttäjätutkimuksia.</li>
@@ -87,7 +87,7 @@
       <li xml:lang="x-test">xxManage user surveys.xx</li>
       <li>Basic review and analytics of telemetry data.</li>
       <li xml:lang="ca">Revisió bàsica i anàlisi de les dades de telemetria.</li>
-      <li xml:lang="ca-valencia">Revisió bàsica i anàlisi de dades de telemetria.</li>
+      <li xml:lang="ca-valencia">Revisió bàsica i anàlisi de les dades de telemetria.</li>
       <li xml:lang="en-GB">Basic review and analytics of telemetry data.</li>
       <li xml:lang="et">Telemeetriliste andmete põhiline ülevaade ja analüüs.</li>
       <li xml:lang="fi">Telemetriatietojen perustarkastelu ja -analyysi.</li>
@@ -102,7 +102,7 @@
       <li xml:lang="x-test">xxBasic review and analytics of telemetry data.xx</li>
       <li>Product schema and telemetry data import/export.</li>
       <li xml:lang="ca">Importació i exportació de les dades d'esquema de producte i telemetria.</li>
-      <li xml:lang="ca-valencia">Importació i exportació de dades d'esquema de producte i telemetria.</li>
+      <li xml:lang="ca-valencia">Importació i exportació de les dades d'esquema de producte i telemetria.</li>
       <li xml:lang="en-GB">Product schema and telemetry data import/export.</li>
       <li xml:lang="et">Toodete skeemi- ja telemeetriaandmete import/eksport.</li>
       <li xml:lang="fi">Malliskeemojen ja telemetriatietojen tuonti ja vienti.</li>

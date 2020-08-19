@@ -30,6 +30,7 @@ QVariant ScreenInfoSource::data()
         m.insert(QStringLiteral("width"), screen->size().width());
         m.insert(QStringLiteral("height"), screen->size().height());
         m.insert(QStringLiteral("dpi"), qRound(screen->physicalDotsPerInch()));
+        m.insert(QStringLiteral("devicePixelRatio"), screen->devicePixelRatio());
         l.push_back(m);
     }
     return l;

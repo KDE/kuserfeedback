@@ -426,6 +426,12 @@ void Provider::setEnabled(bool enabled)
     emit enabledChanged();
 }
 
+void Provider::restoreDefaults()
+{
+    setTelemetryMode(NoTelemetry);
+    setSurveyInterval(-1);
+}
+
 QString Provider::productIdentifier() const
 {
     return d->productId;

@@ -125,6 +125,12 @@ public:
      */
     void setEnabled(bool enabled);
 
+    /*! Set the telemetry mode and the survey interval back to their default values.
+     *  @see telemetryMode(), surveyInterval()
+     *  @since 1.1.0
+     */
+    void restoreDefaults();
+
     /*! Returns the current product identifier. */
     QString productIdentifier() const;
     /*! Set the product identifier.

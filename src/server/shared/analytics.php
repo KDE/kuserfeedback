@@ -51,7 +51,7 @@ public function get_data($productName)
         throw new RESTException('Product not found.', 404);
 
     header('Content-Type: text/json');
-    echo(Sample::dataAsJson($db, $product));
+    Sample::echoDataAsJson($db, $product);
 }
 
 /** List all surveys for a product. */

@@ -16,10 +16,10 @@ require_once('schemaentryelement.php');
 class Sample
 {
     /** JSON for all data of the given product. */
-    public static function dataAsJson(DataStore $db, Product $product)
+    public static function echoDataAsJson(DataStore $db, Product $product)
     {
-        $data = array();
-        $sampleIdIndex = array();
+        echo '[';
+        $first = false;
         $i = 0;
 
         // query scalar table
@@ -38,51 +38,47 @@ class Sample
             $rowData['id'] = intval($scalarRow['col_id']);
             $rowData['timestamp'] = $scalarRow['col_timestamp'];
             foreach ($product->schema as $entry) {
-                if (!$entry->isScalar())
-                    continue;
-                $entryData = null;
-                foreach ($entry->elements as $elem) {
-                    $value = self::valueFromDb($elem, $scalarRow[$elem->dataColumnName()]);
-                    if (!is_null($value))
-                        $entryData[$elem->name] = $value;
+                if ($entry->isScalar()) {
+                    $entryData = null;
+                    foreach ($entry->elements as $elem) {
+                        $value = self::valueFromDb($elem, $scalarRow[$elem->dataColumnName()]);
+                        if (!is_null($value))
+                            $entryData[$elem->name] = $value;
+                    }
+                    if (!is_null($entryData))
+                        $rowData[$entry->name] = $entryData;
+                } else {
+                    $sql = 'SELECT col_sample_id';
+                    if ($entry->type == SchemaEntry::MAP_TYPE)
+                        $sql .= ', col_key';
+                    foreach ($entry->elements as $elem)
+                        $sql .= ', ' . $elem->dataColumnName();
+                    $sql .= ' FROM ' . $entry->dataTableName() . '  WHERE col_sample_id = ' . $rowData['id'] . ' ORDER BY col_id ASC ';
+                    $stmt = $db->prepare($sql);
+                    $db->execute($stmt);
+                    foreach ($stmt as $row) {
+                        $entryData = null;
+                        foreach ($entry->elements as $elem) {
+                            $value = self::valueFromDb($elem, $row[$elem->dataColumnName()]);
+                            if (!is_null($value))
+                                $entryData[$elem->name] = $value;
+                        }
+                        if (!array_key_exists($entry->name, $rowData))
+                            $rowData[$entry->name] = array();
+                        if ($entry->type == SchemaEntry::MAP_TYPE)
+                            $rowData[$entry->name][$row['col_key']] = $entryData;
+                        else
+                            array_push($rowData[$entry->name], $entryData);
+                    }
                 }
-                if (!is_null($entryData))
-                    $rowData[$entry->name] = $entryData;
             }
-            array_push($data, $rowData);
-            $sampleIdIndex[$rowData['id']] = $i++;
-        }
 
-        // query each non-scalar table
-        foreach ($product->schema as $entry) {
-            if ($entry->isScalar())
-                continue;
-            $sql = 'SELECT col_sample_id';
-            if ($entry->type == SchemaEntry::MAP_TYPE)
-                $sql .= ', col_key';
-            foreach ($entry->elements as $elem)
-                $sql .= ', ' . $elem->dataColumnName();
-            $sql .= ' FROM ' . $entry->dataTableName() . ' ORDER BY col_id ASC';
-            $stmt = $db->prepare($sql);
-            $db->execute($stmt);
-            foreach ($stmt as $row) {
-                $entryData = null;
-                foreach ($entry->elements as $elem) {
-                    $value = self::valueFromDb($elem, $row[$elem->dataColumnName()]);
-                    if (!is_null($value))
-                        $entryData[$elem->name] = $value;
-                }
-                $idx = $sampleIdIndex[$row['col_sample_id']];
-                if (!array_key_exists($entry->name, $data[$idx]))
-                    $data[$idx][$entry->name] = array();
-                if ($entry->type == SchemaEntry::MAP_TYPE)
-                    $data[$idx][$entry->name][$row['col_key']] = $entryData;
-                else
-                    array_push($data[$idx][$entry->name], $entryData);
-            }
+            if ($i != 0)
+                echo ',';
+            echo(json_encode($rowData));
+            $i++;
         }
-
-        return json_encode($data);
+        echo ']';
     }
 
     /** Insert a received sample for @p product into the data store. */

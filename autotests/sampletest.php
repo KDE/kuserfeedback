@@ -32,8 +32,8 @@ class SurveyTest extends AbstractDatastoreTest
         Sample::insert(self::$db, $sample, $p);
         Sample::insert(self::$db, $sample, $p);
 
-        $dataJson = Sample::dataAsJson(self::$db, $p);
-        $data = json_decode($dataJson);
+        Sample::echoDataAsJson(self::$db, $p);
+        $data = json_decode($this->getActualOutput(), false);
         $this->assertTrue(is_array($data));
         $this->assertCount(2, $data);
         $d0 = $data[0];
@@ -64,8 +64,10 @@ class SurveyTest extends AbstractDatastoreTest
         }';
 
         Sample::insert(self::$db, $sample, $p);
-        $dataJson = Sample::dataAsJson(self::$db, $p);
-        $data = json_decode($dataJson);
+
+        Sample::echoDataAsJson(self::$db, $p);
+        $data = json_decode($this->getActualOutput(), false);
+
         $this->assertTrue(is_array($data));
         $this->assertCount(1, $data);
         $d0 = $data[0];
@@ -90,8 +92,8 @@ class SurveyTest extends AbstractDatastoreTest
         }';
 
         Sample::insert(self::$db, $sample, $p);
-        $dataJson = Sample::dataAsJson(self::$db, $p);
-        $data = json_decode($dataJson);
+        Sample::echoDataAsJson(self::$db, $p);
+        $data = json_decode($this->getActualOutput(), false);
         $this->assertTrue(is_array($data));
         $this->assertCount(1, $data);
         $d0 = $data[0];
@@ -141,7 +143,8 @@ class SurveyTest extends AbstractDatastoreTest
         }]';
         Sample::import(self::$db, $input, $p);
 
-        $jsonOutput = json_decode(Sample::dataAsJson(self::$db, $p), true);
+        Sample::echoDataAsJson(self::$db, $p);
+        $jsonOutput = json_decode($this->getActualOutput(), true);
         unset($jsonOutput[0]['id']);
         unset($jsonOutput[1]['id']);
         $this->assertJsonStringEqualsJsonString($input, json_encode($jsonOutput));

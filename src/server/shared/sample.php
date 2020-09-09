@@ -85,6 +85,8 @@ class Sample
     public static function insert(DataStore $db, $jsonData, Product $product)
     {
         $jsonObj = json_decode($jsonData);
+        if (empty(get_object_vars($jsonObj)))
+            return; // happens when application is just querying for surveys
         if (!is_object($jsonObj))
             throw new RESTException('Invalid data sample format.', 400);
         if (property_exists($jsonObj, 'id') || property_exists($jsonObj, 'timestamp'))

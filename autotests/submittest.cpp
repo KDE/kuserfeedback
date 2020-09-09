@@ -155,6 +155,57 @@ private slots:
         provider.submit();
         QTest::qWait(500); // HACK submit is async, and we have no way of knowning the redirect loop ended...
     }
+
+    void testSurveyWithoutTelemetry()
+    {
+        ServerInfo serverInfo;
+        auto serverUrl = m_server.url();
+        serverInfo.setUrl(serverUrl);
+
+        // delete previous leftovers
+        RESTClient client;
+        client.setServerInfo(serverInfo);
+        client.setConnected(true);
+        QVERIFY(client.isConnected());
+        Product p;
+        p.setName(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
+        auto reply = RESTApi::deleteProduct(&client, p);
+        waitForFinished(reply);
+
+        // create test product
+        for (const auto &tpl : SchemaEntryTemplates::availableTemplates())
+            p.addTemplate(tpl);
+        QVERIFY(p.isValid());
+        reply = RESTApi::createProduct(&client, p);
+        QVERIFY(waitForFinished(reply));
+        QCOMPARE(reply->error(), QNetworkReply::NoError);
+
+        // submit data
+        Provider provider;
+        provider.setProductIdentifier(QStringLiteral("org.kde.UserFeedback.UnitTestProduct"));
+        provider.setTelemetryMode(Provider::NoTelemetry);
+        provider.setSubmissionInterval(7);
+        provider.setSurveyInterval(30);
+        provider.setFeedbackServer(serverUrl);
+        provider.addDataSource(new ScreenInfoSource);
+        provider.addDataSource(new PlatformInfoSource);
+        provider.submit();
+        QTest::qWait(100); // HACK submit is async
+
+        // retrieve data
+        reply = RESTApi::listSamples(&client, p);
+        QVERIFY(waitForFinished(reply));
+        QVERIFY(reply->header(QNetworkRequest::ContentTypeHeader).toString().startsWith(QLatin1String("text/json")));
+        auto doc = QJsonDocument::fromJson(reply->readAll());
+        QVERIFY(doc.isArray());
+        auto a = doc.array();
+        QCOMPARE(a.size(), 0);
+
+        // check we wrote an audit log
+        AuditLogUiController alc;
+        QVERIFY(alc.logEntryModel());
+        QCOMPARE(alc.logEntryModel()->rowCount(), 1);
+    }
 };
 
 QTEST_MAIN(SubmitTest)

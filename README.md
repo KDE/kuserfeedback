@@ -38,7 +38,7 @@ the following steps inside your program:
 
 ## Deployment
 For information on how to deploy the server parts, please see the
-[INSTALL](https://cgit.kde.org/kuserfeedback.git/tree/INSTALL) file.
+[INSTALL](https://commits.kde.org/kuserfeedback?path=INSTALL) file.
 
 ## Usage Documentation
 Information on how to use KUserFeedback from a product manager point of view can

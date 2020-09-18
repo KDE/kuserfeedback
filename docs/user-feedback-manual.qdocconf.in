@@ -1,6 +1,6 @@
 project = "UserFeedback"
 description = "UserFeedback Manual"
-url = https://cgit.kde.org/kuserfeedback.git/
+url = https://invent.kde.org/libraries/kuserfeedback/
 
 sourcedirs = @CMAKE_CURRENT_SOURCE_DIR@
 sources.fileextensions = "*.qdoc"

@@ -7,10 +7,10 @@ set(common_src
 if(HAVE_SURVEY_TARGET_EXPRESSIONS)
 
 if (CMAKE_VERSION VERSION_LESS 3.5.0)
-    set(_flex_opts COMPILE_FLAGS --header-file=${CMAKE_CURRENT_BINARY_DIR}/surveytargetexpressionscanner.h)
+    set(_flex_opts COMPILE_FLAGS --nounistd --header-file=${CMAKE_CURRENT_BINARY_DIR}/surveytargetexpressionscanner.h)
     set(_bison_opts COMPILE_FLAGS --defines=${CMAKE_CURRENT_BINARY_DIR}/surveytargetexpressionparser_p.h)
 else()
-    set(_flex_opts DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/surveytargetexpressionscanner.h)
+    set(_flex_opts COMPILE_FLAGS --nounistd DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/surveytargetexpressionscanner.h)
     set(_bison_opts DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/surveytargetexpressionparser_p.h)
 endif()
 

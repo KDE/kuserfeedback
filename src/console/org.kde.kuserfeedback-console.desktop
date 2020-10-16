@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=UserFeedback Console
+Name[az]=İsifadəçiRəyi Konsolu
 Name[ca]=Consola de l'UserFeedback
 Name[ca@valencia]=Consola de l'UserFeedback
 Name[da]=Brugerfeedback-konsol
@@ -35,6 +36,7 @@ Name[x-test]=xxUserFeedback Consolexx
 Name[zh_CN]=用户反馈控制台
 Name[zh_TW]=UserFeedback 終端
 Comment=Analytics and administration tool for UserFeedback servers.
+Comment[az]=İstifadəçi Rəyi serverləri üçün analiz və inzibatçı alətləri.
 Comment[ca]=Eina d'anàlisi i d'administració per als servidors d'UserFeedback.
 Comment[ca@valencia]=Eina d'anàlisi i d'administració per als servidors d'UserFeedback.
 Comment[da]=Analyse- og administrationsværktøj til brugerfeedback-servere.
@@ -70,6 +72,7 @@ Comment[x-test]=xxAnalytics and administration tool for UserFeedback servers.xx
 Comment[zh_CN]=用户反馈服务器的分析和管理工具。
 Comment[zh_TW]=為 UserFeedback 伺服器設計的統計與管理工具
 GenericName=UserFeedback Management Console
+GenericName[az]=İstifadəçi Rəyi İdarəetmə Konsolu
 GenericName[ca]=Consola de gestió de l'UserFeedback
 GenericName[ca@valencia]=Consola de gestió de l'UserFeedback
 GenericName[da]=Konsol til håndtering af brugerfeedback

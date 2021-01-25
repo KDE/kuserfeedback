@@ -107,11 +107,11 @@ FeedbackConfigWidget::FeedbackConfigWidget(QWidget* parent)
     connect(d->ui->rawTelemetryButton, &QAbstractButton::toggled, this, [this]() { d->telemetrySliderChanged(); });
 
     d->auditLogController = new AuditLogUiController(this);
-    d->ui->auditLogLabel->setEnabled(d->auditLogController->hasLogEntries());
+    d->ui->auditLogButton->setEnabled(d->auditLogController->hasLogEntries());
     connect(d->auditLogController, &AuditLogUiController::logEntryCountChanged, this, [this]() {
-        d->ui->auditLogLabel->setEnabled(d->auditLogController->hasLogEntries());
+        d->ui->auditLogButton->setEnabled(d->auditLogController->hasLogEntries());
     });
-    connect(d->ui->auditLogLabel, &QLabel::linkActivated, this, [this](){
+    connect(d->ui->auditLogButton, &QPushButton::clicked, this, [this](){
         AuditLogBrowserDialog dlg(this);
         dlg.setUiController(d->auditLogController);
         dlg.exec();

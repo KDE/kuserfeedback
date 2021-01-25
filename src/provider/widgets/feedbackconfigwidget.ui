@@ -21,6 +21,16 @@
      </property>
     </widget>
    </item>
+   <item alignment="Qt::AlignRight">
+    <widget class="QPushButton" name="auditLogButton">
+     <property name="text">
+      <string>View previously submitted data...</string>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
    <item>
     <widget class="QLabel" name="label">
      <property name="font">
@@ -128,13 +138,6 @@
      </property>
      <property name="flat">
       <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="auditLogLabel">
-     <property name="text">
-      <string>&lt;a href=&quot;auditLog&quot;&gt;View previously submitted data...&lt;/a&gt;</string>
      </property>
     </widget>
    </item>

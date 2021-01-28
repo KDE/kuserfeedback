@@ -110,7 +110,7 @@ AuditLogUiController::AuditLogUiController(QObject* parent)
     : QObject(parent)
     , d(new AuditLogUiControllerPrivate)
 {
-    d->path = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QStringLiteral("/kuserfeedback/audit/");
+    d->path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QStringLiteral("/kuserfeedback/audit/");
     d->logEntryModel = new AuditLogEntryModel(d->path, this);
 
     connect(d->logEntryModel, &QAbstractItemModel::modelReset, this, &AuditLogUiController::logEntryCountChanged);

@@ -692,7 +692,7 @@ void ProviderPrivate::submitProbeFinished(QNetworkReply *reply)
 
 void ProviderPrivate::writeAuditLog(const QDateTime &dt)
 {
-    const QString path = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QStringLiteral("/kuserfeedback/audit");
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QStringLiteral("/kuserfeedback/audit");
     QDir().mkpath(path);
 
     QJsonObject docObj;

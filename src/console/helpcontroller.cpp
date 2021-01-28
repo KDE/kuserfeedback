@@ -78,7 +78,7 @@ bool HelpController::isAvailable()
         }
     }
 
-    const QString qhcPath = QStandardPaths::locate(QStandardPaths::DataLocation, QLatin1String("user-feedback.qhc"));
+    const QString qhcPath = QStandardPaths::locate(QStandardPaths::AppDataLocation, QLatin1String("user-feedback.qhc"));
     if (QFileInfo::exists(qhcPath)) {
         d->qhcPath = qhcPath;
         return true;

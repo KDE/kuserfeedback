@@ -79,7 +79,7 @@ void SurveyInfo::setTarget(const QString &target)
 SurveyInfo SurveyInfo::fromJson(const QJsonObject& obj)
 {
     SurveyInfo s;
-    s.setUuid(obj.value(QLatin1String("uuid")).toString());
+    s.setUuid(QUuid(obj.value(QLatin1String("uuid")).toString()));
     s.setUrl(QUrl(obj.value(QLatin1String("url")).toString()));
     s.setTarget(obj.value(QLatin1String("target")).toString());
     return s;

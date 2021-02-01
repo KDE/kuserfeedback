@@ -31,6 +31,25 @@ void SurveyTargetExpressionEvaluator::setDataProvider(const SurveyTargetExpressi
     m_provider = provider;
 }
 
+static bool variantLess(const QVariant &lhs, const QVariant &rhs)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    return QVariant::compare(lhs, rhs) == QPartialOrdering::Less;
+#else
+    return lhs < rhs;
+#endif
+}
+
+static bool variantLessOrEqual(const QVariant &lhs, const QVariant &rhs)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    const auto order = QVariant::compare(lhs, rhs);
+    return order == QPartialOrdering::Less || order == QPartialOrdering::Equivalent;
+#else
+    return lhs <= rhs;
+#endif
+}
+
 bool SurveyTargetExpressionEvaluator::evaluate(SurveyTargetExpression* expression)
 {
     // logical operations
@@ -58,13 +77,13 @@ bool SurveyTargetExpressionEvaluator::evaluate(SurveyTargetExpression* expressio
         case SurveyTargetExpression::OpNotEqual:
             return lhs != rhs;
         case SurveyTargetExpression::OpGreater:
-            return lhs > rhs;
+            return variantLess(rhs, lhs);
         case SurveyTargetExpression::OpGreaterEqual:
-            return lhs >= rhs;
+            return variantLessOrEqual(rhs, lhs);
         case SurveyTargetExpression::OpLess:
-            return lhs < rhs;
+            return variantLess(lhs, rhs);
         case SurveyTargetExpression::OpLessEqual:
-            return lhs <= rhs;
+            return variantLessOrEqual(lhs, rhs);
         default:
             break;
     }

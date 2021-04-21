@@ -7,6 +7,7 @@
   <name xml:lang="az">KUserFeedback Konsolu</name>
   <name xml:lang="ca">Consola del KUserFeedback</name>
   <name xml:lang="ca-valencia">Consola del KUserFeedback</name>
+  <name xml:lang="de">KUserFeedback-Konsole</name>
   <name xml:lang="en-GB">KUserFeedback Console</name>
   <name xml:lang="es">Consola de KUserFeedback</name>
   <name xml:lang="et">KUserFeedbacki konsool</name>
@@ -27,6 +28,7 @@
   <summary xml:lang="az">KUserFeedback xidməti üçün analitik və adminstrativ alət</summary>
   <summary xml:lang="ca">Eina d'anàlisi i d'administració per als servidors del KUserFeedback</summary>
   <summary xml:lang="ca-valencia">Eina d'anàlisi i d'administració per als servidors del KUserFeedback</summary>
+  <summary xml:lang="de">Dienstprogramm zur Analyse und Verwaltung von KUserFeedback-Servern</summary>
   <summary xml:lang="en-GB">Analytics and administration tool for KUserFeedback servers</summary>
   <summary xml:lang="es">Analíticas y herramienta de administración para los servidores de KUserFeedback</summary>
   <summary xml:lang="et">KUserFeedbacki serverite analüüsi- ja haldustööriist</summary>
@@ -48,6 +50,7 @@
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="ca-valencia">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
+    <p xml:lang="de">Funktionen:</p>
     <p xml:lang="en-GB">Features:</p>
     <p xml:lang="es">Funcionalidades:</p>
     <p xml:lang="et">Omadused:</p>
@@ -69,6 +72,7 @@
       <li xml:lang="az">Məhsullar və məhsul haqqında məlumatlar sxemlərini yaratmaq, düzəliş etmək və silmək.</li>
       <li xml:lang="ca">Crea, edita i elimina productes i esquemes de dades de productes.</li>
       <li xml:lang="ca-valencia">Crea, edita i elimina productes i esquemes de dades de productes.</li>
+      <li xml:lang="de">Produkte und Produktdaten-Schemata erstellen, bearbeiten und entfernen.</li>
       <li xml:lang="en-GB">Create, edit and remove products and product data schemas.</li>
       <li xml:lang="es">Crear, editar y eliminar productos y esquemas de datos de productos.</li>
       <li xml:lang="et">Toodete ja nende andmeskeemide loomine, muutmine ja nime muutmine</li>
@@ -88,6 +92,7 @@
       <li xml:lang="az">İstiffadəçi sorğularını idarə etmək.</li>
       <li xml:lang="ca">Gestiona les enquestes dels usuaris.</li>
       <li xml:lang="ca-valencia">Gestiona les enquestes dels usuaris.</li>
+      <li xml:lang="de">Benutzerumfragen verwalten.</li>
       <li xml:lang="en-GB">Manage user surveys.</li>
       <li xml:lang="es">Gestionar encuestas de usuario.</li>
       <li xml:lang="et">Kasutajauuringute haldamine.</li>
@@ -107,6 +112,7 @@
       <li xml:lang="az">Telemetriya məlumatlarının əsas təhlili və analizi.</li>
       <li xml:lang="ca">Revisió bàsica i anàlisi de les dades de telemetria.</li>
       <li xml:lang="ca-valencia">Revisió bàsica i anàlisi de les dades de telemetria.</li>
+      <li xml:lang="de">Grundlegende Überprüfung und Analyse von Telemetriedaten.</li>
       <li xml:lang="en-GB">Basic review and analytics of telemetry data.</li>
       <li xml:lang="es">Revisión y analítica básica de datos de telemetría.</li>
       <li xml:lang="et">Telemeetriliste andmete põhiline ülevaade ja analüüs.</li>
@@ -126,6 +132,7 @@
       <li xml:lang="az">Məhsul sxemlərinin və telemetriya məlumatlarının idxalı/ixracı.</li>
       <li xml:lang="ca">Importació i exportació de les dades d'esquema de producte i telemetria.</li>
       <li xml:lang="ca-valencia">Importació i exportació de les dades d'esquema de producte i telemetria.</li>
+      <li xml:lang="de">Import und Export von Produktschemata und Telemetriedaten.</li>
       <li xml:lang="en-GB">Product schema and telemetry data import/export.</li>
       <li xml:lang="es">Importación/exportación de esquemas de productos y datos de telemetría.</li>
       <li xml:lang="et">Toodete skeemi- ja telemeetriaandmete import/eksport.</li>

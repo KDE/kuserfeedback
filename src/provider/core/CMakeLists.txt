@@ -25,7 +25,7 @@ set(userfeedback_core_srcs
 add_library(KUserFeedbackCore ${userfeedback_core_srcs})
 set_target_properties(KUserFeedbackCore PROPERTIES
     SOVERSION ${KUSERFEEDBACK_SOVERSION}
-    VERSION ${KUSERFEEDBACK_VERSION_STRING}
+    VERSION ${KUSERFEEDBACK_VERSION}
 )
 generate_export_header(KUserFeedbackCore)
 

@@ -17,6 +17,7 @@
   <name xml:lang="it">Console di KUserFeedback</name>
   <name xml:lang="ko">KUserFeedback 콘솔</name>
   <name xml:lang="nl">Console van KUserFeedback</name>
+  <name xml:lang="pl">Konsola KUserFeedback</name>
   <name xml:lang="pt">Consola do KUserFeedback</name>
   <name xml:lang="pt-BR">Console do KUserFeedback</name>
   <name xml:lang="sk">Konzola KUserFeedback</name>
@@ -38,6 +39,7 @@
   <summary xml:lang="it">Strumento di analisi e di amministrazione per server di KUserFeedback</summary>
   <summary xml:lang="ko">KUserFeedback 서버 분석 및 관리 도구입니다</summary>
   <summary xml:lang="nl">Hulpmiddel voor analyse en beheer voor KUserFeedback-servers</summary>
+  <summary xml:lang="pl">Narzędzie analityczne i do zarządzania dla serwerów KUserFeedback</summary>
   <summary xml:lang="pt">Ferramenta analítica e de administração dos servidores do KUserFeedback</summary>
   <summary xml:lang="pt-BR">Ferramenta de administração e análise para os servidores KUserFeedback</summary>
   <summary xml:lang="sl">Analitika in orodje administracijo strežnikov za uporabniške povratne informacije</summary>
@@ -60,6 +62,7 @@
     <p xml:lang="it">Funzionalità:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
+    <p xml:lang="pl">Możliwości:</p>
     <p xml:lang="pt">Funcionalidades:</p>
     <p xml:lang="pt-BR">Recursos:</p>
     <p xml:lang="sk">Funkcie:</p>
@@ -82,6 +85,7 @@
       <li xml:lang="it">Crea, modifica e rimuove i prodotti e i loro schemi di dati.</li>
       <li xml:lang="ko">제품과 제품 데이터 스키마를 생성, 편집, 삭제합니다.</li>
       <li xml:lang="nl">Schema's van producten en productgegevens aanmaken, bewerken en verwijderen.</li>
+      <li xml:lang="pl">Twórz, edytuj i usuwaj produkty oraz schematy danych produktów.</li>
       <li xml:lang="pt">Criar, editar e remover produtos e esquemas de dados dos produtos.</li>
       <li xml:lang="pt-BR">Crie, edite e remova produtos e esquemas de dados de produtos.</li>
       <li xml:lang="sl">Ustvarja, ureja in odstranjuje izdelke in podatkovne sheme izdelkov.</li>
@@ -102,6 +106,7 @@
       <li xml:lang="it">Gestisce i sondaggi degli utenti.</li>
       <li xml:lang="ko">사용자 설문 조사를 관리합니다.</li>
       <li xml:lang="nl">Enquêtes bij gebruikers beheren.</li>
+      <li xml:lang="pl">Zarządzanie ankietami użytkowników.</li>
       <li xml:lang="pt">Gerir os inquéritos do utilizador.</li>
       <li xml:lang="pt-BR">Gerenciar pesquisas de usuários.</li>
       <li xml:lang="sl">Upravlja ankete uporabnikov.</li>
@@ -122,6 +127,7 @@
       <li xml:lang="it">Revisione e analisi di base dei dati di telemetria.</li>
       <li xml:lang="ko">원격 측정 데이터를 분석합니다.</li>
       <li xml:lang="nl">Basis overzicht en analyse van gegevens uit telemetrie.</li>
+      <li xml:lang="pl">Podstawowy opis danych analitycznych i telemetrycznych.</li>
       <li xml:lang="pt">Revisão e análise básica dos dados de telemetria.</li>
       <li xml:lang="pt-BR">Revisão básica e análise de dados de telemetria.</li>
       <li xml:lang="sl">Osnovni pregled in analitika telemetrijskih podatkov.</li>
@@ -142,6 +148,7 @@
       <li xml:lang="it">Importazione ed esportazione dei dati di telemetria e dello schema del prodotto.</li>
       <li xml:lang="ko">제품 스키마와 원격 측정 데이터를 가져오고 내보냅니다.</li>
       <li xml:lang="nl">Importeren/exporteren van productschema en telemetriegegevens.</li>
+      <li xml:lang="pl">Import/eksport danych telemetrycznych i schematu produktu.</li>
       <li xml:lang="pt">Importação/exportação dos esquemas de produtos e dados de telemetria.</li>
       <li xml:lang="pt-BR">Importação/exportação de dados de esquema e telemetria do produto.</li>
       <li xml:lang="sl">Shema izdelkov in uvoz/izvoz podatkov iz telemetrije.</li>

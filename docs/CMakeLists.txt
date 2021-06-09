@@ -11,17 +11,17 @@ find_file(QDOC_TEMPLATE global/qt-html-templates-offline.qdocconf
 )
 get_filename_component(QDOC_TEMPLATE_DIR ${QDOC_TEMPLATE} DIRECTORY)
 
-if(NOT QDOC_EXECUTABLE OR NOT TARGET Qt5::qhelpgenerator OR NOT TARGET Qt5::qcollectiongenerator OR NOT QDOC_TEMPLATE_DIR)
+if(NOT QDOC_EXECUTABLE OR NOT TARGET Qt${QT_VERSION_MAJOR}::qhelpgenerator OR NOT TARGET Qt${QT_VERSION_MAJOR}::qcollectiongenerator OR NOT QDOC_TEMPLATE_DIR)
   message(STATUS "Unable to build user manual:")
   message(STATUS "qdoc exectuable: ${QDOC_EXECUTABLE}")
-  if(TARGET Qt5::qhelpgenerator)
-    get_property(_path TARGET Qt5::qhelpgenerator PROPERTY LOCATION)
+  if(TARGET Qt${QT_VERSION_MAJOR}::qhelpgenerator)
+    get_property(_path TARGET Qt${QT_VERSION_MAJOR}::qhelpgenerator PROPERTY LOCATION)
     message(STATUS "qhelpgenerator exectuable: ${_path}")
   else()
     message(STATUS "qhelpgenerator not found")
   endif()
-  if(TARGET Qt5::qcollectiongenerator)
-    get_property(_path TARGET Qt5::qcollectiongenerator PROPERTY LOCATION)
+  if(TARGET Qt${QT_VERSION_MAJOR}::qcollectiongenerator)
+    get_property(_path TARGET Qt${QT_VERSION_MAJOR}::qcollectiongenerator PROPERTY LOCATION)
     message(STATUS "qcollectiongenerator exectuable: ${_path}")
   else()
     message(STATUS "qcollectiongenerator not found")
@@ -43,7 +43,7 @@ add_custom_command(
 )
 add_custom_command(
     OUTPUT ${_qdoc_output_dir}/user-feedback-manual.qch
-    COMMAND Qt5::qhelpgenerator ${_qdoc_output_dir}/user-feedback-manual.qhp
+    COMMAND Qt${QT_VERSION_MAJOR}::qhelpgenerator ${_qdoc_output_dir}/user-feedback-manual.qhp
     DEPENDS ${_qdoc_output_dir}/user-feedback-manual.qhp
 )
 add_custom_target(user_feedback_manual_qch ALL DEPENDS ${_qdoc_output_dir}/user-feedback-manual.qch)
@@ -54,7 +54,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/user-feedback.qhcp.in ${CMAKE_CURRENT
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/user-feedback.qhc
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_BINARY_DIR}/manual/user-feedback-manual.qch ${CMAKE_CURRENT_BINARY_DIR}
-    COMMAND Qt5::qcollectiongenerator ${CMAKE_CURRENT_BINARY_DIR}/user-feedback.qhcp -o ${CMAKE_CURRENT_BINARY_DIR}/user-feedback.qhc
+    COMMAND Qt${QT_VERSION_MAJOR}::qcollectiongenerator ${CMAKE_CURRENT_BINARY_DIR}/user-feedback.qhcp -o ${CMAKE_CURRENT_BINARY_DIR}/user-feedback.qhc
     DEPENDS
         ${CMAKE_CURRENT_BINARY_DIR}/user-feedback.qhcp
         user_feedback_manual_qch

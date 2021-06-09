@@ -11,7 +11,7 @@ add_library(KUserFeedbackQml SHARED ${provider_qml_srcs})
 
 target_link_libraries(KUserFeedbackQml
     KUserFeedbackCore
-    Qt5::Qml
+    Qt${QT_VERSION_MAJOR}::Qml
 )
 
 install(TARGETS KUserFeedbackQml DESTINATION ${QML_INSTALL_DIR}/org/kde/userfeedback)

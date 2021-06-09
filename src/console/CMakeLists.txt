@@ -40,7 +40,7 @@ set(console_lib_srcs
 )
 
 add_library(KUserFeedbackConsole STATIC ${console_lib_srcs})
-target_link_libraries(KUserFeedbackConsole Qt5::Network)
+target_link_libraries(KUserFeedbackConsole Qt${QT_VERSION_MAJOR}::Network)
 target_include_directories(KUserFeedbackConsole PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
 target_compile_features(KUserFeedbackConsole PRIVATE cxx_generic_lambdas)
 target_compile_definitions(KUserFeedbackConsole PUBLIC QT_DISABLE_DEPRECATED_BEFORE=0x050600 QT_DEPRECATED_WARNINGS)
@@ -81,11 +81,11 @@ add_executable(KUserFeedbackConsoleApplication ${console_srcs})
 target_compile_features(KUserFeedbackConsoleApplication PRIVATE cxx_generic_lambdas)
 set_target_properties(KUserFeedbackConsoleApplication PROPERTIES OUTPUT_NAME UserFeedbackConsole)
 target_link_libraries(KUserFeedbackConsoleApplication
-    Qt5::Widgets
-    Qt5::Network
-    Qt5::Charts
-    Qt5::PrintSupport
-    Qt5::Svg
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Network
+    Qt${QT_VERSION_MAJOR}::Charts
+    Qt${QT_VERSION_MAJOR}::PrintSupport
+    Qt${QT_VERSION_MAJOR}::Svg
     KUserFeedbackWidgets
     KUserFeedbackConsole
     KUserFeedbackCommon

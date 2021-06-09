@@ -23,12 +23,12 @@ void QmlProviderExtension::sourceAppend(QQmlListProperty<QmlAbstractDataSource> 
     static_cast<Provider*>(prop->object->parent())->addDataSource(value->source());
 }
 
-int QmlProviderExtension::sourceCount(QQmlListProperty<QmlAbstractDataSource> *prop)
+QmlProviderExtension::sizetype QmlProviderExtension::sourceCount(QQmlListProperty<QmlAbstractDataSource> *prop)
 {
     return static_cast<QmlProviderExtension*>(prop->object)->m_sourceWrappers.size();
 }
 
-QmlAbstractDataSource* QmlProviderExtension::sourceAt(QQmlListProperty<QmlAbstractDataSource> *prop, int index)
+QmlAbstractDataSource* QmlProviderExtension::sourceAt(QQmlListProperty<QmlAbstractDataSource> *prop, QmlProviderExtension::sizetype index)
 {
     return static_cast<QmlProviderExtension*>(prop->object)->m_sourceWrappers.at(index);
 }

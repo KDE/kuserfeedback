@@ -28,9 +28,14 @@ public:
     QQmlListProperty<QmlAbstractDataSource> sources();
 
 private:
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    typedef qsizetype sizetype;
+#else
+    typedef int sizetype;
+#endif
     static void sourceAppend(QQmlListProperty<QmlAbstractDataSource> *prop, QmlAbstractDataSource *value);
-    static int sourceCount(QQmlListProperty<QmlAbstractDataSource> *prop);
-    static QmlAbstractDataSource* sourceAt(QQmlListProperty<QmlAbstractDataSource> *prop, int index);
+    static sizetype sourceCount(QQmlListProperty<QmlAbstractDataSource> *prop);
+    static QmlAbstractDataSource* sourceAt(QQmlListProperty<QmlAbstractDataSource> *prop, sizetype index);
     static void sourceClear(QQmlListProperty<QmlAbstractDataSource> *prop);
 
     QVector<QmlAbstractDataSource*> m_sourceWrappers;

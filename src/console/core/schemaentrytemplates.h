@@ -7,7 +7,7 @@
 #ifndef KUSERFEEDBACK_CONSOLE_SCHEMAENTRYTEMPLATES_H
 #define KUSERFEEDBACK_CONSOLE_SCHEMAENTRYTEMPLATES_H
 
-template <typename T> class QVector;
+#include <QVector>
 
 namespace KUserFeedback {
 namespace Console {

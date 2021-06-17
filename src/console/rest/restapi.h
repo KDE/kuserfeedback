@@ -7,8 +7,9 @@
 #ifndef KUSERFEEDBACK_CONSOLE_RESTAPI_H
 #define KUSERFEEDBACK_CONSOLE_RESTAPI_H
 
+#include <QVector>
+
 class QNetworkReply;
-template <typename T> class QVector;
 
 namespace KUserFeedback {
 namespace Console {

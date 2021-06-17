@@ -8,8 +8,8 @@
 #define KUSERFEEDBACK_CONSOLE_SERVERINFO_H
 
 #include <QSharedDataPointer>
+#include <QStringList>
 
-class QStringList;
 class QUrl;
 
 namespace KUserFeedback {

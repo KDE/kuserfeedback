@@ -59,7 +59,7 @@ void TimeAggregationModel::reload()
     m_maxValue = 0;
     for (auto it = aggregator.constBegin(); it != aggregator.constEnd(); ++it) {
         m_data.push_back({ it.key(), it.value() });
-        m_maxValue = std::max(m_maxValue, it.value().size());
+        m_maxValue = std::max(m_maxValue, (int)it.value().size());
     }
     std::sort(m_data.begin(), m_data.end(), [](const Data &lhs, const Data &rhs) {
         return lhs.time < rhs.time;

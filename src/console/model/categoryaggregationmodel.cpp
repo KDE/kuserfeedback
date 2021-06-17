@@ -45,7 +45,7 @@ void CategoryAggregationModel::setDepth(int depth)
 {
     if (depth == m_depth)
         return;
-    m_depth = std::min(depth, m_aggr.elements().size());
+    m_depth = std::min(depth, (int)m_aggr.elements().size());
     recompute();
 }
 

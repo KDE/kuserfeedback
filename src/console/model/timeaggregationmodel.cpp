@@ -71,17 +71,17 @@ QDateTime TimeAggregationModel::aggregate(const QDateTime &dt) const
 {
     switch (m_mode) {
         case AggregateYear:
-            return QDateTime(QDate(dt.date().year(), 1, 1));
+            return QDateTime(QDate(dt.date().year(), 1, 1), QTime());
         case AggregateMonth:
-            return QDateTime(QDate(dt.date().year(), dt.date().month(), 1));
+            return QDateTime(QDate(dt.date().year(), dt.date().month(), 1), QTime());
         case AggregateWeek:
         {
             auto d = dt.date();
             d = d.addDays(1 - d.dayOfWeek());
-            return QDateTime(d);
+            return QDateTime(d, QTime());
         }
         case AggregateDay:
-            return QDateTime(dt.date());
+            return QDateTime(dt.date(), QTime());
     }
 
     Q_UNREACHABLE();

@@ -62,7 +62,7 @@ bool SurveyTargetExpressionEvaluator::evaluate(SurveyTargetExpression* expressio
             break;
     }
 
-    // comparisson operations:
+    // comparison operations:
     const auto lhs = value(expression->left());
     const auto rhs = value(expression->right());
     if (lhs.type() == QVariant::Invalid || rhs.type() == QVariant::Invalid) // invalid element access can never succeed

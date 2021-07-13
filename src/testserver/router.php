@@ -7,7 +7,7 @@
 
 /** NOTE: This file is for local autotests only, do not deploy! */
 
-// default database configuration for sqlite, can be overriden by localconfig.php
+// default database configuration for sqlite, can be overridden by localconfig.php
 $USERFEEDBACK_DB_DRIVER = 'sqlite';
 $USERFEEDBACK_DB_NAME =  __DIR__ . '/../server/data/db.sqlite';
 

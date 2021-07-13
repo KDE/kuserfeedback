@@ -33,7 +33,7 @@
         of that sequence is not pre-defined and can be empty. A typical example
         would be the users screen configuration.
         \li Map. A map source transmits a set of its elements keyed by a string
-        identifer. Map keys are not pre-defined but can contain arbitrary values.
+        identifier. Map keys are not pre-defined but can contain arbitrary values.
         A typical example would be the usage ratios of different views of the application.
     \endlist
 

@@ -18,7 +18,7 @@ private $password = null;
 
 public function __construct()
 {
-    // allow test code to override this without requireing a localconfig.php
+    // allow test code to override this without requiring a localconfig.php
     global $USERFEEDBACK_DB_DRIVER;
     global $USERFEEDBACK_DB_NAME;
 

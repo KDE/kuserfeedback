@@ -56,7 +56,7 @@ QModelIndex ExtraRowsProxyModel::parent(const QModelIndex& child) const
 
 QVariant ExtraRowsProxyModel::extraData(int row, int column, int role) const
 {
-    // TODO split into sperate model!
+    // TODO split into separate model!
     Q_UNUSED(row);
     if (role == Qt::DisplayRole)
         return headerData(column, Qt::Horizontal, Qt::DisplayRole);

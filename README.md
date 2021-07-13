@@ -25,7 +25,7 @@ This framework consists of the following components:
 To use this framework in your application, on a high level you have to do
 the following steps inside your program:
 * Create an instance of KUserFeedback::Provider for the entire lifetime of your
-  application, and configure it as described in its documetation.
+  application, and configure it as described in its documentation.
 * Add one or more data sources to the provider, choosing from the standard
   built-in ones, or by adding custom ones deriving from KUserFeedback::AbstractDataSource.
 * Add a way to notify your users about surveys, and to encourage them to contriubute

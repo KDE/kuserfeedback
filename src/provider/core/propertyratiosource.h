@@ -28,7 +28,7 @@ public:
      * @param obj the QObject of which a property should be monitored.
      * @param propertyName The name of the property to monitor.
      * This property must have a change notification signal. The value must have
-     * comparison operators registerd.
+     * comparison operators registered.
      * @param sampleName This is the name of the database field this data source is
      * associated with.
      */

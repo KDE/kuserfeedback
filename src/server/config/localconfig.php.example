@@ -17,7 +17,7 @@ $USERFEEDBACK_DB_HOST = 'localhost';
 // $USERFEEDBACK_DB_PORT = 3306;
 // $USERFEEDBACK_DB_PORT = 5432;
 
-/* Datbase name (filename for sqlite). */
+/* Database name (filename for sqlite). */
 $USERFEEDBACK_DB_NAME =  __DIR__ . '/../data/db.sqlite';
 // $USERFEEDBACK_DB_NAME = 'user_feedback';
 

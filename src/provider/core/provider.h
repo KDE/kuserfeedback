@@ -135,7 +135,7 @@ public:
     QString productIdentifier() const;
     /*! Set the product identifier.
      *  This is used to distinguish independent products on the same server.
-     *  If this is not specified, the product identifier is dervied from the application name
+     *  If this is not specified, the product identifier is derived from the application name
      *  organisation domain specified in QCoreApplication.
      *  @param productId Unique product identifier, as configured on the feedback server.
      */
@@ -215,7 +215,7 @@ public:
     int encouragementDelay() const;
     /*! Set the delay after application start for the earliest display of the encouragement message.
      *  The default is 300, ie. 5 minutes after the application start.
-     *  @note This only adds an additional contraint on usage time and startup count based
+     *  @note This only adds an additional constraint on usage time and startup count based
      *  encouragement messages, it does not actually trigger encouragement messages itself.
      *
      *  @param secs Amount of seconds after the application start for the earliest display

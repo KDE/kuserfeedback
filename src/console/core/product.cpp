@@ -81,7 +81,7 @@ void Product::setAggregations(const QVector<Aggregation>& aggregations)
 
 void Product::addTemplate(const Product& tpl)
 {
-    // TODO could be done slighty more clever
+    // TODO could be done slightly more clever
     d->schema += tpl.schema();
     d->aggregations += tpl.aggregations();
 }

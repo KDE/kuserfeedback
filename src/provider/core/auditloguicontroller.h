@@ -30,13 +30,13 @@ class KUSERFEEDBACKCORE_EXPORT AuditLogUiController : public QObject
      *  @see logEntryModel()
      */
     Q_PROPERTY(QAbstractItemModel* logEntryModel READ logEntryModel CONSTANT)
-    /** Returns @c true if there are log entires to display. */
+    /** Returns @c true if there are log entries to display. */
     Q_PROPERTY(bool hasLogEntries READ hasLogEntries NOTIFY logEntryCountChanged)
 public:
     AuditLogUiController(QObject *parent = nullptr);
     ~AuditLogUiController();
 
-    /** Returns @c true if there are log entires to display. */
+    /** Returns @c true if there are log entries to display. */
     bool hasLogEntries() const;
 
     /** Returns a model listing all telemetry data submission events.

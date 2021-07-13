@@ -7,7 +7,7 @@
 
 require_once('../src/server/shared/datastore.php');
 
-// default database configuration for sqlite, can be overriden by localconfig.php
+// default database configuration for sqlite, can be overridden by localconfig.php
 $USERFEEDBACK_DB_DRIVER = 'sqlite';
 $USERFEEDBACK_DB_NAME =  ':memory:';
 

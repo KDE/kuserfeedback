@@ -17,7 +17,7 @@ class Orwell : public QMainWindow
 {
 public:
     explicit Orwell(QWidget *parent = nullptr);
-    ~Orwell();
+    ~Orwell() override;
 
 private:
     void loadStats();

@@ -28,7 +28,7 @@ class SchemaEditWidget : public QWidget
     Q_OBJECT
 public:
     explicit SchemaEditWidget(QWidget *parent = nullptr);
-    ~SchemaEditWidget();
+    ~SchemaEditWidget() override;
 
     void setRESTClient(RESTClient *client);
     Product product() const;

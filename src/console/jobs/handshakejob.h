@@ -21,7 +21,7 @@ class HandshakeJob : public Job
     Q_OBJECT
 public:
     explicit HandshakeJob(RESTClient *restClient, QObject *parent = nullptr);
-    ~HandshakeJob();
+    ~HandshakeJob() override;
 
 private:
     void processResponse(QNetworkReply *reply);

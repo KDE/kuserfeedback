@@ -17,7 +17,7 @@ class RatioSetAggregationModel : public QAbstractTableModel
     Q_OBJECT
 public:
     explicit RatioSetAggregationModel(QObject *parent = nullptr);
-    ~RatioSetAggregationModel();
+    ~RatioSetAggregationModel() override;
 
     void setSourceModel(QAbstractItemModel *model);
     void setAggregationValue(const QString &aggrValue);

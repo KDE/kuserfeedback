@@ -17,7 +17,7 @@ class Job : public QObject
     Q_OBJECT
 public:
     explicit Job(QObject *parent = nullptr);
-    ~Job();
+    ~Job() override;
 
 signals:
     void info(const QString &msg);

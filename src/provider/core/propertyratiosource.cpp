@@ -26,7 +26,7 @@ class PropertyRatioSourcePrivate : public AbstractDataSourcePrivate
 {
 public:
     PropertyRatioSourcePrivate();
-    ~PropertyRatioSourcePrivate();
+    ~PropertyRatioSourcePrivate() override;
 
     void propertyChanged();
     QString valueToString(const QVariant &value) const;

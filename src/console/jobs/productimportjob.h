@@ -21,7 +21,7 @@ class ProductImportJob : public Job
     Q_OBJECT
 public:
     explicit ProductImportJob(const QString &source, RESTClient *restClient, QObject *parent = nullptr);
-    ~ProductImportJob();
+    ~ProductImportJob() override;
 
 private:
     void doImportSchema();

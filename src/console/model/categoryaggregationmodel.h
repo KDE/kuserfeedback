@@ -23,7 +23,7 @@ class CategoryAggregationModel : public QAbstractTableModel
     Q_OBJECT
 public:
     explicit CategoryAggregationModel(QObject *parent = nullptr);
-    ~CategoryAggregationModel();
+    ~CategoryAggregationModel() override;
 
     void setSourceModel(QAbstractItemModel *model);
     void setAggregation(const Aggregation &aggr);

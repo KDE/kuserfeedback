@@ -26,7 +26,7 @@ public:
     enum Type { Image, SVG, PDF };
 
     explicit ChartExportDialog(QWidget *parent);
-    ~ChartExportDialog();
+    ~ChartExportDialog() override;
 
     Type type() const;
     QString filename() const;

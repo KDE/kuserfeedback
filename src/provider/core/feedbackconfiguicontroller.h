@@ -36,7 +36,7 @@ class KUSERFEEDBACKCORE_EXPORT FeedbackConfigUiController : public QObject
     Q_PROPERTY(QString applicationName READ applicationName WRITE setApplicationName NOTIFY applicationNameChanged)
 public:
     explicit FeedbackConfigUiController(QObject *parent = nullptr);
-    ~FeedbackConfigUiController();
+    ~FeedbackConfigUiController() override;
 
     /*! Returns the feedback provider to be configured. */
     Provider* feedbackProvider() const;

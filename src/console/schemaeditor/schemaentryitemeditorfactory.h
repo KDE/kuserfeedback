@@ -21,7 +21,7 @@ class SchemaEntryItemEditorFactory : public QItemEditorFactory
 {
 public:
     SchemaEntryItemEditorFactory();
-    ~SchemaEntryItemEditorFactory();
+    ~SchemaEntryItemEditorFactory() override;
 
     void setProduct(const Product &product);
 

@@ -36,7 +36,7 @@ public:
      *  @param parent The parent widget.
      */
     explicit FeedbackConfigWidget(QWidget *parent = nullptr);
-    ~FeedbackConfigWidget();
+    ~FeedbackConfigWidget() override;
 
     /*! Returns the feedback provider configured by this widget. */
     Provider* feedbackProvider() const;

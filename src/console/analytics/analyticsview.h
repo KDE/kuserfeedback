@@ -39,7 +39,7 @@ class AnalyticsView : public QWidget
     Q_OBJECT
 public:
     explicit AnalyticsView(QWidget *parent = nullptr);
-    ~AnalyticsView();
+    ~AnalyticsView() override;
 
     void setProduct(const Product &product);
     void setRESTClient(RESTClient *client);

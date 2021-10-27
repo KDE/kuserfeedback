@@ -21,7 +21,7 @@ class NumericAggregationModel : public QAbstractTableModel
     Q_OBJECT
 public:
     explicit NumericAggregationModel(QObject *parent = nullptr);
-    ~NumericAggregationModel();
+    ~NumericAggregationModel() override;
 
     void setSourceModel(QAbstractItemModel *model);
     void setAggregation(const AggregationElement &aggr);

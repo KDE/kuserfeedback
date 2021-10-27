@@ -29,7 +29,7 @@ public:
      *  @param parent The parent widget.
      */
     explicit FeedbackConfigDialog(QWidget *parent = nullptr);
-    ~FeedbackConfigDialog();
+    ~FeedbackConfigDialog() override;
 
     /*! Set the feedback provider that this dialog configures. */
     void setFeedbackProvider(KUserFeedback::Provider *provider);

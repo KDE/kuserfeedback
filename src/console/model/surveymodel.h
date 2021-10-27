@@ -26,7 +26,7 @@ public:
     };
 
     explicit SurveyModel(QObject *parent = nullptr);
-    ~SurveyModel();
+    ~SurveyModel() override;
 
     void setRESTClient(RESTClient *client);
     void setProduct(const Product &product);

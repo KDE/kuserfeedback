@@ -20,7 +20,7 @@ class QmlAbstractDataSource : public QObject
                WRITE setTelemetryMode NOTIFY telemetryModeChanged)
 public:
     explicit QmlAbstractDataSource(AbstractDataSource *source, QObject *parent);
-    ~QmlAbstractDataSource();
+    ~QmlAbstractDataSource() override;
 
     Provider::TelemetryMode telemetryMode() const;
     void setTelemetryMode(Provider::TelemetryMode mode);

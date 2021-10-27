@@ -23,7 +23,7 @@ class AggregationElementModel : public QAbstractListModel
     Q_OBJECT
 public:
     explicit AggregationElementModel(QObject *parent = nullptr);
-    ~AggregationElementModel();
+    ~AggregationElementModel() override;
 
     void setProduct(const Product &product);
 

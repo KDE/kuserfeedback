@@ -28,7 +28,7 @@ class SurveyDialog : public QDialog
     Q_OBJECT
 public:
     explicit SurveyDialog(QWidget *parent = nullptr);
-    ~SurveyDialog();
+    ~SurveyDialog() override;
 
     Survey survey() const;
     void setSurvey(const Survey &survey);

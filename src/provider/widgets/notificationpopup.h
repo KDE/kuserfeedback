@@ -32,7 +32,7 @@ public:
      * @param parent The parent widget. This must not be @c nullptr.
      */
     explicit NotificationPopup(QWidget *parent);
-    ~NotificationPopup();
+    ~NotificationPopup() override;
 
     /*!
      * Set the feedback provider that is going to drive this notification popup.

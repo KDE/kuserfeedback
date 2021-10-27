@@ -19,7 +19,7 @@ class AggregatedDataModel : public QAbstractTableModel
     Q_OBJECT
 public:
     explicit AggregatedDataModel(QObject *parent = nullptr);
-    ~AggregatedDataModel();
+    ~AggregatedDataModel() override;
 
     void addSourceModel(QAbstractItemModel *model, const QString &prefix = QString());
     void clear();

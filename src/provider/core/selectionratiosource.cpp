@@ -25,7 +25,7 @@ class SelectionRatioSourcePrivate : public AbstractDataSourcePrivate
 {
 public:
     SelectionRatioSourcePrivate();
-    ~SelectionRatioSourcePrivate();
+    ~SelectionRatioSourcePrivate() override;
 
     void selectionChanged();
     QString selectedValue() const;

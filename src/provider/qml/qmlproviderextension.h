@@ -23,7 +23,7 @@ class QmlProviderExtension : public QObject
 
 public:
     explicit QmlProviderExtension(QObject *parent = nullptr);
-    ~QmlProviderExtension();
+    ~QmlProviderExtension() override;
 
     QQmlListProperty<QmlAbstractDataSource> sources();
 

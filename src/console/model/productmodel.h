@@ -24,7 +24,7 @@ class ProductModel : public QAbstractListModel
     Q_OBJECT
 public:
     explicit ProductModel(QObject *parent = nullptr);
-    ~ProductModel();
+    ~ProductModel() override;
 
     enum Roles {
         ProductRole = Qt::UserRole + 1

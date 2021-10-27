@@ -18,7 +18,7 @@ class MetaEnumComboBox : public QComboBox
     Q_PROPERTY(QVariant value READ value WRITE setValue USER true)
 public:
     explicit MetaEnumComboBox(QWidget *parent = nullptr);
-    ~MetaEnumComboBox();
+    ~MetaEnumComboBox() override;
 
     QVariant value() const;
     void setValue(const QVariant &value);

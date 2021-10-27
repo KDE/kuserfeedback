@@ -26,7 +26,7 @@ class CategoryAggregator : public Aggregator
 {
 public:
     CategoryAggregator();
-    ~CategoryAggregator();
+    ~CategoryAggregator() override;
 
     ChartModes chartModes() const override;
     QAbstractItemModel* timeAggregationModel() override;

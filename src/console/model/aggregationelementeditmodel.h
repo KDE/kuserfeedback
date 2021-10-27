@@ -19,7 +19,7 @@ class AggregationElementEditModel : public QAbstractListModel
     Q_OBJECT
 public:
     explicit AggregationElementEditModel(QObject *parent = nullptr);
-    ~AggregationElementEditModel();
+    ~AggregationElementEditModel() override;
 
     Aggregation aggregation() const;
     void setAggregation(const Aggregation &aggregation);

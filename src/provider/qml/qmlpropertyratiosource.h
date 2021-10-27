@@ -23,7 +23,7 @@ class QmlPropertyRatioSource : public QmlAbstractDataSource
     Q_PROPERTY(QString propertyName READ propertyName WRITE setPropertyName NOTIFY changed)
 public:
     explicit QmlPropertyRatioSource(QObject *parent = nullptr);
-    ~QmlPropertyRatioSource();
+    ~QmlPropertyRatioSource() override;
 
     QString sourceId() const;
     void setSourceId(const QString &id);

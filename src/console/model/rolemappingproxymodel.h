@@ -19,7 +19,7 @@ class RoleMappingProxyModel : public QIdentityProxyModel
     Q_OBJECT
 public:
     explicit RoleMappingProxyModel(QObject *parent = nullptr);
-    ~RoleMappingProxyModel();
+    ~RoleMappingProxyModel() override;
 
     void addRoleMapping(int fromRole, int toRole);
 

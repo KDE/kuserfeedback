@@ -19,7 +19,7 @@ class AggregationEditorModel : public QAbstractTableModel
     Q_OBJECT
 public:
     explicit AggregationEditorModel(QObject *parent = nullptr);
-    ~AggregationEditorModel();
+    ~AggregationEditorModel() override;
 
     Product product() const;
     void setProduct(const Product &product);

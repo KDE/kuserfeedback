@@ -34,7 +34,7 @@ class KUSERFEEDBACKCORE_EXPORT AuditLogUiController : public QObject
     Q_PROPERTY(bool hasLogEntries READ hasLogEntries NOTIFY logEntryCountChanged)
 public:
     AuditLogUiController(QObject *parent = nullptr);
-    ~AuditLogUiController();
+    ~AuditLogUiController() override;
 
     /** Returns @c true if there are log entries to display. */
     bool hasLogEntries() const;

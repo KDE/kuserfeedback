@@ -30,7 +30,7 @@ public:
     };
 
     explicit DataModel(QObject *parent = nullptr);
-    ~DataModel();
+    ~DataModel() override;
 
     void setRESTClient(RESTClient *client);
 

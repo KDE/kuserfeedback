@@ -25,7 +25,7 @@ class AuditLogBrowserDialog : public QDialog
     Q_OBJECT
 public:
     explicit AuditLogBrowserDialog(QWidget *parent);
-    ~AuditLogBrowserDialog();
+    ~AuditLogBrowserDialog() override;
 
     void setUiController(AuditLogUiController *controller);
 

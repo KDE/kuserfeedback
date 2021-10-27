@@ -29,7 +29,7 @@ class SurveyEditor : public QWidget
     Q_OBJECT
 public:
     explicit SurveyEditor(QWidget *parent = nullptr);
-    ~SurveyEditor();
+    ~SurveyEditor() override;
 
     void setRESTClient(RESTClient *client);
     void setProduct(const Product &product);

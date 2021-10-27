@@ -28,7 +28,7 @@ class SchemaEditor : public QWidget
     Q_OBJECT
 public:
     explicit SchemaEditor(QWidget *parent = nullptr);
-    ~SchemaEditor();
+    ~SchemaEditor() override;
 
     void setRESTClient(RESTClient *client);
 

@@ -24,7 +24,7 @@ class RatioSetAggregator : public Aggregator
 {
 public:
     RatioSetAggregator();
-    ~RatioSetAggregator();
+    ~RatioSetAggregator() override;
 
     ChartModes chartModes() const override;
     QAbstractItemModel* timeAggregationModel() override;

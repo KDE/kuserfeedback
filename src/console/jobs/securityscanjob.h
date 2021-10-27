@@ -22,7 +22,7 @@ class SecurityScanJob : public Job
     Q_OBJECT
 public:
     explicit SecurityScanJob(RESTClient *restClient, QObject *parent = nullptr);
-    ~SecurityScanJob();
+    ~SecurityScanJob() override;
 
 private:
     void processPending();

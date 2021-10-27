@@ -20,7 +20,7 @@ class NumericAggregator :  public Aggregator
 {
 public:
     NumericAggregator();
-    ~NumericAggregator();
+    ~NumericAggregator() override;
 
     ChartModes chartModes() const override;
     QAbstractItemModel* timeAggregationModel() override;

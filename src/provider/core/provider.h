@@ -112,7 +112,7 @@ public:
      *  @param parent The parent object.
      */
     explicit Provider(QObject *parent = nullptr);
-    ~Provider();
+    ~Provider() override;
 
     /*! Returns whether feedback functionality is enabled on this system.
      *  This should be checked everywhere showing feedback UI to the user

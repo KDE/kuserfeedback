@@ -38,7 +38,7 @@ public:
     };
 
     explicit TimeAggregationModel(QObject *parent = nullptr);
-    ~TimeAggregationModel();
+    ~TimeAggregationModel() override;
 
     void setSourceModel(QAbstractItemModel *model);
 

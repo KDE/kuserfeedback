@@ -17,7 +17,7 @@ class ExtraRowsProxyModel : public QIdentityProxyModel
     Q_OBJECT
 public:
     explicit ExtraRowsProxyModel(QObject *parent = nullptr);
-    ~ExtraRowsProxyModel();
+    ~ExtraRowsProxyModel() override;
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex & index, int role) const override;

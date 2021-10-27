@@ -21,7 +21,7 @@ class TotalAggregator : public Aggregator
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::Console::TotalAggregator)
 public:
     TotalAggregator();
-    ~TotalAggregator();
+    ~TotalAggregator() override;
 
     ChartModes chartModes() const override;
     QString displayName() const override;

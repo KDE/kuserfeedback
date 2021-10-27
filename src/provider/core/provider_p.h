@@ -31,7 +31,7 @@ class ProviderPrivate : public SurveyTargetExpressionDataProvider
 {
 public:
     explicit ProviderPrivate(Provider *qq);
-    ~ProviderPrivate();
+    ~ProviderPrivate() override;
 
     int currentApplicationTime() const;
 

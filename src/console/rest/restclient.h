@@ -24,7 +24,7 @@ class RESTClient : public QObject
     Q_OBJECT
 public:
     explicit RESTClient(QObject *parent = nullptr);
-    ~RESTClient();
+    ~RESTClient() override;
 
     ServerInfo serverInfo() const;
     void setServerInfo(const ServerInfo &info);

@@ -30,7 +30,7 @@ class AggregationEditWidget : public QWidget
     Q_OBJECT
 public:
     explicit AggregationEditWidget(QWidget *parent = nullptr);
-    ~AggregationEditWidget();
+    ~AggregationEditWidget() override;
 
     Product product() const;
     void setProduct(const Product &product);

@@ -21,7 +21,7 @@ class SchemaModel : public QAbstractItemModel
     Q_OBJECT
 public:
     explicit SchemaModel(QObject *parent = nullptr);
-    ~SchemaModel();
+    ~SchemaModel() override;
 
     Product product() const;
     void setProduct(const Product &product);

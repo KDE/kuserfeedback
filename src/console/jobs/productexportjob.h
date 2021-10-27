@@ -20,7 +20,7 @@ class ProductExportJob : public Job
 public:
     explicit ProductExportJob(const QString &productId, const QString &destination, RESTClient *restClient, QObject *parent = nullptr);
     explicit ProductExportJob(const Product &product, const QString &destination, RESTClient *restClient, QObject *parent = nullptr);
-    ~ProductExportJob();
+    ~ProductExportJob() override;
 
 private:
     void doExportSchema();

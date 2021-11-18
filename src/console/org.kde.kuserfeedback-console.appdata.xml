@@ -13,6 +13,7 @@
   <name xml:lang="et">KUserFeedbacki konsool</name>
   <name xml:lang="fi">KUserFeedback-konsoli</name>
   <name xml:lang="fr">Console « KUserFeedback »</name>
+  <name xml:lang="ia">Consolle de KUserFeedback</name>
   <name xml:lang="id">KUserFeedback Console</name>
   <name xml:lang="it">Console di KUserFeedback</name>
   <name xml:lang="ko">KUserFeedback 콘솔</name>
@@ -61,6 +62,7 @@
     <p xml:lang="et">Omadused:</p>
     <p xml:lang="fi">Ominaisuuksia:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
+    <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Funzionalità:</p>
     <p xml:lang="ko">기능:</p>

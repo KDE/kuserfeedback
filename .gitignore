@@ -14,3 +14,9 @@ composer.lock
 
 *build*/
 .cmake/
+
+/.clang-format
+/compile_commands.json
+.clangd
+.cache
+.idea

@@ -48,17 +48,16 @@ ecm_setup_version(PROJECT
 # Dependencies
 #
 
-find_package(QT NAMES Qt6 Qt5 NO_MODULE REQUIRED COMPONENTS Core Network)
-find_package(Qt${QT_VERSION_MAJOR} 5.4 NO_MODULE REQUIRED COMPONENTS Core Network)
-find_package(Qt${QT_VERSION_MAJOR} NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Qml Svg PrintSupport)
+find_package(Qt${QT_MAJOR_VERSION} 5.4 NO_MODULE REQUIRED COMPONENTS Core Network)
+find_package(Qt${QT_MAJOR_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Qml Svg PrintSupport)
 find_package(QmlLint)
 if (NOT CMAKE_CROSSCOMPILING)
-    find_package(Qt${QT_VERSION_MAJOR} NO_MODULE QUIET OPTIONAL_COMPONENTS Help)
+    find_package(Qt${QT_MAJOR_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Help)
 endif()
 
-set_package_properties(Qt${QT_VERSION_MAJOR} PROPERTIES URL "http://qt-project.org/")
-set_package_properties(Qt${QT_VERSION_MAJOR}Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for feedback configuration and notification widgets.")
-set_package_properties(Qt${QT_VERSION_MAJOR}Charts PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
+set_package_properties(Qt${QT_MAJOR_VERSION} PROPERTIES URL "http://qt-project.org/")
+set_package_properties(Qt${QT_MAJOR_VERSION}Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for feedback configuration and notification widgets.")
+set_package_properties(Qt${QT_MAJOR_VERSION}Charts PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
 
 # debug suffixes for qmake compatibility
 if(WIN32)
@@ -115,7 +114,7 @@ endif()
 #
 include(CMakePackageConfigHelpers)
 
-if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+if (${QT_MAJOR_VERSION} GREATER_EQUAL 6)
     set(_CONFIG_CMAKE_IN "KUserFeedbackConfig-Qt6.cmake.in")
 else()
     set(_CONFIG_CMAKE_IN "KUserFeedbackConfig-Qt5.cmake.in")

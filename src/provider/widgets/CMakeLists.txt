@@ -12,8 +12,8 @@ set_target_properties(KUserFeedbackWidgets PROPERTIES
     VERSION ${KUSERFEEDBACK_VERSION}
 )
 generate_export_header(KUserFeedbackWidgets)
-if(TARGET Qt${QT_VERSION_MAJOR}::Widgets)
-    target_link_libraries(KUserFeedbackWidgets PUBLIC Qt${QT_VERSION_MAJOR}::Widgets KUserFeedbackCore)
+if(TARGET Qt${QT_MAJOR_VERSION}::Widgets)
+    target_link_libraries(KUserFeedbackWidgets PUBLIC Qt${QT_MAJOR_VERSION}::Widgets KUserFeedbackCore)
 else()
     target_link_libraries(KUserFeedbackWidgets PUBLIC ${QT_QTGUI_LIBRARIES} KUserFeedbackCore)
 endif()

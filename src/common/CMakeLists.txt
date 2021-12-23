@@ -39,4 +39,4 @@ if (NOT BUILD_SHARED_LIBS)
 endif()
 
 target_include_directories(KUserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
-target_link_libraries(KUserFeedbackCommon LINK_PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(KUserFeedbackCommon PUBLIC Qt${QT_MAJOR_VERSION}::Core)

@@ -3,20 +3,20 @@ if(TARGET KUserFeedbackConsole)
 add_library(KUserFeedbackTestUtils STATIC
     servercontroller.cpp
 )
-target_link_libraries(KUserFeedbackTestUtils LINK_PUBLIC Qt${QT_VERSION_MAJOR}::Test KUserFeedbackConsole)
+target_link_libraries(KUserFeedbackTestUtils LINK_PUBLIC Qt${QT_MAJOR_VERSION}::Test KUserFeedbackConsole)
 endif()
 
 function(uf_add_test _file)
     get_filename_component(_name ${_file} NAME_WE)
     add_executable(${_name} ${_file})
-    target_link_libraries(${_name} Qt${QT_VERSION_MAJOR}::Test ${ARGN})
+    target_link_libraries(${_name} Qt${QT_MAJOR_VERSION}::Test ${ARGN})
     add_test(NAME ${_name} COMMAND ${_name})
 endfunction()
 
-uf_add_test(datasourcetest.cpp KUserFeedbackCore Qt${QT_VERSION_MAJOR}::Gui) # needs Gui for ScreenInfoSource to work
-uf_add_test(openglinfosourcetest.cpp KUserFeedbackCore Qt${QT_VERSION_MAJOR}::Gui)
-uf_add_test(providertest.cpp KUserFeedbackCore Qt${QT_VERSION_MAJOR}::Gui)
-uf_add_test(selectionratiosourcetest.cpp KUserFeedbackCore Qt${QT_VERSION_MAJOR}::Gui)
+uf_add_test(datasourcetest.cpp KUserFeedbackCore Qt${QT_MAJOR_VERSION}::Gui) # needs Gui for ScreenInfoSource to work
+uf_add_test(openglinfosourcetest.cpp KUserFeedbackCore Qt${QT_MAJOR_VERSION}::Gui)
+uf_add_test(providertest.cpp KUserFeedbackCore Qt${QT_MAJOR_VERSION}::Gui)
+uf_add_test(selectionratiosourcetest.cpp KUserFeedbackCore Qt${QT_MAJOR_VERSION}::Gui)
 uf_add_test(surveyprovidertest.cpp KUserFeedbackCore)
 
 uf_add_test(feedbackconfigtest.cpp KUserFeedbackWidgets)
@@ -45,7 +45,7 @@ if(ENABLE_PHP)
         uf_add_test(productapitest.cpp KUserFeedbackTestUtils)
         uf_add_test(productmodeltest.cpp KUserFeedbackTestUtils)
         uf_add_test(surveyapitest.cpp KUserFeedbackTestUtils)
-        uf_add_test(submittest.cpp KUserFeedbackTestUtils KUserFeedbackCore Qt${QT_VERSION_MAJOR}::Gui)
+        uf_add_test(submittest.cpp KUserFeedbackTestUtils KUserFeedbackCore Qt${QT_MAJOR_VERSION}::Gui)
     endif()
 
     set(php_test_srcs

@@ -29,7 +29,7 @@ set_target_properties(KUserFeedbackCore PROPERTIES
 )
 generate_export_header(KUserFeedbackCore)
 
-target_link_libraries(KUserFeedbackCore PUBLIC Qt${QT_VERSION_MAJOR}::Core PRIVATE Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Network)
+target_link_libraries(KUserFeedbackCore PUBLIC Qt${QT_MAJOR_VERSION}::Core PRIVATE Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Network)
 if(ANDROID)
     target_link_libraries(KUserFeedbackCore PRIVATE GLESv2)
 endif()

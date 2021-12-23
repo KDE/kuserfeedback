@@ -32,6 +32,8 @@ add_library(KUserFeedbackCommon STATIC
     ${BISON_surveytargetexpressionparser_OUTPUTS}
     ${FLEX_surveytargetexpressionscanner_OUTPUTS}
 )
+# Needed to link this static lib to shared libs
+set_property(TARGET KUserFeedbackCommon PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 if (NOT BUILD_SHARED_LIBS)
     install(TARGETS KUserFeedbackCommon

@@ -39,6 +39,12 @@ include(ECMGeneratePriFile)
 include(FeatureSummary)
 include(GenerateExportHeader)
 
+if(QT_MAJOR_VERSION STREQUAL "5")
+    find_package(Qt5 CONFIG OPTIONAL_COMPONENTS DocTools)
+else()
+    find_package(Qt6 CONFIG OPTIONAL_COMPONENTS ToolsTools)
+endif()
+
 ecm_setup_version(PROJECT
     VARIABLE_PREFIX KUSERFEEDBACK
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h"

@@ -13,7 +13,7 @@
 namespace QtCharts {
 class QChart;
 }
-using QtCharts::Chart;
+using QtCharts::QChart;
 #else
 class QChart;
 #endif

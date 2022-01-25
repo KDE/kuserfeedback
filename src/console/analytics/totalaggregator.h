@@ -26,12 +26,12 @@ public:
     ChartModes chartModes() const override;
     QString displayName() const override;
     QAbstractItemModel* timeAggregationModel() override;
-    QtCharts::QChart* timelineChart() override;
+    QChart* timelineChart() override;
 
 private:
     void updateTimelineChart();
 
-    std::unique_ptr<QtCharts::QChart> m_timelineChart;
+    std::unique_ptr<QChart> m_timelineChart;
 };
 
 }}

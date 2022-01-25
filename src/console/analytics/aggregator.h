@@ -13,9 +13,14 @@
 
 class QAbstractItemModel;
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 namespace QtCharts {
 class QChart;
 }
+using QtCharts::QChart;
+#else
+class QChart;
+#endif
 
 namespace KUserFeedback {
 namespace Console {
@@ -50,8 +55,8 @@ public:
     QAbstractItemModel* singularAggregationModel();
     virtual void setSingularTime(int row);
 
-    virtual QtCharts::QChart *singlularChart();
-    virtual QtCharts::QChart *timelineChart();
+    virtual QChart *singlularChart();
+    virtual QChart *timelineChart();
 
 private:
     QAbstractItemModel *m_sourceModel = nullptr;

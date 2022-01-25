@@ -17,7 +17,9 @@
 #include <QtCharts/QValueAxis>
 
 using namespace KUserFeedback::Console;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 using namespace QtCharts;
+#endif
 
 NumericAggregator::NumericAggregator() = default;
 NumericAggregator::~NumericAggregator() = default;
@@ -44,7 +46,7 @@ QAbstractItemModel* NumericAggregator::timeAggregationModel()
     return m_model.get();
 }
 
-QtCharts::QChart* NumericAggregator::timelineChart()
+QChart* NumericAggregator::timelineChart()
 {
     if (!m_timelineChart) {
         m_timelineChart.reset(new QChart);

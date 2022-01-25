@@ -29,6 +29,7 @@
 #include <provider/core/startcountsource.h>
 #include <provider/core/usagetimesource.h>
 
+#include <QActionGroup>
 #include <QApplication>
 #include <QDebug>
 #include <QFileDialog>

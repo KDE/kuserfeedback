@@ -11,9 +11,11 @@
 #include <QApplication>
 
 using namespace KUserFeedback::Console;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 using namespace QtCharts;
+#endif
 
-void ChartUtil::applyTheme(QtCharts::QChart *chart)
+void ChartUtil::applyTheme(QChart *chart)
 {
     chart->setTheme(qApp->palette().color(QPalette::Window).lightnessF() < 0.25 ? QChart::ChartThemeDark : QChart::ChartThemeLight);
     chart->setBackgroundVisible(false);

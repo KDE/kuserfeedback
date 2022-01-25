@@ -24,6 +24,7 @@
 
 #include <QtCharts/QChart>
 
+#include <QActionGroup>
 #include <QClipboard>
 #include <QFile>
 #include <QFileDialog>
@@ -43,8 +44,8 @@ AnalyticsView::AnalyticsView(QWidget* parent) :
     m_dataModel(new DataModel(this)),
     m_timeAggregationModel(new TimeAggregationModel(this)),
     m_aggregatedDataModel(new AggregatedDataModel(this)),
-    m_nullSingularChart(new QtCharts::QChart),
-    m_nullTimelineChart(new QtCharts::QChart)
+    m_nullSingularChart(new QChart),
+    m_nullTimelineChart(new QChart)
 {
     ui->setupUi(this);
 
@@ -301,7 +302,7 @@ void AnalyticsView::exportChart()
     if (dlg.exec() != QDialog::Accepted)
         return;
 
-    QtCharts::QChart *chart = nullptr;
+    QChart *chart = nullptr;
     QGraphicsScene *scene = nullptr;
     if (ui->actionTimelineChart->isChecked()) {
         chart = ui->timelineChartView->chart();
@@ -313,7 +314,7 @@ void AnalyticsView::exportChart()
     Q_ASSERT(chart);
     Q_ASSERT(scene);
 
-    chart->setTheme(QtCharts::QChart::ChartThemeLight);
+    chart->setTheme(QChart::ChartThemeLight);
 
     switch (dlg.type()) {
         case ChartExportDialog::Image:

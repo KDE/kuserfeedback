@@ -16,9 +16,16 @@
 
 class QAbstractItemModel;
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 namespace QtCharts {
 class QChart;
+class QChartView;
 }
+using QtCharts::QChart;
+using QtCharts::QChartView;
+#else
+class QChart;
+#endif
 
 namespace KUserFeedback {
 namespace Console {
@@ -67,8 +74,8 @@ private:
 
     QVector<Aggregator*> m_aggregators;
 
-    std::unique_ptr<QtCharts::QChart> m_nullSingularChart;
-    std::unique_ptr<QtCharts::QChart> m_nullTimelineChart;
+    std::unique_ptr<QChart> m_nullSingularChart;
+    std::unique_ptr<QChart> m_nullTimelineChart;
 };
 }
 }

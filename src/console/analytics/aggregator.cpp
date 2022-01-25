@@ -63,12 +63,12 @@ void Aggregator::setSingularTime(int row)
     m_singularModel->setRow(row);
 }
 
-QtCharts::QChart *Aggregator::singlularChart()
+QChart *Aggregator::singlularChart()
 {
     return nullptr;
 }
 
-QtCharts::QChart *Aggregator::timelineChart()
+QChart *Aggregator::timelineChart()
 {
     return nullptr;
 }

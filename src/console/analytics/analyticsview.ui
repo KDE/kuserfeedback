@@ -70,7 +70,7 @@
             <number>0</number>
            </property>
            <item>
-            <widget class="QtCharts::QChartView" name="timelineChartView">
+            <widget class="QChartView" name="timelineChartView">
              <property name="renderHints">
               <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
              </property>
@@ -81,7 +81,7 @@
          <widget class="QWidget" name="singularPage">
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QtCharts::QChartView" name="singularChartView"/>
+            <widget class="QChartView" name="singularChartView"/>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout">
@@ -249,7 +249,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QtCharts::QChartView</class>
+   <class>QChartView</class>
    <extends>QGraphicsView</extends>
    <header location="global">QChartView</header>
   </customwidget>

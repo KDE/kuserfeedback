@@ -25,7 +25,9 @@
 #include <QDebug>
 
 using namespace KUserFeedback::Console;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 using namespace QtCharts;
+#endif
 
 CategoryAggregator::CategoryAggregator() = default;
 CategoryAggregator::~CategoryAggregator() = default;
@@ -54,7 +56,7 @@ QAbstractItemModel* CategoryAggregator::timeAggregationModel()
     return m_model.get();
 }
 
-QtCharts::QChart* CategoryAggregator::timelineChart()
+QChart* CategoryAggregator::timelineChart()
 {
     if (!m_timelineChart) {
         m_timelineChart.reset(new QChart);
@@ -111,7 +113,7 @@ void CategoryAggregator::updateTimelineChart()
     qobject_cast<QValueAxis*>(m_timelineChart->axisY())->applyNiceNumbers();
 }
 
-QtCharts::QChart* CategoryAggregator::singlularChart()
+QChart* CategoryAggregator::singlularChart()
 {
     if (!m_singularChart) {
         m_singularChart.reset(new QChart);
@@ -171,7 +173,7 @@ void CategoryAggregator::updateSingularChart()
     }
 }
 
-void CategoryAggregator::decorateSeries(QtCharts::QPieSeries* series, int ring) const
+void CategoryAggregator::decorateSeries(QPieSeries* series, int ring) const
 {
     const auto ringCount = aggregation().elements().size();
     const auto ringWidth = 0.7 / (ringCount + 1);

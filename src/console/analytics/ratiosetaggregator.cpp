@@ -22,7 +22,9 @@
 #include <QtCharts/QVXYModelMapper>
 
 using namespace KUserFeedback::Console;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 using namespace QtCharts;
+#endif
 
 RatioSetAggregator::RatioSetAggregator() = default;
 RatioSetAggregator::~RatioSetAggregator() = default;
@@ -50,7 +52,7 @@ QAbstractItemModel* RatioSetAggregator::timeAggregationModel()
     return m_model.get();
 }
 
-QtCharts::QChart* RatioSetAggregator::timelineChart()
+QChart* RatioSetAggregator::timelineChart()
 {
     if (!m_timelineChart) {
         m_timelineChart.reset(new QChart);
@@ -105,7 +107,7 @@ void RatioSetAggregator::updateTimelineChart()
     m_timelineChart->axisY()->setRange(0, 1); // TODO can we turn this into *100% for display?
 }
 
-QtCharts::QChart* RatioSetAggregator::singlularChart()
+QChart* RatioSetAggregator::singlularChart()
 {
     if (!m_singularChart) {
         m_singularChart.reset(new QChart);
@@ -143,7 +145,7 @@ void RatioSetAggregator::updateSingularChart()
     m_singularChart->addSeries(series);
 }
 
-void RatioSetAggregator::decoratePieSeries(QtCharts::QPieSeries *series) const
+void RatioSetAggregator::decoratePieSeries(QPieSeries *series) const
 {
     for (auto slice : series->slices()) {
         if (slice->value() > 0.01)

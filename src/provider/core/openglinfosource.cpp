@@ -13,6 +13,7 @@
 #include <QOpenGLFunctions>
 #include <QSurfaceFormat>
 #include <QWindow>
+#include "logging_p.h"
 #endif
 
 using namespace KUserFeedback;
@@ -37,7 +38,11 @@ QVariant OpenGLInfoSource::data()
         QWindow window;
         window.setSurfaceType(QSurface::OpenGLSurface);
         window.create();
-        context.makeCurrent(&window);
+        if (!context.makeCurrent(&window)) {
+            qCWarning(Log) << "Could not make OpenGL context current";
+            m.insert(QStringLiteral("type"), QStringLiteral("none"));
+            return m;
+        }
         QOpenGLFunctions functions(&context);
         m.insert(QStringLiteral("vendor"), OpenGLInfoSourcePrivate::normalizeVendor(reinterpret_cast<const char*>(functions.glGetString(GL_VENDOR))));
         m.insert(QStringLiteral("renderer"), OpenGLInfoSourcePrivate::normalizeRenderer(reinterpret_cast<const char*>(functions.glGetString(GL_RENDERER))));

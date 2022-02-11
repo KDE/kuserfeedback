@@ -39,12 +39,6 @@ include(ECMGeneratePriFile)
 include(FeatureSummary)
 include(GenerateExportHeader)
 
-if(QT_MAJOR_VERSION STREQUAL "5")
-    find_package(Qt5 CONFIG OPTIONAL_COMPONENTS DocTools)
-else()
-    find_package(Qt6 CONFIG OPTIONAL_COMPONENTS ToolsTools)
-endif()
-
 ecm_setup_version(PROJECT
     VARIABLE_PREFIX KUSERFEEDBACK
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h"
@@ -59,6 +53,14 @@ find_package(Qt${QT_MAJOR_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets C
 find_package(QmlLint)
 if (NOT CMAKE_CROSSCOMPILING)
     find_package(Qt${QT_MAJOR_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Help)
+endif()
+
+if (ENABLE_DOCS)
+    if(QT_MAJOR_VERSION STREQUAL "5")
+        find_package(Qt5 CONFIG OPTIONAL_COMPONENTS DocTools)
+    else()
+        find_package(Qt6 CONFIG OPTIONAL_COMPONENTS ToolsTools)
+    endif()
 endif()
 
 set_package_properties(Qt${QT_MAJOR_VERSION} PROPERTIES URL "http://qt-project.org/")

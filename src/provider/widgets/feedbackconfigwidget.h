@@ -9,7 +9,7 @@
 
 #include "kuserfeedbackwidgets_export.h"
 
-#include <provider.h>
+#include "provider.h"
 
 #include <QWidget>
 

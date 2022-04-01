@@ -6,7 +6,7 @@
   <name>KUserFeedback Console</name>
   <name xml:lang="az">KUserFeedback Konsolu</name>
   <name xml:lang="ca">Consola del KUserFeedback</name>
-  <name xml:lang="ca-valencia">Consola del KUserFeedback</name>
+  <name xml:lang="ca-valencia">Consola de KUserFeedback</name>
   <name xml:lang="de">KUserFeedback-Konsole</name>
   <name xml:lang="en-GB">KUserFeedback Console</name>
   <name xml:lang="es">Consola de KUserFeedback</name>
@@ -30,7 +30,7 @@
   <summary>Analytics and administration tool for KUserFeedback servers</summary>
   <summary xml:lang="az">KUserFeedback xidməti üçün analitik və adminstrativ alət</summary>
   <summary xml:lang="ca">Eina d'anàlisi i d'administració per als servidors del KUserFeedback</summary>
-  <summary xml:lang="ca-valencia">Eina d'anàlisi i d'administració per als servidors del KUserFeedback</summary>
+  <summary xml:lang="ca-valencia">Eina d'anàlisi i d'administració per als servidors de KUserFeedback</summary>
   <summary xml:lang="de">Dienstprogramm zur Analyse und Verwaltung von KUserFeedback-Servern</summary>
   <summary xml:lang="en-GB">Analytics and administration tool for KUserFeedback servers</summary>
   <summary xml:lang="es">Analíticas y herramienta de administración para los servidores de KUserFeedback</summary>

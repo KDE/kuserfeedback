@@ -13,7 +13,6 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QStandardPaths>
-#include <QVector>
 
 #include <algorithm>
 

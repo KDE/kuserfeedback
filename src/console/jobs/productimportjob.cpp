@@ -8,7 +8,6 @@
 
 #include <rest/restapi.h>
 #include <rest/restclient.h>
-#include <core/product.h>
 #include <core/sample.h>
 #include <core/survey.h>
 

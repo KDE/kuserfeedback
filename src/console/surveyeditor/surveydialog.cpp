@@ -9,7 +9,6 @@
 #include "surveydialog.h"
 #include "ui_surveydialog.h"
 
-#include <core/survey.h>
 
 #include <common/surveytargetexpressionparser.h>
 

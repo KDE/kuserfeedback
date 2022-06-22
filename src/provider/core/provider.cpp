@@ -29,7 +29,6 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSettings>
-#include <QUrl>
 #include <QUuid>
 
 #include <algorithm>

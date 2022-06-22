@@ -10,7 +10,6 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QSharedData>
-#include <QVector>
 
 using namespace KUserFeedback::Console;
 

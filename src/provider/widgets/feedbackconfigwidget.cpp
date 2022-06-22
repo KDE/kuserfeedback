@@ -11,7 +11,6 @@
 #include <abstractdatasource.h>
 #include <auditloguicontroller.h>
 #include <feedbackconfiguicontroller.h>
-#include <provider.h>
 
 #include <QApplication>
 #include <QDebug>

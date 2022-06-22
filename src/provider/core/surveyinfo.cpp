@@ -8,8 +8,6 @@
 
 #include <QJsonObject>
 #include <QSharedData>
-#include <QUrl>
-#include <QUuid>
 
 using namespace KUserFeedback;
 

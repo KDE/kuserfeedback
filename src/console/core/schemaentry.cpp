@@ -11,7 +11,6 @@
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonObject>
-#include <QObject>
 #include <QSharedData>
 
 using namespace KUserFeedback::Console;

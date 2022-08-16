@@ -5,6 +5,7 @@
   <project_license>LGPL-2.0-or-later</project_license>
   <name>KUserFeedback Console</name>
   <name xml:lang="az">KUserFeedback Konsolu</name>
+  <name xml:lang="bg">Конзола на KUserFeedback</name>
   <name xml:lang="ca">Consola del KUserFeedback</name>
   <name xml:lang="ca-valencia">Consola de KUserFeedback</name>
   <name xml:lang="de">KUserFeedback-Konsole</name>
@@ -30,6 +31,7 @@
   <name xml:lang="zh-CN">KUserFeedback 控制台</name>
   <summary>Analytics and administration tool for KUserFeedback servers</summary>
   <summary xml:lang="az">KUserFeedback xidməti üçün analitik və adminstrativ alət</summary>
+  <summary xml:lang="bg">Инструмент за анализ и администриране на сървърите на KUserFeedback</summary>
   <summary xml:lang="ca">Eina d'anàlisi i d'administració per als servidors del KUserFeedback</summary>
   <summary xml:lang="ca-valencia">Eina d'anàlisi i d'administració per als servidors de KUserFeedback</summary>
   <summary xml:lang="de">Dienstprogramm zur Analyse und Verwaltung von KUserFeedback-Servern</summary>
@@ -55,6 +57,7 @@
     <p>Features:</p>
     <p xml:lang="ar">المزايا</p>
     <p xml:lang="az">İmkanlar:</p>
+    <p xml:lang="bg">Функции:</p>
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="ca-valencia">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
@@ -82,6 +85,7 @@
     <ul>
       <li>Create, edit and remove products and product data schemas.</li>
       <li xml:lang="az">Məhsullar və məhsul haqqında məlumatlar sxemlərini yaratmaq, düzəliş etmək və silmək.</li>
+      <li xml:lang="bg">Създаване, редактиране и премахване на продукти и схеми за данни за продукти.</li>
       <li xml:lang="ca">Crea, edita i elimina productes i esquemes de dades de productes.</li>
       <li xml:lang="ca-valencia">Crea, edita i elimina productes i esquemes de dades de productes.</li>
       <li xml:lang="de">Produkte und Produktdaten-Schemata erstellen, bearbeiten und entfernen.</li>
@@ -105,6 +109,7 @@
       <li xml:lang="zh-CN">创建、编辑和删除产品及产品数据方案。</li>
       <li>Manage user surveys.</li>
       <li xml:lang="az">İstiffadəçi sorğularını idarə etmək.</li>
+      <li xml:lang="bg">Управление на потребителски анкети.</li>
       <li xml:lang="ca">Gestiona les enquestes dels usuaris.</li>
       <li xml:lang="ca-valencia">Gestiona les enquestes dels usuaris.</li>
       <li xml:lang="de">Benutzerumfragen verwalten.</li>
@@ -128,6 +133,7 @@
       <li xml:lang="zh-CN">管理用户问卷。</li>
       <li>Basic review and analytics of telemetry data.</li>
       <li xml:lang="az">Telemetriya məlumatlarının əsas təhlili və analizi.</li>
+      <li xml:lang="bg">Основен преглед и анализ на телеметрични данни.</li>
       <li xml:lang="ca">Revisió bàsica i anàlisi de les dades de telemetria.</li>
       <li xml:lang="ca-valencia">Revisió bàsica i anàlisi de les dades de telemetria.</li>
       <li xml:lang="de">Grundlegende Überprüfung und Analyse von Telemetriedaten.</li>
@@ -151,6 +157,7 @@
       <li xml:lang="zh-CN">对遥测数据进行基本检查和分析。</li>
       <li>Product schema and telemetry data import/export.</li>
       <li xml:lang="az">Məhsul sxemlərinin və telemetriya məlumatlarının idxalı/ixracı.</li>
+      <li xml:lang="bg">Импортиране/експортиране на продуктови схеми и телеметрични данни.</li>
       <li xml:lang="ca">Importació i exportació de les dades d'esquema de producte i telemetria.</li>
       <li xml:lang="ca-valencia">Importació i exportació de les dades d'esquema de producte i telemetria.</li>
       <li xml:lang="de">Import und Export von Produktschemata und Telemetriedaten.</li>

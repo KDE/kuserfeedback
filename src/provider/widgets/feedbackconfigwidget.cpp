@@ -14,6 +14,7 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QMessageBox>
 #include <QScrollBar>
 #include <QStyle>
 
@@ -106,14 +107,14 @@ FeedbackConfigWidget::FeedbackConfigWidget(QWidget* parent)
     connect(d->ui->rawTelemetryButton, &QAbstractButton::toggled, this, [this]() { d->telemetrySliderChanged(); });
 
     d->auditLogController = new AuditLogUiController(this);
-    d->ui->auditLogLabel->setEnabled(d->auditLogController->hasLogEntries());
-    connect(d->auditLogController, &AuditLogUiController::logEntryCountChanged, this, [this]() {
-        d->ui->auditLogLabel->setEnabled(d->auditLogController->hasLogEntries());
-    });
     connect(d->ui->auditLogLabel, &QLabel::linkActivated, this, [this](){
-        AuditLogBrowserDialog dlg(this);
-        dlg.setUiController(d->auditLogController);
-        dlg.exec();
+        if (d->auditLogController->hasLogEntries()) {
+            AuditLogBrowserDialog dlg(this);
+            dlg.setUiController(d->auditLogController);
+            dlg.exec();
+        } else {
+            QMessageBox::information(this, QString(), tr("No data has been sent at this point."));
+        }
     });
 
     setEnabled(false); // see setFeedbackProvider

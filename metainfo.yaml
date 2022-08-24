@@ -13,7 +13,7 @@ libraries:
    cmake: "KUserFeedbackCore"
  - qmake: KUserFeedbackWidgets
    cmake: "KUserFeedbackWidgets"
-cmakename: UserFeedback
+cmakename: KUserFeedback
 
 public_lib: true
 group: Frameworks

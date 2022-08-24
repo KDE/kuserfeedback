@@ -1,10 +1,7 @@
 description: User feedback framework
 maintainer: vkrause
-public_lib: true
 platforms:
  - name: All
-tier: 1
-type: solution
 portingAid: false
 deprecated: false
 release: false
@@ -16,5 +13,3 @@ libraries:
 cmakename: KUserFeedback
 
 public_lib: true
-group: Frameworks
-subgroup: Tier 1

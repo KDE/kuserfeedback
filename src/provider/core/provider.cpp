@@ -130,6 +130,18 @@ void ProviderPrivate::load()
 
     s->endGroup();
 
+    // ensure consistent times if settings is corrupt, to avoid overflows later in the code
+    const auto now = QDateTime::currentDateTime();
+    if (now < lastSubmitTime) {
+        lastSubmitTime = now;
+    }
+    if (now < lastSurveyTime) {
+        lastSurveyTime = now;
+    }
+    if (now < lastEncouragementTime) {
+        lastEncouragementTime = now;
+    }
+
     foreach (auto source, dataSources) {
         s->beginGroup(QStringLiteral("Source-") + source->id());
         source->load(s.get());

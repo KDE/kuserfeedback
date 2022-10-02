@@ -147,4 +147,6 @@ else()
     install(FILES org_kde_UserFeedback.categories DESTINATION ${KDE_INSTALL_CONFDIR})
 endif()
 
+ecm_install_po_files_as_qm(poqm)
+
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

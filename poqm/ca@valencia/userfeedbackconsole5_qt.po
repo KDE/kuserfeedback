@@ -489,7 +489,7 @@ msgstr "Consola de comentaris de l'usuari"
 #: mainwindow.ui:50
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&File"
-msgstr "&Fitxer"
+msgstr "Fi&txer"
 
 #: mainwindow.ui:58
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -569,7 +569,7 @@ msgstr "Ix de la consola de comentaris de l'usuari."
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Add Product..."
-msgstr "&Afig un producte..."
+msgstr "Afi&g un producte..."
 
 #: mainwindow.ui:217
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -794,7 +794,7 @@ msgstr "Voleu suprimir l'agregació seleccionada?"
 #: schemaeditor/aggregationeditwidget.ui:60
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Add"
-msgstr "&Afig"
+msgstr "Afi&g"
 
 #: schemaeditor/aggregationeditwidget.ui:67
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
@@ -1016,7 +1016,7 @@ msgstr "Segur que voleu suprimir l'enquesta seleccionada?"
 #: surveyeditor/surveyeditor.ui:46
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
-msgstr "&Afig una enquesta..."
+msgstr "Afi&g una enquesta..."
 
 #: surveyeditor/surveyeditor.ui:49
 msgctxt "KUserFeedback::Console::SurveyEditor|"

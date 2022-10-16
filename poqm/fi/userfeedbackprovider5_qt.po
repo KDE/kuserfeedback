@@ -266,7 +266,7 @@ msgstr "Alustan tiedot"
 #: core/qpainfosource.cpp:21
 msgctxt "KUserFeedback::QPAInfoSource|"
 msgid "The Qt platform abstraction plugin."
-msgstr "Qt-alusta abstraktioliitännäinen."
+msgstr "Qt-alustan abstraktioliitännäinen."
 
 #: core/qpainfosource.cpp:33
 msgctxt "KUserFeedback::QPAInfoSource|"

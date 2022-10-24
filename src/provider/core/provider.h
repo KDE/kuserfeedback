@@ -96,7 +96,7 @@ class KUSERFEEDBACKCORE_EXPORT Provider : public QObject
 
 public:
     /*! Telemetry collection modes.
-     *  Colleciton modes are inclusive, ie. higher modes always imply data from
+     *  Collection modes are inclusive, ie. higher modes always imply data from
      *  lower modes too.
      */
     enum TelemetryMode {
@@ -253,7 +253,7 @@ public Q_SLOTS:
     void load();
 
     /*! Manually store settings of the provider and all added data sources.
-     *  Will be autromatically invoked upon @p QCoreApplication::aboutToQuit signal.
+     *  Will be automatically invoked upon @p QCoreApplication::aboutToQuit signal.
      *  @note Potentially long operation.
      */
     void store();

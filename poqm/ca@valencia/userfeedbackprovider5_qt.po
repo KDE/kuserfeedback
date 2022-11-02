@@ -159,7 +159,7 @@ msgid ""
 "features of the application are used."
 msgstr ""
 "Es compartix informació detallada del sistema i estadístiques de freqüència "
-"d'ús de funcionalitats individuals de l'aplicació."
+"d'ús de característiques individuals de l'aplicació."
 
 #: core/feedbackconfiguicontroller.cpp:166
 #, qt-format
@@ -198,7 +198,7 @@ msgid ""
 "features of %1 are used."
 msgstr ""
 "Es compartix informació detallada del sistema i estadístiques de freqüència "
-"d'ús de funcionalitats individuals emprades de %1."
+"d'ús de característiques individuals emprades de %1."
 
 #: core/feedbackconfiguicontroller.cpp:231
 msgctxt "KUserFeedback::FeedbackConfigUiController|"

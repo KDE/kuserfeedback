@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kuserfeedback\n"
-"PO-Revision-Date: 2022-09-09 10:14+0200\n"
+"PO-Revision-Date: 2022-11-05 10:13+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.08.0\n"
+"X-Generator: Lokalize 22.08.3\n"
 "X-Qt-Contexts: true\n"
 
 #: core/applicationversionsource.cpp:21
@@ -373,7 +373,7 @@ msgstr ""
 #: widgets/feedbackconfigwidget.ui:33
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Contribute Statistics"
-msgstr "Statistiche sui contributi"
+msgstr "Condividi le statistiche"
 
 #: widgets/feedbackconfigwidget.ui:107
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -393,7 +393,7 @@ msgstr "<a href=\"auditLog\">Vedi i dati inviati in precedenza...</a>"
 #: widgets/feedbackconfigwidget.ui:150
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Participate in Surveys"
-msgstr "Partecipa nei sondaggi"
+msgstr "Partecipa ai sondaggi"
 
 #: widgets/notificationpopup.cpp:67
 msgctxt "KUserFeedback::NotificationPopup|"

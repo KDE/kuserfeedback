@@ -148,7 +148,7 @@ void CategoryAggregationModel::recompute()
                     cats.push_back(it.key());
                 std::sort(cats.begin(), cats.end());
                 depthCategories[i + 1].push_back(cats);
-                for (const auto &cat : cats)
+                for (const auto &cat : qAsConst(cats))
                     depthSamples[i + 1].push_back(catHash.value(cat));
                 if (k > 0 || j > 0)
                     depthOffsets[i + 1].push_back(depthOffsets.at(i + 1).constLast() + prevSize);

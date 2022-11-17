@@ -740,7 +740,7 @@ QString Provider::describeDataSources() const
     Q_ASSERT(modeEnumIdx >= 0);
 
     const auto modeEnum = mo.enumerator(modeEnumIdx);
-    for (auto source : d->dataSources) {
+    for (auto source : qAsConst(d->dataSources)) {
         ret += QString::fromUtf8(modeEnum.valueToKey(source->telemetryMode())) + QStringLiteral(": ") + source->name() + QLatin1Char('\n');
     }
     return ret;

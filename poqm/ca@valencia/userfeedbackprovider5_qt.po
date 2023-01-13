@@ -203,7 +203,7 @@ msgstr ""
 #: core/feedbackconfiguicontroller.cpp:231
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys"
-msgstr "No participo en les enquestes d'usabilitat"
+msgstr "No participe en les enquestes d'usabilitat"
 
 #: core/feedbackconfiguicontroller.cpp:235
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -225,7 +225,7 @@ msgstr ""
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys about %1"
-msgstr "No participo en les enquestes d'usabilitat sobre %1"
+msgstr "No participe en les enquestes d'usabilitat sobre %1"
 
 #: core/feedbackconfiguicontroller.cpp:250
 #, qt-format

@@ -201,7 +201,7 @@ msgstr "Exporta el diagrama actual com a imatge SVG o PDF."
 #: analytics/chartexportdialog.cpp:50
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "Export Chart"
-msgstr "Exportació del diagrama"
+msgstr "Exporteu el diagrama"
 
 #: analytics/chartexportdialog.ui:14
 msgctxt "KUserFeedback::Console::ChartExportDialog|"

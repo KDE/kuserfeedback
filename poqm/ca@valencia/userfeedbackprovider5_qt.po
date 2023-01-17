@@ -351,7 +351,7 @@ msgstr "No, no desitge col·laborar."
 #: widgets/feedbackconfigdialog.ui:14
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
 msgid "Feedback Settings"
-msgstr "Configuració dels informes d'ús"
+msgstr "Configureu els informes d'ús"
 
 #: widgets/feedbackconfigwidget.cpp:116
 msgctxt "KUserFeedback::FeedbackConfigWidget|"

@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -21,7 +21,7 @@ msgstr "&დროის ინტერვალი"
 #: analytics/analyticsview.cpp:88
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Chart Mode"
-msgstr ""
+msgstr "&გრაფიკის რეჟმი"
 
 #: analytics/analyticsview.cpp:126
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -48,7 +48,7 @@ msgstr "ფაილის გახსნის შეცდომა: %1"
 #, qt-format
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Data samples of %1 exported to %2."
-msgstr ""
+msgstr "%1-ის მონაცემების მაგალითები გატანილია %2-ში."
 
 #: analytics/analyticsview.cpp:275
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -63,17 +63,17 @@ msgstr "შემოტანის შეცდომა"
 #: analytics/analyticsview.cpp:286
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Selected file contains no valid data."
-msgstr ""
+msgstr "მონიშნული ფაილი სწორ მონაცემებს არ შეიცავს."
 
 #: analytics/analyticsview.cpp:293
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Data samples imported."
-msgstr ""
+msgstr "მონაცემების მაგალითები შემოტანილია."
 
 #: analytics/analyticsview.ui:33
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Charts"
-msgstr ""
+msgstr "გრაფიკები"
 
 #: analytics/analyticsview.ui:41
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -98,7 +98,7 @@ msgstr "&წელი"
 #: analytics/analyticsview.ui:141
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by year."
-msgstr ""
+msgstr "მონაცემების აგრეგაცია წლების მიხედვით."
 
 #: analytics/analyticsview.ui:149
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -108,7 +108,7 @@ msgstr "&თვე"
 #: analytics/analyticsview.ui:152
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by month."
-msgstr ""
+msgstr "მონაცემების აგრეგაცია თვეების მიხედვით."
 
 #: analytics/analyticsview.ui:160
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -118,7 +118,7 @@ msgstr "&კვირა"
 #: analytics/analyticsview.ui:163
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by week."
-msgstr ""
+msgstr "მონაცემების აგრეგაცია კვირების მიხედვით."
 
 #: analytics/analyticsview.ui:171
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -128,7 +128,7 @@ msgstr "&დღე"
 #: analytics/analyticsview.ui:174
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by day."
-msgstr ""
+msgstr "მონაცემების აგრეგაცია დღეების მიხედვით."
 
 #: analytics/analyticsview.ui:182
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -138,7 +138,7 @@ msgstr "&მონაცემების გატანა..."
 #: analytics/analyticsview.ui:185
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export all recorded data."
-msgstr ""
+msgstr "ჩაწერილი მონაცემების გატანა."
 
 #: analytics/analyticsview.ui:193
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -148,7 +148,7 @@ msgstr "&მონაცემების შემოტანა..."
 #: analytics/analyticsview.ui:196
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Import data samples."
-msgstr ""
+msgstr "მონაცემის მაგალითების შემოტანა."
 
 #: analytics/analyticsview.ui:204
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -158,22 +158,22 @@ msgstr "&მონაცემების თავიდან ჩატვი
 #: analytics/analyticsview.ui:207
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Refresh data from the server."
-msgstr ""
+msgstr "სერვერის ინფორმაციის განახლება."
 
 #: analytics/analyticsview.ui:218
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Timeline Chart"
-msgstr ""
+msgstr "&დროის ხაზის გრაფიკი"
 
 #: analytics/analyticsview.ui:221
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show development over time."
-msgstr ""
+msgstr "დროის მიხედვით განვითარების ჩვენება."
 
 #: analytics/analyticsview.ui:232
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Singular Chart"
-msgstr ""
+msgstr "&ერთგვერდიანი გრაფიკი"
 
 #: analytics/analyticsview.ui:235
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -183,7 +183,7 @@ msgstr ""
 #: analytics/analyticsview.ui:243
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export &Chart..."
-msgstr ""
+msgstr "&გრაფიკის გატანა..."
 
 #: analytics/analyticsview.ui:246
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -193,7 +193,7 @@ msgstr ""
 #: analytics/chartexportdialog.cpp:50
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "Export Chart"
-msgstr ""
+msgstr "გრაფიკის გატანა"
 
 #: analytics/chartexportdialog.ui:14
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -253,7 +253,7 @@ msgstr "დაკავშირება"
 #: connectdialog.ui:14
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Connect To Analytics Server"
-msgstr ""
+msgstr "ანალიტიკის სერვერთან მიერთება"
 
 #: connectdialog.ui:22
 msgctxt "KUserFeedback::Console::ConnectDialog|"
@@ -285,7 +285,7 @@ msgstr "შეერთებული %1-სთან."
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Incompatible protocol: %1."
-msgstr ""
+msgstr "შეუთავსებელი პროტოკოლი: %1."
 
 #: jobs/handshakejob.cpp:62
 #, qt-format
@@ -325,18 +325,18 @@ msgstr "პრობლემები არ მოიძებნა."
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is not protected!"
-msgstr ""
+msgstr "%1-სთან წვდომა დაცული არაა!"
 
 #: jobs/securityscanjob.cpp:80
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is protected (%2)."
-msgstr ""
+msgstr "%1-სთან წვდომა დაცულია (%2)."
 
 #: mainwindow.cpp:80 mainwindow.cpp:142
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Unsaved Schema Changes"
-msgstr ""
+msgstr "სქემის შეუნახავი ცვლილებები"
 
 #: mainwindow.cpp:81
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -348,7 +348,7 @@ msgstr ""
 #: mainwindow.cpp:130
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "About User Feedback Console"
-msgstr ""
+msgstr "მომხმარებლის უკუკავშირის კონსოლის შესახებ"
 
 #: mainwindow.cpp:130
 #, qt-format
@@ -380,7 +380,7 @@ msgstr "შეერთების შეცდომა"
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Failed to connect to server: %1"
-msgstr ""
+msgstr "სერვერთან მიერთების შეცდომა %1"
 
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -465,7 +465,7 @@ msgstr ""
 #: mainwindow.ui:14
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Feedback Console"
-msgstr ""
+msgstr "მომხმარებლის უკუკავშირის კონსოლი"
 
 #: mainwindow.ui:50
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -545,7 +545,7 @@ msgstr "&გასვლა"
 #: mainwindow.ui:203
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Quit the user feedback console."
-msgstr ""
+msgstr "მომხარებლის უკუკავშირის კონსოლიდან გასვლა."
 
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -595,7 +595,7 @@ msgstr "&სქემა"
 #: mainwindow.ui:264
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Edit product telemetry schema."
-msgstr ""
+msgstr "პროდუქტის ტელემეტრიის სქემის ჩასწორება."
 
 #: mainwindow.ui:275
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -605,7 +605,7 @@ msgstr "&მიმოხილვები"
 #: mainwindow.ui:278
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Manage product surveys."
-msgstr ""
+msgstr "პროდუქტის გამოკითხვების მართვა."
 
 #: mainwindow.ui:289
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -690,12 +690,12 @@ msgstr "დროის შტამპი"
 #: model/numericaggregationmodel.cpp:78
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Extreme"
-msgstr ""
+msgstr "ქვედა ექსტრემალური"
 
 #: model/numericaggregationmodel.cpp:79
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Quartile"
-msgstr ""
+msgstr "ქვედა კვარტილი"
 
 #: model/numericaggregationmodel.cpp:80
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
@@ -705,12 +705,12 @@ msgstr "საშუალო"
 #: model/numericaggregationmodel.cpp:81
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Quartile"
-msgstr ""
+msgstr "ზედა კვარტილი"
 
 #: model/numericaggregationmodel.cpp:82
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Extreme"
-msgstr ""
+msgstr "ზედა ექსტრემალური"
 
 #: model/productmodel.cpp:82
 msgctxt "KUserFeedback::Console::ProductModel|"
@@ -765,12 +765,12 @@ msgstr "სემპლები"
 #: schemaeditor/aggregationeditwidget.cpp:99
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Delete Aggregation"
-msgstr ""
+msgstr "აგრეგაციის წაშლა"
 
 #: schemaeditor/aggregationeditwidget.cpp:100
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Do you want to delete the currently selected aggregation?"
-msgstr ""
+msgstr "გნებავთ, წაშალოთ ამჟამად მონიშნული აგრეგაცია?"
 
 #: schemaeditor/aggregationeditwidget.ui:60
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
@@ -785,27 +785,27 @@ msgstr "&წაშლა"
 #: schemaeditor/aggregationeditwidget.ui:83
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add &Aggregation"
-msgstr ""
+msgstr "&აგრეგაციის დამატება"
 
 #: schemaeditor/aggregationeditwidget.ui:86
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add a new aggregation."
-msgstr ""
+msgstr "ახალი აგრეგაციის დამატება."
 
 #: schemaeditor/aggregationeditwidget.ui:94
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Delete Aggregation"
-msgstr ""
+msgstr "&აგრეგაციის წაშლა"
 
 #: schemaeditor/aggregationeditwidget.ui:97
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Delete the currently selected aggregation."
-msgstr ""
+msgstr "ამჟამად მონიშნული აგრეგაციის წაშლა."
 
 #: schemaeditor/schemaeditor.cpp:40
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Source Templates"
-msgstr ""
+msgstr "წყაროს ნიმუშები"
 
 #: schemaeditor/schemaeditor.cpp:119
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -827,7 +827,7 @@ msgstr "ფაილის გახსნის შეცდომა: %1"
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 exported to %2."
-msgstr ""
+msgstr "%1-ის სქემა %2-შია გატანილი."
 
 #: schemaeditor/schemaeditor.cpp:134
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -842,7 +842,7 @@ msgstr "შემოტანის შეცდომა"
 #: schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Selected file contains no valid product schema."
-msgstr ""
+msgstr "მონიშნული ფაილი სწორ პროდუქტის სქემას არ შეიცავს."
 
 #: schemaeditor/schemaeditor.cpp:153
 #, qt-format
@@ -868,7 +868,7 @@ msgstr "&სქემის შენახვა"
 #: schemaeditor/schemaeditor.ui:53
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
-msgstr ""
+msgstr "პროდუქტის სქემის ცვლილებების შენახვა."
 
 #: schemaeditor/schemaeditor.ui:62
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -878,7 +878,7 @@ msgstr "&სქემის შემოტანა..."
 #: schemaeditor/schemaeditor.ui:65
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
-msgstr ""
+msgstr "ამ პროდუქტისთვის სქემის შემოტანა."
 
 #: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -888,7 +888,7 @@ msgstr "&სქემის გატანა..."
 #: schemaeditor/schemaeditor.ui:77
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
-msgstr ""
+msgstr "ამ პროდუქტის სექმის გატანა."
 
 #: schemaeditor/schemaeditwidget.cpp:72
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -920,7 +920,7 @@ msgstr ""
 #: schemaeditor/schemaeditwidget.cpp:102
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Schema Entry"
-msgstr ""
+msgstr "სქემის ჩანაწერის წაშლა"
 
 #: schemaeditor/schemaeditwidget.cpp:103
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -950,17 +950,17 @@ msgstr "&წყაროს დამატება…"
 #: schemaeditor/schemaeditwidget.ui:48
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
-msgstr ""
+msgstr "ახალი მონაცემების წყაროს დამატება."
 
 #: schemaeditor/schemaeditwidget.ui:56
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr ""
+msgstr "ახალი წყაროს &ელემენტი..."
 
 #: schemaeditor/schemaeditwidget.ui:59
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
-msgstr ""
+msgstr "მონაცემების წყაროსთვის ელემენტის დამატება."
 
 #: surveyeditor/surveydialog.ui:14
 msgctxt "KUserFeedback::Console::SurveyDialog|"
@@ -980,44 +980,44 @@ msgstr "&URL:"
 #: surveyeditor/surveydialog.ui:50
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Targeting e&xpression:"
-msgstr ""
+msgstr "სამიზნე &გამოსახულება:"
 
 #: surveyeditor/surveyeditor.cpp:105
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete Survey"
-msgstr ""
+msgstr "გამოკითხვის წაშლა"
 
 #: surveyeditor/surveyeditor.cpp:106
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
-msgstr ""
+msgstr "მართა გნებავთ მონიშნული გამოკითხვის წაშლა?"
 
 #: surveyeditor/surveyeditor.ui:46
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
-msgstr ""
+msgstr "გამოკითხვის &დამატება..."
 
 #: surveyeditor/surveyeditor.ui:49
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
-msgstr ""
+msgstr "ახალი გამოკითხვის დამატება."
 
 #: surveyeditor/surveyeditor.ui:58
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
-msgstr ""
+msgstr "&გამოკითხვის წაშლა"
 
 #: surveyeditor/surveyeditor.ui:61
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
-msgstr ""
+msgstr "გამოკითხვის წაშლა."
 
 #: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
-msgstr ""
+msgstr "&გამოკითხვის ჩასწორება..."
 
 #: surveyeditor/surveyeditor.ui:73
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
-msgstr ""
+msgstr "ამჟამად არჩეული გამოკითხვის ჩასწორება."

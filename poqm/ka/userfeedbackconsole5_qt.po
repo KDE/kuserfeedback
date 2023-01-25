@@ -178,7 +178,7 @@ msgstr "&ერთგვერდიანი გრაფიკი"
 #: analytics/analyticsview.ui:235
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show chart for a single time interval."
-msgstr ""
+msgstr "დროის ერთი ინტერვალის გრაფიკის ჩვენება."
 
 #: analytics/analyticsview.ui:243
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -188,7 +188,7 @@ msgstr "&გრაფიკის გატანა..."
 #: analytics/analyticsview.ui:246
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export the current chart as image, SVG or PDF."
-msgstr ""
+msgstr "მიმდინარე გრაფიკის გამოსახულების, SVG ან PDF-ის სახით გატანა."
 
 #: analytics/chartexportdialog.cpp:50
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -291,7 +291,7 @@ msgstr "შეუთავსებელი პროტოკოლი: %1."
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Updated database schema from version %1 to %2."
-msgstr ""
+msgstr "ბაზის სქემა %1 ვერსიიდან %2-მდე განახლდა."
 
 #: jobs/productexportjob.cpp:36
 msgctxt "KUserFeedback::Console::ProductExportJob|"
@@ -344,6 +344,8 @@ msgid ""
 "You have unsaved changes in the schema editor. Do you really want to close "
 "it and discard your changes?"
 msgstr ""
+"სქემის რედაქტორში შეუნახავი ცვლილებები გაქვთ. გნებავთ, დახუროთ ის და "
+"მოიცილოთ ყველა ცვლილება?"
 
 #: mainwindow.cpp:130
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -358,6 +360,9 @@ msgid ""
 "License: MIT\n"
 "Copyright ⓒ 2017 Volker Krause <vkrause@kde.org>"
 msgstr ""
+"ვერსია: %1\n"
+"ლიცენზია: MIT\n"
+"Copyright ⓒ 2017 Volker Krause <vkrause@kde.org>"
 
 #: mainwindow.cpp:143
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -365,11 +370,15 @@ msgid ""
 "You have unsaved changes in the schema editor, do you really want to open "
 "another product and discard your changes?"
 msgstr ""
+"სქემის რედაქტორში შეუნახავი ცვლილებები გაქვთ. მართლა გნებავთ, სხვა პროდუქტი "
+"გახსნათ და გააუქმოთ თქვენი ცვლილებები?"
 
 #: mainwindow.cpp:172
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Usage ratio of the analytics view, survey editor and schema editor."
 msgstr ""
+"ანალიტიკის ხედის, გამოკითხვის რედაქტორის და სქემის რედაქტორის შედარებითი "
+"გამოყენება."
 
 #: mainwindow.cpp:219
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -401,7 +410,7 @@ msgstr "პროდუქტის წაშლა"
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Do you really want to delete product %1 with all its data?"
-msgstr ""
+msgstr "მართლა გნებავთ, წაშალოთ პროდუქტი %1 და მისი ყველა მონაცემი?"
 
 #: mainwindow.cpp:266
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -461,6 +470,8 @@ msgid ""
 "There are unsaved changes in the schema editor. Do you want to discard them "
 "and close the application?"
 msgstr ""
+"სქემის რედაქტორში შეუნახავი ცვლილებები გაგაჩნიათ. გნებავთ, გააუქმოთ ისინი და "
+"დახუროთ აპლიკაცია?"
 
 #: mainwindow.ui:14
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -585,7 +596,7 @@ msgstr "&მონაწილეობის მიღება..."
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Help to make this application better for you!"
-msgstr ""
+msgstr "დაგვეხმარეთ, ეს აპლიკაცია უკეთესი გავხადოთ!"
 
 #: mainwindow.ui:261
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -848,7 +859,7 @@ msgstr "მონიშნული ფაილი სწორ პროდუ
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 imported from %2."
-msgstr ""
+msgstr "%1-ის სქემა შემოტანილია %2-დან."
 
 #: schemaeditor/schemaeditor.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -915,7 +926,7 @@ msgstr "წყაროს წაშლა"
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid ""
 "Do you really want to delete the source '%1', and all recorded data for it?"
-msgstr ""
+msgstr "მართლა გნებავთ, წაშალოთ წყარო %1 და მისი ყველა ჩაწერილი მონაცემი?"
 
 #: schemaeditor/schemaeditwidget.cpp:102
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -925,7 +936,7 @@ msgstr "სქემის ჩანაწერის წაშლა"
 #: schemaeditor/schemaeditwidget.cpp:103
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Do you really want to delete this entry, and all recorded data for it?"
-msgstr ""
+msgstr "მართლა გნებავთ, წაშალოთ ეს ჩანაწერი და მისი ყველა მონაცემი?"
 
 #: schemaeditor/schemaeditwidget.ui:31
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -935,7 +946,7 @@ msgstr "&წაშლა"
 #: schemaeditor/schemaeditwidget.ui:34
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
-msgstr ""
+msgstr "მითითებული ელემენტის ან ჩანაწერის წაშლა."
 
 #: schemaeditor/schemaeditwidget.ui:37
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-01-13 01:20+0300\n"
+"PO-Revision-Date: 2023-02-02 19:47+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -193,7 +193,7 @@ msgstr ""
 #: core/feedbackconfiguicontroller.cpp:231
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys"
-msgstr "Kullanılabilirlik anketlerine katılmayın"
+msgstr "Kullanılabilirlik anketlerine katılma"
 
 #: core/feedbackconfiguicontroller.cpp:235
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -215,7 +215,7 @@ msgstr ""
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys about %1"
-msgstr "%1 üzerine kullanılabilirlik anketlerine katılmayın"
+msgstr "%1 için olan kullanılabilirlik anketlerine katılma"
 
 #: core/feedbackconfiguicontroller.cpp:250
 #, qt-format

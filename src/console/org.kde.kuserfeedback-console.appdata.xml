@@ -86,7 +86,7 @@
     <p xml:lang="tr">Özellikler:</p>
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
-    <p xml:lang="zh-CN">功能：</p>
+    <p xml:lang="zh-CN">功能特性：</p>
     <p xml:lang="zh-TW">功能：</p>
     <ul>
       <li>Create, edit and remove products and product data schemas.</li>
@@ -113,7 +113,7 @@
       <li xml:lang="tr">Ürünler ve ürün veri şemaları oluşturun, düzenleyin, kaldırın.</li>
       <li xml:lang="uk">Створення, редагування та вилучення продуктів та схем даних продуктів.</li>
       <li xml:lang="x-test">xxCreate, edit and remove products and product data schemas.xx</li>
-      <li xml:lang="zh-CN">创建、编辑和删除产品及产品数据方案。</li>
+      <li xml:lang="zh-CN">创建、编辑和删除产品和产品数据结构。</li>
       <li xml:lang="zh-TW">建立、編輯並移除產品與產品資料綱要。</li>
       <li>Manage user surveys.</li>
       <li xml:lang="az">İstiffadəçi sorğularını idarə etmək.</li>
@@ -139,7 +139,7 @@
       <li xml:lang="tr">Kullanıcı anketlerini yönetin.</li>
       <li xml:lang="uk">Керування створеними користувачами оглядами.</li>
       <li xml:lang="x-test">xxManage user surveys.xx</li>
-      <li xml:lang="zh-CN">管理用户问卷。</li>
+      <li xml:lang="zh-CN">管理用户数据调查功能。</li>
       <li xml:lang="zh-TW">管理使用者調查。</li>
       <li>Basic review and analytics of telemetry data.</li>
       <li xml:lang="az">Telemetriya məlumatlarının əsas təhlili və analizi.</li>
@@ -191,7 +191,7 @@
       <li xml:lang="tr">Ürün şeması ve telemetri verisi içe/dışa aktarım.</li>
       <li xml:lang="uk">Імпортування та експортування даних схеми продуктів та телеметрії.</li>
       <li xml:lang="x-test">xxProduct schema and telemetry data import/export.xx</li>
-      <li xml:lang="zh-CN">导入或导出产品结构和遥测数据。</li>
+      <li xml:lang="zh-CN">导入/导出产品数据结构和遥测数据。</li>
       <li xml:lang="zh-TW">產品綱要與遙測資料的匯入/匯出。</li>
     </ul>
   </description>

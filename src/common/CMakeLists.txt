@@ -27,18 +27,18 @@ bison_target(surveytargetexpressionparser
 add_flex_bison_dependency(surveytargetexpressionscanner surveytargetexpressionparser)
 endif()
 
-add_library(KUserFeedbackCommon STATIC
+add_library(KUserFeedbackCommon${KUSERFEEDBACK_EXTENSION} STATIC
     ${common_src}
     ${BISON_surveytargetexpressionparser_OUTPUTS}
     ${FLEX_surveytargetexpressionscanner_OUTPUTS}
 )
 # Needed to link this static lib to shared libs
-set_property(TARGET KUserFeedbackCommon PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET KUserFeedbackCommon${KUSERFEEDBACK_EXTENSION} PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 if (NOT BUILD_SHARED_LIBS)
-    install(TARGETS KUserFeedbackCommon
-            EXPORT KUserFeedbackTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+    install(TARGETS KUserFeedbackCommon${KUSERFEEDBACK_EXTENSION}
+            EXPORT KUserFeedback${KUSERFEEDBACK_EXTENSION}Targets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 
-target_include_directories(KUserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
-target_link_libraries(KUserFeedbackCommon PUBLIC Qt${QT_MAJOR_VERSION}::Core)
+target_include_directories(KUserFeedbackCommon${KUSERFEEDBACK_EXTENSION} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
+target_link_libraries(KUserFeedbackCommon${KUSERFEEDBACK_EXTENSION} PUBLIC Qt${QT_MAJOR_VERSION}::Core)

@@ -39,13 +39,13 @@ set(console_lib_srcs
     schematemplates/schematemplates.qrc
 )
 
-add_library(KUserFeedbackConsole STATIC ${console_lib_srcs})
-target_link_libraries(KUserFeedbackConsole Qt${QT_MAJOR_VERSION}::Network)
-target_include_directories(KUserFeedbackConsole PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
-target_compile_features(KUserFeedbackConsole PRIVATE cxx_generic_lambdas)
-target_compile_definitions(KUserFeedbackConsole PUBLIC QT_DISABLE_DEPRECATED_BEFORE=0x050600 QT_DEPRECATED_WARNINGS)
+add_library(KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION} STATIC ${console_lib_srcs})
+target_link_libraries(KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION} Qt${QT_MAJOR_VERSION}::Network)
+target_include_directories(KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
+target_compile_features(KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION} PRIVATE cxx_generic_lambdas)
+target_compile_definitions(KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION} PUBLIC QT_DISABLE_DEPRECATED_BEFORE=0x050600 QT_DEPRECATED_WARNINGS)
 
-if(NOT TARGET KUserFeedbackWidgets)
+if(NOT TARGET KUserFeedbackWidgets${KUSERFEEDBACK_EXTENSION})
     return()
 endif()
 
@@ -86,9 +86,9 @@ target_link_libraries(KUserFeedbackConsoleApplication
     Qt${QT_MAJOR_VERSION}::Charts
     Qt${QT_MAJOR_VERSION}::PrintSupport
     Qt${QT_MAJOR_VERSION}::Svg
-    KUserFeedbackWidgets
-    KUserFeedbackConsole
-    KUserFeedbackCommon
+    KUserFeedbackWidgets${KUSERFEEDBACK_EXTENSION}
+    KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION}
+    KUserFeedbackCommon${KUSERFEEDBACK_EXTENSION}
 )
 
 install(TARGETS KUserFeedbackConsoleApplication ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

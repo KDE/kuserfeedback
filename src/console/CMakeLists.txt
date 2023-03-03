@@ -88,7 +88,7 @@ target_link_libraries(KUserFeedbackConsoleApplication
     Qt${QT_MAJOR_VERSION}::Svg
     KUserFeedbackWidgets${KUSERFEEDBACK_EXTENSION}
     KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION}
-    KUserFeedbackCommon${KUSERFEEDBACK_EXTENSION}
+    KUserFeedbackCommon
 )
 
 install(TARGETS KUserFeedbackConsoleApplication ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

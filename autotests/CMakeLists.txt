@@ -22,7 +22,7 @@ uf_add_test(surveyprovidertest.cpp KUserFeedbackCore${KUSERFEEDBACK_EXTENSION})
 uf_add_test(feedbackconfigtest.cpp KUserFeedbackWidgets${KUSERFEEDBACK_EXTENSION})
 
 if(HAVE_SURVEY_TARGET_EXPRESSIONS)
-    uf_add_test(surveytargetexpressiontest.cpp KUserFeedbackCommon${KUSERFEEDBACK_EXTENSION})
+    uf_add_test(surveytargetexpressiontest.cpp KUserFeedbackCommon)
 endif()
 
 if(TARGET KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION})

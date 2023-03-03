@@ -176,6 +176,11 @@ configure_package_config_file(
     PATH_VARS KDE_INSTALL_INCLUDEDIR
 )
 
+install(EXPORT KUserFeedback${KUSERFEEDBACK_EXTENSION}Targets
+    DESTINATION "${CMAKECONFIG_INSTALL_DIR_KF5}"
+    FILE KUserFeedback${KUSERFEEDBACK_EXTENSION}Target.cmake
+)
+
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfig.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake

@@ -1,9 +1,9 @@
 configure_file(test-config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/test-config.h)
-if(TARGET KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION})
+if(TARGET KUserFeedbackConsole)
 add_library(KUserFeedbackTestUtils${KUSERFEEDBACK_EXTENSION} STATIC
     servercontroller.cpp
 )
-target_link_libraries(KUserFeedbackTestUtils${KUSERFEEDBACK_EXTENSION} LINK_PUBLIC Qt${QT_MAJOR_VERSION}::Test KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION})
+target_link_libraries(KUserFeedbackTestUtils${KUSERFEEDBACK_EXTENSION} LINK_PUBLIC Qt${QT_MAJOR_VERSION}::Test KUserFeedbackConsole)
 endif()
 
 function(uf_add_test _file)
@@ -25,11 +25,11 @@ if(HAVE_SURVEY_TARGET_EXPRESSIONS)
     uf_add_test(surveytargetexpressiontest.cpp KUserFeedbackCommon)
 endif()
 
-if(TARGET KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION})
-    uf_add_test(producttest.cpp KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION})
-    uf_add_test(schematemplatetest.cpp KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION})
-    uf_add_test(sampletest.cpp KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION})
-    uf_add_test(serverinfotest.cpp KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION})
+if(TARGET KUserFeedbackConsole)
+    uf_add_test(producttest.cpp KUserFeedbackConsole)
+    uf_add_test(schematemplatetest.cpp KUserFeedbackConsole)
+    uf_add_test(sampletest.cpp KUserFeedbackConsole)
+    uf_add_test(serverinfotest.cpp KUserFeedbackConsole)
 
     uf_add_test(schemamodeltest.cpp KUserFeedbackTestUtils${KUSERFEEDBACK_EXTENSION})
     uf_add_test(datamodeltest.cpp KUserFeedbackTestUtils${KUSERFEEDBACK_EXTENSION})
@@ -41,7 +41,7 @@ endif()
 
 if(ENABLE_PHP)
     list(FIND PHP_MODULES "PDO" _has_pdo)
-    if(TARGET KUserFeedbackConsole${KUSERFEEDBACK_EXTENSION} AND _has_pdo GREATER -1)
+    if(TARGET KUserFeedbackConsole AND _has_pdo GREATER -1)
         uf_add_test(productapitest.cpp KUserFeedbackTestUtils)
         uf_add_test(productmodeltest.cpp KUserFeedbackTestUtils)
         uf_add_test(surveyapitest.cpp KUserFeedbackTestUtils)

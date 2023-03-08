@@ -158,6 +158,7 @@ ecm_install_po_files_as_qm(poqm)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
+MESSAGE(STATUS "******* Remove compatibility before creating next release *******")
 if (QT_MAJOR_VERSION STREQUAL "6")
 ##
 # TODO: Backwards compatiblity. Remove in next major version

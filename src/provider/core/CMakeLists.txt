@@ -84,13 +84,6 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedbackcore_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION}
 )
-if (QT_MAJOR_VERSION STREQUAL "6")
-install(FILES
-    ${KUserFeedbackCore_HEADERS}
-    ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedbackcore_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback
-)
-endif()
 
 ecm_generate_pri_file(BASE_NAME KUserFeedbackCore${KUSERFEEDBACK_EXTENSION}
                       LIB_NAME KUserFeedbackCore${KUSERFEEDBACK_EXTENSION}

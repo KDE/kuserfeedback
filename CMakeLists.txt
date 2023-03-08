@@ -158,47 +158,8 @@ ecm_install_po_files_as_qm(poqm)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
-MESSAGE(STATUS "******* Remove compatibility before creating next release *******")
-if (QT_MAJOR_VERSION STREQUAL "6")
-##
-# TODO: Backwards compatiblity. Remove in next major version
-##
-set(CMAKECONFIG_INSTALL_DIR_KF5 "${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback")
-
-ecm_setup_version(PROJECT
-    VARIABLE_PREFIX KUSERFEEDBACK
-    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h"
-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake"
-)
-configure_package_config_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/${_CONFIG_CMAKE_IN}
-    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfig.cmake
-    INSTALL_DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback
-    PATH_VARS KDE_INSTALL_INCLUDEDIR
-)
-
-install(EXPORT KUserFeedback${KUSERFEEDBACK_EXTENSION}Targets
-    DESTINATION "${CMAKECONFIG_INSTALL_DIR_KF5}"
-    FILE KUserFeedback${KUSERFEEDBACK_EXTENSION}Target.cmake
-)
-
-install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfig.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake
-    DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback
-)
-
-endif()
-
 install(FILES
     ${KUserFeedbackCore_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION}
 )
-if (QT_MAJOR_VERSION STREQUAL "6")
-install(FILES
-    ${KUserFeedbackCore_HEADERS}
-    ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback
-)
-endif()

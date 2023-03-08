@@ -19,6 +19,25 @@ set(userfeedback_core_srcs
     surveyinfo.cpp
     usagetimesource.cpp
     auditloguicontroller.cpp
+
+    abstractdatasource.h
+    applicationversionsource.h
+    compilerinfosource.h
+    cpuinfosource.h
+    feedbackconfiguicontroller.h
+    localeinfosource.h
+    openglinfosource.h
+    platforminfosource.h
+    propertyratiosource.h
+    provider.h
+    qpainfosource.h
+    qtversionsource.h
+    screeninfosource.h
+    selectionratiosource.h
+    startcountsource.h
+    surveyinfo.h
+    usagetimesource.h
+    auditloguicontroller.h
     ${userfeedback_core_QM_LOADER}
 )
 

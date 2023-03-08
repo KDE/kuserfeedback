@@ -4,6 +4,12 @@ set(userfeedback_widgets_srcs
     notificationpopup.cpp
     styleinfosource.cpp
     auditlogbrowserdialog.cpp
+
+    feedbackconfigdialog.h
+    feedbackconfigwidget.h
+    notificationpopup.h
+    styleinfosource.h
+    auditlogbrowserdialog.h
 )
 
 add_library(KUserFeedbackWidgets${KUSERFEEDBACK_EXTENSION} ${userfeedback_widgets_srcs})

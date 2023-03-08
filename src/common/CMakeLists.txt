@@ -2,6 +2,9 @@ set(common_src
     surveytargetexpression.cpp
     surveytargetexpressionevaluator.cpp
     surveytargetexpressionparser.cpp
+    surveytargetexpression.h
+    surveytargetexpressionevaluator.h
+    surveytargetexpressionparser.h
 )
 
 if(HAVE_SURVEY_TARGET_EXPRESSIONS)

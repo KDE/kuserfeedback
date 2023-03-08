@@ -36,6 +36,41 @@ set(console_lib_srcs
     model/surveymodel.cpp
     model/timeaggregationmodel.cpp
 
+    core/aggregation.h
+    core/aggregationelement.h
+    core/product.h
+    core/sample.h
+    core/schemaentry.h
+    core/schemaentryelement.h
+    core/schemaentrytemplates.h
+    core/survey.h
+
+    rest/restapi.h
+    rest/restclient.h
+    rest/serverinfo.h
+
+    jobs/job.h
+    jobs/handshakejob.h
+    jobs/productexportjob.h
+    jobs/productimportjob.h
+    jobs/securityscanjob.h
+
+    model/aggregateddatamodel.h
+    model/aggregationeditormodel.h
+    model/aggregationelementmodel.h
+    model/aggregationelementeditmodel.h
+    model/categoryaggregationmodel.h
+    model/datamodel.h
+    model/extrarowsproxymodel.h
+    model/numericaggregationmodel.h
+    model/productmodel.h
+    model/ratiosetaggregationmodel.h
+    model/rolemappingproxymodel.h
+    model/schemamodel.h
+    model/singlerowfilterproxymodel.h
+    model/surveymodel.h
+    model/timeaggregationmodel.h
+
     schematemplates/schematemplates.qrc
 )
 
@@ -73,6 +108,29 @@ set(console_srcs
     surveyeditor/surveyeditor.cpp
 
     widgets/metaenumcombobox.cpp
+
+    connectdialog.h
+    mainwindow.h
+    helpcontroller.h
+
+    analytics/aggregator.h
+    analytics/analyticsview.h
+    analytics/categoryaggregator.h
+    analytics/chartexportdialog.h
+    analytics/chartutil.h
+    analytics/numericaggregator.h
+    analytics/ratiosetaggregator.h
+    analytics/totalaggregator.h
+
+    schemaeditor/aggregationeditwidget.h
+    schemaeditor/schemaeditor.h
+    schemaeditor/schemaeditwidget.h
+    schemaeditor/schemaentryitemeditorfactory.h
+
+    surveyeditor/surveydialog.h
+    surveyeditor/surveyeditor.h
+
+    widgets/metaenumcombobox.h
 
     ${userfeedback_console_QM_LOADER}
 )

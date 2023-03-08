@@ -5,7 +5,7 @@ if(TARGET KUserFeedbackWidgets${KUSERFEEDBACK_EXTENSION} AND NOT (CMAKE_SOURCE_D
     add_executable(notificationpopuptest notificationpopuptest.cpp)
     target_link_libraries(notificationpopuptest KUserFeedbackWidgets${KUSERFEEDBACK_EXTENSION})
 
-    add_executable(orwell orwell.cpp)
+    add_executable(orwell orwell.cpp orwell.h)
     target_link_libraries(orwell KUserFeedbackWidgets${KUSERFEEDBACK_EXTENSION})
 
     qml_lint(orwell.qml)

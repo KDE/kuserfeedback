@@ -5,6 +5,13 @@ set(provider_qml_srcs
     qmlpropertyratiosource.cpp
     qmlproviderextension.cpp
     qmlpropertysource.cpp
+
+    qmlabstractdatasource.h
+    qmldatasources.h
+    qmlplugin.h
+    qmlpropertyratiosource.h
+    qmlproviderextension.h
+    qmlpropertysource.h
 )
 
 add_library(KUserFeedbackQml${KUSERFEEDBACK_EXTENSION} SHARED ${provider_qml_srcs})

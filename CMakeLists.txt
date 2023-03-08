@@ -189,3 +189,16 @@ install(FILES
 )
 
 endif()
+
+install(FILES
+    ${KUserFeedbackCore_HEADERS}
+    ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION}
+)
+if (QT_MAJOR_VERSION STREQUAL "6")
+install(FILES
+    ${KUserFeedbackCore_HEADERS}
+    ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback
+)
+endif()

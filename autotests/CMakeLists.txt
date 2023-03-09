@@ -1,7 +1,7 @@
 configure_file(test-config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/test-config.h)
 if(TARGET KUserFeedbackConsole)
 add_library(KUserFeedbackTestUtils${KUSERFEEDBACK_EXTENSION} STATIC
-    servercontroller.cpp
+    servercontroller.cpp servercontroller.h
 )
 target_link_libraries(KUserFeedbackTestUtils${KUSERFEEDBACK_EXTENSION} LINK_PUBLIC Qt${QT_MAJOR_VERSION}::Test KUserFeedbackConsole)
 endif()

@@ -1,8 +1,8 @@
-# Tommi Nieminen <translator@legisign.org>, 2018, 2019, 2020, 2021.
+# Tommi Nieminen <translator@legisign.org>, 2018, 2019, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2021-07-22 20:48+0300\n"
+"PO-Revision-Date: 2022-11-20 22:26+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.04.2\n"
+"X-Generator: Lokalize 22.08.3\n"
 "X-Qt-Contexts: true\n"
 
 #: core/applicationversionsource.cpp:21
@@ -65,7 +65,7 @@ msgstr "Avain: <i>%1</i><br/>"
 #, qt-format
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Submitted data: <tt>%1</tt><br/><br/>"
-msgstr "Lähetetty tieto: <tt>%1</tt><br/></br>"
+msgstr "Lähetetty tieto: <tt>%1</tt><br/><br/>"
 
 #: core/compilerinfosource.cpp:20
 msgctxt "KUserFeedback::CompilerInfoSource|"
@@ -321,7 +321,7 @@ msgstr "Poista loki"
 #: widgets/auditlogbrowserdialog.ui:14
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Submitted Data"
-msgstr ""
+msgstr "Lähetetyt tiedot"
 
 #: widgets/auditlogbrowserdialog.ui:22
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
@@ -346,7 +346,7 @@ msgstr "Palauteasetukset"
 #: widgets/feedbackconfigwidget.cpp:116
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "No data has been sent at this point."
-msgstr ""
+msgstr "Tähän mennessä mitään ei ole lähetetty."
 
 #: widgets/feedbackconfigwidget.ui:17
 msgctxt "KUserFeedback::FeedbackConfigWidget|"

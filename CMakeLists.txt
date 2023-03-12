@@ -39,6 +39,11 @@ include(ECMGeneratePriFile)
 include(FeatureSummary)
 include(GenerateExportHeader)
 
+if (ECM_VERSION VERSION_GREATER "5.68.0")
+    include(ECMQtDeclareLoggingCategory)
+endif()
+
+MESSAGE(STATUS "ddddddddddddddddd ${ECM_VERSION}")
 set(KUSERFEEDBACK_EXTENSION)
 if (QT_MAJOR_VERSION STREQUAL "6")
     set(KUSERFEEDBACK_EXTENSION "Qt6")
@@ -149,7 +154,15 @@ install(FILES
 install(EXPORT KUserFeedback${KUSERFEEDBACK_EXTENSION}Targets DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION} FILE KUserFeedback${KUSERFEEDBACK_EXTENSION}Target.cmake)
 
 if (ECM_VERSION VERSION_GREATER "5.58.0")
-    install(FILES org_kde_UserFeedback.categories DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
+    if (ECM_VERSION VERSION_GREATER "5.67.0")
+        ecm_qt_install_logging_categories(
+                EXPORT KUSERFEEDBACK
+                FILE org_kde_UserFeedback.categories
+                DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+                )
+    else()
+        install(FILES org_kde_UserFeedback.categories DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
+    endif()
 else()
     install(FILES org_kde_UserFeedback.categories DESTINATION ${KDE_INSTALL_CONFDIR})
 endif()

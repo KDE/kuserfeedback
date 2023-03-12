@@ -1,5 +1,14 @@
 ecm_create_qm_loader(userfeedback_core_QM_LOADER userfeedbackprovider5_qt)
 
+if (ECM_VERSION VERSION_GREATER "5.67.0")
+ecm_qt_declare_logging_category(userfeedback_core_debug_srcs HEADER logging_p.h IDENTIFIER KUserFeedback::Log CATEGORY_NAME org.kde.UserFeedback
+    DESCRIPTION "User Feedback Framework" EXPORT KUSERFEEDBACK)
+else()
+    set(userfeedback_core_debug_srcs
+        logging_p.cpp
+        logging_p.h)
+endif()
+
 set(userfeedback_core_srcs
     abstractdatasource.cpp
     applicationversionsource.cpp
@@ -38,9 +47,11 @@ set(userfeedback_core_srcs
     surveyinfo.h
     usagetimesource.h
     auditloguicontroller.h
-    logging_p.cpp
     ${userfeedback_core_QM_LOADER}
+    ${userfeedback_core_debug_srcs}
 )
+
+
 
 add_library(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} ${userfeedback_core_srcs})
 set_target_properties(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} PROPERTIES

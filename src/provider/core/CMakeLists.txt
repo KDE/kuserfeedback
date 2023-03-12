@@ -38,6 +38,7 @@ set(userfeedback_core_srcs
     surveyinfo.h
     usagetimesource.h
     auditloguicontroller.h
+    logging_p.cpp
     ${userfeedback_core_QM_LOADER}
 )
 

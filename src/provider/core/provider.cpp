@@ -34,10 +34,6 @@
 #include <algorithm>
 #include <numeric>
 
-namespace KUserFeedback {
-Q_LOGGING_CATEGORY(Log, "org.kde.UserFeedback", QtInfoMsg)
-}
-
 using namespace KUserFeedback;
 
 ProviderPrivate::ProviderPrivate(Provider *qq)

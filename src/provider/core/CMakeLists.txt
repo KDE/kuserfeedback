@@ -1,4 +1,4 @@
-ecm_create_qm_loader(userfeedback_core_QM_LOADER userfeedbackprovider5_qt)
+ecm_create_qm_loader(userfeedback_core_QM_LOADER userfeedbackprovider6_qt)
 
 if (ECM_VERSION VERSION_GREATER "5.67.0")
 ecm_qt_declare_logging_category(userfeedback_core_debug_srcs HEADER logging_p.h IDENTIFIER KUserFeedback::Log CATEGORY_NAME org.kde.UserFeedback

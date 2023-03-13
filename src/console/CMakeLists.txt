@@ -1,4 +1,4 @@
-ecm_create_qm_loader(userfeedback_console_QM_LOADER userfeedbackconsole5_qt)
+ecm_create_qm_loader(userfeedback_console_QM_LOADER userfeedbackconsole6_qt)
 
 set(console_lib_srcs
     core/aggregation.cpp

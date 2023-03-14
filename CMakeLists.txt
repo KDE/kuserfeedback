@@ -43,7 +43,7 @@ if (ECM_VERSION VERSION_GREATER "5.68.0")
     include(ECMQtDeclareLoggingCategory)
 endif()
 
-MESSAGE(STATUS "ddddddddddddddddd ${ECM_VERSION}")
+MESSAGE(STATUS "ECM Version found: ${ECM_VERSION}")
 set(KUSERFEEDBACK_EXTENSION)
 if (QT_MAJOR_VERSION STREQUAL "6")
     set(KUSERFEEDBACK_EXTENSION "Qt6")

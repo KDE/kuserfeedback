@@ -18,8 +18,6 @@
 
 QT_BEGIN_NAMESPACE
 class QJsonObject;
-class QUrl;
-class QUuid;
 QT_END_NAMESPACE
 
 namespace KUserFeedback {

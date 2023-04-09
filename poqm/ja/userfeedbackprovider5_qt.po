@@ -1,9 +1,10 @@
 # Tomohiro Hyakutake <tomhioo@outlook.jp>, 2020.
-# Fumiaki Okushi <fumiaki.okushi@gmail.com>, 2020.
+# Ryuichi Yamada <ryuichi_ya220@outlook.jp>, 2023.
+# Fumiaki Okushi <fumiaki.okushi@gmail.com>, 2020, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: userfeedbackprovider5_qt\n"
-"PO-Revision-Date: 2020-01-18 21:11-0800\n"
+"PO-Revision-Date: 2023-04-07 23:55-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
 "Language: ja\n"
@@ -14,7 +15,7 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: qtrich\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Lokalize 19.12.1\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -193,7 +194,7 @@ msgstr "詳細なシステム情報と %1 の個別機能の使用頻度に関�
 #: core/feedbackconfiguicontroller.cpp:231
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys"
-msgstr ""
+msgstr "調査に参加しない"
 
 #: core/feedbackconfiguicontroller.cpp:235
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -212,7 +213,7 @@ msgstr ""
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys about %1"
-msgstr ""
+msgstr "%1 についての調査に参加しない"
 
 #: core/feedbackconfiguicontroller.cpp:250
 #, qt-format
@@ -251,7 +252,7 @@ msgstr "OpenGL 情報"
 #: core/platforminfosource.cpp:21
 msgctxt "KUserFeedback::PlatformInfoSource|"
 msgid "Type and version of the operating system."
-msgstr "オペレーティングシステムの種類とバージョン"
+msgstr "オペレーティングシステムの種類とバージョン。"
 
 #: core/platforminfosource.cpp:58
 msgctxt "KUserFeedback::PlatformInfoSource|"
@@ -261,17 +262,17 @@ msgstr "プラットフォーム情報"
 #: core/qpainfosource.cpp:21
 msgctxt "KUserFeedback::QPAInfoSource|"
 msgid "The Qt platform abstraction plugin."
-msgstr ""
+msgstr "Qt Platform Abstraction プラグイン。"
 
 #: core/qpainfosource.cpp:33
 msgctxt "KUserFeedback::QPAInfoSource|"
 msgid "QPA information"
-msgstr ""
+msgstr "QPA 情報"
 
 #: core/qtversionsource.cpp:21
 msgctxt "KUserFeedback::QtVersionSource|"
 msgid "The Qt version used by this application."
-msgstr ""
+msgstr "このアプリケーションによって使用されている Qt のバージョン。"
 
 #: core/qtversionsource.cpp:33
 msgctxt "KUserFeedback::QtVersionSource|"
@@ -281,7 +282,7 @@ msgstr "Qt のバージョン情報"
 #: core/screeninfosource.cpp:22
 msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Size and resolution of all connected screens."
-msgstr ""
+msgstr "すべての接続されたスクリーンの大きさと解像度。"
 
 #: core/screeninfosource.cpp:41
 msgctxt "KUserFeedback::ScreenInfoSource|"
@@ -291,7 +292,7 @@ msgstr "ディスプレイのパラメータ"
 #: core/startcountsource.cpp:31
 msgctxt "KUserFeedback::StartCountSource|"
 msgid "How often the application has been started."
-msgstr ""
+msgstr "アプリケーションの起動回数。"
 
 #: core/startcountsource.cpp:46
 msgctxt "KUserFeedback::StartCountSource|"
@@ -301,7 +302,7 @@ msgstr "起動回数"
 #: core/usagetimesource.cpp:31
 msgctxt "KUserFeedback::UsageTimeSource|"
 msgid "The total amount of time the application has been used."
-msgstr ""
+msgstr "アプリケーションが使用された時間の合計。"
 
 #: core/usagetimesource.cpp:46
 msgctxt "KUserFeedback::UsageTimeSource|"
@@ -316,7 +317,7 @@ msgstr "ログを削除"
 #: widgets/auditlogbrowserdialog.ui:14
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Submitted Data"
-msgstr ""
+msgstr "送信されたデータ"
 
 #: widgets/auditlogbrowserdialog.ui:22
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"

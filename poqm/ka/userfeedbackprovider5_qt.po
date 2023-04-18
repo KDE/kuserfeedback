@@ -168,7 +168,7 @@ msgstr ""
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic system information and basic statistics on how often you use %1"
-msgstr ""
+msgstr "სისტემის ინფორმაციისა და %1-ის გამოყენების სტატისტიკის გაზიარება"
 
 #: core/feedbackconfiguicontroller.cpp:174
 #, qt-format
@@ -177,6 +177,8 @@ msgid ""
 "Share basic statistics on how often you use %1, as well as more detailed "
 "information about your system"
 msgstr ""
+"სისტემის შესახებ უფრო დეტალური ინფორმაციისა და %1-ის გამოყენების სიხშირის "
+"გაზიარება"
 
 #: core/feedbackconfiguicontroller.cpp:178
 #, qt-format
@@ -185,6 +187,8 @@ msgid ""
 "Share detailed system information and statistics on how often individual "
 "features of %1 are used."
 msgstr ""
+"სისტემის შესახებ დეტალური ინფორმაციისა და %1-ის ინდივიდუალური ფუნქციების "
+"გამოყენების სიხშირის გაზიარება."
 
 #: core/feedbackconfiguicontroller.cpp:231
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -196,6 +200,8 @@ msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Participate in surveys about the application not more than four times a year"
 msgstr ""
+"მიიღეთ მონაწილეობა აპლიკაციის შესახებ გამოკითხვებში, არაუმეტეს 4-ჯერ "
+"წელიწადში"
 
 #: core/feedbackconfiguicontroller.cpp:239
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -203,18 +209,21 @@ msgid ""
 "Participate in surveys about the application whenever one is available (they "
 "can be deferred or skipped)"
 msgstr ""
+"მიიღეთ მონაწილეობა აპლიკაციის შესახებ გამოკითხვებში, როცა ის ხელმისაწვდომია "
+"(შეგიძლიათ გადაავადოთ ან გამოტოვოთ)"
 
 #: core/feedbackconfiguicontroller.cpp:246
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys about %1"
-msgstr ""
+msgstr "%1-ის შესახებ გამოკითხვებში მონაწილეობას არ ვიღებ"
 
 #: core/feedbackconfiguicontroller.cpp:250
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Participate in surveys about %1 not more than four times a year"
 msgstr ""
+"მიიღეთ მონაწილეობა %1-ის შესახებ გამოკითხვებში, არაუმეტეს 4-ჯერ წელიწადში"
 
 #: core/feedbackconfiguicontroller.cpp:254
 #, qt-format
@@ -223,6 +232,8 @@ msgid ""
 "Participate in surveys about %1 whenever one is available (they can be "
 "deferred or skipped)"
 msgstr ""
+"მიიღეთ მონაწილეობა %1-ის შესახებ გამოკითხვებში, როცა ის ხელმისაწვდომია "
+"(შეგიძლიათ გადაავადოთ ან გამოტოვოთ)"
 
 #: core/localeinfosource.cpp:21
 msgctxt "KUserFeedback::LocaleInfoSource|"
@@ -348,6 +359,13 @@ msgid ""
 "collect your personal data, files you use, websites you visit, or "
 "information that could identify you."
 msgstr ""
+"თქვენ შეგიძლიათ დაეხმაროთ ამ პროგრამული უზრუნველყოფის შემუშავებას "
+"ინფორმაციის შეტანით, თუ როგორ იყენებთ მას, ასე რომ დეველოპერებს შეუძლიათ "
+"ფოკუსირება მოახდინონ თქვენთვის მნიშვნელოვან საკითხებზე. ამ ინფორმაციის "
+"შეტანა არჩევითი და სრულიად ანონიმურია. ჩვენ არასოდეს ვაგროვებთ თქვენს "
+"პერსონალურ მონაცემებს, თქვენს მიერ გამოსაყენებელ ფაილებს, ვებსაიტებს, "
+"რომლებსაც სტუმრობთ ან ინფორმაცია, რამაც შეიძლება თქვენი იდენტიფიცირება "
+"მოახდინოს."
 
 #: widgets/feedbackconfigwidget.ui:33
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -362,7 +380,7 @@ msgstr "ტექსტური ჭდე"
 #: widgets/feedbackconfigwidget.ui:124
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Show the raw data that is going to be shared."
-msgstr ""
+msgstr "გასაზიარებელი ინფორმაციის დაუმუშავებელი სახით ჩვენება."
 
 #: widgets/feedbackconfigwidget.ui:137
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -401,6 +419,8 @@ msgid ""
 "You can help us improving %1 by sharing statistics and participate in "
 "surveys."
 msgstr ""
+"გამოკითხვაში მონაწილეობით და სტატისტიკის გაზიარებით შეგიძლიათ, %1-ის "
+"გაუმჯობესებაში დაგვეხმაროთ."
 
 #: widgets/notificationpopup.cpp:73
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -418,6 +438,8 @@ msgid ""
 "We would like a few minutes of your time to provide feedback about this "
 "application in a survey."
 msgstr ""
+"დაგვითმეთ თქვენი დროის რამდენიმე წუთი და მოგვწერეთ თქვენი აზრი ამ აპლიკაციის "
+"შესახებ."
 
 #: widgets/notificationpopup.cpp:88
 #, qt-format
@@ -426,6 +448,7 @@ msgid ""
 "We would like a few minutes of your time to provide feedback about %1 in a "
 "survey."
 msgstr ""
+"დაგვითმეთ თქვენი დროის რამდენიმე წუთი და მოგვწერეთ თქვენი აზრი %1-ის შესახებ."
 
 #: widgets/notificationpopup.cpp:89
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -438,6 +461,8 @@ msgid ""
 "The widget style used by the application, and information about the used "
 "color scheme."
 msgstr ""
+"აპლიკაციის მიერ გამოყენებული ვიჯეტის სტილი და ინფორმაცია გამოყენებული ფერის "
+"სქემის შესახებ."
 
 #: widgets/styleinfosource.cpp:37
 msgctxt "KUserFeedback::StyleInfoSource|"

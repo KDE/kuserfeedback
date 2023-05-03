@@ -1,8 +1,8 @@
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2019-10-27 07:39+0100\n"
+"PO-Revision-Date: 2023-05-02 21:07+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.11.70\n"
+"X-Generator: Lokalize 23.04.0\n"
 "X-Qt-Contexts: true\n"
 
 #: core/applicationversionsource.cpp:21
@@ -98,34 +98,25 @@ msgid "Basic system information"
 msgstr "Información básica do sistema"
 
 #: core/feedbackconfiguicontroller.cpp:123
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid "Basic system information"
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Basic system information and usage statistics"
-msgstr "Información básica do sistema"
+msgstr "Información básica do sistema e estatísticas de uso básicas"
 
 #: core/feedbackconfiguicontroller.cpp:125
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid "Detailed system information"
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Detailed system information and basic usage statistics"
-msgstr "Información detallada do sistema"
+msgstr "Información detallada do sistema e estatísticas de uso básicas"
 
 #: core/feedbackconfiguicontroller.cpp:127
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid "Detailed system information"
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Detailed system information and usage statistics"
-msgstr "Información detallada do sistema"
+msgstr "Información detallada do sistema e estatísticas de uso"
 
 #: core/feedbackconfiguicontroller.cpp:139
 #: core/feedbackconfiguicontroller.cpp:162
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't share anything"
-msgstr ""
+msgstr "Non compartir nada"
 
 #: core/feedbackconfiguicontroller.cpp:143
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -133,53 +124,35 @@ msgid ""
 "Share basic system information such as the version of the application and "
 "the operating system"
 msgstr ""
+"Compartir información básica do sistema como a versión da aplicación e do "
+"sistema operativo."
 
 #: core/feedbackconfiguicontroller.cpp:147
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "Share basic system information and basic statistics on how often you use "
-#| "%1. No unique identification is included, nor data processed with %1."
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic system information and basic statistics on how often you use the "
 "application"
 msgstr ""
 "Compartir información básica do sistema e estatísticas básicas sobre a "
-"frecuencia coa que usa %1. Non se inclúe ningún identificador único, nin "
-"datos procesados con %1."
+"frecuencia coa que usa a aplicación."
 
 #: core/feedbackconfiguicontroller.cpp:151
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "Share basic statistics on how often you use the application, as well as "
-#| "detailed information about your system. No unique identification is "
-#| "included, nor data processed with the application."
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic statistics on how often you use the application, as well as more "
 "detailed information about your system"
 msgstr ""
 "Compartir estatísticas básicas sobre a frecuencia coa que usa a aplicación, "
-"así como información detallada sobre o sistema. Non se inclúe ningún "
-"identificador único, nin datos procesados coa aplicación."
+"así como información máis detallada sobre o sistema."
 
 #: core/feedbackconfiguicontroller.cpp:155
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "Share detailed system information and statistics on how often individual "
-#| "features of %1 are used. No unique identification is included, nor data "
-#| "processed with %1."
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share detailed system information and statistics on how often individual "
 "features of the application are used."
 msgstr ""
 "Compartir información detallada do sistema e estatísticas sobre a frecuencia "
-"coa que usa funcionalidades concretas de %1. Non se inclúe ningún "
-"identificador único, nin datos procesados con %1."
+"coa que usa funcionalidades concretas da aplicación."
 
 #: core/feedbackconfiguicontroller.cpp:166
 #, qt-format
@@ -188,121 +161,78 @@ msgid ""
 "Share basic system information such as the version of %1 and and the "
 "operating system"
 msgstr ""
+"Compartir información básica do sistema como a versión de %1 e do sistema "
+"operativo."
 
 #: core/feedbackconfiguicontroller.cpp:170
-#, fuzzy, qt-format
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "Share basic system information and basic statistics on how often you use "
-#| "%1. No unique identification is included, nor data processed with %1."
+#, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic system information and basic statistics on how often you use %1"
 msgstr ""
 "Compartir información básica do sistema e estatísticas básicas sobre a "
-"frecuencia coa que usa %1. Non se inclúe ningún identificador único, nin "
-"datos procesados con %1."
+"frecuencia coa que usa  %1."
 
 #: core/feedbackconfiguicontroller.cpp:174
-#, fuzzy, qt-format
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "Share basic statistics on how often you use %1, as well as detailed "
-#| "information about your system. No unique identification is included, nor "
-#| "data processed with %1."
+#, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic statistics on how often you use %1, as well as more detailed "
 "information about your system"
 msgstr ""
 "Compartir estatísticas básicas sobre a frecuencia coa que usa %1, así como "
-"información detallada sobre o sistema. Non se inclúe ningún identificador "
-"único, nin datos procesados con %1."
+"información máis detallada sobre o sistema."
 
 #: core/feedbackconfiguicontroller.cpp:178
-#, fuzzy, qt-format
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "Share detailed system information and statistics on how often individual "
-#| "features of %1 are used. No unique identification is included, nor data "
-#| "processed with %1."
+#, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share detailed system information and statistics on how often individual "
 "features of %1 are used."
 msgstr ""
 "Compartir información detallada do sistema e estatísticas sobre a frecuencia "
-"coa que usa funcionalidades concretas de %1. Non se inclúe ningún "
-"identificador único, nin datos procesados con %1."
+"coa que usa funcionalidades concretas de %1."
 
 #: core/feedbackconfiguicontroller.cpp:231
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigWidget|"
-#| msgid "Participate in Surveys"
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys"
-msgstr "Participar en enquisas"
+msgstr "Non participar nas enquisas de ergonomía"
 
 #: core/feedbackconfiguicontroller.cpp:235
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "I will occasionally participate in web surveys about the application, not "
-#| "more than four times a year though."
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Participate in surveys about the application not more than four times a year"
-msgstr ""
-"Participarei de xeito ocasional en enquisas web sobre a aplicación, pero non "
-"máis de catro veces ao ano."
+msgstr "Participar nas enquisas da aplicación non máis de catro veces ao ano."
 
 #: core/feedbackconfiguicontroller.cpp:239
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "I will participate in web surveys about %1 whenever one is available. "
-#| "Surveys can of course be deferred or skipped."
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Participate in surveys about the application whenever one is available (they "
 "can be deferred or skipped)"
 msgstr ""
-"Participarei en enquisas web sobre %1 en canto estean dispoñíbeis. Pero "
-"poderei atrasalas ou saltalas."
+"Participar sempre nas enquisas da aplicación (sempre pode pospoñelas ou "
+"saltalas)."
 
 #: core/feedbackconfiguicontroller.cpp:246
-#, fuzzy, qt-format
-#| msgctxt "KUserFeedback::FeedbackConfigWidget|"
-#| msgid "Participate in Surveys"
+#, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys about %1"
-msgstr "Participar en enquisas"
+msgstr "Non participar nas enquisas de ergonomía de %1"
 
 #: core/feedbackconfiguicontroller.cpp:250
-#, fuzzy, qt-format
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "I will occasionally participate in web surveys about %1, not more than "
-#| "four times a year though."
+#, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Participate in surveys about %1 not more than four times a year"
-msgstr ""
-"Participarei de xeito ocasional en enquisas web sobre %1, pero non máis de "
-"catro veces ao ano."
+msgstr "Participar nas enquisas de %1 non máis de catro veces ao ano."
 
 #: core/feedbackconfiguicontroller.cpp:254
-#, fuzzy, qt-format
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "I will participate in web surveys about %1 whenever one is available. "
-#| "Surveys can of course be deferred or skipped."
+#, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Participate in surveys about %1 whenever one is available (they can be "
 "deferred or skipped)"
 msgstr ""
-"Participarei en enquisas web sobre %1 en canto estean dispoñíbeis. Pero "
-"poderei atrasalas ou saltalas."
+"Participar sempre nas enquisas de %1 (sempre pode pospoñelas ou saltalas)."
 
 #: core/localeinfosource.cpp:21
 msgctxt "KUserFeedback::LocaleInfoSource|"
@@ -392,7 +322,7 @@ msgstr "Eliminar o rexistro"
 #: widgets/auditlogbrowserdialog.ui:14
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Submitted Data"
-msgstr ""
+msgstr "Datos enviados"
 
 #: widgets/auditlogbrowserdialog.ui:22
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
@@ -417,17 +347,9 @@ msgstr "Configuración de información"
 #: widgets/feedbackconfigwidget.cpp:116
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "No data has been sent at this point."
-msgstr ""
+msgstr "De momento non se enviaron datos."
 
 #: widgets/feedbackconfigwidget.ui:17
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigUiController|"
-#| msgid ""
-#| "We make %1 for you. You can help us improve it by contributing "
-#| "information on how you use it. This allows us to make sure we focus on "
-#| "things that matter to you.\n"
-#| "Contributing statistics is of course entirely anonymous, will not use any "
-#| "kind of unique identifier and will not cover any data you process with %1."
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid ""
 "You can help the development of this software by contributing information on "
@@ -436,12 +358,11 @@ msgid ""
 "collect your personal data, files you use, websites you visit, or "
 "information that could identify you."
 msgstr ""
-"Facemos %1 para vostede. Pode axudarnos a melloralo enviando información "
-"sobre como o usa. Isto permítenos asegurarnos de que nos centramos nas "
-"cousas que lle importan.\n"
-"As estatísticas enviadas son, por suposto, completamente anónimas, non "
-"usarán ningún tipo de identificador único e non conterán ningún dato que "
-"vostede procese con %1."
+"Pode colaborar no desenvolvemento deste software achegando información de "
+"uso, para que as persoas desenvolvedoras se centren no que usa. Estas "
+"achegas son opcionais e completamente anónimas. Non recollemos datos "
+"persoais, ficheiros, visitas a sitios web, nin información que poida usarse "
+"para a súa identificación."
 
 #: widgets/feedbackconfigwidget.ui:33
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -524,8 +445,8 @@ msgid ""
 "We would like a few minutes of your time to provide feedback about %1 in a "
 "survey."
 msgstr ""
-"Gustaríanos robarche uns minutos do teu tempo para que fornezas a túa "
-"opinión sobre %1 nunha enquisa."
+"Se ten uns minutos gustaríanos que completase unha enquisa para saber a súa "
+"opinión sobre %1."
 
 #: widgets/notificationpopup.cpp:89
 msgctxt "KUserFeedback::NotificationPopup|"

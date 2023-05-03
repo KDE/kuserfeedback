@@ -1,8 +1,8 @@
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2019-10-27 07:39+0100\n"
+"PO-Revision-Date: 2023-05-02 21:07+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.11.70\n"
+"X-Generator: Lokalize 23.04.0\n"
 "X-Qt-Contexts: true\n"
 
 #: analytics/analyticsview.cpp:77
@@ -31,7 +31,7 @@ msgstr "Copiar"
 #: analytics/analyticsview.cpp:258
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export Data"
-msgstr "Esportar os datos"
+msgstr "Exportar os datos"
 
 #: analytics/analyticsview.cpp:264
 msgctxt "KUserFeedback::Console::AnalyticsView|"

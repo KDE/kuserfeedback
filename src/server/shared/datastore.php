@@ -121,15 +121,19 @@ public function checkSchema()
 /** Returns the current schema version. */
 private function schemaVersion()
 {
-    $res = $this->db->query('SELECT col_version FROM tbl_version');
-    if ($res === FALSE) {
-        // restart transaction, so this fail doesn't block the following commands
-        $this->rollback();
-        $this->beginTransaction();
-        return 0;
+    try {
+        $res = $this->db->query('SELECT col_version FROM tbl_version');
+        if ($res === FALSE) {
+            // restart transaction, so this fail doesn't block the following commands
+            $this->rollback();
+            $this->beginTransaction();
+            return 0;
+        }
+        foreach ($res as $row)
+            return intval($row['col_version']);
+    } catch (PDOException $e) {
+        // table does not exist yet
     }
-    foreach ($res as $row)
-        return intval($row['col_version']);
     return 0;
 }
 

@@ -5,12 +5,19 @@
     SPDX-License-Identifier: MIT
 */
 
-require_once('abstractdatastoretest.php');
+require_once('datastoretesthelper.php');
 require_once('../src/server/shared/product.php');
 require_once('../src/server/shared/sample.php');
 
-class SurveyTest extends AbstractDatastoreTest
+class SampleTest extends PHPUnit\Framework\TestCase
 {
+    private static $db;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$db = DatastoreTestHelper::setup();
+    }
+
     public function testListSampleInsert()
     {
         $p = Product::productByName(self::$db, 'org.kde.UnitTest');
@@ -102,7 +109,7 @@ class SurveyTest extends AbstractDatastoreTest
         $this->assertObjectNotHasAttribute('someRandomStuff', $d0);
     }
 
-    public function testInvalidInsert_data()
+    public static function invalidInsert_data()
     {
         return [
             'empty' => [ '' ],
@@ -113,12 +120,12 @@ class SurveyTest extends AbstractDatastoreTest
     }
 
     /**
-     * @dataProvider testInvalidInsert_data
-     * @expectedException RESTException
-     * @exceptedExceptionCode 400
+     * @dataProvider invalidInsert_data
      */
     public function testInvalidInsert($input)
     {
+        $this->expectException(RESTException::class);
+        $this->expectExceptionCode(400);
         $p = Product::productByName(self::$db, 'org.kde.UnitTest');
         $this->assertNotNull($p);
 
@@ -150,7 +157,7 @@ class SurveyTest extends AbstractDatastoreTest
         $this->assertJsonStringEqualsJsonString($input, json_encode($jsonOutput));
     }
 
-    public function testInvalidImport_data()
+    public static function invalidImport_data()
     {
         return [
             'nothing' => [ '' ],
@@ -162,12 +169,12 @@ class SurveyTest extends AbstractDatastoreTest
     }
 
     /**
-     * @dataProvider testInvalidImport_data
-     * @expectedException RESTException
-     * @exceptedExceptionCode 400
+     * @dataProvider invalidImport_data
      */
     public function testInvalidImport($input)
     {
+        $this->expectException(RESTException::class);
+        $this->expectExceptionCode(400);
         $p = Product::productByName(self::$db, 'org.kde.UnitTest');
         $this->assertNotNull($p);
 

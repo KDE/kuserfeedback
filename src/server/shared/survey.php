@@ -20,7 +20,7 @@ class Survey
 
     private $id = -1;
     /** Returns an array of all surveys for @p productName. */
-    public function surveysForProduct(Datastore $db, $productName)
+    public static function surveysForProduct(Datastore $db, $productName)
     {
         $stmt = $db->prepare('
             SELECT tbl_survey.col_id, tbl_survey.col_uuid, tbl_survey.col_name, tbl_survey.col_url, tbl_survey.col_active, tbl_survey.col_target
@@ -46,7 +46,7 @@ class Survey
     }
 
     /** Returns an array of all active surveys for @p product. */
-    public function activeSurveysForProduct(Datastore $db, Product $product)
+    public static function activeSurveysForProduct(Datastore $db, Product $product)
     {
         $stmt = $db->prepare('SELECT col_id, col_uuid, col_name, col_url, col_target FROM tbl_survey WHERE col_product_id = :productId AND col_active = :active');
         $stmt->bindValue(':productId', $product->id(), PDO::PARAM_INT);

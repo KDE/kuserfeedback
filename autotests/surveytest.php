@@ -5,12 +5,19 @@
     SPDX-License-Identifier: MIT
 */
 
-require_once('abstractdatastoretest.php');
+require_once('datastoretesthelper.php');
 require_once('../src/server/shared/product.php');
 require_once('../src/server/shared/survey.php');
 
-class SurveyTest extends AbstractDatastoreTest
+class SurveyTest extends PHPUnit\Framework\TestCase
 {
+    private static $db;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$db = DatastoreTestHelper::setup();
+    }
+
     public function testFromJson()
     {
         $s = Survey::fromJson('{
@@ -169,7 +176,7 @@ class SurveyTest extends AbstractDatastoreTest
         $this->assertNull($s);
     }
 
-    public function testInvalidInput_data()
+    public static function invalidInput_data()
     {
         return [
             'empty' => [ '{}' ],
@@ -182,12 +189,12 @@ class SurveyTest extends AbstractDatastoreTest
     }
 
     /**
-     * @dataProvider testInvalidInput_data
-     * @expectedException RESTException
-     * @exceptedExceptionCode 400
+     * @dataProvider invalidInput_data
      */
     public function testInvalidInput($json)
     {
+        $this->expectException(RESTException::class);
+        $this->expectExceptionCode(400);
         $s = Survey::fromJson($json);
     }
 }

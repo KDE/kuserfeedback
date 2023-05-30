@@ -5,12 +5,19 @@
     SPDX-License-Identifier: MIT
 */
 
-require_once('abstractdatastoretest.php');
+require_once('datastoretesthelper.php');
 require_once('../src/server/shared/product.php');
 
-class ProductTest extends AbstractDatastoreTest
+class ProductTest extends PHPUnit\Framework\TestCase
 {
-    public function testTableName_data()
+    private static $db;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$db = DatastoreTestHelper::setup();
+    }
+
+    public static function tableName_data()
     {
         return [
             'normal' => [ 'foo', 'pd_foo' ],
@@ -18,7 +25,7 @@ class ProductTest extends AbstractDatastoreTest
         ];
     }
 
-    /** @dataProvider testTableName_data */
+    /** @dataProvider tableName_data */
     public function testTableName($input, $output)
     {
         $p = new Product;
@@ -325,7 +332,7 @@ class ProductTest extends AbstractDatastoreTest
         $this->assertNull($p);
     }
 
-    public function testInvalidInput_data()
+    public static function invalidInput_data()
     {
         return [
             'empty' => [ '{}' ],
@@ -336,12 +343,12 @@ class ProductTest extends AbstractDatastoreTest
     }
 
     /**
-     * @dataProvider testInvalidInput_data
-     * @expectedException RESTException
-     * @exceptedExceptionCode 400
+     * @dataProvider invalidInput_data
      */
     public function testInvalidInput($json)
     {
+        $this->expectException(RESTException::class);
+        $this->expectExceptionCode(400);
         $p = Product::fromJson($json);
     }
 }

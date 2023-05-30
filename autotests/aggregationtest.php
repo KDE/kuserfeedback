@@ -5,11 +5,18 @@
     SPDX-License-Identifier: MIT
 */
 
-require_once('abstractdatastoretest.php');
+require_once('datastoretesthelper.php');
 require_once('../src/server/shared/aggregation.php');
 
-class AggregationTest extends AbstractDatastoreTest
+class AggregationTest extends PHPUnit\Framework\TestCase
 {
+    private static $db;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$db = DatastoreTestHelper::setup();
+    }
+
     public function testFromJson()
     {
         $json = '[]';
@@ -91,7 +98,7 @@ class AggregationTest extends AbstractDatastoreTest
         $this->assertEmpty($aggrs);
     }
 
-    public function testInvalidJson_data()
+    public static function invalidJson_data()
     {
         return [
             'nothing' => [ '' ],
@@ -103,12 +110,12 @@ class AggregationTest extends AbstractDatastoreTest
     }
 
     /**
-     * @dataProvider testInvalidJson_data
-     * @expectedException RESTException
-     * @exceptedExceptionCode 400
+     * @dataProvider invalidJson_data
      */
     public function testInvalidJson($input)
     {
+        $this->expectException(RESTException::class);
+        $this->expectExceptionCode(400);
         $aggrs = Aggregation::fromJson(json_decode($input));
     }
 }

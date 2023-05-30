@@ -7,9 +7,9 @@
 
 require_once('../src/server/shared/utils.php');
 
-class UtilTest extends PHPUnit\Framework\TestCase
+class UtilsTest extends PHPUnit\Framework\TestCase
 {
-    public function testIsValidIdentifier_data()
+    public static function isValidIdentifier_data()
     {
         return [
             'empty' => [ '', false ],
@@ -28,13 +28,13 @@ class UtilTest extends PHPUnit\Framework\TestCase
         ];
     }
 
-    /** @dataProvider testIsValidIdentifier_data */
+    /** @dataProvider isValidIdentifier_data */
     public function testIsValidIdentifier($str, $result)
     {
         $this->assertEquals($result, Utils::isValidIdentifier($str));
     }
 
-    public function testNormalize_data()
+    public static function normalize_data()
     {
         return [
             'empty' => [ '', '' ],
@@ -43,13 +43,13 @@ class UtilTest extends PHPUnit\Framework\TestCase
         ];
     }
 
-    /** @dataProvider testNormalize_data */
+    /** @dataProvider normalize_data */
     public function testNormalize($input, $output)
     {
         $this->assertEquals($output, Utils::normalizeString($input));
     }
 
-    public function testPrimaryKeyColumn_data()
+    public static function primaryKeyColumn_data()
     {
         return [
             'sqlite' => [ 'sqlite', 'id', 'id INTEGER PRIMARY KEY AUTOINCREMENT' ],
@@ -58,13 +58,13 @@ class UtilTest extends PHPUnit\Framework\TestCase
         ];
     }
 
-    /** @dataProvider testPrimaryKeyColumn_data */
-    public function testPrimaryKeyColumn($driver, $name, $output)
+    /** @dataProvider primaryKeyColumn_data */
+    public function primaryKeyColumn($driver, $name, $output)
     {
         $this->assertEquals($output, Utils::primaryKeyColumnDeclaration($driver, $name));
     }
 
-    public function testSqlStringType_data()
+    public static function sqlStringType_data()
     {
         return [
             'sqlite' => [ 'sqlite', 'VARCHAR' ],
@@ -73,7 +73,7 @@ class UtilTest extends PHPUnit\Framework\TestCase
         ];
     }
 
-    /** @dataProvider testSqlStringType_data */
+    /** @dataProvider sqlStringType_data */
     public function testSqlStringType($driver, $output)
     {
         $this->assertEquals($output, Utils::sqlStringType($driver));

@@ -58,7 +58,7 @@ if(ENABLE_PHP)
         aggregationtest.php
     )
 
-    php_lint(abstractdatastoretest.php)
+    php_lint(datastoretesthelper.php)
     php_lint(${php_test_srcs})
     if(PhpUnit_FOUND)
         foreach(_php_test ${php_test_srcs})

@@ -11,7 +11,7 @@ require_once('../src/server/shared/schemaentryelement.php');
 
 class SchemaEntryElementTest extends PHPUnit\Framework\TestCase
 {
-    public function testDataColumnName_data()
+    public static function dataColumnName_data()
     {
         return [
             'normal' => [ 'foo', 'col_data_entry_foo' ],
@@ -19,7 +19,7 @@ class SchemaEntryElementTest extends PHPUnit\Framework\TestCase
         ];
     }
 
-    /** @dataProvider testDataColumnName_data */
+    /** @dataProvider dataColumnName_data */
     public function testDataTableName($input, $output)
     {
         $p = new Product;
@@ -31,7 +31,7 @@ class SchemaEntryElementTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($output, $see->dataColumnName());
     }
 
-    public function testInvalidJson_data()
+    public static function invalidJson_data()
     {
         return [
             'empty' => [ '{}' ],
@@ -44,12 +44,12 @@ class SchemaEntryElementTest extends PHPUnit\Framework\TestCase
     }
 
     /**
-     * @dataProvider testInvalidJson_data
-     * @expectedException RESTException
-     * @exceptedExceptionCode 400
+     * @dataProvider invalidJson_data
      */
     public function testInvalidJson($input)
     {
+        $this->expectException(RESTException::class);
+        $this->expectExceptionCode(400);
         $p = new Product;
         $se = new SchemaEntry($p);
         SchemaEntryElement::fromJson(json_decode('[ ' . $input . ' ]'), $se);

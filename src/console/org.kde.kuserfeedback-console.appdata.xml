@@ -27,7 +27,7 @@
   <name xml:lang="sk">Konzola KUserFeedback</name>
   <name xml:lang="sl">KUserFeedback Console</name>
   <name xml:lang="sv">Terminal för användaråterkoppling</name>
-  <name xml:lang="tr">KUserFeedback Konsolu</name>
+  <name xml:lang="tr">K Kullanıcı Geri Bildirimi Konsolu</name>
   <name xml:lang="uk">Консоль KUserFeedback</name>
   <name xml:lang="x-test">xxKUserFeedback Consolexx</name>
   <name xml:lang="zh-CN">KUserFeedback 控制台</name>
@@ -54,7 +54,7 @@
   <summary xml:lang="pt-BR">Ferramenta de administração e análise para os servidores KUserFeedback</summary>
   <summary xml:lang="sl">Analitika in orodje administracijo strežnikov za uporabniške povratne informacije</summary>
   <summary xml:lang="sv">Analys- och administrationsverktyg för användaråterkopplingsservrar</summary>
-  <summary xml:lang="tr">KUserFeedback sunucuları için çözümleme ve yönetim aracı</summary>
+  <summary xml:lang="tr">K Kullanıcı Geri Bildirimi sunucuları için çözümleme ve yönetim aracı</summary>
   <summary xml:lang="uk">Аналітичний і адміністративний інструмент для серверів KUserFeedback</summary>
   <summary xml:lang="x-test">xxAnalytics and administration tool for KUserFeedback serversxx</summary>
   <summary xml:lang="zh-CN">KUserFeedback 服务器的分析和管理工具</summary>

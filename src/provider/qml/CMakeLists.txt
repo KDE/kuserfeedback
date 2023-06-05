@@ -14,6 +14,8 @@ set(provider_qml_srcs
     qmlpropertysource.h
 )
 
+configure_file(qmldir.in ${CMAKE_CURRENT_BINARY_DIR}/qmldir)
+
 add_library(KUserFeedbackQml${KUSERFEEDBACK_EXTENSION} SHARED ${provider_qml_srcs})
 
 target_link_libraries(KUserFeedbackQml${KUSERFEEDBACK_EXTENSION}
@@ -22,4 +24,4 @@ target_link_libraries(KUserFeedbackQml${KUSERFEEDBACK_EXTENSION}
 )
 
 install(TARGETS KUserFeedbackQml${KUSERFEEDBACK_EXTENSION} DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/userfeedback)
-install(FILES qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/userfeedback)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/userfeedback)

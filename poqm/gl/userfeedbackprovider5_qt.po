@@ -377,7 +377,7 @@ msgstr "Etiqueta de texto"
 #: widgets/feedbackconfigwidget.ui:124
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Show the raw data that is going to be shared."
-msgstr "Mostrar os datos en bruto que se van compartir."
+msgstr "Amosar os datos en bruto que se van compartir."
 
 #: widgets/feedbackconfigwidget.ui:137
 msgctxt "KUserFeedback::FeedbackConfigWidget|"

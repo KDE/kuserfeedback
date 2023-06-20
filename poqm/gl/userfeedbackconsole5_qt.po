@@ -168,7 +168,7 @@ msgstr "Gráfica de liña &temporal"
 #: analytics/analyticsview.ui:221
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show development over time."
-msgstr "Mostrar o desenvolvemento ao longo do tempo."
+msgstr "Amosar o desenvolvemento ao longo do tempo."
 
 #: analytics/analyticsview.ui:232
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -178,7 +178,7 @@ msgstr "Gráfica ú&nica"
 #: analytics/analyticsview.ui:235
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show chart for a single time interval."
-msgstr "Mostrar unha gráfica para un único intervalo de tempo."
+msgstr "Amosar unha gráfica para un único intervalo de tempo."
 
 #: analytics/analyticsview.ui:243
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -636,7 +636,7 @@ msgstr "Manual de usuario…"
 #: mainwindow.ui:303
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Show the user manual"
-msgstr "Mostrar o manual de usuario."
+msgstr "Amosar o manual de usuario."
 
 #: mainwindow.ui:311
 msgctxt "KUserFeedback::Console::MainWindow|"

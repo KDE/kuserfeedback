@@ -213,3 +213,5 @@ void AuditLogUiController::clear()
 }
 
 #include "auditloguicontroller.moc"
+
+#include "moc_auditloguicontroller.cpp"

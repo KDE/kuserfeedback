@@ -54,3 +54,5 @@ void MetaEnumComboBox::setValue(const QVariant& value)
             setCurrentIndex(i);
     }
 }
+
+#include "moc_metaenumcombobox.cpp"

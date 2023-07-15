@@ -273,3 +273,5 @@ void FeedbackConfigUiController::setApplicationName(const QString& appName)
     d->m_appName = appName;
     Q_EMIT applicationNameChanged(appName);
 }
+
+#include "moc_feedbackconfiguicontroller.cpp"

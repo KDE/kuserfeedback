@@ -27,3 +27,5 @@ bool SingleRowFilterProxyModel::filterAcceptsRow(int source_row, const QModelInd
         return false;
     return source_row == m_row;
 }
+
+#include "moc_singlerowfilterproxymodel.cpp"

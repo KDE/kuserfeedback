@@ -86,3 +86,5 @@ CustomPropertySource * KUserFeedback::QmlPropertySource::customSource()
 {
     return dynamic_cast<CustomPropertySource*>(source());
 }
+
+#include "moc_qmlpropertysource.cpp"

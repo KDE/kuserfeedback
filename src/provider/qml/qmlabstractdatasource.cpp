@@ -37,3 +37,5 @@ AbstractDataSource* QmlAbstractDataSource::source() const
 {
     return m_source;
 }
+
+#include "moc_qmlabstractdatasource.cpp"

@@ -109,3 +109,5 @@ void ProductImportJob::doImportData()
             emitFinished();
     });
 }
+
+#include "moc_productimportjob.cpp"

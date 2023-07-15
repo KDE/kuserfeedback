@@ -357,3 +357,5 @@ void AnalyticsView::exportChart()
 
     ChartUtil::applyTheme(chart);
 }
+
+#include "moc_analyticsview.cpp"

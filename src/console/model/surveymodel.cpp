@@ -123,3 +123,5 @@ Qt::ItemFlags SurveyModel::flags(const QModelIndex &index) const
         return f | Qt::ItemIsUserCheckable;
     return f;
 }
+
+#include "moc_surveymodel.cpp"

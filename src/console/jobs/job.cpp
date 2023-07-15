@@ -26,3 +26,5 @@ void Job::emitFinished()
     emit finished();
     deleteLater();
 }
+
+#include "moc_job.cpp"

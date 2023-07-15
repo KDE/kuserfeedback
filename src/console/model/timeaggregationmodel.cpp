@@ -156,3 +156,5 @@ QVariant TimeAggregationModel::headerData(int section, Qt::Orientation orientati
     }
     return QAbstractTableModel::headerData(section, orientation, role);
 }
+
+#include "moc_timeaggregationmodel.cpp"

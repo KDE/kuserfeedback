@@ -44,3 +44,5 @@ QQmlListProperty<QmlAbstractDataSource> QmlProviderExtension::sources()
         QmlProviderExtension::sourceAppend, QmlProviderExtension::sourceCount,
         QmlProviderExtension::sourceAt, QmlProviderExtension::sourceClear);
 }
+
+#include "moc_qmlproviderextension.cpp"

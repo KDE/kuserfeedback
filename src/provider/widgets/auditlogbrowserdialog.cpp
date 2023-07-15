@@ -53,3 +53,5 @@ void AuditLogBrowserDialog::logEntrySelected()
     const auto dt = ui->logEntryBox->currentData().toDateTime();
     ui->logEntryView->setText(m_controller->logEntry(dt));
 }
+
+#include "moc_auditlogbrowserdialog.cpp"

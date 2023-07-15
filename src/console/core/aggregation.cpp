@@ -89,3 +89,5 @@ QVector<Aggregation> Aggregation::fromJson(const Product &product, const QJsonAr
     }
     return aggrs;
 }
+
+#include "moc_aggregation.cpp"

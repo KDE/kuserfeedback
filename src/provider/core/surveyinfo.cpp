@@ -82,3 +82,5 @@ SurveyInfo SurveyInfo::fromJson(const QJsonObject& obj)
     s.setTarget(obj.value(QLatin1String("target")).toString());
     return s;
 }
+
+#include "moc_surveyinfo.cpp"

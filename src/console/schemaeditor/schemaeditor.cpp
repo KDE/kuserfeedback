@@ -169,3 +169,5 @@ void SchemaEditor::updateState()
     for (auto action : ui->aggregation->actions())
         action->setVisible(aggrEditActive);
 }
+
+#include "moc_schemaeditor.cpp"

@@ -27,3 +27,5 @@ QVariant RoleMappingProxyModel::data(const QModelIndex& index, int role) const
         return QIdentityProxyModel::data(index, it.value());
     return QIdentityProxyModel::data(index, role);
 }
+
+#include "moc_rolemappingproxymodel.cpp"

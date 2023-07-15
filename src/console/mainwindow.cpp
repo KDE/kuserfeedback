@@ -362,3 +362,5 @@ void MainWindow::closeEvent(QCloseEvent* event)
     }
     QMainWindow::closeEvent(event);
 }
+
+#include "moc_mainwindow.cpp"

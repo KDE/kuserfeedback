@@ -56,3 +56,5 @@ void ChartExportDialog::validate()
 {
     ui->buttonBox->button(QDialogButtonBox::Save)->setEnabled(!ui->fileEdit->text().isEmpty());
 }
+
+#include "moc_chartexportdialog.cpp"

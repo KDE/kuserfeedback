@@ -161,3 +161,5 @@ QVariant DataModel::headerData(int section, Qt::Orientation orientation, int rol
     }
     return QAbstractTableModel::headerData(section, orientation, role);
 }
+
+#include "moc_datamodel.cpp"

@@ -61,3 +61,5 @@ void ConnectDialog::serverSelected()
     if (info.isValid())
         setServerInfo(info);
 }
+
+#include "moc_connectdialog.cpp"

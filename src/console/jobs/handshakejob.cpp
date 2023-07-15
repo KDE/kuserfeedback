@@ -64,3 +64,5 @@ void HandshakeJob::processResponse(QNetworkReply* reply)
     m_restClient->setConnected(true);
     emitFinished();
 }
+
+#include "moc_handshakejob.cpp"

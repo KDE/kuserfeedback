@@ -93,3 +93,5 @@ void AggregatedDataModel::recreateColumnMapping()
     }
     endResetModel();
 }
+
+#include "moc_aggregateddatamodel.cpp"

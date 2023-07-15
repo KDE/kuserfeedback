@@ -136,3 +136,5 @@ QModelIndex SchemaEditWidget::currentSource() const
         return idx;
     return {};
 }
+
+#include "moc_schemaeditwidget.cpp"

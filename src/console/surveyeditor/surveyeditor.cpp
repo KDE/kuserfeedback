@@ -128,3 +128,5 @@ void SurveyEditor::updateActions()
     ui->actionEditSurvey->setEnabled(hasSelection);
     ui->actionDeleteSurvey->setEnabled(hasSelection);
 }
+
+#include "moc_surveyeditor.cpp"

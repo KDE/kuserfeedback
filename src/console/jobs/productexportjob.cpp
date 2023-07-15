@@ -118,3 +118,5 @@ QString ProductExportJob::destination() const
     dest.cd(m_product.name());
     return dest.absolutePath();
 }
+
+#include "moc_productexportjob.cpp"

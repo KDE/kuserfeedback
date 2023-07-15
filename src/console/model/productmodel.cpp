@@ -130,3 +130,5 @@ void ProductModel::mergeProducts(QVector<Product> &&products)
         endResetModel();
     }
 }
+
+#include "moc_productmodel.cpp"

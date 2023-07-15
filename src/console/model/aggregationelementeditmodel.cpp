@@ -78,3 +78,5 @@ bool AggregationElementEditModel::setData(const QModelIndex& index, const QVaria
     emit dataChanged(index, index);
     return true;
 }
+
+#include "moc_aggregationelementeditmodel.cpp"

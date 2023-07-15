@@ -171,3 +171,4 @@ void RatioSetAggregationModel::recompute()
     endResetModel();
 }
 
+#include "moc_ratiosetaggregationmodel.cpp"

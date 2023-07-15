@@ -115,3 +115,5 @@ void RESTClient::setupMessageHandler(QNetworkReply* reply)
             emit errorMessage(QString::fromUtf8(d));
     });
 }
+
+#include "moc_restclient.cpp"

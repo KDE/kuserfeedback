@@ -134,3 +134,5 @@ QVector<SchemaEntry> SchemaEntry::fromJson(const QJsonArray &array)
 
     return res;
 }
+
+#include "moc_schemaentry.cpp"

@@ -35,3 +35,5 @@ MAKE_BASIC_QML_WRAPPER(StartCountSource)
 MAKE_BASIC_QML_WRAPPER(UsageTimeSource)
 
 #undef MAKE_DEFAULT_SOURCE
+
+#include "moc_qmldatasources.cpp"

@@ -71,3 +71,5 @@ QModelIndexList AggregationElementModel::match(const QModelIndex& start, int rol
     }
     return QAbstractListModel::match(start, role, value, hits, flags);
 }
+
+#include "moc_aggregationelementmodel.cpp"

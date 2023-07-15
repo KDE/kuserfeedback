@@ -160,3 +160,5 @@ void AggregationEditWidget::selectionChanged()
     m_elementModel->setAggregation(currentAggregation());
     updateState();
 }
+
+#include "moc_aggregationeditwidget.cpp"

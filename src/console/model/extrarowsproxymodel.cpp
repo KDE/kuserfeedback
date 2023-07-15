@@ -62,3 +62,5 @@ QVariant ExtraRowsProxyModel::extraData(int row, int column, int role) const
         return headerData(column, Qt::Horizontal, Qt::DisplayRole);
     return {};
 }
+
+#include "moc_extrarowsproxymodel.cpp"

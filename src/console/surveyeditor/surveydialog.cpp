@@ -72,3 +72,5 @@ void SurveyDialog::updateState()
 
     ui->buttonBox->button(QDialogButtonBox::Save)->setEnabled(valid);
 }
+
+#include "moc_surveydialog.cpp"

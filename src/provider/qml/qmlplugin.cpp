@@ -43,3 +43,5 @@ void QmlPlugin::registerTypes(const char* uri)
 
     qRegisterMetaType<SurveyInfo>();
 }
+
+#include "moc_qmlplugin.cpp"

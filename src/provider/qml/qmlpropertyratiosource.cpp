@@ -94,3 +94,5 @@ void QmlPropertyRatioSource::addValueMapping(const QVariant& value, const QStrin
 {
     prSrc()->addValueMapping(value, name);
 }
+
+#include "moc_qmlpropertyratiosource.cpp"

@@ -200,3 +200,5 @@ QVariant CategoryAggregationModel::sampleValue(const Sample& s, int depth) const
     }
     return {};
 }
+
+#include "moc_categoryaggregationmodel.cpp"

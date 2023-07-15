@@ -166,3 +166,5 @@ QVector<double> NumericAggregationModel::sampleValues(const Sample &s) const
 
     return {};
 }
+
+#include "moc_numericaggregationmodel.cpp"

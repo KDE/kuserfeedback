@@ -81,3 +81,5 @@ void SecurityScanJob::processPending()
         processPending();
     });
 }
+
+#include "moc_securityscanjob.cpp"

@@ -212,3 +212,5 @@ QModelIndex SchemaModel::parent(const QModelIndex &index) const
         return {};
     return createIndex(index.internalId(), 0, TOPLEVEL);
 }
+
+#include "moc_schemamodel.cpp"

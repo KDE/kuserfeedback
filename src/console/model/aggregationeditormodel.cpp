@@ -131,3 +131,5 @@ bool AggregationEditorModel::setData(const QModelIndex& index, const QVariant& v
     emit dataChanged(index, index);
     return true;
 }
+
+#include "moc_aggregationeditormodel.cpp"

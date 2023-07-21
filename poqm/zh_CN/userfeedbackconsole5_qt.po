@@ -866,32 +866,32 @@ msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Aggregation"
 msgstr "汇总"
 
-#: schemaeditor/schemaeditor.ui:50
+#: schemaeditor/schemaeditor.ui:49
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Save Schema"
 msgstr "保存结构(&S)"
 
-#: schemaeditor/schemaeditor.ui:53
+#: schemaeditor/schemaeditor.ui:52
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
 msgstr "保存产品结构的更改。"
 
-#: schemaeditor/schemaeditor.ui:62
+#: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
 msgstr "导入结构(&I)..."
 
-#: schemaeditor/schemaeditor.ui:65
+#: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
 msgstr "导入此产品的结构。"
 
-#: schemaeditor/schemaeditor.ui:74
+#: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
 msgstr "导出结构(&E)..."
 
-#: schemaeditor/schemaeditor.ui:77
+#: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
 msgstr "导出此产品的结构。"
@@ -933,37 +933,37 @@ msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Do you really want to delete this entry, and all recorded data for it?"
 msgstr "您确定要删除此项目和它的所有数据吗？"
 
-#: schemaeditor/schemaeditwidget.ui:31
+#: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "&Delete"
 msgstr "删除(&D)"
 
-#: schemaeditor/schemaeditwidget.ui:34
+#: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
 msgstr "删除选中的要素或者项目。"
 
-#: schemaeditor/schemaeditwidget.ui:37
+#: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Del"
 msgstr "Del"
 
-#: schemaeditor/schemaeditwidget.ui:45
+#: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
 msgstr "添加来源(&S)..."
 
-#: schemaeditor/schemaeditwidget.ui:48
+#: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
 msgstr "添加新的数据来源。"
 
-#: schemaeditor/schemaeditwidget.ui:56
+#: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
 msgstr "添加来源要素(&E)..."
 
-#: schemaeditor/schemaeditwidget.ui:59
+#: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
 msgstr "添加一个要素到数据来源。"
@@ -998,32 +998,32 @@ msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
 msgstr "您确定要删除选中的问卷吗？"
 
-#: surveyeditor/surveyeditor.ui:46
+#: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
 msgstr "添加问卷(&A)..."
 
-#: surveyeditor/surveyeditor.ui:49
+#: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
 msgstr "添加新问卷。"
 
-#: surveyeditor/surveyeditor.ui:58
+#: surveyeditor/surveyeditor.ui:56
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
 msgstr "删除问卷(&D)"
 
-#: surveyeditor/surveyeditor.ui:61
+#: surveyeditor/surveyeditor.ui:59
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
 msgstr "删除一份问卷。"
 
-#: surveyeditor/surveyeditor.ui:70
+#: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
 msgstr "编辑问卷(&E)..."
 
-#: surveyeditor/surveyeditor.ui:73
+#: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
 msgstr "编辑当前选中的问卷。"

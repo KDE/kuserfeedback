@@ -871,32 +871,32 @@ msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Aggregation"
 msgstr "Групиране"
 
-#: schemaeditor/schemaeditor.ui:50
+#: schemaeditor/schemaeditor.ui:49
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Save Schema"
 msgstr "&Запазване на схема"
 
-#: schemaeditor/schemaeditor.ui:53
+#: schemaeditor/schemaeditor.ui:52
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
 msgstr "Запазване на промените в схемата на продукта."
 
-#: schemaeditor/schemaeditor.ui:62
+#: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
 msgstr "&Импортиране на схема..."
 
-#: schemaeditor/schemaeditor.ui:65
+#: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
 msgstr "Импортиране на схема за този продукт."
 
-#: schemaeditor/schemaeditor.ui:74
+#: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
 msgstr "&Експортиране на схема..."
 
-#: schemaeditor/schemaeditor.ui:77
+#: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
 msgstr "Експортиране на схемата на този продукт."
@@ -941,37 +941,37 @@ msgid "Do you really want to delete this entry, and all recorded data for it?"
 msgstr ""
 "Наистина ли искате да изтриете този запис и всички записани данни за него?"
 
-#: schemaeditor/schemaeditwidget.ui:31
+#: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "&Delete"
 msgstr "&Изтриване"
 
-#: schemaeditor/schemaeditwidget.ui:34
+#: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
 msgstr "Изтриване на избрания елемент или запис."
 
-#: schemaeditor/schemaeditwidget.ui:37
+#: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Del"
 msgstr "Del"
 
-#: schemaeditor/schemaeditwidget.ui:45
+#: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
 msgstr "Добавяне на &източник..."
 
-#: schemaeditor/schemaeditwidget.ui:48
+#: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
 msgstr "Добавяне на нов източник на данни."
 
-#: schemaeditor/schemaeditwidget.ui:56
+#: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
 msgstr "Добавяне на &елемент източник..."
 
-#: schemaeditor/schemaeditwidget.ui:59
+#: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
 msgstr "Добавяне на елемент към източник на данни."
@@ -1006,32 +1006,32 @@ msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
 msgstr "Наистина ли искате да изтриете избраната анкета?"
 
-#: surveyeditor/surveyeditor.ui:46
+#: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
 msgstr "&Добавяне на анкета..."
 
-#: surveyeditor/surveyeditor.ui:49
+#: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
 msgstr "Добавяне на нова анкета."
 
-#: surveyeditor/surveyeditor.ui:58
+#: surveyeditor/surveyeditor.ui:56
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
 msgstr "&Изтриване на анкета"
 
-#: surveyeditor/surveyeditor.ui:61
+#: surveyeditor/surveyeditor.ui:59
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
 msgstr "Изтриване на анкета."
 
-#: surveyeditor/surveyeditor.ui:70
+#: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
 msgstr "&Редактиране анкета..."
 
-#: surveyeditor/surveyeditor.ui:73
+#: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
 msgstr "Редактиране на избраното в момента анкета."

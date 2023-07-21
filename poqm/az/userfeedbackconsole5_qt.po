@@ -870,32 +870,32 @@ msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Aggregation"
 msgstr "Birləşim"
 
-#: schemaeditor/schemaeditor.ui:50
+#: schemaeditor/schemaeditor.ui:49
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Save Schema"
 msgstr "& Sxemi saxlamaq"
 
-#: schemaeditor/schemaeditor.ui:53
+#: schemaeditor/schemaeditor.ui:52
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
 msgstr "Dəyişiklikləri məhsul sxemində saxlamaq."
 
-#: schemaeditor/schemaeditor.ui:62
+#: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
 msgstr "&Sxemin idxalı..."
 
-#: schemaeditor/schemaeditor.ui:65
+#: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
 msgstr "Bu məhsul üçün bir sxem idxal edin."
 
-#: schemaeditor/schemaeditor.ui:74
+#: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
 msgstr "Sx&emin ixracı..."
 
-#: schemaeditor/schemaeditor.ui:77
+#: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
 msgstr "Bu məhsul üçün sxem ixrac edin."
@@ -938,37 +938,37 @@ msgid "Do you really want to delete this entry, and all recorded data for it?"
 msgstr ""
 "Bu girişi və onun bütün qeydə alınmış məlumatlarını silmək istəyirsiniz?"
 
-#: schemaeditor/schemaeditwidget.ui:31
+#: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "&Delete"
 msgstr "&silin"
 
-#: schemaeditor/schemaeditwidget.ui:34
+#: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
 msgstr "Seçilmiş element və girişi silmək."
 
-#: schemaeditor/schemaeditwidget.ui:37
+#: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Del"
 msgstr "Del"
 
-#: schemaeditor/schemaeditwidget.ui:45
+#: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
 msgstr "Mənbə əla&və etmək..."
 
-#: schemaeditor/schemaeditwidget.ui:48
+#: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
 msgstr "Yeni verilənlər mənbəyi əlavə etmək."
 
-#: schemaeditor/schemaeditwidget.ui:56
+#: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
 msgstr "Mənbə &elementi əlavə etmək..."
 
-#: schemaeditor/schemaeditwidget.ui:59
+#: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
 msgstr "Verilənlər mənbəyinə element əlavə etmək."
@@ -1003,32 +1003,32 @@ msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
 msgstr "Seçilmiş sorğunu silmək istəyirsiniz?"
 
-#: surveyeditor/surveyeditor.ui:46
+#: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
 msgstr "Sorğu əl&avə edin..."
 
-#: surveyeditor/surveyeditor.ui:49
+#: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
 msgstr "Yeni sorğu əlavə etmək."
 
-#: surveyeditor/surveyeditor.ui:58
+#: surveyeditor/surveyeditor.ui:56
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
 msgstr "Sorğunu &silin"
 
-#: surveyeditor/surveyeditor.ui:61
+#: surveyeditor/surveyeditor.ui:59
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
 msgstr "Sörğu silmək."
 
-#: surveyeditor/surveyeditor.ui:70
+#: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
 msgstr "Sorğuya düzəliş &etmək..."
 
-#: surveyeditor/surveyeditor.ui:73
+#: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
 msgstr "Cari seçilmiş sorğuya düzəliş etmək."

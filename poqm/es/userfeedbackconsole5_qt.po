@@ -871,32 +871,32 @@ msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Aggregation"
 msgstr "Total"
 
-#: schemaeditor/schemaeditor.ui:50
+#: schemaeditor/schemaeditor.ui:49
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Save Schema"
 msgstr "&Guardar esquema"
 
-#: schemaeditor/schemaeditor.ui:53
+#: schemaeditor/schemaeditor.ui:52
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
 msgstr "Guardar cambios en el esquema del producto."
 
-#: schemaeditor/schemaeditor.ui:62
+#: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
 msgstr "&Importar esquema..."
 
-#: schemaeditor/schemaeditor.ui:65
+#: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
 msgstr "Importar un esquema para este producto."
 
-#: schemaeditor/schemaeditor.ui:74
+#: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
 msgstr "&Exportar esquema..."
 
-#: schemaeditor/schemaeditor.ui:77
+#: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
 msgstr "Exportar el esquema de este producto."
@@ -940,37 +940,37 @@ msgid "Do you really want to delete this entry, and all recorded data for it?"
 msgstr ""
 "¿Realmente desea borrar esta entrada y todos los datos grabados para ella?"
 
-#: schemaeditor/schemaeditwidget.ui:31
+#: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "&Delete"
 msgstr "&Borrar"
 
-#: schemaeditor/schemaeditwidget.ui:34
+#: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
 msgstr "Borrar el elemento o entrada seleccionado."
 
-#: schemaeditor/schemaeditwidget.ui:37
+#: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Del"
 msgstr "Supr"
 
-#: schemaeditor/schemaeditwidget.ui:45
+#: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
 msgstr "Añadir &fuente..."
 
-#: schemaeditor/schemaeditwidget.ui:48
+#: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
 msgstr "Añadir una nueva fuente de datos."
 
-#: schemaeditor/schemaeditwidget.ui:56
+#: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
 msgstr "Añadir &elemento fuente..."
 
-#: schemaeditor/schemaeditwidget.ui:59
+#: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
 msgstr "Añadir un elemento a una fuente de datos."
@@ -1005,32 +1005,32 @@ msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
 msgstr "¿Realmente desea borrar la encuesta seleccionada?"
 
-#: surveyeditor/surveyeditor.ui:46
+#: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
 msgstr "&Añadir encuesta..."
 
-#: surveyeditor/surveyeditor.ui:49
+#: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
 msgstr "Añadir una nueva encuesta."
 
-#: surveyeditor/surveyeditor.ui:58
+#: surveyeditor/surveyeditor.ui:56
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
 msgstr "&Borrar encuesta"
 
-#: surveyeditor/surveyeditor.ui:61
+#: surveyeditor/surveyeditor.ui:59
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
 msgstr "Borrar una encuesta."
 
-#: surveyeditor/surveyeditor.ui:70
+#: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
 msgstr "&Editar encuesta..."
 
-#: surveyeditor/surveyeditor.ui:73
+#: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
 msgstr "Editar la encuesta actualmente seleccionada."

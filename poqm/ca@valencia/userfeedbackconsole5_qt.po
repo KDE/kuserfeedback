@@ -879,32 +879,32 @@ msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Aggregation"
 msgstr "Agregació"
 
-#: schemaeditor/schemaeditor.ui:50
+#: schemaeditor/schemaeditor.ui:49
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Save Schema"
 msgstr "Guar&da l'esquema"
 
-#: schemaeditor/schemaeditor.ui:53
+#: schemaeditor/schemaeditor.ui:52
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
 msgstr "Guarda els canvis a l'esquema del producte."
 
-#: schemaeditor/schemaeditor.ui:62
+#: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
 msgstr "&Importa un esquema..."
 
-#: schemaeditor/schemaeditor.ui:65
+#: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
 msgstr "Importa un esquema per a este producte."
 
-#: schemaeditor/schemaeditor.ui:74
+#: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
 msgstr "&Exporta l'esquema..."
 
-#: schemaeditor/schemaeditor.ui:77
+#: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
 msgstr "Exporta un esquema d'este producte."
@@ -948,37 +948,37 @@ msgid "Do you really want to delete this entry, and all recorded data for it?"
 msgstr ""
 "Segur que voleu suprimir esta entrada, i totes les seues dades enregistrades?"
 
-#: schemaeditor/schemaeditwidget.ui:31
+#: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "&Delete"
 msgstr "Sup&rimix"
 
-#: schemaeditor/schemaeditwidget.ui:34
+#: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
 msgstr "Suprimix l'element seleccionat o l'entrada."
 
-#: schemaeditor/schemaeditwidget.ui:37
+#: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Del"
 msgstr "Supr"
 
-#: schemaeditor/schemaeditwidget.ui:45
+#: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
 msgstr "Afig una &font..."
 
-#: schemaeditor/schemaeditwidget.ui:48
+#: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
 msgstr "Afig una font de dades nova."
 
-#: schemaeditor/schemaeditwidget.ui:56
+#: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
 msgstr "Afig una font d'&elements..."
 
-#: schemaeditor/schemaeditwidget.ui:59
+#: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
 msgstr "Afig un element a una font de dades."
@@ -1013,32 +1013,32 @@ msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
 msgstr "Segur que voleu suprimir l'enquesta seleccionada?"
 
-#: surveyeditor/surveyeditor.ui:46
+#: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
 msgstr "Afi&g una enquesta..."
 
-#: surveyeditor/surveyeditor.ui:49
+#: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
 msgstr "Afig una enquesta nova."
 
-#: surveyeditor/surveyeditor.ui:58
+#: surveyeditor/surveyeditor.ui:56
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
 msgstr "Sup&rimix l'enquesta"
 
-#: surveyeditor/surveyeditor.ui:61
+#: surveyeditor/surveyeditor.ui:59
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
 msgstr "Suprimix una enquesta."
 
-#: surveyeditor/surveyeditor.ui:70
+#: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
 msgstr "&Edita l'enquesta..."
 
-#: surveyeditor/surveyeditor.ui:73
+#: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
 msgstr "Edita l'enquesta seleccionada."

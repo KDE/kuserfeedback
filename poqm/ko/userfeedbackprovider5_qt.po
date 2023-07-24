@@ -20,12 +20,12 @@ msgstr ""
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
 msgid "The version of the application."
-msgstr "프로그램의 버전입니다."
+msgstr "앱의 버전입니다."
 
 #: core/applicationversionsource.cpp:36
 msgctxt "KUserFeedback::ApplicationVersionSource|"
 msgid "Application version"
-msgstr "프로그램 버전"
+msgstr "앱 버전"
 
 #: core/auditloguicontroller.cpp:140
 msgctxt "KUserFeedback::AuditLogUiController|"
@@ -74,7 +74,7 @@ msgstr "제출된 데이터: <tt>%1</tt><br/><br/>"
 #: core/compilerinfosource.cpp:20
 msgctxt "KUserFeedback::CompilerInfoSource|"
 msgid "The compiler used to build this application."
-msgstr "이 프로그램을 빌드할 때 사용한 컴파일러입니다."
+msgstr "이 앱을 빌드할 때 사용한 컴파일러입니다."
 
 #: core/compilerinfosource.cpp:53
 msgctxt "KUserFeedback::CompilerInfoSource|"
@@ -127,29 +127,28 @@ msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic system information such as the version of the application and "
 "the operating system"
-msgstr "프로그램과 운영 체제의 버전과 같은 기본 시스템 정보를 공유합니다."
+msgstr "앱과 운영 체제의 버전과 같은 기본 시스템 정보를 공유합니다."
 
 #: core/feedbackconfiguicontroller.cpp:147
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic system information and basic statistics on how often you use the "
 "application"
-msgstr "기본적인 프로그램 사용 빈도 통계 및 기본 시스템 정보 공유"
+msgstr "기본적인 앱 사용 빈도 통계 및 기본 시스템 정보 공유"
 
 #: core/feedbackconfiguicontroller.cpp:151
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic statistics on how often you use the application, as well as more "
 "detailed information about your system"
-msgstr "기본적인 프로그램 사용 빈도 통계 및 시스템에 대한 자세한 정보 공유"
+msgstr "기본적인 앱 사용 빈도 통계 및 시스템에 대한 자세한 정보 공유"
 
 #: core/feedbackconfiguicontroller.cpp:155
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share detailed system information and statistics on how often individual "
 "features of the application are used."
-msgstr ""
-"프로그램의 개별 기능의 사용 빈도 통계 및 자세한 시스템 정보를 공유합니다."
+msgstr "앱의 개별 기능의 사용 빈도 통계 및 자세한 시스템 정보를 공유합니다."
 
 #: core/feedbackconfiguicontroller.cpp:166
 #, qt-format
@@ -191,15 +190,14 @@ msgstr "사용 편의성 조사에 참여하지 않기"
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Participate in surveys about the application not more than four times a year"
-msgstr "1년에 최대 4번까지만 실행되는 프로그램 설문 조사에 참여하기"
+msgstr "1년에 최대 4번까지만 실행되는 앱 설문 조사에 참여하기"
 
 #: core/feedbackconfiguicontroller.cpp:239
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Participate in surveys about the application whenever one is available (they "
 "can be deferred or skipped)"
-msgstr ""
-"사용 가능할 때 프로그램의 설문 조사에 참여하기(연기하거나 생략할 수 있음)"
+msgstr "사용 가능할 때 앱의 설문 조사에 참여하기(연기하거나 생략할 수 있음)"
 
 #: core/feedbackconfiguicontroller.cpp:246
 #, qt-format
@@ -264,7 +262,7 @@ msgstr "QPA 정보"
 #: core/qtversionsource.cpp:21
 msgctxt "KUserFeedback::QtVersionSource|"
 msgid "The Qt version used by this application."
-msgstr "이 프로그램에서 사용하는 Qt 버전입니다."
+msgstr "이 앱에서 사용하는 Qt 버전입니다."
 
 #: core/qtversionsource.cpp:33
 msgctxt "KUserFeedback::QtVersionSource|"
@@ -284,7 +282,7 @@ msgstr "화면 인자"
 #: core/startcountsource.cpp:31
 msgctxt "KUserFeedback::StartCountSource|"
 msgid "How often the application has been started."
-msgstr "프로그램이 시작된 빈도입니다."
+msgstr "앱이 시작된 빈도입니다."
 
 #: core/startcountsource.cpp:46
 msgctxt "KUserFeedback::StartCountSource|"
@@ -294,7 +292,7 @@ msgstr "실행 횟수"
 #: core/usagetimesource.cpp:31
 msgctxt "KUserFeedback::UsageTimeSource|"
 msgid "The total amount of time the application has been used."
-msgstr "프로그램이 사용된 총 시간입니다."
+msgstr "앱이 사용된 총 시간입니다."
 
 #: core/usagetimesource.cpp:46
 msgctxt "KUserFeedback::UsageTimeSource|"
@@ -379,7 +377,7 @@ msgstr "설문 조사 참여"
 #: widgets/notificationpopup.cpp:67
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "Help us make this application better!"
-msgstr "이 프로그램을 더 잘 만들 수 있도록 도와 주세요!"
+msgstr "이 앱을 더 잘 만들 수 있도록 도와 주세요!"
 
 #: widgets/notificationpopup.cpp:68
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -387,8 +385,8 @@ msgid ""
 "You can help us improving this application by sharing statistics and "
 "participate in surveys."
 msgstr ""
-"통계를 공유하고 설문 조사에 참여하여 이 프로그램을 개선하는 데 도움을 줄 수 "
-"있습니다."
+"통계를 공유하고 설문 조사에 참여하여 이 앱을 개선하는 데 도움을 줄 수 있습니"
+"다."
 
 #: widgets/notificationpopup.cpp:70
 #, qt-format
@@ -421,7 +419,7 @@ msgctxt "KUserFeedback::NotificationPopup|"
 msgid ""
 "We would like a few minutes of your time to provide feedback about this "
 "application in a survey."
-msgstr "설문 조사에서 이 프로그램에 대한 의견을 보내 주시면 감사하겠습니다."
+msgstr "설문 조사에서 이 앱에 대한 의견을 보내 주시면 감사하겠습니다."
 
 #: widgets/notificationpopup.cpp:88
 #, qt-format
@@ -441,13 +439,12 @@ msgctxt "KUserFeedback::StyleInfoSource|"
 msgid ""
 "The widget style used by the application, and information about the used "
 "color scheme."
-msgstr ""
-"프로그램에서 사용하는 위젯 스타일 및 사용된 색 구성표에 대한 정보입니다."
+msgstr "앱에서 사용하는 위젯 스타일 및 사용된 색 구성표에 대한 정보입니다."
 
 #: widgets/styleinfosource.cpp:37
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
-msgstr "프로그램 스타일"
+msgstr "앱 스타일"
 
 #~ msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 #~ msgid "Dialog"

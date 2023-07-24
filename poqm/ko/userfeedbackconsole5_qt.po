@@ -472,8 +472,8 @@ msgid ""
 "There are unsaved changes in the schema editor. Do you want to discard them "
 "and close the application?"
 msgstr ""
-"스키마 편집기에 저장되지 않은 변경 사항이 있습니다. 해당 항목을 삭제하고 프로"
-"그램을 닫으시겠습니까?"
+"스키마 편집기에 저장되지 않은 변경 사항이 있습니다. 해당 항목을 삭제하고 앱"
+"을 닫으시겠습니까?"
 
 #: mainwindow.ui:14
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -598,7 +598,7 @@ msgstr "기부(&C)..."
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Help to make this application better for you!"
-msgstr "이 프로그램을 더 잘 만들 수 있도록 도와 주세요!"
+msgstr "이 앱을 더 잘 만들 수 있도록 도와 주세요!"
 
 #: mainwindow.ui:261
 msgctxt "KUserFeedback::Console::MainWindow|"

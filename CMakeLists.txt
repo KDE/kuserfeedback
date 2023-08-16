@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.16)
 project(KUserFeedback VERSION 1.2.1)
 
 set(POLICY CMP0048 NEW)

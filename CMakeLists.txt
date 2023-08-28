@@ -1,16 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(KUserFeedback VERSION 1.2.1)
 
-set(POLICY CMP0048 NEW)
-if(POLICY CMP0053)
-    cmake_policy(SET CMP0053 NEW)
-endif()
-if(POLICY CMP0063)
-    cmake_policy(SET CMP0063 NEW)
-endif()
-if(POLICY CMP0071)
-    cmake_policy(SET CMP0071 NEW)
-endif()
 find_package(ECM 5.26 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 

@@ -51,11 +51,12 @@ ecm_setup_version(PROJECT
 find_package(Qt${QT_MAJOR_VERSION} 5.4 NO_MODULE REQUIRED COMPONENTS Core Network)
 find_package(Qt${QT_MAJOR_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Qml Svg PrintSupport)
 find_package(QmlLint)
-if (NOT CMAKE_CROSSCOMPILING)
-    find_package(Qt${QT_MAJOR_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Help)
-endif()
 
 if (ENABLE_DOCS)
+    if (NOT CMAKE_CROSSCOMPILING)
+        find_package(Qt${QT_MAJOR_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Help)
+    endif()
+
     if(QT_MAJOR_VERSION STREQUAL "5")
         find_package(Qt5 CONFIG OPTIONAL_COMPONENTS DocTools)
     else()

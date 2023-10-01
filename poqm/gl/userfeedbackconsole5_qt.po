@@ -42,7 +42,7 @@ msgstr "Fallou a exportación"
 #, qt-format
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Could not open file: %1"
-msgstr "Non se puido abrir o ficheiro: %1"
+msgstr "Non foi posíbel abrir o ficheiro: %1"
 
 #: analytics/analyticsview.cpp:270
 #, qt-format
@@ -303,13 +303,13 @@ msgstr "Non se atopou o produto."
 #, qt-format
 msgctxt "KUserFeedback::Console::ProductExportJob|"
 msgid "Could not open file: %1"
-msgstr "Non se puido abrir o ficheiro: %1"
+msgstr "Non foi posíbel abrir o ficheiro: %1"
 
 #: jobs/productimportjob.cpp:37
 #, qt-format
 msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Unable to open file: %1"
-msgstr "Non se pode abrir o ficheiro: %1"
+msgstr "Non é posíbel abrir o ficheiro: %1"
 
 #: jobs/productimportjob.cpp:43
 msgctxt "KUserFeedback::Console::ProductImportJob|"
@@ -389,7 +389,7 @@ msgstr "Fallo de conexión"
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Failed to connect to server: %1"
-msgstr "Non se puido conectar ao servidor: %1"
+msgstr "Non foi posíbel conectar ao servidor: %1"
 
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -425,7 +425,7 @@ msgstr "Fallou a importación"
 #: mainwindow.cpp:272 mainwindow.cpp:297
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Could not open file."
-msgstr "Non se puido abrir o ficheiro."
+msgstr "Non foi posíbel abrir o ficheiro."
 
 #: mainwindow.cpp:278
 #, qt-format
@@ -832,7 +832,7 @@ msgstr "Fallou a exportación"
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Could not open file: %1"
-msgstr "Non se puido abrir o ficheiro: %1"
+msgstr "Non foi posíbel abrir o ficheiro: %1"
 
 #: schemaeditor/schemaeditor.cpp:129
 #, qt-format

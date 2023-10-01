@@ -47,7 +47,7 @@ msgstr "Estatísticas detalladas de uso"
 #, qt-format
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Unable to open file %1: %2."
-msgstr "Non se pode abrir o ficheiro «%1»: %2."
+msgstr "Non é posíbel abrir o ficheiro «%1»: %2."
 
 #: core/auditloguicontroller.cpp:196
 #, qt-format
@@ -70,7 +70,7 @@ msgstr "Datos enviados: <tt>%1</tt><br/><br/>"
 #: core/compilerinfosource.cpp:20
 msgctxt "KUserFeedback::CompilerInfoSource|"
 msgid "The compiler used to build this application."
-msgstr "O compilador utilizado para construír a aplicación."
+msgstr "O compilador usado para construír a aplicación."
 
 #: core/compilerinfosource.cpp:53
 msgctxt "KUserFeedback::CompilerInfoSource|"

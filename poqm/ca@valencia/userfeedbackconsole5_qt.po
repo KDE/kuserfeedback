@@ -604,7 +604,7 @@ msgstr "&Col·laboracions..."
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Help to make this application better for you!"
-msgstr "Ajudeu a fer millor per a vós esta aplicació!"
+msgstr "Ajudeu a fer millor per a tu esta aplicació!"
 
 #: mainwindow.ui:261
 msgctxt "KUserFeedback::Console::MainWindow|"

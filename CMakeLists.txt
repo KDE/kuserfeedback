@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(KUserFeedback VERSION 1.2.1)
+project(KUserFeedback VERSION 1.3.0)
 
 find_package(ECM 5.26 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})

@@ -30,6 +30,7 @@
   <name xml:lang="sv">Terminal för användaråterkoppling</name>
   <name xml:lang="tr">K Kullanıcı Geri Bildirimi Konsolu</name>
   <name xml:lang="uk">Консоль KUserFeedback</name>
+  <name xml:lang="x-test">xxKUserFeedback Consolexx</name>
   <name xml:lang="zh-CN">KUserFeedback 控制台</name>
   <name xml:lang="zh-TW">KUserFeedback 主控台</name>
   <summary>Analytics and administration tool for KUserFeedback servers</summary>
@@ -57,6 +58,7 @@
   <summary xml:lang="sv">Analys- och administrationsverktyg för användaråterkopplingsservrar</summary>
   <summary xml:lang="tr">K Kullanıcı Geri Bildirimi sunucuları için çözümleme ve yönetim aracı</summary>
   <summary xml:lang="uk">Аналітичний і адміністративний інструмент для серверів KUserFeedback</summary>
+  <summary xml:lang="x-test">xxAnalytics and administration tool for KUserFeedback serversxx</summary>
   <summary xml:lang="zh-CN">KUserFeedback 服务器的分析和管理工具</summary>
   <summary xml:lang="zh-TW">為 KUserFeedback 伺服器設計的分析與管理工具</summary>
   <description>
@@ -89,6 +91,7 @@
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="tr">Özellikler:</p>
     <p xml:lang="uk">Можливості:</p>
+    <p xml:lang="x-test">xxFeatures:xx</p>
     <p xml:lang="zh-CN">功能特性：</p>
     <p xml:lang="zh-TW">功能：</p>
     <ul>
@@ -117,6 +120,7 @@
       <li xml:lang="sv">Skapa, redigera och ta bort produkter och produktdatascheman.</li>
       <li xml:lang="tr">Ürünler ve ürün veri şemaları oluşturun, düzenleyin, kaldırın.</li>
       <li xml:lang="uk">Створення, редагування та вилучення продуктів та схем даних продуктів.</li>
+      <li xml:lang="x-test">xxCreate, edit and remove products and product data schemas.xx</li>
       <li xml:lang="zh-CN">创建、编辑和删除产品和产品数据结构。</li>
       <li xml:lang="zh-TW">建立、編輯並移除產品與產品資料綱要。</li>
       <li>Manage user surveys.</li>
@@ -144,6 +148,7 @@
       <li xml:lang="sv">Hantera användarenkäter.</li>
       <li xml:lang="tr">Kullanıcı anketlerini yönetin.</li>
       <li xml:lang="uk">Керування створеними користувачами оглядами.</li>
+      <li xml:lang="x-test">xxManage user surveys.xx</li>
       <li xml:lang="zh-CN">管理用户数据调查功能。</li>
       <li xml:lang="zh-TW">管理使用者調查。</li>
       <li>Basic review and analytics of telemetry data.</li>
@@ -171,6 +176,7 @@
       <li xml:lang="sv">Grundläggande granskning och analys av telemetridata.</li>
       <li xml:lang="tr">Telemetri verisinin yalın değerlendirmesi ve çözümlemesi.</li>
       <li xml:lang="uk">Базові можливості огляду та аналізу даних телеметрії.</li>
+      <li xml:lang="x-test">xxBasic review and analytics of telemetry data.xx</li>
       <li xml:lang="zh-CN">对遥测数据进行基本检查和分析。</li>
       <li xml:lang="zh-TW">對遙測資料的基本檢查與分析。</li>
       <li>Product schema and telemetry data import/export.</li>
@@ -198,6 +204,7 @@
       <li xml:lang="sv">Import och export av produktscheman och telemetridata.</li>
       <li xml:lang="tr">Ürün şeması ve telemetri verisi içe/dışa aktarım.</li>
       <li xml:lang="uk">Імпортування та експортування даних схеми продуктів та телеметрії.</li>
+      <li xml:lang="x-test">xxProduct schema and telemetry data import/export.xx</li>
       <li xml:lang="zh-CN">导入/导出产品数据结构和遥测数据。</li>
       <li xml:lang="zh-TW">產品綱要與遙測資料的匯入/匯出。</li>
     </ul>

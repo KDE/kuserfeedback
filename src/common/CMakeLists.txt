@@ -40,8 +40,8 @@ set_property(TARGET KUserFeedbackCommon PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 if (NOT BUILD_SHARED_LIBS)
     install(TARGETS KUserFeedbackCommon
-            EXPORT KUserFeedback${KUSERFEEDBACK_EXTENSION}Targets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+            EXPORT KUserFeedbackTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 
 target_include_directories(KUserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
-target_link_libraries(KUserFeedbackCommon PUBLIC Qt${QT_MAJOR_VERSION}::Core)
+target_link_libraries(KUserFeedbackCommon PUBLIC Qt6::Core)

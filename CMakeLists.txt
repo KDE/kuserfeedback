@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 set(KF_VERSION "5.245.0") # handled by release scripts
 project(KUserFeedback VERSION ${KF_VERSION})
 
-find_package(ECM 5.26 REQUIRED NO_MODULE)
+find_package(ECM 5.60 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
 set(ENABLE_SURVEY_TARGET_EXPRESSIONS ON CACHE BOOL "Survey targeting expressions support is enabled by default.")
@@ -30,44 +30,34 @@ include(ECMGeneratePriFile)
 include(FeatureSummary)
 include(GenerateExportHeader)
 
-if (ECM_VERSION VERSION_GREATER "5.68.0")
-    include(ECMQtDeclareLoggingCategory)
-endif()
+include(ECMQtDeclareLoggingCategory)
 
 MESSAGE(STATUS "ECM Version found: ${ECM_VERSION}")
-set(KUSERFEEDBACK_EXTENSION)
-if (QT_MAJOR_VERSION STREQUAL "6")
-    set(KUSERFEEDBACK_EXTENSION "Qt6")
-endif()
 
 ecm_setup_version(PROJECT
     VARIABLE_PREFIX KUSERFEEDBACK
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h"
-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION}ConfigVersion.cmake"
+    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake"
 )
 #
 # Dependencies
 #
 
-find_package(Qt${QT_MAJOR_VERSION} 5.4 NO_MODULE REQUIRED COMPONENTS Core Network)
-find_package(Qt${QT_MAJOR_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Qml Svg PrintSupport)
+find_package(Qt6 6.5 NO_MODULE REQUIRED COMPONENTS Core Network)
+find_package(Qt6 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Qml Svg PrintSupport)
 find_package(QmlLint)
 
 if (ENABLE_DOCS)
     if (NOT CMAKE_CROSSCOMPILING)
-        find_package(Qt${QT_MAJOR_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Help)
+        find_package(Qt6 NO_MODULE QUIET OPTIONAL_COMPONENTS Help)
     endif()
 
-    if(QT_MAJOR_VERSION STREQUAL "5")
-        find_package(Qt5 CONFIG OPTIONAL_COMPONENTS DocTools)
-    else()
-        find_package(Qt6 CONFIG OPTIONAL_COMPONENTS ToolsTools)
-    endif()
+    find_package(Qt6 CONFIG OPTIONAL_COMPONENTS ToolsTools)
 endif()
 
-set_package_properties(Qt${QT_MAJOR_VERSION} PROPERTIES URL "http://qt-project.org/")
-set_package_properties(Qt${QT_MAJOR_VERSION}Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for feedback configuration and notification widgets.")
-set_package_properties(Qt${QT_MAJOR_VERSION}Charts PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
+set_package_properties(Qt6 PROPERTIES URL "http://qt-project.org/")
+set_package_properties(Qt6Widgets PROPERTIES TYPE RECOMMENDED PURPOSE "Required for feedback configuration and notification widgets.")
+set_package_properties(Qt6Charts PROPERTIES TYPE RECOMMENDED PURPOSE "Required for UserFeedbackConsole.")
 
 # debug suffixes for qmake compatibility
 if(WIN32)
@@ -124,40 +114,28 @@ endif()
 #
 include(CMakePackageConfigHelpers)
 
-if (${QT_MAJOR_VERSION} GREATER_EQUAL 6)
-    set(_CONFIG_CMAKE_IN "KUserFeedbackConfig-Qt6.cmake.in")
-else()
-    set(_CONFIG_CMAKE_IN "KUserFeedbackConfig-Qt5.cmake.in")
-endif()
+set(_CONFIG_CMAKE_IN "KUserFeedbackConfig-Qt6.cmake.in")
 
 configure_package_config_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/${_CONFIG_CMAKE_IN}
-    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfig.cmake
     INSTALL_DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback
     PATH_VARS KDE_INSTALL_INCLUDEDIR
 )
 
 install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION}Config.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION}ConfigVersion.cmake
-    DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION}
+    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake
+    DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback
 )
 
-install(EXPORT KUserFeedback${KUSERFEEDBACK_EXTENSION}Targets DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION} FILE KUserFeedback${KUSERFEEDBACK_EXTENSION}Target.cmake)
+install(EXPORT KUserFeedbackTargets DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback FILE KUserFeedbackTarget.cmake)
 
-if (ECM_VERSION VERSION_GREATER "5.58.0")
-    if (ECM_VERSION VERSION_GREATER "5.67.0")
-        ecm_qt_install_logging_categories(
-                EXPORT KUSERFEEDBACK
-                FILE org_kde_UserFeedback.categories
-                DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
-                )
-    else()
-        install(FILES org_kde_UserFeedback.categories DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
-    endif()
-else()
-    install(FILES org_kde_UserFeedback.categories DESTINATION ${KDE_INSTALL_CONFDIR})
-endif()
+ecm_qt_install_logging_categories(
+        EXPORT KUSERFEEDBACK
+        FILE org_kde_UserFeedback.categories
+        DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+        )
 
 ecm_install_po_files_as_qm(poqm)
 
@@ -166,5 +144,5 @@ feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAG
 install(FILES
     ${KUserFeedbackCore_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION}
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback
 )

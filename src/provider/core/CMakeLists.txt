@@ -53,21 +53,21 @@ set(userfeedback_core_srcs
 
 
 
-add_library(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} ${userfeedback_core_srcs})
-set_target_properties(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} PROPERTIES
+add_library(KUserFeedbackCore ${userfeedback_core_srcs})
+set_target_properties(KUserFeedbackCore PROPERTIES
     SOVERSION ${KUSERFEEDBACK_SOVERSION}
     VERSION ${KUSERFEEDBACK_VERSION}
 )
-generate_export_header(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} BASE_NAME KUserFeedbackCore)
+generate_export_header(KUserFeedbackCore BASE_NAME KUserFeedbackCore)
 
-target_link_libraries(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} PUBLIC Qt${QT_MAJOR_VERSION}::Core PRIVATE Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Network)
+target_link_libraries(KUserFeedbackCore PUBLIC Qt6::Core PRIVATE Qt6::Gui Qt6::Network)
 if(ANDROID)
-    target_link_libraries(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} PRIVATE GLESv2)
+    target_link_libraries(KUserFeedbackCore PRIVATE GLESv2)
 endif()
-target_compile_definitions(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} PRIVATE QT_DISABLE_DEPRECATED_BEFORE=0x050300)
-target_link_libraries(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} PRIVATE KUserFeedbackCommon)
-target_include_directories(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
-target_include_directories(KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION};${KDE_INSTALL_INCLUDEDIR}>")
+target_compile_definitions(KUserFeedbackCore PRIVATE QT_DISABLE_DEPRECATED_BEFORE=0x050300)
+target_link_libraries(KUserFeedbackCore PRIVATE KUserFeedbackCommon)
+target_include_directories(KUserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
+target_include_directories(KUserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
 
 ecm_generate_headers(KUserFeedbackCore_HEADERS
     HEADER_NAMES
@@ -90,15 +90,15 @@ ecm_generate_headers(KUserFeedbackCore_HEADERS
     REQUIRED_HEADERS KUserFeedbackCore_HEADERS
 )
 
-install(TARGETS KUserFeedbackCore${KUSERFEEDBACK_EXTENSION} EXPORT KUserFeedback${KUSERFEEDBACK_EXTENSION}Targets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KUserFeedbackCore EXPORT KUserFeedbackTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES
     ${KUserFeedbackCore_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedbackcore_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback${KUSERFEEDBACK_EXTENSION}
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback
 )
 
-ecm_generate_pri_file(BASE_NAME KUserFeedbackCore${KUSERFEEDBACK_EXTENSION}
-                      LIB_NAME KUserFeedbackCore${KUSERFEEDBACK_EXTENSION}
+ecm_generate_pri_file(BASE_NAME KUserFeedbackCore
+                      LIB_NAME KUserFeedbackCore
                       DEPS "core network"
                       FILENAME_VAR PRI_FILENAME
 )

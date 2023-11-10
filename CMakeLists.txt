@@ -1,8 +1,13 @@
 cmake_minimum_required(VERSION 3.16)
 set(KF_VERSION "5.245.0") # handled by release scripts
+set(KF_DEP_VERSION "5.245.0") # handled by release scripts
 project(KUserFeedback VERSION ${KF_VERSION})
 
-find_package(ECM 5.60 REQUIRED NO_MODULE)
+# ECM setup
+include(FeatureSummary)
+find_package(ECM ${KF_DEP_VERSION}  NO_MODULE)
+set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://invent.kde.org/frameworks/extra-cmake-modules")
+feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
 set(ENABLE_SURVEY_TARGET_EXPRESSIONS ON CACHE BOOL "Survey targeting expressions support is enabled by default.")
@@ -25,26 +30,27 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMGenerateHeaders)
 include(ECMPoQmTools)
 include(ECMSetupVersion)
-include(ECMQueryQmake)
+include(ECMQueryQt)
 include(ECMGeneratePriFile)
 include(FeatureSummary)
 include(GenerateExportHeader)
 
 include(ECMQtDeclareLoggingCategory)
 
-MESSAGE(STATUS "ECM Version found: ${ECM_VERSION}")
-
 ecm_setup_version(PROJECT
     VARIABLE_PREFIX KUSERFEEDBACK
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h"
-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake"
+    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6UserFeedbackConfigVersion.cmake"
+    SOVERSION 6
 )
 #
 # Dependencies
 #
 
-find_package(Qt6 6.5 NO_MODULE REQUIRED COMPONENTS Core Network)
-find_package(Qt6 NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Qml Svg PrintSupport)
+# Dependencies
+set(REQUIRED_QT_VERSION 6.5.0)
+find_package(Qt6 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED COMPONENTS Core Network)
+find_package(Qt6 ${REQUIRED_QT_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Qml Svg PrintSupport)
 find_package(QmlLint)
 
 if (ENABLE_DOCS)
@@ -101,7 +107,6 @@ add_subdirectory(src)
 
 if (BUILD_TESTING)
     add_subdirectory(autotests)
-
     add_subdirectory(tests)
 endif()
 
@@ -114,25 +119,25 @@ endif()
 #
 include(CMakePackageConfigHelpers)
 
-set(_CONFIG_CMAKE_IN "KUserFeedbackConfig-Qt6.cmake.in")
+set(_CONFIG_CMAKE_IN "KF6UserFeedbackConfig.cmake.in")
 
 configure_package_config_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/${_CONFIG_CMAKE_IN}
-    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfig.cmake
-    INSTALL_DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback
+    ${CMAKE_CURRENT_BINARY_DIR}/KF6UserFeedbackConfig.cmake
+    INSTALL_DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6UserFeedback
     PATH_VARS KDE_INSTALL_INCLUDEDIR
 )
 
 install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfig.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/KUserFeedbackConfigVersion.cmake
-    DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback
+    ${CMAKE_CURRENT_BINARY_DIR}/KF6UserFeedbackConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/KF6UserFeedbackConfigVersion.cmake
+    DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6UserFeedback
 )
 
-install(EXPORT KUserFeedbackTargets DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KUserFeedback FILE KUserFeedbackTarget.cmake)
+install(EXPORT KF6UserFeedbackTargets DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6UserFeedback FILE KF6UserFeedbackTarget.cmake NAMESPACE KF6::)
 
 ecm_qt_install_logging_categories(
-        EXPORT KUSERFEEDBACK
+        EXPORT KF6USERFEEDBACK
         FILE org_kde_UserFeedback.categories
         DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
         )
@@ -142,7 +147,7 @@ ecm_install_po_files_as_qm(poqm)
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 install(FILES
-    ${KUserFeedbackCore_HEADERS}
+    ${KF6UserFeedbackCore_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback
 )

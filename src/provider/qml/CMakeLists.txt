@@ -16,12 +16,13 @@ set(provider_qml_srcs
 
 configure_file(qmldir.in ${CMAKE_CURRENT_BINARY_DIR}/qmldir)
 
-add_library(KUserFeedbackQml SHARED ${provider_qml_srcs})
+add_library(KF6UserFeedbackQml SHARED ${provider_qml_srcs})
+add_library(KF6::UserFeedbackQml ALIAS KF6UserFeedbackQml)
 
-target_link_libraries(KUserFeedbackQml
-    KUserFeedbackCore
+target_link_libraries(KF6UserFeedbackQml
+    KF6UserFeedbackCore
     Qt6::Qml
 )
 
-install(TARGETS KUserFeedbackQml DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/userfeedback)
+install(TARGETS KF6UserFeedbackQml DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/userfeedback)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/userfeedback)

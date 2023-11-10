@@ -30,18 +30,20 @@ bison_target(surveytargetexpressionparser
 add_flex_bison_dependency(surveytargetexpressionscanner surveytargetexpressionparser)
 endif()
 
-add_library(KUserFeedbackCommon STATIC
+add_library(KF6UserFeedbackCommon STATIC
     ${common_src}
     ${BISON_surveytargetexpressionparser_OUTPUTS}
     ${FLEX_surveytargetexpressionscanner_OUTPUTS}
 )
+add_library(KF6::UserFeedbackCommon ALIAS KF6UserFeedbackCommon)
+
 # Needed to link this static lib to shared libs
-set_property(TARGET KUserFeedbackCommon PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET KF6UserFeedbackCommon PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 if (NOT BUILD_SHARED_LIBS)
-    install(TARGETS KUserFeedbackCommon
-            EXPORT KUserFeedbackTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+    install(TARGETS KF6UserFeedbackCommon
+            EXPORT KF6UserFeedbackTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 
-target_include_directories(KUserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
-target_link_libraries(KUserFeedbackCommon PUBLIC Qt6::Core)
+target_include_directories(KF6UserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
+target_link_libraries(KF6UserFeedbackCommon PUBLIC Qt6::Core)

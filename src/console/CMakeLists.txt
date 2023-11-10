@@ -74,13 +74,15 @@ set(console_lib_srcs
     schematemplates/schematemplates.qrc
 )
 
-add_library(KUserFeedbackConsole STATIC ${console_lib_srcs})
-target_link_libraries(KUserFeedbackConsole Qt6::Network)
-target_include_directories(KUserFeedbackConsole PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
-target_compile_features(KUserFeedbackConsole PRIVATE cxx_generic_lambdas)
-target_compile_definitions(KUserFeedbackConsole PUBLIC QT_DISABLE_DEPRECATED_BEFORE=0x050600 QT_DEPRECATED_WARNINGS)
+add_library(KF6UserFeedbackConsole STATIC ${console_lib_srcs})
+add_library(KF6::UserFeedbackConsole ALIAS KF6UserFeedbackConsole)
 
-if(NOT TARGET KUserFeedbackWidgets)
+target_link_libraries(KF6UserFeedbackConsole Qt6::Network)
+target_include_directories(KF6UserFeedbackConsole PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
+target_compile_features(KF6UserFeedbackConsole PRIVATE cxx_generic_lambdas)
+target_compile_definitions(KF6UserFeedbackConsole PUBLIC QT_DISABLE_DEPRECATED_BEFORE=0x050600 QT_DEPRECATED_WARNINGS)
+
+if(NOT TARGET KF6UserFeedbackWidgets)
     return()
 endif()
 
@@ -144,12 +146,12 @@ target_link_libraries(KUserFeedbackConsoleApplication
     Qt6::Charts
     Qt6::PrintSupport
     Qt6::Svg
-    KUserFeedbackWidgets
-    KUserFeedbackConsole
-    KUserFeedbackCommon
+    KF6UserFeedbackWidgets
+    KF6UserFeedbackConsole
+    KF6UserFeedbackCommon
 )
 
-install(TARGETS KUserFeedbackConsoleApplication ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KUserFeedbackConsoleApplication ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 if(UNIX AND NOT APPLE)
     install(FILES org.kde.kuserfeedback-console.desktop DESTINATION ${KDE_INSTALL_APPDIR})
     install(FILES org.kde.kuserfeedback-console.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})

@@ -1,13 +1,10 @@
 ecm_create_qm_loader(userfeedback_core_QM_LOADER userfeedbackprovider6_qt)
 
-if (ECM_VERSION VERSION_GREATER "5.67.0")
-ecm_qt_declare_logging_category(userfeedback_core_debug_srcs HEADER logging_p.h IDENTIFIER KUserFeedback::Log CATEGORY_NAME org.kde.UserFeedback
-    DESCRIPTION "User Feedback Framework" EXPORT KUSERFEEDBACK)
-else()
-    set(userfeedback_core_debug_srcs
-        logging_p.cpp
-        logging_p.h)
-endif()
+ecm_qt_declare_logging_category(userfeedback_core_debug_srcs
+                                HEADER logging_p.h
+                                IDENTIFIER KUserFeedback::Log
+                                CATEGORY_NAME org.kde.UserFeedback
+                                DESCRIPTION "User Feedback Framework" EXPORT KUSERFEEDBACK)
 
 set(userfeedback_core_srcs
     abstractdatasource.cpp
@@ -53,23 +50,26 @@ set(userfeedback_core_srcs
 
 
 
-add_library(KUserFeedbackCore ${userfeedback_core_srcs})
-set_target_properties(KUserFeedbackCore PROPERTIES
+add_library(KF6UserFeedbackCore ${userfeedback_core_srcs})
+add_library(KF6::UserFeedbackCore ALIAS KF6UserFeedbackCore)
+
+set_target_properties(KF6UserFeedbackCore PROPERTIES
     SOVERSION ${KUSERFEEDBACK_SOVERSION}
     VERSION ${KUSERFEEDBACK_VERSION}
+    EXPORT_NAME UserFeedbackCore
 )
-generate_export_header(KUserFeedbackCore BASE_NAME KUserFeedbackCore)
+generate_export_header(KF6UserFeedbackCore BASE_NAME KUserFeedbackCore)
 
-target_link_libraries(KUserFeedbackCore PUBLIC Qt6::Core PRIVATE Qt6::Gui Qt6::Network)
+target_link_libraries(KF6UserFeedbackCore PUBLIC Qt6::Core PRIVATE Qt6::Gui Qt6::Network)
 if(ANDROID)
-    target_link_libraries(KUserFeedbackCore PRIVATE GLESv2)
+    target_link_libraries(KF6UserFeedbackCore PRIVATE GLESv2)
 endif()
-target_compile_definitions(KUserFeedbackCore PRIVATE QT_DISABLE_DEPRECATED_BEFORE=0x050300)
-target_link_libraries(KUserFeedbackCore PRIVATE KUserFeedbackCommon)
-target_include_directories(KUserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
-target_include_directories(KUserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
+target_compile_definitions(KF6UserFeedbackCore PRIVATE QT_DISABLE_DEPRECATED_BEFORE=0x050300)
+target_link_libraries(KF6UserFeedbackCore PRIVATE KF6UserFeedbackCommon)
+target_include_directories(KF6UserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
+target_include_directories(KF6UserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
 
-ecm_generate_headers(KUserFeedbackCore_HEADERS
+ecm_generate_headers(KF6UserFeedbackCore_HEADERS
     HEADER_NAMES
         AbstractDataSource
         ApplicationVersionSource
@@ -87,18 +87,18 @@ ecm_generate_headers(KUserFeedbackCore_HEADERS
         SurveyInfo
         UsageTimeSource
         FeedbackConfigUiController
-    REQUIRED_HEADERS KUserFeedbackCore_HEADERS
+    REQUIRED_HEADERS KF6UserFeedbackCore_HEADERS
 )
 
-install(TARGETS KUserFeedbackCore EXPORT KUserFeedbackTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF6UserFeedbackCore EXPORT KF6UserFeedbackTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES
-    ${KUserFeedbackCore_HEADERS}
+    ${KF6UserFeedbackCore_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedbackcore_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KUserFeedback
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback
 )
 
-ecm_generate_pri_file(BASE_NAME KUserFeedbackCore
-                      LIB_NAME KUserFeedbackCore
+ecm_generate_pri_file(BASE_NAME KF6UserFeedbackCore
+                      LIB_NAME KF6UserFeedbackCore
                       DEPS "core network"
                       FILENAME_VAR PRI_FILENAME
 )

@@ -1,9 +1,9 @@
 configure_file(test-config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/test-config.h)
-if(TARGET KUserFeedbackConsole)
-add_library(KUserFeedbackTestUtils STATIC
-    servercontroller.cpp servercontroller.h
-)
-target_link_libraries(KUserFeedbackTestUtils LINK_PUBLIC Qt6::Test KUserFeedbackConsole)
+if(TARGET KF6UserFeedbackConsole)
+    add_library(KF6UserFeedbackTestUtils STATIC
+        servercontroller.cpp servercontroller.h
+    )
+    target_link_libraries(KF6UserFeedbackTestUtils LINK_PUBLIC Qt6::Test KF6UserFeedbackConsole)
 endif()
 
 function(uf_add_test _file)
@@ -13,39 +13,39 @@ function(uf_add_test _file)
     add_test(NAME ${_name} COMMAND ${_name})
 endfunction()
 
-uf_add_test(datasourcetest.cpp KUserFeedbackCore Qt6::Gui) # needs Gui for ScreenInfoSource to work
-uf_add_test(openglinfosourcetest.cpp KUserFeedbackCore Qt6::Gui)
-uf_add_test(providertest.cpp KUserFeedbackCore Qt6::Gui)
-uf_add_test(selectionratiosourcetest.cpp KUserFeedbackCore Qt6::Gui)
-uf_add_test(surveyprovidertest.cpp KUserFeedbackCore)
+uf_add_test(datasourcetest.cpp KF6UserFeedbackCore Qt6::Gui) # needs Gui for ScreenInfoSource to work
+uf_add_test(openglinfosourcetest.cpp KF6UserFeedbackCore Qt6::Gui)
+uf_add_test(providertest.cpp KF6UserFeedbackCore Qt6::Gui)
+uf_add_test(selectionratiosourcetest.cpp KF6UserFeedbackCore Qt6::Gui)
+uf_add_test(surveyprovidertest.cpp KF6UserFeedbackCore)
 
-uf_add_test(feedbackconfigtest.cpp KUserFeedbackWidgets)
+uf_add_test(feedbackconfigtest.cpp KF6UserFeedbackWidgets)
 
 if(HAVE_SURVEY_TARGET_EXPRESSIONS)
-    uf_add_test(surveytargetexpressiontest.cpp KUserFeedbackCommon)
+    uf_add_test(surveytargetexpressiontest.cpp KF6UserFeedbackCommon)
 endif()
 
-if(TARGET KUserFeedbackConsole)
-    uf_add_test(producttest.cpp KUserFeedbackConsole)
-    uf_add_test(schematemplatetest.cpp KUserFeedbackConsole)
-    uf_add_test(sampletest.cpp KUserFeedbackConsole)
-    uf_add_test(serverinfotest.cpp KUserFeedbackConsole)
+if(TARGET KF6UserFeedbackConsole)
+    uf_add_test(producttest.cpp KF6UserFeedbackConsole)
+    uf_add_test(schematemplatetest.cpp KF6UserFeedbackConsole)
+    uf_add_test(sampletest.cpp KF6UserFeedbackConsole)
+    uf_add_test(serverinfotest.cpp KF6UserFeedbackConsole)
 
-    uf_add_test(schemamodeltest.cpp KUserFeedbackTestUtils)
-    uf_add_test(datamodeltest.cpp KUserFeedbackTestUtils)
-    uf_add_test(timeaggregationmodeltest.cpp KUserFeedbackTestUtils)
-    uf_add_test(categoryaggregationmodeltest.cpp KUserFeedbackTestUtils)
-    uf_add_test(numericaggregationmodeltest.cpp KUserFeedbackTestUtils)
-    uf_add_test(ratiosetaggregationmodeltest.cpp KUserFeedbackTestUtils)
+    uf_add_test(schemamodeltest.cpp KF6UserFeedbackTestUtils)
+    uf_add_test(datamodeltest.cpp KF6UserFeedbackTestUtils)
+    uf_add_test(timeaggregationmodeltest.cpp KF6UserFeedbackTestUtils)
+    uf_add_test(categoryaggregationmodeltest.cpp KF6UserFeedbackTestUtils)
+    uf_add_test(numericaggregationmodeltest.cpp KF6UserFeedbackTestUtils)
+    uf_add_test(ratiosetaggregationmodeltest.cpp KF6UserFeedbackTestUtils)
 endif()
 
 if(ENABLE_PHP)
     list(FIND PHP_MODULES "PDO" _has_pdo)
-    if(TARGET KUserFeedbackConsole AND _has_pdo GREATER -1)
-        uf_add_test(productapitest.cpp KUserFeedbackTestUtils)
-        uf_add_test(productmodeltest.cpp KUserFeedbackTestUtils)
-        uf_add_test(surveyapitest.cpp KUserFeedbackTestUtils)
-        uf_add_test(submittest.cpp KUserFeedbackTestUtils KUserFeedbackCore Qt6::Gui)
+    if(TARGET KF6UserFeedbackConsole AND _has_pdo GREATER -1)
+        uf_add_test(productapitest.cpp KF6UserFeedbackTestUtils)
+        uf_add_test(productmodeltest.cpp KF6UserFeedbackTestUtils)
+        uf_add_test(surveyapitest.cpp KF6UserFeedbackTestUtils)
+        uf_add_test(submittest.cpp KF6UserFeedbackTestUtils KF6UserFeedbackCore Qt6::Gui)
     endif()
 
     set(php_test_srcs

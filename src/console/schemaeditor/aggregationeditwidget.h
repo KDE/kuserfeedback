@@ -35,7 +35,7 @@ public:
     Product product() const;
     void setProduct(const Product &product);
 
-signals:
+Q_SIGNALS:
     void productChanged();
 
 private:

@@ -48,7 +48,7 @@ AggregationEditWidget::AggregationEditWidget(QWidget* parent) :
         aggrs[ui->aggregationView->selectionModel()->selectedRows().at(0).row()] = m_elementModel->aggregation();
         p.setAggregations(aggrs);
         m_model->setProduct(p);
-        emit productChanged();
+        Q_EMIT productChanged();
     });
     connect(ui->addButton, &QPushButton::clicked, this, &AggregationEditWidget::addElement);
     connect(ui->deleteButton, &QPushButton::clicked, this, &AggregationEditWidget::deleteElement);
@@ -87,7 +87,7 @@ void AggregationEditWidget::addAggregation()
     aggrs += Aggregation();
     p.setAggregations(aggrs);
     setProduct(p);
-    emit productChanged();
+    Q_EMIT productChanged();
 }
 
 void AggregationEditWidget::deleteAggregation()
@@ -108,7 +108,7 @@ void AggregationEditWidget::deleteAggregation()
     aggrs.remove(idx.row());
     p.setAggregations(aggrs);
     setProduct(p);
-    emit productChanged();
+    Q_EMIT productChanged();
 }
 
 void AggregationEditWidget::addElement()
@@ -133,7 +133,7 @@ void AggregationEditWidget::deleteElement()
     aggrs[ui->aggregationView->selectionModel()->selectedRows().at(0).row()] = aggr;
     p.setAggregations(aggrs);
     m_model->setProduct(p);
-    emit productChanged();
+    Q_EMIT productChanged();
 }
 
 void AggregationEditWidget::updateState()

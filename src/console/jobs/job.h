@@ -19,7 +19,7 @@ public:
     explicit Job(QObject *parent = nullptr);
     ~Job() override;
 
-signals:
+Q_SIGNALS:
     void info(const QString &msg);
     void error(const QString &msg);
     void finished();

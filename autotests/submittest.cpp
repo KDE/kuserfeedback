@@ -47,7 +47,7 @@ private:
         return spy.wait();
     }
 
-private slots:
+private Q_SLOTS:
     void initTestCase()
     {
         Q_INIT_RESOURCE(schematemplates);

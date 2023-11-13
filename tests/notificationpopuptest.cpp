@@ -40,7 +40,7 @@ int main(int argc, char **argv)
         SurveyInfo info;
         info.setUuid(QUuid(QStringLiteral("{9e529dfa-0213-413e-a1a8-8a9cea7d5a97}")));
         info.setUrl(QUrl(QStringLiteral("https://www.kde.org/")));
-        emit provider.surveyAvailable(info);
+        Q_EMIT provider.surveyAvailable(info);
     });
 
     auto popup = new NotificationPopup(&topLevel);

@@ -50,7 +50,7 @@ SecurityScanJob::~SecurityScanJob()
 void SecurityScanJob::processPending()
 {
     if (m_pendingPaths.isEmpty()) {
-        emit info(tr("No issues found."));
+        Q_EMIT info(tr("No issues found."));
         emitFinished();
         return;
     }
@@ -77,7 +77,7 @@ void SecurityScanJob::processPending()
             emitError(tr("Access to %1 is not protected!").arg(reply->request().url().toString()));
             return;
         }
-        emit info(tr("Access to %1 is protected (%2).").arg(reply->request().url().toString()).arg(httpCode));
+        Q_EMIT info(tr("Access to %1 is protected (%2).").arg(reply->request().url().toString()).arg(httpCode));
         processPending();
     });
 }

@@ -43,7 +43,7 @@ void MetaEnumComboBox::setValue(const QVariant& value)
         return;
 
     const auto enumName = typeName.mid(idx + 2);
-    const auto enumIdx = mo->indexOfEnumerator(enumName);
+    const auto enumIdx = mo->indexOfEnumerator(enumName.constData());
     if (enumIdx < 0)
         return;
 

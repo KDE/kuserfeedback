@@ -74,7 +74,7 @@ void FeedbackConfigUiController::setFeedbackProvider(Provider* provider)
             ++it;
     }
 
-    emit providerChanged();
+    Q_EMIT providerChanged();
 }
 
 int FeedbackConfigUiController::telemetryModeCount() const

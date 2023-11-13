@@ -63,7 +63,7 @@ void SurveyEditor::createSurvey()
     auto reply = RESTApi::createSurvey(m_restClient, m_product, dlg.survey());
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
-            emit logMessage(QString::fromUtf8(reply->readAll()));
+            Q_EMIT logMessage(QString::fromUtf8(reply->readAll()));
         }
         m_surveyModel->reload();
         reply->deleteLater();
@@ -88,7 +88,7 @@ void SurveyEditor::editSurvey()
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() != QNetworkReply::NoError)
             return;
-        emit logMessage(QString::fromUtf8(reply->readAll()));
+        Q_EMIT logMessage(QString::fromUtf8(reply->readAll()));
         m_surveyModel->reload();
         reply->deleteLater();
     });
@@ -115,7 +115,7 @@ void SurveyEditor::deleteSurvey()
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() != QNetworkReply::NoError)
             return;
-        emit logMessage(QString::fromUtf8(reply->readAll()));
+        Q_EMIT logMessage(QString::fromUtf8(reply->readAll()));
         m_surveyModel->reload();
         reply->deleteLater();
     });

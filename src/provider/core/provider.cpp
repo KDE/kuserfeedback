@@ -341,7 +341,7 @@ bool ProviderPrivate::selectSurvey(const SurveyInfo &survey) const
     }
 
     qCDebug(Log) << "picked survey:" << survey.url();
-    emit q->surveyAvailable(survey);
+    Q_EMIT q->surveyAvailable(survey);
     return true;
 }
 
@@ -392,7 +392,7 @@ void ProviderPrivate::emitShowEncouragementMessage()
     lastEncouragementTime = QDateTime::currentDateTime(); // TODO make this explicit, in case the host application decides to delay?
     storeOne(QStringLiteral("LastEncouragement"), lastEncouragementTime);
     storeOneGlobal(QStringLiteral("LastEncouragement"), lastEncouragementTime);
-    emit q->showEncouragementMessage();
+    Q_EMIT q->showEncouragementMessage();
 }
 
 
@@ -430,7 +430,7 @@ void Provider::setEnabled(bool enabled)
     if (enabled == isEnabled())
         return;
     d->storeOneGlobal(QStringLiteral("Enabled"), enabled);
-    emit enabledChanged();
+    Q_EMIT enabledChanged();
 }
 
 void Provider::restoreDefaults()
@@ -455,7 +455,7 @@ void Provider::setProductIdentifier(const QString &productId)
     d->startCount++;
     d->storeOne(QStringLiteral("ApplicationStartCount"), d->startCount);
 
-    emit providerSettingsChanged();
+    Q_EMIT providerSettingsChanged();
 
     d->scheduleEncouragement();
     d->scheduleNextSubmission();
@@ -471,7 +471,7 @@ void Provider::setFeedbackServer(const QUrl &url)
     if (d->serverUrl == url)
         return;
     d->serverUrl = url;
-    emit providerSettingsChanged();
+    Q_EMIT providerSettingsChanged();
 }
 
 int Provider::submissionInterval() const
@@ -484,7 +484,7 @@ void Provider::setSubmissionInterval(int days)
     if (d->submissionInterval == days)
         return;
     d->submissionInterval = days;
-    emit providerSettingsChanged();
+    Q_EMIT providerSettingsChanged();
     d->scheduleNextSubmission();
 }
 
@@ -502,7 +502,7 @@ void Provider::setTelemetryMode(TelemetryMode mode)
     d->storeOne(QStringLiteral("StatisticsCollectionMode"), QString::fromLatin1(telemetryModeEnum().valueToKey(d->telemetryMode)));
     d->scheduleNextSubmission();
     d->scheduleEncouragement();
-    emit telemetryModeChanged();
+    Q_EMIT telemetryModeChanged();
 }
 
 void Provider::addDataSource(AbstractDataSource *source)
@@ -549,7 +549,7 @@ void Provider::setSurveyInterval(int days)
 
     d->scheduleNextSubmission();
     d->scheduleEncouragement();
-    emit surveyIntervalChanged();
+    Q_EMIT surveyIntervalChanged();
 }
 
 int Provider::applicationStartsUntilEncouragement() const
@@ -562,7 +562,7 @@ void Provider::setApplicationStartsUntilEncouragement(int starts)
     if (d->encouragementStarts == starts)
         return;
     d->encouragementStarts = starts;
-    emit providerSettingsChanged();
+    Q_EMIT providerSettingsChanged();
     d->scheduleEncouragement();
 }
 
@@ -576,7 +576,7 @@ void Provider::setApplicationUsageTimeUntilEncouragement(int secs)
     if (d->encouragementTime == secs)
         return;
     d->encouragementTime = secs;
-    emit providerSettingsChanged();
+    Q_EMIT providerSettingsChanged();
     d->scheduleEncouragement();
 }
 
@@ -590,7 +590,7 @@ void Provider::setEncouragementDelay(int secs)
     if (d->encouragementDelay == secs)
         return;
     d->encouragementDelay = std::max(0, secs);
-    emit providerSettingsChanged();
+    Q_EMIT providerSettingsChanged();
     d->scheduleEncouragement();
 }
 
@@ -604,7 +604,7 @@ void Provider::setEncouragementInterval(int days)
     if (d->encouragementInterval == days)
         return;
     d->encouragementInterval = days;
-    emit providerSettingsChanged();
+    Q_EMIT providerSettingsChanged();
     d->scheduleEncouragement();
 }
 

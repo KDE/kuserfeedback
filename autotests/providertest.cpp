@@ -21,7 +21,7 @@ using namespace KUserFeedback;
 class ProviderTest : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void initTestCase()
     {
         QCoreApplication::setOrganizationName(QStringLiteral("KDE"));

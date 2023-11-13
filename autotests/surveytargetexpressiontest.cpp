@@ -24,7 +24,7 @@ private:
         return m_sourceData.value(sourceName);
     }
 
-private slots:
+private Q_SLOTS:
     void testValidParse_data()
     {
         QTest::addColumn<QString>("input");

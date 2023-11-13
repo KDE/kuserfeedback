@@ -34,7 +34,7 @@ void QmlPropertyRatioSource::setSourceId(const QString& id)
     if (source()->id() == id)
         return;
     prSrc()->setId(id);
-    emit changed();
+    Q_EMIT changed();
 }
 
 QString QmlPropertyRatioSource::name() const
@@ -48,7 +48,7 @@ void QmlPropertyRatioSource::setName(const QString& name)
         return;
     }
     prSrc()->setName(name);
-    emit changed();
+    Q_EMIT changed();
 }
 
 QString QmlPropertyRatioSource::description() const
@@ -61,7 +61,7 @@ void QmlPropertyRatioSource::setDescription(const QString& desc)
     if (description() == desc)
         return;
     prSrc()->setDescription(desc);
-    emit changed();
+    Q_EMIT changed();
 }
 
 QObject* QmlPropertyRatioSource::object() const
@@ -74,7 +74,7 @@ void QmlPropertyRatioSource::setObject(QObject* object)
     if (prSrc()->object() == object)
         return;
     prSrc()->setObject(object);
-    emit changed();
+    Q_EMIT changed();
 }
 
 QString QmlPropertyRatioSource::propertyName() const
@@ -87,7 +87,7 @@ void QmlPropertyRatioSource::setPropertyName(const QString& name)
     if (propertyName() == name)
         return;
     prSrc()->setPropertyName(name);
-    emit changed();
+    Q_EMIT changed();
 }
 
 void QmlPropertyRatioSource::addValueMapping(const QVariant& value, const QString& name)

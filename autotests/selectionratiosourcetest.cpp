@@ -19,7 +19,7 @@ using namespace KUserFeedback;
 class SelectionRatioSourceTest : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void initTestCase()
     {
         QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));

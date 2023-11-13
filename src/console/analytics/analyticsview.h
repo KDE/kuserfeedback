@@ -51,7 +51,7 @@ public:
     void setProduct(const Product &product);
     void setRESTClient(RESTClient *client);
 
-signals:
+Q_SIGNALS:
     void logMessage(const QString &msg);
 
 private:

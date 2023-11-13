@@ -17,13 +17,13 @@ Job::~Job() = default;
 
 void Job::emitError(const QString& msg)
 {
-    emit error(msg);
+    Q_EMIT error(msg);
     deleteLater();
 }
 
 void Job::emitFinished()
 {
-    emit finished();
+    Q_EMIT finished();
     deleteLater();
 }
 

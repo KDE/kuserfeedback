@@ -110,7 +110,7 @@ void ProductModel::mergeProducts(QVector<Product> &&products)
             endRemoveRows();
         } else {
             *it = *newIt;
-            emit dataChanged(index(row, 0), index(row, 0));
+            Q_EMIT dataChanged(index(row, 0), index(row, 0));
             ++it;
             ++newIt;
         }

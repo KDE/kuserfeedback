@@ -37,7 +37,7 @@ public:
 
     bool isDirty() const;
 
-signals:
+Q_SIGNALS:
     void productChanged(const Product &product);
     void logMessage(const QString &msg);
 

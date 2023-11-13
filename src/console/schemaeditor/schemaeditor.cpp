@@ -108,8 +108,8 @@ void SchemaEditor::save()
         if (reply->error() != QNetworkReply::NoError)
             return;
         setDirty(false);
-        emit logMessage(QString::fromUtf8((reply->readAll())));
-        emit productChanged(product());
+        Q_EMIT logMessage(QString::fromUtf8((reply->readAll())));
+        Q_EMIT productChanged(product());
         reply->deleteLater();
     });
 }
@@ -126,7 +126,7 @@ void SchemaEditor::exportSchema()
         return;
     }
     f.write(product().toJson());
-    emit logMessage(tr("Schema of %1 exported to %2.").arg(product().name(), f.fileName()));
+    Q_EMIT logMessage(tr("Schema of %1 exported to %2.").arg(product().name(), f.fileName()));
 }
 
 void SchemaEditor::importSchema()
@@ -150,7 +150,7 @@ void SchemaEditor::importSchema()
     p.setName(product().name());
     setProduct(p);
     setDirty();
-    emit logMessage(tr("Schema of %1 imported from %2.").arg(product().name(), f.fileName()));
+    Q_EMIT logMessage(tr("Schema of %1 imported from %2.").arg(product().name(), f.fileName()));
 }
 
 void SchemaEditor::updateState()

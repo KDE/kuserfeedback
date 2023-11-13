@@ -96,7 +96,7 @@ bool SurveyModel::setData(const QModelIndex &index, const QVariant &value, int r
             qDebug() << reply->readAll();
             reload();
         });
-        emit dataChanged(index, index);
+        Q_EMIT dataChanged(index, index);
         reply->deleteLater();
         return true;
     }

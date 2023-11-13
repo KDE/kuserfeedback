@@ -128,7 +128,7 @@ bool AggregationEditorModel::setData(const QModelIndex& index, const QVariant& v
             break;
     }
     m_product.setAggregations(aggrs);
-    emit dataChanged(index, index);
+    Q_EMIT dataChanged(index, index);
     return true;
 }
 

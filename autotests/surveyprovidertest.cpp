@@ -20,7 +20,7 @@ using namespace KUserFeedback;
 class SurveyProviderTest : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void initTestCase()
     {
         qRegisterMetaType<KUserFeedback::SurveyInfo>();

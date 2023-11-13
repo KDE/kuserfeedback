@@ -25,7 +25,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
-include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 
 include(ECMGenerateHeaders)
 include(ECMPoQmTools)
@@ -73,6 +73,9 @@ elseif(APPLE)
 endif()
 
 add_definitions(-DQT_USE_QSTRINGBUILDER -DQT_USE_FAST_OPERATOR_PLUS -DQT_NO_CAST_TO_ASCII -DQT_NO_URL_CAST_FROM_STRING -DQT_NO_CAST_FROM_ASCII)
+
+remove_definitions(-DQT_NO_FOREACH) # still uses foreach
+remove_definitions(-DQT_NO_KEYWORDS)
 
 if (ENABLE_SURVEY_TARGET_EXPRESSIONS)
     find_package(FLEX)

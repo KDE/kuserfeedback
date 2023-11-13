@@ -39,7 +39,7 @@ void RESTClient::setConnected(bool connected)
         return;
     m_isConnected = connected;
     if (isConnected())
-        emit clientConnected();
+        Q_EMIT clientConnected();
 }
 
 bool RESTClient::isConnected() const
@@ -109,10 +109,10 @@ void RESTClient::setupMessageHandler(QNetworkReply* reply)
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError)
             return;
-        emit errorMessage(reply->errorString());
+        Q_EMIT errorMessage(reply->errorString());
         const auto d = reply->readAll();
         if (!d.isEmpty())
-            emit errorMessage(QString::fromUtf8(d));
+            Q_EMIT errorMessage(QString::fromUtf8(d));
     });
 }
 

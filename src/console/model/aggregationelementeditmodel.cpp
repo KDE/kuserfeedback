@@ -75,7 +75,7 @@ bool AggregationElementEditModel::setData(const QModelIndex& index, const QVaria
     auto elems = m_aggr.elements();
     elems[index.row()] = value.value<AggregationElement>();
     m_aggr.setElements(elems);
-    emit dataChanged(index, index);
+    Q_EMIT dataChanged(index, index);
     return true;
 }
 

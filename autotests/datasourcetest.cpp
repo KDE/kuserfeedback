@@ -37,16 +37,16 @@ public:
     void setProp(int v)
     {
         m_propValue = v;
-        emit propChanged();
+        Q_EMIT propChanged();
     }
 
-signals:
+Q_SIGNALS:
     void propChanged();
 
 private:
     int m_propValue = 42;
 
-private slots:
+private Q_SLOTS:
     void initTestCase()
     {
         QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));

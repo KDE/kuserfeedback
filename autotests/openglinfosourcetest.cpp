@@ -17,7 +17,7 @@ using namespace KUserFeedback;
 class OpenGLInfoSourceTest : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void initTestCase()
     {
         QStandardPaths::setTestModeEnabled(true);
@@ -66,14 +66,14 @@ private slots:
         QFETCH(QString, version);
 
         QVariantMap m;
-        OpenGLInfoSourcePrivate::parseGLVersion(glVersion.toUtf8(), m);
+        OpenGLInfoSourcePrivate::parseGLVersion(glVersion.toUtf8().constData(), m);
         QCOMPARE(m.value(QLatin1String("vendorVersion")).toString(), vendorVersion);
         QCOMPARE(m.value(QLatin1String("version")).toString(), version);
 
         // don't overwrite version if we could correctly determine this by other means already
         m.clear();
         m.insert(QStringLiteral("version"), QStringLiteral("12345.6789"));
-        OpenGLInfoSourcePrivate::parseGLVersion(glVersion.toUtf8(), m);
+        OpenGLInfoSourcePrivate::parseGLVersion(glVersion.toUtf8().constData(), m);
         QCOMPARE(m.value(QLatin1String("vendorVersion")).toString(), vendorVersion);
         QCOMPARE(m.value(QLatin1String("version")).toString(), QLatin1String("12345.6789"));
     }
@@ -97,7 +97,7 @@ private slots:
         QFETCH(QString, vendorVersion);
 
         QVariantMap m;
-        OpenGLInfoSourcePrivate::parseGLESVersion(glVersion.toUtf8(), m);
+        OpenGLInfoSourcePrivate::parseGLESVersion(glVersion.toUtf8().constData(), m);
         QCOMPARE(m.value(QLatin1String("version")).toString(), version);
         QCOMPARE(m.value(QLatin1String("vendorVersion")).toString(), vendorVersion);
    }
@@ -118,7 +118,7 @@ private slots:
         QFETCH(QString, glslVersion);
 
         QVariantMap m;
-        OpenGLInfoSourcePrivate::parseGLSLVersion(input.toUtf8(), m);
+        OpenGLInfoSourcePrivate::parseGLSLVersion(input.toUtf8().constData(), m);
         QCOMPARE(m.value(QLatin1String("glslVersion")).toString(), glslVersion);
    }
 
@@ -139,7 +139,7 @@ private slots:
         QFETCH(QString, glslVersion);
 
         QVariantMap m;
-        OpenGLInfoSourcePrivate::parseESGLSLVersion(input.toUtf8(), m);
+        OpenGLInfoSourcePrivate::parseESGLSLVersion(input.toUtf8().constData(), m);
         QCOMPARE(m.value(QLatin1String("glslVersion")).toString(), glslVersion);
    }
 

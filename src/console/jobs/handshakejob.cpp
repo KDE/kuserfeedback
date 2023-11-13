@@ -23,7 +23,7 @@ HandshakeJob::HandshakeJob(RESTClient* restClient, QObject* parent)
     auto reply = RESTApi::checkSchema(restClient);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         if (reply->error() == QNetworkReply::NoError) {
-            emit info(tr("Connected to %1.").arg(m_restClient->serverInfo().url().toString()));
+            Q_EMIT info(tr("Connected to %1.").arg(m_restClient->serverInfo().url().toString()));
             processResponse(reply);
         } else {
             emitError(reply->errorString());
@@ -59,7 +59,7 @@ void HandshakeJob::processResponse(QNetworkReply* reply)
     const auto prevSchema = obj.value(QLatin1String("previousSchemaVersion")).toInt();
     const auto curSchema = obj.value(QLatin1String("currentSchemaVersion")).toInt();
     if (prevSchema != curSchema)
-        emit info(tr("Updated database schema from version %1 to %2.").arg(prevSchema).arg(curSchema));
+        Q_EMIT info(tr("Updated database schema from version %1 to %2.").arg(prevSchema).arg(curSchema));
 
     m_restClient->setConnected(true);
     emitFinished();

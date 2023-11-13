@@ -30,7 +30,7 @@ void QmlAbstractDataSource::setTelemetryMode(Provider::TelemetryMode mode)
     if (m_source->telemetryMode() == mode)
         return;
     m_source->setTelemetryMode(mode);
-    emit telemetryModeChanged();
+    Q_EMIT telemetryModeChanged();
 }
 
 AbstractDataSource* QmlAbstractDataSource::source() const

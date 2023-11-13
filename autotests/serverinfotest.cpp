@@ -18,7 +18,7 @@ using namespace KUserFeedback::Console;
 class ServerInfoTest : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void initTestCase()
     {
         QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));

@@ -6,7 +6,7 @@
 
 #include "qmlpropertyratiosource.h"
 
-#include <PropertyRatioSource>
+#include <KUserFeedback/PropertyRatioSource>
 
 using namespace KUserFeedback;
 

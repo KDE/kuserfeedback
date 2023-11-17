@@ -67,9 +67,11 @@ endif()
 target_compile_definitions(KF6UserFeedbackCore PRIVATE QT_DISABLE_DEPRECATED_BEFORE=0x050300)
 target_link_libraries(KF6UserFeedbackCore PRIVATE KF6UserFeedbackCommon)
 target_include_directories(KF6UserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
-target_include_directories(KF6UserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>")
+target_include_directories(KF6UserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>"
+                                                         "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedbackCore;${KDE_INSTALL_INCLUDEDIR}>"
+                          )
 
-ecm_generate_headers(KF6UserFeedbackCore_HEADERS
+ecm_generate_headers(KUserFeedbackCore_CamelCase_HEADERS
     HEADER_NAMES
         AbstractDataSource
         ApplicationVersionSource
@@ -87,14 +89,28 @@ ecm_generate_headers(KF6UserFeedbackCore_HEADERS
         SurveyInfo
         UsageTimeSource
         FeedbackConfigUiController
-    REQUIRED_HEADERS KF6UserFeedbackCore_HEADERS
+    PREFIX KUserFeedback
+    REQUIRED_HEADERS KUserFeedbackCore_HEADERS
 )
 
 install(TARGETS KF6UserFeedbackCore EXPORT KF6UserFeedbackTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+
 install(FILES
-    ${KF6UserFeedbackCore_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedbackcore_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedbackCore
+    COMPONENT Devel
+)
+
+install(FILES
+  ${KUserFeedbackCore_HEADERS}
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedbackCore/kuserfeedback
+  COMPONENT Devel
+)
+
+install(FILES
+    ${KUserFeedbackCore_CamelCase_HEADERS}
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedbackCore/KUserFeedback/
+    COMPONENT Devel
 )
 
 ecm_generate_pri_file(BASE_NAME KF6UserFeedbackCore

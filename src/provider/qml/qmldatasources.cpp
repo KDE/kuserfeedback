@@ -6,17 +6,17 @@
 
 #include "qmldatasources.h"
 
-#include <ApplicationVersionSource>
-#include <CompilerInfoSource>
-#include <CpuInfoSource>
-#include <LocaleInfoSource>
-#include <OpenGLInfoSource>
-#include <PlatformInfoSource>
-#include <QPAInfoSource>
-#include <QtVersionSource>
-#include <ScreenInfoSource>
-#include <StartCountSource>
-#include <UsageTimeSource>
+#include <KUserFeedback/ApplicationVersionSource>
+#include <KUserFeedback/CompilerInfoSource>
+#include <KUserFeedback/CpuInfoSource>
+#include <KUserFeedback/LocaleInfoSource>
+#include <KUserFeedback/OpenGLInfoSource>
+#include <KUserFeedback/PlatformInfoSource>
+#include <KUserFeedback/QPAInfoSource>
+#include <KUserFeedback/QtVersionSource>
+#include <KUserFeedback/ScreenInfoSource>
+#include <KUserFeedback/StartCountSource>
+#include <KUserFeedback/UsageTimeSource>
 
 using namespace KUserFeedback;
 

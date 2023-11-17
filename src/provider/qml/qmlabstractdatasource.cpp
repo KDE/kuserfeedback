@@ -6,7 +6,7 @@
 
 #include "qmlabstractdatasource.h"
 
-#include <AbstractDataSource>
+#include <KUserFeedback/AbstractDataSource>
 
 using namespace KUserFeedback;
 

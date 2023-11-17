@@ -9,7 +9,7 @@
 
 #include "kuserfeedbackwidgets_export.h"
 
-#include "abstractdatasource.h"
+#include <KUserFeedback/AbstractDataSource>
 
 namespace KUserFeedback {
 

@@ -32,6 +32,7 @@ include(ECMPoQmTools)
 include(ECMSetupVersion)
 include(ECMQueryQt)
 include(ECMGeneratePriFile)
+include(ECMQmlModule)
 include(FeatureSummary)
 include(GenerateExportHeader)
 

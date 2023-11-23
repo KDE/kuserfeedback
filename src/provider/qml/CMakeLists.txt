@@ -1,4 +1,6 @@
-set(provider_qml_srcs
+ecm_add_qml_module(KF6UserFeedbackQml URI "org.kde.userfeedback")
+
+target_sources(KF6UserFeedbackQml PRIVATE
     qmlabstractdatasource.cpp
     qmldatasources.cpp
     qmlplugin.cpp
@@ -14,15 +16,9 @@ set(provider_qml_srcs
     qmlpropertysource.h
 )
 
-configure_file(qmldir.in ${CMAKE_CURRENT_BINARY_DIR}/qmldir)
-
-add_library(KF6UserFeedbackQml SHARED ${provider_qml_srcs})
-add_library(KF6::UserFeedbackQml ALIAS KF6UserFeedbackQml)
-
-target_link_libraries(KF6UserFeedbackQml
+target_link_libraries(KF6UserFeedbackQml PRIVATE
     KF6UserFeedbackCore
     Qt6::Qml
 )
 
-install(TARGETS KF6UserFeedbackQml DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/userfeedback)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/userfeedback)
+ecm_finalize_qml_module(KF6UserFeedbackQml)

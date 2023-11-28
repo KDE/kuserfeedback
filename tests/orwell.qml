@@ -198,6 +198,7 @@ ApplicationWindow {
                     text: controller.telemetryModeDetails(telemetrySlider.value)
                     Layout.fillWidth: true
                     textFormat: Text.RichText
+                    wrapMode: TextEdit.Wrap
                     readOnly: true
                 }
                 Label {
@@ -285,6 +286,7 @@ ApplicationWindow {
                     TextArea {
                         id: logEntryView
                         textFormat: Text.RichText
+                        wrapMode: Text.Wrap
                         readOnly: true
                     }
                 }

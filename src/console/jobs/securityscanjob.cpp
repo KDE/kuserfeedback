@@ -10,6 +10,7 @@
 
 #include <rest/restclient.h>
 
+#include <QDebug>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>

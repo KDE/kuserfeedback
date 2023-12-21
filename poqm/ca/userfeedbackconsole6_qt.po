@@ -325,18 +325,18 @@ msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Invalid product schema file."
 msgstr "Fitxer no vàlid d'esquema de producte."
 
-#: jobs/securityscanjob.cpp:53
+#: jobs/securityscanjob.cpp:54
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "No issues found."
 msgstr "No s'ha trobat cap problema."
 
-#: jobs/securityscanjob.cpp:77
+#: jobs/securityscanjob.cpp:78
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is not protected!"
 msgstr "L'accés a %1 no està protegit!"
 
-#: jobs/securityscanjob.cpp:80
+#: jobs/securityscanjob.cpp:81
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is protected (%2)."

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
-"PO-Revision-Date: 2023-12-17 11:26\n"
+"PO-Revision-Date: 2023-12-20 11:22\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -319,18 +319,18 @@ msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Invalid product schema file."
 msgstr "产品结构文件无效。"
 
-#: jobs/securityscanjob.cpp:53
+#: jobs/securityscanjob.cpp:54
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "No issues found."
 msgstr "未发现任何问题。"
 
-#: jobs/securityscanjob.cpp:77
+#: jobs/securityscanjob.cpp:78
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is not protected!"
 msgstr "%1 的访问未受保护！"
 
-#: jobs/securityscanjob.cpp:80
+#: jobs/securityscanjob.cpp:81
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is protected (%2)."

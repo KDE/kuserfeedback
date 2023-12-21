@@ -318,18 +318,18 @@ msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Invalid product schema file."
 msgstr "Datoteka sheme neveljavnega izdelka."
 
-#: jobs/securityscanjob.cpp:53
+#: jobs/securityscanjob.cpp:54
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "No issues found."
 msgstr "Ni bilo najdenih nobenih težav."
 
-#: jobs/securityscanjob.cpp:77
+#: jobs/securityscanjob.cpp:78
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is not protected!"
 msgstr "Dostop do %1 ni zavarovan!"
 
-#: jobs/securityscanjob.cpp:80
+#: jobs/securityscanjob.cpp:81
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is protected (%2)."

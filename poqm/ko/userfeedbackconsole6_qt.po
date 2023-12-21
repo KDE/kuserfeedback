@@ -320,18 +320,18 @@ msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Invalid product schema file."
 msgstr "제품 스키마 파일이 잘못되었습니다."
 
-#: jobs/securityscanjob.cpp:53
+#: jobs/securityscanjob.cpp:54
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "No issues found."
 msgstr "문제가 발견되지 않았습니다."
 
-#: jobs/securityscanjob.cpp:77
+#: jobs/securityscanjob.cpp:78
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is not protected!"
 msgstr "%1 접근이 보호되지 않습니다!"
 
-#: jobs/securityscanjob.cpp:80
+#: jobs/securityscanjob.cpp:81
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is protected (%2)."

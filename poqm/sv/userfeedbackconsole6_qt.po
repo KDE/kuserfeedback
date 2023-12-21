@@ -316,18 +316,18 @@ msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Invalid product schema file."
 msgstr "Ogiltig produktschemafil."
 
-#: jobs/securityscanjob.cpp:53
+#: jobs/securityscanjob.cpp:54
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "No issues found."
 msgstr "Inga problem hittades."
 
-#: jobs/securityscanjob.cpp:77
+#: jobs/securityscanjob.cpp:78
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is not protected!"
 msgstr "Åtkomst till %1 är inte skyddad."
 
-#: jobs/securityscanjob.cpp:80
+#: jobs/securityscanjob.cpp:81
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is protected (%2)."

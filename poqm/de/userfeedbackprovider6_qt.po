@@ -1,10 +1,11 @@
 # Frederik Schwarzer <schwarzer@kde.org>, 2018, 2020.
 # Burkhard Lück <lueck@hube-lueck.de>, 2018, 2019, 2021.
+# Johannes Obermayr <johannesobermayr@gmx.de>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2021-04-28 14:44+0200\n"
-"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
+"PO-Revision-Date: 2023-12-18 11:42+0100\n"
+"Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -12,6 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -197,13 +199,14 @@ msgstr ""
 #: core/feedbackconfiguicontroller.cpp:231
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys"
-msgstr ""
+msgstr "An Umfragen zur Benutzerfreundlichkeit nicht teilnehmen"
 
 #: core/feedbackconfiguicontroller.cpp:235
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Participate in surveys about the application not more than four times a year"
 msgstr ""
+"An den Umfragen zur Anwendung nicht öfter als vier mal im Jahr teilnehmen"
 
 #: core/feedbackconfiguicontroller.cpp:239
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -211,18 +214,20 @@ msgid ""
 "Participate in surveys about the application whenever one is available (they "
 "can be deferred or skipped)"
 msgstr ""
+"An den Umfragen zur Anwendung teilnehmen sobald eine verfügbar ist (vertagen "
+"oder auslassen ist möglich)"
 
 #: core/feedbackconfiguicontroller.cpp:246
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys about %1"
-msgstr ""
+msgstr "An Umfragen zur Benutzerfreundlichkeit von %1 nicht teilnehmen"
 
 #: core/feedbackconfiguicontroller.cpp:250
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Participate in surveys about %1 not more than four times a year"
-msgstr ""
+msgstr "An Umfragen zu %1 nicht öfter als vier mal im Jahr teilnehmen"
 
 #: core/feedbackconfiguicontroller.cpp:254
 #, qt-format
@@ -231,6 +236,8 @@ msgid ""
 "Participate in surveys about %1 whenever one is available (they can be "
 "deferred or skipped)"
 msgstr ""
+"An Umfragen zu %1 teilnehmen sobald eine verfügbar ist (vertagen oder "
+"auslassen ist möglich)"
 
 #: core/localeinfosource.cpp:21
 msgctxt "KUserFeedback::LocaleInfoSource|"
@@ -246,6 +253,8 @@ msgstr "Spracheninformation"
 msgctxt "KUserFeedback::OpenGLInfoSource|"
 msgid "Information about type, version and vendor of the OpenGL stack."
 msgstr ""
+"Informationen zur Art, Version und des Herstellers der OpenGL-"
+"Implementierung."
 
 #: core/openglinfosource.cpp:98
 msgctxt "KUserFeedback::OpenGLInfoSource|"
@@ -300,7 +309,7 @@ msgstr "Wie oft die Anwendung gestartet wurde."
 #: core/startcountsource.cpp:46
 msgctxt "KUserFeedback::StartCountSource|"
 msgid "Launches count"
-msgstr ""
+msgstr "Aufrufzähler"
 
 #: core/usagetimesource.cpp:31
 msgctxt "KUserFeedback::UsageTimeSource|"
@@ -320,12 +329,12 @@ msgstr "Protokoll löschen"
 #: widgets/auditlogbrowserdialog.ui:14
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Submitted Data"
-msgstr ""
+msgstr "Übertragene Daten"
 
 #: widgets/auditlogbrowserdialog.ui:22
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Da&ta Submission:"
-msgstr ""
+msgstr "Da&tenübertragung:"
 
 #: widgets/feedbackconfigdialog.cpp:32
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
@@ -340,12 +349,12 @@ msgstr "Nein, ich möchte mich nicht beteiligen."
 #: widgets/feedbackconfigdialog.ui:14
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
 msgid "Feedback Settings"
-msgstr ""
+msgstr "Rückmeldeeinstellungen"
 
 #: widgets/feedbackconfigwidget.cpp:116
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "No data has been sent at this point."
-msgstr ""
+msgstr "Bisher wurden keine Daten übertragen."
 
 #: widgets/feedbackconfigwidget.ui:17
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -356,11 +365,17 @@ msgid ""
 "collect your personal data, files you use, websites you visit, or "
 "information that could identify you."
 msgstr ""
+"Sie können bei der Entwicklung dieser Software helfen indem Sie "
+"Informationen zum Nutzungsverhalten zur Verfügung stellen, damit sich die "
+"Entwickler Dinge konzentrieren können, die für Sie wichtig sind. Das "
+"Zurverfügungstellen dieser Informationen ist optional und vollständig "
+"anonym. Wir werden niemals persönliche Daten, verwendete Dateien, besuchte "
+"Webseiten oder Informationen zum Rückschluss auf Ihre Person erheben."
 
 #: widgets/feedbackconfigwidget.ui:33
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Contribute Statistics"
-msgstr ""
+msgstr "Statistiken beitragen"
 
 #: widgets/feedbackconfigwidget.ui:107
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -370,7 +385,7 @@ msgstr "Textfeld"
 #: widgets/feedbackconfigwidget.ui:124
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Show the raw data that is going to be shared."
-msgstr ""
+msgstr "Die zu teilenden Daten anzeigen."
 
 #: widgets/feedbackconfigwidget.ui:137
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -380,12 +395,12 @@ msgstr "<a href=\"auditLog\">Früher übertragene Daten anzeigen ...</a>"
 #: widgets/feedbackconfigwidget.ui:150
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Participate in Surveys"
-msgstr ""
+msgstr "An Umfragen teilnehmen"
 
 #: widgets/notificationpopup.cpp:67
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "Help us make this application better!"
-msgstr ""
+msgstr "Helfen Sie uns diese Anwendung zu verbessern!"
 
 #: widgets/notificationpopup.cpp:68
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -420,7 +435,7 @@ msgstr "Mitmachen ..."
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "We are looking for your feedback!"
-msgstr "Wir freuen uns auf Ihr Feedback."
+msgstr "Wir freuen uns auf Ihre Rückmeldung."
 
 #: widgets/notificationpopup.cpp:86
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -428,6 +443,8 @@ msgid ""
 "We would like a few minutes of your time to provide feedback about this "
 "application in a survey."
 msgstr ""
+"Wir möchten ein paar Minuten Ihrer wertvollen Zeit für Fragen zu dieser "
+"Anwendung mittels einer Umfrage beanspruchen."
 
 #: widgets/notificationpopup.cpp:88
 #, qt-format
@@ -436,6 +453,8 @@ msgid ""
 "We would like a few minutes of your time to provide feedback about %1 in a "
 "survey."
 msgstr ""
+"Wir möchten ein paar Minuten Ihrer wertvollen Zeit für Fragen zu %1 mittels "
+"einer Umfrage beanspruchen."
 
 #: widgets/notificationpopup.cpp:89
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -448,6 +467,8 @@ msgid ""
 "The widget style used by the application, and information about the used "
 "color scheme."
 msgstr ""
+"Der Stil der von der Anwendung genutzten Bedienelemente und Informationen "
+"zum Farbschema."
 
 #: widgets/styleinfosource.cpp:37
 msgctxt "KUserFeedback::StyleInfoSource|"

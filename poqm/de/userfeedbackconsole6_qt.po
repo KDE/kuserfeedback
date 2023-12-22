@@ -1,10 +1,11 @@
 # Frederik Schwarzer <schwarzer@kde.org>, 2018.
 # Burkhard Lück <lueck@hube-lueck.de>, 2018, 2019.
+# Johannes Obermayr <johannesobermayr@gmx.de>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2019-08-21 07:27+0200\n"
-"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
+"PO-Revision-Date: 2023-12-19 16:20+0100\n"
+"Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -12,6 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -78,12 +80,12 @@ msgstr "Diagramme"
 #: analytics/analyticsview.ui:41
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Aggregation:"
-msgstr ""
+msgstr "&Zusammenführung:"
 
 #: analytics/analyticsview.ui:108
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregated Data"
-msgstr ""
+msgstr "Zusammengeführte Daten"
 
 #: analytics/analyticsview.ui:118
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -173,7 +175,7 @@ msgstr ""
 #: analytics/analyticsview.ui:232
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Singular Chart"
-msgstr ""
+msgstr "&Einzeldiagramm"
 
 #: analytics/analyticsview.ui:235
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -350,7 +352,7 @@ msgstr ""
 #: mainwindow.cpp:130
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "About User Feedback Console"
-msgstr ""
+msgstr "Über Benutzerrückmeldekonsole"
 
 #: mainwindow.cpp:130
 #, qt-format
@@ -475,7 +477,7 @@ msgstr ""
 #: mainwindow.ui:14
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Feedback Console"
-msgstr ""
+msgstr "Benutzerrückmeldekonsole"
 
 #: mainwindow.ui:50
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -495,7 +497,7 @@ msgstr "&Umfrage"
 #: mainwindow.ui:72
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Anal&ytics"
-msgstr ""
+msgstr "Anal&yse"
 
 #: mainwindow.ui:77
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -555,7 +557,7 @@ msgstr "Be&enden"
 #: mainwindow.ui:203
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Quit the user feedback console."
-msgstr ""
+msgstr "Die Benutzerrückmeldekonsole verlassen."
 
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -595,7 +597,7 @@ msgstr "&Mitmachen ..."
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Help to make this application better for you!"
-msgstr ""
+msgstr "Helfen Sie die Anwendung für Sie besser zu machen."
 
 #: mainwindow.ui:261
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -620,7 +622,7 @@ msgstr "Produktumfragen verwalten."
 #: mainwindow.ui:289
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Analytics"
-msgstr ""
+msgstr "&Analyse"
 
 #: mainwindow.ui:292
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -660,7 +662,7 @@ msgstr "Alle Produkt-Einstellungen und Daten exportieren."
 #: model/aggregationeditormodel.cpp:61
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "<none>"
-msgstr ""
+msgstr "<kein>"
 
 #: model/aggregationeditormodel.cpp:90
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
@@ -675,17 +677,17 @@ msgstr "Typ"
 #: model/aggregationeditormodel.cpp:92
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "Element"
-msgstr ""
+msgstr "Element"
 
 #: model/aggregationelementeditmodel.cpp:48
 msgctxt "KUserFeedback::Console::AggregationElementEditModel|"
 msgid "<new element>"
-msgstr ""
+msgstr "<neues Element>"
 
 #: model/aggregationelementeditmodel.cpp:60
 msgctxt "KUserFeedback::Console::AggregationElementEditModel|"
 msgid "Element"
-msgstr ""
+msgstr "Element"
 
 #: model/categoryaggregationmodel.cpp:103
 msgctxt "KUserFeedback::Console::CategoryAggregationModel|"
@@ -852,7 +854,7 @@ msgstr "Import fehlgeschlagen"
 #: schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Selected file contains no valid product schema."
-msgstr ""
+msgstr "Die angegebene Datei enthält kein Produktschema."
 
 #: schemaeditor/schemaeditor.cpp:153
 #, qt-format
@@ -913,7 +915,7 @@ msgstr "Name:"
 #: schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source Element"
-msgstr ""
+msgstr "Quellelement hinzufügen"
 
 #: schemaeditor/schemaeditwidget.cpp:96
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -969,12 +971,12 @@ msgstr "Fügt eine neue Datenquelle hinzu."
 #: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr ""
+msgstr "Quell&element hinzufügen …"
 
 #: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
-msgstr ""
+msgstr "Ein Element zu einer Datenquelle hinzufügen."
 
 #: surveyeditor/surveydialog.ui:14
 msgctxt "KUserFeedback::Console::SurveyDialog|"

@@ -1,10 +1,10 @@
+# SPDX-FileCopyrightText: 2023 Johannes Obermayr <johannesobermayr@gmx.de>
 # Frederik Schwarzer <schwarzer@kde.org>, 2018, 2020.
 # Burkhard Lück <lueck@hube-lueck.de>, 2018, 2019, 2021.
-# Johannes Obermayr <johannesobermayr@gmx.de>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-12-18 11:42+0100\n"
+"PO-Revision-Date: 2023-12-21 17:26+0100\n"
 "Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -12,8 +12,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Qt-Contexts: true\n"
 "X-Generator: Lokalize 23.08.4\n"
+"X-Qt-Contexts: true\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -221,7 +221,7 @@ msgstr ""
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys about %1"
-msgstr "An Umfragen zur Benutzerfreundlichkeit von %1 nicht teilnehmen"
+msgstr "An Umfragen zur Benutzerfreundlichkeit zu %1 nicht teilnehmen"
 
 #: core/feedbackconfiguicontroller.cpp:250
 #, qt-format

@@ -1,10 +1,10 @@
+# SPDX-FileCopyrightText: 2023 Johannes Obermayr <johannesobermayr@gmx.de>
 # Frederik Schwarzer <schwarzer@kde.org>, 2018.
 # Burkhard Lück <lueck@hube-lueck.de>, 2018, 2019.
-# Johannes Obermayr <johannesobermayr@gmx.de>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-12-19 16:20+0100\n"
+"PO-Revision-Date: 2023-12-21 17:25+0100\n"
 "Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -12,8 +12,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Qt-Contexts: true\n"
 "X-Generator: Lokalize 23.08.4\n"
+"X-Qt-Contexts: true\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -80,12 +80,12 @@ msgstr "Diagramme"
 #: analytics/analyticsview.ui:41
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Aggregation:"
-msgstr "&Zusammenführung:"
+msgstr "&Zusammenstellung:"
 
 #: analytics/analyticsview.ui:108
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregated Data"
-msgstr "Zusammengeführte Daten"
+msgstr "Zusammengestellte Daten"
 
 #: analytics/analyticsview.ui:118
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -612,7 +612,7 @@ msgstr ""
 #: mainwindow.ui:275
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "S&urveys"
-msgstr ""
+msgstr "&Umfragen"
 
 #: mainwindow.ui:278
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -817,7 +817,7 @@ msgstr "Löscht die aktuell ausgewählte Zusammenstellung."
 #: schemaeditor/schemaeditor.cpp:40
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Source Templates"
-msgstr ""
+msgstr "Quellenvorlagen"
 
 #: schemaeditor/schemaeditor.cpp:119
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -971,7 +971,7 @@ msgstr "Fügt eine neue Datenquelle hinzu."
 #: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr "Quell&element hinzufügen …"
+msgstr "Quellen&element hinzufügen …"
 
 #: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"

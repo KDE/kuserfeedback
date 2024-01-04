@@ -2,14 +2,14 @@
     "id": "org.kde.kuserfeedback-console",
     "branch": "master",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.15-22.08",
+    "runtime-version": "6.6-kf6preview",
     "sdk": "org.kde.Sdk",
     "command": "UserFeedbackConsole",
     "tags": ["nightly"],
     "desktop-file-name-suffix": " (Nightly)",
     "finish-args": [
         "--share=ipc",
-        "--socket=x11",
+        "--socket=fallback-x11",
         "--socket=wayland",
         "--device=dri",
         "--share=network"

@@ -17,6 +17,7 @@
   <name xml:lang="fi">KUserFeedback-konsoli</name>
   <name xml:lang="fr">Console « KUserFeedback »</name>
   <name xml:lang="gl">Consola de KUserFeedback</name>
+  <name xml:lang="hu">KUserFeedback konzol</name>
   <name xml:lang="ia">Consolle de KUserFeedback</name>
   <name xml:lang="id">KUserFeedback Console</name>
   <name xml:lang="it">Console di KUserFeedback</name>
@@ -48,6 +49,7 @@
   <summary xml:lang="fi">Analyysi- ja hallintatyökalu käyttäjäpalautepalvelimiin</summary>
   <summary xml:lang="fr">Statistiques et outil d'administration pour les serveurs « KUserFeedback »</summary>
   <summary xml:lang="gl">Ferramenta de análise de datos e de administración para servidores de KUserFeedback.</summary>
+  <summary xml:lang="hu">A KUserFeedback kiszolgálók analitikai és adminisztrációs eszköze</summary>
   <summary xml:lang="id">Alat administrasi dan analisis untuk server KUserFeedback</summary>
   <summary xml:lang="it">Strumento di analisi e di amministrazione per server di KUserFeedback</summary>
   <summary xml:lang="ka">KUserFeedback -ის სერვერების ანალიზისა და ადმინისტრირების პროგრამა</summary>
@@ -80,6 +82,7 @@
     <p xml:lang="fi">Ominaisuuksia:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="gl">Funcionalidades:</p>
+    <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Funzionalità:</p>
@@ -113,6 +116,7 @@
       <li xml:lang="fi">Luo, muokkaa ja poista tuotteita ja tuotteiden dataskeemoja.</li>
       <li xml:lang="fr">Créer, modifier et supprimer des produits et des schémas de données de produit.</li>
       <li xml:lang="gl">Crear, editar e eliminar produtos e esquemas de datos de produtos.</li>
+      <li xml:lang="hu">Termékek és termékadatsémák létrehozása, szerkesztése és eltávolítása.</li>
       <li xml:lang="id">Menciptakan, mengedit, dan menghapus produk dan skema data produk.</li>
       <li xml:lang="it">Crea, modifica e rimuove i prodotti e i loro schemi di dati.</li>
       <li xml:lang="ka">შექმენით, ჩაასწორეთ და წაშალეთ პროდუქტები და პროდუქტის მონაცემები სქემები.</li>
@@ -142,6 +146,7 @@
       <li xml:lang="fi">Hallitse käyttäjätutkimuksia.</li>
       <li xml:lang="fr">Gérer les surveillances des utilisateurs.</li>
       <li xml:lang="gl">Xestionar as enquisas de uso.</li>
+      <li xml:lang="hu">Felhasználói felmérések kezelése.</li>
       <li xml:lang="id">Kelola survei pengguna.</li>
       <li xml:lang="it">Gestisce i sondaggi degli utenti.</li>
       <li xml:lang="ka">მომხმარებლის მიმოხილვების მართვა.</li>
@@ -171,6 +176,7 @@
       <li xml:lang="fi">Telemetriatietojen perustarkastelu ja -analyysi.</li>
       <li xml:lang="fr">Examen basique et statistiques de données de télémétrie.</li>
       <li xml:lang="gl">Revisión e análise básico de datos de telemetría.</li>
+      <li xml:lang="hu">A telemetriai adatok alapvető áttekintése és elemzése.</li>
       <li xml:lang="id">Tinjauan dasar dan analisis data telemetri.</li>
       <li xml:lang="it">Revisione e analisi di base dei dati di telemetria.</li>
       <li xml:lang="ka">ტელემეტრიის მონაცემების მიმოხილვა და ანალიზი.</li>
@@ -200,6 +206,7 @@
       <li xml:lang="fi">Malliskeemojen ja telemetriatietojen tuonti ja vienti.</li>
       <li xml:lang="fr">Schéma de produits et importation / exportation des données de télémétrie.</li>
       <li xml:lang="gl">Importación e exportación de datos de esquemas de produtos e de telemetría.</li>
+      <li xml:lang="hu">Termékséma- és telemetriai adatok importálása és exportálása.</li>
       <li xml:lang="id">Skema produk dan impor/ekspor data telemetri.</li>
       <li xml:lang="it">Importazione ed esportazione dei dati di telemetria e dello schema del prodotto.</li>
       <li xml:lang="ka">პროდუქტის სქემისა და ტელემეტრიის მონაცემების შეტანა/გატანა.</li>

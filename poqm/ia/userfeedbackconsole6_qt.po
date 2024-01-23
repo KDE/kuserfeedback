@@ -1,8 +1,8 @@
-# giovanni <g.sora@tiscali.it>, 2020, 2021.
+# giovanni <g.sora@tiscali.it>, 2020, 2021, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2021-11-22 22:43+0100\n"
+"PO-Revision-Date: 2024-01-22 11:03+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.08.3\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -475,7 +475,7 @@ msgstr "&File"
 #: mainwindow.ui:58
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Pro&ducts"
-msgstr ""
+msgstr "Pro&ductos"
 
 #: mainwindow.ui:67
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -515,7 +515,7 @@ msgstr "Messages de registro (log)"
 #: mainwindow.ui:132
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Products"
-msgstr ""
+msgstr "Productos"
 
 #: mainwindow.ui:160
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -715,7 +715,7 @@ msgstr ""
 #: model/productmodel.cpp:82
 msgctxt "KUserFeedback::Console::ProductModel|"
 msgid "Products"
-msgstr ""
+msgstr "Productos"
 
 #: model/ratiosetaggregationmodel.cpp:87
 msgctxt "KUserFeedback::Console::RatioSetAggregationModel|"

@@ -148,7 +148,8 @@ ecm_qt_install_logging_categories(
 
 ecm_install_po_files_as_qm(poqm)
 
-feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
+include(ECMFeatureSummary)
+ecm_feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 install(FILES
     ${KF6UserFeedbackCore_HEADERS}

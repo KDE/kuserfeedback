@@ -270,7 +270,7 @@ msgstr "Informacija apie platformą"
 #: core/qpainfosource.cpp:21
 msgctxt "KUserFeedback::QPAInfoSource|"
 msgid "The Qt platform abstraction plugin."
-msgstr "Qt platformos abstrakcijos papildinys."
+msgstr "Qt platformos abstrakcijos įskiepis."
 
 #: core/qpainfosource.cpp:33
 msgctxt "KUserFeedback::QPAInfoSource|"

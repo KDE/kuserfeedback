@@ -4,8 +4,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 find_program(QMLLINT_EXECUTABLE qmllint)
-if (QMLLINT_EXECUTABLE AND NOT Qt5Core_VERSION VERSION_LESS 5.4)
-  set(QmlLint_FOUND TRUE)
+if (QMLLINT_EXECUTABLE)
+  if(TARGET Qt6::Core OR Qt5Core_VERSION VERSION_GREATER_EQUAL 5.4)
+    set(QmlLint_FOUND TRUE)
+  endif()
 endif()
 
 # validate a list of qml files

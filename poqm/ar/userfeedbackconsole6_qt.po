@@ -1,8 +1,8 @@
-# Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2021.
+# SPDX-FileCopyrightText: 2021, 2024 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2021-12-14 20:20+0400\n"
+"PO-Revision-Date: 2024-02-15 18:11+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Lokalize 21.07.70\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -30,10 +30,9 @@ msgid "Copy"
 msgstr "انسخ"
 
 #: analytics/analyticsview.cpp:258
-#, fuzzy
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export Data"
-msgstr "&صدّر البيانات..."
+msgstr "صدّر البيانات"
 
 #: analytics/analyticsview.cpp:264
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -78,10 +77,9 @@ msgid "Charts"
 msgstr "المخططات"
 
 #: analytics/analyticsview.ui:41
-#, fuzzy
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Aggregation:"
-msgstr "التّجميع"
+msgstr "التّج&ميع:"
 
 #: analytics/analyticsview.ui:108
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -91,13 +89,12 @@ msgstr ""
 #: analytics/analyticsview.ui:118
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Raw Data"
-msgstr ""
+msgstr "بيانات خام"
 
 #: analytics/analyticsview.ui:138
-#, fuzzy
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Year"
-msgstr "السنة"
+msgstr "ال&سنة"
 
 #: analytics/analyticsview.ui:141
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -125,10 +122,9 @@ msgid "Aggregate data by week."
 msgstr ""
 
 #: analytics/analyticsview.ui:171
-#, fuzzy
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Day"
-msgstr " (أقلّ من يوم)"
+msgstr "اليو&م"
 
 #: analytics/analyticsview.ui:174
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -146,10 +142,9 @@ msgid "Export all recorded data."
 msgstr ""
 
 #: analytics/analyticsview.ui:193
-#, fuzzy
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Import Data..."
-msgstr "استورد بيانات"
+msgstr "ا&ستورد بيانات..."
 
 #: analytics/analyticsview.ui:196
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -202,16 +197,14 @@ msgid "Export Chart"
 msgstr ""
 
 #: analytics/chartexportdialog.ui:14
-#, fuzzy
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "Dialog"
 msgstr "حواريّ"
 
 #: analytics/chartexportdialog.ui:22
-#, fuzzy
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "F&ile name:"
-msgstr "اسم الملفّ"
+msgstr "ا&سم الملف:"
 
 #: analytics/chartexportdialog.ui:35
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -230,13 +223,11 @@ msgid "W&idth:"
 msgstr "ال&عرض:"
 
 #: analytics/chartexportdialog.ui:66 analytics/chartexportdialog.ui:92
-#, fuzzy
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "px"
 msgstr "بكسل"
 
 #: analytics/chartexportdialog.ui:82
-#, fuzzy
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "Height:"
 msgstr "الارتفاع:"
@@ -248,18 +239,16 @@ msgid "SV&G"
 msgstr "SVG"
 
 #: analytics/chartexportdialog.ui:117
-#, fuzzy
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "P&DF"
-msgstr "بي دي اف"
+msgstr "بي دي أ&ف"
 
 #: analytics/totalaggregator.cpp:37
 msgctxt "KUserFeedback::Console::TotalAggregator|"
 msgid "Samples"
-msgstr ""
+msgstr "العينات"
 
 #: connectdialog.cpp:25
-#, fuzzy
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Connect"
 msgstr "اتّصل"
@@ -270,34 +259,30 @@ msgid "Connect To Analytics Server"
 msgstr ""
 
 #: connectdialog.ui:22
-#, fuzzy
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Server &name:"
-msgstr "اسم الخادوم:"
+msgstr "ا&سم الخادوم:"
 
 #: connectdialog.ui:32
-#, fuzzy
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "&User name:"
-msgstr "اسم المستخدم:"
+msgstr "&اسم المس&تخدم:"
 
 #: connectdialog.ui:45
-#, fuzzy
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "P&assword:"
 msgstr "&كلمة السّرّ:"
 
 #: connectdialog.ui:78
-#, fuzzy
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Server UR&L:"
-msgstr "مسار الخادوم:"
+msgstr "&مسار الخادوم"
 
 #: jobs/handshakejob.cpp:26
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Connected to %1."
-msgstr "متّصل بـ %1"
+msgstr "متّصل بـ %1."
 
 #: jobs/handshakejob.cpp:55
 #, qt-format
@@ -324,10 +309,10 @@ msgid "Could not open file: %1"
 msgstr "تعذّر فتح الملف %1"
 
 #: jobs/productimportjob.cpp:37
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Unable to open file: %1"
-msgstr "تعذّر فتح الملفّ"
+msgstr "تعذّر فتح الملفّ: %1"
 
 #: jobs/productimportjob.cpp:43
 msgctxt "KUserFeedback::Console::ProductImportJob|"
@@ -395,10 +380,10 @@ msgid "Connection Failure"
 msgstr "فشل الاتصال"
 
 #: mainwindow.cpp:219
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Failed to connect to server: %1"
-msgstr "خطأ في الاتّصال إلى الخادوم"
+msgstr "خطأ في الاتّصال إلى الخادوم: %1"
 
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -408,7 +393,7 @@ msgstr ""
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Product Identifier:"
-msgstr ""
+msgstr "معرف المنتج:"
 
 #: mainwindow.cpp:248
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -437,10 +422,10 @@ msgid "Could not open file."
 msgstr "تعذّر فتح الملفّ."
 
 #: mainwindow.cpp:278
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import error: %1"
-msgstr "خطأ استيراد"
+msgstr "خطأ استيراد: %1"
 
 #: mainwindow.cpp:281
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -486,7 +471,6 @@ msgid "User Feedback Console"
 msgstr ""
 
 #: mainwindow.ui:50
-#, fuzzy
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&File"
 msgstr "&ملف"
@@ -494,20 +478,19 @@ msgstr "&ملف"
 #: mainwindow.ui:58
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Pro&ducts"
-msgstr ""
+msgstr "ال&منتجات"
 
 #: mainwindow.ui:67
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Survey"
-msgstr ""
+msgstr "ا&ستقصاء"
 
 #: mainwindow.ui:72
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Anal&ytics"
-msgstr ""
+msgstr "ت&حليلات"
 
 #: mainwindow.ui:77
-#, fuzzy
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Help"
 msgstr "م&ساعدة"
@@ -515,29 +498,27 @@ msgstr "م&ساعدة"
 #: mainwindow.ui:85
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "S&chema"
-msgstr ""
+msgstr "م&خطط"
 
 #: mainwindow.ui:90
-#, fuzzy
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Window"
 msgstr "&نافذة"
 
 #: mainwindow.ui:95
-#, fuzzy
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&View"
-msgstr "من&ظور"
+msgstr "&عرض"
 
 #: mainwindow.ui:113
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Log Messages"
-msgstr ""
+msgstr "سجل الرسائل"
 
 #: mainwindow.ui:132
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Products"
-msgstr ""
+msgstr "المنتجات"
 
 #: mainwindow.ui:160
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -547,7 +528,7 @@ msgstr "شريط أدوات العرض"
 #: mainwindow.ui:186
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Connect to Server..."
-msgstr ""
+msgstr "ات&صل بخادوم..."
 
 #: mainwindow.ui:189
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -560,7 +541,6 @@ msgid "F2"
 msgstr "F2"
 
 #: mainwindow.ui:200
-#, fuzzy
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Quit"
 msgstr "أ&نهِ"
@@ -601,10 +581,9 @@ msgid "Information about this program."
 msgstr ""
 
 #: mainwindow.ui:247
-#, fuzzy
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Contribute..."
-msgstr "ساهم..."
+msgstr "&ساهم..."
 
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -614,7 +593,7 @@ msgstr ""
 #: mainwindow.ui:261
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Schema"
-msgstr ""
+msgstr "&مخطط"
 
 #: mainwindow.ui:264
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -634,7 +613,7 @@ msgstr ""
 #: mainwindow.ui:289
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Analytics"
-msgstr ""
+msgstr "&تحليلات"
 
 #: mainwindow.ui:292
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -644,7 +623,7 @@ msgstr ""
 #: mainwindow.ui:300
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Manual..."
-msgstr ""
+msgstr "دليل المستخدم..."
 
 #: mainwindow.ui:303
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -677,16 +656,14 @@ msgid "<none>"
 msgstr ""
 
 #: model/aggregationeditormodel.cpp:90
-#, fuzzy
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "Name"
 msgstr "الاسم"
 
 #: model/aggregationeditormodel.cpp:91
-#, fuzzy
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "Type"
-msgstr "النّوع"
+msgstr "النوع"
 
 #: model/aggregationeditormodel.cpp:92
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
@@ -704,13 +681,11 @@ msgid "Element"
 msgstr "عنصر"
 
 #: model/categoryaggregationmodel.cpp:103
-#, fuzzy
 msgctxt "KUserFeedback::Console::CategoryAggregationModel|"
 msgid "[empty]"
-msgstr "فارغ"
+msgstr "[فارغ]"
 
 #: model/datamodel.cpp:158
-#, fuzzy
 msgctxt "KUserFeedback::Console::DataModel|"
 msgid "Timestamp"
 msgstr "الختم الزمني"
@@ -743,40 +718,34 @@ msgstr ""
 #: model/productmodel.cpp:82
 msgctxt "KUserFeedback::Console::ProductModel|"
 msgid "Products"
-msgstr ""
+msgstr "المنتجات"
 
 #: model/ratiosetaggregationmodel.cpp:87
-#, fuzzy
 msgctxt "KUserFeedback::Console::RatioSetAggregationModel|"
 msgid "[empty]"
-msgstr "فارغ"
+msgstr "[فارغ]"
 
 #: model/schemamodel.cpp:145
-#, fuzzy
 msgctxt "KUserFeedback::Console::SchemaModel|"
 msgid "Name"
 msgstr "الاسم"
 
 #: model/schemamodel.cpp:146
-#, fuzzy
 msgctxt "KUserFeedback::Console::SchemaModel|"
 msgid "Type"
-msgstr "النّوع"
+msgstr "النوع"
 
 #: model/surveymodel.cpp:110
-#, fuzzy
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "Name"
 msgstr "الاسم"
 
 #: model/surveymodel.cpp:111
-#, fuzzy
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "URL"
-msgstr "عنوان URL"
+msgstr "الرابط"
 
 #: model/surveymodel.cpp:112
-#, fuzzy
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "Active"
 msgstr "نشط"
@@ -787,7 +756,6 @@ msgid "Target"
 msgstr "الهدف"
 
 #: model/timeaggregationmodel.cpp:153
-#, fuzzy
 msgctxt "KUserFeedback::Console::TimeAggregationModel|"
 msgid "Time"
 msgstr "الوقت"
@@ -795,7 +763,7 @@ msgstr "الوقت"
 #: model/timeaggregationmodel.cpp:154
 msgctxt "KUserFeedback::Console::TimeAggregationModel|"
 msgid "Samples"
-msgstr ""
+msgstr "العينات"
 
 #: schemaeditor/aggregationeditwidget.cpp:99
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
@@ -808,13 +776,11 @@ msgid "Do you want to delete the currently selected aggregation?"
 msgstr ""
 
 #: schemaeditor/aggregationeditwidget.ui:60
-#, fuzzy
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Add"
 msgstr "أ&ضف"
 
 #: schemaeditor/aggregationeditwidget.ui:67
-#, fuzzy
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Delete"
 msgstr "ا&حذف"
@@ -890,7 +856,7 @@ msgstr ""
 #: schemaeditor/schemaeditor.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema"
-msgstr ""
+msgstr "مخطط"
 
 #: schemaeditor/schemaeditor.ui:38
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -928,10 +894,9 @@ msgid "Export the schema of this product."
 msgstr ""
 
 #: schemaeditor/schemaeditwidget.cpp:72
-#, fuzzy
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source"
-msgstr "أضف مصدرًا..."
+msgstr "أضف مصدرًا"
 
 #: schemaeditor/schemaeditwidget.cpp:72 schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -966,7 +931,6 @@ msgid "Do you really want to delete this entry, and all recorded data for it?"
 msgstr ""
 
 #: schemaeditor/schemaeditwidget.ui:30
-#, fuzzy
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "&Delete"
 msgstr "ا&حذف"
@@ -982,10 +946,9 @@ msgid "Del"
 msgstr "Del"
 
 #: schemaeditor/schemaeditwidget.ui:44
-#, fuzzy
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
-msgstr "أضف مصدرًا..."
+msgstr "أ&ضف مصدرًا..."
 
 #: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -1005,10 +968,9 @@ msgstr ""
 #: surveyeditor/surveydialog.ui:14
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Survey"
-msgstr ""
+msgstr "استقصاء"
 
 #: surveyeditor/surveydialog.ui:22
-#, fuzzy
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "&Name:"
 msgstr "الا&سم:"

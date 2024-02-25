@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2024-02-15 18:11+0400\n"
+"PO-Revision-Date: 2024-02-24 06:35+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -17,12 +17,12 @@ msgstr ""
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Time Interval"
-msgstr ""
+msgstr "ال&فاصل الزمني"
 
 #: analytics/analyticsview.cpp:88
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Chart Mode"
-msgstr ""
+msgstr "&وضع الرسم البياني"
 
 #: analytics/analyticsview.cpp:126
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -37,7 +37,7 @@ msgstr "صدّر البيانات"
 #: analytics/analyticsview.cpp:264
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export Failed"
-msgstr ""
+msgstr "فشل التصدير"
 
 #: analytics/analyticsview.cpp:264 analytics/analyticsview.cpp:281
 #, qt-format
@@ -49,7 +49,7 @@ msgstr "تعذّر فتح الملف %1"
 #, qt-format
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Data samples of %1 exported to %2."
-msgstr ""
+msgstr "صدرت عينات بيانات %1 إلى %2."
 
 #: analytics/analyticsview.cpp:275
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -59,17 +59,17 @@ msgstr "استورد بيانات"
 #: analytics/analyticsview.cpp:281 analytics/analyticsview.cpp:286
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Import Failed"
-msgstr ""
+msgstr "فشل الاستيراد"
 
 #: analytics/analyticsview.cpp:286
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Selected file contains no valid data."
-msgstr ""
+msgstr "لا يحتوي الملف المحدد على بيانات صالحة."
 
 #: analytics/analyticsview.cpp:293
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Data samples imported."
-msgstr ""
+msgstr "عينات البيانات المستوردة."
 
 #: analytics/analyticsview.ui:33
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -84,7 +84,7 @@ msgstr "التّج&ميع:"
 #: analytics/analyticsview.ui:108
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregated Data"
-msgstr ""
+msgstr "البيانات المجمعة"
 
 #: analytics/analyticsview.ui:118
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -99,7 +99,7 @@ msgstr "ال&سنة"
 #: analytics/analyticsview.ui:141
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by year."
-msgstr ""
+msgstr "تجميع البيانات حسب السنة."
 
 #: analytics/analyticsview.ui:149
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -109,7 +109,7 @@ msgstr "ال&شهر"
 #: analytics/analyticsview.ui:152
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by month."
-msgstr ""
+msgstr "تجميع البيانات حسب الشهر."
 
 #: analytics/analyticsview.ui:160
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -119,7 +119,7 @@ msgstr "الأ&سبوع"
 #: analytics/analyticsview.ui:163
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by week."
-msgstr ""
+msgstr "تجميع البيانات حسب الأسبوع"
 
 #: analytics/analyticsview.ui:171
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -129,7 +129,7 @@ msgstr "اليو&م"
 #: analytics/analyticsview.ui:174
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by day."
-msgstr ""
+msgstr "تجميع البيانات حسب اليوم."
 
 #: analytics/analyticsview.ui:182
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -139,7 +139,7 @@ msgstr "&صدّر البيانات..."
 #: analytics/analyticsview.ui:185
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export all recorded data."
-msgstr ""
+msgstr "تصدير جميع البيانات المسجلة."
 
 #: analytics/analyticsview.ui:193
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -149,52 +149,52 @@ msgstr "ا&ستورد بيانات..."
 #: analytics/analyticsview.ui:196
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Import data samples."
-msgstr ""
+msgstr "استيراد عينات البيانات."
 
 #: analytics/analyticsview.ui:204
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Reload Data"
-msgstr ""
+msgstr "إ&عادة تحميل البيانات"
 
 #: analytics/analyticsview.ui:207
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Refresh data from the server."
-msgstr ""
+msgstr "تحديث البيانات من الخادم."
 
 #: analytics/analyticsview.ui:218
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Timeline Chart"
-msgstr ""
+msgstr "&مخطط الجدول الزمني"
 
 #: analytics/analyticsview.ui:221
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show development over time."
-msgstr ""
+msgstr "إظهار التطوير بمرور الوقت."
 
 #: analytics/analyticsview.ui:232
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Singular Chart"
-msgstr ""
+msgstr "&مخطط فردي"
 
 #: analytics/analyticsview.ui:235
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show chart for a single time interval."
-msgstr ""
+msgstr "أظهر الرسم البياني لفترة زمنية واحدة."
 
 #: analytics/analyticsview.ui:243
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export &Chart..."
-msgstr ""
+msgstr "تصدير &مخطط..."
 
 #: analytics/analyticsview.ui:246
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export the current chart as image, SVG or PDF."
-msgstr ""
+msgstr "قم بتصدير المخطط الحالي كصورة أو SVG أو PDF."
 
 #: analytics/chartexportdialog.cpp:50
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "Export Chart"
-msgstr ""
+msgstr "تصدير مخطط"
 
 #: analytics/chartexportdialog.ui:14
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -212,10 +212,9 @@ msgid "..."
 msgstr "..."
 
 #: analytics/chartexportdialog.ui:44
-#, fuzzy
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "I&mage"
-msgstr "صورة"
+msgstr "صو&رة"
 
 #: analytics/chartexportdialog.ui:56
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -233,10 +232,9 @@ msgid "Height:"
 msgstr "الارتفاع:"
 
 #: analytics/chartexportdialog.ui:110
-#, fuzzy
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "SV&G"
-msgstr "SVG"
+msgstr "SV&G"
 
 #: analytics/chartexportdialog.ui:117
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -256,7 +254,7 @@ msgstr "اتّصل"
 #: connectdialog.ui:14
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Connect To Analytics Server"
-msgstr ""
+msgstr "الاتصال بخادم التحليلات"
 
 #: connectdialog.ui:22
 msgctxt "KUserFeedback::Console::ConnectDialog|"
@@ -288,18 +286,18 @@ msgstr "متّصل بـ %1."
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Incompatible protocol: %1."
-msgstr ""
+msgstr "ميفاق غير متوافق: %1."
 
 #: jobs/handshakejob.cpp:62
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Updated database schema from version %1 to %2."
-msgstr ""
+msgstr "حُدّث مخطط قاعدة البيانات من الإصدار %1 إلى %2."
 
 #: jobs/productexportjob.cpp:36
 msgctxt "KUserFeedback::Console::ProductExportJob|"
 msgid "Product not found."
-msgstr ""
+msgstr "لم يُعثر على المنتج."
 
 #: jobs/productexportjob.cpp:63 jobs/productexportjob.cpp:83
 #: jobs/productexportjob.cpp:103
@@ -317,29 +315,29 @@ msgstr "تعذّر فتح الملفّ: %1"
 #: jobs/productimportjob.cpp:43
 msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Invalid product schema file."
-msgstr ""
+msgstr "ملف مخطط منتج غير صالح."
 
 #: jobs/securityscanjob.cpp:54
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "No issues found."
-msgstr ""
+msgstr "لم يُعثر على مشكلات."
 
 #: jobs/securityscanjob.cpp:78
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is not protected!"
-msgstr ""
+msgstr "الوصول إلى %1 غير محمي!"
 
 #: jobs/securityscanjob.cpp:81
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is protected (%2)."
-msgstr ""
+msgstr "الوصول إلى %1 محمي (%2)."
 
 #: mainwindow.cpp:80 mainwindow.cpp:142
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Unsaved Schema Changes"
-msgstr ""
+msgstr "تغييرات المخطط غير المحفوظة"
 
 #: mainwindow.cpp:81
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -347,11 +345,12 @@ msgid ""
 "You have unsaved changes in the schema editor. Do you really want to close "
 "it and discard your changes?"
 msgstr ""
+"لديك تغييرات غير محفوظة في محرر المخطط. هل تريد حقا إغلاقه وتجاهل تغييراتك؟"
 
 #: mainwindow.cpp:130
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "About User Feedback Console"
-msgstr ""
+msgstr "حول وحدة تحكم ملاحظات المستخدم"
 
 #: mainwindow.cpp:130
 #, qt-format
@@ -361,6 +360,9 @@ msgid ""
 "License: MIT\n"
 "Copyright ⓒ 2017 Volker Krause <vkrause@kde.org>"
 msgstr ""
+"الإصدار: %1\n"
+"الترخيص: إم أي تي\n"
+"حقوق الطبع والنشر ⓒ 2017 فولكر كراوس <vkrause@kde.org>"
 
 #: mainwindow.cpp:143
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -368,11 +370,13 @@ msgid ""
 "You have unsaved changes in the schema editor, do you really want to open "
 "another product and discard your changes?"
 msgstr ""
+"لديك تغييرات غير محفوظة في محرر المخطط ، هل تريد حقا فتح منتج آخر وتجاهل "
+"تغييراتك؟"
 
 #: mainwindow.cpp:172
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Usage ratio of the analytics view, survey editor and schema editor."
-msgstr ""
+msgstr "نسبة استخدام طريقة عرض التحليلات ومحرر الاستطلاع ومحرر المخطط."
 
 #: mainwindow.cpp:219
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -388,7 +392,7 @@ msgstr "خطأ في الاتّصال إلى الخادوم: %1"
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Add New Product"
-msgstr ""
+msgstr "أضف منتجا جديدا"
 
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -398,23 +402,23 @@ msgstr "معرف المنتج:"
 #: mainwindow.cpp:248
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Delete Product"
-msgstr ""
+msgstr "احذف منتجا"
 
 #: mainwindow.cpp:249
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Do you really want to delete product %1 with all its data?"
-msgstr ""
+msgstr "هل تريد حقا حذف المنتج %1 بجميع بياناته؟"
 
 #: mainwindow.cpp:266
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Product"
-msgstr ""
+msgstr "استورد منتجا"
 
 #: mainwindow.cpp:272 mainwindow.cpp:278 mainwindow.cpp:297
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Failed"
-msgstr ""
+msgstr "فشل الاستيراد"
 
 #: mainwindow.cpp:272 mainwindow.cpp:297
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -430,28 +434,28 @@ msgstr "خطأ استيراد: %1"
 #: mainwindow.cpp:281
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Product imported successfully."
-msgstr ""
+msgstr " اِسْتُورِدَ المنتج بنجاح."
 
 #: mainwindow.cpp:291
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Product"
-msgstr ""
+msgstr "تصدير المنتج"
 
 #: mainwindow.cpp:303
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Failed"
-msgstr ""
+msgstr "فشل التصدير"
 
 #: mainwindow.cpp:303
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export error: %1"
-msgstr ""
+msgstr "خطأ في التصدير: %1"
 
 #: mainwindow.cpp:306
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Product exported successfully."
-msgstr ""
+msgstr "صُدّر المنتج بنجاح"
 
 #: mainwindow.cpp:355
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -464,11 +468,12 @@ msgid ""
 "There are unsaved changes in the schema editor. Do you want to discard them "
 "and close the application?"
 msgstr ""
+"هناك تغييرات غير محفوظة في محرر المخطط. هل تريد التخلص منها وإغلاق التطبيق؟"
 
 #: mainwindow.ui:14
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Feedback Console"
-msgstr ""
+msgstr "وحدة تحكم ملاحظات المستخدم"
 
 #: mainwindow.ui:50
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -533,7 +538,7 @@ msgstr "ات&صل بخادوم..."
 #: mainwindow.ui:189
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Connect to analytics server."
-msgstr ""
+msgstr "اتصل بخادم التحليلات."
 
 #: mainwindow.ui:192
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -548,27 +553,27 @@ msgstr "أ&نهِ"
 #: mainwindow.ui:203
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Quit the user feedback console."
-msgstr ""
+msgstr "أنهِ وحدة تحكم ملاحظات المستخدم."
 
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Add Product..."
-msgstr ""
+msgstr "أ&ضف منتجا..."
 
 #: mainwindow.ui:217
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Add a new product."
-msgstr ""
+msgstr "أضف منتجا جديدا."
 
 #: mainwindow.ui:225
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Delete Product"
-msgstr ""
+msgstr "ا&حذف منتجا"
 
 #: mainwindow.ui:228
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Delete product and all associated data."
-msgstr ""
+msgstr "احذف المنتج وجميع البيانات المرتبطة به."
 
 #: mainwindow.ui:236
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -578,7 +583,7 @@ msgstr "&حول..."
 #: mainwindow.ui:239
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Information about this program."
-msgstr ""
+msgstr "معلومات حول هذا البرنامج."
 
 #: mainwindow.ui:247
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -588,7 +593,7 @@ msgstr "&ساهم..."
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Help to make this application better for you!"
-msgstr ""
+msgstr "ساعد في جعل هذا التطبيق أفضل لك!"
 
 #: mainwindow.ui:261
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -598,17 +603,17 @@ msgstr "&مخطط"
 #: mainwindow.ui:264
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Edit product telemetry schema."
-msgstr ""
+msgstr "حرّر مخطط القياس عن بعد للمنتج."
 
 #: mainwindow.ui:275
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "S&urveys"
-msgstr ""
+msgstr "اسـ&تطلاعات"
 
 #: mainwindow.ui:278
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Manage product surveys."
-msgstr ""
+msgstr "أدِرْ استطلاعات المنتجات."
 
 #: mainwindow.ui:289
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -618,7 +623,7 @@ msgstr "&تحليلات"
 #: mainwindow.ui:292
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Analyze product telemetry."
-msgstr ""
+msgstr "حلّل القياس عن بعد للمنتج."
 
 #: mainwindow.ui:300
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -628,32 +633,32 @@ msgstr "دليل المستخدم..."
 #: mainwindow.ui:303
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Show the user manual"
-msgstr ""
+msgstr "أظهر دليل المستخدم"
 
 #: mainwindow.ui:311
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Product..."
-msgstr ""
+msgstr "استورِد منتجا..."
 
 #: mainwindow.ui:314
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import product settings and data."
-msgstr ""
+msgstr "استورِد إعدادات المنتج والبيانات."
 
 #: mainwindow.ui:322
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Product..."
-msgstr ""
+msgstr "صدّر منتجا..."
 
 #: mainwindow.ui:325
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export all product settings and data."
-msgstr ""
+msgstr "صدّر جميع إعدادات المنتج والبيانات."
 
 #: model/aggregationeditormodel.cpp:61
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "<none>"
-msgstr ""
+msgstr "<لا شيء>"
 
 #: model/aggregationeditormodel.cpp:90
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
@@ -673,7 +678,7 @@ msgstr "عنصر"
 #: model/aggregationelementeditmodel.cpp:48
 msgctxt "KUserFeedback::Console::AggregationElementEditModel|"
 msgid "<new element>"
-msgstr ""
+msgstr "<عنصر جديد>"
 
 #: model/aggregationelementeditmodel.cpp:60
 msgctxt "KUserFeedback::Console::AggregationElementEditModel|"
@@ -693,12 +698,12 @@ msgstr "الختم الزمني"
 #: model/numericaggregationmodel.cpp:78
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Extreme"
-msgstr ""
+msgstr "الحد الأدنى"
 
 #: model/numericaggregationmodel.cpp:79
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Quartile"
-msgstr ""
+msgstr "الربع الأدنى"
 
 #: model/numericaggregationmodel.cpp:80
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
@@ -708,12 +713,12 @@ msgstr "متوسط"
 #: model/numericaggregationmodel.cpp:81
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Quartile"
-msgstr ""
+msgstr "الربع الأعلى"
 
 #: model/numericaggregationmodel.cpp:82
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Extreme"
-msgstr ""
+msgstr "الحد الأعلى"
 
 #: model/productmodel.cpp:82
 msgctxt "KUserFeedback::Console::ProductModel|"
@@ -768,12 +773,12 @@ msgstr "العينات"
 #: schemaeditor/aggregationeditwidget.cpp:99
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Delete Aggregation"
-msgstr ""
+msgstr "احذف التجميع"
 
 #: schemaeditor/aggregationeditwidget.cpp:100
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Do you want to delete the currently selected aggregation?"
-msgstr ""
+msgstr "هل تريد حذف التجميع المحدد حاليا؟"
 
 #: schemaeditor/aggregationeditwidget.ui:60
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
@@ -788,37 +793,37 @@ msgstr "ا&حذف"
 #: schemaeditor/aggregationeditwidget.ui:83
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add &Aggregation"
-msgstr ""
+msgstr "أضف &تجميعا"
 
 #: schemaeditor/aggregationeditwidget.ui:86
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add a new aggregation."
-msgstr ""
+msgstr "أضف تجميعا جديدا"
 
 #: schemaeditor/aggregationeditwidget.ui:94
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Delete Aggregation"
-msgstr ""
+msgstr "احذف &تجميعا"
 
 #: schemaeditor/aggregationeditwidget.ui:97
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Delete the currently selected aggregation."
-msgstr ""
+msgstr "احذف التجميع المحدد حاليا."
 
 #: schemaeditor/schemaeditor.cpp:40
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Source Templates"
-msgstr ""
+msgstr "قوالب المصدر"
 
 #: schemaeditor/schemaeditor.cpp:119
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export Schema"
-msgstr ""
+msgstr "صدّر مخططا"
 
 #: schemaeditor/schemaeditor.cpp:125
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export Failed"
-msgstr ""
+msgstr "فشل التصدير"
 
 #: schemaeditor/schemaeditor.cpp:125 schemaeditor/schemaeditor.cpp:140
 #, qt-format
@@ -830,28 +835,28 @@ msgstr "تعذّر فتح الملف %1"
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 exported to %2."
-msgstr ""
+msgstr "مخطط %1 صدّر إلى %2."
 
 #: schemaeditor/schemaeditor.cpp:134
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import Schema"
-msgstr ""
+msgstr "استورِد مخططا"
 
 #: schemaeditor/schemaeditor.cpp:140 schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import Failed"
-msgstr ""
+msgstr "فشل الاستيراد"
 
 #: schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Selected file contains no valid product schema."
-msgstr ""
+msgstr "لا يحتوي الملف المحدد على مخطط منتج صالح."
 
 #: schemaeditor/schemaeditor.cpp:153
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 imported from %2."
-msgstr ""
+msgstr "مخطط %1 مستورد من %2."
 
 #: schemaeditor/schemaeditor.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -866,32 +871,32 @@ msgstr "التّجميع"
 #: schemaeditor/schemaeditor.ui:49
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Save Schema"
-msgstr ""
+msgstr "ا&حفظ المخطط"
 
 #: schemaeditor/schemaeditor.ui:52
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
-msgstr ""
+msgstr "احفظ التغييرات على مخطط المنتج."
 
 #: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
-msgstr ""
+msgstr "ا&ستورد مخططا"
 
 #: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
-msgstr ""
+msgstr "استورِد مخططا لهذا المنتج."
 
 #: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
-msgstr ""
+msgstr "صدّر &مخططا..."
 
 #: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
-msgstr ""
+msgstr "صدّر مخطط هذا المنتج."
 
 #: schemaeditor/schemaeditwidget.cpp:72
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -906,29 +911,29 @@ msgstr "الاسم:"
 #: schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source Element"
-msgstr ""
+msgstr "أضف عنصر المصدر"
 
 #: schemaeditor/schemaeditwidget.cpp:96
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Source"
-msgstr ""
+msgstr "احذف مصدرا"
 
 #: schemaeditor/schemaeditwidget.cpp:97
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid ""
 "Do you really want to delete the source '%1', and all recorded data for it?"
-msgstr ""
+msgstr "هل تريد حقا حذف المصدر \"%1\" وجميع البيانات المسجلة له؟"
 
 #: schemaeditor/schemaeditwidget.cpp:102
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Schema Entry"
-msgstr ""
+msgstr "احذف إدخال المخطط"
 
 #: schemaeditor/schemaeditwidget.cpp:103
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Do you really want to delete this entry, and all recorded data for it?"
-msgstr ""
+msgstr "هل تريد حقا حذف هذا الإدخال وجميع البيانات المسجلة له؟"
 
 #: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -938,7 +943,7 @@ msgstr "ا&حذف"
 #: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
-msgstr ""
+msgstr "احذف العنصر أو الإدخال المحدد."
 
 #: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -953,17 +958,17 @@ msgstr "أ&ضف مصدرًا..."
 #: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
-msgstr ""
+msgstr "أضف مصدر بيانات جديدا."
 
 #: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr ""
+msgstr "إضافة مصدر &عنصر..."
 
 #: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
-msgstr ""
+msgstr "أضف عنصرا إلى مصدر بيانات."
 
 #: surveyeditor/surveydialog.ui:14
 msgctxt "KUserFeedback::Console::SurveyDialog|"
@@ -983,44 +988,44 @@ msgstr "الم&سار:"
 #: surveyeditor/surveydialog.ui:50
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Targeting e&xpression:"
-msgstr ""
+msgstr "تعبير الا&ستهداف:"
 
 #: surveyeditor/surveyeditor.cpp:105
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete Survey"
-msgstr ""
+msgstr "احذف الاستطلاع"
 
 #: surveyeditor/surveyeditor.cpp:106
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
-msgstr ""
+msgstr "هل تريد حقا حذف الاستطلاع المحدد؟"
 
 #: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
-msgstr ""
+msgstr "أ&ضف استطلاعا..."
 
 #: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
-msgstr ""
+msgstr "أضف استطلاعا جديدا."
 
 #: surveyeditor/surveyeditor.ui:56
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
-msgstr ""
+msgstr "ا&حذف الاستطلاع"
 
 #: surveyeditor/surveyeditor.ui:59
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
-msgstr ""
+msgstr "احذف استطلاعا"
 
 #: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
-msgstr ""
+msgstr "حرّ&ر الاستطلاع..."
 
 #: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
-msgstr ""
+msgstr "حرّر الاستطلاع المحدد حاليا."

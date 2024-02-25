@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LGPL-2.0-or-later</project_license>
   <name>KUserFeedback Console</name>
+  <name xml:lang="ar">طرفية ك مشاركة البيانات</name>
   <name xml:lang="az">KUserFeedback Konsolu</name>
   <name xml:lang="bg">Конзола на KUserFeedback</name>
   <name xml:lang="ca">Consola del KUserFeedback</name>
@@ -37,6 +38,7 @@
   <name xml:lang="zh-CN">KUserFeedback 控制台</name>
   <name xml:lang="zh-TW">KUserFeedback 主控台</name>
   <summary>Analytics and administration tool for KUserFeedback servers</summary>
+  <summary xml:lang="ar">أداة التحليلات والإدارة لخوادم ك مشاركة البيانات</summary>
   <summary xml:lang="az">KUserFeedback xidməti üçün analitik və adminstrativ alət</summary>
   <summary xml:lang="bg">Инструмент за анализ и администриране на сървърите на KUserFeedback</summary>
   <summary xml:lang="ca">Eina d'anàlisi i d'administració per als servidors del KUserFeedback</summary>
@@ -106,6 +108,7 @@
     <p xml:lang="zh-TW">功能：</p>
     <ul>
       <li>Create, edit and remove products and product data schemas.</li>
+      <li xml:lang="ar">إنشاء وتحرير وإزالة المنتجات ومخططات بيانات المنتج.</li>
       <li xml:lang="az">Məhsullar və məhsul haqqında məlumatlar sxemlərini yaratmaq, düzəliş etmək və silmək.</li>
       <li xml:lang="bg">Създаване, редактиране и премахване на продукти и схеми за данни за продукти.</li>
       <li xml:lang="ca">Crea, edita i elimina productes i esquemes de dades de productes.</li>
@@ -137,6 +140,7 @@
       <li xml:lang="zh-CN">创建、编辑和删除产品和产品数据结构。</li>
       <li xml:lang="zh-TW">建立、編輯並移除產品與產品資料綱要。</li>
       <li>Manage user surveys.</li>
+      <li xml:lang="ar">إدارة استطلاعات المستخدمين.</li>
       <li xml:lang="az">İstiffadəçi sorğularını idarə etmək.</li>
       <li xml:lang="bg">Управление на потребителски анкети.</li>
       <li xml:lang="ca">Gestiona les enquestes dels usuaris.</li>
@@ -168,6 +172,7 @@
       <li xml:lang="zh-CN">管理用户数据调查功能。</li>
       <li xml:lang="zh-TW">管理使用者調查。</li>
       <li>Basic review and analytics of telemetry data.</li>
+      <li xml:lang="ar">المراجعة الأساسية وتحليلات بيانات القياس عن بعد.</li>
       <li xml:lang="az">Telemetriya məlumatlarının əsas təhlili və analizi.</li>
       <li xml:lang="bg">Основен преглед и анализ на телеметрични данни.</li>
       <li xml:lang="ca">Revisió bàsica i anàlisi de les dades de telemetria.</li>
@@ -199,6 +204,7 @@
       <li xml:lang="zh-CN">对遥测数据进行基本检查和分析。</li>
       <li xml:lang="zh-TW">對遙測資料的基本檢查與分析。</li>
       <li>Product schema and telemetry data import/export.</li>
+      <li xml:lang="ar">استيراد/تصدير مخطط المنتج وبيانات القياس عن بعد.</li>
       <li xml:lang="az">Məhsul sxemlərinin və telemetriya məlumatlarının idxalı/ixracı.</li>
       <li xml:lang="bg">Импортиране/експортиране на продуктови схеми и телеметрични данни.</li>
       <li xml:lang="ca">Importació i exportació de les dades d'esquema de producte i telemetria.</li>

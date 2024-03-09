@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2024-02-08 18:07+0300\n"
+"PO-Revision-Date: 2024-03-08 19:46+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.01.95\n"
+"X-Generator: Lokalize 24.02.0\n"
 "X-Qt-Contexts: true\n"
 "X-POOTLE-MTIME: 1502201738.000000\n"
 
@@ -134,7 +134,7 @@ msgstr "Veriyi güne göre toplayın."
 #: analytics/analyticsview.ui:182
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Export Data..."
-msgstr "Veriyi &Dışa Aktar..."
+msgstr "Veriyi &Dışa Aktar…"
 
 #: analytics/analyticsview.ui:185
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -144,7 +144,7 @@ msgstr "Tüm kayıtlı veriyi dışa aktarın."
 #: analytics/analyticsview.ui:193
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Import Data..."
-msgstr "Veri &İçe Aktar..."
+msgstr "Veri &İçe Aktar…"
 
 #: analytics/analyticsview.ui:196
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -184,7 +184,7 @@ msgstr "Grafiği tek bir zaman aralığında göster."
 #: analytics/analyticsview.ui:243
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export &Chart..."
-msgstr "&Grafiği Dışa Aktar..."
+msgstr "&Grafiği Dışa Aktar…"
 
 #: analytics/analyticsview.ui:246
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -209,7 +209,7 @@ msgstr "D&osya adı:"
 #: analytics/chartexportdialog.ui:35
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "..."
-msgstr "..."
+msgstr "…"
 
 #: analytics/chartexportdialog.ui:44
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -274,7 +274,7 @@ msgstr "P&arola:"
 #: connectdialog.ui:78
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Server UR&L:"
-msgstr "Sunucu &URL'si:"
+msgstr "Sunucu &URL’si:"
 
 #: jobs/handshakejob.cpp:26
 #, qt-format
@@ -292,7 +292,7 @@ msgstr "Uyumsuz protokol: %1."
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Updated database schema from version %1 to %2."
-msgstr "Sürüm %1-%2 arası veritabana şeması güncellendi."
+msgstr "Veritabanı şeması %1 sürümünden %2 sürümüne güncellendi."
 
 #: jobs/productexportjob.cpp:36
 msgctxt "KUserFeedback::Console::ProductExportJob|"
@@ -345,8 +345,8 @@ msgid ""
 "You have unsaved changes in the schema editor. Do you really want to close "
 "it and discard your changes?"
 msgstr ""
-"Şema düzenleyicide kaydedilmemiş değişiklikleriniz var. Gerçekten kapatmak "
-"ve değişiklikleri yok saymak istiyor musunuz?"
+"Şema düzenleyicisinde kaydedilmemiş değişiklikleriniz var. Kapatmayı ve "
+"değişiklikleri yok saymayı gerçekten istiyor musunuz?"
 
 #: mainwindow.cpp:130
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -535,7 +535,7 @@ msgstr "Görünüm Araç Çubuğu"
 #: mainwindow.ui:186
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Connect to Server..."
-msgstr "Sunucuya &Bağlan..."
+msgstr "Sunucuya &Bağlan…"
 
 #: mainwindow.ui:189
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -560,7 +560,7 @@ msgstr "Kullanıcı geri bildirimi konsolundan çıkın."
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Add Product..."
-msgstr "Ürün &Ekle..."
+msgstr "Ürün &Ekle…"
 
 #: mainwindow.ui:217
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -580,7 +580,7 @@ msgstr "Ürünü ve ilgili tüm verisini silin."
 #: mainwindow.ui:236
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&About..."
-msgstr "&Hakkında..."
+msgstr "&Hakkında…"
 
 #: mainwindow.ui:239
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -590,7 +590,7 @@ msgstr "Bu program hakkında bilgi."
 #: mainwindow.ui:247
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Contribute..."
-msgstr "&Katkıda Bulun..."
+msgstr "&Katkıda Bulun…"
 
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -630,7 +630,7 @@ msgstr "Ürün uzaktan izlemeyi çözümleyin."
 #: mainwindow.ui:300
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Manual..."
-msgstr "Kullanıcı Klavuzu..."
+msgstr "Kullanıcı Kılavuzu…"
 
 #: mainwindow.ui:303
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -640,7 +640,7 @@ msgstr "Kullanıcı klavuzunu göster"
 #: mainwindow.ui:311
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Product..."
-msgstr "Ürün İçe Aktar..."
+msgstr "Ürün İçe Aktar…"
 
 #: mainwindow.ui:314
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -650,7 +650,7 @@ msgstr "Ürün ayarları ve verisini içe aktarın."
 #: mainwindow.ui:322
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Product..."
-msgstr "Ürünü Dışa Aktar..."
+msgstr "Ürünü Dışa Aktar…"
 
 #: mainwindow.ui:325
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -883,7 +883,7 @@ msgstr "Değişiklikleri ürün şemasına kaydedin."
 #: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
-msgstr "Şema &İçe Aktar..."
+msgstr "Şema &İçe Aktar…"
 
 #: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -893,7 +893,7 @@ msgstr "Bu ürün için şema içe aktarın."
 #: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
-msgstr "&Şemayı Dışa Aktar..."
+msgstr "&Şemayı Dışa Aktar…"
 
 #: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -926,7 +926,7 @@ msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid ""
 "Do you really want to delete the source '%1', and all recorded data for it?"
 msgstr ""
-"'%1' kaynağını ve tüm kayıtlı verilerini gerçekten silmek istiyor musunuz?"
+"“%1” kaynağını ve tüm kayıtlı verilerini silmeyi gerçekten istiyor musunuz?"
 
 #: schemaeditor/schemaeditwidget.cpp:102
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -956,7 +956,7 @@ msgstr "Del"
 #: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
-msgstr "&Kaynak Ekle..."
+msgstr "&Kaynak Ekle…"
 
 #: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -966,7 +966,7 @@ msgstr "Yeni bir veri kaynağı ekleyin."
 #: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr "Kaynak &Öge Ekle..."
+msgstr "Kaynak &Öge Ekle…"
 
 #: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -1006,7 +1006,7 @@ msgstr "Seçili anketleri silmek istediğinizden emin misiniz?"
 #: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
-msgstr "Anket &Ekle..."
+msgstr "Anket &Ekle…"
 
 #: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
@@ -1026,7 +1026,7 @@ msgstr "Bir anket silin."
 #: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
-msgstr "Anketi Dü&zenle..."
+msgstr "Anketi Dü&zenle…"
 
 #: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"

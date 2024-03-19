@@ -22,6 +22,7 @@
   <name xml:lang="hu">KUserFeedback konzol</name>
   <name xml:lang="ia">Consolle de KUserFeedback</name>
   <name xml:lang="id">KUserFeedback Console</name>
+  <name xml:lang="is">KUserFeedback-skjár</name>
   <name xml:lang="it">Console di KUserFeedback</name>
   <name xml:lang="ka">KUserFeedback -ის კონსოლი</name>
   <name xml:lang="ko">KUserFeedback 콘솔</name>
@@ -56,6 +57,7 @@
   <summary xml:lang="he">כלי אבחון וניהול לשרתי משוב משתמש של KDE</summary>
   <summary xml:lang="hu">A KUserFeedback kiszolgálók analitikai és adminisztrációs eszköze</summary>
   <summary xml:lang="id">Alat administrasi dan analisis untuk server KUserFeedback</summary>
+  <summary xml:lang="is">Greiningar- og umsjónarverkfæri fyrir KUserFeedback-þjóna</summary>
   <summary xml:lang="it">Strumento di analisi e di amministrazione per server di KUserFeedback</summary>
   <summary xml:lang="ka">KUserFeedback -ის სერვერების ანალიზისა და ადმინისტრირების პროგრამა</summary>
   <summary xml:lang="ko">KUserFeedback 서버 분석 및 관리 도구입니다</summary>
@@ -92,6 +94,7 @@
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
+    <p xml:lang="is">Eiginleikar:</p>
     <p xml:lang="it">Funzionalità:</p>
     <p xml:lang="ka">თვისებები:</p>
     <p xml:lang="ko">기능:</p>
@@ -128,6 +131,7 @@
       <li xml:lang="he">יצירה, עריכה והסרה של מוצרים וסכמות נתונים של מוצרים.</li>
       <li xml:lang="hu">Termékek és termékadatsémák létrehozása, szerkesztése és eltávolítása.</li>
       <li xml:lang="id">Menciptakan, mengedit, dan menghapus produk dan skema data produk.</li>
+      <li xml:lang="is">Búa til, breyta og fjarlægja vörur og gagnaskema fyrir vörur.</li>
       <li xml:lang="it">Crea, modifica e rimuove i prodotti e i loro schemi di dati.</li>
       <li xml:lang="ka">შექმენით, ჩაასწორეთ და წაშალეთ პროდუქტები და პროდუქტის მონაცემები სქემები.</li>
       <li xml:lang="ko">제품과 제품 데이터 스키마를 생성, 편집, 삭제합니다.</li>
@@ -161,6 +165,7 @@
       <li xml:lang="he">ניהול סקרי משתמשים.</li>
       <li xml:lang="hu">Felhasználói felmérések kezelése.</li>
       <li xml:lang="id">Kelola survei pengguna.</li>
+      <li xml:lang="is">Hafa umsjón með skoðanakönnunum notenda</li>
       <li xml:lang="it">Gestisce i sondaggi degli utenti.</li>
       <li xml:lang="ka">მომხმარებლის მიმოხილვების მართვა.</li>
       <li xml:lang="ko">사용자 설문 조사를 관리합니다.</li>
@@ -194,6 +199,7 @@
       <li xml:lang="he">סקירה בסיסית של אבחון של נתוני מדידה.</li>
       <li xml:lang="hu">A telemetriai adatok alapvető áttekintése és elemzése.</li>
       <li xml:lang="id">Tinjauan dasar dan analisis data telemetri.</li>
+      <li xml:lang="is">Almenn yfirferð og greining á fjarmælingargögnum.</li>
       <li xml:lang="it">Revisione e analisi di base dei dati di telemetria.</li>
       <li xml:lang="ka">ტელემეტრიის მონაცემების მიმოხილვა და ანალიზი.</li>
       <li xml:lang="ko">원격 측정 데이터를 분석합니다.</li>
@@ -227,6 +233,7 @@
       <li xml:lang="he">ייבוא/ייצוא של סכמת מוצרים ונתוני מדידה.</li>
       <li xml:lang="hu">Termékséma- és telemetriai adatok importálása és exportálása.</li>
       <li xml:lang="id">Skema produk dan impor/ekspor data telemetri.</li>
+      <li xml:lang="is">Innflutningur og útflutningur vöruskema og fjarmælingargagna.</li>
       <li xml:lang="it">Importazione ed esportazione dei dati di telemetria e dello schema del prodotto.</li>
       <li xml:lang="ka">პროდუქტის სქემისა და ტელემეტრიის მონაცემების შეტანა/გატანა.</li>
       <li xml:lang="ko">제품 스키마와 원격 측정 데이터를 가져오고 내보냅니다.</li>

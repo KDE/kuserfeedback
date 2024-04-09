@@ -4,7 +4,8 @@ ecm_qt_declare_logging_category(userfeedback_core_debug_srcs
                                 HEADER logging_p.h
                                 IDENTIFIER KUserFeedback::Log
                                 CATEGORY_NAME org.kde.UserFeedback
-                                DESCRIPTION "User Feedback Framework" EXPORT KUSERFEEDBACK)
+                                DESCRIPTION "User Feedback Framework"
+                                EXPORT KUSERFEEDBACK)
 
 set(userfeedback_core_srcs
     abstractdatasource.cpp

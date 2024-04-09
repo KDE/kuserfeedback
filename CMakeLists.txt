@@ -141,7 +141,7 @@ install(FILES
 install(EXPORT KF6UserFeedbackTargets DESTINATION ${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6UserFeedback FILE KF6UserFeedbackTarget.cmake NAMESPACE KF6::)
 
 ecm_qt_install_logging_categories(
-        EXPORT KF6USERFEEDBACK
+        EXPORT KUSERFEEDBACK
         FILE org_kde_UserFeedback.categories
         DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
         )

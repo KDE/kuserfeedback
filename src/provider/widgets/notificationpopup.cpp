@@ -70,7 +70,7 @@ void NotificationPopupPrivate::showEncouragement()
         ui->title->setText(NotificationPopup::tr("Help us make %1 better!").arg(name));
         ui->message->setText(NotificationPopup::tr("You can help us improving %1 by sharing statistics and participate in surveys.").arg(name));
     }
-    ui->actionButton->setText(NotificationPopup::tr("Contribute..."));
+    ui->actionButton->setText(NotificationPopup::tr("Contribute…", "@action:button"));
     showPopup();
 }
 

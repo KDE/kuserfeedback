@@ -423,9 +423,12 @@ msgstr ""
 "dan berpartisipasi dalam survei."
 
 #: widgets/notificationpopup.cpp:73
-msgctxt "KUserFeedback::NotificationPopup|"
-msgid "Contribute..."
-msgstr "Berkontribusi..."
+#, fuzzy
+#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
+#| msgid "Contribute!"
+msgctxt "KUserFeedback::NotificationPopup|@action:button"
+msgid "Contribute…"
+msgstr "Berkontribusi!"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -469,6 +472,10 @@ msgstr ""
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "Gaya aplikasi"
+
+#~ msgctxt "KUserFeedback::NotificationPopup|"
+#~ msgid "Contribute..."
+#~ msgstr "Berkontribusi..."
 
 #~ msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 #~ msgid "Dialog"

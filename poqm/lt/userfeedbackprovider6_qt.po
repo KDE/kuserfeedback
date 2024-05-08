@@ -424,9 +424,12 @@ msgstr ""
 "apklausose."
 
 #: widgets/notificationpopup.cpp:73
-msgctxt "KUserFeedback::NotificationPopup|"
-msgid "Contribute..."
-msgstr "Talkinti..."
+#, fuzzy
+#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
+#| msgid "Contribute!"
+msgctxt "KUserFeedback::NotificationPopup|@action:button"
+msgid "Contribute…"
+msgstr "Talkinti!"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -470,6 +473,10 @@ msgstr ""
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "Programos stilius"
+
+#~ msgctxt "KUserFeedback::NotificationPopup|"
+#~ msgid "Contribute..."
+#~ msgstr "Talkinti..."
 
 #~ msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 #~ msgid "Dialog"

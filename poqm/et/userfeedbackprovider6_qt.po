@@ -421,9 +421,12 @@ msgstr ""
 "osaled uuringutes."
 
 #: widgets/notificationpopup.cpp:73
-msgctxt "KUserFeedback::NotificationPopup|"
-msgid "Contribute..."
-msgstr "Anna oma panus ..."
+#, fuzzy
+#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
+#| msgid "Contribute!"
+msgctxt "KUserFeedback::NotificationPopup|@action:button"
+msgid "Contribute…"
+msgstr "Anna oma panus!"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -465,6 +468,10 @@ msgstr "Rakenduse kasutatav vidinastiil ja teave kasutatava värviskeemi kohta."
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "Rakenduse stiil"
+
+#~ msgctxt "KUserFeedback::NotificationPopup|"
+#~ msgid "Contribute..."
+#~ msgstr "Anna oma panus ..."
 
 #~ msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 #~ msgid "Dialog"

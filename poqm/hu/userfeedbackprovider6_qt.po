@@ -426,9 +426,12 @@ msgstr ""
 "a(z) %1 fejlesztését."
 
 #: widgets/notificationpopup.cpp:73
-msgctxt "KUserFeedback::NotificationPopup|"
-msgid "Contribute..."
-msgstr "Közreműködés…"
+#, fuzzy
+#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
+#| msgid "Contribute!"
+msgctxt "KUserFeedback::NotificationPopup|@action:button"
+msgid "Contribute…"
+msgstr "Közreműködjön!"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -472,3 +475,7 @@ msgstr ""
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "Alkalmazásstílus"
+
+#~ msgctxt "KUserFeedback::NotificationPopup|"
+#~ msgid "Contribute..."
+#~ msgstr "Közreműködés…"

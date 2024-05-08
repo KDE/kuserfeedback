@@ -431,9 +431,12 @@ msgstr ""
 "взявши участь у опитуванні."
 
 #: widgets/notificationpopup.cpp:73
-msgctxt "KUserFeedback::NotificationPopup|"
-msgid "Contribute..."
-msgstr "Взяти участь…"
+#, fuzzy
+#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
+#| msgid "Contribute!"
+msgctxt "KUserFeedback::NotificationPopup|@action:button"
+msgid "Contribute…"
+msgstr "Взяти участь!"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -477,6 +480,10 @@ msgstr ""
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "Стиль вікон програм"
+
+#~ msgctxt "KUserFeedback::NotificationPopup|"
+#~ msgid "Contribute..."
+#~ msgstr "Взяти участь…"
 
 #~ msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 #~ msgid "Dialog"

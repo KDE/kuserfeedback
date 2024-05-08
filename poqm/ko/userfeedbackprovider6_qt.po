@@ -405,9 +405,12 @@ msgstr ""
 "습니다."
 
 #: widgets/notificationpopup.cpp:73
-msgctxt "KUserFeedback::NotificationPopup|"
-msgid "Contribute..."
-msgstr "기여..."
+#, fuzzy
+#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
+#| msgid "Contribute!"
+msgctxt "KUserFeedback::NotificationPopup|@action:button"
+msgid "Contribute…"
+msgstr "기여하기!"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -445,6 +448,10 @@ msgstr "앱에서 사용하는 위젯 스타일 및 사용된 색 구성표에 �
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "앱 스타일"
+
+#~ msgctxt "KUserFeedback::NotificationPopup|"
+#~ msgid "Contribute..."
+#~ msgstr "기여..."
 
 #~ msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 #~ msgid "Dialog"

@@ -402,9 +402,12 @@ msgid ""
 msgstr "ניתן לסייע לנו לשפר את %1 בשיתוף הסטטיסטיקה והשתתפות בסקרים."
 
 #: widgets/notificationpopup.cpp:73
-msgctxt "KUserFeedback::NotificationPopup|"
-msgid "Contribute..."
-msgstr "תרומה…"
+#, fuzzy
+#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
+#| msgid "Contribute!"
+msgctxt "KUserFeedback::NotificationPopup|@action:button"
+msgid "Contribute…"
+msgstr "התנדבות!"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -443,3 +446,7 @@ msgstr "סגנון הווידג׳ט בו ישתמש היישום, ומידע ע�
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "סגנון יישום"
+
+#~ msgctxt "KUserFeedback::NotificationPopup|"
+#~ msgid "Contribute..."
+#~ msgstr "תרומה…"

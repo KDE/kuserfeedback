@@ -426,9 +426,12 @@ msgstr ""
 "spørjeundersøkingar."
 
 #: widgets/notificationpopup.cpp:73
-msgctxt "KUserFeedback::NotificationPopup|"
-msgid "Contribute..."
-msgstr "Hjelp til …"
+#, fuzzy
+#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
+#| msgid "Contribute!"
+msgctxt "KUserFeedback::NotificationPopup|@action:button"
+msgid "Contribute…"
+msgstr "Hjelp til!"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -470,3 +473,7 @@ msgstr "Programstilen som programmet brukar og informasjon om fargeoppsettet."
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "Program­stil"
+
+#~ msgctxt "KUserFeedback::NotificationPopup|"
+#~ msgid "Contribute..."
+#~ msgstr "Hjelp til …"

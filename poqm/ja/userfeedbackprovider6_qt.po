@@ -407,8 +407,11 @@ msgid ""
 msgstr "%1 の改善に統計情報の共有や調査への参加で協力できます。"
 
 #: widgets/notificationpopup.cpp:73
-msgctxt "KUserFeedback::NotificationPopup|"
-msgid "Contribute..."
+#, fuzzy
+#| msgctxt "KUserFeedback::NotificationPopup|"
+#| msgid "Contribute..."
+msgctxt "KUserFeedback::NotificationPopup|@action:button"
+msgid "Contribute…"
 msgstr "貢献..."
 
 #: widgets/notificationpopup.cpp:84

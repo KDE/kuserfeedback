@@ -397,9 +397,12 @@ msgid ""
 msgstr "您可以透過分享統計資料與參與調查來協助我們改善 %1。"
 
 #: widgets/notificationpopup.cpp:73
-msgctxt "KUserFeedback::NotificationPopup|"
-msgid "Contribute..."
-msgstr "貢獻…"
+#, fuzzy
+#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
+#| msgid "Contribute!"
+msgctxt "KUserFeedback::NotificationPopup|@action:button"
+msgid "Contribute…"
+msgstr "貢獻！"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -437,6 +440,10 @@ msgstr "應用程式使用的小工具樣式，以及關於使用中的配色方
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "應用程式樣式"
+
+#~ msgctxt "KUserFeedback::NotificationPopup|"
+#~ msgid "Contribute..."
+#~ msgstr "貢獻…"
 
 #~ msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 #~ msgid "Dialog"

@@ -1,8 +1,8 @@
-# Eloy Cuadra <ecuadra@eloihr.net>, 2017, 2019, 2020, 2022.
+# SPDX-FileCopyrightText: 2017, 2019, 2020, 2022, 2024 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: userfeedbackprovider5_qt\n"
-"PO-Revision-Date: 2022-08-23 18:48+0200\n"
+"PO-Revision-Date: 2024-05-08 12:46+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.07.90\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -423,12 +423,9 @@ msgstr ""
 "encuestas."
 
 #: widgets/notificationpopup.cpp:73
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
-#| msgid "Contribute!"
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
 msgid "Contribute…"
-msgstr "¡Colaborar!"
+msgstr "Colaborar..."
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"

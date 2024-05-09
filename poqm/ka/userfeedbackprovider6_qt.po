@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -423,12 +423,9 @@ msgstr ""
 "გაუმჯობესებაში დაგვეხმაროთ."
 
 #: widgets/notificationpopup.cpp:73
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
-#| msgid "Contribute!"
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
 msgid "Contribute…"
-msgstr "მონაწილეობის მიღება!"
+msgstr "შეწირულობა…"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"

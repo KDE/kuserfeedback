@@ -141,7 +141,7 @@ msgstr "Agrega les dades per dia."
 #: analytics/analyticsview.ui:182
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Export Data..."
-msgstr "&Exporta les dades..."
+msgstr "&Exporta les dades…"
 
 #: analytics/analyticsview.ui:185
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -151,7 +151,7 @@ msgstr "Exporta totes les dades enregistrades."
 #: analytics/analyticsview.ui:193
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Import Data..."
-msgstr "&Importa les dades..."
+msgstr "&Importa les dades…"
 
 #: analytics/analyticsview.ui:196
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -191,7 +191,7 @@ msgstr "Mostra el diagrama per a un interval de temps singular."
 #: analytics/analyticsview.ui:243
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export &Chart..."
-msgstr "Exporta el &diagrama..."
+msgstr "Exporta el &diagrama…"
 
 #: analytics/analyticsview.ui:246
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -216,7 +216,7 @@ msgstr "Nom del fi&txer:"
 #: analytics/chartexportdialog.ui:35
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "..."
-msgstr "..."
+msgstr "…"
 
 #: analytics/chartexportdialog.ui:44
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -544,7 +544,7 @@ msgstr "Barra d'eines de visualització"
 #: mainwindow.ui:186
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Connect to Server..."
-msgstr "&Connecta amb el servidor..."
+msgstr "&Connecta amb el servidor…"
 
 #: mainwindow.ui:189
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -569,7 +569,7 @@ msgstr "Ix de la consola de comentaris de l'usuari."
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Add Product..."
-msgstr "Afi&g un producte..."
+msgstr "Afi&g un producte…"
 
 #: mainwindow.ui:217
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -589,7 +589,7 @@ msgstr "Suprimix un producte i totes les dades associades."
 #: mainwindow.ui:236
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&About..."
-msgstr "&Quant a..."
+msgstr "&Quant a…"
 
 #: mainwindow.ui:239
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -599,7 +599,7 @@ msgstr "Informació quant a este programa."
 #: mainwindow.ui:247
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Contribute..."
-msgstr "&Col·laboracions..."
+msgstr "&Col·laboracions…"
 
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -639,7 +639,7 @@ msgstr "Analitza la telemetria del producte."
 #: mainwindow.ui:300
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Manual..."
-msgstr "Manual d'usuari..."
+msgstr "Manual d'usuari…"
 
 #: mainwindow.ui:303
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -649,7 +649,7 @@ msgstr "Mostra el manual de l'usuari"
 #: mainwindow.ui:311
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Product..."
-msgstr "Importa el producte..."
+msgstr "Importa el producte…"
 
 #: mainwindow.ui:314
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -659,7 +659,7 @@ msgstr "Importa els paràmetres i les dades del producte."
 #: mainwindow.ui:322
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Product..."
-msgstr "Exporta el producte..."
+msgstr "Exporta el producte…"
 
 #: mainwindow.ui:325
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -892,7 +892,7 @@ msgstr "Guarda els canvis a l'esquema del producte."
 #: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
-msgstr "&Importa un esquema..."
+msgstr "&Importa un esquema…"
 
 #: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -902,7 +902,7 @@ msgstr "Importa un esquema per a este producte."
 #: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
-msgstr "&Exporta l'esquema..."
+msgstr "&Exporta l'esquema…"
 
 #: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -966,7 +966,7 @@ msgstr "Supr"
 #: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
-msgstr "Afig una &font..."
+msgstr "Afig una &font…"
 
 #: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -976,7 +976,7 @@ msgstr "Afig una font de dades nova."
 #: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr "Afig una font d'&elements..."
+msgstr "Afig una font d'&elements…"
 
 #: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -1016,7 +1016,7 @@ msgstr "Segur que voleu suprimir l'enquesta seleccionada?"
 #: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
-msgstr "Afi&g una enquesta..."
+msgstr "Afi&g una enquesta…"
 
 #: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
@@ -1036,7 +1036,7 @@ msgstr "Suprimix una enquesta."
 #: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
-msgstr "&Edita l'enquesta..."
+msgstr "&Edita l'enquesta…"
 
 #: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"

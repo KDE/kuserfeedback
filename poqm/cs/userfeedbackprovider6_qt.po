@@ -393,12 +393,9 @@ msgid ""
 msgstr ""
 
 #: widgets/notificationpopup.cpp:73
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
-#| msgid "Contribute!"
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
 msgid "Contribute…"
-msgstr "Přispívejte!"
+msgstr ""
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -436,7 +433,3 @@ msgstr ""
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "Styl aplikací"
-
-#~ msgctxt "KUserFeedback::NotificationPopup|"
-#~ msgid "Contribute..."
-#~ msgstr "Přispívejte..."

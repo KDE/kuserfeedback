@@ -256,6 +256,7 @@
     <category>Development</category>
   </categories>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=frameworks-kuserfeedback</url>
+  <url type="homepage">https://invent.kde.org/frameworks/kuserfeedback</url>
   <project_group>KDE</project_group>
   <provides>
     <binary>UserFeedbackConsole</binary>

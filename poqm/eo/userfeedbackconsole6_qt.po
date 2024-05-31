@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kuserfeedback\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 13:43+0100\n"
-"PO-Revision-Date: 2023-11-09 21:15+0100\n"
+"PO-Revision-Date: 2024-05-30 07:49+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -209,7 +209,7 @@ msgstr "Dialogo"
 #: analytics/chartexportdialog.ui:22
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "F&ile name:"
-msgstr "Dosiernomo:"
+msgstr "Dos&iernomo:"
 
 #: analytics/chartexportdialog.ui:35
 msgctxt "KUserFeedback::Console::ChartExportDialog|"

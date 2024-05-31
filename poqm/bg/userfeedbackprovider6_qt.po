@@ -470,7 +470,3 @@ msgstr ""
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
 msgstr "Стил на приложение"
-
-#~ msgctxt "KUserFeedback::NotificationPopup|"
-#~ msgid "Contribute..."
-#~ msgstr "Принос..."

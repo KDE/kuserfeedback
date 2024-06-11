@@ -31,6 +31,7 @@
   <name xml:lang="pl">Konsola KUserFeedback</name>
   <name xml:lang="pt">Consola do KUserFeedback</name>
   <name xml:lang="pt-BR">Console do KUserFeedback</name>
+  <name xml:lang="ro">Consolă KUserFeedback</name>
   <name xml:lang="sk">Konzola KUserFeedback</name>
   <name xml:lang="sl">KUserFeedback Console</name>
   <name xml:lang="sv">Terminal för användaråterkoppling</name>
@@ -66,6 +67,7 @@
   <summary xml:lang="pl">Narzędzie analityczne i do zarządzania dla serwerów KUserFeedback</summary>
   <summary xml:lang="pt">Ferramenta analítica e de administração dos servidores do KUserFeedback</summary>
   <summary xml:lang="pt-BR">Ferramenta de administração e análise para os servidores KUserFeedback</summary>
+  <summary xml:lang="ro">Unealtă analitică și de administrare pentru servere KUserFeedback</summary>
   <summary xml:lang="sl">Analitika in orodje administracijo strežnikov za uporabniške povratne informacije</summary>
   <summary xml:lang="sv">Analys- och administrationsverktyg för användaråterkopplingsservrar</summary>
   <summary xml:lang="tr">K Kullanıcı Geri Bildirimi sunucuları için çözümleme ve yönetim aracı</summary>
@@ -104,6 +106,7 @@
     <p xml:lang="pl">Możliwości:</p>
     <p xml:lang="pt">Funcionalidades:</p>
     <p xml:lang="pt-BR">Recursos:</p>
+    <p xml:lang="ro">Caracteristici:</p>
     <p xml:lang="ru">Возможности:</p>
     <p xml:lang="sk">Funkcie:</p>
     <p xml:lang="sl">Zmožnosti:</p>
@@ -141,6 +144,7 @@
       <li xml:lang="pl">Twórz, edytuj i usuwaj produkty oraz schematy danych produktów.</li>
       <li xml:lang="pt">Criar, editar e remover produtos e esquemas de dados dos produtos.</li>
       <li xml:lang="pt-BR">Crie, edite e remova produtos e esquemas de dados de produtos.</li>
+      <li xml:lang="ro">Creează, modifică și elimină produse și scheme de date ale produselor.</li>
       <li xml:lang="sl">Ustvarja, ureja in odstranjuje izdelke in podatkovne sheme izdelkov.</li>
       <li xml:lang="sv">Skapa, redigera och ta bort produkter och produktdatascheman.</li>
       <li xml:lang="tr">Ürünler ve ürün veri şemaları oluşturun, düzenleyin, kaldırın.</li>
@@ -175,6 +179,7 @@
       <li xml:lang="pl">Zarządzanie ankietami użytkowników.</li>
       <li xml:lang="pt">Gerir os inquéritos do utilizador.</li>
       <li xml:lang="pt-BR">Gerenciar pesquisas de usuários.</li>
+      <li xml:lang="ro">Gestionare sondaje pentru utilizator.</li>
       <li xml:lang="sl">Upravlja ankete uporabnikov.</li>
       <li xml:lang="sv">Hantera användarenkäter.</li>
       <li xml:lang="tr">Kullanıcı anketlerini yönetin.</li>
@@ -209,6 +214,7 @@
       <li xml:lang="pl">Podstawowy opis danych analitycznych i telemetrycznych.</li>
       <li xml:lang="pt">Revisão e análise básica dos dados de telemetria.</li>
       <li xml:lang="pt-BR">Revisão básica e análise de dados de telemetria.</li>
+      <li xml:lang="ro">Revederea și analiza datelor de telemetrie.</li>
       <li xml:lang="sl">Osnovni pregled in analitika telemetrijskih podatkov.</li>
       <li xml:lang="sv">Grundläggande granskning och analys av telemetridata.</li>
       <li xml:lang="tr">Telemetri verisinin yalın değerlendirmesi ve çözümlemesi.</li>
@@ -243,6 +249,7 @@
       <li xml:lang="pl">Import/eksport danych telemetrycznych i schematu produktu.</li>
       <li xml:lang="pt">Importação/exportação dos esquemas de produtos e dados de telemetria.</li>
       <li xml:lang="pt-BR">Importação/exportação de dados de esquema e telemetria do produto.</li>
+      <li xml:lang="ro">Importul și exportul schemelor de produs și datelor de telemetrie.</li>
       <li xml:lang="sl">Shema izdelkov in uvoz/izvoz podatkov iz telemetrije.</li>
       <li xml:lang="sv">Import och export av produktscheman och telemetridata.</li>
       <li xml:lang="tr">Ürün şeması ve telemetri verisi içe/dışa aktarım.</li>

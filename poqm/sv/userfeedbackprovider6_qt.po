@@ -1,9 +1,9 @@
-# Stefan Asserhäll <stefan.asserhall@gmail.com>, 2017, 2019, 2020, 2022.
+# SPDX-FileCopyrightText: 2017, 2019, 2020, 2022, 2024 Stefan Asserhäll <stefan.asserhall@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2022-09-24 16:11+0200\n"
-"Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
+"PO-Revision-Date: 2024-06-18 00:31+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.08.1\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -421,12 +421,9 @@ msgstr ""
 "enkäter."
 
 #: widgets/notificationpopup.cpp:73
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
-#| msgid "Contribute!"
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
 msgid "Contribute…"
-msgstr "Medverka!"
+msgstr "Bidra…"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"

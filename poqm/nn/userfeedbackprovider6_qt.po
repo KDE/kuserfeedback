@@ -1,10 +1,9 @@
 # Translation of userfeedbackprovider6_qt to Norwegian Nynorsk
 #
-# Karl Ove Hufthammer <karl@huftis.org>, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2022-05-21 16:29+0200\n"
+"PO-Revision-Date: 2024-07-06 16:27+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
 "Language: nn\n"
@@ -12,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.04.1\n"
+"X-Generator: Lokalize 24.05.1\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: qtrich\n"
@@ -328,7 +327,7 @@ msgstr "Slett logg"
 #: widgets/auditlogbrowserdialog.ui:14
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Submitted Data"
-msgstr ""
+msgstr "Innsende data"
 
 #: widgets/auditlogbrowserdialog.ui:22
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
@@ -353,7 +352,7 @@ msgstr "Innstillingar for tilbakemeldingar"
 #: widgets/feedbackconfigwidget.cpp:116
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "No data has been sent at this point."
-msgstr ""
+msgstr "Ingen data er sende inn enno."
 
 #: widgets/feedbackconfigwidget.ui:17
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -426,10 +425,9 @@ msgstr ""
 "spørjeundersøkingar."
 
 #: widgets/notificationpopup.cpp:73
-#, fuzzy
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
 msgid "Contribute…"
-msgstr "Hjelp til!"
+msgstr "Bidra …"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"

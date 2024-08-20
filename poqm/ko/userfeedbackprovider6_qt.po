@@ -1,12 +1,12 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 # JungHee Lee <daemul72@gmail.com>, 2019.
-# Shinjo Park <kde@peremen.name>, 2019, 2020, 2023.
+# SPDX-FileCopyrightText: 2019, 2020, 2023, 2024 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 한글화 프로젝트 - 마롱행복\n"
-"PO-Revision-Date: 2023-03-01 01:49+0100\n"
+"PO-Revision-Date: 2024-08-20 00:21+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: core/applicationversionsource.cpp:21
@@ -405,12 +405,9 @@ msgstr ""
 "습니다."
 
 #: widgets/notificationpopup.cpp:73
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
-#| msgid "Contribute!"
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
 msgid "Contribute…"
-msgstr "기여하기!"
+msgstr "기여…"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"

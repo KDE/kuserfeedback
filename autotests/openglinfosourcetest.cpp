@@ -25,6 +25,9 @@ private slots:
 
     void testOpenGLInfoSource()
     {
+        if (qEnvironmentVariableIsSet("KUSERFEEBACK_SKIP_TESTOPENGLINFOSOURCE"))
+            QSKIP("KUSERFEEBACK_SKIP_TESTOPENGLINFOSOURCE is set");
+
         OpenGLInfoSource src;
         const auto m = src.data().toMap();
         QVERIFY(m.contains(QLatin1String("type")));

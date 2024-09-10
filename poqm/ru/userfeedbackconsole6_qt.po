@@ -1,11 +1,12 @@
 # Alexander Potashev <aspotashev@gmail.com>, 2017.
 # Alexander Yavorsky <kekcuha@gmail.com>, 2020, 2022.
+# SPDX-FileCopyrightText: 2024 Olesya Gerasimenko <translation-team@basealt.ru>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2022-02-22 10:26+0300\n"
-"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
-"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"PO-Revision-Date: 2024-09-09 17:09+0300\n"
+"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
+"Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,17 +14,17 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 21.08.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Time Interval"
-msgstr ""
+msgstr "&Временной интервал"
 
 #: analytics/analyticsview.cpp:88
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Chart Mode"
-msgstr ""
+msgstr "&Режим диаграммы"
 
 #: analytics/analyticsview.cpp:126
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -50,7 +51,7 @@ msgstr "Не удалось открыть файл: %1"
 #, qt-format
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Data samples of %1 exported to %2."
-msgstr ""
+msgstr "Образцы данных %1 экспортированы в %2."
 
 #: analytics/analyticsview.cpp:275
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -165,37 +166,37 @@ msgstr "Повторное получение данных с сервера."
 #: analytics/analyticsview.ui:218
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Timeline Chart"
-msgstr ""
+msgstr "&Диаграмма распределения по времени"
 
 #: analytics/analyticsview.ui:221
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show development over time."
-msgstr ""
+msgstr "Прогресс за время."
 
 #: analytics/analyticsview.ui:232
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Singular Chart"
-msgstr ""
+msgstr "Диаграмма &единичного периода"
 
 #: analytics/analyticsview.ui:235
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show chart for a single time interval."
-msgstr ""
+msgstr "Диаграмма для единичного временного интервала."
 
 #: analytics/analyticsview.ui:243
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export &Chart..."
-msgstr ""
+msgstr "&Экспорт диаграммы..."
 
 #: analytics/analyticsview.ui:246
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export the current chart as image, SVG or PDF."
-msgstr ""
+msgstr "Экспорт текущей диаграммы в формате изображения, SVG or PDF."
 
 #: analytics/chartexportdialog.cpp:50
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "Export Chart"
-msgstr ""
+msgstr "Экспорт диаграммы"
 
 #: analytics/chartexportdialog.ui:14
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -293,7 +294,7 @@ msgstr "Несовместимый протокол: %1."
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Updated database schema from version %1 to %2."
-msgstr ""
+msgstr "Схема базы данных обновлена (старая версия — %1, новая версия — %2)."
 
 #: jobs/productexportjob.cpp:36
 msgctxt "KUserFeedback::Console::ProductExportJob|"
@@ -346,7 +347,7 @@ msgid ""
 "You have unsaved changes in the schema editor. Do you really want to close "
 "it and discard your changes?"
 msgstr ""
-"Изменения, выполненные в редакторе схемы, не сохранены. Закрыть редактор без "
+"Изменения, выполненные в редакторе схем, не сохранены. Закрыть редактор без "
 "сохранения изменений?"
 
 #: mainwindow.cpp:130
@@ -372,11 +373,15 @@ msgid ""
 "You have unsaved changes in the schema editor, do you really want to open "
 "another product and discard your changes?"
 msgstr ""
+"Изменения, выполненные в редакторе схем, не сохранены. Открыть другой "
+"продукт без сохранения изменений?"
 
 #: mainwindow.cpp:172
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Usage ratio of the analytics view, survey editor and schema editor."
 msgstr ""
+"Коэффициент использования панели аналитики, редактора опросов и редактора "
+"схем."
 
 #: mainwindow.cpp:219
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -387,7 +392,7 @@ msgstr "Ошибка подключения"
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Failed to connect to server: %1"
-msgstr ""
+msgstr "Не удалось подключиться к серверу: %1"
 
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -408,7 +413,7 @@ msgstr "Удалить продукт"
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Do you really want to delete product %1 with all its data?"
-msgstr ""
+msgstr "Удалить продукт %1 вместе со всеми его данными?"
 
 #: mainwindow.cpp:266
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -468,7 +473,7 @@ msgid ""
 "There are unsaved changes in the schema editor. Do you want to discard them "
 "and close the application?"
 msgstr ""
-"Изменения, выполненные в редакторе схемы, не сохранены. Закрыть приложение "
+"Изменения, выполненные в редакторе схем, не сохранены. Закрыть приложение "
 "без сохранения изменений?"
 
 #: mainwindow.ui:14
@@ -554,7 +559,7 @@ msgstr "&Выход"
 #: mainwindow.ui:203
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Quit the user feedback console."
-msgstr ""
+msgstr "Выход из консоли обратной связи."
 
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -699,12 +704,12 @@ msgstr "Время"
 #: model/numericaggregationmodel.cpp:78
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Extreme"
-msgstr ""
+msgstr "Нижний экстремум"
 
 #: model/numericaggregationmodel.cpp:79
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Quartile"
-msgstr ""
+msgstr "Нижний квартиль"
 
 #: model/numericaggregationmodel.cpp:80
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
@@ -714,12 +719,12 @@ msgstr "Медиана"
 #: model/numericaggregationmodel.cpp:81
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Quartile"
-msgstr ""
+msgstr "Верхний квартиль"
 
 #: model/numericaggregationmodel.cpp:82
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Extreme"
-msgstr ""
+msgstr "Верхний экстремум"
 
 #: model/productmodel.cpp:82
 msgctxt "KUserFeedback::Console::ProductModel|"
@@ -754,7 +759,7 @@ msgstr "URL"
 #: model/surveymodel.cpp:112
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "Active"
-msgstr ""
+msgstr "Активный"
 
 #: model/surveymodel.cpp:113
 msgctxt "KUserFeedback::Console::SurveyModel|"
@@ -779,7 +784,7 @@ msgstr "Удалить группировку"
 #: schemaeditor/aggregationeditwidget.cpp:100
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Do you want to delete the currently selected aggregation?"
-msgstr ""
+msgstr "Удалить текущую выбранную группировку?"
 
 #: schemaeditor/aggregationeditwidget.ui:60
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
@@ -799,17 +804,17 @@ msgstr "Добавить &группировку"
 #: schemaeditor/aggregationeditwidget.ui:86
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add a new aggregation."
-msgstr ""
+msgstr "Добавить новую группировку."
 
 #: schemaeditor/aggregationeditwidget.ui:94
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Delete Aggregation"
-msgstr ""
+msgstr "&Удалить группировку"
 
 #: schemaeditor/aggregationeditwidget.ui:97
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Delete the currently selected aggregation."
-msgstr ""
+msgstr "Удалить текущую выбранную группировку."
 
 #: schemaeditor/schemaeditor.cpp:40
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -819,7 +824,7 @@ msgstr "Исходные шаблоны"
 #: schemaeditor/schemaeditor.cpp:119
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export Schema"
-msgstr ""
+msgstr "Экспорт схемы"
 
 #: schemaeditor/schemaeditor.cpp:125
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -836,12 +841,12 @@ msgstr "Не удалось открыть файл: %1"
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 exported to %2."
-msgstr ""
+msgstr "Схема %1 экспортирована в %2."
 
 #: schemaeditor/schemaeditor.cpp:134
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import Schema"
-msgstr ""
+msgstr "Импорт схемы"
 
 #: schemaeditor/schemaeditor.cpp:140 schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -851,13 +856,13 @@ msgstr "Ошибка импорта"
 #: schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Selected file contains no valid product schema."
-msgstr ""
+msgstr "Выбранный файл не содержит корректную схему продукта."
 
 #: schemaeditor/schemaeditor.cpp:153
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 imported from %2."
-msgstr ""
+msgstr "Схема %1 импортирована из %2."
 
 #: schemaeditor/schemaeditor.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -872,161 +877,161 @@ msgstr "Группировка"
 #: schemaeditor/schemaeditor.ui:49
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Save Schema"
-msgstr ""
+msgstr "&Сохранить схему"
 
 #: schemaeditor/schemaeditor.ui:52
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
-msgstr ""
+msgstr "Сохранить изменения схемы продукта."
 
 #: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
-msgstr ""
+msgstr "&Импорт схемы…"
 
 #: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
-msgstr ""
+msgstr "Импорт схемы этого продукта."
 
 #: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
-msgstr ""
+msgstr "&Экспорт схемы…"
 
 #: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
-msgstr ""
+msgstr "Экспорт схемы этого продукта."
 
 #: schemaeditor/schemaeditwidget.cpp:72
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source"
-msgstr ""
+msgstr "Добавление источника"
 
 #: schemaeditor/schemaeditwidget.cpp:72 schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source Element"
-msgstr ""
+msgstr "Добавление элемента источника"
 
 #: schemaeditor/schemaeditwidget.cpp:96
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Source"
-msgstr ""
+msgstr "Удаление источника"
 
 #: schemaeditor/schemaeditwidget.cpp:97
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid ""
 "Do you really want to delete the source '%1', and all recorded data for it?"
-msgstr ""
+msgstr "Удалить источник «%1» и все записанные для него данные?"
 
 #: schemaeditor/schemaeditwidget.cpp:102
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Schema Entry"
-msgstr ""
+msgstr "Удаление записи схемы"
 
 #: schemaeditor/schemaeditwidget.cpp:103
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Do you really want to delete this entry, and all recorded data for it?"
-msgstr ""
+msgstr "Удалить эту запись и все записанные для неё данные?"
 
 #: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "&Delete"
-msgstr ""
+msgstr "&Удалить"
 
 #: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
-msgstr ""
+msgstr "Удалить выбранный элемент или запись."
 
 #: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Del"
-msgstr ""
+msgstr "Del"
 
 #: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
-msgstr ""
+msgstr "Добавить &источник…"
 
 #: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
-msgstr ""
+msgstr "Добавить новый источник данных."
 
 #: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr ""
+msgstr "Добавить &элемент источника…"
 
 #: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
-msgstr ""
+msgstr "Добавить элемент в источник данных."
 
 #: surveyeditor/surveydialog.ui:14
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Survey"
-msgstr ""
+msgstr "Опрос"
 
 #: surveyeditor/surveydialog.ui:22
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "&Name:"
-msgstr ""
+msgstr "&Имя:"
 
 #: surveyeditor/surveydialog.ui:35
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "&URL:"
-msgstr ""
+msgstr "&URL:"
 
 #: surveyeditor/surveydialog.ui:50
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Targeting e&xpression:"
-msgstr ""
+msgstr "Выражение &назначения:"
 
 #: surveyeditor/surveyeditor.cpp:105
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete Survey"
-msgstr ""
+msgstr "Удаление опроса"
 
 #: surveyeditor/surveyeditor.cpp:106
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
-msgstr ""
+msgstr "Удалить выбранный опрос?"
 
 #: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
-msgstr ""
+msgstr "&Добавить опрос…"
 
 #: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
-msgstr ""
+msgstr "Добавить новый опрос."
 
 #: surveyeditor/surveyeditor.ui:56
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
-msgstr ""
+msgstr "&Удалить опрос"
 
 #: surveyeditor/surveyeditor.ui:59
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
-msgstr ""
+msgstr "Удалить опрос."
 
 #: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
-msgstr ""
+msgstr "&Изменить опрос…"
 
 #: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
-msgstr ""
+msgstr "Изменить текущий выбранный опрос."

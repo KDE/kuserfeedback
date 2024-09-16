@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: userfeedbackprovider5_qt\n"
-"PO-Revision-Date: 2023-04-07 23:55-0700\n"
-"Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
+"PO-Revision-Date: 2024-09-15 17:28+0900\n"
+"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: qtrich\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -51,7 +51,7 @@ msgstr "詳細な使用状況"
 #, qt-format
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Unable to open file %1: %2."
-msgstr "ファイル %1 を開けません: %2"
+msgstr "ファイル %1 を開けません: %2。"
 
 #: core/auditloguicontroller.cpp:196
 #, qt-format
@@ -63,7 +63,7 @@ msgstr "カテゴリ: <i>%1</i><br/>"
 #, qt-format
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Key: <i>%1</i><br/>"
-msgstr ""
+msgstr "キー: <i>%1</i><br/>"
 
 #: core/auditloguicontroller.cpp:198
 #, qt-format
@@ -129,7 +129,7 @@ msgid ""
 "the operating system"
 msgstr ""
 "アプリケーションのバージョンやオペレーティングシステムなど基本的なシステム情"
-"報を共有します。"
+"報を共有します"
 
 #: core/feedbackconfiguicontroller.cpp:147
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -138,7 +138,7 @@ msgid ""
 "application"
 msgstr ""
 "基本的なシステム情報とアプリケーションの使用頻度に関する基本的な統計を共有し"
-"ます。"
+"ます"
 
 #: core/feedbackconfiguicontroller.cpp:151
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -147,7 +147,7 @@ msgid ""
 "detailed information about your system"
 msgstr ""
 "アプリケーションの使用頻度に関する基本的な統計と詳細なシステム情報を共有しま"
-"す。"
+"す"
 
 #: core/feedbackconfiguicontroller.cpp:155
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -165,15 +165,14 @@ msgid ""
 "Share basic system information such as the version of %1 and and the "
 "operating system"
 msgstr ""
-"%1 のバージョンやオペレーティングシステムなど基本的なシステム情報を共有しま"
-"す。"
+"%1 のバージョンやオペレーティングシステムなど基本的なシステム情報を共有します"
 
 #: core/feedbackconfiguicontroller.cpp:170
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic system information and basic statistics on how often you use %1"
-msgstr "基本的なシステム情報と %1 の使用頻度に関する基本的な統計を共有します。"
+msgstr "基本的なシステム情報と %1 の使用頻度に関する基本的な統計を共有します"
 
 #: core/feedbackconfiguicontroller.cpp:174
 #, qt-format
@@ -181,7 +180,7 @@ msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic statistics on how often you use %1, as well as more detailed "
 "information about your system"
-msgstr "%1 の使用頻度に関する基本的な統計と詳細なシステム情報を共有します。"
+msgstr "%1 の使用頻度に関する基本的な統計と詳細なシステム情報を共有します"
 
 #: core/feedbackconfiguicontroller.cpp:178
 #, qt-format
@@ -200,7 +199,7 @@ msgstr "調査に参加しない"
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Participate in surveys about the application not more than four times a year"
-msgstr ""
+msgstr "アプリケーションに関するアンケートに年4回以内で参加する"
 
 #: core/feedbackconfiguicontroller.cpp:239
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -208,6 +207,8 @@ msgid ""
 "Participate in surveys about the application whenever one is available (they "
 "can be deferred or skipped)"
 msgstr ""
+"アプリケーションに関するアンケートがある場合はいつでも参加する (延期またはス"
+"キップできます)"
 
 #: core/feedbackconfiguicontroller.cpp:246
 #, qt-format
@@ -219,7 +220,7 @@ msgstr "%1 についての調査に参加しない"
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Participate in surveys about %1 not more than four times a year"
-msgstr ""
+msgstr "%1 に関するアンケートに年4回以内で参加する"
 
 #: core/feedbackconfiguicontroller.cpp:254
 #, qt-format
@@ -228,6 +229,8 @@ msgid ""
 "Participate in surveys about %1 whenever one is available (they can be "
 "deferred or skipped)"
 msgstr ""
+"%1 に関するアンケートがある場合はいつでも参加する (延期またはスキップできま"
+"す)"
 
 #: core/localeinfosource.cpp:21
 msgctxt "KUserFeedback::LocaleInfoSource|"
@@ -322,17 +325,17 @@ msgstr "送信されたデータ"
 #: widgets/auditlogbrowserdialog.ui:22
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Da&ta Submission:"
-msgstr ""
+msgstr "データの提出(&T):"
 
 #: widgets/feedbackconfigdialog.cpp:32
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
 msgid "Contribute!"
-msgstr ""
+msgstr "貢献する！"
 
 #: widgets/feedbackconfigdialog.cpp:33
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
 msgid "No, I do not want to contribute."
-msgstr ""
+msgstr "いいえ、貢献したくありません。"
 
 #: widgets/feedbackconfigdialog.ui:14
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
@@ -342,7 +345,7 @@ msgstr "フィードバック設定"
 #: widgets/feedbackconfigwidget.cpp:116
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "No data has been sent at this point."
-msgstr ""
+msgstr "この時点ではデータは送信されていません。"
 
 #: widgets/feedbackconfigwidget.ui:17
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -353,21 +356,25 @@ msgid ""
 "collect your personal data, files you use, websites you visit, or "
 "information that could identify you."
 msgstr ""
+"このソフトウェアの使用方法に関する情報を提供することで、このソフトウェアの開"
+"発に協力できます。開発者は、あなたにとって重要なことに集中できます。この情報"
+"の提供は任意であり、完全に匿名です。個人データ, 使用するファイル, アクセスす"
+"るウェブサイト, 個人を特定できる情報は、一切収集されません。"
 
 #: widgets/feedbackconfigwidget.ui:33
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Contribute Statistics"
-msgstr ""
+msgstr "統計情報の提供"
 
 #: widgets/feedbackconfigwidget.ui:107
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "TextLabel"
-msgstr ""
+msgstr "TextLabel"
 
 #: widgets/feedbackconfigwidget.ui:124
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Show the raw data that is going to be shared."
-msgstr "共有される生データを表示"
+msgstr "共有される生データを表示します。"
 
 #: widgets/feedbackconfigwidget.ui:137
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -396,7 +403,7 @@ msgstr ""
 #, qt-format
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "Help us make %1 better!"
-msgstr "%1 の改善に協力してください!"
+msgstr "%1 の改善に協力してください！"
 
 #: widgets/notificationpopup.cpp:71
 #, qt-format
@@ -407,9 +414,6 @@ msgid ""
 msgstr "%1 の改善に統計情報の共有や調査への参加で協力できます。"
 
 #: widgets/notificationpopup.cpp:73
-#, fuzzy
-#| msgctxt "KUserFeedback::NotificationPopup|"
-#| msgid "Contribute..."
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
 msgid "Contribute…"
 msgstr "貢献..."
@@ -417,7 +421,7 @@ msgstr "貢献..."
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "We are looking for your feedback!"
-msgstr ""
+msgstr "皆様のご意見をお待ちしています！"
 
 #: widgets/notificationpopup.cpp:86
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -425,6 +429,8 @@ msgid ""
 "We would like a few minutes of your time to provide feedback about this "
 "application in a survey."
 msgstr ""
+"このアプリケーションに関するフィードバックをご提供いただくために、数分ほどア"
+"ンケートにお時間をください。"
 
 #: widgets/notificationpopup.cpp:88
 #, qt-format
@@ -433,6 +439,8 @@ msgid ""
 "We would like a few minutes of your time to provide feedback about %1 in a "
 "survey."
 msgstr ""
+"%1 に関するフィードバックをご提供いただくために、数分ほどアンケートにお時間を"
+"ください。"
 
 #: widgets/notificationpopup.cpp:89
 msgctxt "KUserFeedback::NotificationPopup|"

@@ -1,15 +1,18 @@
 # scootergrisen, 2018.
+# SPDX-FileCopyrightText: 2024 rasmus rosendahl-kaa <rasmus@rosendahl-kaa.name>
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-03-08 14:27+0200\n"
-"Last-Translator: scootergrisen\n"
-"Language-Team: Danish\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2024-10-28 14:21+0100\n"
+"Last-Translator: rasmus rosendahl-kaa <rasmus@rosendahl-kaa.name>\n"
+"Language-Team: Danish <kde-i18n-doc@kde.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.08.2\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -24,7 +27,7 @@ msgstr "&Diagramtilstand"
 #: analytics/analyticsview.cpp:126
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopiér"
 
 #: analytics/analyticsview.cpp:258
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -74,12 +77,9 @@ msgid "Charts"
 msgstr "Diagrammer"
 
 #: analytics/analyticsview.ui:41
-#, fuzzy
-#| msgctxt "KUserFeedback::Console::SchemaEditor|"
-#| msgid "Aggregation"
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Aggregation:"
-msgstr "Aggregering"
+msgstr "&Aggregering:"
 
 #: analytics/analyticsview.ui:108
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -354,12 +354,7 @@ msgid "About User Feedback Console"
 msgstr "Om brugerfeedback-konsol"
 
 #: mainwindow.cpp:130
-#, fuzzy, qt-format
-#| msgctxt "KUserFeedback::Console::MainWindow|"
-#| msgid ""
-#| "Version: %1\n"
-#| "License: LGPLv2+\n"
-#| "Copyright ⓒ 2017 Volker Krause <vkrause@kde.org>"
+#, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid ""
 "Version: %1\n"
@@ -367,7 +362,7 @@ msgid ""
 "Copyright ⓒ 2017 Volker Krause <vkrause@kde.org>"
 msgstr ""
 "Version: %1\n"
-"Licens: LGPLv2+\n"
+"Licens: MIT\n"
 "Ophavsret ⓒ 2017 Volker Krause <vkrause@kde.org>"
 
 #: mainwindow.cpp:143

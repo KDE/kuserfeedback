@@ -52,7 +52,6 @@ ecm_setup_version(PROJECT
 set(REQUIRED_QT_VERSION 6.5.0)
 find_package(Qt6 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED COMPONENTS Core Network)
 find_package(Qt6 ${REQUIRED_QT_VERSION} NO_MODULE QUIET OPTIONAL_COMPONENTS Widgets Charts Test Qml Svg PrintSupport)
-find_package(QmlLint)
 
 if (ENABLE_DOCS)
     if (NOT CMAKE_CROSSCOMPILING)

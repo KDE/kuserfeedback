@@ -1,8 +1,8 @@
-# Mincho Kondarev <mkondarev@yahoo.de>, 2022.
+# SPDX-FileCopyrightText: 2022, 2024 Mincho Kondarev <mkondarev@yahoo.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2022-08-15 19:31+0200\n"
+"PO-Revision-Date: 2024-11-09 20:04+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 24.08.2\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -927,7 +927,7 @@ msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid ""
 "Do you really want to delete the source '%1', and all recorded data for it?"
 msgstr ""
-"Наистина ли искате да изтриете източника \"%1\" и всички записани данни за "
+"Наистина ли искате да изтриете източника „%1“ и всички записани данни за "
 "него?"
 
 #: schemaeditor/schemaeditwidget.cpp:102

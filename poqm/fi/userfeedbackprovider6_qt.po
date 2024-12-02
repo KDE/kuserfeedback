@@ -1,8 +1,8 @@
-# Tommi Nieminen <translator@legisign.org>, 2018, 2019, 2020, 2021, 2022.
+# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2022, 2024 Tommi Nieminen <translator@legisign.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2022-11-20 22:26+0200\n"
+"PO-Revision-Date: 2024-10-29 14:41+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 "X-Qt-Contexts: true\n"
 
 #: core/applicationversionsource.cpp:21
@@ -420,12 +420,9 @@ msgstr ""
 "osallistumalla kyselyihin."
 
 #: widgets/notificationpopup.cpp:73
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
-#| msgid "Contribute!"
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
 msgid "Contribute…"
-msgstr "Avusta!"
+msgstr "Avusta…"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"

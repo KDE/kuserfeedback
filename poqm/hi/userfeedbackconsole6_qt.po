@@ -1,20 +1,19 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: userfeedbackconsole6_qt\n"
-"PO-Revision-Date: 2024-12-13 19:10+0530\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2024-12-15 17:37+0530\n"
 "Last-Translator: Kali <EMAIL@ADDRESS>\n"
-"Language-Team: Sanskrit\n"
-"Language: sa\n"
+"Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
+"Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
-"Plural-Forms: nplurals=2; plural=(n>1);\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Time Interval"
-msgstr "&समयान्तरम्"
+msgstr "&समय अंतराल"
 
 #: analytics/analyticsview.cpp:88
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -29,64 +28,64 @@ msgstr "प्रतिलिपि"
 #: analytics/analyticsview.cpp:258
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export Data"
-msgstr "Data निर्यातयन्तु"
+msgstr "डेटा निर्यात करें"
 
 #: analytics/analyticsview.cpp:264
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export Failed"
-msgstr "निर्यातं विफलम्"
+msgstr "निर्यात विफल"
 
 #: analytics/analyticsview.cpp:264 analytics/analyticsview.cpp:281
 #, qt-format
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Could not open file: %1"
-msgstr "सञ्चिकां उद्घाटयितुं न शक्यते: %1"
+msgstr "फ़ाइल नहीं खोली जा सकी: %1"
 
 #: analytics/analyticsview.cpp:270
 #, qt-format
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Data samples of %1 exported to %2."
-msgstr "%1 इत्यस्य दत्तांशनमूनानि %2 प्रति निर्यातितानि ।"
+msgstr "%1 के डेटा नमूने %2 को निर्यात किये गये।"
 
 #: analytics/analyticsview.cpp:275
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Import Data"
-msgstr "डाटा आयात करें"
+msgstr "डेटा आयात करें"
 
 #: analytics/analyticsview.cpp:281 analytics/analyticsview.cpp:286
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Import Failed"
-msgstr "आयातः विफलः अभवत्"
+msgstr "आयात विफल"
 
 #: analytics/analyticsview.cpp:286
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Selected file contains no valid data."
-msgstr "चयनितसञ्चिकायां वैधदत्तांशः नास्ति ।"
+msgstr "चयनित फ़ाइल में कोई वैध डेटा नहीं है."
 
 #: analytics/analyticsview.cpp:293
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Data samples imported."
-msgstr "आयातितानि आँकडानमूनानि।"
+msgstr "डेटा नमूने आयातित."
 
 #: analytics/analyticsview.ui:33
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Charts"
-msgstr "चार्ट्स्"
+msgstr "चार्ट"
 
 #: analytics/analyticsview.ui:41
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Aggregation:"
-msgstr "&समुच्चयः : १."
+msgstr "एकत्रीकरण:"
 
 #: analytics/analyticsview.ui:108
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregated Data"
-msgstr "समुच्चय दत्तांश"
+msgstr "एकत्रित डेटा"
 
 #: analytics/analyticsview.ui:118
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Raw Data"
-msgstr "कच्चा डाटा"
+msgstr "कच्चा डेटा"
 
 #: analytics/analyticsview.ui:138
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -96,67 +95,67 @@ msgstr "&वर्ष"
 #: analytics/analyticsview.ui:141
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by year."
-msgstr "वर्षानुसारं दत्तांशं समुच्चयतु।"
+msgstr "वर्षवार समग्र आंकड़े."
 
 #: analytics/analyticsview.ui:149
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Month"
-msgstr "&माह"
+msgstr "&महीना"
 
 #: analytics/analyticsview.ui:152
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by month."
-msgstr "मासनुसारं दत्तांशं समुच्चयतु।"
+msgstr "माहवार समग्र डेटा."
 
 #: analytics/analyticsview.ui:160
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Week"
-msgstr "&सप्ताहः"
+msgstr "&सप्ताह"
 
 #: analytics/analyticsview.ui:163
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by week."
-msgstr "सप्ताहानुसारं दत्तांशं समुच्चयतु।"
+msgstr "सप्ताहवार समग्र डेटा."
 
 #: analytics/analyticsview.ui:171
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Day"
-msgstr "&दिनं"
+msgstr "&दिन"
 
 #: analytics/analyticsview.ui:174
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by day."
-msgstr "दिने दत्तांशं समुच्चयतु।"
+msgstr "दिन के अनुसार एकत्रित डेटा."
 
 #: analytics/analyticsview.ui:182
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Export Data..."
-msgstr "&निर्यातदत्तांशः..."
+msgstr "&डेटा निर्यात करें..."
 
 #: analytics/analyticsview.ui:185
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export all recorded data."
-msgstr "सर्वाणि अभिलेखितानि आँकडानि निर्यातयन्तु।"
+msgstr "सभी रिकॉर्ड किए गए डेटा को निर्यात करें."
 
 #: analytics/analyticsview.ui:193
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Import Data..."
-msgstr "&आयात डाटा..."
+msgstr "&डेटा आयात करें..."
 
 #: analytics/analyticsview.ui:196
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Import data samples."
-msgstr "दत्तांशनमूनानि आयातयन्तु।"
+msgstr "डेटा नमूने आयात करें."
 
 #: analytics/analyticsview.ui:204
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Reload Data"
-msgstr "&Reload Data"
+msgstr "&डेटा पुनः लोड करें"
 
 #: analytics/analyticsview.ui:207
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Refresh data from the server."
-msgstr "सर्वरतः आँकडानां ताजगीं कुर्वन्तु।"
+msgstr "सर्वर से डेटा ताज़ा करें."
 
 #: analytics/analyticsview.ui:218
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -166,7 +165,7 @@ msgstr "&समयरेखा चार्ट"
 #: analytics/analyticsview.ui:221
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show development over time."
-msgstr "कालान्तरे विकासं दर्शयतु।"
+msgstr "समय के साथ विकास दिखाएं."
 
 #: analytics/analyticsview.ui:232
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -176,32 +175,32 @@ msgstr "&एकवचन चार्ट"
 #: analytics/analyticsview.ui:235
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show chart for a single time interval."
-msgstr "एकस्य समयान्तरस्य कृते चार्टं दर्शयतु।"
+msgstr "एकल समय अंतराल के लिए चार्ट दिखाएं."
 
 #: analytics/analyticsview.ui:243
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export &Chart..."
-msgstr "निर्यात &चार्ट..."
+msgstr "निर्यात करें और चार्ट करें..."
 
 #: analytics/analyticsview.ui:246
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export the current chart as image, SVG or PDF."
-msgstr "वर्तमानचार्टं इमेज, SVG अथवा PDF इति रूपेण निर्यातयन्तु ।"
+msgstr "वर्तमान चार्ट को छवि, SVG या PDF के रूप में निर्यात करें।"
 
 #: analytics/chartexportdialog.cpp:50
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "Export Chart"
-msgstr "निर्यात चार्ट"
+msgstr "चार्ट निर्यात करें"
 
 #: analytics/chartexportdialog.ui:14
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "Dialog"
-msgstr "संवादः"
+msgstr "संवाद"
 
 #: analytics/chartexportdialog.ui:22
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "F&ile name:"
-msgstr "F&ile नाम : १."
+msgstr "फ़ाइल नाम:"
 
 #: analytics/chartexportdialog.ui:35
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -216,125 +215,125 @@ msgstr "छवि"
 #: analytics/chartexportdialog.ui:56
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "W&idth:"
-msgstr "विस्तार:"
+msgstr "चौड़ाई:"
 
 #: analytics/chartexportdialog.ui:66 analytics/chartexportdialog.ui:92
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "px"
-msgstr "px"
+msgstr "पिक्सल"
 
 #: analytics/chartexportdialog.ui:82
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "Height:"
-msgstr "औनत्यम्‌:"
+msgstr "ऊंचाई:"
 
 #: analytics/chartexportdialog.ui:110
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "SV&G"
-msgstr "एस वी एण्ड जी"
+msgstr "एसवी&जी"
 
 #: analytics/chartexportdialog.ui:117
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "P&DF"
-msgstr "पी एण्ड डीएफ"
+msgstr "पी एंड डीएफ"
 
 #: analytics/totalaggregator.cpp:37
 msgctxt "KUserFeedback::Console::TotalAggregator|"
 msgid "Samples"
-msgstr "नमूनानि"
+msgstr "नमूने"
 
 #: connectdialog.cpp:25
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Connect"
-msgstr "संयुज्"
+msgstr "जोड़ना"
 
 #: connectdialog.ui:14
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Connect To Analytics Server"
-msgstr "Analytics Server इत्यनेन सह सम्बद्धं कुर्वन्तु"
+msgstr "Analytics सर्वर से कनेक्ट करें"
 
 #: connectdialog.ui:22
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Server &name:"
-msgstr "सर्वर &नाम: ."
+msgstr "सर्वर &नाम:"
 
 #: connectdialog.ui:32
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "&User name:"
-msgstr "&उपयोक्तृनाम: ."
+msgstr "&उपयोगकर्ता नाम:"
 
 #: connectdialog.ui:45
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "P&assword:"
-msgstr "समाभाष्:"
+msgstr "पासवर्ड:"
 
 #: connectdialog.ui:78
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Server UR&L:"
-msgstr "सर्वर UR&L: ."
+msgstr "सर्वर यूआर&एल:"
 
 #: jobs/handshakejob.cpp:26
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Connected to %1."
-msgstr "%1 इत्यनेन सह सम्बद्धम् ।"
+msgstr "%1 से कनेक्टेड."
 
 #: jobs/handshakejob.cpp:55
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Incompatible protocol: %1."
-msgstr "असङ्गत प्रोटोकॉल: %1."
+msgstr "असंगत प्रोटोकॉल: %1."
 
 #: jobs/handshakejob.cpp:62
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Updated database schema from version %1 to %2."
-msgstr "%1 संस्करणात् %2 पर्यन्तं दत्तांशकोशस्कीमा अद्यतनं कृतम् ।"
+msgstr "डेटाबेस स्कीमा को संस्करण %1 से %2 तक अद्यतन किया गया."
 
 #: jobs/productexportjob.cpp:36
 msgctxt "KUserFeedback::Console::ProductExportJob|"
 msgid "Product not found."
-msgstr "उत्पादः न प्राप्तः।"
+msgstr "उत्पाद नहीं मिला।"
 
 #: jobs/productexportjob.cpp:63 jobs/productexportjob.cpp:83
 #: jobs/productexportjob.cpp:103
 #, qt-format
 msgctxt "KUserFeedback::Console::ProductExportJob|"
 msgid "Could not open file: %1"
-msgstr "सञ्चिकां उद्घाटयितुं न शक्यते: %1"
+msgstr "फ़ाइल नहीं खोली जा सकी: %1"
 
 #: jobs/productimportjob.cpp:37
 #, qt-format
 msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Unable to open file: %1"
-msgstr "सञ्चिकां उद्घाटयितुं असमर्थः: %1"
+msgstr "फ़ाइल खोलने में असमर्थ: %1"
 
 #: jobs/productimportjob.cpp:43
 msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Invalid product schema file."
-msgstr "अमान्य उत्पाद योजना सञ्चिका।"
+msgstr "अमान्य उत्पाद स्कीमा फ़ाइल."
 
 #: jobs/securityscanjob.cpp:54
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "No issues found."
-msgstr "न मुद्दायाः प्राप्ताः।"
+msgstr "कोई समस्या नहीं मिली."
 
 #: jobs/securityscanjob.cpp:78
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is not protected!"
-msgstr "%1 -पर्यन्तं प्रवेशः सुरक्षितः नास्ति!"
+msgstr "%1 तक पहुंच सुरक्षित नहीं है!"
 
 #: jobs/securityscanjob.cpp:81
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is protected (%2)."
-msgstr "%1 -पर्यन्तं प्रवेशः सुरक्षितः अस्ति (%2) ।"
+msgstr "%1 तक पहुंच सुरक्षित है (%2)."
 
 #: mainwindow.cpp:80 mainwindow.cpp:142
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Unsaved Schema Changes"
-msgstr "असरक्षित योजना परिवर्तनम्"
+msgstr "सहेजे न गए स्कीमा परिवर्तन"
 
 #: mainwindow.cpp:81
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -342,13 +341,13 @@ msgid ""
 "You have unsaved changes in the schema editor. Do you really want to close "
 "it and discard your changes?"
 msgstr ""
-"भवता स्कीमा सम्पादके अरक्षिताः परिवर्तनाः सन्ति । किं भवन्तः तत् पिधाय स्वपरिवर्तनानि "
-"परित्यक्तुं इच्छन्ति?"
+"स्कीमा संपादक में आपके पास सहेजे नहीं गए परिवर्तन हैं। क्या आप वाकई इसे बंद करना चाहते हैं और "
+"अपने परिवर्तनों को त्यागना चाहते हैं?"
 
 #: mainwindow.cpp:130
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "About User Feedback Console"
-msgstr "उपयोक्तृप्रतिक्रियाकन्सोल् विषये"
+msgstr "उपयोगकर्ता फ़ीडबैक कंसोल के बारे में"
 
 #: mainwindow.cpp:130
 #, qt-format
@@ -358,9 +357,9 @@ msgid ""
 "License: MIT\n"
 "Copyright ⓒ 2017 Volker Krause <vkrause@kde.org>"
 msgstr ""
-"संस्करणम् : %1\n"
-"अनुज्ञापत्रम् : WITH\n"
-"प्रतिलिपिधर्म i 2017 वोल्कर क्राउस <vkrause@kde.org>"
+"संस्करणः %1\n"
+"लाइसेंस: साथ\n"
+"कॉपीराइट ⓒ 2017 वोल्कर क्रॉस <vkrause@kde.org>"
 
 #: mainwindow.cpp:143
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -368,97 +367,97 @@ msgid ""
 "You have unsaved changes in the schema editor, do you really want to open "
 "another product and discard your changes?"
 msgstr ""
-"भवतः स्कीमा सम्पादके असरक्षिताः परिवर्तनाः सन्ति, किं भवान् वास्तवमेव अन्यं उत्पादं उद्घाट्य "
-"स्वपरिवर्तनानि परित्यक्तुं इच्छति?"
+"आपने स्कीमा संपादक में कुछ परिवर्तन सहेजे नहीं हैं, क्या आप सचमुच कोई अन्य उत्पाद खोलना चाहते "
+"हैं और अपने परिवर्तनों को त्यागना चाहते हैं?"
 
 #: mainwindow.cpp:172
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Usage ratio of the analytics view, survey editor and schema editor."
-msgstr "विश्लेषणदृश्यस्य, सर्वेक्षणसम्पादकस्य, योजनासम्पादकस्य च उपयोगानुपातः ।"
+msgstr "एनालिटिक्स दृश्य, सर्वेक्षण संपादक और स्कीमा संपादक का उपयोग अनुपात."
 
 #: mainwindow.cpp:219
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Connection Failure"
-msgstr "संयोजन विफलता"
+msgstr "कनेक्शन विफलता"
 
 #: mainwindow.cpp:219
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Failed to connect to server: %1"
-msgstr "सर्वरेण सह संयोजितुं असफलम्: %1"
+msgstr "सर्वर से कनेक्ट करने में विफल: %1"
 
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Add New Product"
-msgstr "New Product योजयतु"
+msgstr "नया उत्पाद जोड़ें"
 
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Product Identifier:"
-msgstr "उत्पादपरिचयः : १."
+msgstr "उत्पाद पहचानकर्ता:"
 
 #: mainwindow.cpp:248
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Delete Product"
-msgstr "उत्पादं विलोपयन्तु"
+msgstr "उत्पाद हटाएं"
 
 #: mainwindow.cpp:249
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Do you really want to delete product %1 with all its data?"
-msgstr "किं भवान् वास्तवमेव उत्पादं %1 तस्य सर्वैः दत्तांशैः सह विलोपयितुम् इच्छति?"
+msgstr "क्या आप सचमुच उत्पाद %1 को उसके समस्त डेटा सहित हटाना चाहते हैं?"
 
 #: mainwindow.cpp:266
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Product"
-msgstr "उत्पाद आयात करें"
+msgstr "आयात उत्पाद"
 
 #: mainwindow.cpp:272 mainwindow.cpp:278 mainwindow.cpp:297
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Failed"
-msgstr "आयातः विफलः"
+msgstr "आयात विफल"
 
 #: mainwindow.cpp:272 mainwindow.cpp:297
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Could not open file."
-msgstr "सञ्चिकां उद्घाटयितुं न शक्तवान्।"
+msgstr "फ़ाइल नहीं खोली जा सकी."
 
 #: mainwindow.cpp:278
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import error: %1"
-msgstr "आयातदोषः %1"
+msgstr "आयात त्रुटि: %1"
 
 #: mainwindow.cpp:281
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Product imported successfully."
-msgstr "उत्पादः सफलतया आयातितः।"
+msgstr "उत्पाद सफलतापूर्वक आयातित."
 
 #: mainwindow.cpp:291
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Product"
-msgstr "निर्यात उत्पाद"
+msgstr "उत्पाद निर्यात करें"
 
 #: mainwindow.cpp:303
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Failed"
-msgstr "निर्यातं विफलम्"
+msgstr "निर्यात विफल"
 
 #: mainwindow.cpp:303
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export error: %1"
-msgstr "निर्यातदोषः %1"
+msgstr "निर्यात त्रुटि: %1"
 
 #: mainwindow.cpp:306
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Product exported successfully."
-msgstr "उत्पादः सफलतया निर्यातितः।"
+msgstr "उत्पाद सफलतापूर्वक निर्यात किया गया."
 
 #: mainwindow.cpp:355
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Unsaved Changes"
-msgstr "असरक्षितपरिवर्तनानि"
+msgstr "सहेजे न गए परिवर्तन"
 
 #: mainwindow.cpp:356
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -466,78 +465,78 @@ msgid ""
 "There are unsaved changes in the schema editor. Do you want to discard them "
 "and close the application?"
 msgstr ""
-"स्कीमा सम्पादके अरक्षिताः परिवर्तनाः सन्ति । किं भवन्तः तान् परित्यज्य अनुप्रयोगं बन्दं कर्तुम् "
-"इच्छन्ति?"
+"स्कीमा संपादक में कुछ परिवर्तन सहेजे नहीं गए हैं। क्या आप उन्हें हटाना चाहते हैं और एप्लिकेशन बंद "
+"करना चाहते हैं?"
 
 #: mainwindow.ui:14
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Feedback Console"
-msgstr "उपयोक्तृप्रतिक्रियाकन्सोल्"
+msgstr "उपयोगकर्ता फ़ीडबैक कंसोल"
 
 #: mainwindow.ui:50
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&File"
-msgstr "&संचिका"
+msgstr "&फ़ाइल"
 
 #: mainwindow.ui:58
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Pro&ducts"
-msgstr "Pro&ducts"
+msgstr "उत्पाद"
 
 #: mainwindow.ui:67
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Survey"
-msgstr "&सर्वेक्षणम्‌"
+msgstr "&सर्वे"
 
 #: mainwindow.ui:72
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Anal&ytics"
-msgstr "गुदा&ytics"
+msgstr "विश्लेषिकी"
 
 #: mainwindow.ui:77
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Help"
-msgstr "&साहाय्यम्‌"
+msgstr "&मदद"
 
 #: mainwindow.ui:85
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "S&chema"
-msgstr "S&chema"
+msgstr "एस&केमा"
 
 #: mainwindow.ui:90
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Window"
-msgstr "&कोष्ठ"
+msgstr "&खिड़की"
 
 #: mainwindow.ui:95
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&View"
-msgstr "&दृश्यं"
+msgstr "&देखना"
 
 #: mainwindow.ui:113
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Log Messages"
-msgstr "लॉग सन्देशाः"
+msgstr "लॉग संदेश"
 
 #: mainwindow.ui:132
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Products"
-msgstr "उत्पादाः"
+msgstr "उत्पादों"
 
 #: mainwindow.ui:160
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "View Toolbar"
-msgstr "टूल्बारं पश्यन्तु"
+msgstr "टूलबार देखें"
 
 #: mainwindow.ui:186
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Connect to Server..."
-msgstr "&सर्वर इत्यनेन सह कनेक्ट् कुर्वन्तु..."
+msgstr "&सर्वर से कनेक्ट करें..."
 
 #: mainwindow.ui:189
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Connect to analytics server."
-msgstr "विश्लेषणसर्वरेण सह सम्बद्धं कुर्वन्तु।"
+msgstr "एनालिटिक्स सर्वर से कनेक्ट करें."
 
 #: mainwindow.ui:192
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -547,52 +546,52 @@ msgstr "F2"
 #: mainwindow.ui:200
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Quit"
-msgstr "&परिजहातु"
+msgstr "&छोड़ना"
 
 #: mainwindow.ui:203
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Quit the user feedback console."
-msgstr "उपयोक्तृप्रतिक्रियाकन्सोल् त्यजन्तु ।"
+msgstr "उपयोगकर्ता फ़ीडबैक कंसोल से बाहर निकलें."
 
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Add Product..."
-msgstr "&उत्पादं योजयतु..."
+msgstr "&उत्पाद जोड़ें..."
 
 #: mainwindow.ui:217
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Add a new product."
-msgstr "नूतनं उत्पादं योजयन्तु।"
+msgstr "नया उत्पाद जोड़ें."
 
 #: mainwindow.ui:225
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Delete Product"
-msgstr "&उत्पादं विलोपयन्तु"
+msgstr "&उत्पाद हटाएं"
 
 #: mainwindow.ui:228
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Delete product and all associated data."
-msgstr "उत्पादं तथा सर्वाणि सम्बद्धानि आँकडानि विलोपयन्तु।"
+msgstr "उत्पाद और उससे संबंधित सभी डेटा हटाएँ."
 
 #: mainwindow.ui:236
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&About..."
-msgstr "&विषये..."
+msgstr "&के बारे में..."
 
 #: mainwindow.ui:239
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Information about this program."
-msgstr "अस्य कार्यक्रमस्य विषये सूचना।"
+msgstr "इस कार्यक्रम के बारे में जानकारी."
 
 #: mainwindow.ui:247
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Contribute..."
-msgstr "&सहयोग..."
+msgstr "&योगदान देना..."
 
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Help to make this application better for you!"
-msgstr "एतत् अनुप्रयोगं भवतः कृते उत्तमं कर्तुं साहाय्यं कुर्वन्तु!"
+msgstr "इस एप्लिकेशन को आपके लिए बेहतर बनाने में सहायता करें!"
 
 #: mainwindow.ui:261
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -602,72 +601,72 @@ msgstr "&स्कीमा"
 #: mainwindow.ui:264
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Edit product telemetry schema."
-msgstr "उत्पाद दूरमापन योजना सम्पादयतु।"
+msgstr "उत्पाद टेलीमेट्री स्कीमा संपादित करें."
 
 #: mainwindow.ui:275
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "S&urveys"
-msgstr "स&सर्वेक्षणम्"
+msgstr "सर्वेक्षण"
 
 #: mainwindow.ui:278
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Manage product surveys."
-msgstr "उत्पादसर्वक्षणस्य प्रबन्धनं कुर्वन्तु।"
+msgstr "उत्पाद सर्वेक्षण प्रबंधित करें."
 
 #: mainwindow.ui:289
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Analytics"
-msgstr "&विश्लेषणशास्त्रम्"
+msgstr "&एनालिटिक्स"
 
 #: mainwindow.ui:292
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Analyze product telemetry."
-msgstr "उत्पादस्य दूरमापनस्य विश्लेषणं कुर्वन्तु।"
+msgstr "उत्पाद टेलीमेट्री का विश्लेषण करें."
 
 #: mainwindow.ui:300
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Manual..."
-msgstr "उपयोक्तृपुस्तिका..."
+msgstr "उपयोगकर्ता पुस्तिका..."
 
 #: mainwindow.ui:303
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Show the user manual"
-msgstr "उपयोक्तृपुस्तिका दर्शयतु"
+msgstr "उपयोगकर्ता पुस्तिका दिखाएं"
 
 #: mainwindow.ui:311
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Product..."
-msgstr "आयात उत्पाद..."
+msgstr "आयातित उत्पाद..."
 
 #: mainwindow.ui:314
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import product settings and data."
-msgstr "उत्पादसेटिंग्स् तथा डाटा आयातयन्तु।"
+msgstr "उत्पाद सेटिंग और डेटा आयात करें."
 
 #: mainwindow.ui:322
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Product..."
-msgstr "निर्यात उत्पाद..."
+msgstr "उत्पाद निर्यात करें..."
 
 #: mainwindow.ui:325
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export all product settings and data."
-msgstr "सर्वाणि उत्पादसेटिंग्स् तथा दत्तांशं निर्यातयन्तु।"
+msgstr "सभी उत्पाद सेटिंग्स और डेटा निर्यात करें."
 
 #: model/aggregationeditormodel.cpp:61
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "<none>"
-msgstr "<कोऽपि नास्ति>"
+msgstr "<कोई नहीं>"
 
 #: model/aggregationeditormodel.cpp:90
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "Name"
-msgstr "नामः"
+msgstr "नाम"
 
 #: model/aggregationeditormodel.cpp:91
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "Type"
-msgstr "प्रकारः"
+msgstr "प्रकार"
 
 #: model/aggregationeditormodel.cpp:92
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
@@ -677,7 +676,7 @@ msgstr "तत्व"
 #: model/aggregationelementeditmodel.cpp:48
 msgctxt "KUserFeedback::Console::AggregationElementEditModel|"
 msgid "<new element>"
-msgstr "<नव तत्त्वं>"
+msgstr "<नया तत्व>"
 
 #: model/aggregationelementeditmodel.cpp:60
 msgctxt "KUserFeedback::Console::AggregationElementEditModel|"
@@ -687,17 +686,17 @@ msgstr "तत्व"
 #: model/categoryaggregationmodel.cpp:103
 msgctxt "KUserFeedback::Console::CategoryAggregationModel|"
 msgid "[empty]"
-msgstr "[रिक्तम्‌]"
+msgstr "[खाली]"
 
 #: model/datamodel.cpp:158
 msgctxt "KUserFeedback::Console::DataModel|"
 msgid "Timestamp"
-msgstr "समयमुद्रिका"
+msgstr "समय-चिह्न"
 
 #: model/numericaggregationmodel.cpp:78
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Extreme"
-msgstr "निम्न चरम"
+msgstr "निम्नतम चरम"
 
 #: model/numericaggregationmodel.cpp:79
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
@@ -707,52 +706,52 @@ msgstr "निम्न चतुर्थांश"
 #: model/numericaggregationmodel.cpp:80
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Median"
-msgstr "माध्यिका"
+msgstr "मंझला"
 
 #: model/numericaggregationmodel.cpp:81
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Quartile"
-msgstr "उच्च चतुर्थांश"
+msgstr "ऊपरी चतुर्थक"
 
 #: model/numericaggregationmodel.cpp:82
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Extreme"
-msgstr "ऊर्ध्व चरम"
+msgstr "ऊपरी चरम"
 
 #: model/productmodel.cpp:82
 msgctxt "KUserFeedback::Console::ProductModel|"
 msgid "Products"
-msgstr "उत्पादाः"
+msgstr "उत्पादों"
 
 #: model/ratiosetaggregationmodel.cpp:87
 msgctxt "KUserFeedback::Console::RatioSetAggregationModel|"
 msgid "[empty]"
-msgstr "[रिक्तम्‌]"
+msgstr "[खाली]"
 
 #: model/schemamodel.cpp:145
 msgctxt "KUserFeedback::Console::SchemaModel|"
 msgid "Name"
-msgstr "नामः"
+msgstr "नाम"
 
 #: model/schemamodel.cpp:146
 msgctxt "KUserFeedback::Console::SchemaModel|"
 msgid "Type"
-msgstr "प्रकारः"
+msgstr "प्रकार"
 
 #: model/surveymodel.cpp:110
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "Name"
-msgstr "नामः"
+msgstr "नाम"
 
 #: model/surveymodel.cpp:111
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "URL"
-msgstr "URL"
+msgstr "यूआरएल"
 
 #: model/surveymodel.cpp:112
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "Active"
-msgstr "सक्रियं"
+msgstr "सक्रिय"
 
 #: model/surveymodel.cpp:113
 msgctxt "KUserFeedback::Console::SurveyModel|"
@@ -762,52 +761,52 @@ msgstr "लक्ष्य"
 #: model/timeaggregationmodel.cpp:153
 msgctxt "KUserFeedback::Console::TimeAggregationModel|"
 msgid "Time"
-msgstr "कालः"
+msgstr "समय"
 
 #: model/timeaggregationmodel.cpp:154
 msgctxt "KUserFeedback::Console::TimeAggregationModel|"
 msgid "Samples"
-msgstr "नमूनानि"
+msgstr "नमूने"
 
 #: schemaeditor/aggregationeditwidget.cpp:99
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Delete Aggregation"
-msgstr "समुच्चयं विलोपयतु"
+msgstr "एकत्रीकरण हटाएं"
 
 #: schemaeditor/aggregationeditwidget.cpp:100
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Do you want to delete the currently selected aggregation?"
-msgstr "किं भवान् सम्प्रति चयनितं समुच्चयं विलोपयितुम् इच्छति?"
+msgstr "क्या आप वर्तमान में चयनित एकत्रीकरण को हटाना चाहते हैं?"
 
 #: schemaeditor/aggregationeditwidget.ui:60
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Add"
-msgstr "&संयोजयति"
+msgstr "&जोड़ना"
 
 #: schemaeditor/aggregationeditwidget.ui:67
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Delete"
-msgstr "&लुप्"
+msgstr "&मिटाना"
 
 #: schemaeditor/aggregationeditwidget.ui:83
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add &Aggregation"
-msgstr "&Aggregation योजयतु"
+msgstr "जोड़ें और एकत्रीकरण"
 
 #: schemaeditor/aggregationeditwidget.ui:86
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add a new aggregation."
-msgstr "नूतनं समुच्चयं योजयन्तु।"
+msgstr "नया एकत्रीकरण जोड़ें."
 
 #: schemaeditor/aggregationeditwidget.ui:94
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Delete Aggregation"
-msgstr "&सङ्ग्रहं विलोपयतु"
+msgstr "एकत्रीकरण हटाएं"
 
 #: schemaeditor/aggregationeditwidget.ui:97
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Delete the currently selected aggregation."
-msgstr "वर्तमान चयनितं समुच्चयं विलोपयन्तु।"
+msgstr "वर्तमान में चयनित एकत्रीकरण को हटाएँ."
 
 #: schemaeditor/schemaeditor.cpp:40
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -817,24 +816,24 @@ msgstr "स्रोत टेम्पलेट्स"
 #: schemaeditor/schemaeditor.cpp:119
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export Schema"
-msgstr "निर्यात योजना"
+msgstr "स्कीमा निर्यात करें"
 
 #: schemaeditor/schemaeditor.cpp:125
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export Failed"
-msgstr "निर्यातं विफलम्"
+msgstr "निर्यात विफल"
 
 #: schemaeditor/schemaeditor.cpp:125 schemaeditor/schemaeditor.cpp:140
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Could not open file: %1"
-msgstr "सञ्चिकां उद्घाटयितुं न शक्यते: %1"
+msgstr "फ़ाइल नहीं खोली जा सकी: %1"
 
 #: schemaeditor/schemaeditor.cpp:129
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 exported to %2."
-msgstr "%1 इत्यस्य योजना %2 प्रति निर्यातिता ।"
+msgstr "%1 की स्कीमा %2 में निर्यात की गई."
 
 #: schemaeditor/schemaeditor.cpp:134
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -844,18 +843,18 @@ msgstr "आयात अनुसूची"
 #: schemaeditor/schemaeditor.cpp:140 schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import Failed"
-msgstr "आयातः विफलः अभवत्"
+msgstr "आयात विफल"
 
 #: schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Selected file contains no valid product schema."
-msgstr "चयनितसञ्चिकायां वैधं उत्पादयोजना नास्ति ।"
+msgstr "चयनित फ़ाइल में कोई वैध उत्पाद स्कीमा नहीं है."
 
 #: schemaeditor/schemaeditor.cpp:153
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 imported from %2."
-msgstr "%1 इत्यस्य योजना %2 तः आयातिता ।"
+msgstr "%1 की स्कीमा %2 से आयातित."
 
 #: schemaeditor/schemaeditor.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -865,57 +864,57 @@ msgstr "योजना"
 #: schemaeditor/schemaeditor.ui:38
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Aggregation"
-msgstr "समुच्चयः"
+msgstr "एकत्रीकरण"
 
 #: schemaeditor/schemaeditor.ui:49
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Save Schema"
-msgstr "&योजना बचाओ"
+msgstr "स्कीमा सहेजें"
 
 #: schemaeditor/schemaeditor.ui:52
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
-msgstr "उत्पादयोजनायां परिवर्तनं रक्षन्तु ।"
+msgstr "उत्पाद स्कीमा में परिवर्तन सहेजें."
 
 #: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
-msgstr "&आयात योजना..."
+msgstr "&स्कीमा आयात करें..."
 
 #: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
-msgstr "अस्य उत्पादस्य कृते योजनां आयातयन्तु ।"
+msgstr "इस उत्पाद के लिए स्कीमा आयात करें."
 
 #: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
-msgstr "&निर्यात योजना..."
+msgstr "&स्कीमा निर्यात करें..."
 
 #: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
-msgstr "अस्य उत्पादस्य योजना निर्यातयन्तु।"
+msgstr "इस उत्पाद की स्कीमा निर्यात करें."
 
 #: schemaeditor/schemaeditwidget.cpp:72
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source"
-msgstr "स्रोतः योजयतु"
+msgstr "स्रोत जोड़ें"
 
 #: schemaeditor/schemaeditwidget.cpp:72 schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Name:"
-msgstr "नामः:"
+msgstr "नाम:"
 
 #: schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source Element"
-msgstr "स्रोततत्त्वं योजयतु"
+msgstr "स्रोत तत्व जोड़ें"
 
 #: schemaeditor/schemaeditwidget.cpp:96
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Source"
-msgstr "स्रोतः विलोपयतु"
+msgstr "स्रोत हटाएं"
 
 #: schemaeditor/schemaeditwidget.cpp:97
 #, qt-format
@@ -923,110 +922,110 @@ msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid ""
 "Do you really want to delete the source '%1', and all recorded data for it?"
 msgstr ""
-"किं भवान् वास्तवमेव स्रोतः '%1', तदर्थं च सर्वाणि अभिलेखितानि दत्तांशं विलोपयितुम् इच्छति?"
+"क्या आप सचमुच स्रोत '%1' और उसके लिए रिकॉर्ड किया गया सारा डेटा हटाना चाहते हैं?"
 
 #: schemaeditor/schemaeditwidget.cpp:102
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Schema Entry"
-msgstr "योजना प्रविष्टिं विलोपयन्तु"
+msgstr "स्कीमा प्रविष्टि हटाएं"
 
 #: schemaeditor/schemaeditwidget.cpp:103
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Do you really want to delete this entry, and all recorded data for it?"
 msgstr ""
-"किं भवान् वास्तवमेव एतत् प्रविष्टिं, तदर्थं च सर्वाणि अभिलेखितानि दत्तांशं विलोपयितुम् इच्छति?"
+"क्या आप सचमुच इस प्रविष्टि और इसके लिए रिकॉर्ड किए गए सभी डेटा को हटाना चाहते हैं?"
 
 #: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "&Delete"
-msgstr "&लुप्"
+msgstr "&मिटाना"
 
 #: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
-msgstr "चयनितं तत्त्वं वा प्रविष्टिं वा विलोपयन्तु।"
+msgstr "चयनित तत्व या प्रविष्टि को हटाएँ."
 
 #: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Del"
-msgstr "इति"
+msgstr "की"
 
 #: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
-msgstr "Add &Source..."
+msgstr "&स्रोत जोड़ें..."
 
 #: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
-msgstr "नूतनं दत्तांशस्रोतं योजयन्तु।"
+msgstr "नया डेटा स्रोत जोड़ें."
 
 #: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr "स्रोत &तत्त्वं योजयतु..."
+msgstr "स्रोत एवं तत्व जोड़ें..."
 
 #: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
-msgstr "दत्तांशस्रोते एकं तत्त्वं योजयन्तु ।"
+msgstr "डेटा स्रोत में कोई तत्व जोड़ें."
 
 #: surveyeditor/surveydialog.ui:14
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Survey"
-msgstr "सर्वेक्षणम्‌"
+msgstr "सर्वे"
 
 #: surveyeditor/surveydialog.ui:22
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "&Name:"
-msgstr "&नामः:"
+msgstr "&नाम:"
 
 #: surveyeditor/surveydialog.ui:35
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "&URL:"
-msgstr "&URL: 1.1."
+msgstr "&यूआरएल:"
 
 #: surveyeditor/surveydialog.ui:50
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Targeting e&xpression:"
-msgstr "लक्ष्यीकरण e&xpression:"
+msgstr "लक्ष्यीकरण अभिव्यक्ति:"
 
 #: surveyeditor/surveyeditor.cpp:105
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete Survey"
-msgstr "सर्वेक्षणं विलोपयन्तु"
+msgstr "सर्वेक्षण हटाएं"
 
 #: surveyeditor/surveyeditor.cpp:106
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
-msgstr "किं भवान् वास्तवमेव चयनितं सर्वेक्षणं विलोपयितुम् इच्छति?"
+msgstr "क्या आप सचमुच चयनित सर्वेक्षण को हटाना चाहते हैं?"
 
 #: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
-msgstr "&सर्वक्षणं योजयतु..."
+msgstr "&सर्वेक्षण जोड़ें..."
 
 #: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
-msgstr "नूतनं सर्वेक्षणं योजयन्तु।"
+msgstr "नया सर्वेक्षण जोड़ें."
 
 #: surveyeditor/surveyeditor.ui:56
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
-msgstr "&सर्वक्षणं विलोपयतु"
+msgstr "&सर्वेक्षण हटाएं"
 
 #: surveyeditor/surveyeditor.ui:59
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
-msgstr "सर्वेक्षणं विलोपयन्तु।"
+msgstr "सर्वेक्षण हटाएँ."
 
 #: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
-msgstr "&Edit सर्वेक्षण..."
+msgstr "&सर्वेक्षण संपादित करें..."
 
 #: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
-msgstr "सम्प्रति चयनितं सर्वेक्षणं सम्पादयन्तु।"
+msgstr "वर्तमान में चयनित सर्वेक्षण को संपादित करें."

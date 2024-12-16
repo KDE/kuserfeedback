@@ -1,40 +1,39 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: userfeedbackprovider6_qt\n"
-"PO-Revision-Date: 2024-12-13 19:10+0530\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2024-12-15 17:37+0530\n"
 "Last-Translator: Kali <EMAIL@ADDRESS>\n"
-"Language-Team: Sanskrit\n"
-"Language: sa\n"
+"Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
+"Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
-"Plural-Forms: nplurals=2; plural=(n>1);\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
 msgid "The version of the application."
-msgstr "अनुप्रयोगस्य संस्करणम् ।"
+msgstr "एप्लिकेशन का संस्करण."
 
 #: core/applicationversionsource.cpp:36
 msgctxt "KUserFeedback::ApplicationVersionSource|"
 msgid "Application version"
-msgstr "अनुप्रयोगसंस्करणम्"
+msgstr "एप्लिकेशन वर्जन"
 
 #: core/auditloguicontroller.cpp:140
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Basic System Information"
-msgstr "मूलभूत प्रणाली सूचना"
+msgstr "बुनियादी सिस्टम जानकारी"
 
 #: core/auditloguicontroller.cpp:142
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Basic Usage Statistics"
-msgstr "मूलभूत उपयोग सांख्यिकी"
+msgstr "बुनियादी उपयोग सांख्यिकी"
 
 #: core/auditloguicontroller.cpp:144
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Detailed System Information"
-msgstr "विस्तृत प्रणाली सूचना"
+msgstr "विस्तृत सिस्टम जानकारी"
 
 #: core/auditloguicontroller.cpp:146
 msgctxt "KUserFeedback::AuditLogUiController|"
@@ -45,7 +44,7 @@ msgstr "विस्तृत उपयोग सांख्यिकी"
 #, qt-format
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Unable to open file %1: %2."
-msgstr "%1: %2 सञ्चिकां उद्घाटयितुं असमर्थः ।"
+msgstr "फ़ाइल %1: %2 खोलने में असमर्थ."
 
 #: core/auditloguicontroller.cpp:196
 #, qt-format
@@ -57,71 +56,71 @@ msgstr "श्रेणी: <i>%1</i><br/>"
 #, qt-format
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Key: <i>%1</i><br/>"
-msgstr "कुञ्जी: <i>%1</i><br/>"
+msgstr "कुंजी: <i>%1</i><br/>"
 
 #: core/auditloguicontroller.cpp:198
 #, qt-format
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Submitted data: <tt>%1</tt><br/><br/>"
-msgstr "प्रस्तुतदत्तांशः <tt>%1</tt><br/><br/>"
+msgstr "प्रस्तुत डेटा: <tt>%1</tt><br/><br/>"
 
 #: core/compilerinfosource.cpp:20
 msgctxt "KUserFeedback::CompilerInfoSource|"
 msgid "The compiler used to build this application."
-msgstr "अस्य अनुप्रयोगस्य निर्माणार्थं प्रयुक्तः संकलकः ।"
+msgstr "इस अनुप्रयोग को बनाने के लिए प्रयुक्त कम्पाइलर."
 
 #: core/compilerinfosource.cpp:53
 msgctxt "KUserFeedback::CompilerInfoSource|"
 msgid "Compiler information"
-msgstr "संकलकसूचना"
+msgstr "संकलक जानकारी"
 
 #: core/cpuinfosource.cpp:22
 msgctxt "KUserFeedback::CpuInfoSource|"
 msgid "The amount and type of CPUs in the system."
-msgstr "प्रणाल्यां CPUs इत्यस्य परिमाणं प्रकारं च ।"
+msgstr "सिस्टम में CPU की मात्रा और प्रकार."
 
 #: core/cpuinfosource.cpp:35
 msgctxt "KUserFeedback::CpuInfoSource|"
 msgid "CPU information"
-msgstr "CPU सूचना"
+msgstr "सीपीयू जानकारी"
 
 #: core/feedbackconfiguicontroller.cpp:119
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Disabled"
-msgstr "अक्षमित"
+msgstr "अक्षम"
 
 #: core/feedbackconfiguicontroller.cpp:121
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Basic system information"
-msgstr "मूलभूत प्रणाली सूचना"
+msgstr "बुनियादी सिस्टम जानकारी"
 
 #: core/feedbackconfiguicontroller.cpp:123
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Basic system information and usage statistics"
-msgstr "मूलभूतप्रणालीसूचना तथा उपयोगसांख्यिकीयम्"
+msgstr "बुनियादी सिस्टम जानकारी और उपयोग आँकड़े"
 
 #: core/feedbackconfiguicontroller.cpp:125
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Detailed system information and basic usage statistics"
-msgstr "विस्तृतप्रणालीसूचना तथा मूलभूतप्रयोगसांख्यिकी"
+msgstr "विस्तृत सिस्टम जानकारी और बुनियादी उपयोग आँकड़े"
 
 #: core/feedbackconfiguicontroller.cpp:127
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Detailed system information and usage statistics"
-msgstr "विस्तृत प्रणाली सूचना तथा उपयोगसांख्यिकीय"
+msgstr "विस्तृत सिस्टम जानकारी और उपयोग आँकड़े"
 
 #: core/feedbackconfiguicontroller.cpp:139
 #: core/feedbackconfiguicontroller.cpp:162
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't share anything"
-msgstr "किमपि न साझां कुर्वन्तु"
+msgstr "कुछ भी साझा न करें"
 
 #: core/feedbackconfiguicontroller.cpp:143
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic system information such as the version of the application and "
 "the operating system"
-msgstr "अनुप्रयोगस्य संस्करणं प्रचालनतन्त्रं च इत्यादीनां मूलभूतप्रणालीसूचनाः साझां कुर्वन्तु"
+msgstr "बुनियादी सिस्टम जानकारी साझा करें जैसे कि एप्लिकेशन और ऑपरेटिंग सिस्टम का संस्करण"
 
 #: core/feedbackconfiguicontroller.cpp:147
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -129,8 +128,8 @@ msgid ""
 "Share basic system information and basic statistics on how often you use the "
 "application"
 msgstr ""
-"भवन्तः कियत्वारं अनुप्रयोगस्य उपयोगं कुर्वन्ति इति विषये मूलभूतप्रणालीसूचनाः "
-"मूलभूतसांख्यिकीयानि च साझां कुर्वन्तु"
+"आप कितनी बार एप्लिकेशन का उपयोग करते हैं, इस पर बुनियादी सिस्टम जानकारी और बुनियादी "
+"आँकड़े साझा करें"
 
 #: core/feedbackconfiguicontroller.cpp:151
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -138,8 +137,8 @@ msgid ""
 "Share basic statistics on how often you use the application, as well as more "
 "detailed information about your system"
 msgstr ""
-"भवन्तः कियत्वारं अनुप्रयोगस्य उपयोगं कुर्वन्ति इति मूलभूतं आँकडानि साझां कुर्वन्तु, तथैव स्वस्य "
-"प्रणाल्याः विषये अधिकविस्तृतसूचनाः अपि साझां कुर्वन्तु"
+"आप कितनी बार एप्लिकेशन का उपयोग करते हैं, इसके बारे में बुनियादी आँकड़े साझा करें, साथ ही "
+"अपने सिस्टम के बारे में अधिक विस्तृत जानकारी भी साझा करें"
 
 #: core/feedbackconfiguicontroller.cpp:155
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -147,8 +146,8 @@ msgid ""
 "Share detailed system information and statistics on how often individual "
 "features of the application are used."
 msgstr ""
-"अनुप्रयोगस्य व्यक्तिगतविशेषतानां कियत्वारं उपयोगः भवति इति विस्तृतप्रणालीसूचनाः आँकडाश्च "
-"साझां कुर्वन्तु ।"
+"एप्लिकेशन की व्यक्तिगत सुविधाओं का कितनी बार उपयोग किया जाता है, इस पर विस्तृत सिस्टम "
+"जानकारी और आंकड़े साझा करें।"
 
 #: core/feedbackconfiguicontroller.cpp:166
 #, qt-format
@@ -156,7 +155,7 @@ msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic system information such as the version of %1 and and the "
 "operating system"
-msgstr "%1 इत्यस्य संस्करणं तथा च प्रचालनतन्त्रम् इत्यादीनां मूलभूतप्रणालीसूचनाः साझां कुर्वन्तु"
+msgstr "मूलभूत सिस्टम जानकारी साझा करें जैसे कि %1 का संस्करण और ऑपरेटिंग सिस्टम"
 
 #: core/feedbackconfiguicontroller.cpp:170
 #, qt-format
@@ -164,8 +163,8 @@ msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic system information and basic statistics on how often you use %1"
 msgstr ""
-"%1 इत्यस्य उपयोगं कियत्वारं करोति इति विषये मूलभूतप्रणालीसूचनाः मूलभूतसांख्यिकी च साझां "
-"कुर्वन्तु"
+"बुनियादी सिस्टम जानकारी और बुनियादी आँकड़े साझा करें कि आप %1 का कितनी बार उपयोग करते "
+"हैं"
 
 #: core/feedbackconfiguicontroller.cpp:174
 #, qt-format
@@ -174,8 +173,8 @@ msgid ""
 "Share basic statistics on how often you use %1, as well as more detailed "
 "information about your system"
 msgstr ""
-"%1 इत्यस्य उपयोगं कियत्वारं करोति इति मूलभूतं आँकडानि साझां कुर्वन्तु, तथैव स्वस्य प्रणाल्याः "
-"विषये अधिकविस्तृतसूचनाः अपि साझां कुर्वन्तु"
+"आप कितनी बार %1 का उपयोग करते हैं, इस पर बुनियादी आँकड़े साझा करें, साथ ही अपने सिस्टम "
+"के बारे में अधिक विस्तृत जानकारी भी साझा करें"
 
 #: core/feedbackconfiguicontroller.cpp:178
 #, qt-format
@@ -184,19 +183,19 @@ msgid ""
 "Share detailed system information and statistics on how often individual "
 "features of %1 are used."
 msgstr ""
-"%1 इत्यस्य व्यक्तिगतविशेषतानां कियत्वारं उपयोगः भवति इति विस्तृतप्रणालीसूचनाः आँकडाश्च "
-"साझां कुर्वन्तु ।"
+"%1 की व्यक्तिगत विशेषताओं का कितनी बार उपयोग किया जाता है, इस पर विस्तृत सिस्टम "
+"जानकारी और आंकड़े साझा करें।"
 
 #: core/feedbackconfiguicontroller.cpp:231
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys"
-msgstr "उपयोगिता सर्वेक्षणेषु भागं न गृह्णन्तु"
+msgstr "प्रयोज्यता सर्वेक्षणों में भाग न लें"
 
 #: core/feedbackconfiguicontroller.cpp:235
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Participate in surveys about the application not more than four times a year"
-msgstr "वर्षे चतुर्वारं न अधिकं आवेदनस्य विषये सर्वेक्षणेषु भागं गृह्णन्तु"
+msgstr "आवेदन के बारे में सर्वेक्षण में वर्ष में चार बार से अधिक भाग न लें"
 
 #: core/feedbackconfiguicontroller.cpp:239
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -204,20 +203,20 @@ msgid ""
 "Participate in surveys about the application whenever one is available (they "
 "can be deferred or skipped)"
 msgstr ""
-"यदा यदा अनुप्रयोगः उपलब्धः भवति तदा तदा आवेदनस्य विषये सर्वेक्षणेषु भागं गृह्णन्तु (ते स्थगितुं "
-"वा त्यक्तुं वा शक्यन्ते)"
+"जब भी कोई सर्वेक्षण उपलब्ध हो, तो एप्लिकेशन के बारे में सर्वेक्षण में भाग लें (इन्हें स्थगित या "
+"छोड़ा जा सकता है)"
 
 #: core/feedbackconfiguicontroller.cpp:246
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys about %1"
-msgstr "%1 विषये उपयोगिता सर्वेक्षणेषु भागं न गृहाण"
+msgstr "%1 के बारे में प्रयोज्यता सर्वेक्षण में भाग न लें"
 
 #: core/feedbackconfiguicontroller.cpp:250
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Participate in surveys about %1 not more than four times a year"
-msgstr "वर्षे चतुर्वारं न अधिकं %1 विषये सर्वेक्षणेषु भागं गृह्णन्तु"
+msgstr "वर्ष में अधिकतम चार बार %1 के बारे में सर्वेक्षण में भाग लें"
 
 #: core/feedbackconfiguicontroller.cpp:254
 #, qt-format
@@ -226,123 +225,123 @@ msgid ""
 "Participate in surveys about %1 whenever one is available (they can be "
 "deferred or skipped)"
 msgstr ""
-"यदा कदापि एकः उपलब्धः भवति तदा %1 विषये सर्वेक्षणेषु भागं गृह्णन्तु (ते स्थगितुं वा त्यक्तुं वा "
-"शक्यन्ते)"
+"जब भी कोई सर्वेक्षण उपलब्ध हो, तो %1 के बारे में सर्वेक्षण में भाग लें (इन्हें स्थगित या छोड़ा "
+"जा सकता है)"
 
 #: core/localeinfosource.cpp:21
 msgctxt "KUserFeedback::LocaleInfoSource|"
 msgid "The current region and language settings."
-msgstr "वर्तमानप्रदेशः भाषासेटिंग्स् च ।"
+msgstr "वर्तमान क्षेत्र और भाषा सेटिंग्स."
 
 #: core/localeinfosource.cpp:35
 msgctxt "KUserFeedback::LocaleInfoSource|"
 msgid "Locale information"
-msgstr "स्थानीयसूचना"
+msgstr "स्थानीय जानकारी"
 
 #: core/openglinfosource.cpp:28
 msgctxt "KUserFeedback::OpenGLInfoSource|"
 msgid "Information about type, version and vendor of the OpenGL stack."
-msgstr "OpenGL स्टैक् इत्यस्य प्रकारस्य, संस्करणस्य, विक्रेतुः च विषये सूचना ।"
+msgstr "ओपनजीएल स्टैक के प्रकार, संस्करण और विक्रेता के बारे में जानकारी।"
 
 #: core/openglinfosource.cpp:98
 msgctxt "KUserFeedback::OpenGLInfoSource|"
 msgid "OpenGL information"
-msgstr "OpenGL सूचना"
+msgstr "ओपनजीएल जानकारी"
 
 #: core/platforminfosource.cpp:21
 msgctxt "KUserFeedback::PlatformInfoSource|"
 msgid "Type and version of the operating system."
-msgstr "प्रचालनतन्त्रस्य प्रकारः संस्करणं च ।"
+msgstr "ऑपरेटिंग सिस्टम का प्रकार और संस्करण."
 
 #: core/platforminfosource.cpp:58
 msgctxt "KUserFeedback::PlatformInfoSource|"
 msgid "Platform information"
-msgstr "मञ्चसूचना"
+msgstr "प्लेटफ़ॉर्म जानकारी"
 
 #: core/qpainfosource.cpp:21
 msgctxt "KUserFeedback::QPAInfoSource|"
 msgid "The Qt platform abstraction plugin."
-msgstr "Qt मञ्च अमूर्तता प्लगिन् ।"
+msgstr "क्यूटी प्लेटफार्म अमूर्तन प्लगइन."
 
 #: core/qpainfosource.cpp:33
 msgctxt "KUserFeedback::QPAInfoSource|"
 msgid "QPA information"
-msgstr "QPA सूचना"
+msgstr "क्यूपीए जानकारी"
 
 #: core/qtversionsource.cpp:21
 msgctxt "KUserFeedback::QtVersionSource|"
 msgid "The Qt version used by this application."
-msgstr "अस्मिन् अनुप्रयोगे प्रयुक्तं Qt संस्करणम् ।"
+msgstr "इस अनुप्रयोग द्वारा प्रयुक्त Qt संस्करण."
 
 #: core/qtversionsource.cpp:33
 msgctxt "KUserFeedback::QtVersionSource|"
 msgid "Qt version information"
-msgstr "Qt संस्करण सूचना"
+msgstr "Qt संस्करण जानकारी"
 
 #: core/screeninfosource.cpp:22
 msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Size and resolution of all connected screens."
-msgstr "सर्वेषां सम्बद्धानां पटलानां आकारः, संकल्पः च ।"
+msgstr "सभी कनेक्टेड स्क्रीन का आकार और रिज़ॉल्यूशन."
 
 #: core/screeninfosource.cpp:41
 msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Screen parameters"
-msgstr "स्क्रीन पैरामीटर्स"
+msgstr "स्क्रीन पैरामीटर"
 
 #: core/startcountsource.cpp:31
 msgctxt "KUserFeedback::StartCountSource|"
 msgid "How often the application has been started."
-msgstr "कियत्वारं आवेदनम् आरब्धम् अस्ति।"
+msgstr "एप्लीकेशन को कितनी बार शुरू किया गया है."
 
 #: core/startcountsource.cpp:46
 msgctxt "KUserFeedback::StartCountSource|"
 msgid "Launches count"
-msgstr "प्रक्षेपणानां गणना भवति"
+msgstr "प्रक्षेपणों की संख्या"
 
 #: core/usagetimesource.cpp:31
 msgctxt "KUserFeedback::UsageTimeSource|"
 msgid "The total amount of time the application has been used."
-msgstr "अनुप्रयोगस्य उपयोगः कृतः कुलसमयः ।"
+msgstr "एप्लिकेशन का उपयोग किए जाने का कुल समय."
 
 #: core/usagetimesource.cpp:46
 msgctxt "KUserFeedback::UsageTimeSource|"
 msgid "Usage time"
-msgstr "उपयोगसमयः"
+msgstr "उपयोग के समय"
 
 #: widgets/auditlogbrowserdialog.cpp:28
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Delete Log"
-msgstr "लॉग् विलोपयन्तु"
+msgstr "लॉग हटाएं"
 
 #: widgets/auditlogbrowserdialog.ui:14
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Submitted Data"
-msgstr "प्रस्तुत आँकड़ा"
+msgstr "प्रस्तुत डेटा"
 
 #: widgets/auditlogbrowserdialog.ui:22
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Da&ta Submission:"
-msgstr "प्रस्तुतीकरण तिथि : १."
+msgstr "स करने की तारीख:"
 
 #: widgets/feedbackconfigdialog.cpp:32
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
 msgid "Contribute!"
-msgstr "सहयोग!"
+msgstr "योगदान देना!"
 
 #: widgets/feedbackconfigdialog.cpp:33
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
 msgid "No, I do not want to contribute."
-msgstr "न, अहं योगदानं कर्तुम् न इच्छामि।"
+msgstr "नहीं, मैं योगदान नहीं करना चाहता."
 
 #: widgets/feedbackconfigdialog.ui:14
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
 msgid "Feedback Settings"
-msgstr "प्रतिक्रिया सेटिंग्स्"
+msgstr "फीडबैक सेटिंग्स"
 
 #: widgets/feedbackconfigwidget.cpp:116
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "No data has been sent at this point."
-msgstr "अस्मिन् क्षणे कोऽपि दत्तांशः न प्रेषितः ।"
+msgstr "इस समय कोई डेटा नहीं भेजा गया है।"
 
 #: widgets/feedbackconfigwidget.ui:17
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -353,41 +352,41 @@ msgid ""
 "collect your personal data, files you use, websites you visit, or "
 "information that could identify you."
 msgstr ""
-"भवान् अस्य सॉफ्टवेयरस्य विकासे साहाय्यं कर्तुं शक्नोति यत् भवान् तस्य उपयोगं कथं करोति इति "
-"सूचनां योगदानं दत्त्वा, अतः विकासकाः भवतः कृते महत्त्वपूर्णेषु विषयेषु ध्यानं दातुं शक्नुवन्ति । "
-"एतां सूचनां योगदानं करणं वैकल्पिकं पूर्णतया अनामिका च अस्ति । वयं कदापि भवतः "
-"व्यक्तिगतदत्तांशं, भवता उपयुज्यमानाः सञ्चिकाः, भवता भ्रमितानि जालपुटानि, भवतः परिचयं "
-"कर्तुं शक्नुवन्ति सूचना वा न संग्रहयामः ।"
+"आप इस सॉफ़्टवेयर के विकास में मदद कर सकते हैं, इसके उपयोग के बारे में जानकारी देकर, ताकि "
+"डेवलपर्स उन चीज़ों पर ध्यान केंद्रित कर सकें जो आपके लिए महत्वपूर्ण हैं। यह जानकारी देना "
+"वैकल्पिक है और पूरी तरह से गुमनाम है। हम कभी भी आपका व्यक्तिगत डेटा, आपके द्वारा उपयोग "
+"की जाने वाली फ़ाइलें, आपके द्वारा देखी जाने वाली वेबसाइटें या ऐसी जानकारी एकत्र नहीं करते "
+"हैं जिससे आपकी पहचान हो सके।"
 
 #: widgets/feedbackconfigwidget.ui:33
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Contribute Statistics"
-msgstr "सांख्यिकी योगदान"
+msgstr "सांख्यिकी योगदान करें"
 
 #: widgets/feedbackconfigwidget.ui:107
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "TextLabel"
-msgstr "TextLabel इति"
+msgstr "पाठलेबल"
 
 #: widgets/feedbackconfigwidget.ui:124
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Show the raw data that is going to be shared."
-msgstr "यत् कच्चं दत्तांशं साझां कर्तुं गच्छति तत् दर्शयतु ।"
+msgstr "वह कच्चा डेटा दिखाएँ जो साझा किया जाने वाला है।"
 
 #: widgets/feedbackconfigwidget.ui:137
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "<a href=\"auditLog\">View previously submitted data...</a>"
-msgstr "<a href=\"auditLog\">पूर्वं प्रस्तुतानि आँकडानि पश्यन्तु...</a>"
+msgstr "<a href=\"auditLog\">पहले प्रस्तुत डेटा देखें...</a>"
 
 #: widgets/feedbackconfigwidget.ui:150
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Participate in Surveys"
-msgstr "सर्वेक्षणेषु भागं गृह्णन्तु"
+msgstr "सर्वेक्षणों में भाग लें"
 
 #: widgets/notificationpopup.cpp:67
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "Help us make this application better!"
-msgstr "अस्मान् एतत् अनुप्रयोगं उत्तमं कर्तुं साहाय्यं कुर्वन्तु!"
+msgstr "इस एप्लिकेशन को बेहतर बनाने में हमारी सहायता करें!"
 
 #: widgets/notificationpopup.cpp:68
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -395,14 +394,14 @@ msgid ""
 "You can help us improving this application by sharing statistics and "
 "participate in surveys."
 msgstr ""
-"आँकडानां साझेदारी कृत्वा सर्वेक्षणेषु भागं ग्रहीतुं च भवान् अस्मान् अस्य अनुप्रयोगस्य उन्नयनार्थं "
-"साहाय्यं कर्तुं शक्नोति।"
+"आप आंकड़े साझा करके और सर्वेक्षणों में भाग लेकर इस एप्लिकेशन को बेहतर बनाने में हमारी सहायता "
+"कर सकते हैं।"
 
 #: widgets/notificationpopup.cpp:70
 #, qt-format
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "Help us make %1 better!"
-msgstr "%1 उत्तमं कर्तुं अस्मान् साहाय्यं कुर्वन्तु!"
+msgstr "%1 को बेहतर बनाने में हमारी सहायता करें!"
 
 #: widgets/notificationpopup.cpp:71
 #, qt-format
@@ -411,18 +410,17 @@ msgid ""
 "You can help us improving %1 by sharing statistics and participate in "
 "surveys."
 msgstr ""
-"भवान् अस्मान् आँकडानां साझेदारी कृत्वा %1 सुधारणे सहायतां कर्तुं शक्नोति तथा च सर्वेक्षणेषु भागं "
-"ग्रहीतुं शक्नोति।"
+"आप आंकड़े साझा करके और सर्वेक्षणों में भाग लेकर %1 को बेहतर बनाने में हमारी मदद कर सकते हैं।"
 
 #: widgets/notificationpopup.cpp:73
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
 msgid "Contribute…"
-msgstr "सहयोग…"
+msgstr "योगदान देना…"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "We are looking for your feedback!"
-msgstr "वयं भवतः प्रतिक्रियाम् अन्विष्यामः!"
+msgstr "हम आपके फीडबैक का इंतज़ार कर रहे हैं!"
 
 #: widgets/notificationpopup.cpp:86
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -430,7 +428,7 @@ msgid ""
 "We would like a few minutes of your time to provide feedback about this "
 "application in a survey."
 msgstr ""
-"भवतः समयस्य कतिपयानि निमेषाणि सर्वेक्षणे अस्य अनुप्रयोगस्य विषये प्रतिक्रियां दातुं इच्छामः।"
+"हम इस एप्लिकेशन के बारे में सर्वेक्षण में फीडबैक देने के लिए आपका कुछ मिनट का समय चाहते हैं।"
 
 #: widgets/notificationpopup.cpp:88
 #, qt-format
@@ -438,21 +436,21 @@ msgctxt "KUserFeedback::NotificationPopup|"
 msgid ""
 "We would like a few minutes of your time to provide feedback about %1 in a "
 "survey."
-msgstr "वयं भवतः समयस्य कतिपयानि निमेषाणि सर्वेक्षणे %1 विषये प्रतिक्रियां दातुं इच्छामः।"
+msgstr "हम सर्वेक्षण में %1 के बारे में प्रतिक्रिया देने के लिए आपका कुछ मिनट का समय चाहते हैं।"
 
 #: widgets/notificationpopup.cpp:89
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "Participate"
-msgstr "अनुभुज्"
+msgstr "हिस्सा लेना"
 
 #: widgets/styleinfosource.cpp:23
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid ""
 "The widget style used by the application, and information about the used "
 "color scheme."
-msgstr "अनुप्रयोगेन प्रयुक्ता विजेट्शैली, प्रयुक्तवर्णयोजनायाः विषये च सूचना ।"
+msgstr "अनुप्रयोग द्वारा प्रयुक्त विजेट शैली, तथा प्रयुक्त रंग योजना के बारे में जानकारी।"
 
 #: widgets/styleinfosource.cpp:37
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
-msgstr "अनुप्रयोगशैली"
+msgstr "आवेदन शैली"

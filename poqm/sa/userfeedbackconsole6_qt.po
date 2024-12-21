@@ -1,15 +1,17 @@
+# SPDX-FileCopyrightText: 2024 kali <skkalwar999@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: userfeedbackconsole6_qt\n"
-"PO-Revision-Date: 2024-12-13 19:10+0530\n"
-"Last-Translator: Kali <EMAIL@ADDRESS>\n"
-"Language-Team: Sanskrit\n"
+"PO-Revision-Date: 2024-12-20 21:52+0530\n"
+"Last-Translator: kali <skkalwar999@gmail.com>\n"
+"Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n>1);\n"
+"X-Generator: Lokalize 24.08.2\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -76,7 +78,7 @@ msgstr "चार्ट्स्"
 #: analytics/analyticsview.ui:41
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Aggregation:"
-msgstr "&समुच्चयः : १."
+msgstr "&समुच्चयः :"
 
 #: analytics/analyticsview.ui:108
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -201,7 +203,7 @@ msgstr "संवादः"
 #: analytics/chartexportdialog.ui:22
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "F&ile name:"
-msgstr "F&ile नाम : १."
+msgstr "F&ile नाम :"
 
 #: analytics/chartexportdialog.ui:35
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -395,7 +397,7 @@ msgstr "New Product योजयतु"
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Product Identifier:"
-msgstr "उत्पादपरिचयः : १."
+msgstr "उत्पादपरिचयः :"
 
 #: mainwindow.cpp:248
 msgctxt "KUserFeedback::Console::MainWindow|"

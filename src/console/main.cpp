@@ -15,6 +15,7 @@ int main(int argc, char** argv)
     QCoreApplication::setApplicationVersion(QStringLiteral(KUSERFEEDBACK_VERSION_STRING));
     QCoreApplication::setOrganizationName(QStringLiteral("KDE"));
     QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+    QGuiApplication::setDesktopFileName(QStringLiteral("org.kde.kuserfeedback-console"));
 
     Q_INIT_RESOURCE(schematemplates);
 

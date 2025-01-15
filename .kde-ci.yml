@@ -6,7 +6,7 @@ Dependencies:
   'require':
     'frameworks/extra-cmake-modules': '@stable'
 
-- 'on': ['Linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6', 'Android/Qt6']
+- 'on': ['Linux/Qt6', 'Linux/Qt6Next', 'FreeBSD/Qt6', 'Windows/Qt6', 'Android/Qt6']
   'require':
     'frameworks/extra-cmake-modules': '@latest-kf6'
 

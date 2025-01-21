@@ -35,6 +35,7 @@ include(ECMGeneratePriFile)
 include(ECMQmlModule)
 include(FeatureSummary)
 include(GenerateExportHeader)
+include(ECMDeprecationSettings)
 
 include(ECMQtDeclareLoggingCategory)
 
@@ -106,6 +107,11 @@ endif()
 #
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 configure_file(config-userfeedback.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-userfeedback.h)
+
+ecm_set_disabled_deprecation_versions(
+    QT 5.15
+)
+
 
 add_subdirectory(src)
 

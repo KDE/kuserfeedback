@@ -80,7 +80,6 @@ add_library(KF6::UserFeedbackConsole ALIAS KF6UserFeedbackConsole)
 target_link_libraries(KF6UserFeedbackConsole Qt6::Network)
 target_include_directories(KF6UserFeedbackConsole PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
 target_compile_features(KF6UserFeedbackConsole PRIVATE cxx_generic_lambdas)
-target_compile_definitions(KF6UserFeedbackConsole PUBLIC QT_DISABLE_DEPRECATED_BEFORE=0x050600 QT_DEPRECATED_WARNINGS)
 
 if(NOT TARGET KF6UserFeedbackWidgets)
     return()

@@ -65,7 +65,6 @@ target_link_libraries(KF6UserFeedbackCore PUBLIC Qt6::Core PRIVATE Qt6::Gui Qt6:
 if(ANDROID)
     target_link_libraries(KF6UserFeedbackCore PRIVATE GLESv2)
 endif()
-target_compile_definitions(KF6UserFeedbackCore PRIVATE QT_DISABLE_DEPRECATED_BEFORE=0x050300)
 target_link_libraries(KF6UserFeedbackCore PRIVATE KF6UserFeedbackCommon)
 target_include_directories(KF6UserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
 target_include_directories(KF6UserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>"

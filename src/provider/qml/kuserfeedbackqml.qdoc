@@ -1,0 +1,5 @@
+/*!
+    \qmlmodule org.kde.userfeedback
+    \title KUserFeedback QML Types
+    \brief Framework for collecting feedback from application users via telemetry and targeted surveys.
+*/

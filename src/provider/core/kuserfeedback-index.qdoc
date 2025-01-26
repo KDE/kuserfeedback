@@ -1,0 +1,22 @@
+/*!
+    \page kuserfeedback-index.html
+    \title KUserFeedback
+
+    Framework for collecting feedback from application users via telemetry and targeted surveys.
+
+    \section1 Using the Module
+
+    \include {module-use.qdocinc} {using the c++ api}
+
+    \section2 Building with CMake
+
+    \include {module-use.qdocinc} {building with cmake} {KF6} {UserFeedback} {KF6::UserFeedbackCore}
+
+    \section1 API Reference
+
+    \list
+        \li \l{KUserFeedbackCore C++ Classes}
+        \li \l{KUserFeedbackWidgets C++ Classes}
+        \li \l{KUserFeedback QML Types}
+    \endlist
+*/

@@ -1,0 +1,31 @@
+include($KDE_DOCS/global/qt-module-defaults.qdocconf)
+
+project = KUserFeedbackCore
+description = Framework for collecting feedback from application users via telemetry and targeted surveys.
+
+documentationinheaders = true
+
+headerdirs += .
+sourcedirs += .
+
+outputformats = HTML
+
+depends += \
+    kde \
+    qtcore \
+    kuserfeedbackwidgets \
+    kuserfeedbackqml
+
+qhp.projects            = KUserFeedbackCore
+
+qhp.KUserFeedbackCore.file                = kuserfeedbackcore.qhp
+qhp.KUserFeedbackCore.namespace           = org.kde.kuserfeedbackcore.$QT_VERSION_TAG
+qhp.KUserFeedbackCore.virtualFolder       = kuserfeedbackcore
+qhp.KUserFeedbackCore.indexTitle          = KUserFeedbackCore
+qhp.KUserFeedbackCore.indexRoot           =
+
+qhp.KUserFeedbackCore.subprojects         = classes
+qhp.KUserFeedbackCore.subprojects.classes.title = C++ Classes
+qhp.KUserFeedbackCore.subprojects.classes.indexTitle = KUserFeedbackCore C++ Classes
+qhp.KUserFeedbackCore.subprojects.classes.selectors = class fake:headerfile
+qhp.KUserFeedbackCore.subprojects.classes.sortPages = true

@@ -13,9 +13,19 @@ namespace KUserFeedback {
 
 class AbstractDataSource;
 
+/*!
+ * \qmltype AbstractDataSource
+ * \inqmlmodule org.kde.userfeedback
+ */
 class QmlAbstractDataSource : public QObject
 {
     Q_OBJECT
+
+    /*!
+     * \qmlproperty enumeration AbstractDataSource::mode
+     *
+     * \sa KUserFeedback::Provider::TelemetryMode
+     */
     Q_PROPERTY(KUserFeedback::Provider::TelemetryMode mode READ telemetryMode
                WRITE setTelemetryMode NOTIFY telemetryModeChanged)
 public:

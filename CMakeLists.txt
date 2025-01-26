@@ -36,7 +36,7 @@ include(ECMQmlModule)
 include(FeatureSummary)
 include(GenerateExportHeader)
 include(ECMDeprecationSettings)
-
+include(ECMGenerateQDoc)
 include(ECMQtDeclareLoggingCategory)
 
 ecm_setup_version(PROJECT

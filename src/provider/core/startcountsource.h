@@ -16,9 +16,14 @@ class Provider;
 class ProviderPrivate;
 class StartCountSourcePrivate;
 
-/*! Data source reporting the total amount of applications starts.
+/*!
+ * \class KUserFeedback::StartCountSource
+ * \inmodule KUserFeedbackCore
+ * \inheaderfile KUserFeedback/StartCountSource
  *
- *  The default telemetry mode for this source is Provider::BasicUsageStatistics.
+ * \brief Data source reporting the total amount of applications starts.
+ *
+ * The default telemetry mode for this source is Provider::BasicUsageStatistics.
  */
 class KUSERFEEDBACKCORE_EXPORT StartCountSource :  public AbstractDataSource
 {

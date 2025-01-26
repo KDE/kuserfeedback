@@ -19,14 +19,26 @@ class AuditLogBrowserDialog;
 }
 class AuditLogUiController;
 
-/** Dialog to browse audit log entries. */
+/*!
+ * \class KUserFeedback::AuditLogBrowserDialog
+ * \inmodule KUserFeedbackWidgets
+ * \inheaderfile KUserFeedback/AuditLogBrowserDialog
+ *
+ * \brief Dialog to browse audit log entries.
+ */
 class AuditLogBrowserDialog : public QDialog
 {
     Q_OBJECT
 public:
+    /*!
+     *
+     */
     explicit AuditLogBrowserDialog(QWidget *parent);
     ~AuditLogBrowserDialog() override;
 
+    /*!
+     *
+     */
     void setUiController(AuditLogUiController *controller);
 
 private Q_SLOTS:

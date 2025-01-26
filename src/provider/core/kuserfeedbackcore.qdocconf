@@ -12,13 +12,14 @@ outputformats = HTML
 
 depends += \
     kde \
-    qtcore
+    qtcore \
+    kuserfeedbackwidgets
 
 qhp.projects            = KUserFeedbackCore
 
-qhp.KUserFeedbackCore.file                = kuserfeedback.qhp
-qhp.KUserFeedbackCore.namespace           = org.kde.kuserfeedback.$QT_VERSION_TAG
-qhp.KUserFeedbackCore.virtualFolder       = kuserfeedback
+qhp.KUserFeedbackCore.file                = kuserfeedbackcore.qhp
+qhp.KUserFeedbackCore.namespace           = org.kde.kuserfeedbackcore.$QT_VERSION_TAG
+qhp.KUserFeedbackCore.virtualFolder       = kuserfeedbackcore
 qhp.KUserFeedbackCore.indexTitle          = KUserFeedbackCore
 qhp.KUserFeedbackCore.indexRoot           =
 

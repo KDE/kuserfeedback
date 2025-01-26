@@ -19,7 +19,11 @@ class NotificationPopupPrivate;
 class Provider;
 
 /*!
- * Notification popup that overlays a small part of the application for
+ * \class KUserFeedback::NotificationPopup
+ * \inmodule KUserFeedbackWidgets
+ * \inheaderfile KUserFeedback/NotificationPopup
+ *
+ * \brief Notification popup that overlays a small part of the application for
  * encouraging contributions or inform about surveys.
  */
 class KUSERFEEDBACKWIDGETS_EXPORT NotificationPopup : public QWidget
@@ -28,8 +32,10 @@ class KUSERFEEDBACKWIDGETS_EXPORT NotificationPopup : public QWidget
 public:
     /*!
      * Create a new notification popup.
+     *
      * Do not put this widget into a layout.
-     * @param parent The parent widget. This must not be @c nullptr.
+     *
+     * \a parent The parent widget. This must not be \c nullptr.
      */
     explicit NotificationPopup(QWidget *parent);
     ~NotificationPopup() override;
@@ -40,10 +46,8 @@ public:
     void setFeedbackProvider(Provider *provider);
 
 protected:
-    ///@cond internal
     void keyReleaseEvent(QKeyEvent *event) override;
     bool eventFilter(QObject *receiver, QEvent *event) override;
-    ///@endcond
 
 private:
     std::unique_ptr<NotificationPopupPrivate> d;

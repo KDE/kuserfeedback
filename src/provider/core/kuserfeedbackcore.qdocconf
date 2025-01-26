@@ -1,0 +1,29 @@
+include($KDE_DOCS/global/qt-module-defaults.qdocconf)
+
+project = KUserFeedbackCore
+description = Additions to Qt Core
+
+documentationinheaders = true
+
+headerdirs = .
+sourcedirs = .
+
+outputformats = HTML
+
+depends += \
+    kde \
+    qtcore
+
+qhp.projects            = KUserFeedbackCore
+
+qhp.KUserFeedbackCore.file                = kuserfeedback.qhp
+qhp.KUserFeedbackCore.namespace           = org.kde.kuserfeedback.$QT_VERSION_TAG
+qhp.KUserFeedbackCore.virtualFolder       = kuserfeedback
+qhp.KUserFeedbackCore.indexTitle          = KUserFeedbackCore
+qhp.KUserFeedbackCore.indexRoot           =
+
+qhp.KUserFeedbackCore.subprojects         = classes
+qhp.KUserFeedbackCore.subprojects.classes.title = C++ Classes
+qhp.KUserFeedbackCore.subprojects.classes.indexTitle = KUserFeedbackCore C++ Classes
+qhp.KUserFeedbackCore.subprojects.classes.selectors = class fake:headerfile
+qhp.KUserFeedbackCore.subprojects.classes.sortPages = true

@@ -28,7 +28,7 @@ class Provider;
  *
  * This is available for use in e.g. QtQuick-based UIs.
  *
- * \sa FeedbackConfigWidget
+ * \sa KUserFeedback::FeedbackConfigWidget
  */
 class KUSERFEEDBACKCORE_EXPORT FeedbackConfigUiController : public QObject
 {

@@ -13,7 +13,8 @@ outputformats = HTML
 depends += \
     kde \
     qtcore \
-    kuserfeedbackwidgets
+    kuserfeedbackwidgets \
+    kuserfeedbackqml
 
 qhp.projects            = KUserFeedbackCore
 

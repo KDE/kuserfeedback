@@ -163,6 +163,9 @@ protected:
     explicit AbstractDataSource(const QString &id,
                                 Provider::TelemetryMode mode = Provider::DetailedUsageStatistics);
 
+    /*!
+     *
+     */
     explicit AbstractDataSource(const QString &id,
                                 Provider::TelemetryMode mode,
                                 AbstractDataSourcePrivate *dd);
@@ -178,7 +181,7 @@ protected:
     void setId(const QString &id);
 
     /*!
-     * Invoked by \a load() in order to load individual settings of this data source.
+     * Invoked by load() in order to load individual settings of this data source.
      *
      * \sa load() description for further details.
      *
@@ -188,7 +191,7 @@ protected:
     virtual void loadImpl(QSettings *settings);
 
     /*!
-     * Invoked by \a store() in order to store individual settings of this data source.
+     * Invoked by store() in order to store individual settings of this data source.
      *
      * \sa store() description for further details.
      *
@@ -198,7 +201,7 @@ protected:
     virtual void storeImpl(QSettings *settings);
 
     /*!
-     * Invoked by \a reset() in order to reset individual settings of this data source.
+     * Invoked by reset() in order to reset individual settings of this data source.
      *
      * See reset() description for further details.
      *

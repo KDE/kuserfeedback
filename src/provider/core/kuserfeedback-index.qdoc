@@ -15,6 +15,7 @@
     \list
         \li \l{KUserFeedbackCore C++ Classes}
         \li \l{KUserFeedbackWidgets C++ Classes}
+        \li \l{KUserFeedback QML Types}
     \endlist
 
     \section1 Licenses

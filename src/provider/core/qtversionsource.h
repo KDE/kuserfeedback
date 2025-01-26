@@ -12,14 +12,22 @@
 
 namespace KUserFeedback {
 
-/*! Data source reporting the Qt version used at runtime.
+/*!
+ * \class KUserFeedback::QtVersionSource
+ * \inmodule KUserFeedbackCore
+ * \inheaderfile KUserFeedback/QtVersionSource
  *
- *  The default telemetry mode for this source is Provider::BasicSystemInformation.
+ * \brief Data source reporting the Qt version used at runtime.
+ *
+ * The default telemetry mode for this source is Provider::BasicSystemInformation.
  */
 class KUSERFEEDBACKCORE_EXPORT QtVersionSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::QtVersionSource)
 public:
+    /*!
+     *
+     */
     QtVersionSource();
 
     QString name() const override;

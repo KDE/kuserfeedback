@@ -12,13 +12,21 @@
 
 namespace KUserFeedback {
 
-/*! Data source for information about connected displays.
- *  This provides as array of maps containing the following properties:
- *  - height: Height of the corresponding screen in pixel.
- *  - width: Width of the corresponding screen in pixel.
- *  - dpi: Dots per inch of the corresponding screen.
+/*!
+ * \class KUserFeedback::ScreenInfoSource
+ * \inmodule KUserFeedbackCore
+ * \inheaderfile KUserFeedback/ScreenInfoSource
  *
- *  The default telemetry mode for this source is Provider::DetailedSystemInformation.
+ * \brief Data source for information about connected displays.
+ *
+ * This provides as array of maps containing the following properties:
+ * \list
+ * \li height: Height of the corresponding screen in pixel.
+ * \li width: Width of the corresponding screen in pixel.
+ * \li dpi: Dots per inch of the corresponding screen.
+ * \endlist
+ *
+ * The default telemetry mode for this source is Provider::DetailedSystemInformation.
  */
 class KUSERFEEDBACKCORE_EXPORT ScreenInfoSource :  public AbstractDataSource
 {

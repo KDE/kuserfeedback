@@ -22,37 +22,56 @@ namespace KUserFeedback {
 
 class AuditLogUiControllerPrivate;
 
-/** Widget/QtQuick-independent logic and data for the audit log browser UI. */
+/*!
+ * \class KUserFeedback::AuditLogUiController
+ * \inmodule KUserFeedbackCore
+ * \inheaderfile KUserFeedback/AuditLogUiController
+ *
+ * \brief Widget/QtQuick-independent logic and data for the audit log browser UI.
+ */
 class KUSERFEEDBACKCORE_EXPORT AuditLogUiController : public QObject
 {
     Q_OBJECT
-    /** Returns a model listing all log entries.
-     *  @see logEntryModel()
+
+    /*!
+     * \property KUserFeedback::AuditLogUiController::logEntryModel
+     *
+     * Returns a model listing all log entries.
      */
     Q_PROPERTY(QAbstractItemModel* logEntryModel READ logEntryModel CONSTANT)
-    /** Returns @c true if there are log entries to display. */
+
+    /*!
+     * \property KUserFeedback::AuditLogUiController::hasLogEntries
+     *
+     * Returns \c true if there are log entries to display.
+     */
     Q_PROPERTY(bool hasLogEntries READ hasLogEntries NOTIFY logEntryCountChanged)
 public:
+    /*!
+     *
+     */
     AuditLogUiController(QObject *parent = nullptr);
     ~AuditLogUiController() override;
 
-    /** Returns @c true if there are log entries to display. */
+    /*! Returns \c true if there are log entries to display. */
     bool hasLogEntries() const;
 
-    /** Returns a model listing all telemetry data submission events.
-     *  Qt::UserRole contains the timestamp of the log entry for use in logEntry().
+    /*!
+     * Returns a model listing all telemetry data submission events.
+     *
+     * Qt::UserRole contains the timestamp of the log entry for use in logEntry().
      */
     QAbstractItemModel* logEntryModel() const;
 
-    /** Returns a formatted text for display of the specified log entry. */
+    /*! Returns a formatted text for display of the specified log entry. */
     Q_INVOKABLE QString logEntry(const QDateTime &dt) const;
 
 public Q_SLOTS:
-    /** Delete all audit log entries. */
+    /*! Delete all audit log entries. */
     void clear();
 
 Q_SIGNALS:
-    /** Change notification for the hasLogEntries property. */
+    /*! Change notification for the hasLogEntries property. */
     void logEntryCountChanged();
 
 private:

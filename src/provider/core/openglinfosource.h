@@ -11,15 +11,23 @@
 
 namespace KUserFeedback {
 
-/*! Data source reporting type, version and vendor of the OpenGL stack.
+/*!
+ * \class KUserFeedback::OpenGLInfoSource
+ * \inmodule KUserFeedbackCore
+ * \inheaderfile KUserFeedback/OpenGLInfoSource
  *
- *  The default telemetry mode for this source is Provider::DetailedSystemInformation.
+ * \brief Data source reporting type, version and vendor of the OpenGL stack.
+ *
+ * The default telemetry mode for this source is Provider::DetailedSystemInformation.
  */
 class KUSERFEEDBACKCORE_EXPORT OpenGLInfoSource : public AbstractDataSource
 {
 public:
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::OpenGLInfoSource)
 public:
+    /*!
+     *
+     */
     OpenGLInfoSource();
 
     QString name() const override;

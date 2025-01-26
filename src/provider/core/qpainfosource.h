@@ -12,15 +12,23 @@
 
 namespace KUserFeedback {
 
-/*! Reports information about the Qt platform abstraction plugin the application
- *  is running on.
+/*!
+ * \class KUserFeedback::QPAInfoSource
+ * \inmodule KUserFeedbackCore
+ * \inheaderfile KUserFeedback/QPAInfoSource
  *
- *  The default telemetry mode for this source is Provider::BasicSystemInformation.
+ * \brief Reports information about the Qt platform abstraction plugin the application
+ * is running on.
+ *
+ * The default telemetry mode for this source is Provider::BasicSystemInformation.
  */
 class KUSERFEEDBACKCORE_EXPORT QPAInfoSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::QPAInfoSource)
 public:
+    /*!
+     *
+     */
     QPAInfoSource();
 
     QString name() const override;

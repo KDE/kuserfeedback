@@ -19,22 +19,52 @@ namespace KUserFeedback {
 class FeedbackConfigUiControllerPrivate;
 class Provider;
 
-/*! Logic/behavior of the feedback configuration UI.
- *  This is available for use in e.g. QtQuick-based UIs.
- *  @see FeedbackConfigWidget
+/*!
+ * \class KUserFeedback::FeedbackConfigUiController
+ * \inmodule KUserFeedbackCore
+ * \inheaderfile KUserFeedback/FeedbackConfigUiController
+ *
+ * \brief Logic/behavior of the feedback configuration UI.
+ *
+ * This is available for use in e.g. QtQuick-based UIs.
+ *
+ * \sa KUserFeedback::FeedbackConfigWidget
  */
 class KUSERFEEDBACKCORE_EXPORT FeedbackConfigUiController : public QObject
 {
     Q_OBJECT
-    /*! The Provider instance we are configuring. */
+
+    /*!
+     * \property KUserFeedback::FeedbackConfigUiController::feedbackProvider
+     *
+     * The Provider instance we are configuring.
+     */
     Q_PROPERTY(KUserFeedback::Provider* feedbackProvider READ feedbackProvider WRITE setFeedbackProvider NOTIFY providerChanged)
-    /*! Amount of telemetry modes supported by the provider. */
+
+    /*!
+     * \property KUserFeedback::FeedbackConfigUiController::telemetryModeCount
+     *
+     * Amount of telemetry modes supported by the provider.
+     */
     Q_PROPERTY(int telemetryModeCount READ telemetryModeCount NOTIFY providerChanged)
-    /*! Amount of supported survey modes. */
+
+    /*!
+     * \property KUserFeedback::FeedbackConfigUiController::surveyModeCount
+     *
+     * Amount of supported survey modes.
+     */
     Q_PROPERTY(int surveyModeCount READ surveyModeCount CONSTANT)
-    /*! Name of the application that will appear on descriptions. By default it will use QGuiApplication::applicationDisplayName() */
+
+    /*!
+     * \property KUserFeedback::FeedbackConfigUiController::applicationName
+     *
+     * Name of the application that will appear on descriptions. By default it will use QGuiApplication::applicationDisplayName()
+     */
     Q_PROPERTY(QString applicationName READ applicationName WRITE setApplicationName NOTIFY applicationNameChanged)
 public:
+    /*!
+     *
+     */
     explicit FeedbackConfigUiController(QObject *parent = nullptr);
     ~FeedbackConfigUiController() override;
 
@@ -50,7 +80,14 @@ public:
     /*! Amount of supported survey modes. */
     int surveyModeCount() const;
 
+    /*!
+     *
+     */
     QString applicationName() const;
+
+    /*!
+     *
+     */
     void setApplicationName(const QString& appName);
 
     /*! Convert slider index to telemetry mode. */
@@ -81,6 +118,10 @@ public:
 Q_SIGNALS:
     /*! A provider-related setting has changed. */
     void providerChanged();
+
+    /*!
+     *
+     */
     void applicationNameChanged(const QString &applicationName);
 
 private:

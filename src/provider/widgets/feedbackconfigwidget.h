@@ -21,19 +21,26 @@ class FeedbackConfigWidgetPrivate;
 class Provider;
 
 /*!
- * Configuration widget for telemetry and survey contributions.
+ * \class KUserFeedback::FeedbackConfigWidget
+ * \inmodule KUserFeedbackWidgets
+ * \inheaderfile KUserFeedback/FeedbackConfigWidget
+ *
+ * \brief Configuration widget for telemetry and survey contributions.
  *
  * Use this rather than FeedbackConfigDialog if you want to embed the
  * feedback configuration for example into an existing configuration
  * dialog.
- * @see FeedbackConfigDialog
+ *
+ * \sa FeedbackConfigDialog
  */
 class KUSERFEEDBACKWIDGETS_EXPORT FeedbackConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
-    /*! Create a new feedback provider configuration widget.
-     *  @param parent The parent widget.
+    /*!
+     * Create a new feedback provider configuration widget.
+     *
+     * \a parent The parent widget.
      */
     explicit FeedbackConfigWidget(QWidget *parent = nullptr);
     ~FeedbackConfigWidget() override;
@@ -51,15 +58,14 @@ public:
     int surveyInterval() const;
 
 Q_SIGNALS:
-    /*! Emitted when any changes are made to the configuration represented
-     *  in this widget.
+    /*!
+     * Emitted when any changes are made to the configuration represented
+     * in this widget.
      */
     void configurationChanged();
 
 protected:
-    ///@cond internal
     bool eventFilter(QObject *receiver, QEvent *event) override;
-    ///@endcond
 
 private:
     std::unique_ptr<FeedbackConfigWidgetPrivate> d;

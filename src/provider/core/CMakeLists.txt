@@ -93,6 +93,8 @@ ecm_generate_headers(KUserFeedbackCore_CamelCase_HEADERS
     REQUIRED_HEADERS KUserFeedbackCore_HEADERS
 )
 
+ecm_generate_qdoc(KF6UserFeedbackCore kuserfeedbackcore.qdocconf)
+
 install(TARGETS KF6UserFeedbackCore EXPORT KF6UserFeedbackTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES

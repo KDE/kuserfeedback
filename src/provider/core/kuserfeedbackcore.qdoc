@@ -1,0 +1,13 @@
+/*!
+    \module KUserFeedbackCore
+    \title KUserFeedbackCore C++ Classes
+    \ingroup modules
+    \cmakepackage KF6
+    \cmakecomponent UserFeedbackCore
+
+    \brief Framework for collecting feedback from application users via telemetry and targeted surveys.
+*/
+
+/*!
+ * \namespace KUserFeedback
+ */

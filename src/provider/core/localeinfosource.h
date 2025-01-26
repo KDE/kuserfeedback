@@ -12,14 +12,22 @@
 
 namespace KUserFeedback {
 
-/*! Data source reporting the region and language settings.
+/*!
+ * \class KUserFeedback::LocaleInfoSource
+ * \inmodule KUserFeedbackCore
+ * \inheaderfile KUserFeedback/LocaleInfoSource
  *
- *  The default telemetry mode for this source is Provider::DetailedSystemInformation.
+ * \brief Data source reporting the region and language settings.
+ *
+ * The default telemetry mode for this source is Provider::DetailedSystemInformation.
  */
 class KUSERFEEDBACKCORE_EXPORT LocaleInfoSource : public AbstractDataSource
 {
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::LocaleInfoSource)
 public:
+    /*!
+     *
+     */
     LocaleInfoSource();
 
     QString name() const override;

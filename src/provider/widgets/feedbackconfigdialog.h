@@ -17,16 +17,23 @@ namespace KUserFeedback {
 class FeedbackConfigDialogPrivate;
 class Provider;
 
-/*! Configure which feedback a user wants to provide.
+/*!
+ * \class KUserFeedback::FeedbackConfigDialog
+ * \inmodule KUserFeedbackWidgets
+ * \inheaderfile KUserFeedback/FeedbackConfigDialog
  *
- * @see FeedbackConfigWidget
+ * \brief Configure which feedback a user wants to provide.
+ *
+ * \a FeedbackConfigWidget
  */
 class KUSERFEEDBACKWIDGETS_EXPORT FeedbackConfigDialog : public QDialog
 {
     Q_OBJECT
 public:
-    /*! Create a new feedback configuration dialog.
-     *  @param parent The parent widget.
+    /*!
+     * Create a new feedback configuration dialog.
+     *
+     * \a parent The parent widget.
      */
     explicit FeedbackConfigDialog(QWidget *parent = nullptr);
     ~FeedbackConfigDialog() override;
@@ -34,8 +41,9 @@ public:
     /*! Set the feedback provider that this dialog configures. */
     void setFeedbackProvider(KUserFeedback::Provider *provider);
 
-    /*! Accepts the dialog and write changes made by the user to
-     *  the feedback provider.
+    /*!
+     * Accepts the dialog and write changes made by the user to
+     * the feedback provider.
      */
     void accept() override;
 

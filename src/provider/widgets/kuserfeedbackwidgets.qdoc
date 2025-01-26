@@ -1,0 +1,9 @@
+/*!
+    \module KUserFeedbackWidgets
+    \title KUserFeedbackWidgets C++ Classes
+    \ingroup modules
+    \cmakepackage KF6
+    \cmakecomponent UserFeedbackWidgets
+
+    \brief Framework for collecting feedback from application users via telemetry and targeted surveys..
+*/

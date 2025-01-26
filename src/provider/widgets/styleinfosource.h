@@ -13,12 +13,21 @@
 
 namespace KUserFeedback {
 
-/*! Data source the widget style and color scheme used by the application. */
+/*!
+ * \class KUserFeedback::StyleInfoSource
+ * \inmodule KUserFeedbackWidgets
+ * \inheaderfile KUserFeedback/StyleInfoSource
+ *
+ * \brief Data source the widget style and color scheme used by the application.
+ */
 class KUSERFEEDBACKWIDGETS_EXPORT StyleInfoSource : public AbstractDataSource
 {
 public:
     Q_DECLARE_TR_FUNCTIONS(KUserFeedback::StyleInfoSource)
 public:
+    /*!
+     *
+     */
     StyleInfoSource();
 
     QString name() const override;

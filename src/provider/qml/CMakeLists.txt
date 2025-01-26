@@ -22,3 +22,5 @@ target_link_libraries(KF6UserFeedbackQml PRIVATE
 )
 
 ecm_finalize_qml_module(KF6UserFeedbackQml)
+
+ecm_generate_qdoc(KF6UserFeedbackQml kuserfeedbackqml.qdocconf)

@@ -14,14 +14,35 @@ class CustomPropertySource;
 
 namespace KUserFeedback {
 
-/*! Data source reporting information provided by a QML application
+/*!
+ * \qmltype PropertySource
+ * \inqmlmodule org.kde.userfeedback
+ * \inherits AbstractDataSource
+ *
+ * \brief Data source reporting information provided by a QML application.
  */
 class QmlPropertySource : public QmlAbstractDataSource
 {
     Q_OBJECT
+
+    /*!
+     * \qmlproperty string PropertySource::sourceId
+     */
     Q_PROPERTY(QString sourceId READ sourceId WRITE setSourceId NOTIFY idChanged)
+
+    /*!
+     * \qmlproperty string PropertySource::name
+     */
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+
+    /*!
+     * \qmlproperty string PropertySource::description
+     */
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
+
+    /*!
+     * \qmlproperty variant PropertySource::data
+     */
     Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)
 public:
     QmlPropertySource(QObject* parent = nullptr);

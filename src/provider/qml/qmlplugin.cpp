@@ -19,6 +19,95 @@
 
 using namespace KUserFeedback;
 
+/*!
+ * \qmltype ApplicationVersionSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::ApplicationVersionSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype CompilerInfoSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::CompilerInfoSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype CpuInfoSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::CpuInfoSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype LocaleInfoSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::LocaleInfoSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype OpenGLInfoSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::OpenGLInfoSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype PlatformInfoSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::PlatformInfoSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype QPAInfoSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::QPAInfoSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype QtVersionSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::QtVersionSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype ScreenInfoSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::ScreenInfoSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype StartCountSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::StartCountSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype UsageTimeSource
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::UsageTimeSource
+ * \inherits AbstractDataSource
+ */
+
+/*!
+ * \qmltype AuditLogUiController
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::AuditLogUiController
+ */
+
+/*!
+ * \qmltype FeedbackConfigUiController
+ * \inqmlmodule org.kde.userfeedback
+ * \nativetype KUserFeedback::FeedbackConfigUiController
+ */
+
 void QmlPlugin::registerTypes(const char* uri)
 {
     qmlRegisterExtendedType<Provider, QmlProviderExtension>(uri, 1, 0, "Provider");

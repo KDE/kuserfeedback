@@ -38,6 +38,8 @@ ecm_generate_headers(KUserFeedbackWidgets_CamelCase_HEADERS
     REQUIRED_HEADERS KUserFeedbackWidgets_HEADERS
 )
 
+ecm_generate_qdoc(KF6UserFeedbackWidgets kuserfeedbackwidgets.qdocconf)
+
 install(TARGETS KF6UserFeedbackWidgets EXPORT KF6UserFeedbackTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedbackwidgets_export.h

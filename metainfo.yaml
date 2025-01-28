@@ -14,6 +14,5 @@ libraries:
    cmake: "KF6UserFeedbackWidgets"
 cmakename: KF6UserFeedback
 
-public_lib: true
 group: Frameworks
 subgroup: Tier 1

@@ -25,7 +25,7 @@ QString ScreenInfoSource::description() const
 QVariant ScreenInfoSource::data()
 {
     QVariantList l;
-    foreach (auto screen, QGuiApplication::screens()) {
+    for (auto screen : QGuiApplication::screens()) {
         QVariantMap m;
         m.insert(QStringLiteral("width"), screen->size().width());
         m.insert(QStringLiteral("height"), screen->size().height());

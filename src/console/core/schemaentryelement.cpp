@@ -83,7 +83,7 @@ QVector<SchemaEntryElement> SchemaEntryElement::fromJson(const QJsonArray& array
     QVector<SchemaEntryElement> res;
     res.reserve(array.size());
 
-    foreach (const auto &v, array) {
+    for (const auto &v : array) {
         const auto obj = v.toObject();
         SchemaEntryElement e;
         e.setName(obj.value(QLatin1String("name")).toString());

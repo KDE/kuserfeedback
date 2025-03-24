@@ -225,7 +225,8 @@ QVariant PropertyRatioSource::data()
 void PropertyRatioSource::loadImpl(QSettings *settings)
 {
     Q_D(PropertyRatioSource);
-    foreach (const auto &value, settings->childKeys()) {
+    const auto childKeys{settings->childKeys()};
+    for (const auto &value : childKeys) {
         const auto amount = std::max(settings->value(value, 0).toInt(), 0);
         d->baseRatioSet.insert(value, amount);
         if (!d->ratioSet.contains(value))

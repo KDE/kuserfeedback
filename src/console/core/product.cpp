@@ -92,14 +92,14 @@ QByteArray Product::toJson() const
     obj.insert(QStringLiteral("name"), name());
     {
         QJsonArray schema;
-        foreach (const auto &s, d->schema)
+        for (const auto &s : std::as_const(d->schema))
             schema.push_back(s.toJsonObject());
         obj.insert(QStringLiteral("schema"), schema);
     }
 
     {
         QJsonArray aggrs;
-        foreach (const auto &a, d->aggregations)
+        for (const auto &a : std::as_const(d->aggregations))
             aggrs.push_back(a.toJsonObject());
         obj.insert(QStringLiteral("aggregation"), aggrs);
     }
@@ -124,7 +124,7 @@ QVector<Product> Product::fromJson(const QByteArray &data)
     if (doc.isArray()) {
         const auto array = doc.array();
         products.reserve(array.size());
-        foreach (const auto &value, array) {
+        for (const auto &value : array) {
             const auto obj = value.toObject();
             products.push_back(productFromJsonObject(obj));
         }

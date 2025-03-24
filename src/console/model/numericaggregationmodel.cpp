@@ -111,7 +111,7 @@ void NumericAggregationModel::recompute()
         values.clear();
         values.reserve(samples.size());
 
-        foreach (const auto &sample, samples)
+        for (const auto &sample : samples)
             values += sampleValues(sample);
 
         std::sort(values.begin(), values.end());

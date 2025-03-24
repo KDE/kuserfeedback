@@ -24,7 +24,7 @@ QVector<Product> SchemaEntryTemplates::availableTemplates()
 
     auto dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("org.kde.user-feedback/schematemplates"), QStandardPaths::LocateDirectory);
     dirs += QStringLiteral(":/org.kde.user-feedback/schematemplates");
-    foreach (const auto &dir, dirs) {
+    for (const auto &dir : std::as_const(dirs)) {
         QDirIterator it(dir, {QStringLiteral("*.schema")}, QDir::Files | QDir::Readable);
         while (it.hasNext()) {
             const auto fileName = it.next();

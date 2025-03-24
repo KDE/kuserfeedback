@@ -71,10 +71,11 @@ QVector<Sample> Sample::fromJson(const QByteArray &json, const Product &product)
                     const auto entryArray = obj.value(entry.name()).toArray();
                     QVariantList l;
                     l.reserve(entryArray.size());
-                    foreach (const auto &entryDataValue, entryArray) {
+                    for (const auto &entryDataValue : entryArray) {
                         const auto entryData = entryDataValue.toObject();
                         QVariantMap m;
-                        foreach (const auto &elem, entry.elements()) {
+                        const auto elements = entry.elements();
+                        for (const auto &elem : elements) {
                             if (!entryData.contains(elem.name()))
                                 continue;
                             // TODO schema-dependent type conversion

@@ -195,7 +195,7 @@ QString FeedbackConfigUiController::telemetryModeDetails(int telemetryIndex) con
     });
 
     auto detailsStr = QStringLiteral("<ul>");
-    foreach (const auto *src, srcs) {
+    for (const auto *src : srcs) {
         if (telemetryIndex >= telemetryModeToIndex(src->telemetryMode()) && !src->description().isEmpty())
             detailsStr += QStringLiteral("<li>") + src->description() + QStringLiteral("</li>");
     }

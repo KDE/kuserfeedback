@@ -110,13 +110,13 @@ void RatioSetAggregationModel::recompute()
 
     QSet<QString> categories;
     const auto allSamples = m_sourceModel->index(0, 0).data(TimeAggregationModel::AllSamplesRole).value<QVector<Sample>>();
-    foreach (const auto &s, allSamples) {
+    for (const auto &s : allSamples) {
         const auto rs = s.value(m_aggrValue).value<QVariantMap>();
         for (auto it = rs.begin(); it != rs.end(); ++it)
             categories.insert(it.key());
     }
     m_categories.reserve(categories.size());
-    foreach (const auto &cat, categories)
+    for (const auto &cat : std::as_const(categories))
         m_categories.push_back(cat);
     std::sort(m_categories.begin(), m_categories.end());
     const auto colCount = m_categories.size();
@@ -128,7 +128,7 @@ void RatioSetAggregationModel::recompute()
     for (int row = 0; row < rowCount; ++row) {
         const auto samples = m_sourceModel->index(row, 0).data(TimeAggregationModel::SamplesRole).value<QVector<Sample>>();
         int validSampleCount = 0;
-        foreach (const auto &sample, samples) {
+        for (const auto &sample : samples) {
             // extract raw data for one sample
             memset(rowData, 0, sizeof(double) * colCount);
             const auto rs = sample.value(m_aggrValue).value<QVariantMap>();

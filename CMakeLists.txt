@@ -14,8 +14,7 @@ set(ENABLE_SURVEY_TARGET_EXPRESSIONS ON CACHE BOOL "Survey targeting expressions
 set(ENABLE_PHP                       ON CACHE BOOL "Syntax checking of PHP server code.")
 set(ENABLE_PHP_UNIT                  ON CACHE BOOL "Unit tests for PHP server code.")
 set(ENABLE_DOCS                      ON CACHE BOOL "Generate documentation.")
-set(ENABLE_CONSOLE                   ON CACHE BOOL "Application console.")
-set(ENABLE_CLI                       ON CACHE BOOL "Command line interface support.")
+set(ENABLE_CONSOLE                   ON CACHE BOOL "Application console and CLI binary.")
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)

@@ -54,7 +54,7 @@ MainWindow::MainWindow() :
     m_feedbackProvider(new KUserFeedback::Provider(this))
 {
     ui->setupUi(this);
-    setWindowIcon(QIcon::fromTheme(QStringLiteral("search")));
+    setWindowIcon(QIcon::fromTheme(QStringLiteral("system-search")));
 
     addView(ui->surveyEditor, ui->menuSurvey);
     addView(ui->schemaEdit, ui->menuSchema);

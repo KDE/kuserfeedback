@@ -31,7 +31,7 @@
         },
         {
             "name": "kuserfeedback",
-            "config-opts": [ "-DBUILD_TESTING=OFF", "-DENABLE_DOCS=OFF" ],
+            "config-opts": [ "-DENABLE_CONSOLE=ON", "-DBUILD_TESTING=OFF", "-DENABLE_DOCS=OFF" ],
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "sources": [ { "type": "dir", "path": "." } ],

@@ -8,6 +8,8 @@ documentationinheaders = true
 headerdirs += .
 sourcedirs += .
 
+navigation.landingpage = "KUserFeedback"
+
 outputformats = HTML
 
 depends += \

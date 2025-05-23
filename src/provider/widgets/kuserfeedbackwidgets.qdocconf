@@ -23,11 +23,11 @@ qhp.projects            = KUserFeedbackWidgets
 qhp.KUserFeedbackWidgets.file                = kuserfeedbackwidgets.qhp
 qhp.KUserFeedbackWidgets.namespace           = org.kde.kuserfeedbackwidgets.$QT_VERSION_TAG
 qhp.KUserFeedbackWidgets.virtualFolder       = kuserfeedbackwidgets
-qhp.KUserFeedbackWidgets.indexTitle          = KUserFeedbackWidgets
+qhp.KUserFeedbackWidgets.indexTitle          = KUserFeedback Widgets
 qhp.KUserFeedbackWidgets.indexRoot           =
 
 qhp.KUserFeedbackWidgets.subprojects         = classes
 qhp.KUserFeedbackWidgets.subprojects.classes.title = C++ Classes
-qhp.KUserFeedbackWidgets.subprojects.classes.indexTitle = KUserFeedbackWidgets C++ Classes
+qhp.KUserFeedbackWidgets.subprojects.classes.indexTitle = KUserFeedback Widgets C++ Classes
 qhp.KUserFeedbackWidgets.subprojects.classes.selectors = class fake:headerfile
 qhp.KUserFeedbackWidgets.subprojects.classes.sortPages = true

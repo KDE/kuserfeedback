@@ -31,3 +31,5 @@ qhp.KUserFeedbackWidgets.subprojects.classes.title = C++ Classes
 qhp.KUserFeedbackWidgets.subprojects.classes.indexTitle = KUserFeedback Widgets C++ Classes
 qhp.KUserFeedbackWidgets.subprojects.classes.selectors = class fake:headerfile
 qhp.KUserFeedbackWidgets.subprojects.classes.sortPages = true
+
+tagfile = kuserfeedbackwidgets.tags

@@ -31,3 +31,5 @@ qhp.KUserFeedbackQml.subprojects.classes.title = QML Types
 qhp.KUserFeedbackQml.subprojects.classes.indexTitle = KUserFeedback QML Types
 qhp.KUserFeedbackQml.subprojects.classes.selectors = qmltype
 qhp.KUserFeedbackQml.subprojects.classes.sortPages = true
+
+tagfile = kuserfeedbackqml.tags

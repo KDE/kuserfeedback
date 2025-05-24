@@ -31,3 +31,5 @@ qhp.KUserFeedbackCore.subprojects.classes.title = C++ Classes
 qhp.KUserFeedbackCore.subprojects.classes.indexTitle = KUserFeedbackCore C++ Classes
 qhp.KUserFeedbackCore.subprojects.classes.selectors = class fake:headerfile
 qhp.KUserFeedbackCore.subprojects.classes.sortPages = true
+
+tagfile = kuserfeedbackcore.tags

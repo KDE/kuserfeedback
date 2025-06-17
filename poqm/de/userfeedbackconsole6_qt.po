@@ -135,7 +135,7 @@ msgstr "Gesammelte Daten nach Tag."
 #: analytics/analyticsview.ui:182
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Export Data..."
-msgstr "Daten &exportieren ..."
+msgstr "Daten &exportieren …"
 
 #: analytics/analyticsview.ui:185
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -145,7 +145,7 @@ msgstr "Alle aufgezeichneten Daten exportieren."
 #: analytics/analyticsview.ui:193
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Import Data..."
-msgstr "&Daten importieren ..."
+msgstr "&Daten importieren …"
 
 #: analytics/analyticsview.ui:196
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -185,7 +185,7 @@ msgstr "Ein Diagramm für eine bestimmte Zeitspanne anzeigen."
 #: analytics/analyticsview.ui:243
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export &Chart..."
-msgstr "&Diagramm exportieren ..."
+msgstr "&Diagramm exportieren …"
 
 #: analytics/analyticsview.ui:246
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -537,7 +537,7 @@ msgstr "Ansicht-Werkzeugleiste"
 #: mainwindow.ui:186
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Connect to Server..."
-msgstr "&Mit Server verbinden ..."
+msgstr "&Mit Server verbinden …"
 
 #: mainwindow.ui:189
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -562,7 +562,7 @@ msgstr "Die Benutzerrückmeldekonsole verlassen."
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Add Product..."
-msgstr "&Produkt hinzufügen ..."
+msgstr "&Produkt hinzufügen …"
 
 #: mainwindow.ui:217
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -582,7 +582,7 @@ msgstr "Löscht das Produkt und alle zugehörigen Daten."
 #: mainwindow.ui:236
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&About..."
-msgstr "Ü&ber ..."
+msgstr "Ü&ber …"
 
 #: mainwindow.ui:239
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -592,7 +592,7 @@ msgstr "Informationen über dieses Programm."
 #: mainwindow.ui:247
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Contribute..."
-msgstr "&Mitmachen ..."
+msgstr "&Mitmachen …"
 
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -632,7 +632,7 @@ msgstr "Die Produkttelemetrie analysieren."
 #: mainwindow.ui:300
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Manual..."
-msgstr "Benutzerhandbuch ..."
+msgstr "Benutzerhandbuch …"
 
 #: mainwindow.ui:303
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -642,7 +642,7 @@ msgstr "Zeigt das Benutzerhandbuch"
 #: mainwindow.ui:311
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Product..."
-msgstr "Produkt importieren ..."
+msgstr "Produkt importieren …"
 
 #: mainwindow.ui:314
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -652,7 +652,7 @@ msgstr "Produkt-Einstellungen und Daten importieren."
 #: mainwindow.ui:322
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Product..."
-msgstr "Produkt exportieren ..."
+msgstr "Produkt exportieren …"
 
 #: mainwindow.ui:325
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -885,7 +885,7 @@ msgstr "Änderungen im Produktschema speichern."
 #: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
-msgstr "Schema &importieren ..."
+msgstr "Schema &importieren …"
 
 #: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -895,7 +895,7 @@ msgstr "Importiert ein Schema für dieses Produkt."
 #: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
-msgstr "Schema &exportieren ..."
+msgstr "Schema &exportieren …"
 
 #: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -961,7 +961,7 @@ msgstr "Entf"
 #: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
-msgstr "&Quelle hinzufügen ..."
+msgstr "&Quelle hinzufügen …"
 
 #: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -971,7 +971,7 @@ msgstr "Fügt eine neue Datenquelle hinzu."
 #: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr "Quellen&element hinzufügen …"
+msgstr "Quellen&element hinzufügen …"
 
 #: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -1011,7 +1011,7 @@ msgstr "Möchten Sie die ausgewählte Umfrage wirklich löschen?"
 #: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
-msgstr "Umfr&age hinzufügen ..."
+msgstr "Umfr&age hinzufügen …"
 
 #: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
@@ -1031,7 +1031,7 @@ msgstr "Löscht eine Umfrage."
 #: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
-msgstr "Umfrag&e bearbeiten ..."
+msgstr "Umfrag&e bearbeiten …"
 
 #: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"

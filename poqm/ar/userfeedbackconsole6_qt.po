@@ -268,7 +268,7 @@ msgstr "اسم المس&تخدم:"
 #: connectdialog.ui:45
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "P&assword:"
-msgstr "&كلمة السّرّ:"
+msgstr "&كلمة السر:"
 
 #: connectdialog.ui:78
 msgctxt "KUserFeedback::Console::ConnectDialog|"

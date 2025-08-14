@@ -22,7 +22,6 @@ set_target_properties(KF6UserFeedbackWidgets PROPERTIES
 )
 generate_export_header(KF6UserFeedbackWidgets BASE_NAME KUserFeedbackWidgets)
 target_link_libraries(KF6UserFeedbackWidgets PUBLIC Qt6::Widgets KF6UserFeedbackCore)
-target_include_directories(KF6UserFeedbackWidgets PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
 target_include_directories(KF6UserFeedbackWidgets INTERFACE
                            "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback>"
                            "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedbackWidgets>"

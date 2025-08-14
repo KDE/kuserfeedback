@@ -45,5 +45,5 @@ if (NOT BUILD_SHARED_LIBS)
             EXPORT KF6UserFeedbackTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 
-target_include_directories(KF6UserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
+target_include_directories(KF6UserFeedbackCommon PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>")
 target_link_libraries(KF6UserFeedbackCommon PUBLIC Qt6::Core)

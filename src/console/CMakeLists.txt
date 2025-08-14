@@ -78,7 +78,7 @@ add_library(KF6UserFeedbackConsole STATIC ${console_lib_srcs})
 add_library(KF6::UserFeedbackConsole ALIAS KF6UserFeedbackConsole)
 
 target_link_libraries(KF6UserFeedbackConsole Qt6::Network)
-target_include_directories(KF6UserFeedbackConsole PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..>")
+target_include_directories(KF6UserFeedbackConsole PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>")
 target_compile_features(KF6UserFeedbackConsole PRIVATE cxx_generic_lambdas)
 
 if(NOT TARGET KF6UserFeedbackWidgets)

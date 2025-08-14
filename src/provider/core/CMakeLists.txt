@@ -67,8 +67,8 @@ if(ANDROID)
 endif()
 target_link_libraries(KF6UserFeedbackCore PRIVATE KF6UserFeedbackCommon)
 target_include_directories(KF6UserFeedbackCore PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>")
-target_include_directories(KF6UserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback;${KDE_INSTALL_INCLUDEDIR}>"
-                                                         "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedbackCore;${KDE_INSTALL_INCLUDEDIR}>"
+target_include_directories(KF6UserFeedbackCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback>"
+                                                         "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedbackCore>"
                           )
 
 ecm_generate_headers(KUserFeedbackCore_CamelCase_HEADERS

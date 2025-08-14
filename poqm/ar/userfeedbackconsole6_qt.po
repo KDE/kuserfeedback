@@ -369,7 +369,7 @@ msgid ""
 "You have unsaved changes in the schema editor, do you really want to open "
 "another product and discard your changes?"
 msgstr ""
-"لديك تغييرات غير محفوظة في محرر المخطط ، هل تريد حقا فتح منتج آخر وتجاهل "
+"لديك تغييرات غير محفوظة في محرر المخطط، هل تريد حقا فتح منتج آخر وتجاهل "
 "تغييراتك؟"
 
 #: mainwindow.cpp:172

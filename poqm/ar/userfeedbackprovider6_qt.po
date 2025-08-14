@@ -330,7 +330,7 @@ msgstr "ساهم!"
 #: widgets/feedbackconfigdialog.cpp:33
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
 msgid "No, I do not want to contribute."
-msgstr "لا ، لا أريد المساهمة."
+msgstr "لا، لا أريد المساهمة."
 
 #: widgets/feedbackconfigdialog.ui:14
 msgctxt "KUserFeedback::FeedbackConfigDialog|"

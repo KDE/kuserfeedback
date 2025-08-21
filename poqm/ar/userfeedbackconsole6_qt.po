@@ -259,7 +259,7 @@ msgstr "الاتصال بخادم التحليلات"
 #: connectdialog.ui:22
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Server &name:"
-msgstr "ا&سم الخادوم:"
+msgstr "ا&سم الخادم:"
 
 #: connectdialog.ui:32
 msgctxt "KUserFeedback::Console::ConnectDialog|"
@@ -274,7 +274,7 @@ msgstr "&كلمة السر:"
 #: connectdialog.ui:78
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Server UR&L:"
-msgstr "&مسار الخادوم"
+msgstr "&مسار الخادم"
 
 #: jobs/handshakejob.cpp:26
 #, qt-format
@@ -387,7 +387,7 @@ msgstr "فشل الاتصال"
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Failed to connect to server: %1"
-msgstr "خطأ في الاتّصال إلى الخادوم: %1"
+msgstr "خطأ في الاتّصال إلى الخادم: %1"
 
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -533,7 +533,7 @@ msgstr "شريط أدوات العرض"
 #: mainwindow.ui:186
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Connect to Server..."
-msgstr "ات&صل بخادوم..."
+msgstr "ات&صل بخادم..."
 
 #: mainwindow.ui:189
 msgctxt "KUserFeedback::Console::MainWindow|"

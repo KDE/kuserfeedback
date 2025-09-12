@@ -13,4 +13,4 @@ Dependencies:
 Options:
  cmake-options: "-DENABLE_CONSOLE=ON"
  test-before-installing: True
- require-passing-tests-on: ['Linux', 'FreeBSD']
+ require-passing-tests-on: ['@all']

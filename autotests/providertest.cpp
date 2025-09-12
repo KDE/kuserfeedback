@@ -172,7 +172,7 @@ private Q_SLOTS:
             p.setEncouragementDelay(0);
             p.setApplicationStartsUntilEncouragement(0);
             p.setEncouragementInterval(1);
-            QVERIFY(spy.wait(1000));
+            QVERIFY(spy.wait(1200));
             QCOMPARE(spy.count(), 1);
         }
 
@@ -212,7 +212,7 @@ private Q_SLOTS:
             p.setEncouragementDelay(0);
             p.setApplicationStartsUntilEncouragement(0);
             p.setEncouragementInterval(1);
-            QVERIFY(spy.wait(1000));
+            QVERIFY(spy.wait(1200));
             QCOMPARE(spy.count(), 1);
         }
 

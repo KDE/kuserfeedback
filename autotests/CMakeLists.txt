@@ -15,6 +15,9 @@ endfunction()
 
 uf_add_test(datasourcetest.cpp KF6UserFeedbackCore Qt6::Gui) # needs Gui for ScreenInfoSource to work
 uf_add_test(openglinfosourcetest.cpp KF6UserFeedbackCore Qt6::Gui)
+if (WIN32)
+    set_tests_properties(openglinfosourcetest PROPERTIES ENVIRONMENT "KUSERFEEBACK_SKIP_TESTOPENGLINFOSOURCE=1")
+endif()
 uf_add_test(providertest.cpp KF6UserFeedbackCore Qt6::Gui)
 uf_add_test(selectionratiosourcetest.cpp KF6UserFeedbackCore Qt6::Gui)
 uf_add_test(surveyprovidertest.cpp KF6UserFeedbackCore)

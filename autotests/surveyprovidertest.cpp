@@ -34,7 +34,8 @@ private Q_SLOTS:
     void testSurveySelect()
     {
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.surveyprovidertest"));;
+            QSettings s(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.org.kde.surveyprovidertest"),
+                        QSettings::IniFormat);
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastSurvey"));
             s.remove(QLatin1String("CompletedSurveys"));
@@ -98,7 +99,8 @@ private Q_SLOTS:
         // global survey coordination prevents next survey
         p.setSurveyInterval(90);
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.surveyprovidertest"));;
+            QSettings s(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.org.kde.surveyprovidertest"),
+                        QSettings::IniFormat);
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastSurvey"));
             s.remove(QLatin1String("CompletedSurveys"));

@@ -83,7 +83,8 @@ private Q_SLOTS:
     void testEncouragement()
     {
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            QSettings s(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.org.kde.providertest"),
+                        QSettings::IniFormat);
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastEncouragement"));
         }
@@ -114,7 +115,8 @@ private Q_SLOTS:
     void testEncouragementDelay()
     {
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            QSettings s(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.org.kde.providertest"),
+                        QSettings::IniFormat);
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastEncouragement"));
         }
@@ -135,7 +137,8 @@ private Q_SLOTS:
     void testNoEncouragementWithAllFeedbackEnabled()
     {
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            QSettings s(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.org.kde.providertest"),
+                        QSettings::IniFormat);
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastEncouragement"));
         }
@@ -158,7 +161,8 @@ private Q_SLOTS:
     void testEncouragementRepetition()
     {
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            QSettings s(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.org.kde.providertest"),
+                        QSettings::IniFormat);
             s.beginGroup(QLatin1String("UserFeedback"));
             s.setValue(QLatin1String("LastEncouragement"), QDateTime::currentDateTime().addSecs(-24 * 60 * 60 + 1));
         }
@@ -177,7 +181,8 @@ private Q_SLOTS:
         }
 
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            QSettings s(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.org.kde.providertest"),
+                        QSettings::IniFormat);
             s.beginGroup(QLatin1String("UserFeedback"));
             s.setValue(QLatin1String("LastEncouragement"), QDateTime::currentDateTime().addSecs(-24 * 60 * 60 - 1));
         }
@@ -198,7 +203,8 @@ private Q_SLOTS:
     void testGlobalEncouragementCoordination()
     {
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            QSettings s(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.org.kde.providertest"),
+                        QSettings::IniFormat);
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastEncouragement"));
         }
@@ -218,7 +224,8 @@ private Q_SLOTS:
 
         // would qualify for encouragement, but global coordination should prevent it
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            QSettings s(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.org.kde.providertest"),
+                        QSettings::IniFormat);
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastEncouragement"));
         }
@@ -320,7 +327,8 @@ private Q_SLOTS:
 
         // check encouragements are disabled
         {
-            QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback.org.kde.providertest"));;
+            QSettings s(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.org.kde.providertest"),
+                        QSettings::IniFormat);
             s.beginGroup(QLatin1String("UserFeedback"));
             s.remove(QLatin1String("LastEncouragement"));
         }

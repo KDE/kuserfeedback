@@ -90,8 +90,18 @@ std::unique_ptr<QSettings> ProviderPrivate::makeSettings() const
     if (org.isEmpty())
         org = QLatin1String("Unknown Organization");
 
-    std::unique_ptr<QSettings> s(new QSettings(org, QStringLiteral("UserFeedback.") + productId));
-    return s;
+    const auto file = QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QStringLiteral("/UserFeedback.") + productId;
+
+    std::unique_ptr<QSettings> oldLocation = std::make_unique<QSettings>(org, QStringLiteral("UserFeedback.") + productId);
+    if (QFile::exists(oldLocation->fileName())) {
+        QDir(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation)).mkpath(QStringLiteral("."));
+
+        qDebug(Log) << "Found old data in" << oldLocation->fileName() << ", migrating to" << file;
+        QFile::copy(oldLocation->fileName(), file);
+        QFile::remove(oldLocation->fileName());
+    }
+
+    return std::make_unique<QSettings>(file, QSettings::IniFormat);
 }
 
 std::unique_ptr<QSettings> ProviderPrivate::makeGlobalSettings() const

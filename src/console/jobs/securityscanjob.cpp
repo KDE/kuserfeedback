@@ -66,9 +66,6 @@ void SecurityScanJob::processPending()
     url.setPath(path);
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("UserFeedbackConsole/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
-#endif
 
     auto reply = m_restClient->networkAccessManager()->get(request);
     QObject::connect(reply, &QNetworkReply::finished, [this, reply]() {

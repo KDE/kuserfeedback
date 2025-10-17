@@ -22,9 +22,6 @@
 #include <QtCharts/QVXYModelMapper>
 
 using namespace KUserFeedback::Console;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-using namespace QtCharts;
-#endif
 
 RatioSetAggregator::RatioSetAggregator() = default;
 RatioSetAggregator::~RatioSetAggregator() = default;

@@ -98,9 +98,6 @@ QNetworkRequest RESTClient::makeRequest(const QString& command)
     const QByteArray authToken = m_serverInfo.userName().toUtf8() + ':' + m_serverInfo.password().toUtf8();
     request.setRawHeader("Authorization", QByteArray("Basic " + authToken.toBase64()));
     request.setHeader(QNetworkRequest::UserAgentHeader, QString(QStringLiteral("UserFeedbackConsole/") + QStringLiteral(KUSERFEEDBACK_VERSION_STRING)));
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
-#endif
     return request;
 }
 

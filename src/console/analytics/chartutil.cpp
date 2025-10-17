@@ -11,9 +11,6 @@
 #include <QApplication>
 
 using namespace KUserFeedback::Console;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-using namespace QtCharts;
-#endif
 
 void ChartUtil::applyTheme(QChart *chart)
 {

@@ -8,13 +8,11 @@
 #include <console/core/schemaentrytemplates.h>
 #include <console/model/datamodel.h>
 
+#include <QAbstractItemModelTester>
 #include <QDebug>
-#include <QtTest/qtest.h>
 #include <QObject>
 #include <QStandardPaths>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-#include <QAbstractItemModelTester>
-#endif
+#include <QtTest/qtest.h>
 
 using namespace KUserFeedback::Console;
 
@@ -41,9 +39,7 @@ private Q_SLOTS:
     void testEmptyDataModel()
     {
         DataModel model;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
         QAbstractItemModelTester modelTest(&model);
-#endif
 
         model.setProduct({});
         QCOMPARE(model.rowCount(), 0);
@@ -60,9 +56,7 @@ private Q_SLOTS:
     void testDataModelContent()
     {
         DataModel model;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
         QAbstractItemModelTester modelTest(&model);
-#endif
         Product p;
         for (const auto &tpl : SchemaEntryTemplates::availableTemplates())
             p.addTemplate(tpl);

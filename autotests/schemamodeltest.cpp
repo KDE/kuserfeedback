@@ -7,14 +7,12 @@
 #include <model/schemamodel.h>
 #include <core/schemaentrytemplates.h>
 
+#include <QAbstractItemModelTester>
 #include <QDebug>
-#include <QtTest/qtest.h>
 #include <QObject>
 #include <QSignalSpy>
 #include <QStandardPaths>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-#include <QAbstractItemModelTester>
-#endif
+#include <QtTest/qtest.h>
 
 using namespace KUserFeedback::Console;
 
@@ -31,9 +29,7 @@ private Q_SLOTS:
     void testSchemaModel()
     {
         SchemaModel model;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
         QAbstractItemModelTester modelTest(&model);
-#endif
 
         model.setProduct(Product());
         QCOMPARE(model.rowCount(), 0);

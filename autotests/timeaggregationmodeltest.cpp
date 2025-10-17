@@ -9,13 +9,11 @@
 #include <console/model/datamodel.h>
 #include <console/model/timeaggregationmodel.h>
 
+#include <QAbstractItemModelTester>
 #include <QDebug>
-#include <QtTest/qtest.h>
 #include <QObject>
 #include <QStandardPaths>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-#include <QAbstractItemModelTester>
-#endif
+#include <QtTest/qtest.h>
 
 using namespace KUserFeedback::Console;
 
@@ -32,9 +30,7 @@ private Q_SLOTS:
     void testEmptyModel()
     {
         TimeAggregationModel model;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
         QAbstractItemModelTester modelTest(&model);
-#endif
 
         DataModel srcModel;
         model.setSourceModel(&srcModel);
@@ -54,9 +50,7 @@ private Q_SLOTS:
     void testModelContent()
     {
         TimeAggregationModel model;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
         QAbstractItemModelTester modelTest(&model);
-#endif
 
         DataModel srcModel;
         model.setSourceModel(&srcModel);

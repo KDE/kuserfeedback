@@ -33,21 +33,13 @@ void SurveyTargetExpressionEvaluator::setDataProvider(const SurveyTargetExpressi
 
 static bool variantLess(const QVariant &lhs, const QVariant &rhs)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     return QVariant::compare(lhs, rhs) == QPartialOrdering::Less;
-#else
-    return lhs < rhs;
-#endif
 }
 
 static bool variantLessOrEqual(const QVariant &lhs, const QVariant &rhs)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     const auto order = QVariant::compare(lhs, rhs);
     return order == QPartialOrdering::Less || order == QPartialOrdering::Equivalent;
-#else
-    return lhs <= rhs;
-#endif
 }
 
 bool SurveyTargetExpressionEvaluator::evaluate(SurveyTargetExpression* expression)

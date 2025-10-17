@@ -10,13 +10,11 @@
 #include <console/core/sample.h>
 #include <console/core/schemaentrytemplates.h>
 
+#include <QAbstractItemModelTester>
 #include <QDebug>
-#include <QtTest/qtest.h>
 #include <QObject>
 #include <QStandardPaths>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-#include <QAbstractItemModelTester>
-#endif
+#include <QtTest/qtest.h>
 
 using namespace KUserFeedback::Console;
 
@@ -33,9 +31,7 @@ private Q_SLOTS:
     void testEmptyModel()
     {
         RatioSetAggregationModel model;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
         QAbstractItemModelTester modelTest(&model);
-#endif
         model.setAggregationValue(QString());
         model.setAggregationValue(QLatin1String("applicationVersion.value"));
 
@@ -60,9 +56,7 @@ private Q_SLOTS:
     void testModelContent()
     {
         RatioSetAggregationModel model;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
         QAbstractItemModelTester modelTest(&model);
-#endif
         model.setAggregationValue(QLatin1String("newPropertyRatio"));
 
         TimeAggregationModel timeModel;

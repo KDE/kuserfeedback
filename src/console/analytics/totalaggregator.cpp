@@ -20,9 +20,6 @@
 #include <numeric>
 
 using namespace KUserFeedback::Console;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-using namespace QtCharts;
-#endif
 
 TotalAggregator::TotalAggregator() = default;
 TotalAggregator::~TotalAggregator() = default;

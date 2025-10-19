@@ -1,8 +1,8 @@
-# Sergiu Bivol <sergiu@cip.md>, 2024.
+# SPDX-FileCopyrightText: 2024, 2025 Sergiu Bivol <sergiu@cip.md>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2024-06-09 14:30+0100\n"
+"PO-Revision-Date: 2025-10-05 02:43+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 25.08.1\n"
 "X-Qt-Contexts: true\n"
 
 #: analytics/analyticsview.cpp:77
@@ -494,12 +494,12 @@ msgstr ""
 #: mainwindow.ui:77
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Help"
-msgstr ""
+msgstr "&Ajutor"
 
 #: mainwindow.ui:85
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "S&chema"
-msgstr ""
+msgstr "S&chemă"
 
 #: mainwindow.ui:90
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -519,22 +519,22 @@ msgstr ""
 #: mainwindow.ui:132
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Products"
-msgstr ""
+msgstr "Produse"
 
 #: mainwindow.ui:160
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "View Toolbar"
-msgstr ""
+msgstr "Bara de vizualizare"
 
 #: mainwindow.ui:186
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Connect to Server..."
-msgstr ""
+msgstr "&Conectează la server…"
 
 #: mainwindow.ui:189
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Connect to analytics server."
-msgstr ""
+msgstr "Conectează la serverul analitic."
 
 #: mainwindow.ui:192
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -544,32 +544,32 @@ msgstr "F2"
 #: mainwindow.ui:200
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Quit"
-msgstr ""
+msgstr "&Termină"
 
 #: mainwindow.ui:203
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Quit the user feedback console."
-msgstr ""
+msgstr "Termină consola de reacții ale utilizatorului."
 
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Add Product..."
-msgstr ""
+msgstr "&Adaugă produs…"
 
 #: mainwindow.ui:217
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Add a new product."
-msgstr ""
+msgstr "Adaugă un produs nou."
 
 #: mainwindow.ui:225
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Delete Product"
-msgstr ""
+msgstr "Șterge pro&dusul"
 
 #: mainwindow.ui:228
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Delete product and all associated data."
-msgstr ""
+msgstr "Șterge produsul și toate datele asociate."
 
 #: mainwindow.ui:236
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -579,17 +579,17 @@ msgstr "&Despre…"
 #: mainwindow.ui:239
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Information about this program."
-msgstr ""
+msgstr "Informații despre acest program."
 
 #: mainwindow.ui:247
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Contribute..."
-msgstr ""
+msgstr "&Contribuie…"
 
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Help to make this application better for you!"
-msgstr ""
+msgstr "Ajutați-ne să îmbunătățim această aplicație!"
 
 #: mainwindow.ui:261
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -604,22 +604,22 @@ msgstr ""
 #: mainwindow.ui:275
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "S&urveys"
-msgstr ""
+msgstr "S&ondaje"
 
 #: mainwindow.ui:278
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Manage product surveys."
-msgstr ""
+msgstr "Gestionează sondajele pentru produse."
 
 #: mainwindow.ui:289
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Analytics"
-msgstr ""
+msgstr "&Analitice"
 
 #: mainwindow.ui:292
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Analyze product telemetry."
-msgstr ""
+msgstr "Analizează telemetria produselor."
 
 #: mainwindow.ui:300
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -629,12 +629,12 @@ msgstr ""
 #: mainwindow.ui:303
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Show the user manual"
-msgstr ""
+msgstr "Arată manualul utilizatorului"
 
 #: mainwindow.ui:311
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Product..."
-msgstr ""
+msgstr "Importă produs…"
 
 #: mainwindow.ui:314
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -644,7 +644,7 @@ msgstr ""
 #: mainwindow.ui:322
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Product..."
-msgstr ""
+msgstr "Exportă produs…"
 
 #: mainwindow.ui:325
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -659,7 +659,7 @@ msgstr ""
 #: model/aggregationeditormodel.cpp:90
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "Name"
-msgstr ""
+msgstr "Denumire"
 
 #: model/aggregationeditormodel.cpp:91
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
@@ -674,7 +674,7 @@ msgstr "Element"
 #: model/aggregationelementeditmodel.cpp:48
 msgctxt "KUserFeedback::Console::AggregationElementEditModel|"
 msgid "<new element>"
-msgstr ""
+msgstr "<element nou>"
 
 #: model/aggregationelementeditmodel.cpp:60
 msgctxt "KUserFeedback::Console::AggregationElementEditModel|"
@@ -684,12 +684,12 @@ msgstr "Element"
 #: model/categoryaggregationmodel.cpp:103
 msgctxt "KUserFeedback::Console::CategoryAggregationModel|"
 msgid "[empty]"
-msgstr ""
+msgstr "[gol]"
 
 #: model/datamodel.cpp:158
 msgctxt "KUserFeedback::Console::DataModel|"
 msgid "Timestamp"
-msgstr ""
+msgstr "Amprentă temporală"
 
 #: model/numericaggregationmodel.cpp:78
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
@@ -719,17 +719,17 @@ msgstr ""
 #: model/productmodel.cpp:82
 msgctxt "KUserFeedback::Console::ProductModel|"
 msgid "Products"
-msgstr ""
+msgstr "Produse"
 
 #: model/ratiosetaggregationmodel.cpp:87
 msgctxt "KUserFeedback::Console::RatioSetAggregationModel|"
 msgid "[empty]"
-msgstr ""
+msgstr "[gol]"
 
 #: model/schemamodel.cpp:145
 msgctxt "KUserFeedback::Console::SchemaModel|"
 msgid "Name"
-msgstr ""
+msgstr "Denumire"
 
 #: model/schemamodel.cpp:146
 msgctxt "KUserFeedback::Console::SchemaModel|"
@@ -739,7 +739,7 @@ msgstr "Tip"
 #: model/surveymodel.cpp:110
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "Name"
-msgstr ""
+msgstr "Denumire"
 
 #: model/surveymodel.cpp:111
 msgctxt "KUserFeedback::Console::SurveyModel|"
@@ -749,22 +749,22 @@ msgstr "URL"
 #: model/surveymodel.cpp:112
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "Active"
-msgstr ""
+msgstr "Activă"
 
 #: model/surveymodel.cpp:113
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "Target"
-msgstr ""
+msgstr "Destinație"
 
 #: model/timeaggregationmodel.cpp:153
 msgctxt "KUserFeedback::Console::TimeAggregationModel|"
 msgid "Time"
-msgstr ""
+msgstr "Oră"
 
 #: model/timeaggregationmodel.cpp:154
 msgctxt "KUserFeedback::Console::TimeAggregationModel|"
 msgid "Samples"
-msgstr ""
+msgstr "Mostre"
 
 #: schemaeditor/aggregationeditwidget.cpp:99
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
@@ -774,37 +774,37 @@ msgstr "Șterge agregarea"
 #: schemaeditor/aggregationeditwidget.cpp:100
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Do you want to delete the currently selected aggregation?"
-msgstr ""
+msgstr "Doriți să ștergeți agregarea aleasă?"
 
 #: schemaeditor/aggregationeditwidget.ui:60
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Add"
-msgstr ""
+msgstr "&Adaugă"
 
 #: schemaeditor/aggregationeditwidget.ui:67
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Delete"
-msgstr ""
+msgstr "Ș&terge"
 
 #: schemaeditor/aggregationeditwidget.ui:83
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add &Aggregation"
-msgstr ""
+msgstr "Adaugă &agregare"
 
 #: schemaeditor/aggregationeditwidget.ui:86
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add a new aggregation."
-msgstr ""
+msgstr "Adaugă agregare nouă."
 
 #: schemaeditor/aggregationeditwidget.ui:94
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Delete Aggregation"
-msgstr ""
+msgstr "Ș&terge agregarea"
 
 #: schemaeditor/aggregationeditwidget.ui:97
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Delete the currently selected aggregation."
-msgstr ""
+msgstr "Șterge agregarea aleasă."
 
 #: schemaeditor/schemaeditor.cpp:40
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -814,7 +814,7 @@ msgstr ""
 #: schemaeditor/schemaeditor.cpp:119
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export Schema"
-msgstr ""
+msgstr "Exportă schema"
 
 #: schemaeditor/schemaeditor.cpp:125
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -825,7 +825,7 @@ msgstr "Exportul a eșuat"
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Could not open file: %1"
-msgstr ""
+msgstr "Fișierul nu poate fi deschis: %1"
 
 #: schemaeditor/schemaeditor.cpp:129
 #, qt-format
@@ -836,12 +836,12 @@ msgstr ""
 #: schemaeditor/schemaeditor.cpp:134
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import Schema"
-msgstr ""
+msgstr "Importă schema"
 
 #: schemaeditor/schemaeditor.cpp:140 schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import Failed"
-msgstr ""
+msgstr "Importul a eșuat"
 
 #: schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"

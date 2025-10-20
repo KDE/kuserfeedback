@@ -17,8 +17,15 @@ SingleRowFilterProxyModel::~SingleRowFilterProxyModel() = default;
 
 void SingleRowFilterProxyModel::setRow(int row)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+#endif
     m_row = row;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
     invalidateFilter();
+#endif
 }
 
 bool SingleRowFilterProxyModel::filterAcceptsRow(int source_row, const QModelIndex& source_parent) const

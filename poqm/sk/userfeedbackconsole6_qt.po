@@ -250,7 +250,7 @@ msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "P&DF"
 msgstr "P&DF"
 
-#: analytics/totalaggregator.cpp:37
+#: analytics/totalaggregator.cpp:34
 msgctxt "KUserFeedback::Console::TotalAggregator|"
 msgid "Samples"
 msgstr "Vzorky"
@@ -331,13 +331,13 @@ msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "No issues found."
 msgstr ""
 
-#: jobs/securityscanjob.cpp:78
+#: jobs/securityscanjob.cpp:75
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is not protected!"
 msgstr ""
 
-#: jobs/securityscanjob.cpp:81
+#: jobs/securityscanjob.cpp:78
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is protected (%2)."

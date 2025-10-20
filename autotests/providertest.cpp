@@ -267,7 +267,7 @@ private Q_SLOTS:
                 c2 = s2->data().toMap().value(QLatin1String("value")).toInt();
             }
 
-            QVERIFY(c2 == c1 + 1);
+            QCOMPARE(c2, c1 + 1);
         }
 
         Provider p3;
@@ -275,7 +275,7 @@ private Q_SLOTS:
         s3->setTelemetryMode(Provider::BasicUsageStatistics);
         p3.addDataSource(s3);
         int c3 = s3->data().toMap().value(QLatin1String("value")).toInt();
-        QVERIFY(c3 == c1 + 2);
+        QCOMPARE(c3, c1 + 2);
     }
 
     void testProductIdChange()

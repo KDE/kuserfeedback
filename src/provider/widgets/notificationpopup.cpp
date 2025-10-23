@@ -28,7 +28,7 @@ class NotificationPopup;
 
 class NotificationPopupPrivate {
 public:
-    NotificationPopupPrivate(QWidget *qq);
+    explicit NotificationPopupPrivate(QWidget *qq);
     void showEncouragement();
     void surveyAvailable(const SurveyInfo &info);
 

@@ -50,7 +50,7 @@ public:
     /*!
      *
      */
-    AuditLogUiController(QObject *parent = nullptr);
+    explicit AuditLogUiController(QObject *parent = nullptr);
     ~AuditLogUiController() override;
 
     /*! Returns \c true if there are log entries to display. */

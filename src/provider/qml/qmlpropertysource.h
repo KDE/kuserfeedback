@@ -45,7 +45,7 @@ class QmlPropertySource : public QmlAbstractDataSource
      */
     Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)
 public:
-    QmlPropertySource(QObject* parent = nullptr);
+    explicit QmlPropertySource(QObject* parent = nullptr);
 
     QString sourceId() const;
     QString name() const;

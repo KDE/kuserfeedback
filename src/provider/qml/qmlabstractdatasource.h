@@ -41,7 +41,7 @@ Q_SIGNALS:
     void telemetryModeChanged();
 
 private:
-    AbstractDataSource *m_source;
+    AbstractDataSource *const m_source;
 };
 
 }

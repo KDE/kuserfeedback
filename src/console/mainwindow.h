@@ -60,10 +60,10 @@ private:
     template <typename T> void addView(T *view, QMenu *menu);
 
     std::unique_ptr<Ui::MainWindow> ui;
-    RESTClient *m_restClient;
-    ProductModel *m_productModel;
+    RESTClient *const m_restClient;
+    ProductModel *const m_productModel;
 
-    Provider *m_feedbackProvider;
+    Provider *const m_feedbackProvider;
 };
 }
 }

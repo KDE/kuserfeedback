@@ -11,12 +11,13 @@
 
 #include <common/surveytargetexpressionevaluator.h>
 
+#include <QChronoTimer>
 #include <QDateTime>
+#include <QElapsedTimer>
 #include <QStringList>
 #include <QTime>
 #include <QTimer>
 #include <QVector>
-#include <QElapsedTimer>
 
 #include <memory>
 
@@ -66,7 +67,7 @@ public:
 
     QString productId;
 
-    QTimer submissionTimer;
+    QChronoTimer submissionTimer;
     QNetworkAccessManager *networkAccessManager;
     QUrl serverUrl;
     QDateTime lastSubmitTime;
@@ -82,10 +83,10 @@ public:
     int startCount;
     int usageTime;
 
-    QTimer encouragementTimer;
+    QChronoTimer encouragementTimer;
     QDateTime lastEncouragementTime;
     int encouragementStarts;
-    int encouragementTime;
+    qint64 encouragementTime;
     int encouragementDelay;
     int encouragementInterval;
 

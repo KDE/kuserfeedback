@@ -4,6 +4,7 @@
     SPDX-License-Identifier: MIT
 */
 
+#include <chrono>
 #include <kuserfeedback_version.h>
 
 #include "logging_p.h"
@@ -52,12 +53,14 @@ ProviderPrivate::ProviderPrivate(Provider *qq)
     , backoffIntervalMinutes(-1)
 {
     submissionTimer.setSingleShot(true);
-    QObject::connect(&submissionTimer, &QTimer::timeout, q, &Provider::submit);
+    QObject::connect(&submissionTimer, &QChronoTimer::timeout, q, &Provider::submit);
 
     startTime.start();
 
     encouragementTimer.setSingleShot(true);
-    QObject::connect(&encouragementTimer, &QTimer::timeout, q, [this]() { emitShowEncouragementMessage(); });
+    QObject::connect(&encouragementTimer, &QChronoTimer::timeout, q, [this]() {
+        emitShowEncouragementMessage();
+    });
 }
 
 ProviderPrivate::~ProviderPrivate()
@@ -260,7 +263,8 @@ void ProviderPrivate::scheduleNextSubmission(qint64 minTime)
 
     const auto nextSubmission = lastSubmitTime.addDays(submissionInterval);
     const auto now = QDateTime::currentDateTime();
-    submissionTimer.start(std::max(minTime, now.msecsTo(nextSubmission)));
+    submissionTimer.setInterval(std::chrono::milliseconds(std::max(minTime, now.msecsTo(nextSubmission))));
+    submissionTimer.start();
 }
 
 void ProviderPrivate::submitFinished(QNetworkReply *reply)
@@ -386,15 +390,16 @@ void ProviderPrivate::scheduleEncouragement()
         return;
 
     Q_ASSERT(encouragementDelay >= 0);
-    int timeToEncouragement = encouragementDelay;
+    qint64 timeToEncouragement = encouragementDelay;
     if (encouragementTime > 0)
         timeToEncouragement = std::max(timeToEncouragement, encouragementTime - currentApplicationTime());
     if (lastEncouragementTime.isValid()) {
         Q_ASSERT(encouragementInterval > 0);
         const auto targetTime = lastEncouragementTime.addDays(encouragementInterval);
-        timeToEncouragement = std::max(timeToEncouragement, (int)QDateTime::currentDateTime().secsTo(targetTime));
+        timeToEncouragement = std::max(timeToEncouragement, QDateTime::currentDateTime().secsTo(targetTime));
     }
-    encouragementTimer.start(timeToEncouragement * 1000);
+    encouragementTimer.setInterval(std::chrono::seconds(timeToEncouragement));
+    encouragementTimer.start();
 }
 
 void ProviderPrivate::emitShowEncouragementMessage()

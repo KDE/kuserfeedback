@@ -1,9 +1,9 @@
-# SPDX-FileCopyrightText: 2022, 2024 Vit Pelcak <vit@pelcak.org>
+# SPDX-FileCopyrightText: 2022, 2024, 2025 Vit Pelcak <vit@pelcak.org>
 # Vít Pelčák <vit@pelcak.org>, 2017, 2019, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2024-05-29 11:22+0200\n"
+"PO-Revision-Date: 2025-12-11 23:13+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 25.08.3\n"
 "X-Qt-Contexts: true\n"
 
 #: core/applicationversionsource.cpp:21
@@ -364,12 +364,12 @@ msgstr ""
 #: widgets/feedbackconfigwidget.ui:150
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Participate in Surveys"
-msgstr ""
+msgstr "Zúčastnit se dotazníků"
 
 #: widgets/notificationpopup.cpp:67
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "Help us make this application better!"
-msgstr ""
+msgstr "Pomozte nám vylepšit tuto aplikaci!"
 
 #: widgets/notificationpopup.cpp:68
 msgctxt "KUserFeedback::NotificationPopup|"

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-10-05 02:43+0100\n"
+"PO-Revision-Date: 2025-11-30 13:47+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -345,11 +345,13 @@ msgid ""
 "You have unsaved changes in the schema editor. Do you really want to close "
 "it and discard your changes?"
 msgstr ""
+"Aveți modificări nesalvate în redactorul de scheme. Sigur doriți să-l "
+"închideți și să aruncați modificările?"
 
 #: mainwindow.cpp:130
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "About User Feedback Console"
-msgstr ""
+msgstr "Despre consola de reacții ale utilizatorului"
 
 #: mainwindow.cpp:130
 #, qt-format
@@ -369,11 +371,15 @@ msgid ""
 "You have unsaved changes in the schema editor, do you really want to open "
 "another product and discard your changes?"
 msgstr ""
+"Aveți modificări nesalvate în redactorul de scheme. Sigur doriți să-l "
+"deschideți alt produs și să aruncați modificările?"
 
 #: mainwindow.cpp:172
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Usage ratio of the analytics view, survey editor and schema editor."
 msgstr ""
+"Rata de utilizare a vizualizării de analitice, redactorului de sondaje și "
+"redactorului de scheme."
 
 #: mainwindow.cpp:219
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -465,11 +471,13 @@ msgid ""
 "There are unsaved changes in the schema editor. Do you want to discard them "
 "and close the application?"
 msgstr ""
+"Sunt modificări nesalvate în redactorul de scheme. Doriți să le aruncați și "
+"să închideți aplicația?"
 
 #: mainwindow.ui:14
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Feedback Console"
-msgstr ""
+msgstr "Consola de reacții ale utilizatorului"
 
 #: mainwindow.ui:50
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -479,17 +487,17 @@ msgstr "&Fișier"
 #: mainwindow.ui:58
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Pro&ducts"
-msgstr ""
+msgstr "Pro&duse"
 
 #: mainwindow.ui:67
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Survey"
-msgstr ""
+msgstr "&Sondaj"
 
 #: mainwindow.ui:72
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Anal&ytics"
-msgstr ""
+msgstr "&Analitice"
 
 #: mainwindow.ui:77
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -599,7 +607,7 @@ msgstr "&Schema"
 #: mainwindow.ui:264
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Edit product telemetry schema."
-msgstr ""
+msgstr "Modifică schema de telemetrie a produsului."
 
 #: mainwindow.ui:275
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -624,7 +632,7 @@ msgstr "Analizează telemetria produselor."
 #: mainwindow.ui:300
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Manual..."
-msgstr ""
+msgstr "Manualul utilizatorului…"
 
 #: mainwindow.ui:303
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -639,7 +647,7 @@ msgstr "Importă produs…"
 #: mainwindow.ui:314
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import product settings and data."
-msgstr ""
+msgstr "Importă configurările și datele produsului."
 
 #: mainwindow.ui:322
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -649,12 +657,12 @@ msgstr "Exportă produs…"
 #: mainwindow.ui:325
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export all product settings and data."
-msgstr ""
+msgstr "Exportă toate configurările și datele produsului."
 
 #: model/aggregationeditormodel.cpp:61
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "<none>"
-msgstr ""
+msgstr "<niciunul>"
 
 #: model/aggregationeditormodel.cpp:90
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
@@ -809,7 +817,7 @@ msgstr "Șterge agregarea aleasă."
 #: schemaeditor/schemaeditor.cpp:40
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Source Templates"
-msgstr ""
+msgstr "Șabloane-sursă"
 
 #: schemaeditor/schemaeditor.cpp:119
 msgctxt "KUserFeedback::Console::SchemaEditor|"

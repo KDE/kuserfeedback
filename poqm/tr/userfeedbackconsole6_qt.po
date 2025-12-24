@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2024-03-22 16:14+0300\n"
+"PO-Revision-Date: 2025-12-23 11:55+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.02.1\n"
+"X-Generator: Lokalize 25.12.0\n"
 "X-Qt-Contexts: true\n"
 "X-POOTLE-MTIME: 1502201738.000000\n"
 
@@ -292,7 +292,7 @@ msgstr "Uyumsuz protokol: %1."
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Updated database schema from version %1 to %2."
-msgstr "Veritabanı şeması %1 sürümünden %2 sürümüne güncellendi."
+msgstr "Veri tabanı şeması %1 sürümünden %2 sürümüne güncellendi."
 
 #: jobs/productexportjob.cpp:36
 msgctxt "KUserFeedback::Console::ProductExportJob|"

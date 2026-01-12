@@ -397,7 +397,7 @@ msgstr "Falla en la connexió"
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Failed to connect to server: %1"
-msgstr "No s'ha pogut connectar amb el servidor: %1"
+msgstr "Ha fallat mentre es connectava amb el servidor: %1"
 
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"

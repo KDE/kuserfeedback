@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2022, 2024, 2025 Sergiu Bivol <sergiu@cip.md>
+# SPDX-FileCopyrightText: 2022, 2024, 2025, 2026 Sergiu Bivol <sergiu@cip.md>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-11-30 13:42+0000\n"
+"PO-Revision-Date: 2026-01-28 22:13+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -305,7 +305,7 @@ msgstr "De câte ori a fost pornită aplicația."
 #: core/startcountsource.cpp:46
 msgctxt "KUserFeedback::StartCountSource|"
 msgid "Launches count"
-msgstr "Contor lansări"
+msgstr "Contor de lansări"
 
 #: core/usagetimesource.cpp:31
 msgctxt "KUserFeedback::UsageTimeSource|"
@@ -315,7 +315,7 @@ msgstr "Durata totală de utilizare a aplicației."
 #: core/usagetimesource.cpp:46
 msgctxt "KUserFeedback::UsageTimeSource|"
 msgid "Usage time"
-msgstr "Durată utilizare"
+msgstr "Durată de utilizare"
 
 #: widgets/auditlogbrowserdialog.cpp:28
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"

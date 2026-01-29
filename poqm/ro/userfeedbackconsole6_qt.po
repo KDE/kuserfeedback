@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2024, 2025 Sergiu Bivol <sergiu@cip.md>
+# SPDX-FileCopyrightText: 2024, 2025, 2026 Sergiu Bivol <sergiu@cip.md>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-11-30 13:47+0000\n"
+"PO-Revision-Date: 2026-01-28 18:45+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -522,7 +522,7 @@ msgstr "&Vizualizare"
 #: mainwindow.ui:113
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Log Messages"
-msgstr ""
+msgstr "Mesaje din jurnal"
 
 #: mainwindow.ui:132
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -702,12 +702,12 @@ msgstr "Amprentă temporală"
 #: model/numericaggregationmodel.cpp:78
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Extreme"
-msgstr ""
+msgstr "Extrema de jos"
 
 #: model/numericaggregationmodel.cpp:79
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Quartile"
-msgstr ""
+msgstr "Cuartul de jos"
 
 #: model/numericaggregationmodel.cpp:80
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
@@ -717,12 +717,12 @@ msgstr "Mediana"
 #: model/numericaggregationmodel.cpp:81
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Quartile"
-msgstr ""
+msgstr "Cuartul de sus"
 
 #: model/numericaggregationmodel.cpp:82
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Extreme"
-msgstr ""
+msgstr "Extrema de sus"
 
 #: model/productmodel.cpp:82
 msgctxt "KUserFeedback::Console::ProductModel|"
@@ -839,7 +839,7 @@ msgstr "Fișierul nu poate fi deschis: %1"
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 exported to %2."
-msgstr ""
+msgstr "Schema pentru %1 a fost exportată la %2."
 
 #: schemaeditor/schemaeditor.cpp:134
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -854,18 +854,18 @@ msgstr "Importul a eșuat"
 #: schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Selected file contains no valid product schema."
-msgstr ""
+msgstr "Fișierul ales nu conține nicio schemă de produs validă."
 
 #: schemaeditor/schemaeditor.cpp:153
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 imported from %2."
-msgstr ""
+msgstr "Schema pentru %1 a fost importată din %2."
 
 #: schemaeditor/schemaeditor.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema"
-msgstr ""
+msgstr "Schemă"
 
 #: schemaeditor/schemaeditor.ui:38
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -875,32 +875,32 @@ msgstr "Agregare"
 #: schemaeditor/schemaeditor.ui:49
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Save Schema"
-msgstr ""
+msgstr "&Salvează schema"
 
 #: schemaeditor/schemaeditor.ui:52
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
-msgstr ""
+msgstr "Salvează modificările aduse schemei produsului."
 
 #: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Import Schema..."
-msgstr ""
+msgstr "&Importă schema…"
 
 #: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
-msgstr ""
+msgstr "Importă o schemă pentru acest produs."
 
 #: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
-msgstr ""
+msgstr "&Exportă schema…"
 
 #: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
-msgstr ""
+msgstr "Exportă schema acestui produs."
 
 #: schemaeditor/schemaeditwidget.cpp:72
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -910,17 +910,17 @@ msgstr "Adaugă sursă"
 #: schemaeditor/schemaeditwidget.cpp:72 schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Name:"
-msgstr ""
+msgstr "Denumire:"
 
 #: schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source Element"
-msgstr ""
+msgstr "Adaugă element la sursă"
 
 #: schemaeditor/schemaeditwidget.cpp:96
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Source"
-msgstr ""
+msgstr "Șterge sursa"
 
 #: schemaeditor/schemaeditwidget.cpp:97
 #, qt-format
@@ -928,61 +928,65 @@ msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid ""
 "Do you really want to delete the source '%1', and all recorded data for it?"
 msgstr ""
+"Sigur doriți să ștergeți sursa „%1” și toate datele înregistrate pentru "
+"aceasta?"
 
 #: schemaeditor/schemaeditwidget.cpp:102
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Schema Entry"
-msgstr ""
+msgstr "Șterge înregistrarea schemei"
 
 #: schemaeditor/schemaeditwidget.cpp:103
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Do you really want to delete this entry, and all recorded data for it?"
 msgstr ""
+"Sigur doriți să ștergeți această înregistrare și toate datele înregistrate "
+"pentru aceasta?"
 
 #: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "&Delete"
-msgstr ""
+msgstr "Ș&terge"
 
 #: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
-msgstr ""
+msgstr "Șterge elementul sau înregistrarea aleasă."
 
 #: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Del"
-msgstr ""
+msgstr "Ștr"
 
 #: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add &Source..."
-msgstr ""
+msgstr "Adaugă &sursă…"
 
 #: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
-msgstr ""
+msgstr "Adaugă sursă de date nouă."
 
 #: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr ""
+msgstr "Adaugă &element la sursă…"
 
 #: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
-msgstr ""
+msgstr "Adaugă un element la o sursă de date."
 
 #: surveyeditor/surveydialog.ui:14
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Survey"
-msgstr ""
+msgstr "Sondaj"
 
 #: surveyeditor/surveydialog.ui:22
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "&Name:"
-msgstr ""
+msgstr "De&numire:"
 
 #: surveyeditor/surveydialog.ui:35
 msgctxt "KUserFeedback::Console::SurveyDialog|"
@@ -992,44 +996,44 @@ msgstr "&URL:"
 #: surveyeditor/surveydialog.ui:50
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Targeting e&xpression:"
-msgstr ""
+msgstr "E&xpresia de orientare:"
 
 #: surveyeditor/surveyeditor.cpp:105
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete Survey"
-msgstr ""
+msgstr "Șterge sondajul"
 
 #: surveyeditor/surveyeditor.cpp:106
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
-msgstr ""
+msgstr "Sigur doriți să ștergeți sondajul ales?"
 
 #: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
-msgstr ""
+msgstr "&Adaugă sondaj…"
 
 #: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
-msgstr ""
+msgstr "Adaugă un nou sondaj."
 
 #: surveyeditor/surveyeditor.ui:56
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
-msgstr ""
+msgstr "Șterge son&dajul"
 
 #: surveyeditor/surveyeditor.ui:59
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
-msgstr ""
+msgstr "Șterge un sondaj."
 
 #: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
-msgstr ""
+msgstr "&Modifică sondajul…"
 
 #: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
-msgstr ""
+msgstr "Modifică sondajul ales."

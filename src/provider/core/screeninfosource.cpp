@@ -26,6 +26,11 @@ QVariant ScreenInfoSource::data()
 {
     QVariantList l;
     for (auto screen : QGuiApplication::screens()) {
+        // if this is Qt's placeholder screen or the size is otherwise nonsensical, don't report it
+        if (screen->size().isEmpty()) {
+            continue;
+        }
+
         QVariantMap m;
         m.insert(QStringLiteral("width"), screen->size().width());
         m.insert(QStringLiteral("height"), screen->size().height());

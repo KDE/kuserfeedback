@@ -290,7 +290,7 @@ msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Size and resolution of all connected screens."
 msgstr "Grootte en resolutie van alle verbonden schermen."
 
-#: core/screeninfosource.cpp:41
+#: core/screeninfosource.cpp:46
 msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Screen parameters"
 msgstr "Schermparameters"

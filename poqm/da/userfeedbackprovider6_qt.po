@@ -291,7 +291,7 @@ msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Size and resolution of all connected screens."
 msgstr "Størrelse og opløsning på alle tilsluttede skærme."
 
-#: core/screeninfosource.cpp:41
+#: core/screeninfosource.cpp:46
 msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Screen parameters"
 msgstr "Skærmparametre"

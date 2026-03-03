@@ -284,7 +284,7 @@ msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Size and resolution of all connected screens."
 msgstr "सभी कनेक्टेड स्क्रीन का आकार और रिज़ॉल्यूशन."
 
-#: core/screeninfosource.cpp:41
+#: core/screeninfosource.cpp:46
 msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Screen parameters"
 msgstr "स्क्रीन पैरामीटर"

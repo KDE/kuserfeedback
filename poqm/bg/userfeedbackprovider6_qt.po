@@ -292,7 +292,7 @@ msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Size and resolution of all connected screens."
 msgstr "Размер и разделителна способност на всички свързани екрани."
 
-#: core/screeninfosource.cpp:41
+#: core/screeninfosource.cpp:46
 msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Screen parameters"
 msgstr "Параметри на екрана"

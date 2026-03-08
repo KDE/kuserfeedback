@@ -354,7 +354,7 @@ msgstr "贡献统计数据"
 #: widgets/feedbackconfigwidget.ui:107
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "TextLabel"
-msgstr "文字标签"
+msgstr "文本标签"
 
 #: widgets/feedbackconfigwidget.ui:124
 msgctxt "KUserFeedback::FeedbackConfigWidget|"

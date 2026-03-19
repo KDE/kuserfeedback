@@ -8,7 +8,7 @@ include(FeatureSummary)
 find_package(ECM ${KF_DEP_VERSION}  NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://invent.kde.org/frameworks/extra-cmake-modules")
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${ECM_MODULE_PATH})
 
 set(ENABLE_SURVEY_TARGET_EXPRESSIONS ON CACHE BOOL "Survey targeting expressions support is enabled by default.")
 set(ENABLE_PHP                       ON CACHE BOOL "Syntax checking of PHP server code.")
@@ -157,7 +157,6 @@ include(ECMFeatureSummary)
 ecm_feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 install(FILES
-    ${KF6UserFeedbackCore_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kuserfeedback_version.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback
 )

@@ -15,9 +15,7 @@
 #include <QObject>
 #include <QSignalSpy>
 #include <QStandardPaths>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 #include <QAbstractItemModelTester>
-#endif
 
 using namespace KUserFeedback::Console;
 
@@ -66,9 +64,7 @@ private Q_SLOTS:
         waitForFinished(reply);
 
         ProductModel model;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
         QAbstractItemModelTester modelTest(&model);
-#endif
         QSignalSpy resetSpy(&model, &ProductModel::modelReset);
         QSignalSpy insertSpy(&model, &ProductModel::rowsInserted);
         QSignalSpy removeSpy(&model, &ProductModel::rowsRemoved);

@@ -12,22 +12,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 21.12.3\n"
 "X-Qt-Contexts: true\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Time Interval"
-msgstr ""
+msgstr "&Časový interval"
 
 #: analytics/analyticsview.cpp:88
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Chart Mode"
-msgstr ""
+msgstr "Režim &grafu"
 
 #: analytics/analyticsview.cpp:126
-#, fuzzy
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Copy"
 msgstr "Kopírovať"
@@ -52,7 +51,7 @@ msgstr "Nepodarilo sa otvoriť súbor: %1"
 #, qt-format
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Data samples of %1 exported to %2."
-msgstr ""
+msgstr "Vzorky dát %1 exportované do %2."
 
 #: analytics/analyticsview.cpp:275
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -67,12 +66,12 @@ msgstr "Import zlyhal"
 #: analytics/analyticsview.cpp:286
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Selected file contains no valid data."
-msgstr ""
+msgstr "Vybraný súbor neobsahuje platné dáta."
 
 #: analytics/analyticsview.cpp:293
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Data samples imported."
-msgstr ""
+msgstr "Vzorky dát importované."
 
 #: analytics/analyticsview.ui:33
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -80,9 +79,6 @@ msgid "Charts"
 msgstr "Grafy"
 
 #: analytics/analyticsview.ui:41
-#, fuzzy
-#| msgctxt "KUserFeedback::Console::SchemaEditor|"
-#| msgid "Aggregation"
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Aggregation:"
 msgstr "Agregácia"
@@ -90,12 +86,12 @@ msgstr "Agregácia"
 #: analytics/analyticsview.ui:108
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregated Data"
-msgstr ""
+msgstr "Aggregated Data"
 
 #: analytics/analyticsview.ui:118
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Raw Data"
-msgstr ""
+msgstr "Raw Data"
 
 #: analytics/analyticsview.ui:138
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -105,7 +101,7 @@ msgstr "&Rok"
 #: analytics/analyticsview.ui:141
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by year."
-msgstr ""
+msgstr "Agregovať dáta podľa roku."
 
 #: analytics/analyticsview.ui:149
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -115,7 +111,7 @@ msgstr "Mesiac"
 #: analytics/analyticsview.ui:152
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by month."
-msgstr ""
+msgstr "Agregovať dáta podľa mesiaca."
 
 #: analytics/analyticsview.ui:160
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -125,7 +121,7 @@ msgstr "&Týždeň"
 #: analytics/analyticsview.ui:163
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by week."
-msgstr ""
+msgstr "Agregovať dáta podľa týždňa."
 
 #: analytics/analyticsview.ui:171
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -135,7 +131,7 @@ msgstr "&Deň"
 #: analytics/analyticsview.ui:174
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Aggregate data by day."
-msgstr ""
+msgstr "Agregovať dáta podľa dňa."
 
 #: analytics/analyticsview.ui:182
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -145,7 +141,7 @@ msgstr "Exportovať dáta..."
 #: analytics/analyticsview.ui:185
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export all recorded data."
-msgstr ""
+msgstr "Exportovať všetky zaznamenané dáta."
 
 #: analytics/analyticsview.ui:193
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -153,9 +149,6 @@ msgid "&Import Data..."
 msgstr "Importovať dáta..."
 
 #: analytics/analyticsview.ui:196
-#, fuzzy
-#| msgctxt "KUserFeedback::Console::AnalyticsView|"
-#| msgid "Import Data"
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Import data samples."
 msgstr "Importovať dáta"
@@ -163,32 +156,32 @@ msgstr "Importovať dáta"
 #: analytics/analyticsview.ui:204
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Reload Data"
-msgstr ""
+msgstr "&Obnoviť dáta"
 
 #: analytics/analyticsview.ui:207
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Refresh data from the server."
-msgstr ""
+msgstr "Obnoviť dáta zo servera."
 
 #: analytics/analyticsview.ui:218
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Timeline Chart"
-msgstr ""
+msgstr "&Časová os"
 
 #: analytics/analyticsview.ui:221
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show development over time."
-msgstr ""
+msgstr "Zobraziť vývoj v čase."
 
 #: analytics/analyticsview.ui:232
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "&Singular Chart"
-msgstr ""
+msgstr "&Jednotlivý graf"
 
 #: analytics/analyticsview.ui:235
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Show chart for a single time interval."
-msgstr ""
+msgstr "Zobraziť graf pre jeden časový interval."
 
 #: analytics/analyticsview.ui:243
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -198,7 +191,7 @@ msgstr "Exportovať graf..."
 #: analytics/analyticsview.ui:246
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Export the current chart as image, SVG or PDF."
-msgstr ""
+msgstr "Exportovať aktuálny graf ako obrázok, SVG alebo PDF."
 
 #: analytics/chartexportdialog.cpp:50
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -218,7 +211,7 @@ msgstr "&Meno súboru:"
 #: analytics/chartexportdialog.ui:35
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: analytics/chartexportdialog.ui:44
 msgctxt "KUserFeedback::Console::ChartExportDialog|"
@@ -263,7 +256,7 @@ msgstr "Pripojiť"
 #: connectdialog.ui:14
 msgctxt "KUserFeedback::Console::ConnectDialog|"
 msgid "Connect To Analytics Server"
-msgstr ""
+msgstr "Pripojiť sa k analytickému serveru"
 
 #: connectdialog.ui:22
 msgctxt "KUserFeedback::Console::ConnectDialog|"
@@ -295,18 +288,18 @@ msgstr "Pripojený k %1."
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Incompatible protocol: %1."
-msgstr ""
+msgstr "Nekompatibilný protokol: %1."
 
 #: jobs/handshakejob.cpp:62
 #, qt-format
 msgctxt "KUserFeedback::Console::HandshakeJob|"
 msgid "Updated database schema from version %1 to %2."
-msgstr ""
+msgstr "Schéma databázy aktualizovaná z verzie %1 na %2."
 
 #: jobs/productexportjob.cpp:36
 msgctxt "KUserFeedback::Console::ProductExportJob|"
 msgid "Product not found."
-msgstr ""
+msgstr "Product sa nenašiel."
 
 #: jobs/productexportjob.cpp:63 jobs/productexportjob.cpp:83
 #: jobs/productexportjob.cpp:103
@@ -324,29 +317,29 @@ msgstr "Nemôžem otvoriť súbor: %1"
 #: jobs/productimportjob.cpp:43
 msgctxt "KUserFeedback::Console::ProductImportJob|"
 msgid "Invalid product schema file."
-msgstr ""
+msgstr "Neplatný súbor schémy produktu."
 
 #: jobs/securityscanjob.cpp:54
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "No issues found."
-msgstr ""
+msgstr "Nenašli sa žiadne issues."
 
 #: jobs/securityscanjob.cpp:75
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is not protected!"
-msgstr ""
+msgstr "Prístup k %1 nie je chránený!"
 
 #: jobs/securityscanjob.cpp:78
 #, qt-format
 msgctxt "KUserFeedback::Console::SecurityScanJob|"
 msgid "Access to %1 is protected (%2)."
-msgstr ""
+msgstr "Prístup k %1 je chránený (%2)."
 
 #: mainwindow.cpp:80 mainwindow.cpp:142
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Unsaved Schema Changes"
-msgstr ""
+msgstr "Unsaved Schema Changes"
 
 #: mainwindow.cpp:81
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -354,11 +347,13 @@ msgid ""
 "You have unsaved changes in the schema editor. Do you really want to close "
 "it and discard your changes?"
 msgstr ""
+"You have unsaved changes in the schema editor. Do you really want to close "
+"it and discard your changes?"
 
 #: mainwindow.cpp:130
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "About User Feedback Console"
-msgstr ""
+msgstr "O konzole spätnej väzby od používateľov"
 
 #: mainwindow.cpp:130
 #, qt-format
@@ -368,6 +363,9 @@ msgid ""
 "License: MIT\n"
 "Copyright ⓒ 2017 Volker Krause <vkrause@kde.org>"
 msgstr ""
+"Version: %1\n"
+"License: MIT\n"
+"Copyright ⓒ 2017 Volker Krause <vkrause@kde.org>"
 
 #: mainwindow.cpp:143
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -375,11 +373,13 @@ msgid ""
 "You have unsaved changes in the schema editor, do you really want to open "
 "another product and discard your changes?"
 msgstr ""
+"You have unsaved changes in the schema editor, do you really want to open "
+"another product and discard your changes?"
 
 #: mainwindow.cpp:172
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Usage ratio of the analytics view, survey editor and schema editor."
-msgstr ""
+msgstr "Usage ratio of the analytics view, survey editor and schema editor."
 
 #: mainwindow.cpp:219
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -395,7 +395,7 @@ msgstr "Zlyhalo pripojenie na server: %1"
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Add New Product"
-msgstr ""
+msgstr "Add New Product"
 
 #: mainwindow.cpp:226
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -405,18 +405,18 @@ msgstr "Identifikátor produktu:"
 #: mainwindow.cpp:248
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Delete Product"
-msgstr ""
+msgstr "Delete Product"
 
 #: mainwindow.cpp:249
 #, qt-format
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Do you really want to delete product %1 with all its data?"
-msgstr ""
+msgstr "Naozaj chcete delete product %1 with all its data?"
 
 #: mainwindow.cpp:266
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Product"
-msgstr ""
+msgstr "Import Product"
 
 #: mainwindow.cpp:272 mainwindow.cpp:278 mainwindow.cpp:297
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -437,12 +437,12 @@ msgstr "Chyba importu: %1"
 #: mainwindow.cpp:281
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Product imported successfully."
-msgstr ""
+msgstr "Produkt úspešne importovaný."
 
 #: mainwindow.cpp:291
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Product"
-msgstr ""
+msgstr "Export Product"
 
 #: mainwindow.cpp:303
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -458,7 +458,7 @@ msgstr "Chyba exportu: %1"
 #: mainwindow.cpp:306
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Product exported successfully."
-msgstr ""
+msgstr "Produkt úspešne exportovaný."
 
 #: mainwindow.cpp:355
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -471,11 +471,13 @@ msgid ""
 "There are unsaved changes in the schema editor. Do you want to discard them "
 "and close the application?"
 msgstr ""
+"There are unsaved changes in the schema editor. Do you want to discard them "
+"and close the application?"
 
 #: mainwindow.ui:14
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Feedback Console"
-msgstr ""
+msgstr "User Feedback Console"
 
 #: mainwindow.ui:50
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -483,7 +485,6 @@ msgid "&File"
 msgstr "&Súbor"
 
 #: mainwindow.ui:58
-#, fuzzy
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Pro&ducts"
 msgstr "Produkty"
@@ -491,12 +492,12 @@ msgstr "Produkty"
 #: mainwindow.ui:67
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Survey"
-msgstr ""
+msgstr "&Prieskum"
 
 #: mainwindow.ui:72
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Anal&ytics"
-msgstr ""
+msgstr "Anal&ýza"
 
 #: mainwindow.ui:77
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -541,7 +542,7 @@ msgstr "Pripojiť sa k serveru..."
 #: mainwindow.ui:189
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Connect to analytics server."
-msgstr ""
+msgstr "Pripojiť sa k analytickému serveru."
 
 #: mainwindow.ui:192
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -556,27 +557,27 @@ msgstr "&Koniec"
 #: mainwindow.ui:203
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Quit the user feedback console."
-msgstr ""
+msgstr "Ukončiť konzolu spätnej väzby od používateľov."
 
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Add Product..."
-msgstr ""
+msgstr "&Pridať produkt..."
 
 #: mainwindow.ui:217
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Add a new product."
-msgstr ""
+msgstr "Pridať nový produkt."
 
 #: mainwindow.ui:225
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Delete Product"
-msgstr ""
+msgstr "&Odstrániť produkt"
 
 #: mainwindow.ui:228
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Delete product and all associated data."
-msgstr ""
+msgstr "Odstrániť produkt a všetky súvisiace dáta."
 
 #: mainwindow.ui:236
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -586,7 +587,7 @@ msgstr "O aplikácii..."
 #: mainwindow.ui:239
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Information about this program."
-msgstr ""
+msgstr "Informácie o tomto programe."
 
 #: mainwindow.ui:247
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -596,7 +597,7 @@ msgstr "Prispejte..."
 #: mainwindow.ui:250
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Help to make this application better for you!"
-msgstr ""
+msgstr "Pomôžte vylepšiť túto aplikáciu pre vás!"
 
 #: mainwindow.ui:261
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -606,30 +607,29 @@ msgstr "&Schéma"
 #: mainwindow.ui:264
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Edit product telemetry schema."
-msgstr ""
+msgstr "Upraviť schému telemetrie produktu."
 
 #: mainwindow.ui:275
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "S&urveys"
-msgstr ""
+msgstr "P&rieskumy"
 
 #: mainwindow.ui:278
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Manage product surveys."
-msgstr ""
+msgstr "Spravovať prieskumy produktov."
 
 #: mainwindow.ui:289
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "&Analytics"
-msgstr ""
+msgstr "&Analýza"
 
 #: mainwindow.ui:292
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Analyze product telemetry."
-msgstr ""
+msgstr "Analyzovať telemetriu produktu."
 
 #: mainwindow.ui:300
-#, fuzzy
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Manual..."
 msgstr "Používateľská príručka"
@@ -637,32 +637,32 @@ msgstr "Používateľská príručka"
 #: mainwindow.ui:303
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Show the user manual"
-msgstr ""
+msgstr "Zobraziť používateľskú príručku"
 
 #: mainwindow.ui:311
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import Product..."
-msgstr ""
+msgstr "Importovať produkt..."
 
 #: mainwindow.ui:314
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Import product settings and data."
-msgstr ""
+msgstr "Importovať nastavenia a dáta produktu."
 
 #: mainwindow.ui:322
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export Product..."
-msgstr ""
+msgstr "Exportovať produkt..."
 
 #: mainwindow.ui:325
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Export all product settings and data."
-msgstr ""
+msgstr "Exportovať všetky nastavenia a dáta produktu."
 
 #: model/aggregationeditormodel.cpp:61
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "<none>"
-msgstr ""
+msgstr "<žiadne>"
 
 #: model/aggregationeditormodel.cpp:90
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
@@ -682,7 +682,7 @@ msgstr "Prvok"
 #: model/aggregationelementeditmodel.cpp:48
 msgctxt "KUserFeedback::Console::AggregationElementEditModel|"
 msgid "<new element>"
-msgstr ""
+msgstr "<nový prvok>"
 
 #: model/aggregationelementeditmodel.cpp:60
 msgctxt "KUserFeedback::Console::AggregationElementEditModel|"
@@ -702,12 +702,12 @@ msgstr "Časové razítko"
 #: model/numericaggregationmodel.cpp:78
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Extreme"
-msgstr ""
+msgstr "Lower Extreme"
 
 #: model/numericaggregationmodel.cpp:79
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Lower Quartile"
-msgstr ""
+msgstr "Lower Quartile"
 
 #: model/numericaggregationmodel.cpp:80
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
@@ -717,12 +717,12 @@ msgstr "Medián"
 #: model/numericaggregationmodel.cpp:81
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Quartile"
-msgstr ""
+msgstr "Upper Quartile"
 
 #: model/numericaggregationmodel.cpp:82
 msgctxt "KUserFeedback::Console::NumericAggregationModel|"
 msgid "Upper Extreme"
-msgstr ""
+msgstr "Upper Extreme"
 
 #: model/productmodel.cpp:82
 msgctxt "KUserFeedback::Console::ProductModel|"
@@ -782,7 +782,7 @@ msgstr "Vymazať agregáciu"
 #: schemaeditor/aggregationeditwidget.cpp:100
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Do you want to delete the currently selected aggregation?"
-msgstr ""
+msgstr "Naozaj chcete delete the currently selected aggregation?"
 
 #: schemaeditor/aggregationeditwidget.ui:60
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
@@ -797,12 +797,12 @@ msgstr "Vymazať"
 #: schemaeditor/aggregationeditwidget.ui:83
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add &Aggregation"
-msgstr ""
+msgstr "Pridať &agregáciu"
 
 #: schemaeditor/aggregationeditwidget.ui:86
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Add a new aggregation."
-msgstr ""
+msgstr "Pridať novú agregáciu."
 
 #: schemaeditor/aggregationeditwidget.ui:94
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
@@ -812,17 +812,17 @@ msgstr "Vymazať agregáciu"
 #: schemaeditor/aggregationeditwidget.ui:97
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "Delete the currently selected aggregation."
-msgstr ""
+msgstr "Odstrániť aktuálne vybranú agregáciu."
 
 #: schemaeditor/schemaeditor.cpp:40
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Source Templates"
-msgstr ""
+msgstr "Source Templates"
 
 #: schemaeditor/schemaeditor.cpp:119
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export Schema"
-msgstr ""
+msgstr "Export Schema"
 
 #: schemaeditor/schemaeditor.cpp:125
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -839,7 +839,7 @@ msgstr "Nepodarilo sa otvoriť súbor: %1"
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 exported to %2."
-msgstr ""
+msgstr "Schéma %1 exportovaná do %2."
 
 #: schemaeditor/schemaeditor.cpp:134
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -854,13 +854,13 @@ msgstr "Import zlyhal"
 #: schemaeditor/schemaeditor.cpp:145
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Selected file contains no valid product schema."
-msgstr ""
+msgstr "Vybraný súbor neobsahuje platnú schému produktu."
 
 #: schemaeditor/schemaeditor.cpp:153
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Schema of %1 imported from %2."
-msgstr ""
+msgstr "Schéma %1 importovaná z %2."
 
 #: schemaeditor/schemaeditor.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -875,12 +875,12 @@ msgstr "Agregácia"
 #: schemaeditor/schemaeditor.ui:49
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Save Schema"
-msgstr ""
+msgstr "&Uložiť schému"
 
 #: schemaeditor/schemaeditor.ui:52
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Save changes to the product schema."
-msgstr ""
+msgstr "Uložiť zmeny v schéme produktu."
 
 #: schemaeditor/schemaeditor.ui:60
 msgctxt "KUserFeedback::Console::SchemaEditor|"
@@ -890,17 +890,17 @@ msgstr "Importovať schému..."
 #: schemaeditor/schemaeditor.ui:63
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Import a schema for this product."
-msgstr ""
+msgstr "Importovať schému pre tento produkt."
 
 #: schemaeditor/schemaeditor.ui:71
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "&Export Schema..."
-msgstr ""
+msgstr "&Exportovať schému..."
 
 #: schemaeditor/schemaeditor.ui:74
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Export the schema of this product."
-msgstr ""
+msgstr "Exportovať schému tohto produktu."
 
 #: schemaeditor/schemaeditwidget.cpp:72
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -915,29 +915,29 @@ msgstr "Názov:"
 #: schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source Element"
-msgstr ""
+msgstr "Add Source Element"
 
 #: schemaeditor/schemaeditwidget.cpp:96
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Source"
-msgstr ""
+msgstr "Delete Source"
 
 #: schemaeditor/schemaeditwidget.cpp:97
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid ""
 "Do you really want to delete the source '%1', and all recorded data for it?"
-msgstr ""
+msgstr "Naozaj chcete delete the source '%1', and all recorded data for it?"
 
 #: schemaeditor/schemaeditwidget.cpp:102
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete Schema Entry"
-msgstr ""
+msgstr "Delete Schema Entry"
 
 #: schemaeditor/schemaeditwidget.cpp:103
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Do you really want to delete this entry, and all recorded data for it?"
-msgstr ""
+msgstr "Naozaj chcete delete this entry, and all recorded data for it?"
 
 #: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -947,7 +947,7 @@ msgstr "Vymazať"
 #: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Delete the selected element or entry."
-msgstr ""
+msgstr "Odstrániť vybraný prvok alebo položku."
 
 #: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -962,22 +962,22 @@ msgstr "Pridať zdroj..."
 #: schemaeditor/schemaeditwidget.ui:47
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add a new data source."
-msgstr ""
+msgstr "Pridať nový zdroj dát."
 
 #: schemaeditor/schemaeditwidget.ui:55
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add Source &Element..."
-msgstr ""
+msgstr "Pridať &prvok zdroja..."
 
 #: schemaeditor/schemaeditwidget.ui:58
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Add an element to a data source."
-msgstr ""
+msgstr "Pridať prvok do zdroja dát."
 
 #: surveyeditor/surveydialog.ui:14
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Survey"
-msgstr ""
+msgstr "Survey"
 
 #: surveyeditor/surveydialog.ui:22
 msgctxt "KUserFeedback::Console::SurveyDialog|"
@@ -992,47 +992,47 @@ msgstr "&URL:"
 #: surveyeditor/surveydialog.ui:50
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "Targeting e&xpression:"
-msgstr ""
+msgstr "Cieľový v&ýraz:"
 
 #: surveyeditor/surveyeditor.cpp:105
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete Survey"
-msgstr ""
+msgstr "Delete Survey"
 
 #: surveyeditor/surveyeditor.cpp:106
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Do you really want to delete the selected survey?"
-msgstr ""
+msgstr "Naozaj chcete delete the selected survey?"
 
 #: surveyeditor/surveyeditor.ui:45
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Add Survey..."
-msgstr ""
+msgstr "&Pridať prieskum..."
 
 #: surveyeditor/surveyeditor.ui:48
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Add new survey."
-msgstr ""
+msgstr "Pridať nový prieskum."
 
 #: surveyeditor/surveyeditor.ui:56
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Delete Survey"
-msgstr ""
+msgstr "&Odstrániť prieskum"
 
 #: surveyeditor/surveyeditor.ui:59
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Delete a survey."
-msgstr ""
+msgstr "Odstrániť prieskum."
 
 #: surveyeditor/surveyeditor.ui:67
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "&Edit Survey..."
-msgstr ""
+msgstr "&Upraviť prieskum..."
 
 #: surveyeditor/surveyeditor.ui:70
 msgctxt "KUserFeedback::Console::SurveyEditor|"
 msgid "Edit the currently selected survey."
-msgstr ""
+msgstr "Upraviť aktuálne vybraný prieskum."
 
 #~ msgctxt "KUserFeedback::Console::AnalyticsView|"
 #~ msgid "&Chart type:"

@@ -73,6 +73,7 @@
   <summary xml:lang="ro">Unealtă analitică și de administrare pentru servere KUserFeedback</summary>
   <summary xml:lang="ru">Инструмент аналитики и управления для серверов KUserFeedback</summary>
   <summary xml:lang="sa">KUserFeedback सर्वराणां कृते विश्लेषणं प्रशासनसाधनं च</summary>
+  <summary xml:lang="sk">Nástroj na analýzu a správu pre servery KUserFeedback</summary>
   <summary xml:lang="sl">Analitika in orodje administracijo strežnikov za uporabniške povratne informacije</summary>
   <summary xml:lang="sv">Analys- och administrationsverktyg för användaråterkopplingsservrar</summary>
   <summary xml:lang="tr">K Kullanıcı Geri Bildirimi sunucuları için çözümleme ve yönetim aracı</summary>
@@ -154,6 +155,7 @@
       <li xml:lang="ro">Creează, modifică și elimină produse și scheme de date ale produselor.</li>
       <li xml:lang="ru">Создание, редактирование и удаление продуктов и схем данных продуктов.</li>
       <li xml:lang="sa">उत्पादानाम् उत्पाददत्तांशयोजनानां च निर्माणं, सम्पादनं, निष्कासनं च ।</li>
+      <li xml:lang="sk">Vytvárať, upravovať a odstraňovať produkty a schémy dát produktov.</li>
       <li xml:lang="sl">Ustvarja, ureja in odstranjuje izdelke in podatkovne sheme izdelkov.</li>
       <li xml:lang="sv">Skapa, redigera och ta bort produkter och produktdatascheman.</li>
       <li xml:lang="tr">Ürünler ve ürün veri şemaları oluşturun, düzenleyin, kaldırın.</li>
@@ -191,6 +193,7 @@
       <li xml:lang="ro">Gestionare sondaje pentru utilizator.</li>
       <li xml:lang="ru">Управление опросами пользователей.</li>
       <li xml:lang="sa">उपयोक्तृसर्वक्षणस्य प्रबन्धनं कुर्वन्तु।</li>
+      <li xml:lang="sk">Spravovať prieskumy používateľov.</li>
       <li xml:lang="sl">Upravlja ankete uporabnikov.</li>
       <li xml:lang="sv">Hantera användarenkäter.</li>
       <li xml:lang="tr">Kullanıcı anketlerini yönetin.</li>
@@ -228,6 +231,7 @@
       <li xml:lang="ro">Revederea și analiza datelor de telemetrie.</li>
       <li xml:lang="ru">Базовые возможности просмотра и анализа данных телеметрии.</li>
       <li xml:lang="sa">दूरमापनदत्तांशस्य मूलभूतसमीक्षा विश्लेषणं च।</li>
+      <li xml:lang="sk">Základná kontrola a analýza telemetrických dát.</li>
       <li xml:lang="sl">Osnovni pregled in analitika telemetrijskih podatkov.</li>
       <li xml:lang="sv">Grundläggande granskning och analys av telemetridata.</li>
       <li xml:lang="tr">Telemetri verisinin yalın değerlendirmesi ve çözümlemesi.</li>
@@ -265,6 +269,7 @@
       <li xml:lang="ro">Importul și exportul schemelor de produs și datelor de telemetrie.</li>
       <li xml:lang="ru">Импорт и экспорт схем продуктов и данных телеметрии.</li>
       <li xml:lang="sa">उत्पाद योजना तथा दूरमापन आँकडा आयात/निर्यात।</li>
+      <li xml:lang="sk">Import/export schém produktov a telemetrických dát.</li>
       <li xml:lang="sl">Shema izdelkov in uvoz/izvoz podatkov iz telemetrije.</li>
       <li xml:lang="sv">Import och export av produktscheman och telemetridata.</li>
       <li xml:lang="tr">Ürün şeması ve telemetri verisi içe/dışa aktarım.</li>

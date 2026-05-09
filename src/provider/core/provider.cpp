@@ -119,6 +119,14 @@ std::unique_ptr<QSettings> ProviderPrivate::makeGlobalSettings() const
     return s;
 }
 
+std::unique_ptr<QSettings> ProviderPrivate::makeGlobalState() const
+{
+    const auto file = QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QLatin1String("/KUserFeedback");
+    std::unique_ptr<QSettings> s(new QSettings(file, QSettings::IniFormat));
+
+    return s;
+}
+
 void ProviderPrivate::load()
 {
     auto s = makeSettings();
@@ -159,8 +167,27 @@ void ProviderPrivate::load()
 
     auto g = makeGlobalSettings();
     g->beginGroup(QStringLiteral("UserFeedback"));
-    lastSurveyTime = std::max(g->value(QStringLiteral("LastSurvey")).toDateTime(), lastSurveyTime);
-    lastEncouragementTime = std::max(g->value(QStringLiteral("LastEncouragement")).toDateTime(), lastEncouragementTime);
+
+    auto globalState = makeGlobalState();
+    globalState->beginGroup(QStringLiteral("UserFeedback"));
+
+    const QDateTime oldLastEncouragementTime = g->value(QStringLiteral("LastEncouragement")).toDateTime();
+    QDateTime newLastEncouragementTime = globalState->value(QStringLiteral("LastEncouragement")).toDateTime();
+    if (oldLastEncouragementTime.isValid() && !newLastEncouragementTime.isValid()) {
+        globalState->setValue(QStringLiteral("LastEncouragement"), oldLastEncouragementTime);
+        newLastEncouragementTime = oldLastEncouragementTime;
+        g->remove(QStringLiteral("LastEncouragement"));
+    }
+    lastEncouragementTime = std::max(newLastEncouragementTime, lastEncouragementTime);
+
+    const QDateTime oldLastSurveyTime = g->value(QStringLiteral("LastSurvey")).toDateTime();
+    QDateTime newLastSurveyTime = globalState->value(QStringLiteral("LastSurvey")).toDateTime();
+    if (oldLastSurveyTime.isValid() && !newLastSurveyTime.isValid()) {
+        globalState->setValue(QStringLiteral("LastSurvey"), oldLastSurveyTime);
+        newLastSurveyTime = oldLastSurveyTime;
+        g->remove(QStringLiteral("LastSurvey"));
+    }
+    lastSurveyTime = std::max(newLastSurveyTime, lastSurveyTime);
 }
 
 void ProviderPrivate::store()
@@ -193,6 +220,13 @@ void ProviderPrivate::storeOne(const QString &key, const QVariant &value)
 void ProviderPrivate::storeOneGlobal(const QString &key, const QVariant &value)
 {
     auto s = makeGlobalSettings();
+    s->beginGroup(QStringLiteral("UserFeedback"));
+    s->setValue(key, value);
+}
+
+void ProviderPrivate::storeOneGlobalState(const QString &key, const QVariant &value)
+{
+    auto s = makeGlobalState();
     s->beginGroup(QStringLiteral("UserFeedback"));
     s->setValue(key, value);
 }
@@ -406,7 +440,7 @@ void ProviderPrivate::emitShowEncouragementMessage()
 {
     lastEncouragementTime = QDateTime::currentDateTime(); // TODO make this explicit, in case the host application decides to delay?
     storeOne(QStringLiteral("LastEncouragement"), lastEncouragementTime);
-    storeOneGlobal(QStringLiteral("LastEncouragement"), lastEncouragementTime);
+    storeOneGlobalState(QStringLiteral("LastEncouragement"), lastEncouragementTime);
     Q_EMIT q->showEncouragementMessage();
 }
 
@@ -633,7 +667,7 @@ void Provider::surveyCompleted(const SurveyInfo &info)
     s->setValue(QStringLiteral("LastSurvey"), d->lastSurveyTime);
     s->setValue(QStringLiteral("CompletedSurveys"), d->completedSurveys);
 
-    d->storeOneGlobal(QStringLiteral("LastSurvey"), d->lastSurveyTime);
+    d->storeOneGlobalState(QStringLiteral("LastSurvey"), d->lastSurveyTime);
 }
 
 void Provider::load()

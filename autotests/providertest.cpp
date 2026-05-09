@@ -34,8 +34,10 @@ private Q_SLOTS:
     {
         QSettings s(QCoreApplication::organizationName(), QStringLiteral("UserFeedback"));;
         s.beginGroup(QLatin1String("UserFeedback"));
-        s.remove(QLatin1String("LastEncouragement"));
         s.remove(QLatin1String("Enabled"));
+
+        QSettings globalState(QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) + QLatin1String("/KUserFeedback"), QSettings::IniFormat);
+        globalState.remove(QLatin1String("LastEncouragement"));
     }
 
     void testProductId()

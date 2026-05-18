@@ -1,17 +1,18 @@
 # Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2017, 2018, 2019, 2020.
+# SPDX-FileCopyrightText: 2026 Marcus Gama <marcus.gama@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2020-02-07 14:53-0300\n"
-"Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
-"Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
+"PO-Revision-Date: 2026-05-17 07:51-0300\n"
+"Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 19.12.1\n"
+"X-Generator: Lokalize 26.04.1\n"
 
 #: analytics/analyticsview.cpp:77
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -350,7 +351,7 @@ msgstr ""
 #: mainwindow.cpp:130
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "About User Feedback Console"
-msgstr "Sobre o console dos comentários do usuário"
+msgstr "Sobre o console de feedback do usuário"
 
 #: mainwindow.cpp:130
 #, qt-format
@@ -476,7 +477,7 @@ msgstr ""
 #: mainwindow.ui:14
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "User Feedback Console"
-msgstr "Console dos comentários do usuário"
+msgstr "Console de feedback do usuário"
 
 #: mainwindow.ui:50
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -556,7 +557,7 @@ msgstr "Sai&r"
 #: mainwindow.ui:203
 msgctxt "KUserFeedback::Console::MainWindow|"
 msgid "Quit the user feedback console."
-msgstr "Sai do console dos comentários do usuário."
+msgstr "Sai do console de feedback do usuário."
 
 #: mainwindow.ui:214
 msgctxt "KUserFeedback::Console::MainWindow|"

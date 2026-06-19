@@ -12,7 +12,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.9\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -350,7 +350,7 @@ msgstr "Grįžtamojo ryšio nuostatos"
 #: widgets/feedbackconfigwidget.cpp:116
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "No data has been sent at this point."
-msgstr "Šiam momentui nebuvo pateikta jokių duomenų."
+msgstr "Šiam momentui nebuvo pateikti jokie duomenys."
 
 #: widgets/feedbackconfigwidget.ui:17
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -362,7 +362,7 @@ msgid ""
 "information that could identify you."
 msgstr ""
 "Galite padėti šios programinės įrangos plėtojimui, pateikdami informaciją "
-"apie tai, kaip naudojatės šia programinę įranga. Tokiu būdu programuotojai "
+"apie tai, kaip naudojatės šia programine įranga. Tokiu būdu programuotojai "
 "galės susitelkti ties dalykais, kurie yra svarbūs jums. Šios informacijos "
 "pateikimas yra laisvanoriškas ir visiškai anoniminis. Mes niekada nerenkame "
 "jūsų asmeninių duomenų, jūsų naudojamų failų, jūsų aplankytų internetinių "
@@ -424,12 +424,9 @@ msgstr ""
 "apklausose."
 
 #: widgets/notificationpopup.cpp:73
-#, fuzzy
-#| msgctxt "KUserFeedback::FeedbackConfigDialog|"
-#| msgid "Contribute!"
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
 msgid "Contribute…"
-msgstr "Talkinti!"
+msgstr "Talkinti…"
 
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"

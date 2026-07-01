@@ -20,7 +20,13 @@ set_target_properties(KF6UserFeedbackWidgets PROPERTIES
     VERSION ${KUSERFEEDBACK_VERSION}
     EXPORT_NAME UserFeedbackWidgets
 )
-generate_export_header(KF6UserFeedbackWidgets BASE_NAME KUserFeedbackWidgets)
+ecm_generate_export_header(KF6UserFeedbackWidgets
+    BASE_NAME KUserFeedbackWidgets
+    GROUP_BASE_NAME KF
+    VERSION ${KF_VERSION}
+    USE_VERSION_HEADER
+    VERSION_BASE_NAME KUserFeedback
+)
 target_link_libraries(KF6UserFeedbackWidgets PUBLIC Qt6::Widgets KF6UserFeedbackCore)
 target_include_directories(KF6UserFeedbackWidgets INTERFACE
                            "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KUserFeedback>"

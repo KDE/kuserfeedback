@@ -59,7 +59,13 @@ set_target_properties(KF6UserFeedbackCore PROPERTIES
     VERSION ${KUSERFEEDBACK_VERSION}
     EXPORT_NAME UserFeedbackCore
 )
-generate_export_header(KF6UserFeedbackCore BASE_NAME KUserFeedbackCore)
+ecm_generate_export_header(KF6UserFeedbackCore
+    BASE_NAME KUserFeedbackCore
+    GROUP_BASE_NAME KF
+    VERSION ${KF_VERSION}
+    USE_VERSION_HEADER
+    VERSION_BASE_NAME KUserFeedback
+)
 
 target_link_libraries(KF6UserFeedbackCore PUBLIC Qt6::Core PRIVATE Qt6::Gui Qt6::Network)
 if(ANDROID)

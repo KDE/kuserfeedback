@@ -38,10 +38,12 @@ public:
 
     std::unique_ptr<QSettings> makeSettings() const;
     std::unique_ptr<QSettings> makeGlobalSettings() const;
+    std::unique_ptr<QSettings> makeGlobalState() const;
     void load();
     void store();
     void storeOne(const QString &key, const QVariant &value);
     void storeOneGlobal(const QString &key, const QVariant &value);
+    void storeOneGlobalState(const QString &key, const QVariant &value);
 
     void aboutToQuit();
 

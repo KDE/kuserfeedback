@@ -5,11 +5,12 @@
 # Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2017, 2018, 2019, 2020, 2022.
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2020.
 # SPDX-FileCopyrightText: 2025 Guilherme Marçal Silva <guimarcalsilva@gmail.com>
+# SPDX-FileCopyrightText: 2026 Marcus Gama <marcus.gama@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: userfeedbackprovider5_qt\n"
-"PO-Revision-Date: 2025-02-05 23:39-0300\n"
-"Last-Translator: Guilherme Marçal Silva <guimarcalsilva@gmail.com>\n"
+"PO-Revision-Date: 2026-07-16 12:13-0300\n"
+"Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.12.1\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -32,7 +33,7 @@ msgstr "Versão do aplicativo"
 #: core/auditloguicontroller.cpp:140
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Basic System Information"
-msgstr "Informação básica do sistema"
+msgstr "Informações básicas do sistema"
 
 #: core/auditloguicontroller.cpp:142
 msgctxt "KUserFeedback::AuditLogUiController|"
@@ -42,7 +43,7 @@ msgstr "Estatísticas de uso básicas"
 #: core/auditloguicontroller.cpp:144
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Detailed System Information"
-msgstr "Informação detalhada do sistema"
+msgstr "Informações detalhadas do sistema"
 
 #: core/auditloguicontroller.cpp:146
 msgctxt "KUserFeedback::AuditLogUiController|"
@@ -81,7 +82,7 @@ msgstr "O compilador usado para compilar este aplicativo."
 #: core/compilerinfosource.cpp:53
 msgctxt "KUserFeedback::CompilerInfoSource|"
 msgid "Compiler information"
-msgstr "Informação do compilador"
+msgstr "Informações do compilador"
 
 #: core/cpuinfosource.cpp:22
 msgctxt "KUserFeedback::CpuInfoSource|"
@@ -91,7 +92,7 @@ msgstr "A quantidade e tipo de CPUs no sistema."
 #: core/cpuinfosource.cpp:35
 msgctxt "KUserFeedback::CpuInfoSource|"
 msgid "CPU information"
-msgstr "Informação da CPU"
+msgstr "Informações da CPU"
 
 #: core/feedbackconfiguicontroller.cpp:119
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -101,22 +102,22 @@ msgstr "Desabilitado"
 #: core/feedbackconfiguicontroller.cpp:121
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Basic system information"
-msgstr "Informação básica do sistema"
+msgstr "Informações básicas do sistema"
 
 #: core/feedbackconfiguicontroller.cpp:123
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Basic system information and usage statistics"
-msgstr "Informação básica do sistema e estatísticas de uso"
+msgstr "Informações básicas do sistema e estatísticas de uso"
 
 #: core/feedbackconfiguicontroller.cpp:125
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Detailed system information and basic usage statistics"
-msgstr "Informação detalhada do sistema e estatísticas básicas de uso"
+msgstr "Informações detalhadas do sistema e estatísticas básicas de uso"
 
 #: core/feedbackconfiguicontroller.cpp:127
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Detailed system information and usage statistics"
-msgstr "Informação detalhada do sistema e estatísticas de uso"
+msgstr "Informações detalhadas do sistema e estatísticas de uso"
 
 #: core/feedbackconfiguicontroller.cpp:139
 #: core/feedbackconfiguicontroller.cpp:162
@@ -250,7 +251,7 @@ msgstr "As configurações de idioma e região atuais."
 #: core/localeinfosource.cpp:35
 msgctxt "KUserFeedback::LocaleInfoSource|"
 msgid "Locale information"
-msgstr "Informação do local"
+msgstr "Informações do local"
 
 #: core/openglinfosource.cpp:28
 msgctxt "KUserFeedback::OpenGLInfoSource|"
@@ -260,7 +261,7 @@ msgstr "Informações sobre o tipo, versão e fabricante da pilha OpenGL."
 #: core/openglinfosource.cpp:98
 msgctxt "KUserFeedback::OpenGLInfoSource|"
 msgid "OpenGL information"
-msgstr "Informação do OpenGL"
+msgstr "Informações do OpenGL"
 
 #: core/platforminfosource.cpp:21
 msgctxt "KUserFeedback::PlatformInfoSource|"
@@ -270,7 +271,7 @@ msgstr "Tipo e versão do sistema operacional."
 #: core/platforminfosource.cpp:58
 msgctxt "KUserFeedback::PlatformInfoSource|"
 msgid "Platform information"
-msgstr "Informação da plataforma"
+msgstr "Informações da plataforma"
 
 #: core/qpainfosource.cpp:21
 msgctxt "KUserFeedback::QPAInfoSource|"
@@ -280,7 +281,7 @@ msgstr "O plugin de abstração da plataforma Qt"
 #: core/qpainfosource.cpp:33
 msgctxt "KUserFeedback::QPAInfoSource|"
 msgid "QPA information"
-msgstr "Informação QPA"
+msgstr "Informações do QPA"
 
 #: core/qtversionsource.cpp:21
 msgctxt "KUserFeedback::QtVersionSource|"
@@ -290,7 +291,7 @@ msgstr "A versão do Qt usada neste aplicativo."
 #: core/qtversionsource.cpp:33
 msgctxt "KUserFeedback::QtVersionSource|"
 msgid "Qt version information"
-msgstr "Informação da versão Qt"
+msgstr "Informações da versão Qt"
 
 #: core/screeninfosource.cpp:22
 msgctxt "KUserFeedback::ScreenInfoSource|"
@@ -330,7 +331,7 @@ msgstr "Excluir log"
 #: widgets/auditlogbrowserdialog.ui:14
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
 msgid "Submitted Data"
-msgstr "Dado enviado"
+msgstr "Dados enviados"
 
 #: widgets/auditlogbrowserdialog.ui:22
 msgctxt "KUserFeedback::AuditLogBrowserDialog|"
@@ -395,7 +396,7 @@ msgstr "<a href=\"auditLog\">Visualizar dados enviados anteriormente...</a>"
 #: widgets/feedbackconfigwidget.ui:150
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Participate in Surveys"
-msgstr "Participar em pesquisas"
+msgstr "Participar de pesquisas"
 
 #: widgets/notificationpopup.cpp:67
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -415,7 +416,7 @@ msgstr ""
 #, qt-format
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "Help us make %1 better!"
-msgstr "Ajude-nos a tornar %1 melhor!"
+msgstr "Ajude-nos a tornar o %1 melhor!"
 
 #: widgets/notificationpopup.cpp:71
 #, qt-format
@@ -424,7 +425,7 @@ msgid ""
 "You can help us improving %1 by sharing statistics and participate in "
 "surveys."
 msgstr ""
-"Você pode nos ajudar a melhorar %1, compartilhando estatísticas e "
+"Você pode nos ajudar a melhorar o %1, compartilhando estatísticas e "
 "participando de pesquisas."
 
 #: widgets/notificationpopup.cpp:73

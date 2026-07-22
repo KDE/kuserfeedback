@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2026-07-18 04:47+0900\n"
+"PO-Revision-Date: 2026-07-22 00:38+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Min Nan Chinese Latin <zh-l10n@lists.slat.org>\n"
 "Language: nan_TW@latin\n"
@@ -26,7 +26,7 @@ msgstr ""
 #: analytics/analyticsview.cpp:126
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Copy"
-msgstr ""
+msgstr "Khóo-pih"
 
 #: analytics/analyticsview.cpp:258
 msgctxt "KUserFeedback::Console::AnalyticsView|"
@@ -42,7 +42,7 @@ msgstr ""
 #, qt-format
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Could not open file: %1"
-msgstr ""
+msgstr "Bô-huat-tōo khui tóng-àn: %1"
 
 #: analytics/analyticsview.cpp:270
 #, qt-format
@@ -655,12 +655,12 @@ msgstr ""
 #: model/aggregationeditormodel.cpp:90
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "Name"
-msgstr ""
+msgstr "Miâ"
 
 #: model/aggregationeditormodel.cpp:91
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
 msgid "Type"
-msgstr ""
+msgstr "Luī"
 
 #: model/aggregationeditormodel.cpp:92
 msgctxt "KUserFeedback::Console::AggregationEditorModel|"
@@ -715,7 +715,7 @@ msgstr ""
 #: model/productmodel.cpp:82
 msgctxt "KUserFeedback::Console::ProductModel|"
 msgid "Products"
-msgstr ""
+msgstr "Sán-phín"
 
 #: model/ratiosetaggregationmodel.cpp:87
 msgctxt "KUserFeedback::Console::RatioSetAggregationModel|"
@@ -725,17 +725,17 @@ msgstr ""
 #: model/schemamodel.cpp:145
 msgctxt "KUserFeedback::Console::SchemaModel|"
 msgid "Name"
-msgstr ""
+msgstr "Miâ"
 
 #: model/schemamodel.cpp:146
 msgctxt "KUserFeedback::Console::SchemaModel|"
 msgid "Type"
-msgstr ""
+msgstr "Luī"
 
 #: model/surveymodel.cpp:110
 msgctxt "KUserFeedback::Console::SurveyModel|"
 msgid "Name"
-msgstr ""
+msgstr "Miâ"
 
 #: model/surveymodel.cpp:111
 msgctxt "KUserFeedback::Console::SurveyModel|"
@@ -755,7 +755,7 @@ msgstr ""
 #: model/timeaggregationmodel.cpp:153
 msgctxt "KUserFeedback::Console::TimeAggregationModel|"
 msgid "Time"
-msgstr ""
+msgstr "Sî-kan"
 
 #: model/timeaggregationmodel.cpp:154
 msgctxt "KUserFeedback::Console::TimeAggregationModel|"
@@ -780,7 +780,7 @@ msgstr ""
 #: schemaeditor/aggregationeditwidget.ui:67
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
 msgid "&Delete"
-msgstr ""
+msgstr "Thâi-tiāu(&D)"
 
 #: schemaeditor/aggregationeditwidget.ui:83
 msgctxt "KUserFeedback::Console::AggregationEditWidget|"
@@ -821,7 +821,7 @@ msgstr ""
 #, qt-format
 msgctxt "KUserFeedback::Console::SchemaEditor|"
 msgid "Could not open file: %1"
-msgstr ""
+msgstr "Bô-huat-tōo khui tóng-àn: %1"
 
 #: schemaeditor/schemaeditor.cpp:129
 #, qt-format
@@ -898,7 +898,7 @@ msgstr ""
 #: schemaeditor/schemaeditwidget.cpp:72 schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Name:"
-msgstr ""
+msgstr "Miâ:"
 
 #: schemaeditor/schemaeditwidget.cpp:81
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -930,7 +930,7 @@ msgstr ""
 #: schemaeditor/schemaeditwidget.ui:30
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "&Delete"
-msgstr ""
+msgstr "Thâi-tiāu(&D)"
 
 #: schemaeditor/schemaeditwidget.ui:33
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -940,7 +940,7 @@ msgstr ""
 #: schemaeditor/schemaeditwidget.ui:36
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
 msgid "Del"
-msgstr ""
+msgstr "Del"
 
 #: schemaeditor/schemaeditwidget.ui:44
 msgctxt "KUserFeedback::Console::SchemaEditWidget|"
@@ -970,7 +970,7 @@ msgstr ""
 #: surveyeditor/surveydialog.ui:22
 msgctxt "KUserFeedback::Console::SurveyDialog|"
 msgid "&Name:"
-msgstr ""
+msgstr "Miâ(&N):"
 
 #: surveyeditor/surveydialog.ui:35
 msgctxt "KUserFeedback::Console::SurveyDialog|"

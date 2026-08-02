@@ -1,5 +1,6 @@
 # Translation of userfeedbackprovider6_qt to Norwegian Nynorsk
 #
+# Karl Ove Hufthammer <karl@huftis.org>, 2020, 2021, 2022, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"

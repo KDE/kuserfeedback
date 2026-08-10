@@ -1,23 +1,24 @@
 # SPDX-FileCopyrightText: 2022, 2024, 2025 Vit Pelcak <vit@pelcak.org>
 # Vít Pelčák <vit@pelcak.org>, 2017, 2019, 2020.
+# SPDX-FileCopyrightText: 2026 Libor Filípek <libor.filipek@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-12-11 23:13+0100\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"PO-Revision-Date: 2026-08-09 23:33+0200\n"
+"Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 25.08.3\n"
+"X-Generator: Poedit 3.9\n"
 "X-Qt-Contexts: true\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
 msgid "The version of the application."
-msgstr ""
+msgstr "Verze aplikace."
 
 #: core/applicationversionsource.cpp:36
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -66,12 +67,12 @@ msgstr "Klíč: <i>%1</i><br/>"
 #, qt-format
 msgctxt "KUserFeedback::AuditLogUiController|"
 msgid "Submitted data: <tt>%1</tt><br/><br/>"
-msgstr ""
+msgstr "Odeslaná data: <tt>%1</tt><br/><br/>"
 
 #: core/compilerinfosource.cpp:20
 msgctxt "KUserFeedback::CompilerInfoSource|"
 msgid "The compiler used to build this application."
-msgstr ""
+msgstr "Překladač použitý při sestavení této aplikace."
 
 #: core/compilerinfosource.cpp:53
 msgctxt "KUserFeedback::CompilerInfoSource|"
@@ -81,7 +82,7 @@ msgstr "Informace o překladači"
 #: core/cpuinfosource.cpp:22
 msgctxt "KUserFeedback::CpuInfoSource|"
 msgid "The amount and type of CPUs in the system."
-msgstr ""
+msgstr "Počet a typ CPU v systému."
 
 #: core/cpuinfosource.cpp:35
 msgctxt "KUserFeedback::CpuInfoSource|"
@@ -125,6 +126,8 @@ msgid ""
 "Share basic system information such as the version of the application and "
 "the operating system"
 msgstr ""
+"Sdílet základní informace o systému, jako je verze aplikace a operačního "
+"systému"
 
 #: core/feedbackconfiguicontroller.cpp:147
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -132,6 +135,8 @@ msgid ""
 "Share basic system information and basic statistics on how often you use the "
 "application"
 msgstr ""
+"Sdílet základní informace o systému a základní statistiky o tom, jak často "
+"aplikaci používáte"
 
 #: core/feedbackconfiguicontroller.cpp:151
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -139,6 +144,8 @@ msgid ""
 "Share basic statistics on how often you use the application, as well as more "
 "detailed information about your system"
 msgstr ""
+"Sdílet základní statistické údaje o tom, jak často aplikaci používáte, a "
+"také podrobnější informace o vašem systému"
 
 #: core/feedbackconfiguicontroller.cpp:155
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -146,6 +153,8 @@ msgid ""
 "Share detailed system information and statistics on how often individual "
 "features of the application are used."
 msgstr ""
+"Sdílet podrobné informace o systému a statistiky o tom, jak často se "
+"jednotlivé funkce aplikace používají."
 
 #: core/feedbackconfiguicontroller.cpp:166
 #, qt-format
@@ -154,6 +163,7 @@ msgid ""
 "Share basic system information such as the version of %1 and and the "
 "operating system"
 msgstr ""
+"Sdílet základní informace o systému, jako je verze %1 a operační systém"
 
 #: core/feedbackconfiguicontroller.cpp:170
 #, qt-format
@@ -161,6 +171,8 @@ msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Share basic system information and basic statistics on how often you use %1"
 msgstr ""
+"Sdílet základní informace o systému a základní statistiky o tom, jak často "
+"používáte %1"
 
 #: core/feedbackconfiguicontroller.cpp:174
 #, qt-format
@@ -169,6 +181,8 @@ msgid ""
 "Share basic statistics on how often you use %1, as well as more detailed "
 "information about your system"
 msgstr ""
+"Sdílet základní statistické údaje o tom, jak často používáte %1, a také "
+"podrobnější informace o vašem systému"
 
 #: core/feedbackconfiguicontroller.cpp:178
 #, qt-format
@@ -177,17 +191,20 @@ msgid ""
 "Share detailed system information and statistics on how often individual "
 "features of %1 are used."
 msgstr ""
+"Sdílet podrobné informace o systému a statistiky o tom, jak často se "
+"využívají jednotlivé funkce %1."
 
 #: core/feedbackconfiguicontroller.cpp:231
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys"
-msgstr ""
+msgstr "Neúčastnit se průzkumů použitelnosti"
 
 #: core/feedbackconfiguicontroller.cpp:235
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid ""
 "Participate in surveys about the application not more than four times a year"
 msgstr ""
+"Zúčastnit se průzkumů týkajících se této aplikace maximálně čtyřikrát ročně"
 
 #: core/feedbackconfiguicontroller.cpp:239
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
@@ -195,18 +212,20 @@ msgid ""
 "Participate in surveys about the application whenever one is available (they "
 "can be deferred or skipped)"
 msgstr ""
+"Zúčastnit se průzkumů týkajících se aplikace, kdykoli budou k dispozici (lze "
+"je odložit nebo přeskočit)"
 
 #: core/feedbackconfiguicontroller.cpp:246
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Don't participate in usability surveys about %1"
-msgstr ""
+msgstr "Neúčastnit se průzkumů použitelnosti týkajících se %1"
 
 #: core/feedbackconfiguicontroller.cpp:250
 #, qt-format
 msgctxt "KUserFeedback::FeedbackConfigUiController|"
 msgid "Participate in surveys about %1 not more than four times a year"
-msgstr ""
+msgstr "Zúčastnit se průzkumů týkajících se %1, a to maximálně čtyřikrát ročně"
 
 #: core/feedbackconfiguicontroller.cpp:254
 #, qt-format
@@ -215,11 +234,13 @@ msgid ""
 "Participate in surveys about %1 whenever one is available (they can be "
 "deferred or skipped)"
 msgstr ""
+"Zúčastnit se průzkumů o %1, kdykoli budou k dispozici (lze je odložit nebo "
+"přeskočit)"
 
 #: core/localeinfosource.cpp:21
 msgctxt "KUserFeedback::LocaleInfoSource|"
 msgid "The current region and language settings."
-msgstr ""
+msgstr "Aktuální nastavení regionu a jazyka."
 
 #: core/localeinfosource.cpp:35
 msgctxt "KUserFeedback::LocaleInfoSource|"
@@ -229,7 +250,7 @@ msgstr "Informace o lokalizaci"
 #: core/openglinfosource.cpp:28
 msgctxt "KUserFeedback::OpenGLInfoSource|"
 msgid "Information about type, version and vendor of the OpenGL stack."
-msgstr ""
+msgstr "Informace o typu, verzi a dodavateli balíku OpenGL."
 
 #: core/openglinfosource.cpp:98
 msgctxt "KUserFeedback::OpenGLInfoSource|"
@@ -239,17 +260,17 @@ msgstr "Informace o OpenGL"
 #: core/platforminfosource.cpp:21
 msgctxt "KUserFeedback::PlatformInfoSource|"
 msgid "Type and version of the operating system."
-msgstr ""
+msgstr "Typ a verze operačního systému."
 
 #: core/platforminfosource.cpp:58
 msgctxt "KUserFeedback::PlatformInfoSource|"
 msgid "Platform information"
-msgstr "informace o platformě"
+msgstr "Informace o platformě"
 
 #: core/qpainfosource.cpp:21
 msgctxt "KUserFeedback::QPAInfoSource|"
 msgid "The Qt platform abstraction plugin."
-msgstr ""
+msgstr "Modul pro abstrakci platformy Qt."
 
 #: core/qpainfosource.cpp:33
 msgctxt "KUserFeedback::QPAInfoSource|"
@@ -259,7 +280,7 @@ msgstr "Informace o QPA"
 #: core/qtversionsource.cpp:21
 msgctxt "KUserFeedback::QtVersionSource|"
 msgid "The Qt version used by this application."
-msgstr ""
+msgstr "Verze Qt, kterou tato aplikace používá."
 
 #: core/qtversionsource.cpp:33
 msgctxt "KUserFeedback::QtVersionSource|"
@@ -269,7 +290,7 @@ msgstr "Informaci o verzi Qt"
 #: core/screeninfosource.cpp:22
 msgctxt "KUserFeedback::ScreenInfoSource|"
 msgid "Size and resolution of all connected screens."
-msgstr ""
+msgstr "Velikost a rozlišení všech připojených obrazovek."
 
 #: core/screeninfosource.cpp:46
 msgctxt "KUserFeedback::ScreenInfoSource|"
@@ -279,7 +300,7 @@ msgstr "Parametry obrazovky"
 #: core/startcountsource.cpp:31
 msgctxt "KUserFeedback::StartCountSource|"
 msgid "How often the application has been started."
-msgstr ""
+msgstr "Jak často byla aplikace spuštěna."
 
 #: core/startcountsource.cpp:46
 msgctxt "KUserFeedback::StartCountSource|"
@@ -289,7 +310,7 @@ msgstr "Počet spuštění"
 #: core/usagetimesource.cpp:31
 msgctxt "KUserFeedback::UsageTimeSource|"
 msgid "The total amount of time the application has been used."
-msgstr ""
+msgstr "Celková doba, po kterou byla aplikace používána."
 
 #: core/usagetimesource.cpp:46
 msgctxt "KUserFeedback::UsageTimeSource|"
@@ -319,12 +340,12 @@ msgstr "Přispívejte!"
 #: widgets/feedbackconfigdialog.cpp:33
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
 msgid "No, I do not want to contribute."
-msgstr ""
+msgstr "Ne, nechci se účastnit."
 
 #: widgets/feedbackconfigdialog.ui:14
 msgctxt "KUserFeedback::FeedbackConfigDialog|"
 msgid "Feedback Settings"
-msgstr ""
+msgstr "Nastavení zpětné vazby"
 
 #: widgets/feedbackconfigwidget.cpp:116
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -340,11 +361,17 @@ msgid ""
 "collect your personal data, files you use, websites you visit, or "
 "information that could identify you."
 msgstr ""
+"Můžete přispět k vývoji tohoto softwaru tím, že nám poskytnete informace o "
+"tom, jak jej používáte, aby se vývojáři mohli soustředit na věci, které jsou "
+"pro vás důležité. Poskytnutí těchto informací je dobrovolné a zcela "
+"anonymní. Nikdy neshromažďujeme vaše osobní údaje, soubory, které používáte, "
+"webové stránky, které navštěvujete, ani informace, na jejichž základě by vás "
+"bylo možné identifikovat."
 
 #: widgets/feedbackconfigwidget.ui:33
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Contribute Statistics"
-msgstr ""
+msgstr "Přispějte statistikami"
 
 #: widgets/feedbackconfigwidget.ui:107
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -354,12 +381,12 @@ msgstr "Textový štítek"
 #: widgets/feedbackconfigwidget.ui:124
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "Show the raw data that is going to be shared."
-msgstr ""
+msgstr "Zobrazit nezpracovaná data, která budou sdílena."
 
 #: widgets/feedbackconfigwidget.ui:137
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
 msgid "<a href=\"auditLog\">View previously submitted data...</a>"
-msgstr ""
+msgstr "<a href=\"auditLog\">Zobrazit dříve odeslaná data...</a>"
 
 #: widgets/feedbackconfigwidget.ui:150
 msgctxt "KUserFeedback::FeedbackConfigWidget|"
@@ -377,12 +404,14 @@ msgid ""
 "You can help us improving this application by sharing statistics and "
 "participate in surveys."
 msgstr ""
+"Můžete nám pomoci vylepšit tuto aplikaci sdílením statistik a účastí v "
+"průzkumech."
 
 #: widgets/notificationpopup.cpp:70
 #, qt-format
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "Help us make %1 better!"
-msgstr ""
+msgstr "Pomozte nám vylepšit %1!"
 
 #: widgets/notificationpopup.cpp:71
 #, qt-format
@@ -391,6 +420,8 @@ msgid ""
 "You can help us improving %1 by sharing statistics and participate in "
 "surveys."
 msgstr ""
+"Můžete nám pomoci vylepšit %1 tím, že nám poskytnete statistické údaje a "
+"zapojíte se do průzkumů."
 
 #: widgets/notificationpopup.cpp:73
 msgctxt "KUserFeedback::NotificationPopup|@action:button"
@@ -400,7 +431,7 @@ msgstr "Přispívejte…"
 #: widgets/notificationpopup.cpp:84
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "We are looking for your feedback!"
-msgstr ""
+msgstr "Těšíme se na vaši zpětnou vazbu!"
 
 #: widgets/notificationpopup.cpp:86
 msgctxt "KUserFeedback::NotificationPopup|"
@@ -408,6 +439,8 @@ msgid ""
 "We would like a few minutes of your time to provide feedback about this "
 "application in a survey."
 msgstr ""
+"Rádi bychom vás požádali o pár minut vašeho času, abyste nám v rámci "
+"průzkumu poskytli zpětnou vazbu k této aplikaci."
 
 #: widgets/notificationpopup.cpp:88
 #, qt-format
@@ -416,11 +449,13 @@ msgid ""
 "We would like a few minutes of your time to provide feedback about %1 in a "
 "survey."
 msgstr ""
+"Rádi bychom vás požádali o pár minut vašeho času, abyste nám v rámci "
+"průzkumu poskytli zpětnou vazbu ohledně %1."
 
 #: widgets/notificationpopup.cpp:89
 msgctxt "KUserFeedback::NotificationPopup|"
 msgid "Participate"
-msgstr "Přidejte se"
+msgstr "Zúčastněte se"
 
 #: widgets/styleinfosource.cpp:23
 msgctxt "KUserFeedback::StyleInfoSource|"
@@ -428,6 +463,7 @@ msgid ""
 "The widget style used by the application, and information about the used "
 "color scheme."
 msgstr ""
+"Styl widgetu používaný aplikací a informace o použitém barevném motivu."
 
 #: widgets/styleinfosource.cpp:37
 msgctxt "KUserFeedback::StyleInfoSource|"

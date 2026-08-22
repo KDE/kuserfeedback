@@ -22,7 +22,7 @@ qhp.UserFeedback.subprojects.manual.type = manual
 
 navigation.homepage    = "UserFeedback Manual"
 navigation.landingpage = "UserFeedback Manual"
-buildversion = "UserFeedback Manual @KUSERFEEDBACK_VERSION_STRING@"
+buildversion = "UserFeedback Manual @KUSERFEEDBACK_VERSION@"
 
 # offline specific
 include(@QDOC_TEMPLATE_DIR@/qt-html-templates-offline.qdocconf)

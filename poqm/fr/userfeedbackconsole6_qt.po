@@ -162,7 +162,7 @@ msgstr "&Recharger les données"
 #: analytics/analyticsview.ui:207
 msgctxt "KUserFeedback::Console::AnalyticsView|"
 msgid "Refresh data from the server."
-msgstr "Rafraîchir les données depuis le serveur."
+msgstr "Rafraichir les données depuis le serveur."
 
 #: analytics/analyticsview.ui:218
 msgctxt "KUserFeedback::Console::AnalyticsView|"

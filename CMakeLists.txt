@@ -37,6 +37,7 @@ include(ECMGenerateExportHeader)
 include(ECMDeprecationSettings)
 include(ECMGenerateQDoc)
 include(ECMQtDeclareLoggingCategory)
+include(ECMInstalledLibraryCheck)
 
 ecm_setup_version(PROJECT
     VARIABLE_PREFIX KUSERFEEDBACK

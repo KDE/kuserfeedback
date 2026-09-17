@@ -127,3 +127,17 @@ ecm_generate_pri_file(BASE_NAME KF6UserFeedbackCore
 )
 
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
+
+ecm_add_installed_library_check(KF6UserFeedbackCore
+    PACKAGE_NAME "KF6UserFeedback"
+    PACKAGE_TARGET_NAMESPACE "KF6::"
+)
+
+ecm_installed_library_check_include_strings(KF6UserFeedbackCore
+    HEADERS ${KUserFeedbackCore_CamelCase_HEADERS}
+    PREFIX KUserFeedback
+)
+
+ecm_installed_library_check_version_preprocessor_macros(KF6UserFeedbackCore
+    PREFIX KUSERFEEDBACK
+)

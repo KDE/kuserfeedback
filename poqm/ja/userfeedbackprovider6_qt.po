@@ -1,13 +1,13 @@
-# SPDX-FileCopyrightText: 2026 Mint <5602mint@gmail.com>
 # Tomohiro Hyakutake <tomhioo@outlook.jp>, 2020.
 # Ryuichi Yamada <ryuichi_ya220@outlook.jp>, 2023.
 # Fumiaki Okushi <fumiaki.okushi@gmail.com>, 2020, 2023.
+# SPDX-FileCopyrightText: 2026 Mint <5602mint@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: userfeedbackprovider5_qt\n"
-"PO-Revision-Date: 2026-06-19 18:50+0900\n"
+"PO-Revision-Date: 2026-09-09 19:20+0900\n"
 "Last-Translator: Mint <5602mint@gmail.com>\n"
-"Language-Team: Japanese <kde-i18n-doc@kde.org>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: qtrich\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Lokalize 26.04.2\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #: core/applicationversionsource.cpp:21
 msgctxt "KUserFeedback::ApplicationVersionSource|"
@@ -359,9 +359,9 @@ msgid ""
 "information that could identify you."
 msgstr ""
 "使用状況に関する情報を提供していただくことで、開発者がこのアプリケーションを"
-"改善する助けとなり、あなたによりよいアプリケーションをお届けすることができま"
-"す。情報の提供は任意であり、完全に匿名です。個人情報、使用するファイルやウェ"
-"ブサイト、または個人を特定できる情報は一切収集しません。"
+"改善する助けとなり、よりよいアプリケーションをお届けすることができます。情報"
+"の提供は任意であり、完全に匿名です。個人情報、使用するファイルやウェブサイ"
+"ト、または個人を特定できる情報は一切収集しません。"
 
 #: widgets/feedbackconfigwidget.ui:33
 msgctxt "KUserFeedback::FeedbackConfigWidget|"

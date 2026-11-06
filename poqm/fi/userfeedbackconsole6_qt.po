@@ -344,8 +344,7 @@ msgid ""
 "it and discard your changes?"
 msgstr ""
 "Skeemamuokkaimessa on tallentamattomia muutoksia. Haluatko varmasti sulkea "
-"sen ja hylätä muutokset?Skeemamuokkaimessa on tallentamattomia muutoksia. "
-"Haluatko varmasti sulkea sen ja hylätä muutokset?"
+"sen ja hylätä muutokset?"
 
 #: mainwindow.cpp:130
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -371,8 +370,7 @@ msgid ""
 "another product and discard your changes?"
 msgstr ""
 "Skeemamuokkaimessa on tallentamattomia muutoksia: haluatko varmasti avata "
-"uuden tuotteen ja hylätä muutokset?Skeemamuokkaimessa on tallentamattomia "
-"muutoksia: haluatko varmasti avata uuden tuotteen ja hylätä muutokset?"
+"uuden tuotteen ja hylätä muutokset?"
 
 #: mainwindow.cpp:172
 msgctxt "KUserFeedback::Console::MainWindow|"
@@ -470,8 +468,7 @@ msgid ""
 "and close the application?"
 msgstr ""
 "Skeemamuokkaimessa on tallentamattomia muutoksia. Haluatko hylätä ne ja "
-"sulkea sovelluksen?Skeemamuokkaimessa on tallentamattomia muutoksia. "
-"Haluatko hylätä ne ja sulkea sovelluksen?"
+"sulkea sovelluksen?"
 
 #: mainwindow.ui:14
 msgctxt "KUserFeedback::Console::MainWindow|"

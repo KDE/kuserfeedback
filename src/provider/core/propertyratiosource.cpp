@@ -19,6 +19,8 @@
 #include <QTime>
 #include <QElapsedTimer>
 
+#include <utility>
+
 using namespace KUserFeedback;
 
 namespace KUserFeedback {
@@ -42,7 +44,7 @@ public:
     QElapsedTimer lastChangeTime;
     QHash<QString, int> ratioSet; // data we are currently tracking
     QHash<QString, int> baseRatioSet; // data loaded from storage
-    QList<QPair<QVariant, QString>> valueMap;
+    QList<std::pair<QVariant, QString>> valueMap;
 };
 
 // inefficient workaround for not being able to connect QMetaMethod to a function directly
@@ -85,7 +87,7 @@ void PropertyRatioSourcePrivate::propertyChanged()
 
 QString PropertyRatioSourcePrivate::valueToString(const QVariant &value) const
 {
-    const auto it = std::find_if(valueMap.constBegin(), valueMap.constEnd(), [value](QPair<QVariant, QString> p) {
+    const auto it = std::find_if(valueMap.constBegin(), valueMap.constEnd(), [value](std::pair<QVariant, QString> p) {
             return p.first == value;
     });
     if (it != valueMap.constEnd()) {
@@ -166,13 +168,13 @@ void PropertyRatioSource::setPropertyName(const QString& name)
 void PropertyRatioSource::addValueMapping(const QVariant &value, const QString &str)
 {
     Q_D(PropertyRatioSource);
-    auto it = std::find_if(d->valueMap.begin(), d->valueMap.end(), [value](QPair<QVariant, QString> p) {
+    auto it = std::find_if(d->valueMap.begin(), d->valueMap.end(), [value](std::pair<QVariant, QString> p) {
             return p.first == value;
     });
     if (it != d->valueMap.end()) {
         it->second = str;
     } else {
-        d->valueMap.append(QPair<QVariant, QString>(value, str));
+        d->valueMap.append(std::pair<QVariant, QString>(value, str));
     }
 }
 

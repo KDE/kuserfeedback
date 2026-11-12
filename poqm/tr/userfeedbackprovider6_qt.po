@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022-2026 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-01-26 13:17+0300\n"
+"PO-Revision-Date: 2026-11-10 21:38+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.03.70\n"
+"X-Generator: Lokalize 26.08.2\n"
 "X-Qt-Contexts: true\n"
 "X-POOTLE-MTIME: 1502201718.000000\n"
 
@@ -465,7 +465,7 @@ msgstr ""
 #: widgets/styleinfosource.cpp:37
 msgctxt "KUserFeedback::StyleInfoSource|"
 msgid "Application style"
-msgstr "Uygulama biçemi"
+msgstr "Uygulama stili"
 
 #~ msgctxt "KUserFeedback::NotificationPopup|"
 #~ msgid "Contribute..."
